@@ -4,6 +4,33 @@
 
 **공개 주소:** https://ne-dichoi.github.io/mockup-pages/
 
+## 처음 공유받았다면 (빠른 시작)
+
+폴더를 따로 복사할 필요 없이, 저장소 주소만 있으면 됩니다. 상황에 맞게 고르세요.
+
+**A. Claude Code를 쓴다면** — 아래를 그대로 붙여넣으세요.
+
+> 이 저장소를 내 컴퓨터에 세팅해줘: https://github.com/ne-dichoi/mockup-pages
+> git clone 한 뒤 README와 CLAUDE.md를 읽고, 안내대로 온보딩 스크립트(macOS/Linux면 `bash scripts/init.sh`, 윈도우면 `./scripts/init.ps1`)를 실행해서 빌드까지 해줘. 끝나면 미리보기(`--serve` / `-Serve`)도 띄워줘.
+
+**B. 터미널로 직접** — Git + Node.js v18+ 만 있으면 됩니다.
+
+```bash
+# macOS / Linux
+git clone https://github.com/ne-dichoi/mockup-pages.git
+cd mockup-pages && ./scripts/init.sh --serve
+```
+
+```powershell
+# Windows (PowerShell)
+git clone https://github.com/ne-dichoi/mockup-pages.git
+cd mockup-pages; ./scripts/init.ps1 -Serve
+```
+
+→ 브라우저에서 `http://localhost:3000` 접속. 공개 저장소라 로그인·초대는 필요 없습니다.
+
+**C. 결과물만 보면 된다면** — 설치 없이 공개 주소로: https://ne-dichoi.github.io/mockup-pages/
+
 ## 목업 추가하기
 
 1. `mockups/` 아래에 폴더를 하나 만듭니다. 폴더 이름이 URL이 됩니다. (영문/숫자/하이픈 권장)
