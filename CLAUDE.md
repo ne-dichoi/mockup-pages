@@ -3,7 +3,7 @@
 목업 페이지 저장소. 정적 HTML 목업을 모아 GitHub Pages로 자동 배포한다.
 
 - **공개 주소:** https://ne-dichoi.github.io/mockup-pages/
-- **로컬 세팅:** `bash scripts/init.sh` (clone→확인→빌드, 비블로킹 종료) / 미리보기는 `bash scripts/init.sh --serve`
+- **로컬 세팅:** macOS/Linux는 `bash scripts/init.sh`, Windows는 `./scripts/init.ps1` (clone→확인→빌드, 비블로킹 종료) / 미리보기는 각각 `--serve` · `-Serve`
 
 ## 목업 추가하기
 

@@ -24,6 +24,8 @@ mockups/
 
 온보딩 스크립트 한 번이면 clone → 사전요건 확인 → 빌드까지 끝납니다.
 
+**macOS / Linux (bash)**
+
 ```bash
 # 저장소 없이 처음부터 (clone 포함)
 curl -fsSL https://raw.githubusercontent.com/ne-dichoi/mockup-pages/main/scripts/init.sh | bash
@@ -31,6 +33,17 @@ curl -fsSL https://raw.githubusercontent.com/ne-dichoi/mockup-pages/main/scripts
 # 이미 clone한 경우
 ./scripts/init.sh            # 세팅만
 ./scripts/init.sh --serve    # 세팅 후 http://localhost:3000 미리보기
+```
+
+**Windows (PowerShell)**
+
+```powershell
+# 저장소 없이 처음부터 (clone 포함)
+irm https://raw.githubusercontent.com/ne-dichoi/mockup-pages/main/scripts/init.ps1 | iex
+
+# 이미 clone한 경우
+./scripts/init.ps1           # 세팅만
+./scripts/init.ps1 -Serve    # 세팅 후 http://localhost:3000 미리보기
 ```
 
 직접 실행하려면 `node scripts/build.mjs`로 `_site/`를 만든 뒤 `npx serve _site`를 띄우면 됩니다. Node 없이 확인하려면 `mockups/<폴더>/index.html`을 브라우저로 바로 열어도 됩니다.
