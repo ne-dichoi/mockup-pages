@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>운영 대시보드 (샘플)</title>
+<style>
+  body { font-family: -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; background: #f7f7f8; margin: 0; color: #18181b; }
+  main { max-width: 860px; margin: 0 auto; padding: 40px 20px; }
+  h1 { font-size: 20px; margin: 0 0 24px; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 28px; }
+  .card { background: #fff; border: 1px solid #e4e4e7; border-radius: 10px; padding: 18px; }
+  .card .label { font-size: 13px; color: #71717a; }
+  .card .value { font-size: 26px; font-weight: 600; margin-top: 6px; }
+  table { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid #e4e4e7; border-radius: 10px; overflow: hidden; font-size: 14px; }
+  th, td { text-align: left; padding: 11px 14px; border-bottom: 1px solid #f4f4f5; }
+  th { background: #fafafa; font-weight: 600; font-size: 13px; color: #52525b; }
+  tr:last-child td { border-bottom: 0; }
+  a { display: inline-block; margin-top: 24px; font-size: 13px; color: #71717a; }
+</style>
+</head>
+<body>
+<main>
+  <h1>운영 대시보드</h1>
+  <div class="cards">
+    <div class="card"><div class="label">오늘 접수</div><div class="value">128</div></div>
+    <div class="card"><div class="label">처리 대기</div><div class="value">17</div></div>
+    <div class="card"><div class="label">평균 응답</div><div class="value">4.2분</div></div>
+  </div>
+  <table>
+    <thead><tr><th>번호</th><th>제목</th><th>담당</th><th>상태</th></tr></thead>
+    <tbody>
+      <tr><td>1042</td><td>결제 오류 문의</td><td>김운영</td><td>처리중</td></tr>
+      <tr><td>1041</td><td>배송 지연 확인</td><td>이지원</td><td>완료</td></tr>
+      <tr><td>1040</td><td>계정 잠금 해제</td><td>박서비스</td><td>대기</td></tr>
+    </tbody>
+  </table>
+  <a href="../../">← 목록으로</a>
+</main>
+</body>
+</html>
