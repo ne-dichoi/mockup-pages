@@ -2,7 +2,7 @@
 
 서비스운영팀 목업 페이지 저장소. `main`에 push하면 GitHub Actions가 자동으로 빌드해서 공개 주소에 배포합니다.
 
-**공개 주소:** https://ne-ax-team.github.io/mockup-pages/
+**공개 주소:** https://ne-dichoi.github.io/mockup-pages/
 
 ## 목업 추가하기
 
@@ -14,7 +14,7 @@
 ```
 mockups/
   order-detail/
-    index.html      → https://ne-ax-team.github.io/mockup-pages/mockups/order-detail/
+    index.html      → https://ne-dichoi.github.io/mockup-pages/mockups/order-detail/
     screenshot.png
 ```
 
