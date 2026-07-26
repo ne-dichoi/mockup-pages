@@ -22,12 +22,18 @@ mockups/
 
 ## 로컬에서 확인하기
 
+온보딩 스크립트 한 번이면 clone → 사전요건 확인 → 빌드까지 끝납니다.
+
 ```bash
-node scripts/build.mjs   # _site/ 생성
-npx serve _site          # http://localhost:3000
+# 저장소 없이 처음부터 (clone 포함)
+curl -fsSL https://raw.githubusercontent.com/ne-dichoi/mockup-pages/main/scripts/init.sh | bash
+
+# 이미 clone한 경우
+./scripts/init.sh            # 세팅만
+./scripts/init.sh --serve    # 세팅 후 http://localhost:3000 미리보기
 ```
 
-Node 없이 확인하려면 `mockups/<폴더>/index.html`을 브라우저로 바로 열어도 됩니다.
+직접 실행하려면 `node scripts/build.mjs`로 `_site/`를 만든 뒤 `npx serve _site`를 띄우면 됩니다. Node 없이 확인하려면 `mockups/<폴더>/index.html`을 브라우저로 바로 열어도 됩니다.
 
 ## 최초 1회 설정 (저장소 생성 직후)
 
