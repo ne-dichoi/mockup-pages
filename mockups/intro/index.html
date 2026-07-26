@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>목업 페이지 소개</title>
+<style>
+  :root { color-scheme: light; }
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; background: #f7f7f8; color: #18181b; margin: 0; line-height: 1.6; }
+  .hero { background: #18181b; color: #fafafa; padding: 64px 20px 56px; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 20px; }
+  .hero .wrap { padding: 0; }
+  .badge { display: inline-block; font-size: 12px; letter-spacing: .04em; color: #a1a1aa; border: 1px solid #3f3f46; border-radius: 999px; padding: 4px 12px; margin-bottom: 18px; }
+  .hero h1 { font-size: 30px; margin: 0 0 12px; letter-spacing: -.01em; }
+  .hero p { font-size: 16px; color: #d4d4d8; margin: 0; }
+  main { padding: 44px 0 64px; }
+  h2 { font-size: 18px; margin: 40px 0 14px; }
+  h2:first-child { margin-top: 0; }
+  p { margin: 0 0 14px; }
+  ol { padding-left: 22px; margin: 0 0 14px; }
+  li { margin-bottom: 8px; }
+  code { font-family: ui-monospace, SFMono-Regular, monospace; background: #ececee; border-radius: 5px; padding: 2px 6px; font-size: 13.5px; }
+  pre { background: #18181b; color: #f4f4f5; border-radius: 10px; padding: 16px 18px; overflow-x: auto; font-size: 13px; margin: 0 0 14px; }
+  pre code { background: none; padding: 0; color: inherit; font-size: 13px; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; margin: 4px 0 14px; }
+  .card { background: #fff; border: 1px solid #e4e4e7; border-radius: 10px; padding: 16px 18px; }
+  .card .k { font-size: 13px; color: #71717a; margin-bottom: 4px; }
+  .card .v { font-size: 15px; font-weight: 600; }
+  .note { background: #fffbeb; border: 1px solid #fde68a; border-radius: 10px; padding: 14px 18px; font-size: 14px; color: #78350f; }
+  a.link { color: #2563eb; text-decoration: none; }
+  a.link:hover { text-decoration: underline; }
+  footer { border-top: 1px solid #e4e4e7; padding: 20px 0; font-size: 13px; color: #8a8a90; }
+  .back { display: inline-block; margin-top: 28px; font-size: 13px; color: #71717a; text-decoration: none; }
+  .back:hover { color: #18181b; }
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <span class="badge">서비스운영팀 · 목업 저장소</span>
+    <h1>목업 페이지</h1>
+    <p>기획·디자인 목업을 폴더 하나로 올리면 자동으로 공개 주소가 생기는 저장소입니다.</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <h2>무엇을 하는 곳인가요?</h2>
+  <p><code>mockups/</code> 아래에 폴더를 만들고 <code>index.html</code>을 넣은 뒤 <code>main</code>에 push하면, GitHub Actions가 자동으로 빌드해 공개 주소에 배포합니다. 별도의 서버 세팅이나 배포 작업이 필요 없습니다.</p>
+
+  <h2>목업 추가하는 법</h2>
+  <ol>
+    <li><code>mockups/</code> 아래에 폴더를 하나 만듭니다. <strong>폴더 이름이 곧 URL 경로</strong>가 됩니다. (영문·숫자·하이픈 권장)</li>
+    <li>그 안에 <code>index.html</code>을 넣습니다. 이미지·CSS 등 필요한 파일도 같은 폴더에 함께 둡니다.</li>
+    <li>HTML의 <code>&lt;title&gt;</code>에 적은 값이 목록 페이지에 표시되는 <strong>이름</strong>이 됩니다.</li>
+    <li><code>main</code>에 push하면 1~2분 뒤 자동 반영됩니다.</li>
+  </ol>
+
+  <pre><code>mockups/
+  order-detail/
+    index.html   → /mockups/order-detail/
+    screenshot.png</code></pre>
+
+  <h2>한눈에 보기</h2>
+  <div class="cards">
+    <div class="card"><div class="k">추가 단위</div><div class="v">폴더 1개 = 목업 1개</div></div>
+    <div class="card"><div class="k">배포 방식</div><div class="v">main push → 자동</div></div>
+    <div class="card"><div class="k">반영 시간</div><div class="v">약 1~2분</div></div>
+  </div>
+
+  <h2>로컬에서 확인하기</h2>
+  <p>온보딩 스크립트 한 번이면 clone부터 빌드까지 끝납니다.</p>
+  <pre><code>./scripts/init.sh            # 세팅만
+./scripts/init.sh --serve    # 미리보기 (http://localhost:3000)</code></pre>
+
+  <div class="note">이 저장소는 <strong>public</strong>이며 배포된 페이지도 누구나 볼 수 있습니다. 실제 고객 정보나 자격 증명은 올리지 마세요. 목업 데이터는 반드시 가짜 값을 사용합니다.</div>
+
+  <a class="back" href="../../">← 목록으로</a>
+</main>
+
+<footer class="wrap">
+  자세한 내용은 저장소 <a class="link" href="https://github.com/ne-dichoi/mockup-pages">README</a>를 참고하세요.
+</footer>
+</body>
+</html>
