@@ -33,6 +33,12 @@
 
 ## 사례
 
+## 에이전트·스킬이 안 보임 (`git-helper` not found, `/start`·`/publish` 없음)
+- 증상: `/start`·`/publish`·`/rollback` 슬래시 명령이 없거나, `subagent_type: git-helper`가 "not found"로 실행되지 않는다.
+- 원인: Claude Code를 **저장소 루트가 아닌 상위 디렉터리**에서 실행했다. 에이전트/스킬은 `.claude/`가 있는 디렉터리를 기준으로 세션 시작 시 로드되므로, 상위에서 열면 로드되지 않는다.
+- 해결: `mockup-pages` **저장소 루트 폴더에서** Claude Code를 새로 연다(그 폴더 안에 `.claude/`가 보여야 함). `/agents` 목록에 `git-helper`가 뜨면 정상.
+- 관련: 세션 시작 위치
+
 ## Windows에서 `init.ps1` 실행 시 파싱 에러 (`The string is missing the terminator: "`)
 - 증상: Windows PowerShell에서 `init.ps1` 실행 시 문자열 종결 관련 파싱 에러.
 - 원인: 스크립트가 BOM 없는 UTF-8로 저장되면 Windows PowerShell 5.1이 파일 안의 한글 주석을 시스템 코드페이지로 잘못 해석해 깨진다.

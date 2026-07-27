@@ -49,6 +49,8 @@ mockups/
 
 ### 기획자용 — 이렇게 반복하세요 (git 없이)
 
+> ⚠️ **반드시 `mockup-pages` 폴더(저장소 루트)에서 Claude Code를 여세요.** 상위 폴더에서 열면 `/start`·`/publish` 등 스킬과 `git-helper` 에이전트가 로드되지 않습니다(`.claude/` 폴더가 보이는 위치여야 함). `/agents`에 `git-helper`가 보이면 정상입니다.
+
 Claude Code에서 슬래시 명령만 쓰면 됩니다. 형상관리(브랜치·커밋·병합)는 Claude가 대신합니다.
 
 1. **편집:** Claude에게 요청 — 예: "'주문 상세' 목업 만들어줘" / "그 페이지 버튼 색 바꿔줘"
