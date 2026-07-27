@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>NE_Books ELT Coursebook</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Google Fonts fallback (required) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Pretendard (design font) via CDN, with Noto Sans KR fallback -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="css/layout.css">
+<script src="js/layout.js" defer></script>
+<script src="js/search.js" defer></script>
+</head>
+<body class="page-buy">
+
+  <!-- ===== LIGHT HEADER ===== -->
+  <div id="site-header"></div>
+
+  <!-- ===== PAGE HEAD BAND ===== -->
+  <div id="site-location"></div>
+
+  <!-- ===== CATEGORY BAND ===== -->
+  <section class="catband">
+    <div class="container">
+      <div class="cat-row">
+        <a class="cat-card">파닉스가<br>된다</a>
+        <a class="cat-card">사이트 워드가<br>된다</a>
+        <a class="cat-card">GRAMMAR<br>BUDDY</a>
+        <a class="cat-card">GRAMMAR<br>BEAN</a>
+        <a class="cat-card">문법이<br>된다</a>
+        <a class="cat-card">Grammar<br>Inside</a>
+        <a class="cat-card">Grammar<br>Ten</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BODY: SIDEBAR + LIST ===== -->
+  <section class="listwrap">
+    <div class="container">
+      <div class="body-grid">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+          <div class="side-title">교재 찾기</div>
+          <div class="fgroup">
+            <h4>레벨</h4>
+            <label class="fopt"><input type="checkbox" class="chk">유아</label>
+            <label class="fopt"><input type="checkbox" class="chk">초등</label>
+            <label class="fopt"><input type="checkbox" class="chk">중등</label>
+            <label class="fopt"><input type="checkbox" class="chk">고등</label>
+            <label class="fopt"><input type="checkbox" class="chk">성인</label>
+          </div>
+          <div class="fgroup">
+            <h4>제품유형</h4>
+            <label class="fopt"><input type="checkbox" class="chk">메인교재</label>
+            <label class="fopt"><input type="checkbox" class="chk">Word Book</label>
+            <label class="fopt"><input type="checkbox" class="chk">Test &amp; Worksheet</label>
+            <label class="fopt"><input type="checkbox" class="chk">Tests</label>
+            <label class="fopt"><input type="checkbox" class="chk">Teacher&rsquo;s Guide</label>
+            <label class="fopt"><input type="checkbox" class="chk" disabled>Class Pack</label>
+          </div>
+          <div class="fgroup">
+            <h4>브랜드</h4>
+            <label class="fopt brand-opt"><input type="checkbox" class="chk"><img src="assets/logo_ne_small.svg" alt="NE능률"></label>
+            <label class="fopt brand-opt"><input type="checkbox" class="chk"><img src="assets/logo_buildgrow.svg" alt="NE_Build & Grow"></label>
+            <label class="fopt brand-opt"><input type="checkbox" class="chk"><img class="brand-oxf" src="assets/logo_oxford.png" alt="OXFORD"></label>
+          </div>
+          <a class="nechart"><img src="assets/ic_nechart.png" alt=""><span>인기교재 NE차트</span></a>
+        </aside>
+
+        <!-- Right column -->
+        <div class="rightcol">
+          <div class="toolbar">
+            <div class="tb-left">
+              <span class="count">총 <b>128</b>개 상품</span>
+              <label><input type="checkbox" class="chk">판매중 교재만 보기</label>
+            </div>
+            <div class="tb-right">
+              <a class="tab active"><span class="ico"><img src="assets/ic_tab_buy.svg" alt=""></span>교재구매</a>
+              <a class="tab" href="리스트_학습자료.html"><span class="ico"><img class="i-d" src="assets/ic_tab_study.svg" alt=""><img class="i-h" src="assets/ic_tab_study_red.svg" alt=""></span>학습자료</a>
+              <span class="tb-divider"></span>
+              <div class="sort-wrap">
+                <span class="sort" id="sortBtn"><span class="sort-label">인기순</span> <span class="ico"><img src="assets/ic_sort_new.svg" alt=""></span></span>
+                <div class="sort-menu">
+                  <a class="sort-opt active">인기순</a>
+                  <a class="sort-opt">최신순</a>
+                  <a class="sort-opt">과거순</a>
+                  <a class="sort-opt">별점순</a>
+                  <a class="sort-opt">가나다순</a>
+                  <a class="sort-opt">역 가나다순</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="plist">
+
+            <!-- Product 1 - HOT -->
+            <article class="prow">
+              <div class="pcover"><span class="pcorner hot">HOT</span><img src="assets/best_1.png" alt="Phonics Code 1"></div>
+              <div class="pinfo">
+                <div class="pbrand-row">
+                  <img class="pbrand" src="assets/logo_ne_small.svg" alt="NE능률">
+                  <span class="badge-course">Coursebook</span>
+                  <span class="badge-level">유치~초등(저)</span>
+                  <span class="badge-lexile" data-lv="UP - 300L">Lexile® UP - 300L <span class="ico"><img src="assets/ic_info.svg" alt="적립 안내"></span></span>
+                </div>
+                <h3 class="ptitle">Phonics Code 1 : Student Book</h3>
+                <p class="pdesc">파닉스 기초인 Blending과 Decoding에 충실한 학습 설계로 스스로 읽는 힘을 키우는 파닉스 교재</p>
+                <div class="ptags"><span>#사이트워드</span><span>#초등</span><span>#파닉스</span><span>#리딩</span></div>
+              </div>
+              <div class="pactions">
+                <div class="picons">
+                  <div class="share-wrap">
+                    <button class="pic-btn share" type="button" aria-label="공유하기">
+                      <span class="ico"><img class="i-d" src="assets/ic_share.svg" alt=""><img class="i-h" src="assets/ic_share_red.svg" alt=""></span>
+                    </button>
+                    <div class="share-pop">
+                      <span class="sp-item"><span class="sp-ico"><img src="assets/ic_url.svg" alt=""></span>URL복사</span>
+                      <span class="sp-item"><span class="sp-ico"><img src="assets/ic_kakao.svg" alt=""></span>카카오톡</span>
+                    </div>
+                  </div>
+                  <button class="pic-btn like" type="button">
+                    <span class="ico"><img class="i-d" src="assets/ic_heart.svg" alt=""><img class="i-h" src="assets/ic_heart_fill.svg" alt=""></span>
+                    <span class="jjim">찜 128</span>
+                  </button>
+                </div>
+                <div class="pdiscount">
+                  <span class="d"><span class="tag hal">할</span><span class="pct red">10%</span></span>
+                  <span class="d"><span class="tag jeok">적</span><span class="pct">5%</span></span>
+                </div>
+                <div class="pprice"><div class="was">15,000원</div><div class="now">13,500<small>원</small></div></div>
+                <div class="pbtns"><a class="cart" href="장바구니.html">장바구니</a><a class="buy" href="주문결제.html">바로구매</a></div>
+              </div>
+            </article>
+
+            <!-- Product 2 - NEW -->
+            <article class="prow">
+              <div class="pcover"><span class="pcorner new">NEW</span><img src="assets/best_2.png" alt="Phonics Code 2"></div>
+              <div class="pinfo">
+                <div class="pbrand-row">
+                  <img class="pbrand" src="assets/logo_ne_small.svg" alt="NE능률">
+                  <span class="badge-course">Coursebook</span>
+                  <span class="badge-level">유치~초등(저)</span>
+                  <span class="badge-lexile" data-lv="140L - 500L">Lexile® 140L - 500L <span class="ico"><img src="assets/ic_info.svg" alt="적립 안내"></span></span>
+                </div>
+                <h3 class="ptitle">Phonics Code 2 : Student Book</h3>
+                <p class="pdesc">파닉스 기초인 Blending과 Decoding에 충실한 학습 설계로 스스로 읽는 힘을 키우는 파닉스 교재</p>
+                <div class="ptags"><span>#사이트워드</span><span>#초등</span><span>#파닉스</span><span>#리딩</span></div>
+              </div>
+              <div class="pactions">
+                <div class="picons">
+                  <div class="share-wrap">
+                    <button class="pic-btn share" type="button" aria-label="공유하기">
+                      <span class="ico"><img class="i-d" src="assets/ic_share.svg" alt=""><img class="i-h" src="assets/ic_share_red.svg" alt=""></span>
+                    </button>
+                    <div class="share-pop">
+                      <span class="sp-item"><span class="sp-ico"><img src="assets/ic_url.svg" alt=""></span>URL복사</span>
+                      <span class="sp-item"><span class="sp-ico"><img src="assets/ic_kakao.svg" alt=""></span>카카오톡</span>
+                    </div>
+                  </div>
+                  <button class="pic-btn like" type="button">
+                    <span class="ico"><img class="i-d" src="assets/ic_heart.svg" alt=""><img class="i-h" src="assets/ic_heart_fill.svg" alt=""></span>
+                    <span class="jjim">찜 128</span>
+                  </button>
+                </div>
+                <div class="pdiscount">
+                  <span class="d"><span class="tag hal">할</span><span class="pct red">10%</span></span>
+                  <span class="d"><span class="tag jeok">적</span><span class="pct">5%</span></span>
+                </div>
+                <div class="pprice"><div class="was">15,000원</div><div class="now">13,500<small>원</small></div></div>
+                <div class="pbtns"><a class="cart" href="장바구니.html">장바구니</a><a class="buy" href="주문결제.html">바로구매</a></div>
+              </div>
+            </article>
+
+            <!-- Product 3 -->
+            <article class="prow">
+              <div class="pcover"><img src="assets/best_3.png" alt="Phonics Code 3"></div>
+              <div class="pinfo">
+                <div class="pbrand-row">
+                  <img class="pbrand" src="assets/logo_ne_small.svg" alt="NE능률">
+                  <span class="badge-course">Coursebook</span>
+                  <span class="badge-level">유치~초등(저)</span>
+                  <span class="badge-lexile" data-lv="330L - 700L">Lexile® 330L - 700L <span class="ico"><img src="assets/ic_info.svg" alt="적립 안내"></span></span>
+                </div>
+                <h3 class="ptitle">Phonics Code 3 : Student Book</h3>
+                <p class="pdesc">파닉스 기초인 Blending과 Decoding에 충실한 학습 설계로 스스로 읽는 힘을 키우는 파닉스 교재</p>
+                <div class="ptags"><span>#사이트워드</span><span>#초등</span><span>#파닉스</span><span>#리딩</span></div>
+              </div>
+              <div class="pactions">
+                <div class="picons">
+                  <div class="share-wrap">
+                    <button class="pic-btn share" type="button" aria-label="공유하기">
+                      <span class="ico"><img class="i-d" src="assets/ic_share.svg" alt=""><img class="i-h" src="assets/ic_share_red.svg" alt=""></span>
+                    </button>
+                    <div class="share-pop">
+                      <span class="sp-item"><span class="sp-ico"><img src="assets/ic_url.svg" alt=""></span>URL복사</span>
+                      <span class="sp-item"><span class="sp-ico"><img src="assets/ic_kakao.svg" alt=""></span>카카오톡</span>
+                    </div>
+                  </div>
+                  <button class="pic-btn like" type="button">
+                    <span class="ico"><img class="i-d" src="assets/ic_heart.svg" alt=""><img class="i-h" src="assets/ic_heart_fill.svg" alt=""></span>
+                    <span class="jjim">찜 128</span>
+                  </button>
+                </div>
+                <div class="pdiscount">
+                  <span class="d"><span class="tag hal">할</span><span class="pct red">10%</span></span>
+                  <span class="d"><span class="tag jeok">적</span><span class="pct">5%</span></span>
+                </div>
+                <div class="pprice"><div class="was">15,000원</div><div class="now">13,500<small>원</small></div></div>
+                <div class="pbtns"><a class="buy textbook" href="https://textbook.example.com" target="_blank" rel="noopener">교과서 구매</a></div>
+              </div>
+            </article>
+
+            <!-- Product 4 - 일시품절 -->
+            <article class="prow soldout">
+              <div class="pcover"><span class="pcorner soldout">일시품절</span><img src="assets/best_4.png" alt="Phonics Code 4"></div>
+              <div class="pinfo">
+                <div class="pbrand-row">
+                  <img class="pbrand" src="assets/logo_ne_small.svg" alt="NE능률">
+                  <span class="badge-course">Coursebook</span>
+                  <span class="badge-level">유치~초등(저)</span>
+                  <span class="badge-lexile" data-lv="445L - 810L">Lexile® 445L - 810L <span class="ico"><img src="assets/ic_info.svg" alt="적립 안내"></span></span>
+                </div>
+                <h3 class="ptitle">Phonics Code 4 : Student Book</h3>
+                <p class="pdesc">파닉스 기초인 Blending과 Decoding에 충실한 학습 설계로 스스로 읽는 힘을 키우는 파닉스 교재</p>
+                <div class="ptags"><span>#사이트워드</span><span>#초등</span><span>#파닉스</span><span>#리딩</span></div>
+              </div>
+              <div class="pactions">
+                <div class="picons">
+                  <div class="share-wrap">
+                    <button class="pic-btn share" type="button" aria-label="공유하기">
+                      <span class="ico"><img class="i-d" src="assets/ic_share.svg" alt=""><img class="i-h" src="assets/ic_share_red.svg" alt=""></span>
+                    </button>
+                    <div class="share-pop">
+                      <span class="sp-item"><span class="sp-ico"><img src="assets/ic_url.svg" alt=""></span>URL복사</span>
+                      <span class="sp-item"><span class="sp-ico"><img src="assets/ic_kakao.svg" alt=""></span>카카오톡</span>
+                    </div>
+                  </div>
+                  <button class="pic-btn like" type="button">
+                    <span class="ico"><img class="i-d" src="assets/ic_heart.svg" alt=""><img class="i-h" src="assets/ic_heart_fill.svg" alt=""></span>
+                    <span class="jjim">찜 128</span>
+                  </button>
+                </div>
+                <div class="pdiscount">
+                  <span class="d"><span class="tag hal">할</span><span class="pct red">10%</span></span>
+                  <span class="d"><span class="tag jeok">적</span><span class="pct">5%</span></span>
+                </div>
+                <div class="pprice"><div class="was">15,000원</div><div class="now">13,500<small>원</small></div></div>
+                <div class="pbtns"><a class="cart" href="장바구니.html">장바구니</a><a class="buy soldout">일시품절</a></div>
+              </div>
+            </article>
+
+          </div>
+
+          <!-- Pagination -->
+          <nav class="pager">
+            <a class="arw" aria-label="이전">&#8249;</a>
+            <a class="on">1</a>
+            <a>2</a><a>3</a><a>4</a><a>5</a>
+            <a class="arw" aria-label="다음">&#8250;</a>
+          </nav>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER (verbatim from 메인_1) ===== -->
+  <div id="site-footer"></div>
+
+  <!-- Shared Lexile tooltip -->
+  <div id="lexileTip" class="lexile-tip" aria-hidden="true">
+    <div class="lt-body">
+    <h4>Lexile® measures (렉사일 지수)</h4>
+    <p>가장 널리 활용되는 영어 리딩 지수인 Lexile® measures(국문명; 렉사일 지수)는 미국 교육연구소인 MetaMetrics®가 개발한 영어읽기지수이다. Lexile® measures는 MetaMetrics®가 수년간의 엄격한 연구결과로 개발한 Lexile® Scale(렉사일 척도)로 측정한 것으로써 독자의 리딩 실력(Reader Ability)과 텍스트 난이도(Text readability)를 따로 각각 측정한다. 현재 미국에서만 매년 3,500 만 명 학생들이 Lexile® measures를 평가, 보고 받고 있고 Lexile® measures는 1억건 이상의 각종 영어 논문, 영어 서적, 영어 자료를 측정하였다.</p>
+    <p class="lt-sub">Typical Reader Measures, by Grade (미국 학생들의 실제 Lexile® measures)</p>
+    <table class="lt-table">
+      <thead><tr><th>grade</th><th>Reader Measures, Mid-Year<br>25th percentile to 75th percentile (IQR)</th></tr></thead>
+      <tbody>
+        <tr><td class="lt-grade">1</td><td class="lt-grade">UP - 300L</td></tr>
+        <tr><td class="lt-grade">2</td><td class="lt-grade">140L - 500L</td></tr>
+        <tr><td class="lt-grade">3</td><td class="lt-grade">330L - 700L</td></tr>
+        <tr><td class="lt-grade">4</td><td class="lt-grade">445L - 810L</td></tr>
+        <tr><td class="lt-grade">5</td><td class="lt-grade">565L - 910L</td></tr>
+        <tr><td class="lt-grade">6</td><td class="lt-grade">665L - 1000L</td></tr>
+        <tr><td class="lt-grade">7</td><td class="lt-grade">735L - 1065L</td></tr>
+        <tr><td class="lt-grade">8</td><td class="lt-grade">805L - 1100L</td></tr>
+        <tr><td class="lt-grade">9</td><td class="lt-grade">855L - 1165L</td></tr>
+        <tr><td class="lt-grade">10</td><td class="lt-grade">905L - 1195L</td></tr>
+        <tr><td class="lt-grade">11 and 12</td><td class="lt-grade">940L - 1210L</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    /* click cover or title -> book detail page */
+    document.querySelectorAll('.pcover, .ptitle').forEach(function(el){
+      el.style.cursor='pointer';
+      el.addEventListener('click',function(){
+        var row=el.closest('.prow');
+        var soldout=row && row.classList.contains('soldout');
+        location.href='교재상세.html'+(soldout?'?st=soldout':'');
+      });
+    });
+
+    /* Share popup toggle */
+    document.querySelectorAll('.share-wrap').forEach(function(w){
+      var btn=w.querySelector('.pic-btn.share');
+      btn.addEventListener('click',function(e){
+        e.stopPropagation();
+        var isOpen=w.classList.contains('open');
+        document.querySelectorAll('.share-wrap.open').forEach(function(o){o.classList.remove('open');o.querySelector('.pic-btn.share').classList.remove('on');});
+        if(!isOpen){w.classList.add('open');btn.classList.add('on');}
+      });
+    });
+    document.addEventListener('click',function(){
+      document.querySelectorAll('.share-wrap.open').forEach(function(o){o.classList.remove('open');o.querySelector('.pic-btn.share').classList.remove('on');});
+    });
+
+    /* Like (찜) toggle */
+    document.querySelectorAll('.pic-btn.like').forEach(function(b){
+      b.addEventListener('click',function(){ b.classList.toggle('on'); });
+    });
+
+    /* Lexile tooltip on click (scrollable) */
+    var tip=document.getElementById('lexileTip');
+    var curBadge=null;
+    function positionTip(b){
+      var r=b.getBoundingClientRect();
+      var tw=tip.offsetWidth;
+      var left=window.scrollX+r.left;
+      var maxLeft=window.scrollX+document.documentElement.clientWidth-tw-16;
+      if(left>maxLeft)left=maxLeft;
+      if(left<window.scrollX+8)left=window.scrollX+8;
+      tip.style.left=left+'px';
+      tip.style.top=(window.scrollY+r.bottom+10)+'px';
+    }
+    document.querySelectorAll('.badge-lexile').forEach(function(b){
+      b.addEventListener('click',function(e){
+        e.stopPropagation();
+        if(curBadge===b && tip.classList.contains('show')){ tip.classList.remove('show'); curBadge=null; return; }
+        curBadge=b; tip.scrollTop=0; tip.classList.add('show'); positionTip(b);
+      });
+    });
+    document.addEventListener('click',function(e){
+      if(tip.classList.contains('show') && !tip.contains(e.target)){ tip.classList.remove('show'); curBadge=null; }
+    });
+
+    /* Sort dropdown */
+    var sortWrap=document.querySelector('.sort-wrap');
+    if(sortWrap){
+      var sortBtn=sortWrap.querySelector('#sortBtn');
+      var sortLabel=sortWrap.querySelector('.sort-label');
+      sortBtn.addEventListener('click',function(e){ e.stopPropagation(); sortWrap.classList.toggle('open'); });
+      sortWrap.querySelectorAll('.sort-opt').forEach(function(o){
+        o.addEventListener('click',function(e){ e.stopPropagation();
+          sortWrap.querySelectorAll('.sort-opt').forEach(function(x){x.classList.remove('active');});
+          o.classList.add('active'); sortLabel.textContent=o.textContent; sortWrap.classList.remove('open');
+        });
+      });
+      document.addEventListener('click',function(e){ if(!sortWrap.contains(e.target)) sortWrap.classList.remove('open'); });
+    }
+
+    /* GNB mega-dropdown */
+    (function(){
+      var gnb=document.querySelector('.gnb'); if(!gnb) return;
+      var drop=document.getElementById('gnbDrop'); if(!drop) return;
+      var cats=drop.querySelector('.gd-cats');
+      var items=[].slice.call(gnb.querySelectorAll('nav a'));
+      var MENU={
+        'ELT':['Coursebook','Phonics','Readers','Reading','Listening','Speaking','Writing','Grammar','Vocabulary'],
+        '초/중등':['중학내신','고등선행','어휘','Phonics','쓰기','독해','듣기','문법/구문','TOEFL/TEPS/NELT'],
+        '고등':['어휘','독해','듣기','문법/구문','수능대비','고교내신','단기특강','TOEFL/TEPS/NELT'],
+        '교과서/자습서':['중학영어 교과서','고등영어 교과서','수학 교과서','중국어/일본어'],
+        '수험/일반':['TOEIC','TOEIC Speaking/Writing','TOEFL/OPIC/TEPS','FLEX','일반영어'],
+        '수학/국어':['유아','초등','중등','고등'],
+        '학습자료실':['서브메인','ELT자료','초/중등교재 자료','고등교재 자료','교과서/자습서 자료','수험/일반 자료','수학/국어 자료'],
+        '도서몰':['ELT','초/중등','고등영어 교과서','교과서/자습서','수험/일반','교구/부가상품','세트/패키지','온라인 서비스/이용권']
+      };
+      var closeT;
+      function openFor(a){
+      var name=a.textContent.trim();
+      var mega=(name==='학습자료실'||name==='도서몰');
+      var BR='<div class="gd-brands"><a class="gd-btn blue" href="#">Come on Series <span>&#8250;</span></a><a class="gd-btn navy" href="#">Oxford <span>&#8250;</span></a></div>';
+      if(mega){
+        var COLS=[['ELT','Coursebook','Phonics','Reading','Readers','Listening','Speaking','Grammar','Writing','Vocabulary'],['초등/중등','중학 내신','고등 선행','파닉스','어휘','쓰기','독해','듣기','문법/구분','TOEFL/TEPS/NELT'],['고등','어휘','독해','듣기','문법/구분','수능 대비','고교 내신','단기 특강','TOEFL/TEPS/NELT'],['교과서/자습서','중학영어 교과서','고등영어 교과서','수학 교과서','중국어/일본어'],['수험/일반','TOEIC','TOEIC SPEAKING|/WRITING','TOEFL/OPIC/TEPS','FLEX','일반영어'],['수학/국어','유아','초등','중등','고등']];
+        drop.innerHTML=COLS.map(function(c){ return '<div class="gd-col"><p class="gd-col-t">'+c[0]+'</p><div class="items">'+c.slice(1).map(function(i){ return '<a href="리스트_교재구매.html">'+i.replace('|','<br>')+'</a>'; }).join('')+'</div></div>'; }).join('')+BR;
+        drop.classList.add('mega');
+      } else {
+        var list=MENU[name]; if(!list){ hideGnb(); return; }
+        drop.innerHTML='<div class="gd-cats">'+list.map(function(t){ return '<a href="리스트_교재구매.html">'+t+'</a>'; }).join('')+'</div>'+BR;
+        drop.classList.remove('mega');
+      }
+      items.forEach(function(x){ x.classList.toggle('on',x===a); });
+      drop.classList.add('open');
+      if(mega){ var gw=gnb.getBoundingClientRect().width; var ml=Math.round((gw-drop.offsetWidth)/2); drop.style.left=(ml>0?ml:0)+'px'; }
+      else{
+        var gr=gnb.getBoundingClientRect(), ir=a.getBoundingClientRect();
+        var left=Math.round(ir.left-gr.left-24);
+        var maxLeft=Math.round(gr.width-drop.offsetWidth);
+        if(left>maxLeft) left=maxLeft; if(left<0) left=0;
+        drop.style.left=left+'px';
+      }
+    }
+      function hideGnb(){ drop.classList.remove('open'); items.forEach(function(x){ x.classList.remove('on'); }); }
+      items.forEach(function(a){
+        a.addEventListener('mouseenter',function(){ clearTimeout(closeT); openFor(a); });
+        a.addEventListener('click',function(e){ if(MENU[a.textContent.trim()]){ e.preventDefault(); openFor(a); } });
+      });
+      gnb.addEventListener('mouseleave',function(){ closeT=setTimeout(hideGnb,160); });
+      gnb.addEventListener('mouseenter',function(){ clearTimeout(closeT); });
+      document.addEventListener('click',function(e){ if(!gnb.contains(e.target)) hideGnb(); });
+    })();
+
+    /* breadcrumb category dropdown */
+    (function(){
+      var wrap=document.getElementById('bcCat'); if(!wrap) return;
+      var btn=wrap.querySelector('.cur');
+      btn.addEventListener('click',function(e){ e.stopPropagation(); wrap.classList.toggle('open'); });
+      document.addEventListener('click',function(e){ if(!wrap.contains(e.target)) wrap.classList.remove('open'); });
+    })();
+  })();
+  </script>
+
+</body>
+</html>
