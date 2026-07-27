@@ -25,7 +25,8 @@
 
   function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
 
-  function initSearch(box){
+  function initSearch(box, opts){
+    opts=opts||{};
     var input=box.querySelector('.search-input');
     var pop=box.querySelector('.search-pop');
     var icon=box.querySelector('.search-ic');
@@ -61,21 +62,31 @@
       var items=[].slice.call(pop.querySelectorAll('.sa-list .it'));
       var pvImg=pop.querySelector('.sa-pv-card img');
       var pvName=pop.querySelector('.sa-pv-name');
+      var curBook=first;
       items.forEach(function(li){
         li.addEventListener('mouseenter',function(){
           items.forEach(function(x){ x.classList.remove('on'); });
           li.classList.add('on');
           var b=matches[+li.getAttribute('data-i')];
-          pvImg.src=b.img; pvName.textContent=b.title;
+          pvImg.src=b.img; pvName.textContent=b.title; curBook=b;
         });
+        if(opts.onSelect){
+          li.querySelector('a').addEventListener('click',function(e){ e.preventDefault(); opts.onSelect(matches[+li.getAttribute('data-i')]); });
+        }
       });
+      if(opts.onSelect){
+        var pv=pop.querySelector('.sa-preview'); pv.style.cursor='pointer';
+        pv.addEventListener('click',function(){ opts.onSelect(curBook); });
+      }
     }
 
     function refresh(){
       var q=input.value.trim();
-      if(q) renderAuto(q); else renderPopular();
+      if(q){ renderAuto(q); pop.hidden=false; }
+      else if(opts.noPopular){ pop.hidden=true; }
+      else { renderPopular(); pop.hidden=false; }
     }
-    function openPop(){ refresh(); pop.hidden=false; }
+    function openPop(){ refresh(); }
     function closePop(){ pop.hidden=true; }
 
     input.addEventListener('focus',openPop);
@@ -86,7 +97,50 @@
     document.addEventListener('click',function(e){ if(!box.contains(e.target)) closePop(); });
   }
 
-  function boot(){ [].forEach.call(document.querySelectorAll('.search'),initSearch); }
+  /* 인풋 오른쪽 X(clear) 버튼 자동 부착 — .iq-clear 인풋 */
+  function enhanceClear(){
+    [].forEach.call(document.querySelectorAll('input.iq-clear'),function(inp){
+      if(inp.closest('.iq-inx-wrap')) return;
+      var wrap=document.createElement('span');
+      wrap.className='iq-inx-wrap'+((inp.classList.contains('full')||inp.classList.contains('search-input'))?' block':'');
+      inp.parentNode.insertBefore(wrap,inp); wrap.appendChild(inp);
+      var x=document.createElement('button'); x.type='button'; x.className='iq-inx'; x.setAttribute('aria-label','지우기');
+      wrap.appendChild(x);
+      function upd(){ wrap.classList.toggle('has-val', inp.value.trim()!==''); }
+      inp.addEventListener('input',upd);
+      x.addEventListener('mousedown',function(e){ e.preventDefault(); });
+      x.addEventListener('click',function(){ inp.value=''; upd(); inp.dispatchEvent(new Event('input',{bubbles:true})); inp.focus(); });
+      upd();
+    });
+  }
+
+  function boot(){
+    [].forEach.call(document.querySelectorAll('.search'),function(b){ initSearch(b); });
+    /* 교재명 검색: 선택 시 셀렉트+인풋+검색버튼 → 커버+교재명+삭제 로 전환 */
+    [].forEach.call(document.querySelectorAll('.bk-search'),function(b){
+      var field=b.closest('.iq-field');
+      var bookname=field?field.querySelector('.iq-bookname'):null;
+      var selected=field?field.querySelector('.iq-bk-selected'):null;
+      initSearch(b,{noPopular:true, onSelect:function(book){
+        if(selected){
+          var img=selected.querySelector('.iq-bk-cover img'); if(img) img.src=book.img;
+          var t=selected.querySelector('.iq-bk-title'); if(t) t.textContent=book.title;
+          if(bookname) bookname.hidden=true; selected.hidden=false;
+        }
+        var pop=b.querySelector('.search-pop'); if(pop) pop.hidden=true;
+      }});
+      if(selected){
+        var del=selected.querySelector('.iq-bk-del');
+        if(del) del.addEventListener('click',function(){
+          selected.hidden=true; if(bookname) bookname.hidden=false;
+          var inp=b.querySelector('.search-input');
+          if(inp){ inp.value=''; var w=inp.closest('.iq-inx-wrap'); if(w) w.classList.remove('has-val'); }
+          var pop=b.querySelector('.search-pop'); if(pop) pop.hidden=true;
+        });
+      }
+    });
+    enhanceClear();
+  }
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot);
   else boot();
 })();

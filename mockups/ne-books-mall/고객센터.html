@@ -319,8 +319,16 @@
                   <button type="button" class="oh-sel-cur"><span class="oh-sel-lb">전체</span><span class="ic"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#1d1717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
                   <div class="oh-sel-menu" hidden><a class="on">전체</a><a>ELT</a><a>초중고(영어)</a><a>교과서 관련</a><a>수험/일반</a><a>수학/국어</a></div>
                 </div>
-                <input class="iq-in" type="text" placeholder="제목·내용 검색">
+                <div class="bk-search">
+                  <input class="iq-in search-input iq-clear" type="text" placeholder="제목·내용 검색" autocomplete="off">
+                  <div class="search-pop" hidden></div>
+                </div>
                 <button type="button" class="ef-search">검색</button>
+              </div>
+              <div class="iq-bk-selected" hidden>
+                <span class="iq-bk-cover"><img src="assets/best_1.png" alt=""></span>
+                <span class="iq-bk-title"></span>
+                <button type="button" class="iq-bk-del">삭제</button>
               </div>
             </div>
           </div>
@@ -375,14 +383,14 @@
 
           <div class="iq-row">
             <div class="iq-label">제목 <span class="iq-req">*</span></div>
-            <div class="iq-field"><input class="iq-in full" type="text" placeholder="제목을 입력해 주세요."></div>
+            <div class="iq-field"><input class="iq-in full iq-clear" type="text" placeholder="제목을 입력해 주세요."></div>
           </div>
 
           <div class="iq-row">
             <div class="iq-label">내용 <span class="iq-req">*</span></div>
             <div class="iq-field">
               <textarea class="iq-textarea" placeholder="내용을 입력해 주세요."></textarea>
-              <p class="iq-note">[안내사항]<br>- 교재사용 자료요청 시, 재직중인 학교 또는 학원(학원명, 주소) 정보와 거래 지사(총판)명을 같이 기재해 주시면 좀 더 빠른 확인 및 답변이 가능합니다.<br>- 샘플 및 교사용 교재는 지사를 통해 제공되고 있습니다. [지사안내] 페이지를 확인해주시기 바랍니다.</p>
+              <p class="iq-note">[안내사항]<br>· 교강사용 자료요청 시, 재직중인 학교 또는 학원(학원명, 주소) 정보와 거래 지사(총판)명을 같이 기재해 주시면 좀 더 빠른 확인 및 답변이 가능합니다.<br>· 샘플 및 교사용 교재는 지사를 통해 제공되고 있습니다. <a class="iq-note-link" href="#">[지사안내]</a> 페이지를 확인해주시기 바랍니다.</p>
             </div>
           </div>
 

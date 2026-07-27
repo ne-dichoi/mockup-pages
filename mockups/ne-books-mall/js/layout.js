@@ -83,7 +83,8 @@
     '문의답변상세.html':{type:'simple', title:'문의/답변', crumb:['마이페이지','문의/답변']},
     '고객센터.html':{type:'simple', title:'공지사항', crumb:['고객센터','공지사항']},
     '공지사항상세.html':{type:'simple', title:'공지사항', crumb:['고객센터','공지사항']},
-    '오류정정상세.html':{type:'simple', title:'교재 오류정정', crumb:['고객센터','교재 오류정정']}
+    '오류정정상세.html':{type:'simple', title:'교재 오류정정', crumb:['고객센터','교재 오류정정']},
+    '비회원문의.html':{type:'simple', title:'1:1 문의', crumb:['고객센터','1:1 문의']}
   };
   (function(){
     var el=document.getElementById('site-location'); if(!el) return;
