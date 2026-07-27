@@ -93,6 +93,31 @@ irm https://raw.githubusercontent.com/ne-dichoi/mockup-pages/main/scripts/init.p
 
 GitHub 저장소 → **Settings → Pages → Build and deployment → Source** 를 **GitHub Actions**로 지정합니다. 이후 push는 자동 배포됩니다.
 
+## 에이전트 위임 검증 (재시작 후, 선택)
+
+`git-helper` 에이전트/스킬을 새로 추가했거나 수정한 뒤에는, **Claude Code를 저장소 루트에서 새로 열고**(에이전트는 세션 시작 시 로드됨) 아래를 순서대로 붙여넣어 `start → publish` 위임이 실제로 도는지 확인합니다.
+
+```text
+# 0) (선택) 등록 확인 — 목록에 git-helper가 보이면 로드됨
+/agents
+
+# 1) start 위임
+git-helper 에이전트로 "테스트" 작업을 시작해줘. subagent_type=git-helper 로 task=start,
+작업 이름="테스트" 로 scripts/git-start.sh 를 실행한 결과(마커·브랜치명)를 알려줘.
+
+# 2) 목업 생성
+mockups/reload-test/index.html 에 제목이 "재시작 검증"인 간단한 목업 하나 만들어줘.
+
+# 3) publish 위임
+git-helper 에이전트로 지금 작업을 올려줘. subagent_type=git-helper 로 task=publish 위임해서
+scripts/git-publish.sh 실행하고 마커·커밋 메시지·실행 후 브랜치를 알려줘.
+
+# 4) 정리
+방금 만든 mockups/reload-test 를 삭제하고, git-helper 로 publish 해서 사이트에서 내려줘.
+```
+
+확인 포인트: (1) `subagent_type: git-helper`가 "not found" 없이 실행됨, (2) 에이전트가 Sonnet으로 돔, (3) `start`→`publish`가 브랜치 생성 → 자동 병합 → 배포로 끝남. 1에서 타입을 못 찾으면 `.claude/agents/git-helper.md`가 있는 **저장소 루트에서 열었는지** 확인합니다.
+
 ## 구조
 
 | 경로 | 설명 |
