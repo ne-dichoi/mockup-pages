@@ -21,7 +21,7 @@ Claude Code에서 슬래시 명령으로 최신화·배포할 수 있다.
 - **목업 만들기:** Claude에게 요청 (예: "'주문 상세' 목업 만들어줘" → `mockups/order-detail/index.html`).
 - **다 만든 후:** `/publish` — 커밋·push해서 사이트에 반영(1~2분 뒤 자동 배포).
 
-스킬 정의는 `.claude/skills/`에 있다.
+스킬 정의는 `.claude/skills/`에 있다. 실제 git 작업은 `git-helper` 서브에이전트(Sonnet 고정, `.claude/agents/`)가 결정론적 스크립트(`scripts/git-sync.sh`·`scripts/git-publish.sh`)를 실행해 안전하게 처리하므로, 메인 세션은 Haiku로 고정해도 된다.
 
 ## 구조
 
