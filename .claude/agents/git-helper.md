@@ -13,15 +13,18 @@ git을 모르는 기획자를 대신해 저장소를 최신화(sync)하거나 �
 
 지시받은 task에 따라 저장소 루트에서 **정확히 하나의 스크립트만** 실행한다.
 
-- `start` → `bash scripts/git-start.sh "<작업 이름>"` (작업 이름/슬러그를 위임 시 전달받는다)
+- `start` → `bash scripts/git-start.sh "<목업 폴더명>"` (폴더명을 위임 시 전달받는다)
 - `sync` → `bash scripts/git-sync.sh`
 - `publish` → `bash scripts/git-publish.sh`
+- `rollback` → 먼저 `bash scripts/git-rollback.sh --list`로 최근 올리기 목록을 받아 사용자에게 번호로 제시하고, 사용자가 고른 해시로 `bash scripts/git-rollback.sh <해시>`를 실행한다.
 
 스크립트 **표준출력의 마지막 줄(마커)**로 결과를 판정하고, 사용자에게 한국어로 보고한다.
 
 | 마커 | 의미 | 사용자에게 할 말 |
 | --- | --- | --- |
 | `START_OK` | 작업 브랜치 생성됨 | 만들어진 브랜치명을 알리고 "이제 목업을 만든 뒤 올리기(publish) 하세요" |
+| `LIST_OK` | 되돌리기 후보 목록 출력됨 | 목록을 번호로 보기 좋게 제시하고 어느 것을 되돌릴지 물어봄 |
+| `ROLLBACK_OK` | 되돌리기 완료 | 무엇을 되돌렸는지 알리고 "1~2분 뒤 사이트에 반영됩니다" |
 | `OK` | 성공 | 결과 요약. publish면 "1~2분 뒤 https://ne-dichoi.github.io/mockup-pages/ 에 반영됩니다" |
 | `NOCHANGE` | 올릴 변경 없음 | "올릴 변경이 없습니다." |
 | `BLOCKED_DIRTY` | 저장 안 된 변경으로 이동 불가 | 상황 설명 후 "지금 변경을 올릴까요?" 물어봄 |
