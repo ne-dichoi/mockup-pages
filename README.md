@@ -87,28 +87,56 @@ GitHub 저장소 → **Settings → Pages → Build and deployment → Source** 
 
 ## 에이전트 위임 검증 (재시작 후, 선택)
 
-`git-helper` 에이전트/스킬을 새로 추가했거나 수정한 뒤에는, **Claude Code를 저장소 루트에서 새로 열고**(에이전트는 세션 시작 시 로드됨) 아래를 순서대로 붙여넣어 `start → publish` 위임이 실제로 도는지 확인합니다.
+`git-helper` 에이전트/스킬을 새로 추가·수정했거나, 기획자에게 인계하기 직전에 한 번 확인하는 절차입니다. 에이전트·스킬은 **세션 시작 시 로드**되므로, 반드시 **Claude Code를 저장소 루트에서 새로 열고** 아래를 순서대로 붙여넣습니다.
+
+**0단계 — 등록 확인**
 
 ```text
-# 0) (선택) 등록 확인 — 목록에 git-helper가 보이면 로드됨
 /agents
+```
+→ 목록에 **git-helper**가 보이면 로드됨. (안 보이면 저장소 루트에서 열었는지 확인)
+스킬은 `/start` `/publish` `/sync` `/trouble` 이 인식되는지 확인.
 
-# 1) start 위임
-git-helper 에이전트로 "테스트" 작업을 시작해줘. subagent_type=git-helper 로 task=start,
-작업 이름="테스트" 로 scripts/git-start.sh 를 실행한 결과(마커·브랜치명)를 알려줘.
+**1단계 — start 위임** (브랜치명은 `<폴더>-<시각>` 형식)
 
-# 2) 목업 생성
+```text
+git-helper 에이전트로 "reload-test" 목업 작업을 시작해줘.
+subagent_type=git-helper 로 task=start, 목업 폴더명="reload-test" 로
+scripts/git-start.sh 를 실행한 결과(마커·브랜치명)를 알려줘.
+```
+→ 기대: `START_OK`, 브랜치 `reload-test-<MMDD-HHMM>`
+
+**2단계 — 목업 생성**
+
+```text
 mockups/reload-test/index.html 에 제목이 "재시작 검증"인 간단한 목업 하나 만들어줘.
+```
 
-# 3) publish 위임
-git-helper 에이전트로 지금 작업을 올려줘. subagent_type=git-helper 로 task=publish 위임해서
-scripts/git-publish.sh 실행하고 마커·커밋 메시지·실행 후 브랜치를 알려줘.
+**3단계 — publish 위임**
 
-# 4) 정리
+```text
+git-helper 에이전트로 지금 작업을 올려줘. subagent_type=git-helper 로 task=publish
+위임해서 scripts/git-publish.sh 실행하고 마커·커밋 메시지·실행 후 브랜치를 알려줘.
+```
+→ 기대: `OK`, 커밋 메시지 `목업 추가/수정: reload-test`, main 병합·배포, 브랜치 `main` 복귀
+
+**4단계 — 정리**
+
+```text
 방금 만든 mockups/reload-test 를 삭제하고, git-helper 로 publish 해서 사이트에서 내려줘.
 ```
 
-확인 포인트: (1) `subagent_type: git-helper`가 "not found" 없이 실행됨, (2) 에이전트가 Sonnet으로 돔, (3) `start`→`publish`가 브랜치 생성 → 자동 병합 → 배포로 끝남. 1에서 타입을 못 찾으면 `.claude/agents/git-helper.md`가 있는 **저장소 루트에서 열었는지** 확인합니다.
+**5단계 — (선택) 문제 기록 스킬 확인**
+
+```text
+/trouble  방금 절차에서 특이사항이 있었으면 TROUBLESHOOTING.md 에 사례로 남겨줘.
+```
+
+**확인 포인트**
+- `subagent_type: git-helper`가 **"not found" 없이** 실행됨 (= 등록됨)
+- 에이전트가 **Sonnet**으로 돔
+- `start`→`publish`가 **브랜치(`<폴더>-<시각>`) 생성 → 자동 병합 → 배포**로 끝남
+- 실패 시: 타입을 못 찾으면 저장소 루트에서 열었는지 확인, 그 외 오류는 [TROUBLESHOOTING.md](./TROUBLESHOOTING.md) 참고
 
 ## 커밋 메시지 컨벤션
 
