@@ -79,15 +79,7 @@ irm https://raw.githubusercontent.com/ne-dichoi/mockup-pages/main/scripts/init.p
 
 ## 트러블슈팅
 
-**Windows에서 `init.ps1` 실행 시 파싱 에러 (`The string is missing the terminator: "`)**
-
-- 원인: 스크립트가 BOM 없는 UTF-8로 저장되면 Windows PowerShell 5.1이 파일 안의 한글 주석을 시스템 코드페이지로 잘못 해석해서 깨집니다.
-- 해결: 저장소의 `scripts/init.ps1`은 UTF-8 BOM 포함으로 저장되어 있어 정상 동작합니다. 로컬에서 파일을 다시 저장했는데도 같은 에러가 난다면, 에디터에서 인코딩을 "UTF-8 with BOM"으로 다시 저장하세요.
-
-**push 시 `remote: Permission ... denied` / `403`**
-
-- 원인: 로컬에 저장된 Git 자격증명 계정이 이 저장소에 쓰기 권한이 없습니다.
-- 해결: 저장소 관리자에게 collaborator 추가를 요청하거나, 쓰기 권한이 있는 계정으로 Git 자격증명을 재인증한 뒤 다시 push하세요.
+작업 중 만나는 문제·해결과 마커 의미는 **[TROUBLESHOOTING.md](./TROUBLESHOOTING.md)**에서 별도로 관리합니다. 문제가 생기면 Claude에게 "이 문제 트러블슈팅에 남겨줘"(`/trouble`)라고 하면 사례를 추가해 줍니다.
 
 ## 최초 1회 설정 (저장소 생성 직후)
 
@@ -136,8 +128,8 @@ scripts/git-publish.sh 실행하고 마커·커밋 메시지·실행 후 브랜�
 
 | 상황 | 형식 | 예 |
 | --- | --- | --- |
-| `/start`로 시작 | `work/<슬러그>-<MMDD-HHMM>` | `work/주문상세-0727-1530` |
-| `main`에서 실수로 작업 → 자동 이동 | `work/auto-<MMDD-HHMM>` | `work/auto-0727-1530` |
+| `/start`로 시작 | `<폴더>-<MMDD-HHMM>` | `order-detail-0727-1530`, `주문상세-0727-1612` |
+| `main`에서 실수로 작업 → 자동 이동 | `<폴더>-<MMDD-HHMM>` (감지 실패 시 `edit-<MMDD-HHMM>`) | `order-detail-0727-1530`, `edit-0727-1530` |
 
 슬러그는 입력한 작업 이름을 소문자화하고 공백을 `-`로 바꾼 뒤 git 브랜치명에 쓸 수 없는 문자를 제거해 만듭니다. 작업 브랜치는 `main` 병합 후 자동 삭제됩니다.
 

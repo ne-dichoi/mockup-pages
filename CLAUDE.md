@@ -28,6 +28,10 @@ Claude Code에서 슬래시 명령으로 작업하며, 형상관리는 에이전
 
 스킬 정의는 `.claude/skills/`에 있다. 실제 git 작업은 `git-helper` 서브에이전트(Sonnet 고정, `.claude/agents/`)가 결정론적 스크립트(`scripts/git-start.sh`·`scripts/git-sync.sh`·`scripts/git-publish.sh`)를 실행해 안전하게 처리하므로, 메인 세션은 Haiku로 고정해도 된다.
 
+## 문제 대응
+
+git-helper가 `BLOCKED_*`/`ERROR` 마커를 반환하거나 같은 오류가 반복되면, 사용자에게 **[TROUBLESHOOTING.md](./TROUBLESHOOTING.md)에 사례를 남길지 제안**하고, 동의하면 `/trouble` 스킬로 증상·원인·해결 초안을 추가한다. 기록은 문제를 **해소하거나 파악한 뒤** 별도 브랜치 사이클로 반영한다 — 진행 중 블록/충돌 상태에서 기록용 publish를 강행하지 않는다. 마커 의미와 워커 대처는 `TROUBLESHOOTING.md` 상단 표를 참고한다.
+
 ## 구조
 
 - `mockups/` — 목업 원본 (폴더 하나 = 목업 하나)

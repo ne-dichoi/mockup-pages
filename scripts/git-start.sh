@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # 목적: 새 작업을 시작할 때 최신 main에서 새 work 브랜치를 만든다.
-# 사용: bash scripts/git-start.sh "<작업 이름/슬러그>"
+# 사용: bash scripts/git-start.sh "<목업 폴더명>"  (브랜치명·목업 폴더명으로 함께 쓰임)
 # 마커(마지막 줄): START_OK / BLOCKED_DIRTY / BLOCKED_DIVERGED / ERROR
 # 안전: force push, reset --hard, stash 미사용.
 set -euo pipefail
@@ -33,18 +33,18 @@ slug="$(printf '%s' "$raw_slug" \
   | tr '[:upper:]' '[:lower:]' \
   | tr ' ' '-' \
   | sed -E 's/[^a-z0-9가-힣._-]//g; s/-+/-/g; s/^[-.]+//; s/[-.]+$//')"
-[ -z "$slug" ] && slug="work"
+[ -z "$slug" ] && slug="mockup"
 
 stamp="$(date +%m%d-%H%M)"
-branch="work/${slug}-${stamp}"
+branch="${slug}-${stamp}"
 # 이름 충돌 시 접미 증가
 n=2
 while git show-ref --verify --quiet "refs/heads/${branch}"; do
-  branch="work/${slug}-${stamp}-${n}"; n=$((n+1))
+  branch="${slug}-${stamp}-${n}"; n=$((n+1))
 done
 
 # 4. 브랜치 생성
 git checkout -b "$branch" 2>&1 || fail "작업 브랜치를 만들지 못했습니다."
 echo "작업 브랜치를 만들었습니다: ${branch}"
-echo "이제 목업을 만들거나 수정한 뒤 '올리기(publish)'를 실행하세요."
+echo "이제 mockups/${slug}/index.html 을 만들거나 수정한 뒤 '올리기(publish)'를 실행하세요."
 echo "START_OK"
