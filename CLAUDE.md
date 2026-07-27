@@ -13,6 +13,16 @@
 
 목록 페이지(`_site/index.html`)는 `scripts/build.mjs`가 `mockups/`를 스캔해 자동 생성한다. 직접 만들지 말 것.
 
+## 기획자용 스킬 (git 없이)
+
+Claude Code에서 슬래시 명령으로 최신화·배포할 수 있다.
+
+- **작업 시작 전:** `/sync` — 저장소를 최신 상태로 받아온다.
+- **목업 만들기:** Claude에게 요청 (예: "'주문 상세' 목업 만들어줘" → `mockups/order-detail/index.html`).
+- **다 만든 후:** `/publish` — 커밋·push해서 사이트에 반영(1~2분 뒤 자동 배포).
+
+스킬 정의는 `.claude/skills/`에 있다.
+
 ## 구조
 
 - `mockups/` — 목업 원본 (폴더 하나 = 목업 하나)
