@@ -1,88 +1,113 @@
 #!/usr/bin/env bash
-# 목적: 작업한 변경을 안전하게 원격 main에 올린다(동기화-선행, 자동 병합 없음).
-# 순서: main 보장 → 원격 최신화(ff-only) → add → commit(메시지 자동) → push
-# 마커(마지막 줄): OK / NOCHANGE / BLOCKED_DIRTY / BLOCKED_DIVERGED / BLOCKED_REMOTE_UPDATED / ERROR
-# 안전: force push, reset --hard, stash, 수동 merge를 절대 사용하지 않는다.
+# 목적: work 브랜치의 작업을 main에 안전하게 병합·배포한다(자동 병합).
+# 가드: main에서 만든 변경의 "직접 push"는 허용하지 않는다(자동으로 브랜치로 이동).
+# 로컬 main은 매 시도마다 origin/main에서 새로 만드는 "일회용 통합 브랜치"로 취급한다.
+# 마커(마지막 줄): OK / NOCHANGE / BLOCKED_CONFLICT / BLOCKED_REMOTE_UPDATED / BLOCKED_DIRTY / ERROR
+# 안전: force push, reset --hard, stash 미사용. 브랜치→main은 merge --no-ff, 충돌 시 abort.
 set -euo pipefail
 
 fail() { echo "$1"; echo "ERROR"; exit 1; }
 
-# 1. main 브랜치 보장
-current="$(git symbolic-ref --quiet --short HEAD || echo '')"
-if [ "$current" != "main" ]; then
-  if ! out="$(git checkout main 2>&1)"; then
-    echo "$out"
-    if echo "$out" | grep -qi 'would be overwritten\|local changes'; then
-      echo "저장하지 않은 변경 때문에 main으로 이동할 수 없습니다."
-      echo "BLOCKED_DIRTY"; exit 4
-    fi
-    echo "main 브랜치로 이동하지 못했습니다."
-    echo "ERROR"; exit 1
-  fi
-fi
-
-# 2. 원격 최신 정보
-git fetch origin main 2>&1 || fail "원격(origin/main)에서 정보를 가져오지 못했습니다."
-
-# 3. 커밋 전에 원격 최신화 (behind면 ff-only, diverged면 중단)
-if ! git merge-base --is-ancestor origin/main HEAD; then
-  # origin/main이 HEAD의 조상이 아님 → 받아올 게 있음
-  if git merge-base --is-ancestor HEAD origin/main; then
-    git pull --ff-only origin main 2>&1 || fail "최신 내용을 받아오지 못했습니다."
+# 커밋 메시지 자동 생성 (한글·공백 안전: NUL 구분 + quotepath 해제)
+build_message() {
+  local folders=() joined="" f e dup path
+  while IFS= read -r -d '' path; do
+    case "$path" in
+      mockups/*/*)
+        f="${path#mockups/}"; f="${f%%/*}"
+        dup=0; for e in "${folders[@]:-}"; do [ "$e" = "$f" ] && dup=1 && break; done
+        [ "$dup" -eq 0 ] && folders+=("$f")
+        ;;
+    esac
+  done < <(git -c core.quotepath=false diff --cached --name-only -z)
+  if [ "${#folders[@]}" -gt 0 ]; then
+    for f in "${folders[@]}"; do [ -n "$joined" ] && joined="$joined, "; joined="$joined$f"; done
+    echo "목업 추가/수정: ${joined}"
   else
-    echo "로컬과 원격이 갈라졌습니다. 임의 병합은 하지 않습니다. 담당자에게 문의하세요."
-    echo "BLOCKED_DIVERGED"; exit 5
+    echo "내용 수정"
   fi
+}
+
+# origin/main 확보
+git fetch origin main 2>&1 >/dev/null || fail "원격(origin/main)에서 정보를 가져오지 못했습니다."
+git show-ref --verify --quiet refs/remotes/origin/main || fail "원격 main(origin/main)을 찾을 수 없습니다."
+
+branch="$(git symbolic-ref --quiet --short HEAD || echo '')"
+[ -z "$branch" ] && fail "지금 특정 브랜치에 있지 않습니다(detached HEAD). 담당 개발자에게 문의하세요."
+
+# ── (B) main에서 실행: 직접 push 금지 가드 → 자동 브랜치 이동 ──
+if [ "$branch" = "main" ]; then
+  ahead=0
+  git merge-base --is-ancestor origin/main HEAD && \
+    [ "$(git rev-parse HEAD)" != "$(git rev-parse origin/main)" ] && ahead=1
+  if [ -z "$(git status --porcelain)" ] && [ "$ahead" -eq 0 ]; then
+    echo "올릴 변경이 없습니다."
+    echo "NOCHANGE"; exit 0
+  fi
+  auto="work/auto-$(date +%m%d-%H%M)"
+  n=2; while git show-ref --verify --quiet "refs/heads/${auto}"; do auto="work/auto-$(date +%m%d-%H%M)-${n}"; n=$((n+1)); done
+  git checkout -b "$auto" 2>&1 || fail "작업 브랜치로 이동하지 못했습니다."
+  git branch -f main origin/main
+  echo "main에서 작업이 감지되어 자동으로 브랜치(${auto})로 옮겨 처리합니다. 다음부터 '작업 시작(start)'을 먼저 쓰세요."
+  branch="$auto"
 fi
 
-# 4. 스테이징
+# ── (A) work 브랜치 표준 경로 ──
+case "$branch" in
+  work/*) : ;;
+  *) fail "작업용 브랜치(work/*)가 아닙니다. '작업 시작(start)'으로 브랜치를 먼저 만들어 주세요." ;;
+esac
+
+# work가 main 계열에서 갈라진 게 맞는지 확인
+git merge-base origin/main "$branch" >/dev/null 2>&1 || fail "이 브랜치는 main에서 시작한 작업 브랜치가 아닙니다."
+
+# 1. 스테이징
 git add -A
 
-# 5. 올릴 변경이 있는지
-if git diff --cached --quiet; then
+# 2. 올릴 게 있는지: 스테이징 변경 없고 origin/main 대비 앞선 커밋도 없으면 NOCHANGE
+if git diff --cached --quiet && git merge-base --is-ancestor "$branch" origin/main; then
   echo "올릴 변경이 없습니다."
   echo "NOCHANGE"; exit 0
 fi
 
-# 6. 커밋 메시지 자동 생성 (한글·공백 안전: NUL 구분 + quotepath 해제)
-folders=()
-while IFS= read -r -d '' path; do
-  case "$path" in
-    mockups/*/*)
-      f="${path#mockups/}"; f="${f%%/*}"
-      dup=0; for e in "${folders[@]:-}"; do [ "$e" = "$f" ] && dup=1 && break; done
-      [ "$dup" -eq 0 ] && folders+=("$f")
-      ;;
-  esac
-done < <(git -c core.quotepath=false diff --cached --name-only -z)
-
-if [ "${#folders[@]}" -gt 0 ]; then
-  joined=""
-  for f in "${folders[@]}"; do
-    [ -n "$joined" ] && joined="$joined, "
-    joined="$joined$f"
-  done
-  msg="목업 추가/수정: ${joined}"
-else
-  msg="내용 수정"
-fi
-
-# 7. 커밋
-if ! out="$(git commit -m "$msg" 2>&1)"; then
-  echo "$out"
-  fail "커밋에 실패했습니다(예: git 사용자 정보 미설정, 훅 실패)."
-fi
-echo "커밋: $msg"
-
-# 8. 푸시 (거부되면 자동 병합하지 않음)
-if ! out="$(git push origin main 2>&1)"; then
-  echo "$out"
-  if echo "$out" | grep -qi 'rejected\|fetch first\|non-fast-forward'; then
-    echo "올리는 사이 다른 사람이 먼저 올렸습니다. '최신받기(sync)' 후 다시 올려주세요."
-    echo "BLOCKED_REMOTE_UPDATED"; exit 6
+# 3. 변경이 있으면 work 브랜치에 커밋
+if ! git diff --cached --quiet; then
+  msg="$(build_message)"
+  if ! out="$(git commit -m "$msg" 2>&1)"; then
+    echo "$out"; fail "커밋에 실패했습니다(예: git 사용자 정보 미설정, 훅 실패)."
   fi
-  fail "푸시에 실패했습니다."
+  echo "커밋: $msg"
+else
+  msg="$(git log -1 --pretty=%s "$branch")"
 fi
 
-echo "올렸습니다. 1~2분 뒤 https://ne-dichoi.github.io/mockup-pages/ 에 자동 반영됩니다."
-echo "OK"; exit 0
+# 4. 통합·푸시 루프 (최대 3회). 매 시도는 work 브랜치에서 시작.
+attempt=1; max=3
+while [ "$attempt" -le "$max" ]; do
+  git fetch origin main 2>&1 >/dev/null || fail "원격에서 정보를 가져오지 못했습니다."
+  git checkout "$branch" 2>&1 >/dev/null || fail "작업 브랜치로 이동하지 못했습니다."
+  git branch -f main origin/main
+  git checkout main 2>&1 >/dev/null || fail "main으로 이동하지 못했습니다."
+
+  if ! git merge --no-ff -m "$msg" "$branch" 2>/tmp/pub_merge.err; then
+    conflicts="$(git -c core.quotepath=false diff --name-only --diff-filter=U 2>/dev/null | tr '\n' ' ')"
+    git merge --abort 2>&1 || { echo "병합 취소에 실패했습니다."; git checkout "$branch" 2>&1 >/dev/null || true; fail "병합 상태가 비정상입니다. 담당 개발자에게 문의하세요."; }
+    git checkout "$branch" 2>&1 >/dev/null || true
+    echo "충돌이 발생했습니다: ${conflicts}"
+    echo "임의로 해결하지 않고 중단했습니다. 담당 개발자에게 문의하세요."
+    echo "BLOCKED_CONFLICT"; exit 7
+  fi
+
+  if git push origin main 2>/tmp/pub_push.err; then
+    git branch -d "$branch" 2>&1 >/dev/null || true
+    echo "올렸습니다. 1~2분 뒤 https://ne-dichoi.github.io/mockup-pages/ 에 자동 반영됩니다."
+    echo "OK"; exit 0
+  fi
+
+  # push 거부 → 다음 시도(다음 루프 시작에서 work로 복귀하며 throwaway 병합 폐기)
+  attempt=$((attempt+1))
+done
+
+git checkout "$branch" 2>&1 >/dev/null || true
+echo "올리는 사이 다른 사람이 계속 먼저 올렸습니다. 잠시 후 다시 '올리기(publish)'를 실행해 주세요."
+echo "BLOCKED_REMOTE_UPDATED"; exit 6

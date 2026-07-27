@@ -13,15 +13,20 @@
 
 목록 페이지(`_site/index.html`)는 `scripts/build.mjs`가 `mockups/`를 스캔해 자동 생성한다. 직접 만들지 말 것.
 
-## 기획자용 스킬 (git 없이)
+## 기획자용 스킬 (git 없이) — 브랜치 작업 흐름
 
-Claude Code에서 슬래시 명령으로 최신화·배포할 수 있다.
+Claude Code에서 슬래시 명령으로 작업하며, 형상관리는 에이전트가 대신한다.
 
-- **작업 시작 전:** `/sync` — 저장소를 최신 상태로 받아온다.
+- **작업 시작:** `/start` — 최신 상태에서 전용 작업 브랜치(`work/*`)를 자동 생성한다.
 - **목업 만들기:** Claude에게 요청 (예: "'주문 상세' 목업 만들어줘" → `mockups/order-detail/index.html`).
-- **다 만든 후:** `/publish` — 커밋·push해서 사이트에 반영(1~2분 뒤 자동 배포).
+- **다 만든 후:** `/publish` — 작업 브랜치를 `main`에 자동 병합·push해서 사이트에 반영(1~2분 뒤 자동 배포).
+- (필요 시) `/sync` — `main`을 최신으로 갱신.
 
-스킬 정의는 `.claude/skills/`에 있다. 실제 git 작업은 `git-helper` 서브에이전트(Sonnet 고정, `.claude/agents/`)가 결정론적 스크립트(`scripts/git-sync.sh`·`scripts/git-publish.sh`)를 실행해 안전하게 처리하므로, 메인 세션은 Haiku로 고정해도 된다.
+### 가드 (반드시 지킬 것)
+
+**`main`에서 직접 작업·커밋하지 말 것. `main`에서 만든 변경의 직접 push는 허용되지 않는다.** 모든 작업은 `/start`로 만든 `work/*` 브랜치에서 하며, `main` 반영은 `/publish`의 자동 병합으로만 이뤄진다. 실수로 `main`에서 수정한 경우 `/publish`가 자동으로 작업 브랜치로 옮겨 병합 처리한다. 형상관리는 `git-helper` 에이전트가 대신하며, 사람이 직접 git 명령을 실행하지 않는다.
+
+스킬 정의는 `.claude/skills/`에 있다. 실제 git 작업은 `git-helper` 서브에이전트(Sonnet 고정, `.claude/agents/`)가 결정론적 스크립트(`scripts/git-start.sh`·`scripts/git-sync.sh`·`scripts/git-publish.sh`)를 실행해 안전하게 처리하므로, 메인 세션은 Haiku로 고정해도 된다.
 
 ## 구조
 
