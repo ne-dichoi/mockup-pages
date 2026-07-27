@@ -17,6 +17,8 @@
 
 Claude Code에서 슬래시 명령으로 작업하며, 형상관리는 에이전트가 대신한다.
 
+> **실행 위치 주의:** Claude Code는 반드시 **저장소 루트(`mockup-pages`, `.claude/`가 있는 폴더)**에서 열어야 스킬·`git-helper` 에이전트가 로드된다. 상위 디렉터리에서 열면 `/start`·`/publish`·`git-helper`가 안 잡힌다. `/agents`에 `git-helper`가 보이는지로 확인.
+
 **반복 작업(기본):** 목업을 편집하고 `/publish`만 하면 된다. `/publish`가 최신화·작업 브랜치 생성·병합·배포를 자동 처리하므로, 사용자는 브랜치를 의식하지 않아도 된다. 이 사이클을 반복한다.
 
 - **목업 만들기/고치기:** Claude에게 요청 (예: "'주문 상세' 목업 만들어줘" → `mockups/order-detail/index.html`).
