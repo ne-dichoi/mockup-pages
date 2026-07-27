@@ -75,6 +75,18 @@ irm https://raw.githubusercontent.com/ne-dichoi/mockup-pages/main/scripts/init.p
 
 직접 실행하려면 `node scripts/build.mjs`로 `_site/`를 만든 뒤 `npx serve _site`를 띄우면 됩니다. Node 없이 확인하려면 `mockups/<폴더>/index.html`을 브라우저로 바로 열어도 됩니다.
 
+## 트러블슈팅
+
+**Windows에서 `init.ps1` 실행 시 파싱 에러 (`The string is missing the terminator: "`)**
+
+- 원인: 스크립트가 BOM 없는 UTF-8로 저장되면 Windows PowerShell 5.1이 파일 안의 한글 주석을 시스템 코드페이지로 잘못 해석해서 깨집니다.
+- 해결: 저장소의 `scripts/init.ps1`은 UTF-8 BOM 포함으로 저장되어 있어 정상 동작합니다. 로컬에서 파일을 다시 저장했는데도 같은 에러가 난다면, 에디터에서 인코딩을 "UTF-8 with BOM"으로 다시 저장하세요.
+
+**push 시 `remote: Permission ... denied` / `403`**
+
+- 원인: 로컬에 저장된 Git 자격증명 계정이 이 저장소에 쓰기 권한이 없습니다.
+- 해결: 저장소 관리자에게 collaborator 추가를 요청하거나, 쓰기 권한이 있는 계정으로 Git 자격증명을 재인증한 뒤 다시 push하세요.
+
 ## 최초 1회 설정 (저장소 생성 직후)
 
 GitHub 저장소 → **Settings → Pages → Build and deployment → Source** 를 **GitHub Actions**로 지정합니다. 이후 push는 자동 배포됩니다.
