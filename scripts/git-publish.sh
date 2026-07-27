@@ -44,22 +44,24 @@ if [ "$branch" = "main" ]; then
     echo "올릴 변경이 없습니다."
     echo "NOCHANGE"; exit 0
   fi
-  auto="work/auto-$(date +%m%d-%H%M)"
-  n=2; while git show-ref --verify --quiet "refs/heads/${auto}"; do auto="work/auto-$(date +%m%d-%H%M)-${n}"; n=$((n+1)); done
+  # 변경된 mockups/<폴더>를 감지해 브랜치명에 사용(없으면 edit)
+  base="$( { git -c core.quotepath=false status --porcelain | sed -E 's/^...//'; git -c core.quotepath=false diff --name-only origin/main..HEAD 2>/dev/null; } \
+    | sed -n -E 's|^mockups/([^/]+)/.*|\1|p' | head -1 \
+    | tr '[:upper:]' '[:lower:]' | tr ' ' '-' | sed -E 's/[^a-z0-9가-힣._-]//g; s/-+/-/g; s/^[-.]+//; s/[-.]+$//')"
+  [ -z "$base" ] && base="edit"
+  auto="${base}-$(date +%m%d-%H%M)"
+  n=2; while git show-ref --verify --quiet "refs/heads/${auto}"; do auto="${base}-$(date +%m%d-%H%M)-${n}"; n=$((n+1)); done
   git checkout -b "$auto" 2>&1 || fail "작업 브랜치로 이동하지 못했습니다."
   git branch -f main origin/main
   echo "main에서 작업이 감지되어 자동으로 브랜치(${auto})로 옮겨 처리합니다. 다음부터 '작업 시작(start)'을 먼저 쓰세요."
   branch="$auto"
 fi
 
-# ── (A) work 브랜치 표준 경로 ──
-case "$branch" in
-  work/*) : ;;
-  *) fail "작업용 브랜치(work/*)가 아닙니다. '작업 시작(start)'으로 브랜치를 먼저 만들어 주세요." ;;
-esac
+# ── (A) 작업 브랜치 표준 경로 (main이 아니면 작업 브랜치로 취급) ──
+[ "$branch" = "main" ] && fail "예상치 못한 상태입니다(main). 담당 개발자에게 문의하세요."
 
-# work가 main 계열에서 갈라진 게 맞는지 확인
-git merge-base origin/main "$branch" >/dev/null 2>&1 || fail "이 브랜치는 main에서 시작한 작업 브랜치가 아닙니다."
+# 작업 브랜치가 main 계열에서 갈라진 게 맞는지 확인
+git merge-base origin/main "$branch" >/dev/null 2>&1 || fail "이 브랜치는 main에서 시작한 작업 브랜치가 아닙니다. '작업 시작(start)'으로 브랜치를 먼저 만들어 주세요."
 
 # 1. 스테이징
 git add -A
