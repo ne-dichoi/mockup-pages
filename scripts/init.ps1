@@ -1,4 +1,4 @@
-# 목적: mockup-pages 저장소를 로컬(Windows)에 세팅한다 (clone → 사전요건 확인 → 빌드).
+﻿# 목적: mockup-pages 저장소를 로컬(Windows)에 세팅한다 (clone → 사전요건 확인 → 빌드).
 # 실행: ./scripts/init.ps1          (세팅만, 비블로킹으로 종료)
 #       ./scripts/init.ps1 -Serve   (세팅 후 http://localhost:3000 미리보기)
 # 성공: "built N mockup(s) -> _site/" 로그 + _site/index.html 생성 + 정상 종료
