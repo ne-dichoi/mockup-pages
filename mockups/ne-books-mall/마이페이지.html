@@ -145,6 +145,19 @@
         <!-- 주문 목록 -->
         <div class="oh-list">
           <div class="oh-row">
+            <a class="oh-thumb" href="주문상세.html?st=paid"><img src="assets/best_1.png" alt=""></a>
+            <div class="oh-mid">
+              <div class="oh-date-row"><span class="oh-odate">2026-06-18</span><span class="oh-badge paid">결제완료</span></div>
+              <a class="oh-name" href="주문상세.html?st=paid">Phonics Code 1 : Student Book 외 2건</a>
+              <span class="oh-ono">주문번호 : NB20260618-000123</span>
+            </div>
+            <div class="oh-right">
+              <div class="oh-price-row"><span class="oh-price">27,000원</span><a class="oh-receipt" href="#">온라인 영수증</a></div>
+              <div class="oh-btns"><a class="oh-btn dark" href="#">결제취소</a></div>
+            </div>
+          </div>
+
+          <div class="oh-row">
             <a class="oh-thumb" href="주문상세.html?st=ship"><img src="assets/best_1.png" alt=""></a>
             <div class="oh-mid">
               <div class="oh-date-row"><span class="oh-odate">2026-06-18</span><span class="oh-badge ship">배송중</span></div>
@@ -425,14 +438,125 @@
           <a class="arw" aria-label="다음">&#8250;</a>
         </nav>
       </div>
-      <div class="my-panel" id="tab-review" hidden><div class="my-empty">교재 후기 탭 — 디자인 적용 예정</div></div>
-      <div class="my-panel" id="tab-event" hidden><div class="my-empty">이벤트/세미나 탭 — 디자인 적용 예정</div></div>
+      <div class="my-panel" id="tab-review" hidden>
+        <!-- 안내 박스 + 후기 작성하기 -->
+        <div class="rv-guide">
+          <ul class="rv-guide-list">
+            <li>후기 작성 시, <span class="hl">상품 당 최초 등록 1건에 대해서만 500 Point</span>가 적립되며 후기 삭제 시, 지급된 포인트가 회수될 수 있습니다.</li>
+            <li>상품과 무관한 내용이나 동일 문자의 반복 등 부적합한 내용의 경우에는 무통보 삭제 및 지급 포인트가 회수될 수 있습니다.</li>
+          </ul>
+          <button type="button" class="rv-write-btn" onclick="location.href='후기작성.html'">후기 작성하기</button>
+        </div>
+
+        <!-- 후기 목록 (FAQ와 동일한 클릭 펼침 아코디언) -->
+        <p class="rv-count">전체 3건</p>
+        <div class="rv-list">
+          <!-- 1 -->
+          <div class="rv-item">
+            <button type="button" class="rv-q">
+              <span class="rv-prod"><span class="rv-badge">초/중등</span><span class="rv-name">리딩튜터 주니어 3 (2024 개정)</span></span>
+              <span class="rv-rev"><span class="rv-stars">★★★★★</span><span class="rv-title">재밌고 유쾌하게 공부하기^V^</span></span>
+              <span class="rv-date">2024.03.21</span>
+              <span class="rv-chev"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#1d1717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </button>
+            <div class="rv-a" hidden>
+              <p class="rv-body">리딩튜터 주니어 시리즈는 아이 수준에 딱 맞는 지문 난이도로 부담 없이 읽기 훈련을 이어갈 수 있었습니다. 어휘와 독해가 자연스럽게 연결되어 재미있게 공부할 수 있었어요.</p>
+              <div class="rv-actions">
+                <button type="button" class="rv-btn edit">수정</button>
+                <button type="button" class="rv-btn del">삭제</button>
+              </div>
+            </div>
+          </div>
+          <!-- 2 -->
+          <div class="rv-item">
+            <button type="button" class="rv-q">
+              <span class="rv-prod"><span class="rv-badge">초/중등</span><span class="rv-name">문마중 Level 2 (2025 개정)</span></span>
+              <span class="rv-rev"><span class="rv-stars">★★★★☆</span><span class="rv-title">좋은교재 감사합니다..^^</span></span>
+              <span class="rv-date">2024.03.21</span>
+              <span class="rv-chev"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#1d1717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </button>
+            <div class="rv-a" hidden>
+              <p class="rv-body">문해력을 차근차근 키우기에 좋은 교재입니다. 단계별 구성이 잘 되어 있어 집에서도 스스로 학습하기 좋았습니다.</p>
+              <div class="rv-actions">
+                <button type="button" class="rv-btn edit">수정</button>
+                <button type="button" class="rv-btn del">삭제</button>
+              </div>
+            </div>
+          </div>
+          <!-- 3 (기본 펼침) -->
+          <div class="rv-item open">
+            <button type="button" class="rv-q">
+              <span class="rv-prod"><span class="rv-badge">ELT</span><span class="rv-name">능률VOCA 고교필수 2000 (2022 개정)</span></span>
+              <span class="rv-rev"><span class="rv-stars">★★★★★</span><span class="rv-title">아이가 지금 사용하고 있는 교재입니다.</span></span>
+              <span class="rv-date">2024.03.21</span>
+              <span class="rv-chev"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#1d1717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </button>
+            <div class="rv-a">
+              <p class="rv-body">능률보카 어원편은 단어를 어근과 연관지어 학습할 수 있어 암기 부담을 줄여주는 교재였습니다. 단순 암기가 아니라 단어가 만들어진 원리를 이해하니 다른 어휘도 자연스럽게 확장되어 실력이 눈에 띄게 늘었어요. 짧은 시간에도 효율이 높아 꾸준한 학습에 특히 도움이 되었습니다.</p>
+              <div class="rv-photo"><img src="assets/review_sample.png" alt="후기 첨부 이미지"></div>
+              <div class="rv-actions">
+                <button type="button" class="rv-btn edit">수정</button>
+                <button type="button" class="rv-btn del">삭제</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 페이지네이션 -->
+        <nav class="pager">
+          <a class="arw" aria-label="이전">&#8249;</a>
+          <a class="on">1</a><a>2</a><a>3</a><a>4</a><a>5</a>
+          <a class="arw" aria-label="다음">&#8250;</a>
+        </nav>
+      </div>
+      <div class="my-panel" id="tab-event" hidden>
+        <!-- 참여내역 타이틀 + 진행중 필터 버튼 (밑줄탭 대신 타이틀, 셀렉트 대신 버튼) -->
+        <div class="sec-head ev-my-head">
+          <h3 class="my-sec-t">참여내역</h3>
+          <button type="button" class="ev-my-btn">진행중인 이벤트/세미나</button>
+        </div>
+
+        <!-- 참여한 이벤트/세미나 (고객센터 이벤트탭과 동일한 카드 디자인) -->
+        <div class="ev-grid">
+          <div class="ev-card">
+            <div class="ev-thumb"><img src="assets/img1.png" alt=""></div>
+            <div class="ev-body">
+              <div class="ev-info">
+                <div class="ev-badges"><span class="ev-badge type">이벤트</span><span class="ev-badge cat">ELT</span></div>
+                <p class="ev-title">성적이 달라지는 방학 특강 조합</p>
+                <p class="ev-desc">문법 개념 정리 + 리스닝 훈련</p>
+              </div>
+              <div class="ev-status"><span class="ev-state">진행중</span><span class="ev-date">2026.07.01 ~ 2026.07.31</span></div>
+            </div>
+          </div>
+
+          <div class="ev-card">
+            <div class="ev-thumb"><img src="assets/img3.png" alt=""></div>
+            <div class="ev-body">
+              <div class="ev-info">
+                <div class="ev-badges"><span class="ev-badge type">신간·개정</span><span class="ev-badge cat">초/중/고</span></div>
+                <p class="ev-title">[신간] 달곰한 Literacy</p>
+                <p class="ev-desc">문법 개념 정리 + 리스닝 훈련</p>
+              </div>
+              <div class="ev-status"><span class="ev-state done">종료</span><span class="ev-date">2025.06.01 ~ 2025.07.01</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 페이지네이션 -->
+        <nav class="pager">
+          <a class="arw" aria-label="이전">&#8249;</a>
+          <a class="on">1</a><a>2</a><a>3</a><a>4</a><a>5</a>
+          <a class="arw" aria-label="다음">&#8250;</a>
+        </nav>
+      </div>
 
     </div>
   </section>
 
   <!-- ===== 결제취소 레이어 팝업 ===== -->
-  <div class="cx-modal" id="cancelModal" hidden>
+  <!-- 결제취소 (카드·계좌이체·간편결제 → 환불계좌 입력) -->
+  <div class="cx-modal" id="paymentCancelModal" hidden>
     <div class="cx-modal-dim"></div>
     <div class="cx-box" role="dialog" aria-modal="true" aria-label="결제취소">
       <div class="cx-head"><h3>결제취소</h3><button type="button" class="cx-x" aria-label="닫기"></button></div>
@@ -450,7 +574,22 @@
           <div class="cx-ff"><input class="cx-input" type="text" aria-label="예금주명"></div>
         </div>
       </div>
-      <div class="cx-btns"><button type="button" class="cx-btn dark">등록하기</button><button type="button" class="cx-btn line cx-close">취소하기</button></div>
+      <div class="cx-btns"><button type="button" class="cx-btn line cx-close">취소하기</button><button type="button" class="cx-btn red cx-close">등록하기</button></div>
+    </div>
+  </div>
+
+  <!-- 입금취소 (무통장 입금대기 → 취소사유만) -->
+  <div class="cx-modal" id="depositCancelModal" hidden>
+    <div class="cx-modal-dim"></div>
+    <div class="cx-box" role="dialog" aria-modal="true" aria-label="입금취소">
+      <div class="cx-head"><h3>입금취소</h3><button type="button" class="cx-x" aria-label="닫기"></button></div>
+      <div class="cx-form">
+        <div class="cx-row">
+          <span class="cx-fl">취소사유 <em>*</em></span>
+          <div class="cx-ff"><div class="cx-sel full">취소사유선택 <span class="ic"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#666" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></div>
+        </div>
+      </div>
+      <div class="cx-btns"><button type="button" class="cx-btn line cx-close">취소하기</button><button type="button" class="cx-btn red cx-close">등록하기</button></div>
     </div>
   </div>
 
@@ -506,6 +645,29 @@
     gnb.addEventListener('mouseleave',function(){ closeT=setTimeout(hideGnb,160); });
     gnb.addEventListener('mouseenter',function(){ clearTimeout(closeT); });
     document.addEventListener('click',function(e){ if(!gnb.contains(e.target)) hideGnb(); });
+  })();
+
+  /* 교재 후기 클릭 펼침 (FAQ와 동일한 아코디언) */
+  (function(){
+    var panel=document.getElementById('tab-review'); if(!panel) return;
+    panel.addEventListener('click',function(e){
+      var q=e.target.closest('.rv-q'); if(!q) return;
+      var item=q.closest('.rv-item'); if(!item) return;
+      var open=item.classList.toggle('open');
+      var a=item.querySelector('.rv-a'); if(a) a.hidden=!open;
+    });
+  })();
+
+  /* 이벤트/세미나 카드 → 라벨별 상세 (고객센터 이벤트탭과 동일 라우팅) */
+  (function(){
+    var ev=document.getElementById('tab-event'); if(!ev) return;
+    ev.addEventListener('click',function(e){
+      var card=e.target.closest('.ev-card'); if(!card) return;
+      var b=card.querySelector('.ev-badge.type'); var t=b?b.textContent.trim():'';
+      if(t==='이벤트') location.href='이벤트상세.html';
+      else if(t==='신간·개정') location.href='신간개정상세.html';
+      else if(t==='세미나') location.href='세미나상세.html';
+    });
   })();
 
   /* 마이페이지 탭 전환 */
@@ -635,19 +797,32 @@
     });
   })();
 
-  /* 결제취소 팝업 (입금취소 버튼) */
+  /* 주문상태 버튼 → 결제취소 / 입금취소 레이어 팝업 */
   (function(){
-    var modal=document.getElementById('cancelModal'); if(!modal) return;
-    function open(){ modal.hidden=false; requestAnimationFrame(function(){ modal.classList.add('open'); }); }
-    function close(){ modal.classList.remove('open'); setTimeout(function(){ modal.hidden=true; },200); }
+    function bind(modal){
+      if(!modal) return {open:function(){}};
+      function open(){ modal.hidden=false; requestAnimationFrame(function(){ modal.classList.add('open'); }); }
+      function close(){ modal.classList.remove('open'); setTimeout(function(){ modal.hidden=true; },200); }
+      modal.querySelector('.cx-modal-dim').addEventListener('click',close);
+      modal.querySelector('.cx-x').addEventListener('click',close);
+      [].forEach.call(modal.querySelectorAll('.cx-close'),function(b){ b.addEventListener('click',close); });
+      modal._close=close;
+      return {open:open};
+    }
+    var pay=bind(document.getElementById('paymentCancelModal'));
+    var dep=bind(document.getElementById('depositCancelModal'));
     document.addEventListener('click',function(e){
-      var b=e.target.closest('.oh-btn');
-      if(b && b.textContent.trim()==='입금취소'){ e.preventDefault(); open(); }
+      var b=e.target.closest('.oh-btn'); if(!b) return;
+      var t=b.textContent.trim();
+      if(t==='결제취소'){ e.preventDefault(); pay.open(); }
+      else if(t==='입금취소'){ e.preventDefault(); dep.open(); }
     });
-    modal.querySelector('.cx-modal-dim').addEventListener('click',close);
-    modal.querySelector('.cx-x').addEventListener('click',close);
-    modal.querySelector('.cx-close').addEventListener('click',close);
-    document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!modal.hidden) close(); });
+    document.addEventListener('keydown',function(e){
+      if(e.key!=='Escape') return;
+      ['paymentCancelModal','depositCancelModal'].forEach(function(id){
+        var m=document.getElementById(id); if(m && !m.hidden && m._close) m._close();
+      });
+    });
   })();
   </script>
 </body>
