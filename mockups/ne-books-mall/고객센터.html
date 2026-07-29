@@ -113,8 +113,6 @@
 
         <!-- FAQ 아코디언 -->
         <div class="faq-table">
-          <div class="faq-th"><span class="faq-no">NO</span><span class="faq-cat">분류</span><span class="faq-subj">제목</span></div>
-
           <div class="faq-item">
             <button type="button" class="faq-q">
               <span class="faq-no">119</span><span class="faq-cat">교재 / ELT</span>
@@ -208,7 +206,107 @@
           <a class="arw" aria-label="다음">&#8250;</a>
         </nav>
       </div>
-      <div class="my-panel" id="cc-event" hidden><div class="my-empty">이벤트 / 신간·개정 / 세미나 — 디자인 적용 예정</div></div>
+      <div class="my-panel" id="cc-event" hidden>
+
+        <!-- 카테고리 밑줄 탭 + 상태 셀렉트 -->
+        <div class="qa-filter">
+          <div class="pt-tabs">
+            <a class="on">전체</a>
+            <a>공통</a>
+            <a>ELT</a>
+            <a>초중고(영어)</a>
+            <a>교과서 관련</a>
+            <a>수험/일반</a>
+            <a>수학/국어</a>
+          </div>
+          <div class="qa-tools">
+            <div class="oh-sel">
+              <button type="button" class="oh-sel-cur"><span class="oh-sel-lb">진행중</span><span class="ic"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#1d1717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+              <div class="oh-sel-menu" hidden><a class="on">진행중</a><a>전체</a><a>당첨자발표</a><a>종료</a></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 카드 그리드 -->
+        <div class="ev-grid">
+          <div class="ev-card">
+            <div class="ev-thumb"><img src="assets/img1.png" alt=""></div>
+            <div class="ev-body">
+              <div class="ev-info">
+                <div class="ev-badges"><span class="ev-badge type">이벤트</span><span class="ev-badge cat">ELT</span></div>
+                <p class="ev-title">성적이 달라지는 방학 특강 조합</p>
+                <p class="ev-desc">문법 개념 정리 + 리스닝 훈련</p>
+              </div>
+              <div class="ev-status"><span class="ev-state">진행중</span><span class="ev-date">2026.07.01 ~ 2026.07.31</span></div>
+            </div>
+          </div>
+
+          <div class="ev-card">
+            <div class="ev-thumb"><img src="assets/img2.png" alt=""></div>
+            <div class="ev-body">
+              <div class="ev-info">
+                <div class="ev-badges"><span class="ev-badge type">세미나</span><span class="ev-badge cat">ELT</span></div>
+                <p class="ev-title">성적이 달라지는 방학 특강 조합</p>
+                <p class="ev-desc">문법 개념 정리 + 리스닝 훈련</p>
+              </div>
+              <div class="ev-status"><span class="ev-state">당첨자발표</span><span class="ev-date">2026.06.01 ~ 2026.07.01</span></div>
+            </div>
+          </div>
+
+          <div class="ev-card">
+            <div class="ev-thumb"><img src="assets/img3.png" alt=""></div>
+            <div class="ev-body">
+              <div class="ev-info">
+                <div class="ev-badges"><span class="ev-badge type">신간·개정</span><span class="ev-badge cat">초/중/고</span></div>
+                <p class="ev-title">[신간] 달곰한 Literacy</p>
+                <p class="ev-desc">문법 개념 정리 + 리스닝 훈련</p>
+              </div>
+              <div class="ev-status"><span class="ev-state done">종료</span><span class="ev-date">2025.06.01 ~ 2025.07.01</span></div>
+            </div>
+          </div>
+
+          <div class="ev-card">
+            <div class="ev-thumb"><img src="assets/img4.png" alt=""></div>
+            <div class="ev-body">
+              <div class="ev-info">
+                <div class="ev-badges"><span class="ev-badge type">세미나</span><span class="ev-badge cat">공통</span></div>
+                <p class="ev-title">성적이 달라지는 방학 특강 조합</p>
+                <p class="ev-desc">문법 개념 정리 + 리스닝 훈련</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="ev-card">
+            <div class="ev-thumb"><img src="assets/img5.png" alt=""></div>
+            <div class="ev-body">
+              <div class="ev-info">
+                <div class="ev-badges"><span class="ev-badge type">세미나</span><span class="ev-badge cat">공통</span></div>
+                <p class="ev-title">[세미나] 8월 혼강 세미나</p>
+                <p class="ev-desc">수업이 달라지는 기준</p>
+              </div>
+              <div class="ev-status"><span class="ev-state">진행중</span><span class="ev-date">2026.06.01 ~ 2026.07.01</span></div>
+            </div>
+          </div>
+
+          <div class="ev-card">
+            <div class="ev-thumb"><img src="assets/img1.png" alt=""></div>
+            <div class="ev-body">
+              <div class="ev-info">
+                <div class="ev-badges"><span class="ev-badge type">신간·개정</span><span class="ev-badge cat">공통</span></div>
+                <p class="ev-title">[개정] 능률VOCA (11종)</p>
+                <p class="ev-desc">어휘의 뜻과 쓰임을 확실하게 기억시키는 특별한 어휘각인 체계</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 페이지네이션 -->
+        <nav class="pager">
+          <a class="arw" aria-label="이전">&#8249;</a>
+          <a class="on">1</a><a>2</a><a>3</a><a>4</a><a>5</a>
+          <a class="arw" aria-label="다음">&#8250;</a>
+        </nav>
+      </div>
       <div class="my-panel" id="cc-errata" hidden>
 
         <!-- 교재 선택 필터 -->
@@ -461,6 +559,18 @@
     errata.addEventListener('click',function(e){
       if(e.target.closest('.nt-th')) return;
       if(e.target.closest('.nt-tr')){ location.href='오류정정상세.html'; }
+    });
+  })();
+
+  /* 이벤트/신간개정/세미나 카드 → 유형별 상세 (이벤트 → 이벤트상세) */
+  (function(){
+    var ev=document.getElementById('cc-event'); if(!ev) return;
+    ev.addEventListener('click',function(e){
+      var card=e.target.closest('.ev-card'); if(!card) return;
+      var b=card.querySelector('.ev-badge.type'); var t=b?b.textContent.trim():'';
+      if(t==='이벤트') location.href='이벤트상세.html';
+      else if(t==='신간·개정') location.href='신간개정상세.html';
+      else if(t==='세미나') location.href='세미나상세.html';
     });
   })();
 
