@@ -12,9 +12,31 @@
           <div class="search-pop" hidden></div>
         </div>
         <div class="head-icons">
-          <a class="head-ic" href="마이페이지.html"><span class="ico"><img src="assets/ic_my_d.svg" alt=""></span><span>MY</span></a>
-          <a class="head-ic" href="장바구니.html"><span class="ico"><img src="assets/ic_bag.svg" alt=""></span><span>장바구니</span></a>
-          <a class="head-ic" href="고객센터.html"><span class="ico"><img src="assets/ic_customer_d.svg" alt=""></span><span>고객센터</span></a>
+          <div class="head-ic-wrap">
+            <a class="head-ic" href="마이페이지.html"><span class="ico"><img src="assets/ic_my_d.svg" alt=""></span><span>MY</span></a>
+            <div class="my-drop" role="menu">
+              <a href="마이페이지.html#home">홈</a>
+              <a href="마이페이지.html#orders">주문내역</a>
+              <a href="마이페이지.html#points">포인트</a>
+              <a href="고객센터.html#errata">교재 오류정정</a>
+              <a href="마이페이지.html#wish">찜</a>
+              <a href="마이페이지.html#qna">문의/답변</a>
+              <a href="마이페이지.html#review">교재후기</a>
+              <a href="마이페이지.html#event">이벤트/세미나</a>
+            </div>
+          </div>
+          <a class="head-ic" href="장바구니.html"><span class="ico"><img src="assets/ic_bag.svg" alt=""><span class="cart-badge" data-count="0" hidden>0</span></span><span>장바구니</span></a>
+          <div class="head-ic-wrap">
+            <a class="head-ic" href="고객센터.html"><span class="ico"><img src="assets/ic_customer_d.svg" alt=""></span><span>고객센터</span></a>
+            <div class="my-drop cs-drop" role="menu">
+              <a href="고객센터.html#notice">공지사항</a>
+              <a href="고객센터.html#faq">FAQ</a>
+              <a href="고객센터.html#event">이벤트/신간·개정/세미나</a>
+              <a href="고객센터.html#errata">교재 오류정정</a>
+              <a href="고객센터.html#qna">1:1문의</a>
+              <a href="#">지사안내</a>
+            </div>
+          </div>
         </div>
       </div>
       <div class="gnb">
@@ -35,7 +57,7 @@
           <div class="gd-cats"></div>
           <div class="gd-brands">
             <a class="gd-btn blue" href="#">Come on Series <span>&#8250;</span></a>
-            <a class="gd-btn navy" href="#">Oxford <span>&#8250;</span></a>
+            <a class="gd-btn navy" href="oxford.html">Oxford <span>&#8250;</span></a>
           </div>
         </div>
       </div>
@@ -66,6 +88,15 @@
   </footer>`;
   var h=document.getElementById('site-header'); if(h) h.innerHTML=HEADER;
   var f=document.getElementById('site-footer'); if(f) f.innerHTML=FOOTER;
+
+  /* ===== 장바구니 수량 뱃지 (상품이 담기면 N 표시) ===== */
+  /* 페이지에서 window.CART_COUNT = N 으로 실제 수량을 넣을 수 있음. 미지정 시 데모값 2. */
+  (function(){
+    var badge=document.querySelector('.cart-badge'); if(!badge) return;
+    var n=(typeof window.CART_COUNT==='number') ? window.CART_COUNT : 2;
+    if(n>0){ badge.textContent=(n>99?'99+':n); badge.setAttribute('data-count',n); badge.hidden=false; }
+    else { badge.hidden=true; }
+  })();
 
   /* ===== 로케이션 (페이지별 depth 이름을 여기서 수정) ===== */
   var CATEGORIES={
@@ -132,7 +163,7 @@
   function openFor(a){
     var name=a.textContent.trim();
     var mega=(name==='학습자료실'||name==='도서몰');
-    var BR='<div class="gd-brands"><a class="gd-btn blue" href="#">Come on Series <span>&#8250;</span></a><a class="gd-btn navy" href="#">Oxford <span>&#8250;</span></a></div>';
+    var BR='<div class="gd-brands"><a class="gd-btn blue" href="#">Come on Series <span>&#8250;</span></a><a class="gd-btn navy" href="oxford.html">Oxford <span>&#8250;</span></a></div>';
     if(mega){
       var COLS=[['ELT','Coursebook','Phonics','Reading','Readers','Listening','Speaking','Grammar','Writing','Vocabulary'],['초등/중등','중학 내신','고등 선행','파닉스','어휘','쓰기','독해','듣기','문법/구분','TOEFL/TEPS/NELT'],['고등','어휘','독해','듣기','문법/구분','수능 대비','고교 내신','단기 특강','TOEFL/TEPS/NELT'],['교과서/자습서','중학영어 교과서','고등영어 교과서','수학 교과서','중국어/일본어'],['수험/일반','TOEIC','TOEIC SPEAKING|/WRITING','TOEFL/OPIC/TEPS','FLEX','일반영어'],['수학/국어','유아','초등','중등','고등']];
       drop.innerHTML=COLS.map(function(c){ return '<div class="gd-col"><p class="gd-col-t">'+c[0]+'</p><div class="items">'+c.slice(1).map(function(i){ return '<a href="리스트_교재구매.html">'+i.replace('|','<br>')+'</a>'; }).join('')+'</div></div>'; }).join('')+BR;

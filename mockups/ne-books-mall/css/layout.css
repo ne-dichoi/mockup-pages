@@ -81,6 +81,20 @@ a{color:inherit;text-decoration:none;}
 .head-ic{display:flex;flex-direction:column;gap:5px;align-items:center;width:42px;}
 .head-ic .ico{width:26px;height:26px;}
 .head-ic span{font-size:12px;font-weight:500;color:var(--ink);text-align:center;}
+/* MY 마우스오버 드롭다운 */
+.head-ic-wrap{position:relative;}
+.my-drop{position:absolute;top:calc(100% + 6px);left:50%;transform:translateX(-50%);min-width:117px;box-sizing:border-box;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.10);padding:25px;display:none;flex-direction:column;gap:8px;z-index:200;}
+/* 아이콘↔드롭다운 사이 간격을 투명 브릿지로 이어 호버가 끊기지 않게 */
+.my-drop::before{content:"";position:absolute;left:0;right:0;top:-10px;height:10px;}
+.head-ic-wrap:hover .my-drop{display:flex;}
+/* 고객센터는 GNB 오른쪽 끝이라 우측 정렬(화면 밖으로 안 넘치게) */
+.my-drop.cs-drop{left:auto;right:0;transform:none;}
+.my-drop a{font-size:14px;color:var(--muted);white-space:nowrap;line-height:22px;}
+.my-drop a:hover{color:var(--ink);}
+/* 장바구니 수량 뱃지 */
+.head-ic .ico{position:relative;}
+.head-ic .cart-badge{position:absolute;top:-5px;right:-7px;min-width:16px;height:16px;box-sizing:border-box;padding:0 4px;border-radius:9999px;background:var(--red);color:#fff;font-size:11px;font-weight:700;line-height:16px;text-align:center;}
+.cart-badge[hidden]{display:none;}
 .header .gnb{border-bottom:2px solid #1d1717;position:relative;}
 .lheader .gnb{border-bottom:2px solid #1d1717;position:relative;margin-inline:calc(50% - 50vw);}
 .header .gnb-drop{position:absolute;top:calc(100% + 2px);left:0;z-index:50;display:none;gap:40px;background:#fff; border-radius:0 0 16px 16px;box-shadow:0 22px 40px rgba(0,0,0,.10);padding:32px 40px;}
