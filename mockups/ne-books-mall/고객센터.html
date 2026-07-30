@@ -615,11 +615,15 @@
         window.scrollTo({top:0});
       });
     });
-    var hash=(location.hash||'').replace('#','');
-    if(hash){
+    function activateHash(){
+      var hash=(location.hash||'').replace('#','');
+      if(!hash) return;
       var ht=tabs.filter(function(x){ return x.getAttribute('data-tab')===hash; })[0];
       if(ht){ (function go(n){ if(document.querySelector('.ph-title')){ ht.click(); } else if(n<40){ setTimeout(function(){ go(n+1); },25); } })(0); }
     }
+    activateHash();
+    /* 이미 이 페이지에 있을 때 GNB 펼침메뉴 링크 클릭 → 해시 변경으로 탭 전환 */
+    window.addEventListener('hashchange', activateHash);
   })();
 
   /* 공지 리스트 → 상세 이동 */

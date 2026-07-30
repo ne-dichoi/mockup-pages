@@ -12,6 +12,7 @@
           <div class="search-pop" hidden></div>
         </div>
         <div class="head-icons">
+          <a class="head-ic" href="index.html"><span class="ico"><img src="assets/ic_login_d.svg" alt=""></span><span>로그인</span></a>
           <div class="head-ic-wrap">
             <a class="head-ic" href="마이페이지.html"><span class="ico"><img src="assets/ic_my_d.svg" alt=""></span><span>MY</span></a>
             <div class="my-drop" role="menu">
@@ -21,7 +22,7 @@
               <a href="고객센터.html#errata">교재 오류정정</a>
               <a href="마이페이지.html#wish">찜</a>
               <a href="마이페이지.html#qna">문의/답변</a>
-              <a href="마이페이지.html#review">교재후기</a>
+              <a href="마이페이지.html#review">후기</a>
               <a href="마이페이지.html#event">이벤트/세미나</a>
               <a href="index.html" class="logout">로그아웃</a>
             </div>

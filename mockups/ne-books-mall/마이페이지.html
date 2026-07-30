@@ -31,7 +31,7 @@
         <a data-tab="points" href="#">포인트</a>
         <a data-tab="wish" href="#">찜</a>
         <a data-tab="qna" href="#">문의/답변</a>
-        <a data-tab="review" href="#">교재 후기</a>
+        <a data-tab="review" href="#">후기</a>
         <a data-tab="event" href="#">이벤트/세미나</a>
       </div>
 
@@ -462,7 +462,7 @@
             <div class="rv-a" hidden>
               <p class="rv-body">리딩튜터 주니어 시리즈는 아이 수준에 딱 맞는 지문 난이도로 부담 없이 읽기 훈련을 이어갈 수 있었습니다. 어휘와 독해가 자연스럽게 연결되어 재미있게 공부할 수 있었어요.</p>
               <div class="rv-actions">
-                <button type="button" class="rv-btn edit">수정</button>
+                <button type="button" class="rv-btn edit" onclick="location.href='후기수정.html'">수정</button>
                 <button type="button" class="rv-btn del">삭제</button>
               </div>
             </div>
@@ -478,7 +478,7 @@
             <div class="rv-a" hidden>
               <p class="rv-body">문해력을 차근차근 키우기에 좋은 교재입니다. 단계별 구성이 잘 되어 있어 집에서도 스스로 학습하기 좋았습니다.</p>
               <div class="rv-actions">
-                <button type="button" class="rv-btn edit">수정</button>
+                <button type="button" class="rv-btn edit" onclick="location.href='후기수정.html'">수정</button>
                 <button type="button" class="rv-btn del">삭제</button>
               </div>
             </div>
@@ -495,7 +495,7 @@
               <p class="rv-body">능률보카 어원편은 단어를 어근과 연관지어 학습할 수 있어 암기 부담을 줄여주는 교재였습니다. 단순 암기가 아니라 단어가 만들어진 원리를 이해하니 다른 어휘도 자연스럽게 확장되어 실력이 눈에 띄게 늘었어요. 짧은 시간에도 효율이 높아 꾸준한 학습에 특히 도움이 되었습니다.</p>
               <div class="rv-photo"><img src="assets/review_sample.png" alt="후기 첨부 이미지"></div>
               <div class="rv-actions">
-                <button type="button" class="rv-btn edit">수정</button>
+                <button type="button" class="rv-btn edit" onclick="location.href='후기수정.html'">수정</button>
                 <button type="button" class="rv-btn del">삭제</button>
               </div>
             </div>
@@ -691,11 +691,15 @@
         window.scrollTo({top:0});
       });
     });
-    var hash=(location.hash||'').replace('#','');
-    if(hash){
+    function activateHash(){
+      var hash=(location.hash||'').replace('#','');
+      if(!hash) return;
       var ht=tabs.filter(function(x){ return x.getAttribute('data-tab')===hash; })[0];
       if(ht){ (function go(n){ if(document.querySelector('.ph-title')){ ht.click(); } else if(n<40){ setTimeout(function(){ go(n+1); },25); } })(0); }
     }
+    activateHash();
+    /* 이미 이 페이지에 있을 때 GNB 펼침메뉴 링크 클릭 → 해시 변경으로 탭 전환 */
+    window.addEventListener('hashchange', activateHash);
 
     /* 홈 내부 바로가기 버튼 → 해당 탭으로 전환 (주문내역 보기 / 포인트 내역 / 찜 전체보기) */
     document.querySelectorAll('[data-goto]').forEach(function(a){
