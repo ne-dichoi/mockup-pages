@@ -96,6 +96,15 @@
             </div>
           </div>
 
+          <!-- 검색 결과 없음 (GNB 검색 / 교재 찾기 공통) -->
+          <div class="no-result" id="noResult" hidden>
+            <div class="nr-ic"><svg width="12" height="62" viewBox="0 0 12 62" fill="#d1d1d1" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="12" height="44" rx="6"/><circle cx="6" cy="56" r="6"/></svg></div>
+            <div class="nr-txt">
+              <p class="nr-title">검색한 결과가 없습니다.</p>
+              <p class="nr-sub">상품을 다시 검색해 주세요.</p>
+            </div>
+          </div>
+
           <div class="plist">
 
             <!-- Product 1 - HOT -->
@@ -298,6 +307,24 @@
   </div>
 
   <script>
+  /* 검색어(?q=)로 진입 시: 제목 매칭 필터 → 결과 없으면 '검색 결과 없음' 화면 */
+  (function(){
+    var params=new URLSearchParams(location.search);
+    var q=(params.get('q')||'').trim();
+    if(!q) return;
+    var rows=[].slice.call(document.querySelectorAll('.plist .prow'));
+    var matched=0;
+    rows.forEach(function(r){
+      var t=(r.querySelector('.ptitle')||{}).textContent||'';
+      var hit=t.toLowerCase().indexOf(q.toLowerCase())>=0;
+      r.style.display=hit?'':'none';
+      if(hit) matched++;
+    });
+    var cnt=document.querySelector('.count b'); if(cnt) cnt.textContent=matched;
+    var plist=document.querySelector('.plist'), pager=document.querySelector('.pager'), nr=document.getElementById('noResult');
+    if(matched===0){ if(plist) plist.style.display='none'; if(pager) pager.style.display='none'; if(nr) nr.hidden=false; }
+  })();
+
   (function(){
     /* click cover or title -> book detail page */
     document.querySelectorAll('.pcover, .ptitle').forEach(function(el){

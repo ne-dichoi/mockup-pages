@@ -23,6 +23,7 @@
               <a href="마이페이지.html#qna">문의/답변</a>
               <a href="마이페이지.html#review">교재후기</a>
               <a href="마이페이지.html#event">이벤트/세미나</a>
+              <a href="index.html" class="logout">로그아웃</a>
             </div>
           </div>
           <a class="head-ic" href="장바구니.html"><span class="ico"><img src="assets/ic_bag.svg" alt=""><span class="cart-badge" data-count="0" hidden>0</span></span><span>장바구니</span></a>
@@ -34,7 +35,7 @@
               <a href="고객센터.html#event">이벤트/신간·개정/세미나</a>
               <a href="고객센터.html#errata">교재 오류정정</a>
               <a href="고객센터.html#qna">1:1문의</a>
-              <a href="#">지사안내</a>
+              <a href="고객센터.html#branch">지사안내</a>
             </div>
           </div>
         </div>

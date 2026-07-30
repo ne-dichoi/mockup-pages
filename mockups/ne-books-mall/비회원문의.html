@@ -39,12 +39,14 @@
         <div class="iq-preinfo guest">
           <div class="pre-text">
             <p>비회원 문의 게시판 입니다.<br>회원인 경우, 특히 교사/강사 회원님은 학원/학교 정보확인과 상담이력관리를 위해 <a class="pre-login" href="#">[회원 로그인]</a> 후 문의 이용을 부탁드립니다.<br>답변은 이메일을 통해 제공되며 업무일 기준, 1~2일 가량 시간이 소요될 수 있으나 가능한 빠르게 회신 드리도록 하겠습니다.</p>
-            <p class="msg">문의 전에 먼저 확인하여 주시면 문의를 쉽고 빠르게 해결하실 수 있습니다.</p>
           </div>
-          <div class="btns">
-            <a href="고객센터.html#faq">도움말(FAQ)</a>
-            <a href="고객센터.html#errata">교재정오 알림</a>
-            <a href="#">교과서 콘텐츠 FAQ</a>
+          <div class="pre-right">
+            <div class="btns">
+              <a href="고객센터.html#faq">도움말(FAQ)</a>
+              <a href="고객센터.html#errata">교재정오 알림</a>
+              <a href="#">교과서 콘텐츠 FAQ</a>
+            </div>
+            <p class="msg">문의 전에 먼저 확인하여 주시면 문의를 쉽고 빠르게 해결하실 수 있습니다.</p>
           </div>
         </div>
 
@@ -95,18 +97,6 @@
             </div>
           </div>
 
-          <!-- 주문번호 / 상품 (주문·배송 관련 문의 선택 시) -->
-          <div class="iq-row" id="iqOrderRow" hidden>
-            <div class="iq-label">주문번호 / 상품</div>
-            <div class="iq-field">
-              <div class="oh-sel">
-                <button type="button" class="oh-sel-cur"><span class="oh-sel-lb">주문번호 선택 (선택)</span><span class="ic"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#1d1717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
-                <div class="oh-sel-menu" hidden><a class="on" data-ph>주문번호 선택 (선택)</a><a>NB20260608-000112 · Bricks Reading 150 · L1</a><a>NB20260525-000041 · Phonics Code 2</a></div>
-              </div>
-              <p class="iq-help">* 주문 관련 문의 시 관련 주문번호 혹은 상품을 선택해서 문의해주시면 더 빠른 답변이 가능합니다.</p>
-            </div>
-          </div>
-
           <!-- 작성자 (비회원: 이름 입력) -->
           <div class="iq-row">
             <div class="iq-label">작성자 <span class="iq-req">*</span></div>
@@ -153,7 +143,7 @@
             <div class="iq-label">내용 <span class="iq-req">*</span></div>
             <div class="iq-field">
               <textarea class="iq-textarea" placeholder="내용을 입력해 주세요."></textarea>
-              <p class="iq-note">[안내사항]<br>· 교강사용 자료요청 시, 재직중인 학교 또는 학원(학원명, 주소) 정보와 거래 지사(총판)명을 같이 기재해 주시면 좀 더 빠른 확인 및 답변이 가능합니다.<br>· 샘플 및 교사용 교재는 지사를 통해 제공되고 있습니다. <a class="iq-note-link" href="#">[지사안내]</a> 페이지를 확인해주시기 바랍니다.</p>
+              <p class="iq-note">[안내사항]<br>· 교강사용 자료요청 시, 재직중인 학교 또는 학원(학원명, 주소) 정보와 거래 지사(총판)명을 같이 기재해 주시면 좀 더 빠른 확인 및 답변이 가능합니다.<br>· 샘플 및 교사용 교재는 지사를 통해 제공되고 있습니다. <a class="iq-note-link" href="고객센터.html#branch">[지사안내]</a> 페이지를 확인해주시기 바랍니다.<br>※ 문의 내용 작성 시 개인정보가 포함되지 않도록 유의해 주세요.</p>
             </div>
           </div>
 
@@ -216,7 +206,6 @@
         <div class="iq-actions">
           <span class="iq-req-note"><b>*</b> 표시는 필수 입력 사항 입니다.</span>
           <div class="iq-actions-btns">
-            <button type="button" class="iq-btn-list" onclick="location.href='고객센터.html#notice'">목록</button>
             <button type="button" class="iq-btn-submit">등록</button>
           </div>
         </div>
@@ -249,11 +238,11 @@
     });
     document.addEventListener('click',function(e){ if(!e.target.closest('.oh-sel')) closeAll(); });
 
-    /* 상담유형 → 교재명 / 주문번호 행 토글 */
-    var bookRow=document.getElementById('iqBookRow'), orderRow=document.getElementById('iqOrderRow');
+    /* 상담유형 → 교재명 행 토글 (비회원은 주문번호 행 없음) */
+    var bookRow=document.getElementById('iqBookRow');
     var radios=[].slice.call(document.querySelectorAll('input[name="iqType"]'));
     function upd(){ var sel=document.querySelector('input[name="iqType"]:checked'); var v=sel?sel.value:'';
-      if(bookRow) bookRow.hidden=(v!=='error'); if(orderRow) orderRow.hidden=(v!=='order'); }
+      if(bookRow) bookRow.hidden=(v!=='error'); }
     radios.forEach(function(r){ r.addEventListener('change',upd); }); upd();
 
     /* 캡차 새로고침 */
