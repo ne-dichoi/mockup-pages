@@ -89,11 +89,18 @@
     function openPop(){ refresh(); }
     function closePop(){ pop.hidden=true; }
 
+    /* 검색 실행: GNB 검색(폼용 교재검색 제외)은 결과 리스트로 이동 */
+    function submitSearch(){
+      if(opts.onSelect) return; // 폼 내 교재명 검색은 이동하지 않음
+      var q=input.value.trim();
+      if(!q){ input.focus(); return; }
+      location.href='리스트_교재구매.html?q='+encodeURIComponent(q);
+    }
     input.addEventListener('focus',openPop);
     input.addEventListener('click',openPop);
     input.addEventListener('input',openPop);
-    input.addEventListener('keydown',function(e){ if(e.key==='Escape'){ closePop(); input.blur(); } });
-    if(icon) icon.addEventListener('click',function(){ input.focus(); });
+    input.addEventListener('keydown',function(e){ if(e.key==='Enter'){ e.preventDefault(); submitSearch(); } else if(e.key==='Escape'){ closePop(); input.blur(); } });
+    if(icon) icon.addEventListener('click',function(){ if(input.value.trim()) submitSearch(); else input.focus(); });
     document.addEventListener('click',function(e){ if(!box.contains(e.target)) closePop(); });
   }
 

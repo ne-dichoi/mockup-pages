@@ -683,9 +683,10 @@
         var id='tab-'+tab;
         panels.forEach(function(p){ p.hidden=(p.id!==id); });
         var label=t.textContent.trim();
+        var locName=(tab==='review')?'후기':label; /* 교재 후기 탭은 로케이션 명칭을 '후기'로 */
         var title=document.querySelector('.ph-title'), cur=document.querySelector('.crumb .cur');
-        if(title) title.textContent=(label==='홈')?'마이페이지':label;
-        if(cur) cur.textContent=label;
+        if(title) title.textContent=(label==='홈')?'마이페이지':locName;
+        if(cur) cur.textContent=locName;
         var mw=document.querySelector('.mywrap'); if(mw) mw.style.paddingBottom=(tab==='orders')?'0':'';
         window.scrollTo({top:0});
       });

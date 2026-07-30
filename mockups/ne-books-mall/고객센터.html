@@ -31,6 +31,7 @@
         <a data-tab="event" href="#event">이벤트 / 신간·개정 / 세미나</a>
         <a data-tab="errata" href="#errata">교재 오류정정</a>
         <a data-tab="qna" href="#qna">1:1 문의</a>
+        <a data-tab="branch" href="#branch">지사안내</a>
       </div>
 
       <!-- 공지사항 -->
@@ -435,9 +436,42 @@
           <div class="iq-row" id="iqOrderRow" hidden>
             <div class="iq-label">주문번호 / 상품</div>
             <div class="iq-field">
-              <div class="oh-sel">
+              <div class="oh-sel" id="orderSel">
                 <button type="button" class="oh-sel-cur"><span class="oh-sel-lb">주문번호 선택 (선택)</span><span class="ic"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#1d1717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
-                <div class="oh-sel-menu" hidden><a class="on" data-ph>주문번호 선택 (선택)</a><a>NB20260608-000112 · Bricks Reading 150 · L1</a><a>NB20260525-000041 · Phonics Code 2</a><a>NB20260511-000027 · 문법이 마법중 Level 3</a></div>
+                <div class="oh-sel-menu" hidden><a class="on" data-ph>주문번호 선택 (선택)</a><a>NB20260608-000112 · 2026.06.08 주문</a><a>NB20260525-000041 · 2026.05.25 주문</a><a>NB20260511-000027 · 2026.05.11 주문</a></div>
+              </div>
+              <!-- 부분환불 상품·권수 선택 (주문번호 선택 시 노출) -->
+              <div class="pr-refund" id="prRefund" hidden>
+                <div class="pr-head"><span class="pr-head-t">상품 · 수량 부분 선택</span><span class="pr-line"></span><span class="pr-head-hint">구매하신 상품 중 문의 요청할 상품을 선택하세요</span></div>
+                <div class="pr-listbox">
+                  <div class="pr-list">
+                    <div class="pr-item on" data-max="20">
+                      <div class="pr-left"><label class="pr-label"><input type="checkbox" class="pr-chk" checked><span class="pr-name">Bricks Reading 150 · L1</span></label><span class="pr-bought">구매 20권</span></div>
+                      <div class="pr-right"><span class="pr-rf">환불</span><div class="pr-stepper"><button type="button" class="pr-dec">−</button><span class="pr-qty">5</span><button type="button" class="pr-inc">+</button></div><span class="pr-unit">권</span></div>
+                    </div>
+                    <div class="pr-item on" data-max="20">
+                      <div class="pr-left"><label class="pr-label"><input type="checkbox" class="pr-chk" checked><span class="pr-name">Phonics Code 2 : Student Book</span></label><span class="pr-bought">구매 20권</span></div>
+                      <div class="pr-right"><span class="pr-rf">환불</span><div class="pr-stepper"><button type="button" class="pr-dec">−</button><span class="pr-qty">10</span><button type="button" class="pr-inc">+</button></div><span class="pr-unit">권</span></div>
+                    </div>
+                    <div class="pr-item" data-max="20">
+                      <div class="pr-left"><label class="pr-label"><input type="checkbox" class="pr-chk"><span class="pr-name">문법이 마법중 Level 3</span></label><span class="pr-bought">구매 20권</span></div>
+                      <div class="pr-right"><span class="pr-rf">환불</span><div class="pr-stepper"><button type="button" class="pr-dec">−</button><span class="pr-qty">0</span><button type="button" class="pr-inc">+</button></div><span class="pr-unit">권</span></div>
+                    </div>
+                    <div class="pr-item" data-max="20">
+                      <div class="pr-left"><label class="pr-label"><input type="checkbox" class="pr-chk"><span class="pr-name">능률VOCA 고교필수 2000</span></label><span class="pr-bought">구매 20권</span></div>
+                      <div class="pr-right"><span class="pr-rf">환불</span><div class="pr-stepper"><button type="button" class="pr-dec">−</button><span class="pr-qty">0</span><button type="button" class="pr-inc">+</button></div><span class="pr-unit">권</span></div>
+                    </div>
+                    <div class="pr-item" data-max="20">
+                      <div class="pr-left"><label class="pr-label"><input type="checkbox" class="pr-chk"><span class="pr-name">리딩튜터 주니어 3</span></label><span class="pr-bought">구매 20권</span></div>
+                      <div class="pr-right"><span class="pr-rf">환불</span><div class="pr-stepper"><button type="button" class="pr-dec">−</button><span class="pr-qty">0</span><button type="button" class="pr-inc">+</button></div><span class="pr-unit">권</span></div>
+                    </div>
+                    <div class="pr-item" data-max="20">
+                      <div class="pr-left"><label class="pr-label"><input type="checkbox" class="pr-chk"><span class="pr-name">그래머 인사이드 Level 1</span></label><span class="pr-bought">구매 20권</span></div>
+                      <div class="pr-right"><span class="pr-rf">환불</span><div class="pr-stepper"><button type="button" class="pr-dec">−</button><span class="pr-qty">0</span><button type="button" class="pr-inc">+</button></div><span class="pr-unit">권</span></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="pr-total"><span class="pr-total-t">총 환불 요청 수량</span><span class="pr-line"></span><span class="pr-total-v"><b id="prTotal">15</b> 권</span></div>
               </div>
               <p class="iq-help">* 주문 관련 문의 시 관련 주문번호 혹은 상품을 선택해서 문의해주시면 더 빠른 답변이 가능합니다.</p>
             </div>
@@ -488,7 +522,7 @@
             <div class="iq-label">내용 <span class="iq-req">*</span></div>
             <div class="iq-field">
               <textarea class="iq-textarea" placeholder="내용을 입력해 주세요."></textarea>
-              <p class="iq-note">[안내사항]<br>· 교강사용 자료요청 시, 재직중인 학교 또는 학원(학원명, 주소) 정보와 거래 지사(총판)명을 같이 기재해 주시면 좀 더 빠른 확인 및 답변이 가능합니다.<br>· 샘플 및 교사용 교재는 지사를 통해 제공되고 있습니다. <a class="iq-note-link" href="#">[지사안내]</a> 페이지를 확인해주시기 바랍니다.</p>
+              <p class="iq-note">[안내사항]<br>· 교강사용 자료요청 시, 재직중인 학교 또는 학원(학원명, 주소) 정보와 거래 지사(총판)명을 같이 기재해 주시면 좀 더 빠른 확인 및 답변이 가능합니다.<br>· 샘플 및 교사용 교재는 지사를 통해 제공되고 있습니다. <a class="iq-note-link" href="고객센터.html#branch">[지사안내]</a> 페이지를 확인해주시기 바랍니다.</p>
             </div>
           </div>
 
@@ -509,10 +543,54 @@
         <div class="iq-actions">
           <span class="iq-req-note"><b>*</b> 표시는 필수 입력 사항 입니다.</span>
           <div class="iq-actions-btns">
-            <button type="button" class="iq-btn-list" onclick="location.href='고객센터.html#notice'">목록</button>
             <button type="button" class="iq-btn-submit">등록</button>
           </div>
         </div>
+      </div>
+
+      <!-- 지사안내 -->
+      <div class="my-panel" id="cc-branch" hidden>
+        <div class="iq-preinfo br-info">
+          <p class="br-info-text">각 지역 지사정보를 안내해 드립니다.<br>교재 대량구매, 연구용교재/샘플교재 필요시에 문의하여 주시기 바랍니다.</p>
+          <div class="br-cs">
+            <span class="br-cs-num"><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="#666"><path d="M6.6 10.8a15.6 15.6 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.4 11.4 0 0 0 3.6.58 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.58 3.6a1 1 0 0 1-.25 1z"/></svg></span>고객센터 <b>1833-8368</b></span>
+            <span class="br-cs-time">이용시간 월~금 09:00 ~ 18:00 <span class="dim">(점심 12:30 ~ 13:30 제외)</span></span>
+          </div>
+        </div>
+
+        <div class="qa-filter">
+          <div class="pt-tabs">
+            <a class="on">전체</a>
+            <a>ELT (NE Build &amp; Grow)</a>
+            <a>초/중/고</a>
+            <a>수험</a>
+          </div>
+          <div class="qa-tools">
+            <div class="oh-sel">
+              <button type="button" class="oh-sel-cur"><span class="oh-sel-lb">지역 전체</span><span class="ic"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#1d1717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+              <div class="oh-sel-menu" hidden><a class="on">지역 전체</a><a>서울</a><a>경기·인천</a><a>강원</a><a>충청·대전·세종</a><a>경상·부산·대구</a><a>전라·광주</a><a>제주</a></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="br-table">
+          <div class="br-th"><span class="br-c1">구분</span><span class="br-c2">담당지역</span><span class="br-c3">지사명</span><span class="br-c4">전화</span><span class="br-c5">주소</span></div>
+          <div class="br-tr"><span class="br-c1">초/중/고</span><span class="br-c2">강서/양천</span><span class="br-c3">[수학] 청인에듀</span><span class="br-c4">031-987-8871</span><span class="br-c5">경기도 김포시 양촌읍 누산로38번길 15</span></div>
+          <div class="br-tr"><span class="br-c1">초/중/고</span><span class="br-c2">금천/구로</span><span class="br-c3">아카데미24</span><span class="br-c4">02-1234-5678</span><span class="br-c5">서울특별시 금천구 시흥대로 300</span></div>
+          <div class="br-tr"><span class="br-c1">초/중/고</span><span class="br-c2">동작/관악</span><span class="br-c3">넥스트젠</span><span class="br-c4">02-9876-5432</span><span class="br-c5">서울특별시 동작구 상도로 102</span></div>
+          <div class="br-tr"><span class="br-c1">초/중/고</span><span class="br-c2">서초/강남</span><span class="br-c3">미래탐구</span><span class="br-c4">02-8765-4321</span><span class="br-c5">서울특별시 서초구 사임당로 45</span></div>
+          <div class="br-tr"><span class="br-c1">초/중/고</span><span class="br-c2">송파/강동</span><span class="br-c3">창의력센터</span><span class="br-c4">02-5432-1098</span><span class="br-c5">서울특별시 송파구 올림픽로 123</span></div>
+          <div class="br-tr"><span class="br-c1">초/중/고</span><span class="br-c2">마포/용산</span><span class="br-c3">글로벌리더</span><span class="br-c4">02-2345-6789</span><span class="br-c5">서울특별시 마포구 월드컵북로 10</span></div>
+          <div class="br-tr"><span class="br-c1">초/중/고</span><span class="br-c2">서대문/은평</span><span class="br-c3">홍지교육</span><span class="br-c4">02-3456-7890</span><span class="br-c5">서울특별시 서대문구 통일로 50</span></div>
+          <div class="br-tr"><span class="br-c1">초/중/고</span><span class="br-c2">영등포/양천</span><span class="br-c3">고앤고 에듀</span><span class="br-c4">02-4567-8901</span><span class="br-c5">서울특별시 영등포구 영신로 32</span></div>
+          <div class="br-tr"><span class="br-c1">초/중/고</span><span class="br-c2">종로/중구</span><span class="br-c3">잉글리쉬플러스 강동점</span><span class="br-c4">02-5678-9012</span><span class="br-c5">서울특별시 종로구 세종대로 100</span></div>
+        </div>
+
+        <nav class="pager">
+          <a class="arw" aria-label="이전">&#8249;</a>
+          <a class="on">1</a><a>2</a><a>3</a><a>4</a><a>5</a>
+          <a class="arw" aria-label="다음">&#8250;</a>
+        </nav>
       </div>
 
     </div>
@@ -630,6 +708,32 @@
     }
     radios.forEach(function(r){ r.addEventListener('change',upd); });
     upd();
+  })();
+
+  /* 주문번호 선택 → 부분환불 상품·권수 선택 패널 (체크/스텝퍼/합계, 목록 스크롤) */
+  (function(){
+    var panel=document.getElementById('prRefund'); if(!panel) return;
+    var totalEl=document.getElementById('prTotal');
+    function rowQty(r){ return r.classList.contains('on') ? (parseInt(r.querySelector('.pr-qty').textContent,10)||0) : 0; }
+    function total(){ var t=0; [].forEach.call(panel.querySelectorAll('.pr-item'),function(r){ t+=rowQty(r); }); if(totalEl) totalEl.textContent=t; }
+    [].forEach.call(panel.querySelectorAll('.pr-item'),function(row){
+      var chk=row.querySelector('.pr-chk'), qty=row.querySelector('.pr-qty'), max=parseInt(row.getAttribute('data-max'),10)||99;
+      chk.addEventListener('change',function(){
+        if(chk.checked){ row.classList.add('on'); if((parseInt(qty.textContent,10)||0)<1) qty.textContent='1'; }
+        else { row.classList.remove('on'); qty.textContent='0'; }
+        total();
+      });
+      row.querySelector('.pr-dec').addEventListener('click',function(){ if(!row.classList.contains('on')) return; var q=parseInt(qty.textContent,10)||0; if(q>1){ qty.textContent=q-1; total(); } });
+      row.querySelector('.pr-inc').addEventListener('click',function(){ if(!row.classList.contains('on')) return; var q=parseInt(qty.textContent,10)||0; if(q<max){ qty.textContent=q+1; total(); } });
+    });
+    total();
+    /* 주문번호 셀렉트에서 실제 주문 선택 시 패널 노출 (플레이스홀더면 숨김) */
+    var orderSel=document.getElementById('orderSel');
+    if(orderSel){
+      [].forEach.call(orderSel.querySelectorAll('.oh-sel-menu a'),function(a){
+        a.addEventListener('click',function(){ panel.hidden=a.hasAttribute('data-ph'); });
+      });
+    }
   })();
 
   /* 검색 인풋 지우기(×) */
