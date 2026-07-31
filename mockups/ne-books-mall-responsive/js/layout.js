@@ -43,7 +43,7 @@
       </div>
       <div class="gnb">
         <div class="gnb-in">
-          <span class="ico menu"><img src="assets/ds_ic_menu.svg" alt="전체메뉴"></span>
+          <button type="button" class="ico menu" aria-label="전체메뉴 열기" aria-expanded="false" aria-controls="mobileDrawer"><img src="assets/ds_ic_menu.svg" alt=""></button>
           <nav>
             <a href="리스트_교재구매.html">ELT</a>
             <a href="#">초/중등</a>
@@ -90,6 +90,64 @@
   </footer>`;
   var h=document.getElementById('site-header'); if(h) h.innerHTML=HEADER;
   var f=document.getElementById('site-footer'); if(f) f.innerHTML=FOOTER;
+
+  /* ===== 모바일 전체메뉴 드로어 (햄버거) =====
+     공통 헤더의 ≡ 버튼 클릭 → 좌측 드로어 열림. 전 GNB 항목 + 하위메뉴 노출.
+     항목 링크는 실제 페이지(리스트_교재구매.html)로 이동 가능. 닫기: X·배경·ESC. */
+  (function(){
+    var toggle=document.querySelector('.gnb-in .menu'); if(!toggle) return;
+    var DRAWER_MENU=[
+      {name:'ELT', sub:['Coursebook','Phonics','Readers','Reading','Listening','Speaking','Writing','Grammar','Vocabulary']},
+      {name:'초/중등', sub:['중학내신','고등선행','어휘','Phonics','쓰기','독해','듣기','문법/구문']},
+      {name:'고등', sub:['어휘','독해','듣기','문법/구문','수능대비','고교내신']},
+      {name:'교과서/자습서', sub:['중학영어 교과서','고등영어 교과서','수학 교과서','중국어/일본어']},
+      {name:'수험/일반', sub:['TOEIC','TOEIC S/W','TOEFL/OPIC/TEPS','FLEX','일반영어']},
+      {name:'수학/국어', sub:['유아','초등','중등','고등']},
+      {name:'학습자료실', sub:['ELT자료','초/중등교재 자료','고등교재 자료','교과서/자습서 자료']},
+      {name:'도서몰', sub:['ELT','초/중등','고등영어 교과서','교과서/자습서','수험/일반']}
+    ];
+    var LINK='리스트_교재구매.html';
+    var sections=DRAWER_MENU.map(function(m){
+      return '<div class="md-sec"><a class="md-cat" href="'+LINK+'">'+m.name+'</a>'
+        +'<div class="md-subs">'+m.sub.map(function(s){ return '<a class="md-sub" href="'+LINK+'">'+s+'</a>'; }).join('')+'</div></div>';
+    }).join('');
+    var drawer=document.createElement('div');
+    drawer.className='mdrawer';
+    drawer.id='mobileDrawer';
+    drawer.hidden=true;
+    drawer.innerHTML='<div class="md-backdrop" data-close></div>'
+      +'<nav class="md-panel" role="dialog" aria-modal="true" aria-label="전체메뉴">'
+      +'<div class="md-head"><span class="md-title">전체메뉴</span>'
+      +'<button type="button" class="md-x" data-close aria-label="메뉴 닫기">&times;</button></div>'
+      +'<div class="md-body">'+sections+'</div></nav>';
+    document.body.appendChild(drawer);
+
+    var lastFocus=null;
+    function openDrawer(){
+      lastFocus=document.activeElement;
+      drawer.hidden=false;
+      /* reflow 후 transition 발동 */
+      void drawer.offsetWidth;
+      drawer.classList.add('open');
+      toggle.setAttribute('aria-expanded','true');
+      document.body.style.overflow='hidden';
+      var firstLink=drawer.querySelector('.md-x'); if(firstLink) firstLink.focus();
+    }
+    function closeDrawer(){
+      drawer.classList.remove('open');
+      toggle.setAttribute('aria-expanded','false');
+      document.body.style.overflow='';
+      var onEnd=function(){ drawer.hidden=true; drawer.removeEventListener('transitionend',onEnd); };
+      drawer.addEventListener('transitionend',onEnd);
+      /* transition이 없을 경우 대비 */
+      setTimeout(function(){ if(!drawer.classList.contains('open')) drawer.hidden=true; },300);
+      if(lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+    toggle.addEventListener('click',function(e){ e.preventDefault(); e.stopPropagation();
+      if(drawer.classList.contains('open')) closeDrawer(); else openDrawer(); });
+    drawer.addEventListener('click',function(e){ if(e.target.hasAttribute('data-close')) closeDrawer(); });
+    document.addEventListener('keydown',function(e){ if(e.key==='Escape' && drawer.classList.contains('open')) closeDrawer(); });
+  })();
 
   /* ===== 장바구니 수량 뱃지 (상품이 담기면 N 표시) ===== */
   /* 페이지에서 window.CART_COUNT = N 으로 실제 수량을 넣을 수 있음. 미지정 시 데모값 2. */

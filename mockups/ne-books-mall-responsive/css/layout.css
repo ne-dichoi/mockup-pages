@@ -120,7 +120,24 @@ a{color:inherit;text-decoration:none;}
 .lheader .gnb-in{width:100%;max-width:1440px;margin:0 auto;padding-inline:40px;box-sizing:border-box;display:flex;align-items:center;justify-content:safe center;gap:40px;height:56px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}
 .gnb-in::-webkit-scrollbar{display:none;}
 .gnb nav a{color:var(--ink);font-size:16px;font-weight:700;position:relative;padding:6px 0;white-space:nowrap;}
-.gnb-in .menu{width:22px;height:22px;flex:none;}
+.gnb-in .menu{width:22px;height:22px;flex:none;appearance:none;-webkit-appearance:none;border:0;padding:0;margin:0;background:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;}
+.gnb-in .menu img{width:100%;height:100%;display:block;}
+/* ===== 모바일 전체메뉴 드로어 ===== */
+.mdrawer{position:fixed;inset:0;z-index:1000;}
+.mdrawer[hidden]{display:none;}
+.mdrawer .md-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.45);opacity:0;transition:opacity .25s ease;}
+.mdrawer.open .md-backdrop{opacity:1;}
+.mdrawer .md-panel{position:absolute;left:0;top:0;bottom:0;width:min(84vw,340px);background:#fff;box-shadow:2px 0 24px rgba(0,0,0,.2);display:flex;flex-direction:column;transform:translateX(-100%);transition:transform .25s ease;overflow:hidden;}
+.mdrawer.open .md-panel{transform:translateX(0);}
+.mdrawer .md-head{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;border-bottom:1px solid #eee;flex:none;}
+.mdrawer .md-title{font-size:18px;font-weight:700;color:var(--ink,#1a1a1a);}
+.mdrawer .md-x{appearance:none;-webkit-appearance:none;border:0;background:none;font-size:28px;line-height:1;cursor:pointer;color:#333;padding:0 4px;}
+.mdrawer .md-body{overflow-y:auto;-webkit-overflow-scrolling:touch;padding:8px 0 40px;}
+.mdrawer .md-sec{border-bottom:1px solid #f2f2f2;}
+.mdrawer .md-cat{display:block;padding:14px 20px;font-size:16px;font-weight:700;color:var(--ink,#1a1a1a);text-decoration:none;}
+.mdrawer .md-subs{display:flex;flex-wrap:wrap;gap:6px 8px;padding:0 20px 14px;}
+.mdrawer .md-sub{font-size:13px;color:#666;text-decoration:none;padding:6px 10px;background:#f5f5f5;border-radius:14px;white-space:nowrap;}
+.mdrawer .md-sub:hover,.mdrawer .md-cat:hover{color:var(--accent,#0b57d0);}
 .gnb nav{display:flex;gap:40px;align-items:center;}
 .gnb nav a.on, .gnb nav a:hover{font-weight:700;color:var(--red);}
 .gnb nav a.on::after, .gnb nav a:hover::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;background:var(--red);}
