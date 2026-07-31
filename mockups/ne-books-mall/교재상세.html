@@ -91,11 +91,11 @@
     <nav class="dtabs">
       <div class="dtabs-inner">
         <a href="#s-res" class="active">학습자료</a>
-        <a href="#s-detail">상품상세</a>
+        <a href="#s-detail">상세정보</a>
         <a href="#s-learn">학습법</a>
         <a href="#s-series">시리즈 교재</a>
         <a href="#s-next">다음단계 교재</a>
-        <a href="#s-rel">연관교재</a>
+        <a href="#s-rel">추천교재</a>
         <a href="#s-review">후기</a>
         <a href="#s-notice">정보고시</a>
         <a href="#s-buy">구매유의사항</a>
@@ -172,9 +172,9 @@
       </div>
     </section>
 
-    <!-- 상품상세 (이미지 대신 텍스트가 들어갈 경우 — 학습법 탭과 동일한 텍스트 디자인. 이미지형은 <div class="detail-img">교재상세 이미지</div> 사용) -->
+    <!-- 상세정보 (이미지 대신 텍스트가 들어갈 경우 — 학습법 탭과 동일한 텍스트 디자인. 이미지형은 <div class="detail-img">교재상세 이미지</div> 사용) -->
     <section class="dsec" id="s-detail">
-      <div class="dsec-h"><h3>상품상세</h3></div>
+      <div class="dsec-h"><h3>상세정보</h3></div>
       <div class="detail-text">
         <div class="step"><h4>교재소개</h4><ul>
           <li>Bricks Reading 150은 초등 눈높이에 맞춘 논픽션·픽션 균형 리딩 프로그램입니다.</li>
@@ -218,10 +218,10 @@
       <div class="rel-row" data-rel></div>
     </section>
 
-    <!-- 연관교재 -->
+    <!-- 추천교재 -->
     <section class="dsec" id="s-rel">
       <div class="dsec-h">
-        <h3>연관교재 <span style="font-size:14px;color:#8a8a8a;font-family:var(--sans);font-weight:400">(총 4권)</span></h3>
+        <h3>추천교재 <span style="font-size:14px;color:#8a8a8a;font-family:var(--sans);font-weight:400">(총 4권)</span></h3>
         <div class="sel-actions"><label><input type="checkbox" class="chk selall" aria-label="전체선택">전체선택</label><a class="btn" href="#">선택 장바구니 담기</a></div>
       </div>
       <div class="rel-row" data-rel></div>
@@ -285,8 +285,9 @@
       <table class="ntable">
         <tr><th>저자</th><td>NE능률 편집부</td><th>출판사</th><td>NE능률</td></tr>
         <tr><th>ISBN</th><td>9788812345678</td><th>쪽수</th><td>120p</td></tr>
-        <tr><th>출간일</th><td>2026-03-02</td><th>비고</th><td>-</td></tr>
-        <tr><th>목차</th><td colspan="3">-</td></tr>
+        <tr><th>크기</th><td>210 × 275mm</td><th>제품구성</th><td>본책 + 워크북 + MP3</td></tr>
+        <tr><th>발행일</th><td>2026.01.10</td><th>KC인증코드</th><td>해당 없음(도서)</td></tr>
+        <tr><th>취급방법 및 주의사항</th><td>직사광선 및 습기를 피해 보관해 주세요.</td><th>목차</th><td>Unit 1~10, 정답 및 해설 수록</td></tr>
       </table>
     </section>
 
@@ -414,9 +415,34 @@
     });
     enableDragScroll(document.querySelector('.dh-res'));
 
-    /* 교재 카드의 장바구니 아이콘 → 장바구니 페이지 */
+    /* 장바구니 담기 (UC-BUY-01): 담기 완료 얼럿 + 헤더 장바구니 뱃지 카운트 갱신 */
+    function bumpCartBadge(){
+      var badge=document.querySelector('.cart-badge'); if(!badge) return;
+      var n=parseInt(badge.getAttribute('data-count')||'0',10)+1;
+      badge.textContent=(n>99?'99+':n); badge.setAttribute('data-count',n); badge.hidden=false;
+    }
+    function addToCart(count){
+      var c=count||1;
+      for(var i=0;i<c;i++){ bumpCartBadge(); }
+      if(confirm('장바구니에 담겼습니다. 이동하시겠습니까?')){ location.href='장바구니.html'; }
+    }
+    /* 상단 판매정보의 [장바구니] 버튼 (2곳) */
+    document.querySelectorAll('.btns .cart').forEach(function(btn){
+      btn.addEventListener('click',function(e){ e.preventDefault(); addToCart(); });
+    });
+    /* 교재 카드의 장바구니 아이콘 */
     document.querySelectorAll('.rel-row, .dh-res').forEach(function(row){
-      row.addEventListener('click',function(e){ if(e.target.closest('.cart')){ e.preventDefault(); location.href='장바구니.html'; } });
+      row.addEventListener('click',function(e){ if(e.target.closest('.cart')){ e.preventDefault(); addToCart(); } });
+    });
+    /* 선택 장바구니 담기 (묶음, UC-BUY-04): 미선택 시 안내, 선택분만 담기 */
+    document.querySelectorAll('.dsec .sel-actions .btn').forEach(function(btn){
+      btn.addEventListener('click',function(e){
+        e.preventDefault();
+        var sec=btn.closest('.dsec');
+        var checked=sec?sec.querySelectorAll('.rel-card .chk:checked'):[];
+        if(!checked.length){ alert('담을 상품을 선택해 주세요.'); return; }
+        addToCart(checked.length);
+      });
     });
 
     /* card checkboxes ↔ 전체선택 (per section), same as list interaction */

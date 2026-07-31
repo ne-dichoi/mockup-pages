@@ -142,7 +142,7 @@
                   <span class="d"><span class="tag jeok">적</span><span class="pct">5%</span></span>
                 </div>
                 <div class="pprice"><div class="was">15,000원</div><div class="now">13,500<small>원</small></div></div>
-                <div class="pbtns"><a class="cart" href="장바구니.html">장바구니</a><a class="buy" href="주문결제.html">바로구매</a></div>
+                <div class="pbtns"><a class="study" href="교재상세.html#s-res">학습자료</a><a class="cart" href="장바구니.html">장바구니</a><a class="buy" href="주문결제.html">바로구매</a></div>
               </div>
             </article>
 
@@ -181,7 +181,7 @@
                   <span class="d"><span class="tag jeok">적</span><span class="pct">5%</span></span>
                 </div>
                 <div class="pprice"><div class="was">15,000원</div><div class="now">13,500<small>원</small></div></div>
-                <div class="pbtns"><a class="cart" href="장바구니.html">장바구니</a><a class="buy" href="주문결제.html">바로구매</a></div>
+                <div class="pbtns"><a class="study" href="교재상세.html#s-res">학습자료</a><a class="cart" href="장바구니.html">장바구니</a><a class="buy" href="주문결제.html">바로구매</a></div>
               </div>
             </article>
 
@@ -259,7 +259,46 @@
                   <span class="d"><span class="tag jeok">적</span><span class="pct">5%</span></span>
                 </div>
                 <div class="pprice"><div class="was">15,000원</div><div class="now">13,500<small>원</small></div></div>
-                <div class="pbtns"><a class="cart" href="장바구니.html">장바구니</a><a class="buy soldout">일시품절</a></div>
+                <div class="pbtns"><a class="study" href="교재상세.html#s-res">학습자료</a><a class="cart" href="장바구니.html">장바구니</a><a class="buy soldout">일시품절</a></div>
+              </div>
+            </article>
+
+            <!-- Product 5 - 절판(판매중단) -->
+            <article class="prow off">
+              <div class="pcover"><span class="pcorner off">절판</span><img src="assets/best_3.png" alt="Phonics Code 1"></div>
+              <div class="pinfo">
+                <div class="pbrand-row">
+                  <img class="pbrand" src="assets/logo_ne_small.svg" alt="NE능률">
+                  <span class="badge-course">Coursebook</span>
+                  <span class="badge-level">유치~초등(저)</span>
+                  <span class="badge-lexile" data-lv="330L - 700L">Lexile® 330L - 700L <span class="ico"><img src="assets/ic_info.svg" alt="적립 안내"></span></span>
+                </div>
+                <h3 class="ptitle">Phonics Code 1 : Student Book</h3>
+                <p class="pdesc">파닉스 기초인 Blending과 Decoding에 충실한 학습 설계로 스스로 읽는 힘을 키우는 파닉스 교재</p>
+                <div class="ptags"><span>#사이트워드</span><span>#초등</span><span>#파닉스</span><span>#리딩</span></div>
+              </div>
+              <div class="pactions">
+                <div class="picons">
+                  <div class="share-wrap">
+                    <button class="pic-btn share" type="button" aria-label="공유하기">
+                      <span class="ico"><img class="i-d" src="assets/ic_share.svg" alt=""><img class="i-h" src="assets/ic_share_red.svg" alt=""></span>
+                    </button>
+                    <div class="share-pop">
+                      <span class="sp-item"><span class="sp-ico"><img src="assets/ic_url.svg" alt=""></span>URL복사</span>
+                      <span class="sp-item"><span class="sp-ico"><img src="assets/ic_kakao.svg" alt=""></span>카카오톡</span>
+                    </div>
+                  </div>
+                  <button class="pic-btn like" type="button">
+                    <span class="ico"><img class="i-d" src="assets/ic_heart.svg" alt=""><img class="i-h" src="assets/ic_heart_fill.svg" alt=""></span>
+                    <span class="jjim">찜 128</span>
+                  </button>
+                </div>
+                <div class="pdiscount">
+                  <span class="d"><span class="tag hal">할</span><span class="pct red">10%</span></span>
+                  <span class="d"><span class="tag jeok">적</span><span class="pct">5%</span></span>
+                </div>
+                <div class="pprice"><div class="was">15,000원</div><div class="now">13,500<small>원</small></div></div>
+                <div class="pbtns"><a class="buy off">절판</a></div>
               </div>
             </article>
 
@@ -393,6 +432,11 @@
       });
       document.addEventListener('click',function(e){ if(!sortWrap.contains(e.target)) sortWrap.classList.remove('open'); });
     }
+
+    /* 시리즈 밴드: 클릭 시 다중선택 필터 토글 (선택=검은 테두리+검은 글씨) */
+    document.querySelectorAll('.catband .cat-card').forEach(function(c){
+      c.addEventListener('click',function(e){ e.preventDefault(); c.classList.toggle('on'); });
+    });
 
     /* GNB mega-dropdown */
     (function(){
