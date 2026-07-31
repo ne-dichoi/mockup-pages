@@ -199,7 +199,8 @@ body{ min-height:100vh; display:flex; flex-direction:column; }
 |------|--------|------|------|------|
 | **Primary** | `.btn-primary` | `#E83828` (`--red`) | `#FFFFFF` | 등록 · 수정 · 바로구매 |
 | **Dark** | `.btn-dark` | `#4D4E4D` (`--btn`) | `#FFFFFF` | 작성 취소 · 장바구니 |
-| **Outline** | `.btn-outline` | `#FFFFFF` · 테두리 `#1D1717` | `#1D1717` | 목록 · 삭제 |
+| **Outline** | `.btn-outline` | `#FFFFFF` · 테두리 `#1D1717` | `#1D1717` | 목록 · 삭제 · 학습자료(교재구매 카드) |
+| **Outline-Red** | `.btn-outline-red` | `#FFFFFF` · 테두리 `#E83828`(`--red`) | `#E83828` | 장바구니(교재구매 카드) |
 | **품절(soldout)** | `.btn-soldout` / `:disabled` | `#D3D3D3` | `#FFFFFF` | 품절 · 비활성 (클릭 불가) |
 
 ### ★ 나란히 놓이면 항상 같은 크기
@@ -222,6 +223,10 @@ body{ min-height:100vh; display:flex; flex-direction:column; }
 - 품절 상품은 `바로구매` 버튼을 `품절`(`.btn-soldout`)로 바꾸고, `장바구니`는 그대로 둡니다.
 
 > 실제 적용 예: [교재상세.html](교재상세.html) 후기 모달(작성 취소/등록·목록/수정·삭제), [리스트_교재구매.html](리스트_교재구매.html) 품절 상품(장바구니/품절).
+
+**교재목록 리스트 카드 버튼 (`.pbtns`, 2026-07-30)** — 카드 하단 3버튼:
+`학습자료`(`.study`, 아웃라인 `#4D4E4D`·글자 `--ink`) · `장바구니`(`.cart`, **빨강 아웃라인** 테두리·글자 `--red` = `.btn-outline-red`) · `바로구매`(`.buy`, 빨강 채움). 일시품절 카드는 `바로구매`→`일시품절`(회색 비활성), 절판 카드는 단독 `절판`(회색).
+**학습자료 리스트 카드** 는 **교재 커버 이미지 우하단에 반쯤 걸치는 검은 원형 장바구니 버튼**(`.pcover-cart` — 48px 원 배경 `--ink` + 흰 카트 아이콘 `ic_cart_black.svg` 20px)을 오버레이한다. 왼쪽 절반은 커버 위, 오른쪽 절반은 회색 여백에 놓이며 **회색 박스(`.pcover`) 밖으로는 나가지 않는다**(overflow:hidden 유지, `right:40 / bottom:22`로 커버 우하단 코너에 위치). 카트 `<img>`는 커버 이미지용 `.page-study .pcover img{width:148px}` 규칙에 걸리지 않도록 `.pcover .pcover-cart img{width:20px}`로 명시도를 높인다.
 
 ---
 
