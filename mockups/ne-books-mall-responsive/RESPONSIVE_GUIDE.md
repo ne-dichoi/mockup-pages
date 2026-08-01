@@ -130,37 +130,11 @@ img{max-width:100%;height:auto;}       /* 이미지 유동 */
 
 ## 7. 검증 방법 (필수)
 
-> **⚠️ 핵심 교훈: "페이지 body 가로 스크롤 0" ≠ "잘림 없음".**
-> `html{overflow-x:clip}`이 걸려 있어 `documentElement.scrollWidth - clientWidth`는 **거의 항상 0**을 보고한다. 하지만 그 안에서 **개별 요소는 뷰포트를 넘어 잘린 채** 있을 수 있다(로고 좌측 잘림, GNB 메뉴 우측 잘림, 히어로 카드 인접분 노출 등 — 실제로 파일럿 1차에서 이 방식으로 놓쳤다).
-> **반드시 "요소 우측 넘침"까지 측정하라.**
-
-검증은 아래 2단계 지표 + 육안:
+지표(overflow=0)만으로는 **요소 겹침·클리핑을 못 잡는다.** 파일럿에서 태블릿 `.floating` 퀵메뉴가 본문 위로 겹치는 건 스크립트가 아니라 눈으로 발견했다.
 
 1. `python3 -m http.server <포트>`로 로컬 서빙.
-2. **body overflow** = `documentElement.scrollWidth - clientWidth` (= 0 필수, 하지만 이것만으론 불충분).
-3. **요소 넘침** = `getBoundingClientRect().right > innerWidth+2` 또는 `left < -2`인 **유의미 요소(width>30) 개수 = 0**.
-   - **예외**: 의도적 가로 캐러셀(예: `.bs-list`, `.cat-row`, `.hero2-stage`)은 허용하되, **반드시 컨테이너에 `overflow-x:auto|hidden|clip`이 걸려 그 안에서만 스크롤/클리핑**되게 할 것(페이지 자체가 늘어나면 안 됨). 판정 스크립트에서 "조상 중 클리핑 컨테이너가 있으면 예외" 규칙으로 거른다.
-4. **overflow·요소넘침 0 이어도 스크린샷을 눈으로 확인** — 잘린 텍스트, 겹친 요소, 깨진 정렬. (파일럿에서 태블릿 `.floating` 겹침은 스크립트가 아니라 눈으로 발견.)
-
-요소 넘침 판정 스니펫(조상 클리핑=예외):
-```js
-const bad = await p.evaluate((vw) => {
-  const out = [];
-  for (const el of document.querySelectorAll('body *')) {
-    const r = el.getBoundingClientRect();
-    if (r.width <= 30 || r.height <= 0) continue;
-    if (r.right <= vw + 2 && r.left >= -2) continue;       // 뷰포트 안 → OK
-    let a = el.parentElement, clipped = false;
-    while (a && a !== document.body) {                      // 조상에 클리핑 컨테이너?
-      if (['auto','scroll','hidden','clip'].includes(getComputedStyle(a).overflowX)) { clipped = true; break; }
-      a = a.parentElement;
-    }
-    if (!clipped) out.push(el.className || el.tagName);     // 클리핑 없이 잘림 → 진짜 버그
-  }
-  return out;
-}, innerWidth);
-// bad.length === 0 이어야 통과 (캐러셀은 clipped=true라 자동 제외)
-```
+2. Playwright(chromium)로 3뷰포트 스크린샷 + `documentElement.scrollWidth - clientWidth` 측정.
+3. **overflow=0 이어도 스크린샷을 눈으로 확인** — 잘린 텍스트, 겹친 요소, 깨진 정렬.
 
 오버플로 측정 최소 스니펫(페이지별로 실행):
 ```js
@@ -192,15 +166,6 @@ await b.close();
 5. **신규** `@media(min-width:768px) and (max-width:1023px)` 블록 — 헤더 flex 재배치(검색창 별도 행) + `.floating` 우하단 고정. 헤더 grid의 min-content(≈933px)가 768px를 넘어 잘리던 문제 해결. **이 한 블록이 태블릿 PASS 페이지를 3→18로 전환**(공통 헤더이기 때문, 실측).
 
 > 헤더 수정 시 `.lheader .header-top`의 `padding-inline:calc(50vw - 50%)`(full-bleed 트릭)를 지우지 않도록 `padding` 단축 속성을 쓰지 말 것. `padding-block`만 만진다.
-
-**2차(요소 넘침 검증 강화 후) 추가 수정:**
-
-6. `@media(max-width:767px)` — `.lheader/.header .header-top`의 `padding:16px 0` → `padding-block:16px`. 단축 속성이 base의 full-bleed `padding-inline`을 지워 **로고가 뷰포트 좌측에 붙어 잘리던 문제**(L=0) 해결. (§7 교훈의 실제 사례)
-7. **신규** `@media(max-width:1023px)` — `.gnb-in nav{display:none}`. 인라인 GNB 메뉴(nav 8개 ≈ 606px)가 우측으로 잘리고 햄버거(≡)와 중복 → 인라인 메뉴 숨기고 햄버거만 노출. (HTML 무수정)
-8. `@media(max-width:767px)` — `.floating{right:12px}`로 우측 여백 확보.
-9. **`index.html` 인라인 JS** `sizes()` — 히어로 캐러셀(`.hero2`)이 모바일/태블릿(`w<=1000`)에서 **카드=스테이지 폭, gap=0**이 되어 인접 카드 노출 없이 1장만 표시. CSS로는 JS 인라인 스타일을 못 이기므로 JS를 고침(HTML 내 스크립트 1함수만).
-
-> `.hero2`(clip)·`.bs-list`/`.cat-row`(auto scroll)는 **의도적 캐러셀**이라 뷰포트를 넘는 자식이 남지만, 컨테이너가 클리핑/스크롤하므로 페이지는 늘어나지 않는다(§7 예외). 실측: 파일럿 2페이지 × 모바일·태블릿에서 **클리핑 컨테이너 밖으로 잘리는 요소 = 0**.
 
 ---
 

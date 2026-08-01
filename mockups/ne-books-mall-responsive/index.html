@@ -240,10 +240,7 @@
     var cards=[].slice.call(track.children); // 3N
     var active=N, timer, normTimer, baseX=0, curW=405, curG=24;
     /* uniform G → every inter-card gap is identical; active card is actually wider/taller */
-    function sizes(){ var w=innerWidth;
-      /* 모바일·태블릿: 카드=스테이지 폭, gap=0 → 인접 카드가 안 보이고 한 번에 1장만 노출 */
-      if(w<=1000){ var sw=stage.clientWidth, H=Math.round(sw*1.14); return {W:sw,H:H,A:sw,AH:H,G:0}; }
-      return {W:405,H:460,A:467,AH:530,G:24}; }
+    function sizes(){ var w=innerWidth; if(w<=600) return {W:230,H:260,A:265,AH:300,G:16}; if(w<=1000) return {W:320,H:365,A:370,AH:420,G:20}; return {W:405,H:460,A:467,AH:530,G:24}; }
     function apply(anim){
       var s=sizes(); curW=s.W; curG=s.G;
       stage.style.height=s.AH+'px'; track.style.height=s.AH+'px';

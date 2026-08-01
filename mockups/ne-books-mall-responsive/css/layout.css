@@ -1578,9 +1578,8 @@ a{color:inherit;text-decoration:none;}
 .pt-guide-body .lb{color:var(--ink);}
 @media (max-width:767px){
   .container{padding-inline:20px;}
-  .header .header-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:14px;padding-block:18px;}
-  /* padding-block만 지정 — base의 padding-inline:calc(50vw - 50%)(full-bleed 보정)을 지우면 로고가 뷰포트 좌측에 붙어 잘림 */
-  .lheader .header-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:14px;padding-block:16px;}
+  .header .header-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:14px;padding:18px 0;}
+  .lheader .header-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:14px;padding:16px 0;}
   .logo{justify-self:auto;order:1;}
   .head-icons{justify-self:auto;order:2;}
   .header .search, .lheader .search{order:3;justify-self:auto;flex-basis:100%;width:100%;max-width:none;}
@@ -1605,7 +1604,7 @@ a{color:inherit;text-decoration:none;}
   .curation{padding:60px 0;}
   .netutor{padding:60px 0;}
   .notices{padding:56px 0;}
-  .floating{position:fixed !important;top:auto !important;right:12px;bottom:16px;}
+  .floating{position:fixed !important;top:auto !important;bottom:16px;}
   .float-card{width:76px;height:70px;}
   .float-card .ico{width:30px;height:30px;}
   .float-card span{font-size:10px;}
@@ -1667,12 +1666,6 @@ a{color:inherit;text-decoration:none;}
 @media (max-width:960px){
   .co-grid{grid-template-columns:1fr;}
   .co-side{position:static;}
-}
-/* 모바일·태블릿(≤1023): 인라인 GNB 메뉴(nav 8개 ≈ 606px)가 뷰포트를 넘어 잘리고
-   햄버거(≡) 아이콘과 중복이므로, 인라인 메뉴는 숨기고 햄버거만 남긴다. */
-@media (max-width:1023px){
-  .gnb-in nav{display:none;}
-  .gnb-in{justify-content:flex-start;}
 }
 /* 태블릿(768–1023): 데스크톱 grid 헤더의 min-content(로고+검색449+아이콘 ≈ 933px)가
    768px를 넘겨 overflow-x:clip에 잘림. 모바일과 동일한 flex 재배치로 해소.
