@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>NE_Books · 고객센터 · 1:1 문의 (비회원)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="css/layout.css?v=7">
+<script src="js/layout.js?v=7" defer></script>
+<script src="js/search.js?v=3" defer></script>
+</head>
+<body class="page-my">
+
+  <!-- ===== HEADER ===== -->
+  <div id="site-header"></div>
+
+  <!-- ===== PAGE HEAD (하드코딩: layout.js 캐시와 무관하게 항상 표시) ===== -->
+  <div id="site-location"><section class="pagehead"><div class="container cart-head-row"><div class="ph-left"><h1 class="ph-title">1:1 문의</h1></div><div class="crumb"><a class="home ico" href="index.html"><img src="assets/ic_home.svg" alt="홈"></a><span class="sep">·</span><a href="#">고객센터</a><span class="sep">·</span><span class="cur">1:1 문의</span></div></div></section></div>
+
+  <!-- ===== 1:1 문의 (비회원) ===== -->
+  <section class="mywrap">
+    <div class="container">
+
+      <!-- 고객센터 대탭 (1:1 문의 활성) -->
+      <div class="my-tabs">
+        <a href="고객센터.html#notice">공지사항</a>
+        <a href="고객센터.html#faq">FAQ</a>
+        <a href="고객센터.html#event">이벤트 / 신간·개정 / 세미나</a>
+        <a href="고객센터.html#errata">교재 오류정정</a>
+        <a class="on" href="고객센터.html#qna">1:1 문의</a>
+      </div>
+
+      <div id="qnaGuest">
+
+        <!-- 안내 박스 (비회원) -->
+        <div class="iq-preinfo guest">
+          <div class="pre-text">
+            <p>비회원 문의 게시판 입니다.<br>회원인 경우, 특히 교사/강사 회원님은 학원/학교 정보확인과 상담이력관리를 위해 <a class="pre-login" href="#">[회원 로그인]</a> 후 문의 이용을 부탁드립니다.<br>답변은 이메일을 통해 제공되며 업무일 기준, 1~2일 가량 시간이 소요될 수 있으나 가능한 빠르게 회신 드리도록 하겠습니다.</p>
+          </div>
+          <div class="pre-right">
+            <div class="btns">
+              <a href="고객센터.html#faq">도움말(FAQ)</a>
+              <a href="고객센터.html#errata">교재정오 알림</a>
+              <a href="#">교과서 콘텐츠 FAQ</a>
+            </div>
+            <p class="msg">문의 전에 먼저 확인하여 주시면 문의를 쉽고 빠르게 해결하실 수 있습니다.</p>
+          </div>
+        </div>
+
+        <!-- 문의 작성 폼 -->
+        <div class="iq-form">
+
+          <div class="iq-row">
+            <div class="iq-label">상담유형</div>
+            <div class="iq-field">
+              <div class="iq-radios">
+                <label class="iq-radio"><input type="radio" name="iqType" value="general" checked>일반문의</label>
+                <label class="iq-radio"><input type="radio" name="iqType" value="error">교재 오류신고</label>
+                <label class="iq-radio"><input type="radio" name="iqType" value="order">주문·배송 관련 문의</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="iq-row">
+            <div class="iq-label">상담분류 <span class="iq-req">*</span></div>
+            <div class="iq-field">
+              <div class="oh-sel">
+                <button type="button" class="oh-sel-cur"><span class="oh-sel-lb">문의분류를 선택해 주세요</span><span class="ic"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#1d1717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+                <div class="oh-sel-menu" hidden><a class="on" data-ph>문의분류를 선택해 주세요</a><a>배송문의</a><a>결제/환불</a><a>회원정보</a><a>교재문의</a><a>기타</a></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 교재명 (교재 오류신고 선택 시) -->
+          <div class="iq-row" id="iqBookRow" hidden>
+            <div class="iq-label">교재명 <span class="iq-req">*</span></div>
+            <div class="iq-field">
+              <div class="iq-bookname">
+                <div class="oh-sel bookcat">
+                  <button type="button" class="oh-sel-cur"><span class="oh-sel-lb">전체</span><span class="ic"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#1d1717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+                  <div class="oh-sel-menu" hidden><a class="on">전체</a><a>ELT</a><a>초중고(영어)</a><a>교과서 관련</a><a>수험/일반</a><a>수학/국어</a></div>
+                </div>
+                <div class="bk-search">
+                  <input class="iq-in search-input iq-clear" type="text" placeholder="제목·내용 검색" autocomplete="off">
+                  <div class="search-pop" hidden></div>
+                </div>
+                <button type="button" class="ef-search">검색</button>
+              </div>
+              <div class="iq-bk-selected" hidden>
+                <span class="iq-bk-cover"><img src="assets/best_1.png" alt=""></span>
+                <span class="iq-bk-title"></span>
+                <button type="button" class="iq-bk-del">삭제</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 작성자 (비회원: 이름 입력) -->
+          <div class="iq-row">
+            <div class="iq-label">작성자 <span class="iq-req">*</span></div>
+            <div class="iq-field"><input class="iq-in author iq-clear" type="text" placeholder="이름을 입력해 주세요."></div>
+          </div>
+
+          <div class="iq-row">
+            <div class="iq-label">이메일 <span class="iq-req">*</span></div>
+            <div class="iq-field">
+              <div class="iq-inline">
+                <input class="iq-in email" type="text" value="neungyule">
+                <span class="iq-at">@</span>
+                <input class="iq-in email" type="text" value="naver.com">
+                <div class="oh-sel dom">
+                  <button type="button" class="oh-sel-cur"><span class="oh-sel-lb">naver.com</span><span class="ic"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#1d1717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+                  <div class="oh-sel-menu" hidden><a class="on">naver.com</a><a>gmail.com</a><a>daum.net</a><a>직접입력</a></div>
+                </div>
+              </div>
+              <p class="iq-help">* Yahoo, Hotmail, MSN 계정은 메일 수신이 안 될 수 있으니 다른 메일 계정을 이용해 주시기 바랍니다.</p>
+            </div>
+          </div>
+
+          <div class="iq-row">
+            <div class="iq-label">휴대폰</div>
+            <div class="iq-field">
+              <div class="iq-inline">
+                <input class="iq-in phone" type="text" maxlength="3">
+                <span class="iq-at">-</span>
+                <input class="iq-in phone" type="text" maxlength="4">
+                <span class="iq-at">-</span>
+                <input class="iq-in phone" type="text" maxlength="4">
+                <label class="iq-sms"><input type="checkbox" class="iq-chk">답변여부 SMS 알림받기</label>
+              </div>
+              <p class="iq-help">* 단문메시지(무료SMS)로 답변 메일 도착 알림만 제공해 드리며, 답변 내용은 메일 또는 마이페이지 1:1 문의에서 확인하실 수 있습니다.</p>
+            </div>
+          </div>
+
+          <div class="iq-row">
+            <div class="iq-label">제목 <span class="iq-req">*</span></div>
+            <div class="iq-field"><input class="iq-in full iq-clear" type="text" placeholder="제목을 입력해 주세요."></div>
+          </div>
+
+          <div class="iq-row">
+            <div class="iq-label">내용 <span class="iq-req">*</span></div>
+            <div class="iq-field">
+              <textarea class="iq-textarea" placeholder="내용을 입력해 주세요."></textarea>
+              <p class="iq-note">[안내사항]<br>· 교강사용 자료요청 시, 재직중인 학교 또는 학원(학원명, 주소) 정보와 거래 지사(총판)명을 같이 기재해 주시면 좀 더 빠른 확인 및 답변이 가능합니다.<br>· 샘플 및 교사용 교재는 지사를 통해 제공되고 있습니다. <a class="iq-note-link" href="고객센터.html#branch">[지사안내]</a> 페이지를 확인해주시기 바랍니다.<br>※ 문의 내용 작성 시 개인정보가 포함되지 않도록 유의해 주세요.</p>
+            </div>
+          </div>
+
+          <div class="iq-row">
+            <div class="iq-label">첨부파일</div>
+            <div class="iq-field">
+              <div class="iq-file">
+                <button type="button" class="iq-file-btn">파일첨부</button>
+                <span class="iq-file-name"></span>
+                <span class="iq-help">(첨부파일 용량은 5MB까지 가능합니다.)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 자동등록방지 (비회원) -->
+          <div class="iq-row">
+            <div class="iq-label">자동등록방지 <span class="iq-req">*</span></div>
+            <div class="iq-field">
+              <div class="iq-captcha">
+                <span class="iq-captcha-code" id="captchaCode">A7K9Q2</span>
+                <button type="button" class="iq-captcha-refresh" id="captchaRefresh"><span aria-hidden="true">↻</span> 새로고침</button>
+                <input class="iq-in iq-clear" type="text" placeholder="보안문자를 입력해 주세요.">
+              </div>
+              <p class="iq-help">* 자동 등록 방지를 위해 보안문자를 입력해 주세요.</p>
+            </div>
+          </div>
+
+          <!-- 개인정보 동의 (비회원) -->
+          <div class="iq-row">
+            <div class="iq-label">개인정보 동의 <span class="iq-req">*</span></div>
+            <div class="iq-field">
+              <div class="iq-agree">
+                <div class="iq-agree-block">
+                  <div class="iq-consent">
+                    <p class="tit">[필수] 개인정보 수집·이용 동의</p>
+                    <p>· 수집 목적: 고객문의에 대한 답변 처리</p>
+                    <p>· 수집 항목: 이름, 이메일주소</p>
+                    <p>· 보유 및 이용기간: 수집일로부터 3개월</p>
+                  </div>
+                  <p class="iq-agree-desc">개인정보 수집 및 이용에 동의를 거부할 권리가 있습니다. 동의 거부 시 문의 등록 및 답변 처리가 불가합니다.</p>
+                  <label class="iq-agree-check"><input type="checkbox" class="iq-chk">동의합니다.</label>
+                </div>
+                <div class="iq-agree-block">
+                  <div class="iq-consent">
+                    <p class="tit">[선택] 개인정보 수집·이용 동의</p>
+                    <p>· 수집 목적: 답변 통지 알림</p>
+                    <p>· 수집 항목: 핸드폰번호</p>
+                    <p>· 보유 및 이용기간: 수집일로부터 3개월</p>
+                  </div>
+                  <p class="iq-agree-desc">개인정보 수집 및 이용에 동의를 거부할 권리가 있습니다. 선택항목의 개인정보 수집 동의를 거부하더라도 문의는 등록이 가능합니다. 다만, 답변 통지 알림 서비스가 제한됩니다.</p>
+                  <label class="iq-agree-check"><input type="checkbox" class="iq-chk">동의합니다.</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- 하단 -->
+        <div class="iq-actions">
+          <span class="iq-req-note"><b>*</b> 표시는 필수 입력 사항 입니다.</span>
+          <div class="iq-actions-btns">
+            <button type="button" class="iq-btn-submit">등록</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <div id="site-footer"></div>
+
+  <script>
+  (function(){
+    /* 셀렉트 드롭다운 + placeholder(is-ph) */
+    var sels=[].slice.call(document.querySelectorAll('.oh-sel'));
+    function closeAll(){ sels.forEach(function(s){ s.classList.remove('open'); var m=s.querySelector('.oh-sel-menu'); if(m) m.hidden=true; }); }
+    sels.forEach(function(s){
+      var cur=s.querySelector('.oh-sel-cur'), menu=s.querySelector('.oh-sel-menu'), lb=s.querySelector('.oh-sel-lb');
+      if(!cur||!menu) return;
+      var onA=menu.querySelector('a.on'); if(onA && onA.hasAttribute('data-ph')) cur.classList.add('is-ph');
+      cur.addEventListener('click',function(e){ e.stopPropagation(); var wasOpen=s.classList.contains('open'); closeAll(); if(!wasOpen){ s.classList.add('open'); menu.hidden=false; } });
+      menu.querySelectorAll('a').forEach(function(a){
+        a.addEventListener('click',function(e){ e.preventDefault();
+          menu.querySelectorAll('a').forEach(function(x){ x.classList.remove('on'); });
+          a.classList.add('on'); if(lb) lb.textContent=a.textContent.trim();
+          cur.classList.toggle('is-ph', a.hasAttribute('data-ph'));
+          s.classList.remove('open'); menu.hidden=true;
+        });
+      });
+    });
+    document.addEventListener('click',function(e){ if(!e.target.closest('.oh-sel')) closeAll(); });
+
+    /* 상담유형 → 교재명 행 토글 (비회원은 주문번호 행 없음) */
+    var bookRow=document.getElementById('iqBookRow');
+    var radios=[].slice.call(document.querySelectorAll('input[name="iqType"]'));
+    function upd(){ var sel=document.querySelector('input[name="iqType"]:checked'); var v=sel?sel.value:'';
+      if(bookRow) bookRow.hidden=(v!=='error'); }
+    radios.forEach(function(r){ r.addEventListener('change',upd); }); upd();
+
+    /* 캡차 새로고침 */
+    var refreshBtn=document.getElementById('captchaRefresh'), code=document.getElementById('captchaCode');
+    if(refreshBtn && code){
+      var CH='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+      refreshBtn.addEventListener('click',function(){
+        var s=''; for(var i=0;i<6;i++){ s+=CH.charAt((i*7+code.textContent.charCodeAt(i%code.textContent.length)+i)%CH.length); }
+        code.textContent=s;
+      });
+    }
+  })();
+  </script>
+
+</body>
+</html>
