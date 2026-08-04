@@ -10,8 +10,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- Pretendard (design font) via CDN, with Noto Sans KR fallback -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css">
-<script src="js/layout.js" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260805y">
+<script src="js/layout.js?v=20260805y" defer></script>
 <script src="js/search.js" defer></script>
 </head>
 <body class="page-buy">
@@ -27,7 +27,7 @@
     <div class="container">
       <div class="cat-row">
         <a class="cat-card">파닉스가<br>된다</a>
-        <a class="cat-card">사이트 워드가<br>된다</a>
+        <a class="cat-card">사이트<br>워드가 된다</a>
         <a class="cat-card">GRAMMAR<br>BUDDY</a>
         <a class="cat-card">GRAMMAR<br>BEAN</a>
         <a class="cat-card">문법이<br>된다</a>
@@ -46,7 +46,7 @@
         <aside class="sidebar">
           <div class="side-title">교재 찾기</div>
           <div class="fgroup">
-            <h4>레벨</h4>
+            <h4>학습대상</h4>
             <label class="fopt"><input type="checkbox" class="chk">유아</label>
             <label class="fopt"><input type="checkbox" class="chk">초등</label>
             <label class="fopt"><input type="checkbox" class="chk">중등</label>
@@ -60,7 +60,7 @@
             <label class="fopt"><input type="checkbox" class="chk">Test &amp; Worksheet</label>
             <label class="fopt"><input type="checkbox" class="chk">Tests</label>
             <label class="fopt"><input type="checkbox" class="chk">Teacher&rsquo;s Guide</label>
-            <label class="fopt"><input type="checkbox" class="chk" disabled>Class Pack</label>
+            <label class="fopt"><input type="checkbox" class="chk">Class Pack</label>
           </div>
           <div class="fgroup">
             <h4>브랜드</h4>
@@ -73,6 +73,31 @@
 
         <!-- Right column -->
         <div class="rightcol">
+          <!-- ===== MOBILE 필터/정렬 ===== -->
+          <div class="mtools only-mo">
+            <div class="mfilter">
+              <button class="mf-filter" type="button">
+                <img class="mf-ic" src="assets/ic_filter.svg" alt="">필터<span class="mf-badge">1</span>
+              </button>
+              <span class="mf-div"></span>
+              <button class="mf-chip on" type="button">학습대상<i class="mf-ind"></i></button>
+              <button class="mf-chip" type="button">제품유형<i class="mf-ind"></i></button>
+              <button class="mf-chip" type="button">브랜드<i class="mf-ind"></i></button>
+            </div>
+            <div class="msort">
+              <div class="msort-l">
+                <label class="msort-chk"><input type="checkbox" class="chk">판매중만</label>
+                <button class="msort-sort" type="button">인기순<i class="mf-ind"></i></button>
+              </div>
+              <a class="msort-r" href="리스트_학습자료.html">
+                <svg viewBox="0 0 18 18" width="16" height="16" fill="none" stroke="#666" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="2.5" width="11" height="13" rx="1.5"/><path d="M6.5 6.5h5M6.5 9.5h5M6.5 12.5h3"/></svg>
+                학습자료
+              </a>
+            </div>
+          </div>
+          <!-- MOBILE 상품 리스트 -->
+          <div class="plist-mo only-mo" id="plistMo"></div>
+
           <div class="toolbar">
             <div class="tb-left">
               <span class="count">총 <b>128</b>개 상품</span>
@@ -304,18 +329,66 @@
 
           </div>
 
-          <!-- Pagination -->
-          <nav class="pager">
+          <!-- Pagination (PC) -->
+          <nav class="pager only-pc">
             <a class="arw" aria-label="이전">&#8249;</a>
             <a class="on">1</a>
             <a>2</a><a>3</a><a>4</a><a>5</a>
             <a class="arw" aria-label="다음">&#8250;</a>
           </nav>
+          <!-- 더보기 (모바일) -->
+          <button class="mo-more only-mo" id="moMore" type="button"><span class="mo-more-txt">10개 더보기 (10/414)</span><span class="mo-more-ic"><img src="assets/ic_sort_chevron.svg" alt=""></span></button>
         </div>
 
       </div>
     </div>
   </section>
+
+  <!-- ===== MOBILE 필터 바텀시트 ===== -->
+  <div class="fsheet-dim" id="fsheetDim"></div>
+  <div class="fsheet" id="fsheet" role="dialog" aria-modal="true" aria-label="필터">
+    <div class="fs-handle"></div>
+    <div class="fs-head">
+      <span class="fs-title">필터</span>
+      <button class="fs-reset" type="button">초기화<svg class="fs-reset-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg></button>
+    </div>
+    <div class="fs-sections">
+      <div class="fs-section">
+        <div class="fs-stitle">학습대상</div>
+        <div class="fs-wrap">
+          <button class="fs-chip" type="button">전체</button>
+          <button class="fs-chip" type="button">유아</button>
+          <button class="fs-chip on" type="button">초등(저)</button>
+          <button class="fs-chip" type="button">초등(고)</button>
+          <button class="fs-chip" type="button">중등</button>
+          <button class="fs-chip" type="button">고등</button>
+          <button class="fs-chip" type="button">일반</button>
+        </div>
+      </div>
+      <div class="fs-section">
+        <div class="fs-stitle">제품유형</div>
+        <div class="fs-wrap">
+          <button class="fs-chip" type="button">전체</button>
+          <button class="fs-chip on" type="button">메인 교재</button>
+          <button class="fs-chip" type="button">Word Book</button>
+          <button class="fs-chip" type="button">Test&amp;Worksheet</button>
+          <button class="fs-chip" type="button">Test</button>
+          <button class="fs-chip" type="button">Teacher&rsquo;s Guide</button>
+        </div>
+      </div>
+      <div class="fs-section">
+        <div class="fs-stitle">브랜드</div>
+        <div class="fs-wrap">
+          <button class="fs-chip" type="button">전체</button>
+          <button class="fs-chip" type="button">NE능률</button>
+          <button class="fs-chip" type="button">NE Build&amp;Grow</button>
+          <button class="fs-chip" type="button">Oxford</button>
+          <button class="fs-chip" type="button">ETC</button>
+        </div>
+      </div>
+    </div>
+    <button class="fs-apply" type="button">결과 128개 보기</button>
+  </div>
 
   <!-- ===== FOOTER (verbatim from 메인_1) ===== -->
   <div id="site-footer"></div>
@@ -346,6 +419,99 @@
   </div>
 
   <script>
+  /* ===== 모바일 상품 리스트 렌더 (Figma [MO]교재리스트) ===== */
+  (function(){
+    var mo=document.getElementById('plistMo'); if(!mo) return;
+    var BASE=[
+      {img:'best_1.png', badge:'HOT', bcls:'hot', course:'Coursebook', level:'유치~초등(저)', title:'Phonics Code 1 : Student Book', hal:'10%', jeok:'5%', was:'15,000원', now:'13,500원', tags:['#사이트워드','#초등','#파닉스','#리딩','#세이펜','#기초영어','#리더스'], state:'buy'},
+      {img:'best_2.png', badge:'NEW', bcls:'new', course:'Coursebook', level:'유치~초등(저)', title:'Phonics Code 2 : Student Book', hal:'10%', jeok:'5%', was:'15,000원', now:'13,500원', tags:['#사이트워드','#초등','#파닉스','#리딩','#세이펜','#기초영어','#리더스'], state:'buy'},
+      {img:'best_3.png', badge:null, bcls:'', course:'Coursebook', level:'유치~초등(저)', title:'Phonics Code 3 : Student Book', hal:'', jeok:'', was:'', now:'15,000원', tags:['#사이트워드','#초등','#파닉스','#리딩','#세이펜','#기초영어','#리더스'], state:'textbook'},
+      {img:'best_4.png', badge:'일시품절', bcls:'soldout', course:'Coursebook', level:'유치~초등(저)', title:'Phonics Code 4 : Student Book', hal:'10%', jeok:'5%', was:'15,000원', now:'13,500원', tags:['#사이트워드','#초등','#파닉스','#리딩','#세이펜','#기초영어','#리더스'], state:'soldout'},
+      {img:'best_3.png', badge:'절판', bcls:'off', course:'Coursebook', level:'유치~초등(저)', title:'Phonics Code 5 : Student Book', hal:'', jeok:'', was:'', now:'15,000원', tags:['#사이트워드','#초등','#파닉스','#리딩','#세이펜','#기초영어','#리더스'], state:'off'}
+    ];
+    /* 데모용: 기본 5개를 반복해 40개 구성 (실제로는 서버 페이지네이션) */
+    var DATA=[]; for(var k=0;k<8;k++){ for(var j=0;j<BASE.length;j++){ DATA.push(BASE[j]); } }
+    var TOTAL=414, STEP=10, shown=STEP;
+    function btns(p){
+      if(p.state==='textbook') return '<a class="mc-tb" href="https://textbook.example.com" target="_blank" rel="noopener">교과서 구매</a>';
+      if(p.state==='soldout') return '<a class="mc-study" href="교재상세.html#s-res">학습자료</a><span class="mc-cart soldout">일시품절</span>';
+      if(p.state==='off') return '<span class="mc-off">절판</span>';
+      return '<a class="mc-study" href="교재상세.html#s-res">학습자료</a><a class="mc-cart" href="장바구니.html" aria-label="장바구니"><img src="assets/ic_bag.svg" alt=""></a>';
+    }
+    function cardHTML(p){
+      var badge=p.badge?'<span class="mc-badge '+p.bcls+'">'+p.badge+'</span>':'';
+      var disc=(p.hal||p.jeok)?'<div class="mc-disc">'+(p.hal?'<span class="mc-d"><span class="mc-dt hal">할</span><span class="mc-pct red">'+p.hal+'</span></span>':'')+(p.jeok?'<span class="mc-d"><span class="mc-dt jeok">적</span><span class="mc-pct">'+p.jeok+'</span></span>':'')+'</div>':'';
+      var price='<div class="mc-price">'+(p.was?'<span class="mc-was">'+p.was+'</span>':'')+'<span class="mc-now">'+p.now+'</span></div>';
+      var tags=p.tags.map(function(t){ return '<span>'+t+'</span>'; }).join('');
+      return '<article class="mcard">'
+        +'<div class="mc-top">'
+          +'<div class="mc-cover">'+badge+'<img src="assets/'+p.img+'" alt=""></div>'
+          +'<div class="mc-info">'
+            +'<div class="mc-ht"><div class="mc-tags"><span class="mc-tag course">'+p.course+'</span><span class="mc-tag level">'+p.level+'</span></div>'
+            +'<h3 class="mc-title">'+p.title+'</h3></div>'
+            +'<div class="mc-pricegrp">'+disc+price+'</div>'
+          +'</div>'
+        +'</div>'
+        +'<div class="mc-bot"><div class="mc-btns">'+btns(p)+'</div>'
+        +'<div class="mc-hash">'+tags+'</div></div>'
+      +'</article>';
+    }
+    var moreBtn=document.getElementById('moMore');
+    function render(){
+      mo.innerHTML=DATA.slice(0,shown).map(cardHTML).join('');
+      if(moreBtn){
+        if(shown>=DATA.length){ moreBtn.style.display='none'; }
+        else { moreBtn.style.display=''; var t=moreBtn.querySelector('.mo-more-txt'); if(t) t.textContent='10개 더보기 ('+shown+'/'+TOTAL+')'; }
+      }
+    }
+    render();
+    if(moreBtn) moreBtn.addEventListener('click',function(){ shown=Math.min(shown+STEP,DATA.length); render(); });
+  })();
+
+  /* 모바일 카드(커버·제목) 클릭 → 교재상세 이동 */
+  (function(){
+    var mo=document.getElementById('plistMo'); if(!mo) return;
+    mo.addEventListener('click',function(e){
+      if(e.target.closest('a,button,.mc-btns,.mc-cover-cart')) return;
+      if(e.target.closest('.mc-cover,.mc-title')) location.href='교재상세.html';
+    });
+  })();
+
+  /* 필터 칩 토글 + 가로 스와이프/드래그 스크롤 (키워드·시리즈·필터) */
+  (function(){
+    [].forEach.call(document.querySelectorAll('.mf-chip'),function(c){
+      c.addEventListener('click',function(){ c.classList.toggle('on'); });
+    });
+    function dragScroll(el){
+      if(!el) return;
+      var down=false,sx=0,ss=0,moved=false;
+      el.addEventListener('pointerdown',function(e){ if(e.pointerType!=='mouse'||e.button!==0) return; down=true;moved=false;sx=e.clientX;ss=el.scrollLeft;el.style.cursor='grabbing'; });
+      el.addEventListener('pointermove',function(e){ if(!down)return; var dx=e.clientX-sx; if(Math.abs(dx)>3)moved=true; el.scrollLeft=ss-dx; });
+      function end(){ if(!down)return; down=false; el.style.cursor=''; }
+      el.addEventListener('pointerup',end); el.addEventListener('pointerleave',end); el.addEventListener('pointercancel',end);
+      el.addEventListener('click',function(e){ if(moved){ e.preventDefault(); e.stopPropagation(); } },true);
+    }
+    dragScroll(document.querySelector('.catband .cat-row'));
+    dragScroll(document.querySelector('.mfilter'));
+    [].forEach.call(document.querySelectorAll('.mc-hash'),dragScroll);
+  })();
+
+  /* 필터 바텀시트: 필터 버튼 → 딤 + 시트 슬라이드업 */
+  (function(){
+    var openBtn=document.querySelector('.mf-filter');
+    var dim=document.getElementById('fsheetDim'), sheet=document.getElementById('fsheet');
+    if(!openBtn||!sheet||!dim) return;
+    function open(){ dim.classList.add('open'); sheet.classList.add('open'); document.body.style.overflow='hidden'; }
+    function close(){ dim.classList.remove('open'); sheet.classList.remove('open'); document.body.style.overflow=''; }
+    openBtn.addEventListener('click',open);
+    dim.addEventListener('click',close);
+    var apply=sheet.querySelector('.fs-apply'); if(apply) apply.addEventListener('click',close);
+    [].forEach.call(sheet.querySelectorAll('.fs-chip'),function(c){ c.addEventListener('click',function(){ c.classList.toggle('on'); }); });
+    var reset=sheet.querySelector('.fs-reset');
+    if(reset) reset.addEventListener('click',function(){ [].forEach.call(sheet.querySelectorAll('.fs-chip.on'),function(c){ c.classList.remove('on'); }); });
+    document.addEventListener('keydown',function(e){ if(e.key==='Escape' && sheet.classList.contains('open')) close(); });
+  })();
+
   /* 검색어(?q=)로 진입 시: 제목 매칭 필터 → 결과 없으면 '검색 결과 없음' 화면 */
   (function(){
     var params=new URLSearchParams(location.search);

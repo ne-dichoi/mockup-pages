@@ -412,10 +412,11 @@ body{ min-height:100vh; display:flex; flex-direction:column; }
 
 ## 18. 이벤트/세미나 카드 그리드
 
-3열 그리드(`gap:40px 24px`). 카드 = 이미지(aspect ~437/300, radius 12) + 배지 2개 + 제목 + 설명 + 상태.
+3열 그리드(`gap:40px 24px`). 카드 = 썸네일(`.ev-thumb`) + 배지 2개 + 제목 + 설명 + 상태.
 
 | 요소 | 규칙 |
 |------|------|
+| 썸네일 크롭 | **원본 이미지는 세로 긴 `7:8` 비율.** 목록 카드에서는 **가로 짧은 프레임 `aspect-ratio:437/280`, `radius 16`** 에 `object-fit:cover; object-position:top` 으로 담아 **원본의 위쪽 영역만** 노출한다(아래쪽은 잘림). 신간/이벤트/세미나 카드 공통. 구현: `.ev-thumb` / `.ev-thumb img` (layout.css). |
 | 유형 배지 | 아웃라인 `--red` · 글자 `--red` · radius 9999 · 12px |
 | 분류 배지 | 아웃라인 `--border-2` · 글자 `--muted` |
 | 제목 | `--display`(Paperlogy) Bold 22 · `--ink` |
@@ -561,3 +562,32 @@ body{ min-height:100vh; display:flex; flex-direction:column; }
 .card       { background:var(--gray-bg); padding:var(--sp-24); }
 .divider    { border-top:1px solid var(--line); }
 ```
+
+---
+
+## 29. 모바일 반응형 컴포넌트 (≤767px, 2026-08)
+
+`@media (max-width:767px)` 공통. `.only-mo`(기본 `display:none` → 모바일 노출) / `.only-pc`(모바일 `display:none !important`). **모바일 전용 요소는 전역에서 `display:none` 먼저 선언**해야 PC로 새지 않음.
+
+**공용 헤더 (js/layout.js)**
+- GNB 74px sticky, 스크롤 방향 자동 숨김(아래로=숨김 / 위로=표시+그림자).
+- 서브GNB 카테고리 드롭다운 `.mcat-panel`(fixed top:74 풀폭·하단 라운드 20+그림자·항목 11/40, 활성=현재 카테고리 볼드), dim `.mcat-dim`은 `top:74`. 펼침 시 우측 아이콘 검색/장바구니/닫기(X).
+
+**교재상세**
+- 하단 플로팅 CTA `.pdp-bar`(찜하기·장바구니 담기·**구매하기**). **푸터 도킹**(스크롤 시 푸터 위 20px, `.docked` 그림자 제거).
+- **수량선택 바텀시트 `.qty-sheet`**(구매하기 탭): 라운드 12, 그래버 40×4 #ccc, 제목 Paperlogy 22, 스테퍼 `.qty-step`(100×36) + 금액(단가×수량), 전체폭 빨강 구매하기. dim/그래버/ESC 닫힘.
+- **렉사일 바텀시트 `.lex-sheet`**: 라운드 20, 그래버, 제목 22/lh26.4, 본문 14/lh22 + 학년별 표.
+
+**장바구니 (모바일)**
+- 상품행 grid-area 리플로우: `"thumb title del" / "thumb qty price"`. 회색박스 썸네일 105×105(책 55×72), **체크박스는 썸네일 좌상단 오버레이**. 하단 스테퍼 100×36 + `10%`/단가.
+- 상단바 = 전체선택 + **삭제** 단일. PC 요약 사이드바 미노출 → 하단 고정 CTA `.cart-cta`(빨강 `총 N원 주문하기`, 푸터 도킹).
+- **빈 장바구니 `.cart-empty`**(모바일): 회색 원 80 + `!` 아이콘, 타이틀 14 SemiBold, 서브 12 #a9a9a9, 빨강 버튼 234·radius10·16 Bold, `min-height:550` 중앙. 빈 상태 시 상단바·안내문·CTA 숨김(`body.cart-is-empty`).
+- **확인 팝업 `.cart-modal`**: 흰 박스 radius16·pad32/24, 메시지 16, [취소(아웃라인)]·[삭제(빨강)] 48h. 토스트 `.cart-toast`(하단 알약). 삭제확인·품절주문차단·절판 자동삭제 안내에 재사용.
+
+**목록 더보기 `.mo-more`**(모바일): 기본 10개 + `10개 더보기(N/414)` 버튼(전체폭·테두리 #4D4E4D·Pretendard Medium 14·radius12). PC는 페이징 유지.
+
+**주문상세 상태 버튼 `.od-status-btns`**: 상태 라벨 아래 목록과 동일한 `.oh-btn`(콘텐츠 폭·높이 36) 세로 배치.
+
+**버튼 내부 패딩(폰트 기준, 4단위 예외)**: 18px→좌우24/상하16, 16px→좌우14/상하16, 14px→좌우24/상하12, 12px→좌우12/상하4. 행간 14→22 · 12→18 · 16→22. (입력창 옆 버튼은 입력창 높이에 맞춤)
+
+> 상세 Figma 실측값·구현 노트는 프로젝트 메모리 `ne-books-mobile.md` 참조.

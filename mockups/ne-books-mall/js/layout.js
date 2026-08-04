@@ -6,6 +6,7 @@
     <div class="container">
       <div class="header-top">
         <a class="logo" href="index.html"><img src="assets/header_logo_dark.png" alt="NE_Books"></a>
+        <div class="m-loc"><a class="m-loc-home" href="index.html" aria-label="홈"><img src="assets/ic_home_sub.svg" alt="홈"></a><button class="m-loc-btn" type="button" aria-expanded="false"><span class="m-loc-name"></span><span class="m-loc-caret"></span></button></div>
         <div class="search">
           <input type="text" class="search-input" placeholder="검색어를 입력해 주세요." autocomplete="off">
           <button type="button" class="search-ic ico" aria-label="검색"><img src="assets/ds_ic_search.svg" alt=""></button>
@@ -40,6 +41,8 @@
             </div>
           </div>
         </div>
+        <button class="m-menu only-mo" type="button" aria-label="전체메뉴"><img src="assets/ic_menu_line.svg" alt="전체메뉴"></button>
+        <button class="m-catclose only-mo" type="button" aria-label="카테고리 닫기"></button>
       </div>
       <div class="gnb">
         <div class="gnb-in">
@@ -64,32 +67,163 @@
         </div>
       </div>
     </div>
-  </header>`;
+    <!-- 모바일 서브페이지 카테고리 드롭다운 -->
+    <div class="mcat" id="mCat" aria-hidden="true">
+      <div class="mcat-dim"></div>
+      <nav class="mcat-panel" aria-label="카테고리 목록">
+        <a class="mcat-item" href="리스트_교재구매.html">Coursebook</a>
+        <a class="mcat-item" href="리스트_교재구매.html">Phonics</a>
+        <a class="mcat-item" href="리스트_교재구매.html">Readers</a>
+        <a class="mcat-item" href="리스트_교재구매.html">Reading</a>
+        <a class="mcat-item" href="리스트_교재구매.html">Listening</a>
+        <a class="mcat-item" href="리스트_교재구매.html">Speaking</a>
+        <a class="mcat-item" href="리스트_교재구매.html">Writing</a>
+        <a class="mcat-item" href="리스트_교재구매.html">Grammar</a>
+        <a class="mcat-item" href="리스트_교재구매.html">Vocabulary</a>
+      </nav>
+    </div>
+  </header>
+  <div class="m-drawer" id="mDrawer" aria-hidden="true">
+    <div class="md-top">
+      <button class="md-close" type="button" aria-label="닫기"></button>
+      <div class="md-auth"><a href="#">로그인</a><span class="md-bar">|</span><a href="#">회원가입</a></div>
+      <div class="md-top-ic">
+        <button class="md-search" type="button" aria-label="검색"><img src="assets/ds_ic_search.svg" alt=""></button>
+        <a class="md-cart" href="장바구니.html" aria-label="장바구니"><img src="assets/ic_bag.svg" alt=""></a>
+        <button class="md-x" type="button" aria-label="닫기"></button>
+      </div>
+    </div>
+    <div class="md-body">
+      <div class="md-cats" id="mdCats"></div>
+      <div class="md-subs" id="mdSubs"></div>
+    </div>
+  </div>`;
   var FOOTER = `<footer class="footer">
     <div class="container">
-      <div class="foot-top">
-        <div class="foot-nav">
-          <a href="#">개인정보처리방침</a><a href="#">이용약관</a><a href="#">이메일무단수집거부</a><a href="#">지사안내</a>
+      <div class="foot-pc only-pc">
+        <div class="foot-top">
+          <div class="foot-nav">
+            <a href="#">개인정보처리방침</a><a href="#">이용약관</a><a href="#">이메일무단수집거부</a><a href="#">지사안내</a>
+          </div>
+          <div class="foot-right">
+            <span class="ch">Ch</span>
+            <span class="yt ico"><img src="assets/footer_youtube.svg" alt="유튜브"></span>
+            <span class="fam">FAMILY SITE <span class="ic ico"><img src="assets/footer_familysite.svg" alt=""></span></span>
+          </div>
         </div>
-        <div class="foot-right">
-          <span class="ch">Ch</span>
-          <span class="yt ico"><img src="assets/footer_youtube.svg" alt="유튜브"></span>
-          <span class="fam">FAMILY SITE <span class="ic ico"><img src="assets/footer_familysite.svg" alt=""></span></span>
+        <div class="foot-main">
+          <div class="foot-info">
+            <p>㈜NE능률 (03925) 서울특별시 마포구 월드컵북로 396(상암동) 누리꿈스퀘어 비즈니스타워 10층 <span class="sep">|</span> 대표이사 : 이정진 <span class="sep">|</span> 대표번호 : 02-2014-7114 <span class="lk">사업별 고객센터 안내</span></p>
+            <p>팩스 : 02-337-4956 <span class="sep">|</span> 고객센터 : 1833-8368 <span class="sep">|</span> 사업자등록번호 : 105-81-65267 <span class="sep">|</span> 통신판매신고번호 : 제2004-02120호 <span class="lk">정보조회</span></p>
+            <p>개인정보 보호책임자(CPO) : 선민재(necpo@neungyule.com)</p>
+            <p>Copyright ⓒ NE Neungyule, Inc. All Rights Reserved</p>
+          </div>
+          <div class="foot-logo"><img src="assets/footer_logo.png" alt="NE능률"></div>
         </div>
       </div>
-      <div class="foot-main">
-        <div class="foot-info">
-          <p>㈜NE능률 (03925) 서울특별시 마포구 월드컵북로 396(상암동) 누리꿈스퀘어 비즈니스타워 10층 <span class="sep">|</span> 대표이사 : 이정진 <span class="sep">|</span> 대표번호 : 02-2014-7114 <span class="lk">사업별 고객센터 안내</span></p>
-          <p>팩스 : 02-337-4956 <span class="sep">|</span> 고객센터 : 1833-8368 <span class="sep">|</span> 사업자등록번호 : 105-81-65267 <span class="sep">|</span> 통신판매신고번호 : 제2004-02120호 <span class="lk">정보조회</span></p>
-          <p>개인정보 보호책임자(CPO) : 선민재(necpo@neungyule.com)</p>
-          <p>Copyright ⓒ NE Neungyule, Inc. All Rights Reserved</p>
+      <div class="foot-mo only-mo">
+        <div class="fm-top">
+          <div class="fm-logo"><img src="assets/footer_logo.png" alt="NE능률"></div>
+          <span class="fm-fam">FAMILY SITE <span class="ic ico"><img src="assets/footer_familysite.svg" alt=""></span></span>
         </div>
-        <div class="foot-logo"><img src="assets/footer_logo.png" alt="NE능률"></div>
+        <div class="fm-nav">
+          <a href="#">개인정보처리방침</a><a href="#">이용약관</a><a href="#">이메일무단수집거부</a><a href="#">지사안내</a>
+        </div>
+        <div class="fm-info">
+          <p>㈜NE능률 (03925) 서울특별시 마포구 월드컵북로 396(상암동) 누리꿈스퀘어 비즈니스타워 10층</p>
+          <p>대표이사 : 이정진</p>
+          <p>대표번호 : 02-2014-7114 <a class="lk" href="#">사업별 고객센터 안내</a></p>
+          <p>팩스 : 02-337-4956</p>
+          <p>고객센터 : 1833-8368</p>
+          <p>사업자등록번호 : 105-81-65267</p>
+          <p>통신판매신고번호 : 제2004-02120호 <a class="lk" href="#">정보조회</a></p>
+          <p>개인정보 보호책임자(CPO) : 선민재(necpo@neungyule.com)</p>
+        </div>
+        <div class="fm-copy">Copyright ⓒ NE Neungyule, Inc. All Rights Reserved</div>
       </div>
     </div>
   </footer>`;
   var h=document.getElementById('site-header'); if(h) h.innerHTML=HEADER;
   var f=document.getElementById('site-footer'); if(f) f.innerHTML=FOOTER;
+
+  /* ===== 모바일 GNB 자동 숨김/표시 (아래로 스크롤=숨김, 위로 스크롤=표시+그림자 고정) ===== */
+  (function(){
+    var header=document.getElementById('site-header');
+    if(!header) return;
+    var mq=window.matchMedia('(max-width:767px)');
+    var lastY=window.pageYOffset||0, ticking=false;
+    function apply(){
+      ticking=false;
+      if(!mq.matches){ header.classList.remove('hdr-hidden','hdr-shown'); return; }
+      var y=window.pageYOffset||0;
+      var goingDown = y>lastY;
+      if(y>80 && goingDown){ header.classList.add('hdr-hidden'); }
+      else if(!goingDown || y<=80){ header.classList.remove('hdr-hidden'); }
+      header.classList.toggle('hdr-shown', y>4 && !header.classList.contains('hdr-hidden'));
+      lastY = y<0 ? 0 : y;
+    }
+    window.addEventListener('scroll',function(){ if(!ticking){ requestAnimationFrame(apply); ticking=true; } },{passive:true});
+    window.addEventListener('resize',apply);
+    apply();
+  })();
+
+  /* ===== 모바일 서브페이지 GNB 카테고리 드롭다운 (Coursebook ∨ 클릭 → 펼침) ===== */
+  (function(){
+    var header=document.getElementById('site-header');
+    var mcat=document.getElementById('mCat');
+    var btn=header&&header.querySelector('.m-loc-btn');
+    if(!header||!mcat||!btn) return;
+    var dim=mcat.querySelector('.mcat-dim');
+    var closeBtn=header.querySelector('.m-catclose');
+    var nameEl=header.querySelector('.m-loc-name');
+    function markActive(){
+      var cur=((nameEl&&nameEl.textContent)||'').trim().toLowerCase();
+      mcat.querySelectorAll('.mcat-item').forEach(function(a){
+        a.classList.toggle('on', a.textContent.trim().toLowerCase()===cur);
+      });
+    }
+    function open(){ markActive(); header.classList.remove('hdr-hidden'); mcat.classList.add('open'); header.classList.add('mcat-open'); mcat.setAttribute('aria-hidden','false'); btn.setAttribute('aria-expanded','true'); document.body.style.overflow='hidden'; }
+    function close(){ mcat.classList.remove('open'); header.classList.remove('mcat-open'); mcat.setAttribute('aria-hidden','true'); btn.setAttribute('aria-expanded','false'); document.body.style.overflow=''; }
+    btn.addEventListener('click',function(e){ e.preventDefault(); mcat.classList.contains('open')?close():open(); });
+    if(dim) dim.addEventListener('click',close);
+    if(closeBtn) closeBtn.addEventListener('click',close);
+    document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&mcat.classList.contains('open')) close(); });
+  })();
+
+  /* ===== 모바일 전체메뉴 드로어 (햄버거 → 좌 카테고리 / 우 하위목록) ===== */
+  (function(){
+    /* PC 펼침메뉴(gnb-drop COLS)와 동일한 내용 */
+    var MENU=[
+      {name:'ELT', subs:['전체보기','Coursebook','Phonics','Reading','Readers','Listening','Speaking','Grammar','Writing','Vocabulary']},
+      {name:'초등/중등', subs:['전체보기','중학 내신','고등 선행','파닉스','어휘','쓰기','독해','듣기','문법/구분','TOEFL/TEPS/NELT']},
+      {name:'고등', subs:['전체보기','어휘','독해','듣기','문법/구분','수능 대비','고교 내신','단기 특강','TOEFL/TEPS/NELT']},
+      {name:'교과서/자습서', subs:['전체보기','중학영어 교과서','고등영어 교과서','수학 교과서','중국어/일본어']},
+      {name:'수험/일반', subs:['전체보기','TOEIC','TOEIC SPEAKING/WRITING','TOEFL/OPIC/TEPS','FLEX','일반영어']},
+      {name:'수학/국어', subs:['전체보기','유아','초등','중등','고등']},
+      {name:'학습자료실', subs:['전체보기','MP3·음원','정답·해설','부가자료','지도서']},
+      {name:'도서몰', subs:['전체보기','신간','베스트셀러','기획전·이벤트','절판·품절']}
+    ];
+    var drawer=document.getElementById('mDrawer'); if(!drawer) return;
+    var catsEl=drawer.querySelector('#mdCats'), subsEl=drawer.querySelector('#mdSubs');
+    var menuBtn=document.querySelector('.m-menu'), closeBtn=drawer.querySelector('.md-close');
+    var closeX=drawer.querySelector('.md-x');
+    var siteHeader=document.getElementById('site-header');
+    var active=0;
+    function render(){
+      catsEl.innerHTML=MENU.map(function(m,i){ return '<button type="button" class="md-cat'+(i===active?' on':'')+'" data-i="'+i+'">'+m.name+'</button>'; }).join('');
+      subsEl.innerHTML=MENU[active].subs.map(function(s,i){ return '<a class="md-sub'+(i===0?' all':'')+'" href="리스트_교재구매.html">'+s+(i===0?'':'<span class="md-chev" aria-hidden="true"></span>')+'</a>'; }).join('');
+    }
+    catsEl.addEventListener('click',function(e){ var b=e.target.closest('.md-cat'); if(!b)return; active=+b.dataset.i; render(); subsEl.scrollTop=0; });
+    function open(){ drawer.classList.add('open'); drawer.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
+      if(siteHeader){ siteHeader.classList.remove('hdr-hidden'); siteHeader.classList.add('drawer-open'); } }
+    function close(){ drawer.classList.remove('open'); drawer.setAttribute('aria-hidden','true'); document.body.style.overflow='';
+      if(siteHeader) siteHeader.classList.remove('drawer-open'); }
+    if(menuBtn) menuBtn.addEventListener('click',open);
+    if(closeBtn) closeBtn.addEventListener('click',close);
+    if(closeX) closeX.addEventListener('click',close);
+    document.addEventListener('keydown',function(e){ if(e.key==='Escape' && drawer.classList.contains('open')) close(); });
+    render();
+  })();
 
   /* ===== 장바구니 수량 뱃지 (상품이 담기면 N 표시) ===== */
   /* 페이지에서 window.CART_COUNT = N 으로 실제 수량을 넣을 수 있음. 미지정 시 데모값 2. */
@@ -138,6 +272,10 @@
       left='<h1 class="ph-title">'+p.title+'</h1>';
     }
     el.innerHTML='<section class="pagehead"><div class="container cart-head-row"><div class="ph-left">'+left+'</div><div class="crumb">'+crumb+'</div></div></section>';
+    /* 모바일 서브 헤더(로케이션형): 홈 + 카테고리명 */
+    var lh=document.querySelector('.lheader')||document.querySelector('.header');
+    var mname=lh&&lh.querySelector('.m-loc-name');
+    if(mname){ mname.textContent=(p.type==='cat'?p.d2:p.title); lh.classList.add('has-loc'); }
     var wrap=document.getElementById('bcCat');
     if(wrap){
       var btn=wrap.querySelector('.cur');

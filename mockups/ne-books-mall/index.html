@@ -10,8 +10,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- Pretendard (design font) via CDN, with Noto Sans KR fallback -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css">
-<script src="js/layout.js" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260805y">
+<script src="js/layout.js?v=20260805y" defer></script>
 <script src="js/search.js" defer></script>
 </head>
 <body class="page-index">
@@ -30,6 +30,7 @@
         <div class="hero2-card"><img src="assets/img5.png" alt="배너5"></div>
       </div>
     </div>
+    <div class="hero2-ind only-mo" aria-hidden="true"><b id="hero2Idx2">1</b><span>/</span><span id="hero2Total2">6</span></div>
     <div class="hero2-nav">
       <div class="bar"><i id="hero2Bar"></i></div>
       <div class="grp">
@@ -47,10 +48,11 @@
         <a class="pill"><span class="ico"><img src="assets/ic_main_buy.svg" alt=""></span><span>교재 구매</span></a>
         <a class="pill"><span class="ico"><img src="assets/ic_main_level.svg" alt=""></span><span>레벨차트</span></a>
         <a class="pill"><span class="ico"><img src="assets/ic_main_lib.svg" alt=""></span><span>학습자료실</span></a>
-        <a class="pill"><span class="ico"><img src="assets/ic_main_mp3down.svg" alt=""></span><span>정답·MP3 다운</span></a>
+        <a class="pill"><span class="ico"><img src="assets/ic_main_mp3down.svg" alt=""></span><span><span class="only-pc">정답·MP3 다운</span><span class="only-mo">정답·MP3</span></span></a>
         <a class="pill"><span class="ico"><img src="assets/ic_main_mp3listen.svg" alt=""></span><span>MP3 듣기</span></a>
         <a class="pill"><span class="ico"><img src="assets/ic_main_engteacher.svg" alt=""></span><span>영어 선생님</span></a>
         <a class="pill"><span class="ico"><img src="assets/ic_main_mathteacher.svg" alt=""></span><span>수학 선생님</span></a>
+        <a class="pill only-mo mo-reco"><span class="ico"><img src="assets/ic_float_recommend.svg" alt=""></span><span>교재추천</span></a>
       </div>
     </div>
   </section>
@@ -77,6 +79,8 @@
             <a class="btn" href="#">장바구니 담기</a>
           </div>
           <div class="bs-list" id="bsList"></div>
+          <div class="bs-mo-list only-mo" id="bsMoList"></div>
+          <a class="bs-mo-btn only-mo" href="장바구니.html">장바구니 담기</a>
         </div>
       </div>
     </div>
@@ -92,20 +96,20 @@
         </div>
         <div class="nt-hot" id="ntHot" title="스크롤하여 배너 이동"></div>
         <div class="nt-center">
-          <div class="cap">선생님을 위한 티칭 플랫폼</div>
-          <div class="logo"><img src="assets/netutor_logo.svg" alt="NE_Tutor" style="width:100%;height:100%;object-fit:contain;"></div>
+          <div class="cap"><span class="cap-sub">선생님을 위한</span> <span class="cap-main">티칭 플랫폼</span><span class="cap-logo only-mo"><img src="assets/netutor_logo.svg" alt="NE_Tutor"></span></div>
+          <div class="logo only-pc"><img src="assets/netutor_logo.svg" alt="NE_Tutor" style="width:100%;height:100%;object-fit:contain;"></div>
         </div>
         <div class="nt-cards" id="ntCards">
           <div class="nt-card">
-            <div class="body"><span class="sub">지도서・수업자료</span><span class="tt">E-Book 교재자료</span></div>
+            <div class="body"><span class="sub">지도서/수업자료</span><span class="tt">E-Book・자료</span></div>
             <span class="ic ico"><img src="assets/ic_tutor_ebook.svg" data-n="assets/ic_tutor_ebook.svg" data-w="assets/ic_tutor_ebook_w.svg" alt=""></span>
           </div>
           <div class="nt-card">
-            <div class="body"><span class="sub">단어시험지 자동 생성</span><span class="tt">어휘 문제 마법사</span></div>
+            <div class="body"><span class="sub">시험지 자동 생성</span><span class="tt">어휘 문제 마법사</span></div>
             <span class="ic ico"><img src="assets/ic_tutor_vocab.svg" data-n="assets/ic_tutor_vocab.svg" data-w="assets/ic_tutor_vocab_w.svg" alt=""></span>
           </div>
           <div class="nt-card">
-            <div class="body"><span class="sub">3만 개 문항 무제한 출제</span><span class="tt">문법 문제뱅크</span></div>
+            <div class="body"><span class="sub">문제 무제한 출제</span><span class="tt">문법 문제뱅크</span></div>
             <span class="ic ico"><img src="assets/ic_tutor_grammar.svg" data-n="assets/ic_tutor_grammar.svg" data-w="assets/ic_tutor_grammar_w.svg" alt=""></span>
           </div>
           <div class="nt-card">
@@ -113,11 +117,11 @@
             <span class="ic ico"><img src="assets/ic_tutor_nelt.svg" data-n="assets/ic_tutor_nelt.svg" data-w="assets/ic_tutor_nelt_w.svg" alt=""></span>
           </div>
           <div class="nt-card">
-            <div class="body"><span class="sub">성취도 평가부터 오답 학습까지 자동화</span><span class="tt">성취TEST</span></div>
+            <div class="body"><span class="sub">평가/오답 자동화</span><span class="tt">성취TEST</span></div>
             <span class="ic ico"><img src="assets/ic_tutor_test.svg" data-n="assets/ic_tutor_test.svg" data-w="assets/ic_tutor_test_w.svg" alt=""></span>
           </div>
           <div class="nt-card">
-            <div class="body"><span class="sub">문장형식별 예문검색 1분컷</span><span class="tt">문법 예문 검색</span></div>
+            <div class="body"><span class="sub">예문검색 1분컷</span><span class="tt">문법 예문 검색</span></div>
             <span class="ic ico"><img src="assets/ic_tutor_search.svg" data-n="assets/ic_tutor_search.svg" data-w="assets/ic_tutor_search_w.svg" alt=""></span>
           </div>
         </div>
@@ -142,7 +146,7 @@
           <div class="sec-title">고객센터</div>
           <div class="cs-cards">
             <div class="cs-card">
-              <div class="left"><span class="tel">1833-8368</span><span class="info">NE능률 고객센터<br>평일 9~16시 · 점심 12~13시</span></div>
+              <div class="left"><span class="tel">1833-8368</span><span class="info">NE능률 고객센터<br><span class="info-sep">l</span>평일 9~16시 · 점심 12~13시</span></div>
               <div class="cs-icons">
                 <div class="cs-box"><span class="ico"><img src="assets/ic_chat.svg" alt=""></span><span>채팅상담</span></div>
                 <div class="cs-box"><span class="ico"><img src="assets/ic_11.svg" alt=""></span><span>1:1문의</span></div>
@@ -151,10 +155,11 @@
               </div>
             </div>
           </div>
+          <div class="sec-title only-mo sns-title">SNS</div>
           <div class="sns">
-            <div class="card"><div class="in"><div class="lbl">NE능률<br>Lounge 카페</div><div class="logo"><img src="assets/sns_lounge.png" alt=""></div></div></div>
-            <div class="card"><div class="in"><div class="lbl">NE능률<br>인스타그램</div><div class="logo"><img src="assets/sns_instagram.png" alt=""></div></div></div>
-            <div class="card"><div class="in"><div class="lbl">NE능률<br>유튜브</div><div class="logo"><img src="assets/sns_youtube.svg" alt=""></div></div></div>
+            <div class="card"><div class="in"><div class="lbl"><span class="sns-brand">NE능률<br></span>Lounge 카페</div><div class="logo"><img src="assets/sns_lounge.png" alt=""></div></div></div>
+            <div class="card"><div class="in"><div class="lbl"><span class="sns-brand">NE능률<br></span>인스타그램</div><div class="logo"><img src="assets/sns_instagram.png" alt=""></div></div></div>
+            <div class="card"><div class="in"><div class="lbl"><span class="sns-brand">NE능률<br></span>유튜브</div><div class="logo"><img src="assets/sns_youtube.svg" alt=""></div></div></div>
           </div>
         </div>
       </div>
@@ -196,6 +201,23 @@
       +'</div>';
     }
     list.innerHTML=html;
+
+    /* mobile-only: bestseller as a vertical list of rows */
+    var mo=document.getElementById('bsMoList');
+    if(mo){
+      var mh='';
+      for(var j=0;j<6;j++){
+        mh+='<div class="bs-mo-row">'
+          +'<input type="checkbox" class="chk" aria-label="선택">'
+          +'<span class="thumb"><img src="assets/'+covers[j%covers.length]+'" alt=""></span>'
+          +'<span class="meta">'
+            +'<span class="name">Phonics Code 1 : Student Book</span>'
+            +'<span class="price"><span class="now">13,500원</span><span class="was">15,000원</span></span>'
+          +'</span>'
+        +'</div>';
+      }
+      mo.innerHTML=mh;
+    }
   })();
 
   /* ---------- Click-and-drag to move a horizontal track (mouse only, no wheel hijack) ---------- */
@@ -240,7 +262,7 @@
     var cards=[].slice.call(track.children); // 3N
     var active=N, timer, normTimer, baseX=0, curW=405, curG=24;
     /* uniform G → every inter-card gap is identical; active card is actually wider/taller */
-    function sizes(){ var w=innerWidth; if(w<=600) return {W:230,H:260,A:265,AH:300,G:16}; if(w<=1000) return {W:320,H:365,A:370,AH:420,G:20}; return {W:405,H:460,A:467,AH:530,G:24}; }
+    function sizes(){ var w=innerWidth; if(w<=600){ var A=Math.min(350,w-40), r=A/350; return {W:Math.round(304*r),H:Math.round(345*r),A:A,AH:Math.round(397*r),G:8}; } if(w<=1000) return {W:320,H:365,A:370,AH:420,G:20}; return {W:405,H:460,A:467,AH:530,G:24}; }
     function apply(anim){
       var s=sizes(); curW=s.W; curG=s.G;
       stage.style.height=s.AH+'px'; track.style.height=s.AH+'px';
@@ -254,6 +276,8 @@
       if(!anim){ void track.offsetWidth; track.style.transition=''; cards.forEach(function(c){ c.style.transition=''; }); }
       var real=((active-N)%N+N)%N;
       if(idxEl) idxEl.textContent=real+1;
+      var idx2=document.getElementById('hero2Idx2'); if(idx2) idx2.textContent=real+1;
+      var tot2=document.getElementById('hero2Total2'); if(tot2) tot2.textContent=N;
       if(bar){ var bw=bar.parentElement.clientWidth,frac=N>1?real/(N-1):0; bar.style.left=Math.round(frac*(bw-bar.offsetWidth))+'px'; }
     }
     function normalize(){ var a=active; while(a<N)a+=N; while(a>=2*N)a-=N; if(a!==active){ active=a; apply(false); } }
@@ -307,7 +331,7 @@
     function isArc(){ return window.innerWidth>1000; }
     function stopOf(c){ return ((c+offset)%M+M)%M; }
     function render(){
-      if(!isArc()){ cards.forEach(function(c){ c.classList.remove('red'); c._stop=undefined; c.style.opacity=''; c.style.pointerEvents=''; }); return; }
+      if(!isArc()){ cards.forEach(function(c){ c.classList.remove('red'); c._stop=undefined; c.style.opacity=''; c.style.pointerEvents=''; var im=c.querySelector('.ic img'); if(im){ var n=im.getAttribute('data-n'); if(n) im.src=n; } }); return; }
       cards.forEach(function(card,c){
         var s=stopOf(c), prev=card._stop, st=stops[s];
         var entering=(prev===HIDDEN) && !st.hidden; /* 초기 로드(prev undefined)에는 애니메이션 없이 바로 최종 위치에 배치 → 카드가 stop 위치에 정확히 정착 */
@@ -438,6 +462,34 @@
     gnb.addEventListener('mouseenter',function(){ clearTimeout(closeT); });
     document.addEventListener('click',function(e){ if(!gnb.contains(e.target)) hide(); });
     document.addEventListener('keydown',function(e){ if(e.key==='Escape') hide(); });
+  })();
+
+  /* ---------- 가로 스와이프/드래그 스크롤 (주요아이콘 · 베스트셀러 탭) ---------- */
+  (function(){
+    function dragScroll(el){
+      if(!el) return;
+      var down=false,startX=0,startScroll=0,moved=false;
+      el.addEventListener('pointerdown',function(e){
+        if(e.pointerType!=='mouse') return;        /* 터치·펜은 네이티브 스크롤 사용 */
+        if(e.button!==0) return;
+        down=true;moved=false;startX=e.clientX;startScroll=el.scrollLeft;
+        el.style.cursor='grabbing';
+        try{ el.setPointerCapture(e.pointerId); }catch(_){}
+      });
+      el.addEventListener('pointermove',function(e){
+        if(!down) return;
+        var dx=e.clientX-startX;
+        if(Math.abs(dx)>3) moved=true;
+        el.scrollLeft=startScroll-dx;
+      });
+      function end(){ if(!down) return; down=false; el.style.cursor=''; }
+      el.addEventListener('pointerup',end);
+      el.addEventListener('pointercancel',end);
+      el.addEventListener('pointerleave',end);
+      el.addEventListener('click',function(e){ if(moved){ e.preventDefault(); e.stopPropagation(); } },true);
+    }
+    dragScroll(document.querySelector('.mainicons .row'));
+    dragScroll(document.querySelector('.bs-tabs'));
   })();
 
 })();

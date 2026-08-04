@@ -8,8 +8,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css">
-<script src="js/layout.js" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260805y">
+<script src="js/layout.js?v=20260805y" defer></script>
 <script src="js/search.js" defer></script>
 </head>
 <body class="page-my">
@@ -59,7 +59,10 @@
               </div>
             </div>
           </div>
-          <div class="od-status" id="odStatus">입금취소</div>
+          <div class="od-status">
+            <span class="od-status-lb" id="odStatus">결제취소</span>
+            <div class="od-status-btns" id="odStatusBtns"></div>
+          </div>
         </div>
       </section>
 
@@ -116,10 +119,20 @@
 
   <script>
   (function(){
-    var STATUS={ ship:{label:'배송중',cancel:false}, done:{label:'배송완료',cancel:false}, wait:{label:'입금대기',cancel:false}, confirm:{label:'구매확정',cancel:false}, cancel:{label:'결제취소',cancel:true} };
+    /* 상태별 라벨 + 액션 버튼(주문내역 목록 .oh-btn 과 동일 세트) */
+    var STATUS={
+      paid:{label:'결제완료',cancel:false,btns:[['결제취소','dark']]},
+      ship:{label:'배송중',cancel:false,btns:[['배송조회','dark'],['반품/환불','gray']]},
+      done:{label:'배송완료',cancel:false,btns:[['배송조회','dark'],['반품/환불','gray'],['구매확정','fill']]},
+      wait:{label:'입금대기',cancel:false,btns:[['입금취소','dark']]},
+      confirm:{label:'구매확정',cancel:false,btns:[['배송조회','dark'],['반품/환불','gray']]},
+      cancel:{label:'결제취소',cancel:true,btns:[]}
+    };
     var st=(new URLSearchParams(location.search).get('st'))||'cancel';
     var info=STATUS[st]||STATUS.cancel;
     var s=document.getElementById('odStatus'); if(s) s.textContent=info.label;
+    var bw=document.getElementById('odStatusBtns');
+    if(bw) bw.innerHTML=(info.btns||[]).map(function(b){ return '<a class="oh-btn '+b[1]+'" href="#">'+b[0]+'</a>'; }).join('');
     var c=document.getElementById('odCancel'); if(c && !info.cancel) c.remove();
   })();
   </script>

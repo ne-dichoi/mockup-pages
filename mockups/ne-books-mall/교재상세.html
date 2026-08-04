@@ -8,8 +8,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css">
-<script src="js/layout.js" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260805y">
+<script src="js/layout.js?v=20260805y" defer></script>
 <script src="js/search.js" defer></script>
 </head>
 <body class="page-detail">
@@ -24,8 +24,14 @@
     <section class="dt-hero">
       <!-- cover -->
       <div class="dh-cover">
-        <img src="assets/best_1.png" alt="Bricks Reading 150 · L1">
-        <span class="prev"><img src="assets/ic_res_view.svg" alt="미리보기"></span>
+        <span class="dh-cover-book">
+          <img src="assets/best_1.png" alt="Bricks Reading 150 · L1">
+          <span class="prev"><img src="assets/ic_res_view.svg" alt="미리보기"></span>
+        </span>
+        <div class="dh-cbtns only-mo">
+          <a class="dcb" href="#"><span class="ico"><img src="assets/ic_det_sound.svg" alt=""></span>음원듣기</a>
+          <a class="dcb" href="#"><span class="ico"><img src="assets/ic_det_mobile.svg" alt=""></span>모바일학습</a>
+        </div>
       </div>
 
       <!-- info -->
@@ -88,7 +94,7 @@
     </section>
 
     <!-- TABS -->
-    <nav class="dtabs">
+    <nav class="dtabs only-pc">
       <div class="dtabs-inner">
         <a href="#s-res" class="active">학습자료</a>
         <a href="#s-detail">상세정보</a>
@@ -101,12 +107,19 @@
         <a href="#s-buy">구매유의사항</a>
       </div>
     </nav>
+    <!-- TABS (mobile) -->
+    <nav class="dtabs dtabs-mo only-mo">
+      <a href="#s-detail" class="active" data-motab="detail">상세정보</a>
+      <a href="#s-res" data-motab="res">학습자료</a>
+      <a href="#s-rel" data-motab="rel">연관교재</a>
+      <a href="#s-review" data-motab="review">후기</a>
+    </nav>
 
     <div class="dt-body">
       <div class="dt-main">
 
     <!-- 학습자료 -->
-    <section class="dsec" id="s-res">
+    <section class="dsec" id="s-res" data-motab="res">
       <div class="s-res-head">
         <div class="s-res-head-l">
           <div class="dsec-h"><h3>학습자료</h3></div>
@@ -173,8 +186,12 @@
     </section>
 
     <!-- 상세정보 (이미지 대신 텍스트가 들어갈 경우 — 학습법 탭과 동일한 텍스트 디자인. 이미지형은 <div class="detail-img">교재상세 이미지</div> 사용) -->
-    <section class="dsec" id="s-detail">
-      <div class="dsec-h"><h3>상세정보</h3></div>
+    <section class="dsec" id="s-detail" data-motab="detail">
+      <div class="dsec-h"><h3><span class="only-pc">상세정보</span><span class="only-mo">상품상세</span></h3></div>
+      <div class="detail-img-wrap only-mo">
+        <div class="detail-img">교재 상세 이미지</div>
+        <button class="detail-more" type="button">교재상세 펼치기 <span class="ico"><img src="assets/ic_sort_chevron.svg" alt=""></span></button>
+      </div>
       <div class="detail-text">
         <div class="step"><h4>교재소개</h4><ul>
           <li>Bricks Reading 150은 초등 눈높이에 맞춘 논픽션·픽션 균형 리딩 프로그램입니다.</li>
@@ -192,7 +209,7 @@
     </section>
 
     <!-- 학습법 -->
-    <section class="dsec" id="s-learn">
+    <section class="dsec" id="s-learn" data-motab="res">
       <div class="dsec-h"><h3>학습법</h3></div>
       <div class="step"><h4>STEP 01 · 어휘 학습</h4><ul><li>단어장 / Word List로 핵심 어휘를 먼저 익힙니다.</li><li>MP3로 표제어 발음을 들으며 반복 암기합니다.</li></ul></div>
       <div class="step"><h4>STEP 02 · 본문 학습</h4><ul><li>E-Book(본책)으로 지문을 단계별로 학습합니다.</li><li>MP3 듣기 → 읽기와 청해를 병행합니다.</li></ul></div>
@@ -201,34 +218,34 @@
     </section>
 
     <!-- 시리즈 교재 -->
-    <section class="dsec" id="s-series">
+    <section class="dsec" id="s-series" data-motab="rel">
       <div class="dsec-h">
         <h3>시리즈 <span style="font-size:14px;color:#8a8a8a;font-family:var(--sans);font-weight:400">(총 6권)</span></h3>
-        <div class="sel-actions"><label><input type="checkbox" class="chk selall" aria-label="전체선택">전체선택</label><a class="btn" href="#">선택 장바구니 담기</a></div>
+        <div class="sel-actions"><label><input type="checkbox" class="chk selall" aria-label="전체선택">전체선택</label><a class="btn" href="#">선택 장바구니</a></div>
       </div>
       <div class="rel-row" data-rel></div>
     </section>
 
     <!-- 다음단계 교재 -->
-    <section class="dsec" id="s-next">
+    <section class="dsec" id="s-next" data-motab="rel">
       <div class="dsec-h">
         <h3>다음단계 교재 <span style="font-size:14px;color:#8a8a8a;font-family:var(--sans);font-weight:400">(총 4권)</span></h3>
-        <div class="sel-actions"><label><input type="checkbox" class="chk selall" aria-label="전체선택">전체선택</label><a class="btn" href="#">선택 장바구니 담기</a></div>
+        <div class="sel-actions"><label><input type="checkbox" class="chk selall" aria-label="전체선택">전체선택</label><a class="btn" href="#">선택 장바구니</a></div>
       </div>
       <div class="rel-row" data-rel></div>
     </section>
 
     <!-- 추천교재 -->
-    <section class="dsec" id="s-rel">
+    <section class="dsec" id="s-rel" data-motab="rel">
       <div class="dsec-h">
         <h3>추천교재 <span style="font-size:14px;color:#8a8a8a;font-family:var(--sans);font-weight:400">(총 4권)</span></h3>
-        <div class="sel-actions"><label><input type="checkbox" class="chk selall" aria-label="전체선택">전체선택</label><a class="btn" href="#">선택 장바구니 담기</a></div>
+        <div class="sel-actions"><label><input type="checkbox" class="chk selall" aria-label="전체선택">전체선택</label><a class="btn" href="#">선택 장바구니</a></div>
       </div>
       <div class="rel-row" data-rel></div>
     </section>
 
     <!-- 후기 -->
-    <section class="dsec" id="s-review">
+    <section class="dsec" id="s-review" data-motab="review">
       <div class="dsec-h"><h3>후기</h3></div>
       <div class="rev-top">
         <div class="rev-notice">
@@ -280,7 +297,7 @@
     </section>
 
     <!-- 정보고시 -->
-    <section class="dsec" id="s-notice">
+    <section class="dsec" id="s-notice" data-motab="detail">
       <div class="dsec-h"><h3>정보고시</h3></div>
       <table class="ntable">
         <tr><th>저자</th><td>NE능률 편집부</td><th>출판사</th><td>NE능률</td></tr>
@@ -292,7 +309,7 @@
     </section>
 
     <!-- 구매유의사항 -->
-    <section class="dsec" id="s-buy" style="border-bottom:0">
+    <section class="dsec" id="s-buy" data-motab="detail" style="border-bottom:0">
       <div class="dsec-h"><h3>구매유의사항</h3></div>
       <table class="ntable ntable-wide">
         <tr><th>반품/교환 방법</th><td>고객센터(1833-8368) 또는 1:1 문의 접수 후 반품/교환 진행</td></tr>
@@ -320,6 +337,52 @@
     </div><!-- /dt-body -->
 
   </main>
+
+  <!-- ===== MOBILE 하단 고정 구매바 ===== -->
+  <div class="pdp-bar only-mo">
+    <button class="pdp-like" type="button" aria-label="찜하기"><span class="ico"><img class="h-off" src="assets/ic_heart.svg" alt=""><img class="h-on" src="assets/ic_heart_fill.svg" alt=""></span>찜하기</button>
+    <a class="pdp-cart" href="장바구니.html">장바구니 담기</a>
+    <button class="pdp-buy" type="button" id="pdpBuy">구매하기</button>
+  </div>
+
+  <!-- ===== MOBILE 수량선택 바텀시트 (구매하기 터치 시) ===== -->
+  <div class="qty-dim only-mo" id="qtyDim"></div>
+  <div class="qty-sheet only-mo" id="qtySheet" role="dialog" aria-modal="true" aria-hidden="true" aria-label="수량선택">
+    <div class="qty-grab"><span></span></div>
+    <h4 class="qty-title">수량선택</h4>
+    <div class="qty-row">
+      <div class="qty-step"><button type="button" class="qs-dn" aria-label="수량 감소">−</button><span class="qs-num">1</span><button type="button" class="qs-up" aria-label="수량 증가">+</button></div>
+      <p class="qty-price">13,500원</p>
+    </div>
+    <a class="qty-buy" href="주문결제.html">구매하기</a>
+  </div>
+
+  <!-- ===== MOBILE 렉사일 지수 바텀시트 (라벨 Lexile 터치 시) ===== -->
+  <div class="lex-dim only-mo" id="lexDim"></div>
+  <div class="lex-sheet only-mo" id="lexSheet" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="lex-grab"><span></span></div>
+    <div class="lex-body">
+      <h4>Lexile® measures (렉사일 지수)</h4>
+      <p>가장 널리 활용되는 영어 리딩 지수인 Lexile® measures(국문명; 렉사일 지수)는 미국 교육연구소인 MetaMetrics®가 개발한 영어읽기지수이다. Lexile® measures는 MetaMetrics®가 수년간의 엄격한 연구결과로 개발한 Lexile® Scale(렉사일 척도)로 측정한 것으로써 독자의 리딩 실력(Reader Ability)과 텍스트 난이도(Text readability)를 따로 각각 측정한다. 현재 미국에서만 매년 3,500 만 명 학생들이 Lexile® measures를 평가, 보고 받고 있고 Lexile® measures는 1억건 이상의 각종 영어 논문, 영어 서적, 영어 자료를 측정하였다.</p>
+      <p class="lt-sub">Typical Reader Measures, by Grade (미국 학생들의 실제 Lexile® measures)</p>
+      <table class="lt-table">
+        <thead><tr><th>grade</th><th>Reader Measures, Mid-Year<br>25th percentile to 75th percentile (IQR)</th></tr></thead>
+        <tbody>
+          <tr><td class="lt-grade">1</td><td class="lt-grade">UP - 300L</td></tr>
+          <tr><td class="lt-grade">2</td><td class="lt-grade">140L - 500L</td></tr>
+          <tr><td class="lt-grade">3</td><td class="lt-grade">330L - 700L</td></tr>
+          <tr><td class="lt-grade">4</td><td class="lt-grade">445L - 810L</td></tr>
+          <tr><td class="lt-grade">5</td><td class="lt-grade">565L - 910L</td></tr>
+          <tr><td class="lt-grade">6</td><td class="lt-grade">665L - 1000L</td></tr>
+          <tr><td class="lt-grade">7</td><td class="lt-grade">735L - 1065L</td></tr>
+          <tr><td class="lt-grade">8</td><td class="lt-grade">805L - 1100L</td></tr>
+          <tr><td class="lt-grade">9</td><td class="lt-grade">855L - 1165L</td></tr>
+          <tr><td class="lt-grade">10</td><td class="lt-grade">905L - 1195L</td></tr>
+          <tr><td class="lt-grade">11 and 12</td><td class="lt-grade">940L - 1210L</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 
   <!-- ===== FOOTER ===== -->
   <div id="site-footer"></div>
@@ -434,7 +497,7 @@
     document.querySelectorAll('.rel-row, .dh-res').forEach(function(row){
       row.addEventListener('click',function(e){ if(e.target.closest('.cart')){ e.preventDefault(); addToCart(); } });
     });
-    /* 선택 장바구니 담기 (묶음, UC-BUY-04): 미선택 시 안내, 선택분만 담기 */
+    /* 선택 장바구니 (묶음, UC-BUY-04): 미선택 시 안내, 선택분만 담기 */
     document.querySelectorAll('.dsec .sel-actions .btn').forEach(function(btn){
       btn.addEventListener('click',function(e){
         e.preventDefault();
@@ -485,16 +548,103 @@
       });
     })();
 
-    /* tab click → smooth-scroll to the section title (scroll-margin-top keeps it below the sticky tabs) */
-    document.querySelectorAll('.dtabs a').forEach(function(a){
+    /* PC tab click → smooth-scroll to the section title (scroll-margin-top keeps it below the sticky tabs) */
+    document.querySelectorAll('.dtabs.only-pc a').forEach(function(a){
       a.addEventListener('click',function(e){
         var href=a.getAttribute('href');
         if(href && href.charAt(0)==='#' && href.length>1){
           var target=document.querySelector(href);
           if(target){ e.preventDefault(); window.scrollTo(0,Math.round(target.getBoundingClientRect().top+window.scrollY-56)); }
         }
-        document.querySelectorAll('.dtabs a').forEach(function(x){x.classList.remove('active');});
+        document.querySelectorAll('.dtabs.only-pc a').forEach(function(x){x.classList.remove('active');});
         a.classList.add('active');
+      });
+    });
+
+    /* MOBILE tabs = panels: show only the active tab's sections (상세정보 / 학습자료 / 연관교재 / 후기) */
+    (function(){
+      var motabs=document.querySelectorAll('.dtabs-mo a');
+      if(!motabs.length) return;
+      var secs=document.querySelectorAll('.dsec[data-motab]');
+      var tabbar=document.querySelector('.dtabs-mo');
+      function apply(tab){
+        secs.forEach(function(s){ s.classList.toggle('mo-hide', s.getAttribute('data-motab')!==tab); });
+        motabs.forEach(function(x){ x.classList.toggle('active', x.getAttribute('data-motab')===tab); });
+      }
+      motabs.forEach(function(a){
+        a.addEventListener('click',function(e){
+          e.preventDefault();
+          apply(a.getAttribute('data-motab'));
+          // 콘텐츠 상단이 탭 바로 아래에 오도록 스크롤
+          var top=tabbar.getBoundingClientRect().top+window.scrollY;
+          if(window.scrollY>top) window.scrollTo(0,Math.round(top));
+        });
+      });
+      // 기본 활성 탭 적용(상세정보). .mo-hide 는 모바일 미디어쿼리에서만 표시에 영향.
+      var def=document.querySelector('.dtabs-mo a.active')||motabs[0];
+      apply(def.getAttribute('data-motab'));
+    })();
+
+    /* 상품상세 '교재상세 펼치기' 토글 (모바일) */
+    /* 하단 플로팅 찜하기 토글: 하트 채움(빨강) + 글자 빨강 */
+    document.querySelectorAll('.pdp-like').forEach(function(btn){
+      btn.addEventListener('click',function(){ btn.classList.toggle('on'); });
+    });
+
+    /* 렉사일 지수 라벨 탭 → 바텀시트 열기(내용은 PC와 동일, 길면 스크롤) */
+    (function(){
+      var sheet=document.getElementById('lexSheet'), dim=document.getElementById('lexDim');
+      var badge=document.querySelector('.dh-badges .badge.lexile');
+      if(!sheet||!dim||!badge) return;
+      function open(){ sheet.classList.add('open'); dim.classList.add('open'); sheet.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
+      function close(){ sheet.classList.remove('open'); dim.classList.remove('open'); sheet.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+      badge.addEventListener('click',open);
+      dim.addEventListener('click',close);
+      var grab=sheet.querySelector('.lex-grab'); if(grab) grab.addEventListener('click',close);
+      document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&sheet.classList.contains('open')) close(); });
+    })();
+
+    /* 하단 '구매하기' 탭 → 수량선택 바텀시트 (수량 조절 시 금액 갱신) */
+    (function(){
+      var sheet=document.getElementById('qtySheet'), dim=document.getElementById('qtyDim'), btn=document.getElementById('pdpBuy');
+      if(!sheet||!dim||!btn) return;
+      var unit=13500, numEl=sheet.querySelector('.qs-num'), priceEl=sheet.querySelector('.qty-price');
+      function open(){ sheet.classList.add('open'); dim.classList.add('open'); sheet.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
+      function close(){ sheet.classList.remove('open'); dim.classList.remove('open'); sheet.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+      function setQty(n){ n=Math.max(1,n); numEl.textContent=n; priceEl.textContent=(unit*n).toLocaleString()+'원'; }
+      btn.addEventListener('click',open);
+      dim.addEventListener('click',close);
+      var grab=sheet.querySelector('.qty-grab'); if(grab) grab.addEventListener('click',close);
+      sheet.querySelector('.qs-dn').addEventListener('click',function(){ setQty(parseInt(numEl.textContent,10)-1); });
+      sheet.querySelector('.qs-up').addEventListener('click',function(){ setQty(parseInt(numEl.textContent,10)+1); });
+      document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&sheet.classList.contains('open')) close(); });
+    })();
+
+    /* 하단 CTA 바: 스크롤 중엔 고정, 푸터에 닿으면 푸터 바로 위에 도킹 */
+    (function(){
+      var bar=document.querySelector('.pdp-bar');
+      if(!bar) return;
+      function dock(){
+        var footer=document.querySelector('#site-footer');
+        if(!footer){ bar.style.transform=''; return; }
+        var GAP=20; /* 푸터와 바 사이 여백 */
+        var ft=footer.getBoundingClientRect().top;
+        var t=(window.innerHeight-ft)+GAP; /* 푸터 위 GAP 만큼 띄워 안착 */
+        bar.style.transform = t>0 ? 'translateY('+(-t)+'px)' : '';
+        bar.classList.toggle('docked', t>0);
+      }
+      window.addEventListener('scroll',dock,{passive:true});
+      window.addEventListener('resize',dock);
+      window.addEventListener('load',dock);
+      dock();
+    })();
+
+    document.querySelectorAll('.detail-more').forEach(function(btn){
+      var wrap=btn.closest('.detail-img-wrap');
+      btn.addEventListener('click',function(){
+        var open=btn.classList.toggle('open');
+        wrap.classList.toggle('open', open);
+        btn.childNodes[0].nodeValue = open ? '교재상세 접기 ' : '교재상세 펼치기 ';
       });
     });
 
