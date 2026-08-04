@@ -10,8 +10,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- Pretendard (design font) via CDN, with Noto Sans KR fallback -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260805y">
-<script src="js/layout.js?v=20260805y" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260806j">
+<script src="js/layout.js?v=20260806j" defer></script>
 <script src="js/search.js" defer></script>
 </head>
 <body class="page-index">
@@ -328,7 +328,7 @@
     // 6 stops: 5 visible arc slots + 1 hidden. Stop 2 = centre (red). Hidden sits at the right-low spot (opacity 0).
     var stops=[{l:32,t:260},{l:407,t:130},{l:782,t:0},{l:1157,t:130},{l:1532,t:260},{l:1600,t:440,hidden:true}];
     var CENTER=2, HIDDEN=5, offset=0; // default: E-Book·어휘·문법문제뱅크(center)·NELT·성취 shown, 문법예문검색 hidden
-    function isArc(){ return window.innerWidth>1000; }
+    function isArc(){ return window.innerWidth>1023; }
     function stopOf(c){ return ((c+offset)%M+M)%M; }
     function render(){
       if(!isArc()){ cards.forEach(function(c){ c.classList.remove('red'); c._stop=undefined; c.style.opacity=''; c.style.pointerEvents=''; var im=c.querySelector('.ic img'); if(im){ var n=im.getAttribute('data-n'); if(n) im.src=n; } }); return; }

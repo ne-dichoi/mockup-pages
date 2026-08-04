@@ -138,7 +138,9 @@ a{color:inherit;text-decoration:none;}
 .hero2-nav .pg b{color:#a9a9a9;font-weight:700;}
 .hero2-nav .arrow{color:var(--ink);font-size:16px;padding:0 6px;background:none;border:0;cursor:pointer;line-height:1;}
 .mainicons{background:#fff;padding:40px 0 80px;}
-.mainicons .row{display:flex;gap:16px;align-items:center;justify-content:center;flex-wrap:wrap;}
+.mainicons .row{display:flex;gap:16px;align-items:center;justify-content:safe center;flex-wrap:nowrap;overflow-x:auto;cursor:grab;scrollbar-width:none;-ms-overflow-style:none;}
+.mainicons .row::-webkit-scrollbar{display:none;}
+.mainicons .row .pill{flex:none;}
 .pill{width:140px;height:140px;border:1px solid var(--line);border-radius:999px;background:#fff; display:flex;flex-direction:column;gap:4px;align-items:center;justify-content:center;}
 .pill .ico{width:45px;height:45px;}
 .pill span{font-weight:700;font-size:13px;color:var(--ink);text-align:center;}
@@ -146,7 +148,9 @@ a{color:inherit;text-decoration:none;}
 .bestseller{background:var(--gray-bg);padding:56px 0 64px;}
 .bs-wrap{display:flex;flex-direction:column;gap:40px;align-items:center;}
 .bs-head{display:flex;flex-direction:column;gap:16px;align-items:center;width:100%;}
-.bs-tabs{display:flex;gap:40px;align-items:center;flex-wrap:wrap;justify-content:center;}
+.bs-tabs{display:flex;gap:40px;align-items:center;flex-wrap:nowrap;overflow-x:auto;justify-content:safe center;cursor:grab;scrollbar-width:none;-ms-overflow-style:none;}
+.bs-tabs::-webkit-scrollbar{display:none;}
+.bs-tabs .tab{flex:none;}
 .bs-tabs .tab{font-size:16px;font-weight:400;color:var(--muted);white-space:nowrap;cursor:pointer;padding:8px 24px;border-radius:9999px;transition:background .15s,color .15s;}
 .bs-tabs .tab:hover,.bs-tabs .tab.active{background:var(--ink);color:#fff;font-weight:700;}
 .bs-row{display:flex;gap:40px;align-items:center;width:100%;}
@@ -374,6 +378,7 @@ a{color:inherit;text-decoration:none;}
 .ptitle{font-family:var(--display);font-size:28px;font-weight:700;color:var(--ink);margin:24px 0 0;line-height:1.2;}
 .pdesc{font-size:14px;color:var(--muted);margin-top:8px;}
 .ptags{display:flex;gap:12px;flex-wrap:wrap;margin-top:auto;padding-top:18px;font-size:13px;color:#a9a9a9;}
+.page-buy .pinfo{padding-right:210px;box-sizing:border-box;}  /* 절대배치 .pactions(190) 자리 확보 — 좁은 폭(1024)에서 제목·가격 겹침 방지 */
 .page-buy .pactions{position:absolute;right:0;top:40px;bottom:40px;display:flex;flex-direction:column;align-items:flex-end;gap:14px;width:190px;}
 .page-study .pactions{position:absolute;right:0;top:40px;display:flex;flex-direction:column;align-items:flex-end;gap:14px;width:auto;}
 .page-buy .picons, .page-study .picons{display:flex;align-items:center;gap:16px;color:#666;font-size:13px;font-weight:500;}
@@ -1607,7 +1612,9 @@ a{color:inherit;text-decoration:none;}
 .m-catclose{display:none;}
 .fsheet,.fsheet-dim{display:none;}
 
-@media (max-width:767px){
+@media (max-width:1023px){
+  /* 태블릿(768~1023)에서 모바일 뷰가 넓게 퍼지지 않도록 콘텐츠를 폰 폭으로 가운데 정렬.
+     헤더·푸터는 .lheader/.footer .container{max-width:none} 오버라이드로 풀폭 유지. */
   .container{padding-inline:20px;}
   /* visibility utilities restored on mobile */
   .only-mo{display:block;}
@@ -1714,8 +1721,8 @@ a{color:inherit;text-decoration:none;}
 
   /* --- MAIN ICONS: circular icons in a horizontal scroll --- */
   .mainicons{padding:24px 0 0;}
-  .mainicons .row{flex-wrap:nowrap;justify-content:flex-start;align-items:center;gap:8px;cursor:grab;
-    margin-inline:-20px;padding:0 20px 4px;
+  .mainicons .row{flex-wrap:nowrap;justify-content:safe center;align-items:center;gap:16px;cursor:grab;
+    padding:0 20px 4px;
     overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
   .mainicons .row::-webkit-scrollbar{display:none;}
   .mainicons .pill{flex:none;width:79px;height:79px;border:1px solid var(--line);border-radius:999px;
@@ -2023,17 +2030,19 @@ a{color:inherit;text-decoration:none;}
   .fs-apply{width:100%;padding:16px;border:0;border-radius:10px;background:var(--red);
     color:#fff;font-size:16px;font-weight:700;cursor:pointer;}
 }
-@media (max-width:1000px){
+/* NE Tutor: arc(부채꼴·회전) 데스크톱 레이아웃은 PC(≥1024)에서. JS isArc()와 경계 일치(1024).
+   ≤1023(모바일/태블릿 세로)에서는 카드를 그리드로 펼침(아크 JS 비활성이라 깔끔). */
+@media (max-width:1023px){
   .netutor{overflow:visible;}
   .nt-viewport{padding-inline:clamp(16px,4vw,40px);}
   .nt-wrap{width:100%;height:auto;transform:none !important; display:flex;flex-direction:column;align-items:center;gap:40px;}
   .nt-arc{display:none;}
   .nt-center{position:static;transform:none;width:auto;text-align:center;order:-1;}
-  .nt-cards{position:static;width:100%;height:auto;display:flex;flex-wrap:wrap;justify-content:center;gap:16px;}
-  .nt-card{position:relative !important;left:auto !important;top:auto !important; flex:0 1 336px;max-width:336px;cursor:default;transition:background .3s;}
+  .nt-cards{position:static;width:100%;height:auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 24px;}
+  .nt-card{position:relative !important;left:auto !important;top:auto !important; width:auto;max-width:none;cursor:pointer;transition:background .3s,border-color .3s;}
   .nt-hot{display:none;}
 }
-@media (max-width:1100px){
+@media (max-width:1023px){
   .gnb{gap:24px;overflow-x:auto;overflow-y:hidden;}
   .header .gnb nav{gap:28px;}
   .lheader .gnb nav{gap:26px;}
@@ -2052,12 +2061,12 @@ a{color:inherit;text-decoration:none;}
   .cs-box:not(:last-child)::after{right:-10px;}
   .cs-box .ico{width:45px;height:45px;}
 }
-@media (max-width:900px){
+@media (max-width:1023px){
   .body-grid{grid-template-columns:1fr;gap:28px;}
   .catband .cat-row{flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;padding-bottom:6px;}
   .pactions{position:static;width:100%;align-items:stretch;flex-direction:row;flex-wrap:wrap; justify-content:space-between;align-items:center;margin-top:14px;}
   .picons{order:-1;}
-  .pinfo{width:100%;}
+  .pinfo{width:100%;padding-right:0;}
   .prow{flex-wrap:wrap;}
   /* ===== 장바구니 (모바일) — Figma 1715-26830 ===== */
   .page-cart #site-location{display:none;}
@@ -2111,7 +2120,7 @@ a{color:inherit;text-decoration:none;}
   .cart-empty .nr-sub{font-size:12px;}
   .cart-empty .nr-btn{width:234px;min-width:0;height:auto;padding:16px;border-radius:10px;font-size:16px;font-weight:700;}
 }
-@media (max-width:960px){
+@media (max-width:1023px){
   .co-grid{grid-template-columns:1fr;}
   .co-side{position:static;}
 }
@@ -2119,7 +2128,7 @@ a{color:inherit;text-decoration:none;}
 /* ===== 교재상세 (모바일) ===== */
 .pdp-bar{display:none;}
 .dh-cover-book{display:contents;}  /* 데스크톱: 래퍼 무시(책·미리보기 그대로) */
-@media (max-width:767px){
+@media (max-width:1023px){
   .page-detail #site-location{display:none;}
   .page-detail main.container{padding-bottom:calc(124px + env(safe-area-inset-bottom));}
   /* 히어로: 커버 전체폭 + 정보 세로 */
@@ -2351,4 +2360,12 @@ a{color:inherit;text-decoration:none;}
     display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600;color:var(--ink);text-decoration:none;}
   .pdp-buy{flex:1;height:52px;border:0;border-radius:8px;background:var(--red);color:#fff;cursor:pointer;
     display:flex;align-items:center;justify-content:center;font-family:var(--sans);font-size:15px;font-weight:600;text-decoration:none;}
+}
+
+/* ===== 태블릿(768~1023): 주요 아이콘 키우기 (모바일 79 → 태블릿 110, 롤링배너처럼 커짐) ===== */
+@media (min-width:768px) and (max-width:1023px){
+  .mainicons .pill{width:110px;height:110px;gap:8px;}
+  .mainicons .pill .ico{width:44px;height:44px;}
+  .mainicons .pill .ico img{width:40px;height:40px;}
+  .mainicons .pill span{font-size:13px;}
 }

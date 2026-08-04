@@ -37,7 +37,7 @@ a{color:inherit;text-decoration:none;}
 
 /* Shared centered container inside full-bleed sections */
 .container{width:100%;max-width:var(--maxw);margin:0 auto;padding-inline:40px;}
-@media (max-width:767px){.container{padding-inline:20px;}}
+@media (max-width:1023px){.container{padding-inline:20px;}}
 
 /* Utility: horizontal scroll rows keep their children at natural size */
 .hscroll{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:thin;}
@@ -210,7 +210,7 @@ a{color:inherit;text-decoration:none;}
 .nt-card .ic{position:absolute;right:30px;bottom:30px;width:56px;height:56px;}
 
 /* NETUTOR fallback: narrow screens stack the cards (arc needs the 1920 canvas) */
-@media (max-width:1000px){
+@media (max-width:1023px){
   .netutor{overflow:visible;}
   .nt-viewport{padding-inline:clamp(16px,4vw,40px);}
   .nt-wrap{width:100%;height:auto;transform:none !important;
@@ -291,13 +291,13 @@ a{color:inherit;text-decoration:none;}
 /* ================= RESPONSIVE ================= */
 
 /* GNB collapses to a horizontal scroll row before it gets cramped */
-@media (max-width:1100px){
+@media (max-width:1023px){
   .gnb{gap:24px;overflow-x:auto;overflow-y:hidden;}
   .gnb nav{gap:28px;}
 }
 
 /* Mobile (< 768) */
-@media (max-width:767px){
+@media (max-width:1023px){
   .header-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:14px;padding:18px 0;}
   .logo{justify-self:auto;order:1;}
   .head-icons{justify-self:auto;order:2;}
@@ -730,7 +730,7 @@ a{color:inherit;text-decoration:none;}
     // 6 stops: 5 visible arc slots + 1 hidden. Stop 2 = centre (red). Hidden sits at the right-low spot (opacity 0).
     var stops=[{l:0,t:260},{l:391,t:130},{l:782,t:0},{l:1173,t:130},{l:1564,t:260},{l:1564,t:260,hidden:true}];
     var CENTER=2, HIDDEN=5, offset=0; // default: E-Book·어휘·문법문제뱅크(center)·NELT·성취 shown, 문법예문검색 hidden
-    function isArc(){ return window.innerWidth>1000; }
+    function isArc(){ return window.innerWidth>1023; }
     function stopOf(c){ return ((c+offset)%M+M)%M; }
     function render(){
       if(!isArc()){ cards.forEach(function(c){ c.classList.remove('red'); c._stop=undefined; c.style.opacity=''; c.style.pointerEvents=''; }); return; }

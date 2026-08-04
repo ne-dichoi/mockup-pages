@@ -116,7 +116,7 @@ textarea.field,.field-area{ min-height:120px; line-height:1.5; resize:vertical; 
   margin:0 auto;
   padding-inline:var(--pad-desktop);
 }
-@media (max-width:767px){
+@media (max-width:1023px){
   .container{ padding-inline:var(--pad-mobile); }
 }
 
