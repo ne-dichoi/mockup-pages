@@ -8,8 +8,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260808u">
-<script src="js/layout.js?v=20260808u" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260808v">
+<script src="js/layout.js?v=20260808v" defer></script>
 <script src="js/search.js" defer></script>
 </head>
 <body class="page-my">
@@ -600,6 +600,7 @@
   <div class="cx-modal" id="paymentCancelModal" hidden>
     <div class="cx-modal-dim"></div>
     <div class="cx-box" role="dialog" aria-modal="true" aria-label="결제취소">
+      <span class="cx-grab" aria-hidden="true"></span>
       <div class="cx-head"><h3>결제취소</h3><button type="button" class="cx-x" aria-label="닫기"></button></div>
       <div class="cx-form">
         <div class="cx-row">
@@ -623,6 +624,7 @@
   <div class="cx-modal" id="depositCancelModal" hidden>
     <div class="cx-modal-dim"></div>
     <div class="cx-box" role="dialog" aria-modal="true" aria-label="입금취소">
+      <span class="cx-grab" aria-hidden="true"></span>
       <div class="cx-head"><h3>입금취소</h3><button type="button" class="cx-x" aria-label="닫기"></button></div>
       <div class="cx-form">
         <div class="cx-row">
@@ -631,6 +633,52 @@
         </div>
       </div>
       <div class="cx-btns"><button type="button" class="cx-btn line cx-close">취소하기</button><button type="button" class="cx-btn red cx-close">등록하기</button></div>
+    </div>
+  </div>
+
+  <!-- ===== 보기 옵션 바텀시트 (모바일 주문내역 필터) ===== -->
+  <div class="os-sheet" id="viewOptSheet" hidden>
+    <div class="os-dim"></div>
+    <div class="os-box" role="dialog" aria-modal="true" aria-label="보기 옵션">
+      <span class="os-grab" aria-hidden="true"></span>
+      <div class="os-head">
+        <h3>보기 옵션</h3>
+        <button type="button" class="os-reset">초기화<span class="ic"><svg viewBox="0 0 16 16" fill="none"><path d="M13 8a5 5 0 1 1-1.46-3.54M13 2.5V5H10.5" stroke="#666" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+      </div>
+      <div class="os-body">
+        <div class="os-field">
+          <span class="os-fl">조회기간</span>
+          <div class="os-pills">
+            <button type="button">1개월</button>
+            <button type="button" class="on">3개월</button>
+            <button type="button">6개월</button>
+            <button type="button">1년</button>
+          </div>
+          <div class="os-range">
+            <button type="button" class="os-date" data-target="start"><span>2026-05-03</span><span class="ic"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="15" rx="2" stroke="#a9a9a9" stroke-width="1.5"/><path d="M4 9h16M8 3v4M16 3v4" stroke="#a9a9a9" stroke-width="1.5" stroke-linecap="round"/></svg></span></button>
+            <span class="os-tilde">~</span>
+            <button type="button" class="os-date" data-target="end"><span>2026-08-03</span><span class="ic"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="15" rx="2" stroke="#a9a9a9" stroke-width="1.5"/><path d="M4 9h16M8 3v4M16 3v4" stroke="#a9a9a9" stroke-width="1.5" stroke-linecap="round"/></svg></span></button>
+          </div>
+        </div>
+        <div class="os-field">
+          <span class="os-fl">검색어</span>
+          <input class="os-input" type="text" placeholder="주문번호 또는 상품명을 입력하세요">
+        </div>
+      </div>
+      <div class="os-foot"><button type="button" class="os-submit os-close">조회</button></div>
+    </div>
+  </div>
+
+  <!-- ===== 날짜선택 바텀시트 (모바일) ===== -->
+  <div class="os-sheet" id="datePickSheet" hidden>
+    <div class="os-dim"></div>
+    <div class="os-box" role="dialog" aria-modal="true" aria-label="날짜 선택">
+      <span class="os-grab" aria-hidden="true"></span>
+      <div class="os-cal">
+        <div class="dp-head"><button class="dp-nav dp-prev" type="button" aria-label="이전달">&#8249;</button><span class="dp-title">2026년 1월</span><button class="dp-nav dp-next" type="button" aria-label="다음달">&#8250;</button></div>
+        <div class="dp-week"><span>일</span><span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span></div>
+        <div class="dp-days"><button type="button" class="mut">28</button><button type="button" class="mut">29</button><button type="button" class="mut">30</button><button type="button" class="mut">31</button><button type="button" class="sel">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button><button type="button">6</button><button type="button">7</button><button type="button">8</button><button type="button">9</button><button type="button">10</button><button type="button">11</button><button type="button">12</button><button type="button">13</button><button type="button">14</button><button type="button">15</button><button type="button">16</button><button type="button">17</button><button type="button">18</button><button type="button">19</button><button type="button">20</button><button type="button">21</button><button type="button">22</button><button type="button">23</button><button type="button">24</button><button type="button">25</button><button type="button">26</button><button type="button">27</button><button type="button">28</button><button type="button">29</button><button type="button">30</button><button type="button">31</button></div>
+      </div>
     </div>
   </div>
 
@@ -847,8 +895,8 @@
   (function(){
     function bind(modal){
       if(!modal) return {open:function(){}};
-      function open(){ modal.hidden=false; requestAnimationFrame(function(){ modal.classList.add('open'); }); }
-      function close(){ modal.classList.remove('open'); setTimeout(function(){ modal.hidden=true; },200); }
+      function open(){ modal.hidden=false; document.body.style.overflow='hidden'; requestAnimationFrame(function(){ modal.classList.add('open'); }); }
+      function close(){ modal.classList.remove('open'); document.body.style.overflow=''; setTimeout(function(){ modal.hidden=true; },200); }
       modal.querySelector('.cx-modal-dim').addEventListener('click',close);
       modal.querySelector('.cx-x').addEventListener('click',close);
       [].forEach.call(modal.querySelectorAll('.cx-close'),function(b){ b.addEventListener('click',close); });
@@ -886,6 +934,65 @@
     }
     render();
     btn.addEventListener('click',function(){ shown=Math.min(shown+PAGE, rows.length); render(); });
+  })();
+
+  /* 주문내역 바텀시트: 보기옵션 / 날짜선택 (모바일) */
+  (function(){
+    function MB(){ return window.matchMedia('(max-width:1023px)').matches; }
+    var opt=document.getElementById('viewOptSheet');
+    var cal=document.getElementById('datePickSheet');
+    if(!opt||!cal) return;
+    var targetField=null;
+    function anyOpen(){ return document.querySelector('.os-sheet.open')||document.querySelector('.cx-modal.open'); }
+    function open(s){ s.hidden=false; document.body.style.overflow='hidden'; requestAnimationFrame(function(){ s.classList.add('open'); }); }
+    function close(s){ s.classList.remove('open'); setTimeout(function(){ s.hidden=true; if(!anyOpen()) document.body.style.overflow=''; },250); }
+
+    /* 필터 셀렉트(최근 3개월) → 보기옵션 시트 (모바일에서 드롭다운 대신) */
+    document.addEventListener('click',function(e){
+      if(!MB()) return;
+      var cur=e.target.closest('#tab-orders .oh-filter .oh-sel-cur');
+      if(cur){ e.preventDefault(); e.stopPropagation(); open(opt); }
+    },true);
+
+    /* 날짜시트는 보기옵션 위에 겹치지 않도록 스왑(옵션 감춤→복귀) */
+    function backToOpt(){ close(cal); open(opt); }
+    /* dim / grab 으로 닫기: 옵션=완전 닫기, 날짜=옵션으로 복귀 */
+    var od=opt.querySelector('.os-dim'), og=opt.querySelector('.os-grab');
+    if(od) od.addEventListener('click',function(){ close(opt); });
+    if(og) og.addEventListener('click',function(){ close(opt); });
+    var cd=cal.querySelector('.os-dim'), cg=cal.querySelector('.os-grab');
+    if(cd) cd.addEventListener('click',backToOpt);
+    if(cg) cg.addEventListener('click',backToOpt);
+
+    /* 조회기간 pill 토글 */
+    opt.querySelectorAll('.os-pills button').forEach(function(b){
+      b.addEventListener('click',function(){ opt.querySelectorAll('.os-pills button').forEach(function(x){ x.classList.remove('on'); }); b.classList.add('on'); });
+    });
+    /* 초기화 */
+    var reset=opt.querySelector('.os-reset');
+    if(reset) reset.addEventListener('click',function(){
+      opt.querySelectorAll('.os-pills button').forEach(function(x,i){ x.classList.toggle('on', i===1); });
+      var inp=opt.querySelector('.os-input'); if(inp) inp.value='';
+    });
+    /* 조회 = 시트 닫기 */
+    opt.querySelectorAll('.os-close').forEach(function(b){ b.addEventListener('click',function(){ close(opt); }); });
+    /* 날짜 필드 → 날짜선택 시트(보기옵션은 잠시 감춤) */
+    opt.querySelectorAll('.os-date').forEach(function(d){
+      d.addEventListener('click',function(){ targetField=d; close(opt); open(cal); });
+    });
+    /* 캘린더 날짜 선택 → 필드 일(日) 반영 + 보기옵션 복귀 */
+    cal.querySelectorAll('.dp-days button').forEach(function(day){
+      day.addEventListener('click',function(){
+        if(day.classList.contains('mut')) return;
+        cal.querySelectorAll('.dp-days button').forEach(function(x){ x.classList.remove('sel'); });
+        day.classList.add('sel');
+        if(targetField){ var sp=targetField.querySelector('span'); if(sp){ var p=sp.textContent.trim().split('-'); if(p.length===3){ p[2]=('0'+day.textContent.trim()).slice(-2); sp.textContent=p.join('-'); } } }
+        backToOpt();
+      });
+    });
+
+    /* ESC 로 시트 닫기(날짜=옵션 복귀, 옵션=완전 닫기) */
+    document.addEventListener('keydown',function(e){ if(e.key!=='Escape') return; if(!cal.hidden) backToOpt(); else if(!opt.hidden) close(opt); });
   })();
   </script>
 </body>

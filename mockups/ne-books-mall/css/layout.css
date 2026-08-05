@@ -2436,7 +2436,7 @@ a{color:inherit;text-decoration:none;}
 /* ===== 마이페이지 주문내역 (모바일) — Figma 2243-17430 ===== */
 @media (max-width:1023px){
   /* 필터: 총 N건(좌) + 최근 3개월(우), 날짜·검색 숨김 */
-  .page-my #tab-orders .oh-filter{margin-bottom:0;padding:16px 20px;gap:12px;flex-wrap:nowrap;align-items:flex-end;}
+  .page-my #tab-orders .oh-filter{margin-bottom:0;padding:16px 20px 0;gap:12px;flex-wrap:nowrap;align-items:flex-end;}
   .page-my #tab-orders .oh-total{font-size:14px;color:var(--ink);}
   .page-my #tab-orders .oh-total b{font-weight:700;}
   .page-my #tab-orders .oh-date,.page-my #tab-orders .oh-tilde,.page-my #tab-orders .oh-search{display:none;}
@@ -2483,6 +2483,110 @@ a{color:inherit;text-decoration:none;}
   .page-my #tab-orders .og-notes li::before{content:"\B7";position:absolute;left:2px;}
   /* PC 전용 통합 notes 는 모바일에서 숨김 */
   .page-my #tab-orders .oh-guide-notes{display:none;}
+}
+
+/* ===== 주문내역 바텀시트 (보기옵션 / 날짜선택) — 모바일 전용 ===== */
+.os-sheet[hidden]{display:none;}
+.os-sheet{position:fixed;inset:0;z-index:1100;opacity:0;transition:opacity .25s ease;}
+.os-sheet.open{opacity:1;}
+.os-dim{position:absolute;inset:0;background:rgba(0,0,0,.4);}
+.os-box{position:absolute;left:0;right:0;bottom:0;background:#fff;border-radius:20px 20px 0 0;padding:8px 20px calc(24px + env(safe-area-inset-bottom));transform:translateY(100%);transition:transform .25s ease;max-height:88vh;overflow-y:auto;}
+.os-sheet.open .os-box{transform:translateY(0);}
+.os-grab{display:block;width:40px;height:4px;border-radius:4px;background:#ccc;margin:6px auto 16px;}
+.os-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;}
+.os-head h3{font-family:var(--display);font-weight:800;font-size:20px;color:var(--ink);}
+.os-reset{display:flex;align-items:center;gap:4px;font-size:14px;color:var(--muted);background:none;border:0;cursor:pointer;font-family:var(--sans);padding:0;}
+.os-reset .ic{width:16px;height:16px;flex:none;}
+.os-body{display:flex;flex-direction:column;gap:28px;}
+.os-field{display:flex;flex-direction:column;gap:12px;}
+.os-fl{font-size:14px;font-weight:700;color:var(--ink);}
+.os-pills{display:flex;gap:8px;}
+.os-pills button{flex:1;height:40px;border:1px solid var(--line);border-radius:8px;background:#fff;font-size:14px;color:var(--muted);cursor:pointer;font-family:var(--sans);}
+.os-pills button.on{border-color:var(--red);background:var(--red);color:#fff;font-weight:600;}
+.os-range{display:flex;align-items:center;gap:8px;}
+.os-date{flex:1;min-width:0;height:44px;display:flex;align-items:center;justify-content:space-between;border:1px solid var(--line);border-radius:8px;padding:0 14px;background:#fff;font-size:14px;color:var(--ink);cursor:pointer;font-family:var(--sans);}
+.os-date .ic{width:20px;height:20px;flex:none;}
+.os-tilde{color:var(--weak);flex:none;}
+.os-input{height:48px;box-sizing:border-box;border:1px solid var(--line);border-radius:8px;padding:0 16px;font-size:14px;font-family:var(--sans);color:var(--ink);outline:none;transition:border-color .15s;}
+.os-input:focus{border-color:var(--ink);}
+.os-foot{margin-top:32px;}
+.os-submit{width:100%;height:52px;border:0;border-radius:8px;background:var(--red);color:#fff;font-size:16px;font-weight:600;cursor:pointer;font-family:var(--sans);}
+.os-submit:hover{filter:brightness(.94);}
+/* 날짜선택 캘린더(시트 안, 전체폭) */
+.os-cal{padding:4px 0 8px;}
+.os-cal .dp-title{font-size:16px;}
+.os-cal .dp-days button{font-size:15px;}
+/* PC 에서는 바텀시트 grab 핸들 숨김(모바일 미디어쿼리에서 노출) */
+.cx-grab{display:none;}
+
+@media (max-width:1023px){
+  /* 결제취소 / 입금취소 모달 → 바텀시트 전환 */
+  .cx-modal{align-items:flex-end;justify-content:stretch;z-index:1100;}
+  .cx-modal-dim{background:rgba(0,0,0,.4);}
+  .cx-box{width:100%;max-width:none;border:0;border-radius:20px 20px 0 0;padding:8px 20px calc(24px + env(safe-area-inset-bottom));gap:20px;transform:translateY(100%);}
+  .cx-modal.open .cx-box{transform:translateY(0);}
+  .cx-grab{display:block;width:40px;height:4px;border-radius:4px;background:#ccc;margin:6px auto 4px;}
+  .cx-x{display:none;}
+  .cx-head h3{font-size:20px;}
+  /* 라벨=위, 필드=아래 세로 스택 */
+  .cx-form{border-top:0;border-bottom:0;display:flex;flex-direction:column;gap:16px;}
+  .cx-row{flex-direction:column;align-items:stretch;border-bottom:0;gap:8px;}
+  .cx-fl{width:auto;background:none;padding:0;}
+  .cx-ff{padding:0;flex-wrap:wrap;}
+  .cx-sel{flex:1;}
+  .cx-btn{height:52px;font-size:16px;font-weight:600;}
+}
+
+/* ===== 주문 상세내역 (모바일) ===== */
+@media (max-width:1023px){
+  /* 섹션: 좌우 20 여백, 접기 헤더(∧) */
+  .page-my .od-sec{padding:24px 20px;border-top:8px solid var(--gray-bg);}
+  .page-my .od-sec:first-of-type{border-top:0;}
+  .page-my .od-sec-t{display:flex;align-items:center;justify-content:space-between;font-size:18px;cursor:pointer;margin:0;}
+  .page-my .od-sec-t::after{content:"";width:10px;height:10px;border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);transform:rotate(225deg);margin-top:4px;transition:transform .2s;}
+  .page-my .od-sec.od-collapsed .od-sec-t::after{transform:rotate(45deg);margin-top:-4px;}
+  .page-my .od-sec.od-collapsed > :not(.od-sec-t){display:none;}
+
+  /* 주문 상세내역: 날짜+상태배지 / 주문번호 / 상품 / 버튼 */
+  .page-my .od-order{display:grid;grid-template-columns:1fr auto;grid-template-areas:"date badge" "ono ono" "items items" "btns btns";border:0;margin-top:16px;column-gap:8px;}
+  .page-my .od-order-info,.page-my .od-status{display:contents;}
+  .page-my .od-order-info{padding:0;border:0;width:auto;}
+  .page-my .od-date{grid-area:date;align-self:center;font-size:14px;font-weight:700;}
+  .page-my .od-ono{grid-area:ono;font-size:13px;color:var(--weak);margin-top:4px;}
+  .page-my .od-status{width:auto;border:0;}
+  .page-my .od-status-lb{grid-area:badge;justify-self:end;align-self:center;padding:4px 10px;border:1px solid var(--line);border-radius:30px;font-size:11px;font-weight:600;color:var(--muted);white-space:nowrap;}
+  .page-my .od-items{grid-area:items;margin-top:20px;gap:16px;}
+  .page-my .od-item,.page-my .od-items .od-item:first-child,.page-my .od-items .od-item:last-child{padding:0;align-items:flex-start;}
+  .page-my .od-thumb{width:88px;height:88px;margin:0 16px 0 0;}
+  .page-my .od-thumb img{width:46px;height:60px;}
+  .page-my .od-item-name{font-size:14px;line-height:20px;}
+  .page-my .od-item-meta{margin-top:6px;color:var(--weak);}
+  .page-my .od-item-meta .q{color:var(--weak);}
+  .page-my .od-status-btns{grid-area:btns;flex-direction:row;flex-wrap:wrap;padding:20px 0 0;gap:8px;}
+  .page-my .od-status-btns:not(:empty){margin-top:0;}
+
+  /* 표(결제수단/입금기한, 취소·배송지 정보): 라벨 좌 + 값 우 */
+  .page-my .od-table{margin-top:16px;border-top:0;}
+  .page-my .od-table .tr{padding:12px 0;border-bottom:1px solid var(--line);}
+  .page-my .od-table .tr:last-child{border-bottom:0;}
+  .page-my .od-th{width:84px;flex:none;background:none;padding:0;min-height:0;align-items:flex-start;font-size:14px;}
+  .page-my .od-td{padding:0;min-height:0;align-items:flex-start;flex-direction:column;gap:2px;font-size:14px;line-height:20px;}
+  .page-my .od-td .bk{display:block;}
+
+  /* 결제 요약: 회색 박스 1개 + 구분선 후 총 결제금액 */
+  .page-my .od-pay{display:block;background:var(--gray-bg);border:0;border-radius:8px;padding:24px 20px;margin-top:8px;}
+  .page-my .od-pay-left{width:auto;border:0;padding:0;}
+  .page-my .od-pay-row{min-height:0;padding:6px 0;color:var(--muted);}
+  .page-my .od-pay-right{display:grid;grid-template-columns:1fr auto;align-items:baseline;width:auto;padding:16px 0 0;margin-top:10px;border-top:1px solid #e0e0e0;gap:6px 0;}
+  .page-my .od-final-lb{grid-column:1;grid-row:1;font-size:15px;font-weight:700;color:var(--ink);}
+  .page-my .od-final{grid-column:2;grid-row:1;justify-self:end;}
+  .page-my .od-final b{font-size:22px;}
+  .page-my .od-final em{font-size:18px;}
+  .page-my .od-earn{grid-column:1/-1;grid-row:2;justify-self:end;font-size:13px;}
+
+  /* 목록으로: 전체폭 */
+  .page-my .od-actions{padding:24px 20px calc(8px + env(safe-area-inset-bottom));}
+  .page-my .od-btn{width:100%;height:52px;font-size:15px;}
 }
 
 /* ===== 교재상세 (모바일) ===== */
