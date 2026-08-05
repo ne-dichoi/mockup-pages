@@ -8,8 +8,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260806j">
-<script src="js/layout.js?v=20260806j" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260807v">
+<script src="js/layout.js?v=20260807v" defer></script>
 <script src="js/search.js" defer></script>
 </head>
 <body class="page-detail">
@@ -64,7 +64,7 @@
         <hr class="dh-hr dh-hr1">
 
         <div class="dh-notice">
-          <div class="links"><span class="revise">개정판 출시 : 2026. 10 예정</span><a href="#"><span class="t">개정판 보기</span> ›</a><a href="#"><span class="t">출간일정 보기</span> ›</a><a href="#"><span class="t">교재정오 신청</span> ›</a></div>
+          <div class="links"><span class="revise">개정판 출시 : 2026. 10 예정</span><a href="#"><span class="t">개정판 보기</span> ›</a><a href="#"><span class="t">출간일정 보기</span> ›</a><a href="#"><span class="t">교재정오</span> ›</a></div>
           <div class="msg"><span class="tag">공지</span><span>READ IT 100 시리즈의 표지 변경으로 ISBN도 변경되었습니다. 구매처 재고 및 생산일자에 따라 표지와 ISBN이 사이트 정보와 다를 수 있으나 교재 내용은 동일합니다. 자세한 내용은 고객센터 &gt; FAQ에서 관련 게시물을 참고해 주시기 바랍니다.</span></div>
         </div>
 
@@ -76,7 +76,7 @@
           <span class="res-chip"><span class="ico"><img src="assets/ic24_answer.svg" alt=""></span>워크시트 <b>(4)</b></span>
         </div>
 
-        <a class="dh-tutor" href="#">교과서 자료는 NE Tutor에서 제공합니다.
+        <a class="dh-tutor" href="#">교강사 자료는 NE Tutor에서 제공됩니다.
           <span class="ico"><img src="assets/ic_next.svg" alt=""></span></a>
 
         <hr class="dh-hr dh-hr2">
@@ -384,6 +384,16 @@
     </div>
   </div>
 
+  <!-- 안내 바텀시트 (포인트/배송비) - 모바일 전용 -->
+  <div class="lex-dim only-mo" id="infoDim"></div>
+  <div class="lex-sheet only-mo" id="infoSheet" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="lex-grab"><span></span></div>
+    <div class="lex-body">
+      <h4 id="infoTitle"></h4>
+      <ul class="info-list" id="infoList"></ul>
+    </div>
+  </div>
+
   <!-- ===== FOOTER ===== -->
   <div id="site-footer"></div>
 
@@ -599,6 +609,32 @@
       function open(){ sheet.classList.add('open'); dim.classList.add('open'); sheet.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
       function close(){ sheet.classList.remove('open'); dim.classList.remove('open'); sheet.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
       badge.addEventListener('click',open);
+      dim.addEventListener('click',close);
+      var grab=sheet.querySelector('.lex-grab'); if(grab) grab.addEventListener('click',close);
+      document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&sheet.classList.contains('open')) close(); });
+    })();
+
+    /* 모바일: 적립/배송비 안내 i 아이콘 탭 → 안내 바텀시트 (PC는 hover 툴팁 유지) */
+    (function(){
+      var sheet=document.getElementById('infoSheet'), dim=document.getElementById('infoDim');
+      var titleEl=document.getElementById('infoTitle'), listEl=document.getElementById('infoList');
+      if(!sheet||!dim) return;
+      function open(pop){
+        var h=pop.querySelector('h5'); titleEl.textContent=h?h.textContent:'';
+        listEl.innerHTML='';
+        [].forEach.call(pop.querySelectorAll('li'),function(li){
+          var n=document.createElement('li'); n.textContent=li.textContent; listEl.appendChild(n);
+        });
+        sheet.classList.add('open'); dim.classList.add('open'); sheet.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
+      }
+      function close(){ sheet.classList.remove('open'); dim.classList.remove('open'); sheet.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+      document.querySelectorAll('.dh-buy .tip').forEach(function(tip){
+        tip.addEventListener('click',function(e){
+          if(window.innerWidth>1023) return; /* PC: hover 툴팁 유지 */
+          e.preventDefault(); e.stopPropagation();
+          var pop=tip.querySelector('.tip-pop'); if(pop) open(pop);
+        });
+      });
       dim.addEventListener('click',close);
       var grab=sheet.querySelector('.lex-grab'); if(grab) grab.addEventListener('click',close);
       document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&sheet.classList.contains('open')) close(); });

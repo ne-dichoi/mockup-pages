@@ -588,6 +588,21 @@ body{ min-height:100vh; display:flex; flex-direction:column; }
 
 **주문상세 상태 버튼 `.od-status-btns`**: 상태 라벨 아래 목록과 동일한 `.oh-btn`(콘텐츠 폭·높이 36) 세로 배치.
 
+**주문결제 (모바일, `.page-order`)** — Figma 1856-3800 / 2170-14061
+- **아코디언 카드 스택**: PC 2단(`.co-main`+`.co-side`)을 모바일에서 `.co-main,.co-side{display:contents}` + `.co-grid{display:flex;align-items:stretch}` 로 평탄화하고 `order`로 Figma 순서 재배열(주문상품→주문자→배송지→할인→결제수단→주문금액→결제수단안내→이용규정). ⚠️ `.co-grid` 기본 `align-items:start`가 flex에선 섹션을 콘텐츠폭으로 만들어 우측 회색이 새므로 **`align-items:stretch` 필수**.
+- 섹션 = 흰 배경, **상하 padding 24 · 사이 1px 회색라인(#e5e5e5)**. 헤더 탭 → 펼침/접기(chevron CSS 보더), 결제수단 안내만 기본 접힘. **기본 폰트 14 / 행간 22**.
+- 섹션 타이틀 **Paperlogy 18px**. 주문자 정보·주문완료 정보 = **읽기전용 라벨/값**(라벨 볼드 #1D1717 / 값 #666, 라벨열 88px). 주문상품 카드: 썸네일 105×105(책 56×73), 우하단 `수량 2개 ┃ 27,000원`(금액 Paperlogy 18 빨강, 구분선 `::before` 1×14 가로·세로 정중앙).
+- 결제수단 3열 박스: 미선택=회색테두리·글자 #666 기본굵기, 선택=1px 진한 테두리·글자 볼드 #1D1717, 폰트 14, 상하 padding 24.
+- 하단 결제 CTA `.order-cta`(빨강 안내문+버튼): 약관 체크 전 `.is-disabled`(회색) → 체크 시 빨강, 푸터 20px 위 도킹. 안내문 위/버튼 아래 여백 24.
+
+**모바일 바텀시트(렉사일 틀 재사용)**: 중앙 모달(`.terms-modal`·`.addr-modal`)을 `@media`에서 **아래→위 슬라이드 시트**로 전환 — `translateY(100%)→0`, 그래버 40×4 #ccc, dim rgba(0,0,0,.4), 라운드 20 0 0, **z-index 1100(하단 CTA 900 위)**, X버튼 숨김, 그랩/딤/ESC 닫힘 + `body overflow:hidden`, 스크롤바 숨김. 내용은 PC와 동일. 최근배송지 카드=흰 배경·1px 회색테두리·pad24, 이름14 볼드/주소14 #a9a9a9.
+
+**주문완료 (모바일, `.page-done`)** — Figma 2182-14875
+- 성공 히어로(빨강 원 체크 88 + Paperlogy 22 타이틀 + #666 안내 + 주문번호 회색 pill), 결제/배송 = 라벨/값 리스트(PC 회색 테이블→평문). **하단 액션버튼 미노출**.
+- **유의사항 `.oc-notice` = 회색 전체 박스**(#F3F3F3, pad 40/20), 타이틀 14 볼드·본문 12 #666·간격 16. `cowrap` 하단 패딩 0(박스가 푸터에 붙음), 위 섹션 border 제거.
+
+**모바일 서브헤더 화살표·드롭다운 제거 `.loc-nomenu`**: 카테고리 뎁스 없는 simple 페이지(장바구니·주문결제·주문완료 등)는 layout.js가 `.loc-nomenu` 부여 → `.m-loc-caret{display:none}` + `.m-loc-btn{pointer-events:none}`. cat 타입(교재상세·리스트)은 화살표/드롭다운 유지.
+
 **버튼 내부 패딩(폰트 기준, 4단위 예외)**: 18px→좌우24/상하16, 16px→좌우14/상하16, 14px→좌우24/상하12, 12px→좌우12/상하4. 행간 14→22 · 12→18 · 16→22. (입력창 옆 버튼은 입력창 높이에 맞춤)
 
 > 상세 Figma 실측값·구현 노트는 프로젝트 메모리 `ne-books-mobile.md` 참조.

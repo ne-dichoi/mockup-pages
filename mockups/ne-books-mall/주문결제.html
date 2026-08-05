@@ -8,8 +8,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260806j">
-<script src="js/layout.js?v=20260806j" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260807v">
+<script src="js/layout.js?v=20260807v" defer></script>
 <script src="js/search.js" defer></script>
 </head>
 <body class="page-order">
@@ -29,37 +29,30 @@
         <div class="co-main">
 
           <!-- 주문 상품 -->
-          <section class="co-sec">
-            <h2>주문 상품</h2>
+          <section class="co-sec s-items">
+            <h2>주문 상품 <span class="oa-count only-mo">총 2건</span></h2>
             <div class="oi-row">
               <a class="oi-thumb" href="교재상세.html"><img src="assets/best_1.png" alt=""></a>
               <a class="oi-name" href="교재상세.html">Phonics Code 1 : Student Book</a>
               <div class="oi-price"><span class="was">15,000원</span><span class="now">13,500원</span><span class="note">(10%할인+150P 적립)</span></div>
-              <div class="oi-qty">수량 2개</div>
+              <div class="oi-qty"><span class="oq-lb">수량 </span>2개</div>
               <div class="oi-sum"><span class="amt">27,000원</span><span class="pt">(300P 적립예정)</span></div>
             </div>
           </section>
 
-          <!-- 주문자 정보 -->
-          <section class="co-sec">
+          <!-- 주문자 정보 (회원 데이터 · 읽기전용) -->
+          <section class="co-sec s-orderer">
             <h2>주문자 정보</h2>
-            <div class="fgrid fg3">
-              <label class="fld"><span class="lbl">이름</span><input class="field" placeholder="이름을 입력해 주세요."></label>
-              <label class="fld"><span class="lbl">휴대폰</span><input class="field" placeholder="'-' 없이 숫자만 입력"></label>
-              <label class="fld"><span class="lbl">이메일</span><input class="field" placeholder="example@neungyule.com"></label>
-            </div>
-            <div class="addr">
-              <div class="addr-top">
-                <label class="fld zip"><span class="lbl">주소</span><input class="field" placeholder="우편번호"></label>
-                <button type="button" class="btn-line">우편번호 검색</button>
-              </div>
-              <input class="field" placeholder="기본 주소를 입력해 주세요.">
-              <input class="field" placeholder="상세 주소를 입력해 주세요.">
-            </div>
+            <dl class="oi-userinfo">
+              <div><dt>이름</dt><dd>홍길동</dd></div>
+              <div><dt>휴대폰</dt><dd>010-1234-5678</dd></div>
+              <div><dt>이메일</dt><dd>user@nebooks.com</dd></div>
+              <div><dt>주소</dt><dd>(03925) 서울시 마포구 월드컵북로 396(상암동) 누리꿈스퀘어 비즈니스타워 10층</dd></div>
+            </dl>
           </section>
 
           <!-- 배송지 정보 -->
-          <section class="co-sec">
+          <section class="co-sec s-ship">
             <h2>배송지 정보</h2>
             <div class="ship-tabs"><a class="on">회원정보와 동일</a><a>새로입력</a><a>최근배송지</a></div>
             <div class="fgrid fg2">
@@ -78,8 +71,9 @@
           </section>
 
           <!-- 할인 혜택 -->
-          <section class="co-sec">
+          <section class="co-sec s-point">
             <h2>할인 혜택</h2>
+            <p class="point-have only-mo">보유 포인트 <b>2,400P</b></p>
             <div class="point-row">
               <label class="fld"><span class="lbl">포인트 사용 (보유 3,200 P)</span><input class="field" value="0"></label>
               <button type="button" class="btn-line">전액 사용</button>
@@ -88,37 +82,51 @@
           </section>
 
           <!-- 결제수단 -->
-          <section class="co-sec co-sec-nb">
+          <section class="co-sec s-pay">
             <h2>결제수단</h2>
             <div class="pay-methods">
               <label class="pm"><input type="radio" name="pay" checked><b>신용카드</b><span>간편/일반 카드 결제</span></label>
               <label class="pm"><input type="radio" name="pay"><b>무통장입금</b><span>가상계좌 발급</span></label>
-              <label class="pm"><input type="radio" name="pay"><b>실시간 계좌이체</b><span>계좌 즉시 이체</span></label>
+              <label class="pm"><input type="radio" name="pay"><b><span class="rtc-full">실시간 </span>계좌이체</b><span>계좌 즉시 이체</span></label>
             </div>
-            <ul class="pay-notes">
-              <li>신용카드로 30만원 이상 결제 시 은행/신용카드/보험용 공인인증서가 필요합니다.</li>
-              <li>계좌이체 및 무통장 입금 등 현금 결제 건의 경우, 현금영수증이 자동으로 발급됩니다.
+          </section>
+
+          <!-- 결제수단 안내 -->
+          <section class="co-sec co-sec-nb s-payguide">
+            <h2>결제수단 안내</h2>
+            <ol class="pay-notes">
+              <li><b>신용카드</b>
+                <ul><li>신용카드로 30만원 이상 결제 시 은행/신용카드/보험용 공인인증서가 필요합니다.</li></ul>
+              </li>
+              <li><b>실시간 계좌이체</b>
+                <ul><li>계좌이체 휴대폰 인증은 본인계좌 인증 방식으로 결제통장과 휴대폰 소유자가 동일해야 합니다.</li></ul>
+              </li>
+              <li><b>무통장입금</b>
+                <ul><li>무통장 입금의 경우, 입금 예정일이 지나면 결제취소 되오니 입금기한을 반드시 확인해 주시기 바랍니다.</li></ul>
+              </li>
+              <li><b>현금영수증</b>
                 <ul>
+                  <li>계좌이체 및 무통장 입금 등 현금 결제 건의 경우, 현금영수증이 자동으로 발급됩니다.</li>
                   <li>결제 진행 시 결제 창 하단에 현금영수증 발행 정보 입력란에 해당 정보를 입력 부탁 드립니다.</li>
                   <li>현금영수증 발행을 선택하지 않았을 경우, 자동으로 국세청지정번호 (010-000-1234)로 발행됩니다.</li>
                 </ul>
               </li>
-              <li>계좌이체 휴대폰 인증은 본인계좌 인증 방식으로 결제 통장과 휴대폰 소유자가 동일해야 합니다.</li>
-              <li>무통장 입금의 경우, 입금 예정일이 지나면 결제취소 되오니 입금기한을 반드시 확인해 주시기 바랍니다.</li>
-            </ul>
+            </ol>
           </section>
 
         </div>
 
         <!-- RIGHT (summary) -->
         <aside class="co-side order-side">
-          <h3>주문금액</h3>
-          <div class="pay-line"><span>총 상품금액</span><span class="v"><b>30,000</b>원</span></div>
-          <div class="pay-line"><span>상품 할인금액</span><span class="v"><b>-3,000</b>원</span></div>
-          <div class="pay-line"><span>포인트 사용</span><span class="v"><b>0</b>원</span></div>
-          <div class="pay-line"><span>배송비</span><span class="v"><b>0</b>원</span></div>
-          <div class="pay-total"><span class="lb">총 결제금액</span><span class="v"><b>27,000</b>원</span></div>
-          <div class="pay-earn"><span>적립 예정</span><span class="e"><b>+ 300</b>P</span></div>
+          <div class="order-amount">
+            <h3>주문금액</h3>
+            <div class="pay-line"><span>총 상품금액</span><span class="v"><b>30,000</b>원</span></div>
+            <div class="pay-line"><span>상품 할인금액</span><span class="v"><b>-3,000</b>원</span></div>
+            <div class="pay-line"><span>포인트 사용</span><span class="v"><b>0</b>원</span></div>
+            <div class="pay-line"><span>배송비</span><span class="v"><b>0</b>원</span></div>
+            <div class="pay-total"><span class="lb">총 결제금액</span><span class="v"><b>27,000</b>원</span></div>
+            <div class="pay-earn"><span>적립 예정</span><span class="e"><b>+ 300</b>P</span></div>
+          </div>
           <div class="agree-box">
             <p class="agree-title" id="termsOpen">이용규정 및 환불 안내</p>
             <label class="agree-chk"><input type="checkbox" class="chk"><span>주문 할 상품의 상품명, 가격, 배송정보 등을 최종 확인하였으며, 구매에 동의합니다. (전자상거래법 제8조 제2항)</span></label>
@@ -131,6 +139,12 @@
     </div>
   </section>
 
+  <!-- ===== 모바일 하단 결제 CTA (푸터 도킹) ===== -->
+  <div class="order-cta only-mo">
+    <p class="order-cta-hint">* 약관 동의 후 결제 가능합니다.</p>
+    <a class="order-cta-btn is-disabled" href="주문완료.html"><b>27,000원</b> <span>결제하기</span></a>
+  </div>
+
   <!-- ===== FOOTER ===== -->
   <div id="site-footer"></div>
 
@@ -138,6 +152,7 @@
   <div class="terms-modal" id="termsModal" hidden>
     <div class="terms-modal-dim"></div>
     <div class="terms-modal-box" role="dialog" aria-modal="true" aria-label="이용규정 및 환불 안내">
+      <div class="terms-grab" aria-hidden="true"><span></span></div>
       <div class="terms-modal-head">
         <h3>이용규정 및 환불 안내</h3>
         <button type="button" class="terms-modal-x" aria-label="닫기"></button>
@@ -182,9 +197,10 @@
   <!-- ===== 최근 배송지 레이어 팝업 ===== -->
   <div class="addr-modal" id="addrModal" hidden>
     <div class="addr-modal-dim"></div>
-    <div class="addr-modal-box" role="dialog" aria-modal="true" aria-label="최근 배송지">
+    <div class="addr-modal-box" role="dialog" aria-modal="true" aria-label="최근 배송지 선택">
+      <div class="addr-grab" aria-hidden="true"><span></span></div>
       <div class="addr-modal-head">
-        <h3>최근 배송지</h3>
+        <h3>최근 배송지 선택</h3>
         <button type="button" class="addr-modal-x" aria-label="닫기"></button>
       </div>
       <ul class="addr-list">
@@ -192,7 +208,7 @@
           <div class="addr-info">
             <p class="ai-name">홍길동</p>
             <p class="ai-phone">010-1234-5678</p>
-            <p class="ai-addr">(03925) 서울특별시 마포구 월드컵북로 396 누리꿈스퀘어 비즈니스타워 10층</p>
+            <p class="ai-addr">(06234) 서울특별시 강남구 테헤란로 OO빌딩 5층</p>
           </div>
           <button type="button" class="btn btn-outline addr-pick">선택</button>
         </li>
@@ -200,7 +216,23 @@
           <div class="addr-info">
             <p class="ai-name">홍길동</p>
             <p class="ai-phone">010-9876-5432</p>
-            <p class="ai-addr">(06236) 서울특별시 강남구 테헤란로 152 강남파이낸스센터 3층</p>
+            <p class="ai-addr">(06234) 서울특별시 강남구 테헤란로 OO빌딩 5층</p>
+          </div>
+          <button type="button" class="btn btn-outline addr-pick">선택</button>
+        </li>
+        <li class="addr-item">
+          <div class="addr-info">
+            <p class="ai-name">홍길동</p>
+            <p class="ai-phone">010-2222-3333</p>
+            <p class="ai-addr">(06234) 서울특별시 강남구 테헤란로 OO빌딩 5층</p>
+          </div>
+          <button type="button" class="btn btn-outline addr-pick">선택</button>
+        </li>
+        <li class="addr-item">
+          <div class="addr-info">
+            <p class="ai-name">홍길동</p>
+            <p class="ai-phone">010-4444-5555</p>
+            <p class="ai-addr">(06234) 서울특별시 강남구 테헤란로 OO빌딩 5층</p>
           </div>
           <button type="button" class="btn btn-outline addr-pick">선택</button>
         </li>
@@ -288,8 +320,8 @@
   (function(){
     var tabs=[].slice.call(document.querySelectorAll('.ship-tabs a'));
     var modal=document.getElementById('addrModal'); if(!modal) return;
-    function openM(){ modal.hidden=false; requestAnimationFrame(function(){ modal.classList.add('open'); }); }
-    function closeM(){ modal.classList.remove('open'); setTimeout(function(){ modal.hidden=true; },200); }
+    function openM(){ modal.hidden=false; requestAnimationFrame(function(){ modal.classList.add('open'); }); document.body.style.overflow='hidden'; }
+    function closeM(){ modal.classList.remove('open'); setTimeout(function(){ modal.hidden=true; },300); document.body.style.overflow=''; }
     tabs.forEach(function(t){
       t.addEventListener('click',function(){
         tabs.forEach(function(x){ x.classList.remove('on'); });
@@ -299,6 +331,7 @@
     });
     modal.querySelector('.addr-modal-dim').addEventListener('click',closeM);
     modal.querySelector('.addr-modal-x').addEventListener('click',closeM);
+    var agrab=modal.querySelector('.addr-grab'); if(agrab) agrab.addEventListener('click',closeM); /* 모바일 바텀시트: 그랩 탭 → 닫기 */
     document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!modal.hidden) closeM(); });
     // 배송지 정보 섹션 필드 채우기
     var shipSec=[].slice.call(document.querySelectorAll('.co-sec')).filter(function(s){
@@ -336,12 +369,55 @@
     var open=document.getElementById('termsOpen');
     var modal=document.getElementById('termsModal');
     if(!open||!modal) return;
-    function openM(){ modal.hidden=false; requestAnimationFrame(function(){ modal.classList.add('open'); }); }
-    function closeM(){ modal.classList.remove('open'); setTimeout(function(){ modal.hidden=true; },200); }
+    function openM(){ modal.hidden=false; requestAnimationFrame(function(){ modal.classList.add('open'); }); document.body.style.overflow='hidden'; }
+    function closeM(){ modal.classList.remove('open'); setTimeout(function(){ modal.hidden=true; },300); document.body.style.overflow=''; }
     open.addEventListener('click',openM);
     modal.querySelector('.terms-modal-dim').addEventListener('click',closeM);
     modal.querySelector('.terms-modal-x').addEventListener('click',closeM);
+    var grab=modal.querySelector('.terms-grab'); if(grab) grab.addEventListener('click',closeM); /* 모바일 바텀시트: 그랩 핸들 탭 → 닫기 */
     document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!modal.hidden) closeM(); });
+  })();
+
+  /* 모바일: 섹션 아코디언 (헤더 탭 → 펼치기/접기). PC 에서는 클릭 무시 */
+  (function(){
+    var secs=[].slice.call(document.querySelectorAll('.co-sec, .order-amount'));
+    secs.forEach(function(sec){
+      var head=sec.querySelector('h2')||sec.querySelector('h3'); if(!head) return;
+      var body=document.createElement('div'); body.className='acc-body';
+      var n=head.nextSibling;
+      while(n){ var next=n.nextSibling; body.appendChild(n); n=next; }
+      sec.appendChild(body);
+      sec.classList.add('acc');
+      if(!sec.classList.contains('s-payguide')) sec.classList.add('open'); /* 결제수단 안내만 기본 접힘 */
+      head.addEventListener('click',function(){
+        if(window.innerWidth>1023) return; /* PC: 아코디언 미적용 */
+        sec.classList.toggle('open');
+      });
+    });
+  })();
+
+  /* 모바일 하단 결제 CTA: 약관 동의 게이팅 + 푸터 도킹 (교재상세 pdp-bar/장바구니 cart-cta 와 동일) */
+  (function(){
+    var cta=document.querySelector('.order-cta'); if(!cta) return;
+    var btn=cta.querySelector('.order-cta-btn');
+    var chk=document.querySelector('.agree-chk .chk');
+    if(chk&&btn){
+      function sync(){ btn.classList.toggle('is-disabled', !chk.checked); }
+      chk.addEventListener('change',sync); sync();
+      btn.addEventListener('click',function(e){ if(!chk.checked){ e.preventDefault(); chk.focus(); } });
+    }
+    function dock(){
+      var footer=document.querySelector('#site-footer');
+      if(!footer){ cta.style.transform=''; return; }
+      var GAP=20, ft=footer.getBoundingClientRect().top;
+      var t=(window.innerHeight-ft)+GAP;
+      cta.style.transform = t>0 ? 'translateY('+(-t)+'px)' : '';
+      cta.classList.toggle('docked', t>0);
+    }
+    window.addEventListener('scroll',dock,{passive:true});
+    window.addEventListener('resize',dock);
+    window.addEventListener('load',dock);
+    dock();
   })();
   </script>
 </body>

@@ -20,7 +20,6 @@
               <a href="마이페이지.html#home">홈</a>
               <a href="마이페이지.html#orders">주문내역</a>
               <a href="마이페이지.html#points">포인트</a>
-              <a href="고객센터.html#errata">교재 오류정정</a>
               <a href="마이페이지.html#wish">찜</a>
               <a href="마이페이지.html#qna">문의/답변</a>
               <a href="마이페이지.html#review">후기</a>
@@ -242,9 +241,9 @@
     '리스트_교재구매.html':{type:'cat', d1:'ELT', d2:'Coursebook', tag:'NE Build & Grow English Website'},
     '리스트_학습자료.html':{type:'cat', d1:'ELT', d2:'Coursebook', tag:'NE Build & Grow English Website'},
     '교재상세.html':{type:'cat', d1:'ELT', d2:'Coursebook'},
-    '장바구니.html':{type:'simple', title:'장바구니', crumb:['장바구니']},
-    '주문결제.html':{type:'simple', title:'주문 / 결제', crumb:['주문 / 결제']},
-    '주문완료.html':{type:'simple', title:'주문 / 결제', crumb:['주문 / 결제']},
+    '장바구니.html':{type:'simple', title:'장바구니', crumb:['장바구니'], noMenu:true},
+    '주문결제.html':{type:'simple', title:'주문 / 결제', crumb:['주문 / 결제'], noMenu:true},
+    '주문완료.html':{type:'simple', title:'주문 / 결제', crumb:['주문 / 결제'], noMenu:true},
     '마이페이지.html':{type:'simple', title:'마이페이지', crumb:['마이페이지','홈']},
     '주문상세.html':{type:'simple', title:'주문내역', crumb:['마이페이지','주문내역']},
     '문의답변상세.html':{type:'simple', title:'문의/답변', crumb:['마이페이지','문의/답변']},
@@ -275,7 +274,8 @@
     /* 모바일 서브 헤더(로케이션형): 홈 + 카테고리명 */
     var lh=document.querySelector('.lheader')||document.querySelector('.header');
     var mname=lh&&lh.querySelector('.m-loc-name');
-    if(mname){ mname.textContent=(p.type==='cat'?p.d2:p.title); lh.classList.add('has-loc'); }
+    if(mname){ mname.textContent=(p.type==='cat'?p.d2:p.title); lh.classList.add('has-loc');
+      if(p.noMenu) lh.classList.add('loc-nomenu'); /* 결제 플로우(장바구니·주문결제·주문완료): 화살표·펼침메뉴 제거 */ }
     var wrap=document.getElementById('bcCat');
     if(wrap){
       var btn=wrap.querySelector('.cur');

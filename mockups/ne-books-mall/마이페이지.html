@@ -8,8 +8,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260806j">
-<script src="js/layout.js?v=20260806j" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260807v">
+<script src="js/layout.js?v=20260807v" defer></script>
 <script src="js/search.js" defer></script>
 </head>
 <body class="page-my">
@@ -59,7 +59,7 @@
             </div>
             <div class="mh-stat">
               <span class="ic"><img src="assets/mypage_review.svg" alt=""></span>
-              <span class="lb">교재 후기</span><b>0</b>
+              <span class="lb">후기</span><b>0</b>
             </div>
           </div>
         </div>
@@ -100,7 +100,7 @@
 
         <!-- 찜한 교재 -->
         <section class="my-sec">
-          <div class="sec-head"><h3 class="my-sec-t">찜한 교재</h3><a class="mc-more" href="#wish" data-goto="wish">전체보기 ›</a></div>
+          <div class="sec-head"><h3 class="my-sec-t">찜한 상품</h3><a class="mc-more" href="#wish" data-goto="wish">전체보기 ›</a></div>
           <div class="mb-grid">
             <a class="mb-card" href="교재상세.html"><span class="mb-cover"><img src="assets/best_1.png" alt=""><button type="button" class="mb-cart" aria-label="장바구니"></button></span><span class="mb-info"><span class="mb-head"><span class="mb-badge">Phonics</span><span class="mb-title">Bricks Reading 150 · L1</span></span><span class="mb-price"><b>13,500원</b><s>15,000원</s></span></span></a>
             <a class="mb-card" href="교재상세.html"><span class="mb-cover"><img src="assets/best_2.png" alt=""><button type="button" class="mb-cart" aria-label="장바구니"></button></span><span class="mb-info"><span class="mb-head"><span class="mb-badge">Phonics</span><span class="mb-title">Bricks Reading 150 · L1</span></span><span class="mb-price"><b>13,500원</b><s>15,000원</s></span></span></a>
@@ -111,7 +111,7 @@
 
         <!-- 최근 본 교재 -->
         <section class="my-sec">
-          <h3 class="my-sec-t">최근 본 교재</h3>
+          <h3 class="my-sec-t">최근 본 상품</h3>
           <div class="mb-grid">
             <a class="mb-card" href="교재상세.html"><span class="mb-cover"><img src="assets/best_2.png" alt=""><button type="button" class="mb-cart" aria-label="장바구니"></button></span><span class="mb-info"><span class="mb-head"><span class="mb-badge">Phonics</span><span class="mb-title">Bricks Reading 150 · L1</span></span><span class="mb-price"><b>13,500원</b><s>15,000원</s></span></span></a>
             <a class="mb-card" href="교재상세.html"><span class="mb-cover"><img src="assets/best_4.png" alt=""><button type="button" class="mb-cart" aria-label="장바구니"></button></span><span class="mb-info"><span class="mb-head"><span class="mb-badge">Phonics</span><span class="mb-title">Bricks Reading 150 · L1</span></span><span class="mb-price"><b>13,500원</b><s>15,000원</s></span></span></a>
@@ -171,18 +171,6 @@
           </div>
 
           <div class="oh-row">
-            <a class="oh-thumb" href="주문상세.html?st=cancel"><img src="assets/best_1.png" alt=""></a>
-            <div class="oh-mid">
-              <div class="oh-date-row"><span class="oh-odate">2026-06-18</span><span class="oh-badge cancel">결제취소</span></div>
-              <a class="oh-name" href="주문상세.html?st=cancel">Phonics Code 1 : Student Book 외 2건</a>
-              <span class="oh-ono">주문번호 : NB20260618-000123</span>
-            </div>
-            <div class="oh-right">
-              <div class="oh-price-row"><span class="oh-price">27,000원</span><a class="oh-receipt" href="#">온라인 영수증</a></div>
-            </div>
-          </div>
-
-          <div class="oh-row">
             <a class="oh-thumb" href="주문상세.html?st=done"><img src="assets/best_1.png" alt=""></a>
             <div class="oh-mid">
               <div class="oh-date-row"><span class="oh-odate">2026-06-18</span><span class="oh-badge done">배송완료</span></div>
@@ -217,7 +205,46 @@
             </div>
             <div class="oh-right">
               <div class="oh-price-row"><span class="oh-price">27,000원</span></div>
-              <div class="oh-btns"><a class="oh-btn dark" href="#">배송조회</a><a class="oh-btn gray" href="#">반품/환불</a></div>
+              <!-- 구매확정: 배송조회·반품/환불 버튼 없음 -->
+            </div>
+          </div>
+
+          <!-- 입금취소 -->
+          <div class="oh-row">
+            <a class="oh-thumb" href="주문상세.html?st=wcancel"><img src="assets/best_1.png" alt=""></a>
+            <div class="oh-mid">
+              <div class="oh-date-row"><span class="oh-odate">2026-06-18</span><span class="oh-badge cancel">입금취소</span></div>
+              <a class="oh-name" href="주문상세.html?st=wcancel">Phonics Code 1 : Student Book 외 2건</a>
+              <span class="oh-ono">주문번호 : NB20260618-000123</span>
+            </div>
+            <div class="oh-right">
+              <div class="oh-price-row"><span class="oh-price">27,000원</span><a class="oh-receipt" href="#">온라인 영수증</a></div>
+            </div>
+          </div>
+
+          <!-- 결제취소 -->
+          <div class="oh-row">
+            <a class="oh-thumb" href="주문상세.html?st=cancel"><img src="assets/best_1.png" alt=""></a>
+            <div class="oh-mid">
+              <div class="oh-date-row"><span class="oh-odate">2026-06-18</span><span class="oh-badge cancel">결제취소</span></div>
+              <a class="oh-name" href="주문상세.html?st=cancel">Phonics Code 1 : Student Book 외 2건</a>
+              <span class="oh-ono">주문번호 : NB20260618-000123</span>
+            </div>
+            <div class="oh-right">
+              <div class="oh-price-row"><span class="oh-price">27,000원</span><a class="oh-receipt" href="#">온라인 영수증</a></div>
+            </div>
+          </div>
+
+          <!-- 환불완료 -->
+          <div class="oh-row">
+            <a class="oh-thumb" href="주문상세.html?st=refund"><img src="assets/best_1.png" alt=""></a>
+            <div class="oh-mid">
+              <div class="oh-date-row"><span class="oh-odate">2026-06-18</span><span class="oh-badge cancel">환불완료</span></div>
+              <a class="oh-name" href="주문상세.html?st=refund">Phonics Code 1 : Student Book 외 2건</a>
+              <span class="oh-ono">주문번호 : NB20260618-000123</span>
+            </div>
+            <div class="oh-right">
+              <div class="oh-price-row"><span class="oh-price">27,000원</span><a class="oh-receipt" href="#">온라인 영수증</a></div>
             </div>
           </div>
         </div>

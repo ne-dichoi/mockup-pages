@@ -8,8 +8,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260806j">
-<script src="js/layout.js?v=20260806j" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260807v">
+<script src="js/layout.js?v=20260807v" defer></script>
 <script src="js/search.js" defer></script>
 </head>
 <body class="page-my">
@@ -402,9 +402,9 @@
           <div class="iq-row">
             <div class="iq-label">상담분류 <span class="iq-req">*</span></div>
             <div class="iq-field">
-              <div class="oh-sel">
+              <div class="oh-sel" id="iqCat">
                 <button type="button" class="oh-sel-cur"><span class="oh-sel-lb">문의분류를 선택해 주세요</span><span class="ic"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#1d1717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
-                <div class="oh-sel-menu" hidden><a class="on" data-ph>문의분류를 선택해 주세요</a><a>배송문의</a><a>결제/환불</a><a>회원정보</a><a>교재문의</a><a>기타</a></div>
+                <div class="oh-sel-menu" hidden><a class="on" data-ph>문의분류를 선택해 주세요</a><a>배송문의</a><a>취소/환불</a><a>회원정보</a><a>교재문의</a><a>기타</a></div>
               </div>
             </div>
           </div>
@@ -440,7 +440,12 @@
                 <button type="button" class="oh-sel-cur"><span class="oh-sel-lb">주문번호 선택 (선택)</span><span class="ic"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#1d1717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
                 <div class="oh-sel-menu" hidden><a class="on" data-ph>주문번호 선택 (선택)</a><a>NB20260608-000112 · 2026.06.08 주문</a><a>NB20260525-000041 · 2026.05.25 주문</a><a>NB20260511-000027 · 2026.05.11 주문</a></div>
               </div>
-              <!-- 부분환불 상품·권수 선택 (주문번호 선택 시 노출) -->
+              <!-- 취소/환불 상담분류 선택 시에만 노출: 문의 상품 선택 버튼 + 안내 -->
+              <div class="iq-order-pick" id="iqOrderPick" hidden>
+                <button type="button" class="btn-line" id="iqPickBtn">문의 상품 선택</button>
+                <span class="iq-pick-hint">* 원활한 상담을 위한 상품 선택으로 본 페이지에서 바로 반품/환불처리가 되지 않습니다.</span>
+              </div>
+              <!-- 부분환불 상품·권수 선택 (문의 상품 선택 버튼 클릭 시 노출) -->
               <div class="pr-refund" id="prRefund" hidden>
                 <div class="pr-head"><span class="pr-head-t">상품 · 수량 부분 선택</span><span class="pr-line"></span><span class="pr-head-hint">구매하신 상품 중 문의 요청할 상품을 선택하세요</span></div>
                 <div class="pr-listbox">
@@ -731,13 +736,18 @@
       row.querySelector('.pr-inc').addEventListener('click',function(){ if(!row.classList.contains('on')) return; var q=parseInt(qty.textContent,10)||0; if(q<max){ qty.textContent=q+1; total(); } });
     });
     total();
-    /* 주문번호 셀렉트에서 실제 주문 선택 시 패널 노출 (플레이스홀더면 숨김) */
-    var orderSel=document.getElementById('orderSel');
-    if(orderSel){
-      [].forEach.call(orderSel.querySelectorAll('.oh-sel-menu a'),function(a){
-        a.addEventListener('click',function(){ panel.hidden=a.hasAttribute('data-ph'); });
-      });
+
+    /* 상담분류=취소/환불 선택 시에만 '문의 상품 선택' 버튼+안내 노출 → 버튼 클릭 시 상품 리스트 표시 */
+    var pick=document.getElementById('iqOrderPick'), pickBtn=document.getElementById('iqPickBtn');
+    var cat=document.getElementById('iqCat');
+    function syncPick(){
+      var lb=cat&&cat.querySelector('.oh-sel-lb'); var isRefund=lb&&lb.textContent.trim()==='취소/환불';
+      if(pick) pick.hidden=!isRefund;
+      if(!isRefund){ panel.hidden=true; } /* 분류가 바뀌면 리스트도 숨김 */
     }
+    if(cat){ [].forEach.call(cat.querySelectorAll('.oh-sel-menu a'),function(a){ a.addEventListener('click',syncPick); }); }
+    if(pickBtn){ pickBtn.addEventListener('click',function(){ panel.hidden=false; }); }
+    syncPick();
   })();
 
   /* 검색 인풋 지우기(×) */
