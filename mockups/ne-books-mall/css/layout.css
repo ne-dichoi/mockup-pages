@@ -2447,17 +2447,19 @@ a{color:inherit;text-decoration:none;}
   .page-my #tab-orders .oh-list{padding:0;}
   .page-my #tab-orders .oh-row{display:grid;grid-template-columns:auto 1fr auto;
     grid-template-areas:"date ono chev" "name name name" "price price price" "foot foot foot";
-    padding:40px 16px;border:0;border-top:1px solid var(--line);column-gap:4px;position:relative;}
-  .page-my #tab-orders .oh-row:first-child{border-top:0;padding-top:16px;}
+    padding:40px 16px;border:0;column-gap:4px;position:relative;
+    background:linear-gradient(to right, transparent 20px, var(--line) 20px, var(--line) calc(100% - 20px), transparent calc(100% - 20px)) top left / 100% 1px no-repeat;}
+  .page-my #tab-orders .oh-row:first-child{padding-top:16px;background:none;}
   /* 컨테이너 평탄화(자식을 grid item 으로) */
   .page-my #tab-orders .oh-mid,.page-my #tab-orders .oh-right,.page-my #tab-orders .oh-date-row{display:contents;}
   .page-my #tab-orders .oh-thumb{display:none;}
-  /* 회색 상단바(row1 배경) + chevron */
-  .page-my #tab-orders .oh-row::before{content:"";grid-column:1/-1;grid-row:1;background:var(--gray-bg);border-radius:8px;}
-  .page-my #tab-orders .oh-row::after{content:"";grid-area:chev;align-self:center;justify-self:center;margin:0 14px 0 4px;
+  /* 날짜·주문번호 회색 박스(절대위치, row1 감쌈) + chevron */
+  .page-my #tab-orders .oh-row::before{content:"";position:absolute;left:16px;right:16px;top:40px;height:46px;background:var(--gray-bg);border-radius:8px;z-index:0;}
+  .page-my #tab-orders .oh-row:first-child::before{top:16px;}
+  .page-my #tab-orders .oh-row::after{content:"";grid-area:chev;align-self:center;justify-self:center;margin:0 14px 0 4px;position:relative;z-index:1;
     width:8px;height:8px;border-right:2px solid #666;border-top:2px solid #666;transform:rotate(45deg);}
-  .page-my #tab-orders .oh-odate{grid-area:date;align-self:center;position:relative;padding:12px 6px 12px 14px;font-size:14px;font-weight:700;color:var(--ink);white-space:nowrap;}
-  .page-my #tab-orders .oh-ono{grid-area:ono;align-self:center;position:relative;font-size:12px;color:var(--weak);white-space:nowrap;}
+  .page-my #tab-orders .oh-odate{grid-area:date;align-self:center;position:relative;z-index:1;padding:12px 6px 12px 14px;font-size:14px;font-weight:700;color:var(--ink);white-space:nowrap;}
+  .page-my #tab-orders .oh-ono{grid-area:ono;align-self:center;position:relative;z-index:1;font-size:12px;color:var(--weak);white-space:nowrap;}
   .page-my #tab-orders .oh-name{grid-area:name;padding:16px 4px 0;font-size:14px;font-weight:600;line-height:1.4;}
   .page-my #tab-orders .oh-price-row{grid-area:price;justify-self:start;align-items:baseline;gap:8px;padding:6px 4px 0;}
   .page-my #tab-orders .oh-price{font-size:18px;font-weight:800;}
