@@ -237,6 +237,8 @@
   var CATEGORIES={
     'ELT':['Coursebook','Phonics','Readers','Reading','Listening','Speaking','Writing','Grammar','Vocabulary']
   };
+  /* 마이페이지 계열 모바일 펼침메뉴(캐럿 드롭다운) 항목 */
+  var MY_MENU=[['홈','마이페이지.html'],['주문내역','마이페이지.html#orders'],['포인트','마이페이지.html#points'],['찜','마이페이지.html#wish'],['문의/답변','마이페이지.html#qna'],['교재 후기','마이페이지.html#review'],['이벤트/세미나','마이페이지.html#event']];
   var PAGES={
     '리스트_교재구매.html':{type:'cat', d1:'ELT', d2:'Coursebook', tag:'NE Build & Grow English Website'},
     '리스트_학습자료.html':{type:'cat', d1:'ELT', d2:'Coursebook', tag:'NE Build & Grow English Website'},
@@ -244,9 +246,9 @@
     '장바구니.html':{type:'simple', title:'장바구니', crumb:['장바구니'], noMenu:true},
     '주문결제.html':{type:'simple', title:'주문 / 결제', crumb:['주문 / 결제'], noMenu:true},
     '주문완료.html':{type:'simple', title:'주문 / 결제', crumb:['주문 / 결제'], noMenu:true},
-    '마이페이지.html':{type:'simple', title:'마이페이지', crumb:['마이페이지','홈']},
-    '주문상세.html':{type:'simple', title:'주문내역', crumb:['마이페이지','주문내역']},
-    '문의답변상세.html':{type:'simple', title:'문의/답변', crumb:['마이페이지','문의/답변']},
+    '마이페이지.html':{type:'simple', title:'마이페이지', crumb:['마이페이지','홈'], menu:MY_MENU},
+    '주문상세.html':{type:'simple', title:'주문내역', crumb:['마이페이지','주문내역'], menu:MY_MENU},
+    '문의답변상세.html':{type:'simple', title:'문의/답변', crumb:['마이페이지','문의/답변'], menu:MY_MENU},
     '고객센터.html':{type:'simple', title:'공지사항', crumb:['고객센터','공지사항']},
     '공지사항상세.html':{type:'simple', title:'공지사항', crumb:['고객센터','공지사항']},
     '오류정정상세.html':{type:'simple', title:'교재 오류정정', crumb:['고객센터','교재 오류정정']},
@@ -276,6 +278,11 @@
     var mname=lh&&lh.querySelector('.m-loc-name');
     if(mname){ mname.textContent=(p.type==='cat'?p.d2:p.title); lh.classList.add('has-loc');
       if(p.noMenu) lh.classList.add('loc-nomenu'); /* 결제 플로우(장바구니·주문결제·주문완료): 화살표·펼침메뉴 제거 */ }
+    /* 모바일 펼침메뉴(#mCat) 내용: 페이지별 메뉴 지정 시 교체(마이페이지 계열=마이페이지 탭 목록) */
+    if(p.menu){
+      var mcatPanel=document.querySelector('#mCat .mcat-panel');
+      if(mcatPanel) mcatPanel.innerHTML=p.menu.map(function(m){ return '<a class="mcat-item" href="'+m[1]+'">'+m[0]+'</a>'; }).join('');
+    }
     var wrap=document.getElementById('bcCat');
     if(wrap){
       var btn=wrap.querySelector('.cur');
