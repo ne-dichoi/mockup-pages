@@ -186,6 +186,8 @@
     btn.addEventListener('click',function(e){ e.preventDefault(); mcat.classList.contains('open')?close():open(); });
     if(dim) dim.addEventListener('click',close);
     if(closeBtn) closeBtn.addEventListener('click',close);
+    /* 카테고리 항목 터치 → 해당 메뉴로 이동하면서 펼침 패널도 닫기(현재 페이지와 동일 URL이라 리로드가 없어도 닫힘). 항목은 페이지별로 재생성되므로 위임 처리 */
+    mcat.addEventListener('click',function(e){ if(e.target.closest('.mcat-item')) close(); });
     document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&mcat.classList.contains('open')) close(); });
   })();
 
