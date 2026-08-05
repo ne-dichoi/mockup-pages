@@ -2441,7 +2441,9 @@ a{color:inherit;text-decoration:none;}
   .page-my #tab-orders .oh-total b{font-weight:700;}
   .page-my #tab-orders .oh-date,.page-my #tab-orders .oh-tilde,.page-my #tab-orders .oh-search{display:none;}
   .page-my #tab-orders .oh-filters{margin-left:auto;gap:0;}
-  .page-my #tab-orders .oh-sel{min-width:0;}
+  /* 최근 3개월 셀렉트: 디자인 크기(높이 48·radius 12·여백 확대) */
+  .page-my #tab-orders .oh-sel{width:150px;min-width:0;}
+  .page-my #tab-orders .oh-sel .oh-sel-cur{height:48px;border-radius:12px;padding:0 18px;gap:12px;}
 
   /* 목록 = 회색 테두리 카드 스택(상단 회색 헤더 스트립 + 흰 본문) */
   .page-my #tab-orders .oh-list{padding:16px 20px 0;}
