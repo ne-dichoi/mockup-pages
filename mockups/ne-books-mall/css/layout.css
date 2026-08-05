@@ -2433,6 +2433,52 @@ a{color:inherit;text-decoration:none;}
   .page-my .mb-price s{font-size:12px;}
 }
 
+/* ===== 마이페이지 주문내역 (모바일) — Figma 2243-17430 ===== */
+@media (max-width:1023px){
+  /* 필터: 총 N건(좌) + 최근 3개월(우), 날짜·검색 숨김 */
+  .page-my #tab-orders .oh-filter{margin-bottom:8px;padding:16px 20px;gap:12px;flex-wrap:nowrap;align-items:center;}
+  .page-my #tab-orders .oh-total{font-size:14px;color:var(--ink);}
+  .page-my #tab-orders .oh-total b{font-weight:700;}
+  .page-my #tab-orders .oh-date,.page-my #tab-orders .oh-tilde,.page-my #tab-orders .oh-search{display:none;}
+  .page-my #tab-orders .oh-filters{margin-left:auto;gap:0;}
+  .page-my #tab-orders .oh-sel{min-width:0;}
+
+  /* 목록 = 카드 스택 */
+  .page-my #tab-orders .oh-list{padding:0;}
+  .page-my #tab-orders .oh-row{display:grid;grid-template-columns:auto 1fr auto;
+    grid-template-areas:"date ono chev" "name name name" "price price price" "foot foot foot";
+    padding:40px 16px;border:0;border-top:1px solid var(--line);column-gap:4px;position:relative;}
+  .page-my #tab-orders .oh-row:first-child{border-top:0;padding-top:16px;}
+  /* 컨테이너 평탄화(자식을 grid item 으로) */
+  .page-my #tab-orders .oh-mid,.page-my #tab-orders .oh-right,.page-my #tab-orders .oh-date-row{display:contents;}
+  .page-my #tab-orders .oh-thumb{display:none;}
+  /* 회색 상단바(row1 배경) + chevron */
+  .page-my #tab-orders .oh-row::before{content:"";grid-column:1/-1;grid-row:1;background:var(--gray-bg);border-radius:8px;}
+  .page-my #tab-orders .oh-row::after{content:"";grid-area:chev;align-self:center;justify-self:center;margin:0 14px 0 4px;
+    width:8px;height:8px;border-right:2px solid #666;border-top:2px solid #666;transform:rotate(45deg);}
+  .page-my #tab-orders .oh-odate{grid-area:date;align-self:center;position:relative;padding:12px 6px 12px 14px;font-size:14px;font-weight:700;color:var(--ink);white-space:nowrap;}
+  .page-my #tab-orders .oh-ono{grid-area:ono;align-self:center;position:relative;font-size:12px;color:var(--weak);white-space:nowrap;}
+  .page-my #tab-orders .oh-name{grid-area:name;padding:16px 4px 0;font-size:14px;font-weight:600;line-height:1.4;}
+  .page-my #tab-orders .oh-price-row{grid-area:price;justify-self:start;align-items:baseline;gap:8px;padding:6px 4px 0;}
+  .page-my #tab-orders .oh-price{font-size:18px;font-weight:800;}
+  .page-my #tab-orders .oh-badge{grid-area:foot;align-self:center;justify-self:start;margin-top:20px;min-width:0;padding:4px 8px;font-size:10px;line-height:14px;border-radius:30px;}
+  .page-my #tab-orders .oh-btns{grid-area:foot;justify-self:end;align-self:center;margin-top:20px;gap:8px;}
+  .page-my #tab-orders .oh-btn{height:auto;padding:4px 12px;font-size:12px;border-radius:8px;}
+
+  /* 주문 상태 안내 = 세로 스택 회색 박스 */
+  .page-my #tab-orders .oh-guide{margin:8px 0 0;border:0;border-radius:0;background:var(--gray-bg);padding:32px 20px;}
+  .page-my #tab-orders .oh-guide-in{flex-direction:column;gap:32px;}
+  .page-my #tab-orders .og-sep{display:none;}
+  .page-my #tab-orders .og-col{flex-direction:row;flex-wrap:wrap;align-items:center;gap:8px 10px;text-align:left;width:auto;}
+  .page-my #tab-orders .og-ic{width:28px;height:28px;flex:none;}
+  .page-my #tab-orders .og-t{font-size:16px;font-weight:700;color:var(--ink);}
+  .page-my #tab-orders .og-d{flex:1 1 100%;font-size:13px;line-height:20px;color:var(--muted);margin:0;text-align:left;}
+  .page-my #tab-orders .oh-guide-notes{display:block;margin-top:24px;padding:0;border:0;text-align:left;}
+  .page-my #tab-orders .ogn-col{width:100%;padding:0;margin-bottom:8px;}
+  .page-my #tab-orders .ogn-col p{font-size:12px;line-height:18px;color:var(--weak);padding-left:12px;position:relative;margin:0 0 6px;text-align:left;}
+  .page-my #tab-orders .ogn-col p::before{content:"·";position:absolute;left:2px;}
+}
+
 /* ===== 교재상세 (모바일) ===== */
 .pdp-bar{display:none;}
 .dh-cover-book{display:contents;}  /* 데스크톱: 래퍼 무시(책·미리보기 그대로) */
