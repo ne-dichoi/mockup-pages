@@ -8,8 +8,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260808v">
-<script src="js/layout.js?v=20260808v" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260808x">
+<script src="js/layout.js?v=20260808x" defer></script>
 <script src="js/search.js" defer></script>
 </head>
 <body class="page-my">
@@ -596,7 +596,7 @@
   </section>
 
   <!-- ===== 결제취소 레이어 팝업 ===== -->
-  <!-- 결제취소 (카드·계좌이체·간편결제 → 환불계좌 입력) -->
+  <!-- 결제취소 (취소사유만) -->
   <div class="cx-modal" id="paymentCancelModal" hidden>
     <div class="cx-modal-dim"></div>
     <div class="cx-box" role="dialog" aria-modal="true" aria-label="결제취소">
@@ -606,14 +606,6 @@
         <div class="cx-row">
           <span class="cx-fl">취소사유 <em>*</em></span>
           <div class="cx-ff"><div class="cx-sel full">취소사유선택 <span class="ic"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#666" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></div>
-        </div>
-        <div class="cx-row">
-          <span class="cx-fl">환불계좌 <em>*</em></span>
-          <div class="cx-ff"><div class="cx-sel">은행선택 <span class="ic"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#666" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div><input class="cx-input" type="text" aria-label="계좌번호"></div>
-        </div>
-        <div class="cx-row">
-          <span class="cx-fl">예금주명 <em>*</em></span>
-          <div class="cx-ff"><input class="cx-input" type="text" aria-label="예금주명"></div>
         </div>
       </div>
       <div class="cx-btns"><button type="button" class="cx-btn line cx-close">취소하기</button><button type="button" class="cx-btn red cx-close">등록하기</button></div>

@@ -8,8 +8,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260808v">
-<script src="js/layout.js?v=20260808v" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260808x">
+<script src="js/layout.js?v=20260808x" defer></script>
 <script src="js/search.js" defer></script>
 </head>
 <body class="page-my">
@@ -710,15 +710,43 @@
     document.addEventListener('click',function(e){ if(!e.target.closest('.oh-sel')) closeAll(); });
   })();
 
-  /* 1:1 문의 상담유형: 교재 오류신고 → '교재명' 행, 주문·배송 관련 문의 → '주문번호/상품' 행 노출 */
+  /* 1:1 문의 상담유형: 교재 오류신고 → '교재명' 행, 주문·배송 관련 문의 → '주문번호/상품' 행 노출
+     + 상담유형별 상담분류(iqCat) 옵션 동적 구성 */
   (function(){
     var qna=document.getElementById('cc-qna'); if(!qna) return;
     var bookRow=document.getElementById('iqBookRow'), orderRow=document.getElementById('iqOrderRow');
+    var cat=document.getElementById('iqCat');
     var radios=[].slice.call(qna.querySelectorAll('input[name="iqType"]'));
+    var PH='문의분류를 선택해 주세요';
+    var CAT={
+      general:['회원정보','교재·교과서 문의','부가서비스 문의','자료요청','사이트이용','이벤트','영업 및 제휴 문의','의견·제안','기타'],
+      error:['교재내용이상','문법 오류','오·탈자','기타오류'],
+      order:['주문/결제','취소','반품/환불','배송']
+    };
+    function renderCat(list){
+      if(!cat) return;
+      var menu=cat.querySelector('.oh-sel-menu'), cur=cat.querySelector('.oh-sel-cur'), lb=cat.querySelector('.oh-sel-lb');
+      if(!menu) return;
+      menu.innerHTML='<a class="on" data-ph>'+PH+'</a>'+(list||[]).map(function(t){ return '<a>'+t+'</a>'; }).join('');
+      if(lb) lb.textContent=PH; if(cur) cur.classList.add('is-ph');
+      cat.classList.remove('open'); menu.hidden=true;
+      /* 열기 토글은 cur 에 이미 바인딩되어 있으므로 메뉴 항목만 재바인딩 */
+      [].forEach.call(menu.querySelectorAll('a'),function(a){
+        a.addEventListener('click',function(e){ e.preventDefault();
+          [].forEach.call(menu.querySelectorAll('a'),function(x){ x.classList.remove('on'); });
+          a.classList.add('on'); if(lb) lb.textContent=a.textContent.trim();
+          if(cur) cur.classList.toggle('is-ph', a.hasAttribute('data-ph'));
+          cat.classList.remove('open'); menu.hidden=true;
+          cat.dispatchEvent(new CustomEvent('iqcatchange'));
+        });
+      });
+      cat.dispatchEvent(new CustomEvent('iqcatchange'));
+    }
     function upd(){
       var sel=qna.querySelector('input[name="iqType"]:checked'); var v=sel?sel.value:'';
       if(bookRow) bookRow.hidden=(v!=='error');
       if(orderRow) orderRow.hidden=(v!=='order');
+      renderCat(CAT[v]||CAT.general);
     }
     radios.forEach(function(r){ r.addEventListener('change',upd); });
     upd();
@@ -746,11 +774,11 @@
     var pick=document.getElementById('iqOrderPick'), pickBtn=document.getElementById('iqPickBtn');
     var cat=document.getElementById('iqCat');
     function syncPick(){
-      var lb=cat&&cat.querySelector('.oh-sel-lb'); var isRefund=lb&&lb.textContent.trim()==='취소/환불';
+      var lb=cat&&cat.querySelector('.oh-sel-lb'); var isRefund=lb&&lb.textContent.trim()==='반품/환불';
       if(pick) pick.hidden=!isRefund;
       if(!isRefund){ panel.hidden=true; } /* 분류가 바뀌면 리스트도 숨김 */
     }
-    if(cat){ [].forEach.call(cat.querySelectorAll('.oh-sel-menu a'),function(a){ a.addEventListener('click',syncPick); }); }
+    if(cat){ cat.addEventListener('iqcatchange',syncPick); } /* 옵션 동적 재구성 대응(커스텀 이벤트) */
     if(pickBtn){ pickBtn.addEventListener('click',function(){ panel.hidden=false; }); }
     syncPick();
   })();
