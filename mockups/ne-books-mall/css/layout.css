@@ -2447,7 +2447,7 @@ a{color:inherit;text-decoration:none;}
   .page-my #tab-orders .oh-list{padding:0;}
   .page-my #tab-orders .oh-row{display:grid;grid-template-columns:auto 1fr auto;
     grid-template-areas:"date ono chev" "name name name" "price price price" "foot foot foot";
-    padding:40px 16px;border:0;column-gap:4px;position:relative;
+    padding:40px 16px 24px;border:0;column-gap:4px;position:relative;
     background:linear-gradient(to right, transparent 20px, var(--line) 20px, var(--line) calc(100% - 20px), transparent calc(100% - 20px)) top left / 100% 1px no-repeat;}
   .page-my #tab-orders .oh-row:first-child{padding-top:16px;background:none;}
   /* 컨테이너 평탄화(자식을 grid item 으로) */
@@ -2463,22 +2463,26 @@ a{color:inherit;text-decoration:none;}
   .page-my #tab-orders .oh-name{grid-area:name;padding:16px 4px 0 20px;font-size:14px;font-weight:600;line-height:1.4;}
   .page-my #tab-orders .oh-price-row{grid-area:price;justify-self:start;align-items:baseline;gap:8px;padding:6px 4px 0 20px;}
   .page-my #tab-orders .oh-price{font-size:18px;font-weight:800;}
-  .page-my #tab-orders .oh-badge{grid-area:foot;align-self:center;justify-self:start;margin:20px 0 0 20px;min-width:0;padding:4px 8px;font-size:10px;line-height:14px;border-radius:30px;}
-  .page-my #tab-orders .oh-btns{grid-area:foot;justify-self:end;align-self:center;margin:20px 20px 0 0;gap:8px;}
+  .page-my #tab-orders .oh-badge{grid-area:foot;align-self:end;justify-self:start;margin:20px 0 0 20px;min-width:0;padding:4px 8px;font-size:10px;line-height:14px;border-radius:30px;}
+  .page-my #tab-orders .oh-btns{grid-area:foot;justify-self:end;align-self:end;margin:20px 20px 0 0;gap:8px;}
   .page-my #tab-orders .oh-btn{height:auto;padding:4px 12px;font-size:12px;border-radius:8px;}
 
-  /* 주문 상태 안내 = 세로 스택 회색 박스 */
-  .page-my #tab-orders .oh-guide{margin:8px 0 0;border:0;border-radius:0;background:var(--gray-bg);padding:32px 20px;}
+  /* 모바일: 페이징 삭제 */
+  .page-my #tab-orders .pager{display:none;}
+  /* 주문 상태 안내 = 세로 스택 회색 박스(위아래 여백 40, 각 상태 아래 불릿 중첩) */
+  .page-my #tab-orders .oh-guide{margin:0;border:0;border-radius:0;background:var(--gray-bg);padding:40px 20px;}
   .page-my #tab-orders .oh-guide-in{flex-direction:column;gap:32px;}
   .page-my #tab-orders .og-sep{display:none;}
-  .page-my #tab-orders .og-col{flex-direction:row;flex-wrap:wrap;align-items:center;gap:8px 10px;text-align:left;width:auto;}
+  .page-my #tab-orders .og-col{flex-direction:row;flex-wrap:wrap;align-items:center;gap:0 10px;text-align:left;width:auto;}
   .page-my #tab-orders .og-ic{width:28px;height:28px;flex:none;}
   .page-my #tab-orders .og-t{font-size:16px;font-weight:700;color:var(--ink);}
-  .page-my #tab-orders .og-d{flex:1 1 100%;font-size:13px;line-height:20px;color:var(--muted);margin:0;text-align:left;}
-  .page-my #tab-orders .oh-guide-notes{display:block;margin-top:24px;padding:0;border:0;text-align:left;}
-  .page-my #tab-orders .ogn-col{width:100%;padding:0;margin-bottom:8px;}
-  .page-my #tab-orders .ogn-col p{font-size:12px;line-height:18px;color:var(--weak);padding-left:12px;position:relative;margin:0 0 6px;text-align:left;}
-  .page-my #tab-orders .ogn-col p::before{content:"·";position:absolute;left:2px;}
+  .page-my #tab-orders .og-d{flex:1 1 100%;padding-left:0;font-size:14px;line-height:22px;color:var(--muted);margin:8px 0 0;text-align:left;}
+  /* 상태별 불릿 (입금대기·배송중) — 전체폭 채우기 */
+  .page-my #tab-orders .og-notes{flex:1 1 100%;list-style:none;margin:8px 0 0;padding-left:0;}
+  .page-my #tab-orders .og-notes li{position:relative;padding-left:14px;font-size:14px;line-height:22px;color:var(--weak);margin-bottom:2px;}
+  .page-my #tab-orders .og-notes li::before{content:"\B7";position:absolute;left:2px;}
+  /* PC 전용 통합 notes 는 모바일에서 숨김 */
+  .page-my #tab-orders .oh-guide-notes{display:none;}
 }
 
 /* ===== 교재상세 (모바일) ===== */
