@@ -2471,9 +2471,9 @@ a{color:inherit;text-decoration:none;}
   .page-my #tab-orders .pager{display:none;}
   /* 주문 상태 안내 = 세로 스택 회색 박스(위아래 여백 40, 각 상태 아래 불릿 중첩) */
   .page-my #tab-orders .oh-guide{margin:0;border:0;border-radius:0;background:var(--gray-bg);padding:40px 20px;}
-  .page-my #tab-orders .oh-guide-in{flex-direction:column;gap:32px;}
+  .page-my #tab-orders .oh-guide-in{flex-direction:column;gap:32px;padding:0;max-width:none;margin:0;}
   .page-my #tab-orders .og-sep{display:none;}
-  .page-my #tab-orders .og-col{flex-direction:row;flex-wrap:wrap;align-items:center;gap:0 10px;text-align:left;width:auto;}
+  .page-my #tab-orders .og-col{flex-direction:row;flex-wrap:wrap;align-items:center;gap:0 10px;text-align:left;width:auto;padding:0;}
   .page-my #tab-orders .og-ic{width:28px;height:28px;flex:none;}
   .page-my #tab-orders .og-t{font-size:16px;font-weight:700;color:var(--ink);}
   .page-my #tab-orders .og-d{flex:1 1 100%;padding-left:0;font-size:14px;line-height:22px;color:var(--muted);margin:8px 0 0;text-align:left;}
