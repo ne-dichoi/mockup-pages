@@ -8,8 +8,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260809e">
-<script src="js/layout.js?v=20260809e" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260809f">
+<script src="js/layout.js?v=20260809f" defer></script>
 <script src="js/search.js" defer></script>
 </head>
 <body class="page-my">
@@ -985,6 +985,18 @@
 
     /* ESC 로 시트 닫기(날짜=옵션 복귀, 옵션=완전 닫기) */
     document.addEventListener('keydown',function(e){ if(e.key!=='Escape') return; if(!cal.hidden) backToOpt(); else if(!opt.hidden) close(opt); });
+  })();
+
+  /* 주문 카드 클릭 → 상세 이동(화살표·헤더 등 비인터랙티브 영역). 버튼/링크(영수증·상태버튼·교재명)는 각자 동작 유지 */
+  (function(){
+    var list=document.querySelector('#tab-orders .oh-list'); if(!list) return;
+    list.addEventListener('click',function(e){
+      if(e.target.closest('a,button,.oh-btn,.oh-receipt')) return; /* 링크·버튼은 기본 동작 */
+      var row=e.target.closest('.oh-row'); if(!row) return;
+      var link=row.querySelector('.oh-name[href], .oh-thumb[href]');
+      var href=link&&link.getAttribute('href');
+      if(href) location.href=href;
+    });
   })();
   </script>
 </body>
