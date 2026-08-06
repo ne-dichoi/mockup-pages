@@ -8,8 +8,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260810o">
-<script src="js/layout.js?v=20260810o" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260810p">
+<script src="js/layout.js?v=20260810p" defer></script>
 <script src="js/search.js" defer></script>
 </head>
 <body class="page-my">
@@ -66,11 +66,7 @@
   <div id="site-footer"></div>
 
   <script>
-  (function(){
-    /* ?st=wait 이면 답변 미등록(답변 섹션 제거), 기본(done)은 답변 표시 */
-    var st=(new URLSearchParams(location.search).get('st'))||'done';
-    if(st==='wait'){ var ans=document.getElementById('qdAnswer'); if(ans) ans.remove(); }
-  })();
+  /* 답변 섹션은 항상 표시(첨부파일 아래 답변 내용) */
   </script>
 
 </body>
