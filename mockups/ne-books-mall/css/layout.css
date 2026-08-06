@@ -2595,6 +2595,44 @@ a{color:inherit;text-decoration:none;}
   .page-my .od-btn{width:100%;height:52px;font-size:15px;background:#fff;color:var(--ink);border:1px solid #d5d5d5;}
 }
 
+/* ===== 마이페이지 포인트 (모바일) ===== */
+@media (max-width:1023px){
+  /* 사용 가능 포인트 요약 카드 */
+  .page-my #tab-points .pt-sum{margin:16px 20px 0;padding:24px 20px;border-radius:12px;gap:8px;}
+  .page-my #tab-points .pt-sum-main{flex-wrap:wrap;justify-content:center;gap:0 4px;}
+  .page-my #tab-points .pt-p{width:20px;height:20px;font-size:11px;margin-right:2px;}
+  .page-my #tab-points .pt-sum-lb{font-size:14px;color:var(--ink);}
+  .page-my #tab-points .pt-sum-val{flex-basis:100%;text-align:center;margin-top:8px;font-size:28px;}
+  .page-my #tab-points .pt-sum-sub{font-size:13px;}
+
+  /* 밑줄탭 + 필터: 세로 스택(탭 전체폭 하단라인, 셀렉트 우측) */
+  .page-my #tab-points .pt-bar{margin:24px 0 0;flex-direction:column;align-items:stretch;gap:16px;}
+  .page-my #tab-points .pt-tabs{gap:24px;padding:0 20px;border-bottom:1px solid var(--line);}
+  .page-my #tab-points .pt-tabs a{font-size:15px;padding-bottom:12px;margin-bottom:-1px;}
+  .page-my #tab-points .pt-filters{padding:0 20px;justify-content:flex-end;}
+  .page-my #tab-points .pt-filters .oh-date,.page-my #tab-points .pt-filters .oh-tilde{display:none;}
+  .page-my #tab-points .pt-filters .oh-sel{width:auto;}
+  .page-my #tab-points .pt-filters .oh-sel .oh-sel-cur{width:auto;height:auto;border-radius:8px;padding:8px 12px;gap:8px;font-size:12px;line-height:20px;}
+
+  /* 내역 = 카드 리스트(배지+일자 / 내용 + 금액) */
+  .page-my #tab-points .pt-table{margin-top:8px;padding:0 20px;}
+  .page-my #tab-points .pt-th{display:none;}
+  .page-my #tab-points .pt-tr{height:auto;display:grid;grid-template-columns:auto 1fr auto;
+    grid-template-areas:"type date pt" "desc desc pt";align-items:center;column-gap:8px;row-gap:8px;padding:20px 0;}
+  .page-my #tab-points .pt-c-type{grid-area:type;justify-self:start;display:inline-flex;align-items:center;width:auto;padding:4px 8px;border:1px solid var(--line);border-radius:30px;font-size:11px;font-weight:600;color:var(--muted);}
+  .page-my #tab-points .pt-c-date{grid-area:date;justify-self:start;width:auto;text-align:left;font-size:13px;color:var(--weak);}
+  .page-my #tab-points .pt-c-desc{grid-area:desc;justify-self:start;padding-left:0;font-size:14px;color:var(--ink);}
+  .page-my #tab-points .pt-c-pt{grid-area:pt;align-self:center;justify-self:end;width:auto;text-align:right;font-size:16px;}
+  .page-my #tab-points .pt-c-bal{display:none;}
+
+  .page-my #tab-points .pager{display:none;}
+
+  /* 포인트 안내 = 전체폭 회색 박스 */
+  .page-my #tab-points .pt-guide{margin:24px 0 0;border-radius:0;padding:40px 20px;gap:16px;}
+  .page-my #tab-points .pt-guide-body{display:flex;flex-direction:column;gap:16px;}
+  .page-my #tab-points .pt-guide-body p{line-height:22px;}
+}
+
 /* ===== 교재상세 (모바일) ===== */
 .pdp-bar{display:none;}
 .dh-cover-book{display:contents;}  /* 데스크톱: 래퍼 무시(책·미리보기 그대로) */
