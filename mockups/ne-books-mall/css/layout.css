@@ -2544,7 +2544,7 @@ a{color:inherit;text-decoration:none;}
 /* ===== 주문 상세내역 (모바일) ===== */
 @media (max-width:1023px){
   /* 섹션: 좌우 20 여백, 접기 헤더(∧) */
-  .page-my .od-sec{padding:24px 20px;border-top:8px solid var(--gray-bg);}
+  .page-my .od-sec{padding:24px 20px;border-top:1px solid var(--line);}
   .page-my .od-sec:first-of-type{border-top:0;}
   .page-my .od-sec-t{display:flex;align-items:center;justify-content:space-between;font-size:18px;cursor:pointer;margin:0;}
   .page-my .od-sec-t::after{content:"";width:10px;height:10px;border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);transform:rotate(225deg);margin-top:4px;transition:transform .2s;}
@@ -2556,7 +2556,7 @@ a{color:inherit;text-decoration:none;}
   .page-my .od-order-info,.page-my .od-status{display:contents;}
   .page-my .od-order-info{padding:0;border:0;width:auto;}
   .page-my .od-date{grid-area:date;align-self:center;font-size:14px;font-weight:700;}
-  .page-my .od-ono{grid-area:ono;font-size:13px;color:var(--weak);margin-top:4px;}
+  .page-my .od-ono{grid-area:ono;font-size:13px;color:var(--weak);margin-top:8px;}
   .page-my .od-status{width:auto;border:0;}
   .page-my .od-status-lb{grid-area:badge;justify-self:end;align-self:center;padding:4px 10px;border:1px solid var(--line);border-radius:30px;font-size:11px;font-weight:600;color:var(--muted);white-space:nowrap;}
   .page-my .od-items{grid-area:items;margin-top:20px;gap:16px;}
@@ -2571,12 +2571,12 @@ a{color:inherit;text-decoration:none;}
 
   /* 표(결제수단/입금기한, 취소·배송지 정보): 라벨 좌 + 값 우 */
   .page-my .od-table{margin-top:16px;border-top:0;}
-  /* 표: 라벨(볼드) 위 · 값 아래 세로 스택, 행 사이 구분선 */
-  .page-my .od-table .tr{flex-direction:column;align-items:stretch;padding:14px 0;gap:6px;border-bottom:1px solid var(--line);}
-  .page-my .od-table .tr:last-child{border-bottom:0;}
+  /* 표: 라벨(볼드) 위 · 값 아래 세로 스택. 기본은 행 구분선 없음(취소정보만 행 사이 라인) */
+  .page-my .od-table .tr{flex-direction:column;align-items:stretch;padding:14px 0;gap:6px;border-bottom:0;}
+  .page-my #odCancelBody .tr:not(:last-child){border-bottom:1px solid var(--line);}
   .page-my .od-th{width:auto;flex:none;background:none;padding:0;min-height:0;align-items:flex-start;font-size:14px;font-weight:700;color:var(--ink);}
   .page-my .od-td{padding:0;min-height:0;align-items:flex-start;flex-direction:column;gap:2px;font-size:14px;line-height:20px;}
-  .page-my .od-td .bk{display:block;}
+  .page-my .od-td .bk{display:block;color:var(--muted);}
 
   /* 결제 요약: 회색 박스 1개 + 구분선 후 총 결제금액 */
   .page-my .od-pay{display:block;background:var(--gray-bg);border:0;border-radius:8px;padding:24px 20px;margin-top:8px;}
