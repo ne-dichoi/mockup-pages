@@ -845,6 +845,7 @@ a{color:inherit;text-decoration:none;}
 .pm{flex:1;border:1px solid var(--line);border-radius:10px;padding:24px;display:flex;flex-direction:column;gap:6px;cursor:pointer;position:relative;}
 .pm input{position:absolute;opacity:0;pointer-events:none;}
 .pm b{font-size:16px;font-weight:600;color:var(--ink);}
+.pm b .rtc-full{font-size:inherit;font-weight:inherit;color:inherit;} /* "실시간 "을 "계좌이체"와 동일 크기·컬러로(.pm span 영향 차단) */
 .pm span{font-size:14px;color:var(--weak);}
 .pm{transition:border-color .15s;}
 .pm:hover,.pm:has(input:checked){border:2px solid var(--ink);padding:23px;}
@@ -2115,7 +2116,7 @@ a{color:inherit;text-decoration:none;}
   .cthumb img{width:55px;height:72px;object-fit:cover;box-shadow:1.3px 2.3px 5.2px rgba(0,0,0,.18);}
   .cname{grid-area:title;align-self:start;font-family:var(--display);font-weight:500;font-size:14px;line-height:22px;color:var(--ink);}
   .cdel{grid-area:del;align-self:start;justify-self:end;width:24px;height:24px;border:0;border-radius:0;}
-  .qty{grid-area:qty;align-self:end;width:100px;height:36px;}
+  .qty{grid-area:qty;align-self:end;justify-self:start;width:100px;height:36px;}
   .qty button{flex:none;width:32px;height:100%;font-size:16px;}
   .qty input{flex:1;width:auto;min-width:0;height:100%;text-align:center;}
   .cprice{grid-area:price;align-self:end;justify-self:end;flex-direction:column;align-items:flex-end;gap:0;text-align:right;}
@@ -2425,7 +2426,8 @@ a{color:inherit;text-decoration:none;}
   .page-my .mb-card{flex:0 0 auto;width:160px;border-radius:12px;}
   .page-my .mb-cover{height:auto;padding:24px 16px 0;}
   .page-my .mb-cover img{width:80px;height:105px;}
-  .page-my .mb-cart{width:36px;height:36px;right:12px;bottom:12px;background-size:16px;}
+  /* 장바구니: 교재 우하단 모서리에 걸치도록(커버 auto 높이 → 책 하단=커버 하단) */
+  .page-my .mb-cart{width:36px;height:36px;right:22px;bottom:-14px;background-size:16px;}
   .page-my .mb-info{padding:24px 12px 24px;gap:8px;} /* 커버↔정보 24 · 금액↔하단 테두리 24 */
   .page-my .mb-head{gap:8px;}
   .page-my .mb-badge{font-size:11px;padding:3px 10px;}
@@ -2780,7 +2782,7 @@ a{color:inherit;text-decoration:none;}
   .page-detail .rel-card .img{width:160px;height:129px;}  /* 24(위) + 책105, 아래 여백은 bs-meta 상단 24 */
   .page-detail .rel-card .img .book{top:24px;width:80px;height:105px;box-shadow:1.6px 2.9px 6.5px rgba(0,0,0,.18);}
   .page-detail .rel-card .img .chk{left:12px;top:12px;width:18px;height:18px;}
-  .page-detail .rel-card .img .cart{left:auto;right:12px;top:auto;bottom:12px;width:36px;height:36px;}
+  .page-detail .rel-card .img .cart{left:auto;right:22px;top:auto;bottom:-14px;width:36px;height:36px;}
   .page-detail .rel-card .img .cart .ico{width:16px;height:16px;}
   .page-detail .rel-card .bs-meta{width:100%;height:auto;padding:24px 12px 24px;gap:8px;justify-content:flex-start;}
   .page-detail .rel-card .ph{width:auto;align-self:flex-start;font-size:11px;padding:3px 10px;}
