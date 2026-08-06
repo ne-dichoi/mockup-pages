@@ -1994,7 +1994,7 @@ a{color:inherit;text-decoration:none;}
   .mc-info{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:space-between;gap:12px;}
   .mc-ht{display:flex;flex-direction:column;gap:8px;margin:0;align-items:flex-start;}
   .mc-tags{display:flex;gap:4px;flex-wrap:wrap;}
-  .mc-tag{border-radius:999px;padding:4px 8px;font-size:9px;font-weight:500;line-height:1;white-space:nowrap;}
+  .mc-tag{border-radius:999px;padding:4px 8px;font-size:10px;font-weight:500;line-height:14px;white-space:nowrap;}
   .mc-tag.course{border:1px solid var(--red);color:var(--red);background:#fff;}
   .mc-tag.level{background:var(--gray-bg);color:#666;}
   .mc-title{font-family:var(--display);font-weight:500;font-size:14px;line-height:22px;color:var(--ink);}
@@ -2438,13 +2438,14 @@ a{color:inherit;text-decoration:none;}
   .page-my #tab-wish .wl-head{margin:0 0 16px;gap:12px;align-items:center;}
   .page-my #tab-wish .wl-count{font-size:14px;}
   .page-my #tab-wish .wl-books{display:none;}
-  .page-my #tab-wish .wl-clear{height:auto;padding:8px 16px;font-size:14px;border-radius:8px;}
+  /* 전체삭제: 모바일 장바구니 삭제버튼(#delSel)과 동일 규격 */
+  .page-my #tab-wish .wl-clear{height:28px;min-height:0;box-sizing:border-box;padding:5px 13px;font-size:12px;font-weight:500;border:1px solid var(--ink);border-radius:8px;color:var(--ink);}
   /* 가로 스크롤 mb-grid 오버라이드 → 2열 그리드 */
   .page-my #tab-wish .wl-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;overflow:visible;margin-top:0;}
   .page-my #tab-wish .wl-grid .mb-card{flex:none;width:auto;}
   .page-my #tab-wish .wl-grid .mb-cover{height:160px;padding:0 16px;}
   .page-my #tab-wish .wl-grid .mb-cover img{width:80px;height:105px;}
-  .page-my #tab-wish .wl-grid .mb-cart{width:36px;height:36px;right:12px;bottom:12px;background-size:16px;}
+  .page-my #tab-wish .wl-grid .mb-cart{width:36px;height:36px;right:24px;bottom:12px;background-size:16px;}
   .page-my #tab-wish .wl-grid .mb-x{top:12px;right:12px;width:20px;height:20px;}
   .page-my #tab-wish .wl-grid .mb-x svg{width:20px;height:20px;}
   .page-my #tab-wish .wl-grid .mb-info{padding:16px 16px 20px;gap:8px;}
@@ -2683,7 +2684,7 @@ a{color:inherit;text-decoration:none;}
   .page-detail .dh-badges{flex-wrap:wrap;gap:4px;align-items:center;}
   .page-detail .dh-badges .dh-brand,
   .page-detail .dh-badges .picons{display:none;}
-  .page-detail .dh-badges .badge{font-size:11px;font-weight:500;padding:4px 8px;height:auto;line-height:1;}
+  .page-detail .dh-badges .badge{font-size:10px;font-weight:500;padding:4px 8px;height:auto;line-height:14px;}
   .page-detail .dh-badges .badge.lexile{color:#4056a1;border-color:#4056a1;font-size:9.5px;padding:5px 9px;}
   .page-detail .dh-badges .badge.lexile .ico{display:none;}
   .page-detail .dh-title{font-family:var(--display);font-weight:700;font-size:18px;line-height:22px;margin-top:16px;}
