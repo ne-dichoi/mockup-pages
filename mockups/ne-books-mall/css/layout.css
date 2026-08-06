@@ -2775,18 +2775,19 @@ a{color:inherit;text-decoration:none;}
   .page-detail #s-series .sel-actions,.page-detail #s-next .sel-actions,.page-detail #s-rel .sel-actions{gap:12px;font-size:14px;flex:none;}
   .page-detail .sel-actions .btn{padding:4px 12px;font-size:12px;line-height:18px;}
   .page-detail .rel-row{gap:8px;padding-bottom:4px;}
-  .page-detail .rel-card{width:150px;height:auto;border-radius:12px;}
-  .page-detail .rel-card .img{width:150px;height:153px;}  /* 24(위) + 책105 + 24(아래) */
+  /* 연관교재/시리즈/다음단계 카드 = 홈 찜한상품(.mb-card)과 동일 규격(체크박스만 추가, 삭제버튼 없음) */
+  .page-detail .rel-card{width:160px;height:auto;border-radius:12px;}
+  .page-detail .rel-card .img{width:160px;height:129px;}  /* 24(위) + 책105, 아래 여백은 bs-meta 상단 24 */
   .page-detail .rel-card .img .book{top:24px;width:80px;height:105px;box-shadow:1.6px 2.9px 6.5px rgba(0,0,0,.18);}
   .page-detail .rel-card .img .chk{left:12px;top:12px;width:18px;height:18px;}
-  .page-detail .rel-card .img .cart{left:auto;right:22px;top:auto;bottom:14px;width:32px;height:32px;}
+  .page-detail .rel-card .img .cart{left:auto;right:12px;top:auto;bottom:12px;width:36px;height:36px;}
   .page-detail .rel-card .img .cart .ico{width:16px;height:16px;}
-  .page-detail .rel-card .bs-meta{width:100%;height:auto;padding:0 12px 24px;gap:0;justify-content:flex-start;}
-  .page-detail .rel-card .ph{width:auto;align-self:flex-start;font-size:9px;padding:4px 8px;}
-  .page-detail .rel-card .name{font-size:14px;line-height:20px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;margin-top:8px;}  /* 라벨↔교재명 8 */
-  .page-detail .rel-card .price{flex-wrap:nowrap;gap:6px;margin-top:4px;}  /* 교재명↔금액 4 */
-  .page-detail .rel-card .price .now{font-size:14px;white-space:nowrap;}
-  .page-detail .rel-card .price .was{font-size:11px;white-space:nowrap;}
+  .page-detail .rel-card .bs-meta{width:100%;height:auto;padding:24px 12px 24px;gap:8px;justify-content:flex-start;}
+  .page-detail .rel-card .ph{width:auto;align-self:flex-start;font-size:11px;padding:3px 10px;}
+  .page-detail .rel-card .name{font-size:14px;line-height:20px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;margin-top:0;}
+  .page-detail .rel-card .price{flex-wrap:nowrap;gap:8px;margin-top:0;}
+  .page-detail .rel-card .price .now{font-size:16px;white-space:nowrap;}
+  .page-detail .rel-card .price .was{font-size:12px;white-space:nowrap;}
   /* ===== 후기 탭 (모바일, Figma 2015-13772) ===== */
   .page-detail #s-review .rev-top{flex-direction:column;align-items:stretch;gap:16px;padding-bottom:24px;}
   .page-detail #s-review .rev-notice p{font-size:14px;line-height:1.7;}
