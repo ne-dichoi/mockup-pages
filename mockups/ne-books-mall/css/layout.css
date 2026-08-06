@@ -2620,7 +2620,7 @@ a{color:inherit;text-decoration:none;}
   .page-my #tab-points .pt-th{display:none;}
   .page-my #tab-points .pt-tr{height:auto;display:grid;grid-template-columns:auto 1fr auto;
     grid-template-areas:"type date pt" "desc desc pt";align-items:center;column-gap:8px;row-gap:8px;padding:20px 0;}
-  .page-my #tab-points .pt-c-type{grid-area:type;justify-self:start;display:inline-flex;align-items:center;width:auto;padding:4px 8px;border:1px solid var(--line);border-radius:30px;font-size:11px;line-height:14px;font-weight:600;color:var(--muted);}
+  .page-my #tab-points .pt-c-type{grid-area:type;justify-self:start;display:inline-flex;align-items:center;width:auto;padding:4px 8px;border:1px solid var(--line);border-radius:30px;font-size:11px;line-height:14px;font-weight:600;color:var(--weak);}
   .page-my #tab-points .pt-c-date{grid-area:date;justify-self:start;width:auto;text-align:left;font-size:12px;color:var(--weak);}
   .page-my #tab-points .pt-c-desc{grid-area:desc;justify-self:start;padding-left:0;font-size:14px;color:var(--ink);}
   .page-my #tab-points .pt-c-pt{grid-area:pt;align-self:center;justify-self:end;width:auto;text-align:right;font-size:16px;}
@@ -2630,10 +2630,10 @@ a{color:inherit;text-decoration:none;}
 
   /* 포인트 안내 = 전체폭 회색 박스, 카테고리(적립/사용/차감유효기간) 볼드 헤딩 + 설명 */
   .page-my #tab-points .pt-guide{margin:24px 0 0;border-radius:0;padding:40px 20px;gap:24px;}
-  .page-my #tab-points .pt-guide-head span{font-size:16px;font-weight:700;}
+  .page-my #tab-points .pt-guide-head span{font-size:14px;font-weight:700;}
   .page-my #tab-points .pt-guide-body{display:flex;flex-direction:column;gap:24px;}
-  .page-my #tab-points .pt-guide-body p{line-height:22px;}
-  .page-my #tab-points .pt-guide-body .lb{display:block;font-size:16px;font-weight:700;color:var(--ink);margin-bottom:8px;}
+  .page-my #tab-points .pt-guide-body p{font-size:12px;line-height:20px;color:var(--muted);}
+  .page-my #tab-points .pt-guide-body .lb{display:block;font-size:14px;font-weight:700;color:var(--ink);margin-bottom:8px;}
   .page-my #tab-points .pt-guide-body .lb::after{content:"";}
 }
 
