@@ -8,8 +8,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260810c">
-<script src="js/layout.js?v=20260810c" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260810e">
+<script src="js/layout.js?v=20260810e" defer></script>
 <script src="js/search.js" defer></script>
 </head>
 <body class="page-detail">
@@ -503,9 +503,14 @@
     document.querySelectorAll('.btns .cart').forEach(function(btn){
       btn.addEventListener('click',function(e){ e.preventDefault(); addToCart(); });
     });
-    /* 교재 카드의 장바구니 아이콘 */
+    /* 교재 카드: 장바구니 아이콘=담기, 체크박스=토글, 그 외 영역 탭=교재상세 이동
+       (드래그 스크롤 시엔 enableDragScroll 의 moved 캡처가 click 을 막아 이동 안 됨) */
     document.querySelectorAll('.rel-row, .dh-res').forEach(function(row){
-      row.addEventListener('click',function(e){ if(e.target.closest('.cart')){ e.preventDefault(); addToCart(); } });
+      row.addEventListener('click',function(e){
+        if(e.target.closest('.cart')){ e.preventDefault(); addToCart(); return; }
+        if(e.target.closest('.chk')) return; /* 체크박스는 토글만 */
+        if(e.target.closest('.rel-card')){ location.href='교재상세.html'; }
+      });
     });
     /* 선택 장바구니 (묶음, UC-BUY-04): 미선택 시 안내, 선택분만 담기 */
     document.querySelectorAll('.dsec .sel-actions .btn').forEach(function(btn){
