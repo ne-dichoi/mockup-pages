@@ -313,7 +313,9 @@ a{color:inherit;text-decoration:none;}
 .chk:hover{border-color:#b9b9b9;}
 .page-buy .chk:checked, .page-study .chk:checked{background:#d94a34;border-color:#d94a34; background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.4 6.2 4.9 8.6 9.6 3.5" stroke="white" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>'); background-repeat:no-repeat;background-position:center;}
 .page-buy .chk:checked::after, .page-study .chk:checked::after{content:none;} /* SVG 배경 체크 사용 → 공용 ::after 체크 중복 제거(체크 두 번 표시 방지) */
-.page-cart .chk:checked, .page-order .chk:checked{background:var(--red);border-color:var(--red);}
+.page-cart .chk:checked, .page-order .chk:checked{background:var(--red);border-color:var(--red);
+  background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.4 6.2 4.9 8.6 9.6 3.5" stroke="white" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>');background-repeat:no-repeat;background-position:center;}
+.page-cart .chk:checked::after, .page-order .chk:checked::after{content:none;} /* 박스 크기 무관 중앙 정렬 SVG 체크 사용(::after 보더체크 제거) */
 .chk:disabled{background:#ededed;border-color:#e5e5e5;cursor:not-allowed;}
 .chk:disabled:hover{border-color:#e5e5e5;}
 .fopt:has(.chk:disabled){color:#c4c4c4;cursor:not-allowed;}
