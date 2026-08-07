@@ -83,6 +83,8 @@
     </div>
   </header>
   <div class="m-drawer" id="mDrawer" aria-hidden="true">
+    <div class="md-dim"></div>
+    <div class="md-panel">
     <div class="md-top">
       <a class="md-home" href="index.html" aria-label="홈"><img src="assets/ic_home_sub.svg" alt=""></a>
       <span class="md-auth"><a href="index.html">로그인</a></span>
@@ -101,6 +103,7 @@
     <div class="md-body">
       <div class="md-cats" id="mdCats"></div>
       <div class="md-subs" id="mdSubs"></div>
+    </div>
     </div>
   </div>`;
   var FOOTER = `<footer class="footer">
@@ -247,8 +250,12 @@
     function close(){ drawer.classList.remove('open'); drawer.setAttribute('aria-hidden','true'); document.body.style.overflow='';
       if(siteHeader) siteHeader.classList.remove('drawer-open'); }
     if(menuBtn) menuBtn.addEventListener('click',open);
+    /* PC GNB 전체메뉴(햄버거) 아이콘 클릭 → 동일 드로어(좌측 슬라이드) */
+    var pcMenuBtn=document.querySelector('.gnb-in .ico.menu');
+    if(pcMenuBtn){ pcMenuBtn.style.cursor='pointer'; pcMenuBtn.addEventListener('click',open); }
     if(closeBtn) closeBtn.addEventListener('click',close);
     if(closeX) closeX.addEventListener('click',close);
+    var dim=drawer.querySelector('.md-dim'); if(dim) dim.addEventListener('click',close);
     document.addEventListener('keydown',function(e){ if(e.key==='Escape' && drawer.classList.contains('open')) close(); });
     render();
   })();

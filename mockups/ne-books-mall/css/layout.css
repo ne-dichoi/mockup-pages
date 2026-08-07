@@ -1638,11 +1638,66 @@ a{color:inherit;text-decoration:none;}
 .pt-guide-body .lb::after{content:" : ";}
 /* ---------- responsive visibility utilities ---------- */
 .only-mo{display:none;}
-.m-drawer{display:none;}
 .m-loc{display:none;}
 .mcat{display:none;}
 .m-catclose{display:none;}
 .fsheet,.fsheet-dim{display:none;}
+
+/* ===== 전체메뉴 드로어 (모바일 햄버거 + PC GNB 햄버거 공용) =====
+   컴포넌트 스타일은 폭 무관 공용. 위치/슬라이드만 반응형 분기:
+   PC(기본)=좌측 패널 640 + dim, 왼쪽→오른쪽 슬라이드 / 모바일=전체폭 우측 슬라이드(아래 미디어쿼리) */
+.m-drawer{position:fixed;inset:0;z-index:2000;visibility:hidden;transition:visibility .3s;}
+.m-drawer.open{visibility:visible;}
+.md-dim{position:absolute;inset:0;background:rgba(0,0,0,.45);opacity:0;transition:opacity .3s;}
+.m-drawer.open .md-dim{opacity:1;}
+.md-panel{position:absolute;top:0;bottom:0;left:0;width:min(640px,92vw);display:flex;flex-direction:column;background:#fff;
+  transform:translateX(-100%);transition:transform .3s cubic-bezier(.22,1,.36,1);box-shadow:8px 0 30px rgba(0,0,0,.15);}
+.m-drawer.open .md-panel{transform:none;}
+/* 상단: 홈 + 로그인 + 검색/장바구니/닫기 */
+.md-top{display:flex;align-items:center;gap:8px;padding:24px 20px;flex:none;box-sizing:border-box;}
+.md-home{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;flex:none;}
+.md-home img{width:24px;height:24px;display:block;}
+.md-auth{margin-right:auto;font-size:16px;}
+.md-auth a{color:var(--ink);text-decoration:none;font-weight:600;}
+.md-top-ic{display:flex;align-items:center;gap:16px;flex:none;}
+.md-top-ic .md-search{border:0;background:none;padding:0;cursor:pointer;width:24px;height:24px;}
+.md-top-ic .md-cart{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;}
+.md-top-ic img{width:24px;height:24px;display:block;}
+.md-x{position:relative;width:24px;height:24px;flex:none;border:0;background:none;padding:0;cursor:pointer;-webkit-tap-highlight-color:transparent;}
+.md-x::before,.md-x::after{content:"";position:absolute;left:11px;top:2px;width:2px;height:20px;background:var(--ink);border-radius:2px;}
+.md-x::before{transform:rotate(45deg);}
+.md-x::after{transform:rotate(-45deg);}
+/* 빠른 아이콘 4종(원형) */
+.md-quick{display:flex;gap:8px;align-items:center;justify-content:center;padding:24px 20px;flex:none;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.md-q{flex:1 1 0;min-width:0;max-width:79px;aspect-ratio:1/1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+  border:1px solid var(--line);border-radius:999px;background:#fff;text-decoration:none;}
+.md-q-ic{display:flex;align-items:center;justify-content:center;width:32px;height:32px;}
+.md-q-ic img{max-width:28px;max-height:28px;display:block;}
+.md-q-t{font-size:11px;font-weight:700;color:var(--ink);font-family:var(--sans);}
+/* 본문: 좌 카테고리 / 우 하위목록 */
+.md-body{flex:1;display:flex;min-height:0;overflow:hidden;}
+/* 좌 컬럼: 활성 알약이 흰색 영역으로 튀어나오도록 가로 클리핑 해제(overflow:visible) */
+.md-cats{flex:none;width:130px;max-width:150px;background:#f5f5f5;overflow:visible;}
+.md-cat{position:relative;display:block;width:100%;box-sizing:border-box;text-align:left;border:0;background:none;cursor:pointer;
+  padding:16px 20px;font-size:14px;color:var(--weak);font-family:var(--sans);white-space:nowrap;}
+/* 활성: 빨강 알약이 우측(흰색 섹션)으로 14px 돌출 + 오른쪽 라운드 */
+.md-cat.on{width:calc(100% + 14px);background:var(--red);color:#fff;font-weight:700;font-size:15px;border-radius:0 999px 999px 0;z-index:1;}
+.md-subs{flex:1;min-width:0;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:16px 24px 40px;}
+.md-sub{display:block;padding:8px 0;font-size:14px;font-weight:500;color:var(--muted);
+  text-decoration:none;font-family:var(--sans);line-height:24px;}
+.md-sub:hover{color:var(--ink);}
+/* 학습자료실·도서몰: 아코디언 섹션 */
+.md-acc{border-bottom:1px solid var(--line);}
+.md-acc:last-child{border-bottom:0;}
+.md-acc-h{display:flex;align-items:center;justify-content:space-between;width:100%;border:0;background:none;cursor:pointer;
+  padding:16px 0;font-size:14px;font-weight:700;color:var(--ink);font-family:var(--sans);text-align:left;}
+.md-acc-ic{width:11px;height:11px;flex:none;position:relative;}
+.md-acc-ic::before{content:"";position:absolute;left:0;top:2px;width:9px;height:9px;
+  border-right:2px solid #1d1717;border-bottom:2px solid #1d1717;transform:rotate(45deg);transition:transform .2s;}
+.md-acc.open .md-acc-ic::before{top:5px;transform:rotate(-135deg);}
+.md-acc-body{padding:0 0 12px;}
+.md-acc:not(.open) .md-acc-body{display:none;}
 
 @media (max-width:1023px){
   /* 태블릿(768~1023)에서 모바일 뷰가 넓게 퍼지지 않도록 콘텐츠를 폰 폭으로 가운데 정렬.
@@ -1876,55 +1931,11 @@ a{color:inherit;text-decoration:none;}
   .foot-mo .fm-info .lk{color:#9a9a9a;text-decoration:underline;margin-left:8px;}
   .foot-mo .fm-copy{font-size:13px;line-height:19px;color:#7e7e7e;}
 
-  /* ===== 모바일 전체메뉴 드로어 ===== */
-  .m-drawer{display:flex;flex-direction:column;position:fixed;inset:0;z-index:1000;background:#fff;
-    transform:translateX(100%);visibility:hidden;
-    transition:transform .28s cubic-bezier(.22,1,.36,1),visibility .28s;}
-  .m-drawer.open{transform:none;visibility:visible;}
-  /* 상단: 홈 + 로그인 + 검색/장바구니/닫기 */
-  .md-top{display:flex;align-items:center;gap:8px;padding:24px 20px;flex:none;box-sizing:border-box;}
-  .md-home{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;flex:none;}
-  .md-home img{width:24px;height:24px;display:block;}
-  .md-auth{margin-right:auto;font-size:16px;}
-  .md-auth a{color:var(--ink);text-decoration:none;font-weight:600;}
-  .md-top-ic{display:flex;align-items:center;gap:16px;flex:none;}
-  .md-top-ic .md-search{border:0;background:none;padding:0;cursor:pointer;width:24px;height:24px;}
-  .md-top-ic .md-cart{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;}
-  .md-top-ic img{width:24px;height:24px;display:block;}
-  .md-x{position:relative;width:24px;height:24px;flex:none;border:0;background:none;padding:0;cursor:pointer;-webkit-tap-highlight-color:transparent;}
-  .md-x::before,.md-x::after{content:"";position:absolute;left:11px;top:2px;width:2px;height:20px;background:var(--ink);border-radius:2px;}
-  .md-x::before{transform:rotate(45deg);}
-  .md-x::after{transform:rotate(-45deg);}
-  /* 빠른 아이콘 4종(원형) */
-  .md-quick{display:flex;gap:8px;align-items:center;justify-content:center;padding:24px 20px;flex:none;
-    border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
-  .md-q{flex:1 1 0;min-width:0;max-width:79px;aspect-ratio:1/1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
-    border:1px solid var(--line);border-radius:999px;background:#fff;text-decoration:none;}
-  .md-q-ic{display:flex;align-items:center;justify-content:center;width:32px;height:32px;}
-  .md-q-ic img{max-width:28px;max-height:28px;display:block;}
-  .md-q-t{font-size:11px;font-weight:700;color:var(--ink);font-family:var(--sans);}
-  /* 본문: 좌 카테고리 / 우 하위목록 */
-  .md-body{flex:1;display:flex;min-height:0;overflow:hidden;}
-  /* 좌 컬럼: 활성 알약이 흰색 영역으로 튀어나오도록 가로 클리핑 해제(overflow:visible) */
-  .md-cats{flex:none;width:130px;max-width:150px;background:#f5f5f5;overflow:visible;}
-  .md-cat{position:relative;display:block;width:100%;box-sizing:border-box;text-align:left;border:0;background:none;cursor:pointer;
-    padding:16px 20px;font-size:14px;color:var(--weak);font-family:var(--sans);white-space:nowrap;}
-  /* 활성: 빨강 알약이 우측(흰색 섹션)으로 14px 돌출 + 오른쪽 라운드 */
-  .md-cat.on{width:calc(100% + 14px);background:var(--red);color:#fff;font-weight:700;font-size:15px;border-radius:0 999px 999px 0;z-index:1;}
-  .md-subs{flex:1;min-width:0;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:16px 24px 40px;}
-  .md-sub{display:block;padding:8px 0;font-size:14px;font-weight:500;color:var(--muted);
-    text-decoration:none;font-family:var(--sans);line-height:24px;}
-  /* 학습자료실·도서몰: 아코디언 섹션 */
-  .md-acc{border-bottom:1px solid var(--line);}
-  .md-acc:last-child{border-bottom:0;}
-  .md-acc-h{display:flex;align-items:center;justify-content:space-between;width:100%;border:0;background:none;cursor:pointer;
-    padding:16px 0;font-size:14px;font-weight:700;color:var(--ink);font-family:var(--sans);text-align:left;}
-  .md-acc-ic{width:11px;height:11px;flex:none;position:relative;}
-  .md-acc-ic::before{content:"";position:absolute;left:0;top:2px;width:9px;height:9px;
-    border-right:2px solid #1d1717;border-bottom:2px solid #1d1717;transform:rotate(45deg);transition:transform .2s;}
-  .md-acc.open .md-acc-ic::before{top:5px;transform:rotate(-135deg);}
-  .md-acc-body{padding:0 0 12px;}
-  .md-acc:not(.open) .md-acc-body{display:none;}
+  /* ===== 전체메뉴 드로어 (모바일) — 전체폭 · 우측에서 슬라이드, dim 없음 ===== */
+  .m-drawer{z-index:1000;}
+  .md-dim{display:none;}
+  .md-panel{left:0;right:0;width:auto;transform:translateX(100%);box-shadow:none;
+    transition:transform .28s cubic-bezier(.22,1,.36,1);}
 
   /* ===== 교재구매/학습자료 리스트 (모바일) ===== */
   .page-buy #site-location, .page-study #site-location{display:none;}
