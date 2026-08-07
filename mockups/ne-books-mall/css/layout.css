@@ -2730,6 +2730,37 @@ a{color:inherit;text-decoration:none;}
   .page-my .qd-btn{width:100%;height:52px;font-size:15px;}
 }
 
+/* ===== 마이페이지 후기 (모바일) — Figma 2641-4768 ===== */
+@media (max-width:1023px){
+  .page-my #tab-review{padding:16px 0 40px;}
+  /* 안내 = 전체폭 회색 박스 + 전체폭 빨강 후기작성 버튼 */
+  .page-my #tab-review .rv-guide{flex-direction:column;align-items:stretch;gap:16px;border:0;border-radius:0;background:var(--gray-bg);padding:24px 20px;}
+  .page-my #tab-review .rv-guide-list li{font-size:14px;line-height:22px;padding-left:14px;}
+  .page-my #tab-review .rv-guide-list li::before{top:9px;}
+  .page-my #tab-review .rv-write-btn{width:100%;height:48px;min-width:0;}
+
+  /* 전체 N건 + 하단 라인 */
+  .page-my #tab-review .rv-count{margin:24px 20px 0;padding-bottom:16px;border-bottom:1px solid var(--ink);}
+  .page-my #tab-review .rv-list{margin-top:0;border-top:0;padding:0 20px;}
+
+  /* 헤더: ★평점+제목(좌) / 작성자+날짜(우) + chevron */
+  .page-my #tab-review .rv-q{display:grid;grid-template-columns:1fr auto auto;
+    grid-template-areas:"rev author chev" "rev date chev";align-items:center;column-gap:12px;row-gap:8px;min-height:0;padding:20px 0;gap:8px 12px;text-align:left;}
+  .page-my #tab-review .rv-prod{display:none;}
+  .page-my #tab-review .rv-rev{grid-area:rev;gap:8px;}
+  .page-my #tab-review .rv-stars{font-size:16px;}
+  .page-my #tab-review .rv-title{font-size:14px;white-space:normal;}
+  .page-my #tab-review .rv-author{grid-area:author;justify-self:end;align-self:start;font-size:12px;color:var(--weak);white-space:nowrap;}
+  .page-my #tab-review .rv-date{grid-area:date;justify-self:end;align-self:end;font-size:12px;color:var(--weak);}
+  .page-my #tab-review .rv-chev{grid-area:chev;align-self:center;}
+
+  /* 펼침: 본문 + 이미지 + 수정/삭제 */
+  .page-my #tab-review .rv-a{border-top:0;padding:0 0 20px;gap:16px;}
+  .page-my #tab-review .rv-body{line-height:24px;max-width:none;}
+  .page-my #tab-review .rv-photo{max-width:none;}
+  .page-my #tab-review .rv-btn{height:auto;min-width:0;padding:8px 16px;font-size:13px;}
+}
+
 /* ===== 교재상세 (모바일) ===== */
 .pdp-bar{display:none;}
 .dh-cover-book{display:contents;}  /* 데스크톱: 래퍼 무시(책·미리보기 그대로) */
