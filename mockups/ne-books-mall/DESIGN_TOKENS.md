@@ -664,3 +664,120 @@ body{ min-height:100vh; display:flex; flex-direction:column; }
 **교재 리스트(태블릿)**: 1열 풀폭(가로 카드). PC(≥1024) 카드는 `.pinfo{padding-right:210px}`로 제목·가격 겹침 방지.
 
 **Known 이슈**: 공지/고객센터 2단은 ≥1024에서 고객센터 칼럼(약 480px)이 좁아 카드 채널 아이콘이 tel 아래로 wrap됨(1360 설계 기준) — PC 좁은 구간 스택 or 칼럼 비율 조정 여지.
+
+---
+
+## 31. 교재상세 PDP 히어로 · 구매박스 (`.dt-hero` / `.dh-*`)
+
+교재상세 상단 2단 히어로 + 구매 영역. (`교재상세.html`, layout.css)
+
+| 요소 | 규칙 |
+|------|------|
+| 히어로 `.dt-hero` | grid `580px / 1fr`, column-gap **140**, 하단 padding **80** |
+| 커버 `.dh-cover` | **580×580** 회색 박스(radius 12), 책 이미지 폭 **56%**+그림자, 미리보기 `.prev`=우하단 **52px** `--ink` 원형 |
+| 정보 `.dh-info` | 높이 580 · 내부 스크롤(스크롤바 숨김) |
+| 제목 `.dh-title` | Paperlogy **800 / 32** |
+| 가격 `.dh-price` | `.pct`(빨강 800 24) · `.now`(Paperlogy 800 24) · `.was`(14 취소선 `--weak`), 위 여백 40 |
+| 배지 `.badge` | course=빨강 아웃라인 / level=회색 배경 / lexile=`--blue` 아웃라인(+i아이콘), 알약 4/12 |
+| 구매박스 `.dh-buy` | 하위 상세에서 **sticky**(`.dt-body .dh-buy{position:sticky;top:76px}`). 행=라벨 60+값, 합계 Paperlogy 800 24, 버튼 `.cart`(#4d4e4d)+`.buy`(빨강) `flex:1` |
+| 정보고시 `.dh-notice` | 회색 박스 radius 10, padding 20/30 |
+| NE Tutor 띠 `.dh-tutor` | `--blue` 배경 radius 10, 흰 글씨 |
+
+## 32. 수량 스테퍼 (`.qty` / `.dh-qty`)
+
++/− 버튼 + 수량. 테두리 `--line` · radius 8 · overflow hidden.
+
+| 위치 | 버튼 | 값칸 |
+|------|------|------|
+| 교재상세 `.dh-qty` | 34×38 | 44 (bold) |
+| 장바구니 `.qty` | 36×40 | input 44(좌우 `--line` 구분선) |
+
+> 모바일은 `.qty-step`(100×36, §29) 사용.
+
+## 33. 상품 카드 (베스트셀러·추천 `.bs-card`)
+
+메인 베스트셀러/교재상세 추천 캐러셀 카드. `280×428` 흰 카드(border `--line`, radius 12).
+
+| 요소 | 규칙 |
+|------|------|
+| 이미지 영역 `.img` | 280×292, 책 `.book` 162×212(그림자) |
+| 체크박스 `.chk` | 좌상단 18×18 radius 5, 선택 시 `--check`(#D94A34)+흰 SVG 체크 |
+| 담기 `.cart` | 우하단 **48px** `--ink` 원형 + 흰 카트 20px |
+| 메타 `.bs-meta` | padding `0 0 40 40`, 코스 알약 `.ph`(빨강 아웃라인) · 이름 16 medium · 가격 now(Paperlogy 22)/was(14 취소선) |
+
+## 34. 교재 리스트 카드 행 (`.prow`)
+
+교재구매/학습자료 리스트의 가로 카드 행. `display:flex; gap 40; padding 40 0; border-bottom --line`.
+
+| 요소 | 규칙 |
+|------|------|
+| 커버 `.pcover` | 구매 **245²** / 학습자료 **276²** 회색 radius 12, 책 이미지+그림자 |
+| 코너 배지 `.pcorner` | 좌상단 12/12, **hot=`--red` · new=`--blue` · soldout/off=`#8a8a8a`**, 10px bold radius 10 pad 3/9 |
+| 제목 `.ptitle` | Paperlogy **28** |
+| 액션 `.pactions` | 우측 절대배치(width 190), 구매 리스트는 `.pinfo{padding-right:210}`로 겹침 방지 |
+| 버튼 `.pbtns` | §6 참조(학습자료/장바구니 빨강 아웃라인/바로구매) |
+| 학습자료 카트 `.pcover-cart` | 커버 우하단 48px `--ink` 원형(§6) |
+
+## 35. 가격 블록 (공통 패턴)
+
+할인율·현재가·정가 3요소는 화면 전역에서 동일 패턴으로 반복(`.dh-price` · `.bs-meta` · `.pprice` · `.mb-price` · `.cprice` · `.od-final`).
+
+| 요소 | 규칙 |
+|------|------|
+| 현재가 `.now` | **`--display`(Paperlogy)** Bold, 크기는 맥락별(16~28), 단위(원/small)는 `--sans` 14 |
+| 정가 `.was` | 14 · `--weak` · **취소선** |
+| 할인율 `.pct` | Bold(800), 강조 시 `--red` |
+| 할인/적립 태그 `.pdiscount .tag` | 20×20 radius 10, 할인(`.hal`)=`--red` · 적립(`.jeok`)=`#666`, 흰 글씨 11 |
+
+## 36. 주문/장바구니 요약 카드 & 결제 스텝
+
+**요약 카드 `.co-side`**(장바구니 `.cart-side` · 주문결제 `.order-side`): padding `56/40`, 버튼 width 100%.
+
+| 요소 | 규칙 |
+|------|------|
+| 금액 라인 `.pay-line .v` | 숫자 16 `--ink` + 원 14 `--muted` |
+| 총액 `.pay-total` | 값 = `--red` Paperlogy(**b 28 / 단위 24**), 라벨 16(주문측 Paperlogy 700), 위 여백/선 40 |
+| 적립예정 `.pay-earn` | 좌우 양끝, 14 `--muted` |
+
+**결제 스텝 `.steps`**: flex center, gap 16, padding `24/0/40`. `.step .no`=28 원형(기본 회색/`--weak`, 활성 `--ink`/흰색), 화살표 `.arw` `#cfcfcf` 16. 순서 장바구니 → 주문/결제 → 주문완료.
+
+## 37. 앵커 팝오버·툴팁 & 데이트피커
+
+§10(레이어 팝업 큰 박스)과 별개인, 요소에 고정 앵커되는 작은 팝오버.
+
+| 컴포넌트 | 규칙 |
+|------|------|
+| 정보 툴팁 `.tip-pop` | radius 14, padding **22/26**, 화살표 `::after`(위치별 상/하), i아이콘 15 원형 `#9a9a9a` |
+| 공유 `.share-pop` | radius 8~16, padding 24, gap 24, 회전 사각형 화살표 `::before` |
+| 렉사일 `.lexile-tip` | **450px** radius 16, `.lt-body` padding **40**, h4 18 Bold, `.lt-table`(grade열 84 회색 헤더 radius) |
+| 데이트피커 `.datepicker` | **320px** radius 12 padding 20, `.dp-days button` aspect-1 원형, 선택 `.sel`=`--red`/흰 Bold, 흐림 `.mut`=`--weak` (주문내역 기간필드에 앵커) |
+
+## 38. 학습자료 다운로드 표 & 교강사 자료 배너
+
+**다운로드 표 `.rgrid`**(교재상세 학습자료): grid `100/90/170/1fr/130`, 헤더 회색 radius 8 Bold, 체크박스 `.rchk` 18 radius 5(선택 `--check`+흰 체크), 구분 `.gubun` 알약(전체=`--ink`/회원=`--red`/선생님=`--blue`).
+
+**교강사 자료 배너 `.teacher-banner`**: `--blue` **1.5px** 테두리 + 파란 그림자, 좌측 표행(`.tb-row`)+우측 CTA 칼럼(`.tb-cta` 360, 파란 문구+버튼). **체크박스 비활성**(표시용, 선택 불가).
+
+## 39. 주문 상세내역 & 장바구니 아이템 행
+
+**주문 상세내역 `.od-order`**(`주문상세.html`): flex 카드(상/하 `--line`) = `.od-order-info`(300, 일자/주문번호) · `.od-items`(썸네일 120 회색, 책 63×83) · `.od-status`(200). 결제/취소/배송 표 `.od-table`(`.od-th` 240 회색 라벨). 결제요약 `.od-pay`(좌 741/우), 최종금액 `.od-final`=`--red` Paperlogy(b 28/em 24). 목록 버튼 `.od-btn` 280×52 차콜.
+
+**장바구니 아이템 행 `.citem`**: grid `24/120/1fr/150/132/150/32`. 썸네일 `.cthumb` 120 회색, 품절 `.soldout-badge` 오버레이, 이름 `.cname` 16 Bold, 가격 `.cprice`(now 16 Bold/was 13 취소선), 스테퍼 `.qty`, 소계 `.csum`(금액 18 `--red`), 삭제 `.cdel` 32.
+**확인 팝업 `.cart-modal`**: 중앙 박스 radius 16 pad 32/24, 메시지 16, 버튼 `.cm-btn` 48(취소=아웃라인/삭제=빨강). 토스트 `.cart-toast`=하단 어두운 알약. (담기·삭제확인·품절차단 재사용)
+
+## 40. 상세 앵커 탭·필터칩 & 메인(index) 컴포넌트
+
+**상세 앵커 탭 `.dtabs`**(교재상세): sticky·풀블리드, `a{flex:1}` 16px, 활성/hover 하단 **3px `--ink`** 밑줄(§9-2 밑줄탭과 별개). **필터칩 `.rfilter`**: 알약 칩 8/16, 활성/hover `--ink` 채움(가로 드래그 스크롤).
+
+**메인(index) 주요 컴포넌트** (layout.css 상단, 반응형은 §30):
+
+| 컴포넌트 | 규칙 |
+|------|------|
+| 히어로 캐러셀 `.hero2` | 카드 405×460 중앙 포커스 트랙, 진행바 네비 `.hero2-nav .bar i` |
+| 주요 아이콘 `.mainicons .pill` | 140 원형, 아이콘 45, 한 줄 nowrap+드래그 |
+| 베스트셀러 `.bestseller` | 알약 탭 `.bs-tabs`, 프로모 `.bs-promo`(라벨=빨강 아웃라인 알약, 타이틀 Paperlogy 32 `--red`) |
+| 큐레이션 `.curation` | `--ink` 배경, `.cur-card` 405² opacity 포커스 |
+| NE Tutor `.netutor` | `--blue` 액센트, `.nt-card` 351×178(red variant), 아크 회전 ≥1024(§30) |
+| 공지/CS `.notices` | 2단(`.notice-list` + `.cs-cards`), 카드 `.cs-card` radius 16 |
+
+> 문서 번호는 §11이 비어 있음(§10 → §12) — 과거 편집 흔적, 내용 누락 아님.
