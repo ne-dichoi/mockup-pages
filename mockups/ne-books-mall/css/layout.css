@@ -2792,17 +2792,19 @@ a{color:inherit;text-decoration:none;}
 
 /* ===== 마이페이지 이벤트/세미나 (모바일, Figma 2749-10678) ===== */
 @media (max-width:1023px){
-  .page-my #tab-event{padding:40px 20px 0;}
-  /* 참여내역 헤더: 타이틀 18 + 진행중 필터 버튼(콤팩트 아웃라인) */
+  .page-my #tab-event{padding:40px 20px 40px;}/* 하단 푸터 위 여백 40 */
+  /* 참여내역 헤더: 타이틀 18 + 진행중 필터 버튼(콤팩트 아웃라인). 헤더↔배너 16 */
   .page-my #tab-event .ev-my-head{margin-bottom:0;padding-bottom:16px;align-items:flex-end;}
   .page-my #tab-event .my-sec-t{font-size:18px;}
   .page-my #tab-event .ev-my-btn{height:auto;padding:5px 13px;font-size:12px;line-height:20px;border-color:var(--ink);border-radius:8px;}
-  /* 카드 1열, 카드 사이 40 */
-  .page-my #tab-event .ev-grid{grid-template-columns:1fr;gap:40px;margin-top:24px;}
-  .page-my #tab-event .ev-body{padding-top:16px;}
+  /* 카드 1열, 카드 사이 40. 헤더 pb16 + grid mt0 = 헤더↔배너 16 */
+  .page-my #tab-event .ev-grid{grid-template-columns:1fr;gap:40px;margin-top:0;}
+  /* 화면이 넓어져도 이미지는 커지지 않고 높이 고정 → 아래 리스트가 위로 올라옴. object-fit:cover로 좌우만 확장 */
+  .page-my #tab-event .ev-thumb{aspect-ratio:auto;height:225px;}
+  .page-my #tab-event .ev-body{padding-top:24px;}/* 배너↔라벨 24 */
   .page-my #tab-event .ev-badge{height:auto;padding:4px 8px;font-size:11px;line-height:normal;}
   .page-my #tab-event .ev-badge.cat{border-color:var(--line);}
-  .page-my #tab-event .ev-title{font-size:16px;}
+  .page-my #tab-event .ev-title{font-size:18px;}
   .page-my #tab-event .ev-desc{font-size:12px;}
   .page-my #tab-event .ev-status{gap:6px;}
   .page-my #tab-event .pager{display:none;}
