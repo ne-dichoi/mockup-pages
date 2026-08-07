@@ -2799,8 +2799,9 @@ a{color:inherit;text-decoration:none;}
   .page-my #tab-event .ev-my-btn{height:auto;padding:5px 13px;font-size:12px;line-height:20px;border-color:var(--ink);border-radius:8px;}
   /* 카드 1열, 카드 사이 40. 헤더 pb16 + grid mt0 = 헤더↔배너 16 */
   .page-my #tab-event .ev-grid{grid-template-columns:1fr;gap:40px;margin-top:0;}
-  /* 화면이 넓어져도 이미지는 커지지 않고 높이 고정 → 아래 리스트가 위로 올라옴. object-fit:cover로 좌우만 확장 */
-  .page-my #tab-event .ev-thumb{aspect-ratio:auto;height:225px;}
+  /* 이미지 노출 규격(Figma): 7:8 원본에서 상단 437×280 크롭(하단 218 잘림). 화면이 넓어져도 437:280 비율 유지,
+     단 설계폭 437 초과로 커지지 않게 상한. (aspect-ratio 437/280 + object-position:top은 데스크톱 .ev-thumb 공용) */
+  .page-my #tab-event .ev-thumb{aspect-ratio:437/280;height:auto;max-width:437px;}
   .page-my #tab-event .ev-body{padding-top:24px;}/* 배너↔라벨 24 */
   .page-my #tab-event .ev-badge{height:auto;padding:4px 8px;font-size:11px;line-height:normal;}
   .page-my #tab-event .ev-badge.cat{border-color:var(--line);}

@@ -426,7 +426,9 @@ body{ min-height:100vh; display:flex; flex-direction:column; }
 
 | 요소 | 규칙 |
 |------|------|
-| 썸네일 크롭 | **원본 이미지는 세로 긴 `7:8` 비율.** 목록 카드에서는 **가로 짧은 프레임 `aspect-ratio:437/280`, `radius 16`** 에 `object-fit:cover; object-position:top` 으로 담아 **원본의 위쪽 영역만** 노출한다(아래쪽은 잘림). 신간/이벤트/세미나 카드 공통. 구현: `.ev-thumb` / `.ev-thumb img` (layout.css). |
+| 썸네일 크롭 | **원본 이미지는 세로 긴 `7:8` 비율(리스트 437×499).** 목록 카드에서는 **가로 짧은 프레임 `aspect-ratio:437/280`, `radius 16`** 에 `object-fit:cover; object-position:top` 으로 담아 **원본 상단 437×280만** 노출(하단 218 잘림). 신간/이벤트/세미나 카드 공통. 구현: `.ev-thumb` / `.ev-thumb img` (layout.css). |
+| 이미지 소스 규격(공용 1장) | **메인 롤링 배너**: `350×400`(7:8) 전체 노출 · radius 16 / **이벤트·신간·세미나 리스트**: `437×499`(7:8), 상단 `437×280` 노출(하단 218 잘림) · radius 16. 핵심요소(제품·타이틀·로고)는 **원본 상단**에 배치. |
+| 모바일 카드 폭 | `#tab-event .ev-thumb`는 모바일에서도 **`437/280` 비율 유지 + object-position:top**(화면이 넓어져도 비율 그대로), 단 **`max-width:437`** 로 설계폭 초과 확대 방지(휴대폰은 폭에 맞춰 축소). |
 | 유형 배지 | 아웃라인 `--red` · 글자 `--red` · radius 9999 · 12px |
 | 분류 배지 | 아웃라인 `--border-2` · 글자 `--muted` |
 | 제목 | `--display`(Paperlogy) Bold 22 · `--ink` |
