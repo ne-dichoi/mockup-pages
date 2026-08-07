@@ -2710,8 +2710,8 @@ a{color:inherit;text-decoration:none;}
 @media (max-width:1023px){
   /* 질문 섹션(흰 배경), 첨부 아래 40px 여백 → 회색 답변 박스와 분리 */
   .page-my .qd-sec{padding:24px 20px 40px;}
-  /* 제목+날짜 헤더: 날짜 아래 라인(날짜↔라인 16, 라인↔첫 필드 40) */
-  .page-my .qd-head{padding:0 0 16px;border-bottom:1px solid #ddd;}
+  /* 제목+날짜 헤더: 날짜 아래 라인 전체폭(좌우 20 음수마진으로 화면 끝까지) + 텍스트 20 재인셋 */
+  .page-my .qd-head{margin:0 -20px;padding:0 20px 16px;border-bottom:1px solid #ddd;}
   .page-my .qd-title{font-size:18px;line-height:26px;}
   .page-my .qd-date{margin-top:8px;font-size:12px;color:var(--weak);}
   /* 표 → 라벨(볼드) 위 · 값 아래 스택 */
