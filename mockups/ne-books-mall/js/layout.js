@@ -176,7 +176,9 @@
     var closeBtn=header.querySelector('.m-catclose');
     var nameEl=header.querySelector('.m-loc-name');
     function markActive(){
-      var cur=((nameEl&&nameEl.textContent)||'').trim().toLowerCase();
+      /* data-active 가 지정되면 그 값으로 포커스(예: 마이페이지 탭 전환 시 GNB명과 별개로 활성 메뉴 지정) */
+      var override=mcat.getAttribute('data-active');
+      var cur=(override!=null?override:((nameEl&&nameEl.textContent)||'')).trim().toLowerCase();
       mcat.querySelectorAll('.mcat-item').forEach(function(a){
         a.classList.toggle('on', a.textContent.trim().toLowerCase()===cur);
       });

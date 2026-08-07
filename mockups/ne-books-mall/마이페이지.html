@@ -8,8 +8,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260810s">
-<script src="js/layout.js?v=20260810s" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260810t">
+<script src="js/layout.js?v=20260810t" defer></script>
 <script src="js/search.js" defer></script>
 </head>
 <body class="page-my">
@@ -758,26 +758,36 @@
   (function(){
     var tabs=[].slice.call(document.querySelectorAll('.my-tabs a'));
     var panels=[].slice.call(document.querySelectorAll('.my-panel'));
+    /* 탭에 맞춰 GNB 타이틀(홈=마이페이지, 그 외=탭명) + 펼침메뉴 포커스 갱신 */
+    function syncHeader(t){
+      var tab=t.getAttribute('data-tab'), label=t.textContent.trim();
+      var locName=(tab==='review')?'후기':label; /* 후기 탭 로케이션 명칭 '후기' */
+      var gnbName=(label==='홈')?'마이페이지':locName;
+      var title=document.querySelector('.ph-title'), cur=document.querySelector('.crumb .cur');
+      if(title) title.textContent=gnbName;
+      if(cur) cur.textContent=locName;
+      var mloc=document.querySelector('.m-loc-name'); if(mloc) mloc.textContent=gnbName; /* 모바일 서브GNB 명칭 */
+      var mcat=document.getElementById('mCat');
+      if(mcat){ mcat.setAttribute('data-active', label); /* 펼침메뉴 포커스=현재 탭(GNB명과 별개) */
+        mcat.querySelectorAll('.mcat-item').forEach(function(a){ a.classList.toggle('on', a.textContent.trim()===label); });
+      }
+    }
     tabs.forEach(function(t){
       t.addEventListener('click',function(e){
         e.preventDefault();
         tabs.forEach(function(x){ x.classList.remove('on'); });
         t.classList.add('on');
         var tab=t.getAttribute('data-tab');
-        var id='tab-'+tab;
-        panels.forEach(function(p){ p.hidden=(p.id!==id); });
-        var label=t.textContent.trim();
-        var locName=(tab==='review')?'후기':label; /* 교재 후기 탭은 로케이션 명칭을 '후기'로 */
-        var title=document.querySelector('.ph-title'), cur=document.querySelector('.crumb .cur');
-        if(title) title.textContent=(label==='홈')?'마이페이지':locName;
-        if(cur) cur.textContent=locName;
+        panels.forEach(function(p){ p.hidden=(p.id!=='tab-'+tab); });
+        syncHeader(t);
         var mw=document.querySelector('.mywrap'); if(mw) mw.style.paddingBottom=(tab==='orders')?'0':'';
         window.scrollTo({top:0});
       });
     });
+    function whenReady(fn){ (function go(n){ if(document.querySelector('.m-loc-name')&&document.getElementById('mCat')){ fn(); } else if(n<60){ setTimeout(function(){ go(n+1); },25); } })(0); }
     function activateHash(){
       var hash=(location.hash||'').replace('#','');
-      if(!hash) return;
+      if(!hash){ whenReady(function(){ syncHeader(tabs.filter(function(x){ return x.classList.contains('on'); })[0]||tabs[0]); }); return; }
       var ht=tabs.filter(function(x){ return x.getAttribute('data-tab')===hash; })[0];
       if(ht){ (function go(n){ if(document.querySelector('.ph-title')){ ht.click(); } else if(n<40){ setTimeout(function(){ go(n+1); },25); } })(0); }
     }
