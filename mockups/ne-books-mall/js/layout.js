@@ -243,8 +243,11 @@
       }
     }
     catsEl.addEventListener('click',function(e){ var b=e.target.closest('.md-cat'); if(!b)return; active=+b.dataset.i; render(); subsEl.scrollTop=0; });
-    /* 아코디언 헤더 클릭 → 해당 섹션 접기/펼치기 */
-    subsEl.addEventListener('click',function(e){ var h=e.target.closest('.md-acc-h'); if(!h)return; h.parentElement.classList.toggle('open'); });
+    /* 아코디언 헤더 → 접기/펼치기 · 하위 링크 클릭 → 드로어 닫기(같은 페이지 해시 이동도 닫힘 반영) */
+    subsEl.addEventListener('click',function(e){
+      var h=e.target.closest('.md-acc-h'); if(h){ h.parentElement.classList.toggle('open'); return; }
+      if(e.target.closest('.md-sub')) close(); /* 링크 기본 이동은 그대로 진행 */
+    });
     function open(){ drawer.classList.add('open'); drawer.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
       if(siteHeader){ siteHeader.classList.remove('hdr-hidden'); siteHeader.classList.add('drawer-open'); } }
     function close(){ drawer.classList.remove('open'); drawer.setAttribute('aria-hidden','true'); document.body.style.overflow='';

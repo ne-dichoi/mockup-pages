@@ -2812,6 +2812,12 @@ a{color:inherit;text-decoration:none;}
   .page-my #tab-event .pager{display:none;}
 }
 
+/* ===== 마이페이지 홈 찜/최근본: 넓은 모바일에선 가로스크롤 대신 반응형 그리드(찜 페이지처럼 폭 채움) ===== */
+@media (min-width:600px) and (max-width:1023px){
+  .page-my .mb-grid:not(.wl-grid){display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px 12px;overflow:visible;}
+  .page-my .mb-grid:not(.wl-grid) .mb-card{width:auto;flex:none;}
+}
+
 /* ===== 이벤트 상세 (모바일, Figma 2765-11159) — 이벤트상세.html body.page-evd ===== */
 @media (max-width:1023px){
   .page-evd .nd-sec{padding-top:0;}
