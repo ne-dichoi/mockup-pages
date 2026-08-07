@@ -8,8 +8,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260811a">
-<script src="js/layout.js?v=20260811a" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260811c">
+<script src="js/layout.js?v=20260811c" defer></script>
 <script src="js/search.js" defer></script>
 </head>
 <body class="page-my">
@@ -770,13 +770,24 @@
     });
     total();
 
-    /* 상담분류=취소/환불 선택 시에만 '문의 상품 선택' 버튼+안내 노출 → 버튼 클릭 시 상품 리스트 표시 */
+    /* 상담분류=반품/환불 선택 시 '문의 상품 선택' 버튼+안내 노출.
+       단, 주문번호 dropdown에서 주문번호를 선택하면(placeholder 아님) 버튼+안내는 비노출. */
     var pick=document.getElementById('iqOrderPick'), pickBtn=document.getElementById('iqPickBtn');
     var cat=document.getElementById('iqCat');
+    var orderSel=document.getElementById('orderSel');
+    var orderPicked=false;
     function syncPick(){
       var lb=cat&&cat.querySelector('.oh-sel-lb'); var isRefund=lb&&lb.textContent.trim()==='반품/환불';
-      if(pick) pick.hidden=!isRefund;
-      if(!isRefund){ panel.hidden=true; } /* 분류가 바뀌면 리스트도 숨김 */
+      var show=isRefund && !orderPicked;               /* 주문번호 선택 시 비노출 */
+      if(pick) pick.hidden=!show;
+      if(!show){ panel.hidden=true; } /* 미노출 상태면 상품 리스트도 숨김 */
+    }
+    /* 주문번호 dropdown 선택 감지: 실제 주문번호(=data-ph 아님) 선택 시 버튼+안내 숨김 */
+    if(orderSel){
+      var oMenu=orderSel.querySelector('.oh-sel-menu');
+      if(oMenu){ [].forEach.call(oMenu.querySelectorAll('a'),function(a){
+        a.addEventListener('click',function(){ orderPicked=!a.hasAttribute('data-ph'); syncPick(); });
+      }); }
     }
     if(cat){ cat.addEventListener('iqcatchange',syncPick); } /* 옵션 동적 재구성 대응(커스텀 이벤트) */
     if(pickBtn){ pickBtn.addEventListener('click',function(){ panel.hidden=false; }); }
