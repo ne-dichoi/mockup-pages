@@ -291,9 +291,9 @@
     '공지사항상세.html':{type:'simple', title:'공지사항', crumb:['고객센터','공지사항']},
     '오류정정상세.html':{type:'simple', title:'교재 오류정정', crumb:['고객센터','교재 오류정정']},
     '비회원문의.html':{type:'simple', title:'1:1 문의', crumb:['고객센터','1:1 문의']},
-    '이벤트상세.html':{type:'simple', title:'이벤트 / 신간·개정 / 세미나', crumb:['고객센터','이벤트 / 신간·개정 / 세미나']},
-    '신간개정상세.html':{type:'simple', title:'이벤트 / 신간·개정 / 세미나', crumb:['고객센터','이벤트 / 신간·개정 / 세미나']},
-    '세미나상세.html':{type:'simple', title:'이벤트 / 신간·개정 / 세미나', crumb:['고객센터','이벤트 / 신간·개정 / 세미나']}
+    '이벤트상세.html':{type:'simple', title:'이벤트/세미나', crumb:['마이페이지','이벤트/세미나'], menu:MY_MENU},
+    '신간개정상세.html':{type:'simple', title:'이벤트/세미나', crumb:['마이페이지','이벤트/세미나'], menu:MY_MENU},
+    '세미나상세.html':{type:'simple', title:'이벤트/세미나', crumb:['마이페이지','이벤트/세미나'], menu:MY_MENU}
   };
   (function(){
     var el=document.getElementById('site-location'); if(!el) return;
