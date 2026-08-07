@@ -2797,11 +2797,12 @@ a{color:inherit;text-decoration:none;}
   .page-my #tab-event .ev-my-head{margin-bottom:0;padding-bottom:16px;align-items:flex-end;}
   .page-my #tab-event .my-sec-t{font-size:18px;}
   .page-my #tab-event .ev-my-btn{height:auto;padding:5px 13px;font-size:12px;line-height:20px;border-color:var(--ink);border-radius:8px;}
-  /* 카드 1열, 카드 사이 40. 헤더 pb16 + grid mt0 = 헤더↔배너 16 */
-  .page-my #tab-event .ev-grid{grid-template-columns:1fr;gap:40px;margin-top:0;}
-  /* 이미지 노출 규격(Figma): 7:8 원본에서 상단 437×280 크롭(하단 218 잘림). 화면이 넓어져도 437:280 비율 유지,
-     단 설계폭 437 초과로 커지지 않게 상한. (aspect-ratio 437/280 + object-position:top은 데스크톱 .ev-thumb 공용) */
-  .page-my #tab-event .ev-thumb{aspect-ratio:437/280;height:auto;max-width:437px;}
+  /* 유동 그리드: 카드 최소폭 기준으로 폭에 따라 1열↔2열 자동(휴대폰 1열, 넓어지면 2열로 채움).
+     헤더 pb16 + grid mt0 = 헤더↔배너 16 */
+  .page-my #tab-event .ev-grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr));gap:40px 24px;margin-top:0;}
+  /* 이미지 노출 규격(Figma): 7:8 원본에서 상단 437×280 크롭(하단 218 잘림). 폭이 바뀌어도 437:280 비율 유지.
+     (aspect-ratio 437/280 + object-position:top은 데스크톱 .ev-thumb 공용) */
+  .page-my #tab-event .ev-thumb{aspect-ratio:437/280;height:auto;}
   .page-my #tab-event .ev-body{padding-top:24px;}/* 배너↔라벨 24 */
   .page-my #tab-event .ev-badge{height:auto;padding:4px 8px;font-size:11px;line-height:normal;}
   .page-my #tab-event .ev-badge.cat{border-color:var(--line);}
