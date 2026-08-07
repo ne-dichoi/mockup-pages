@@ -84,13 +84,19 @@
   </header>
   <div class="m-drawer" id="mDrawer" aria-hidden="true">
     <div class="md-top">
-      <button class="md-close" type="button" aria-label="닫기"></button>
-      <div class="md-auth"><a href="#">로그인</a><span class="md-bar">|</span><a href="#">회원가입</a></div>
+      <a class="md-home" href="index.html" aria-label="홈"><img src="assets/ic_home_sub.svg" alt=""></a>
+      <span class="md-auth"><a href="index.html">로그인</a></span>
       <div class="md-top-ic">
         <button class="md-search" type="button" aria-label="검색"><img src="assets/ds_ic_search.svg" alt=""></button>
         <a class="md-cart" href="장바구니.html" aria-label="장바구니"><img src="assets/ic_bag.svg" alt=""></a>
         <button class="md-x" type="button" aria-label="닫기"></button>
       </div>
+    </div>
+    <div class="md-quick">
+      <a class="md-q" href="리스트_교재구매.html"><span class="md-q-ic"><img src="assets/ic_float_recommend.svg" alt=""></span><span class="md-q-t">교재 추천</span></a>
+      <a class="md-q" href="마이페이지.html#wish"><span class="md-q-ic"><img src="assets/ic_heart.svg" alt=""></span><span class="md-q-t">찜</span></a>
+      <a class="md-q" href="마이페이지.html#orders"><span class="md-q-ic"><img src="assets/ic_res_doc.svg" alt=""></span><span class="md-q-t">주문내역</span></a>
+      <a class="md-q" href="고객센터.html#qna"><span class="md-q-ic"><img src="assets/ic_11.svg" alt=""></span><span class="md-q-t">1:1문의</span></a>
     </div>
     <div class="md-body">
       <div class="md-cats" id="mdCats"></div>
@@ -195,28 +201,47 @@
 
   /* ===== 모바일 전체메뉴 드로어 (햄버거 → 좌 카테고리 / 우 하위목록) ===== */
   (function(){
-    /* PC 펼침메뉴(gnb-drop COLS)와 동일한 내용 */
-    var MENU=[
-      {name:'ELT', subs:['전체보기','Coursebook','Phonics','Reading','Readers','Listening','Speaking','Grammar','Writing','Vocabulary']},
-      {name:'초등/중등', subs:['전체보기','중학 내신','고등 선행','파닉스','어휘','쓰기','독해','듣기','문법/구분','TOEFL/TEPS/NELT']},
-      {name:'고등', subs:['전체보기','어휘','독해','듣기','문법/구분','수능 대비','고교 내신','단기 특강','TOEFL/TEPS/NELT']},
-      {name:'교과서/자습서', subs:['전체보기','중학영어 교과서','고등영어 교과서','수학 교과서','중국어/일본어']},
-      {name:'수험/일반', subs:['전체보기','TOEIC','TOEIC SPEAKING/WRITING','TOEFL/OPIC/TEPS','FLEX','일반영어']},
-      {name:'수학/국어', subs:['전체보기','유아','초등','중등','고등']},
-      {name:'학습자료실', subs:['전체보기','MP3·음원','정답·해설','부가자료','지도서']},
-      {name:'도서몰', subs:['전체보기','신간','베스트셀러','기획전·이벤트','절판·품절']}
+    /* 교재 카테고리(ELT~수학/국어) — 학습자료실·도서몰은 이 전체를 아코디언으로 노출 */
+    var BOOKCATS=[
+      {name:'ELT', subs:['Coursebook','Phonics','Reading','Readers','Listening','Speaking','Grammar','Writing','Vocabulary']},
+      {name:'초등/중등', subs:['중학내신','고등선행','어휘','Phonics','쓰기','독해','듣기','문법/구문','TOEFL/TEPS/NELT']},
+      {name:'고등', subs:['어휘','독해','듣기','문법/구문','수능대비','고교내신','단기특강','TOEFL/TEPS/NELT']},
+      {name:'교과서/자습서', subs:['중학영어 교과서','고등영어 교과서','수학교과서','중국어/일본어']},
+      {name:'수험/일반', subs:['TOEIC','TOEIC SPEAKING/WRITING','TOEFL/OPIC/TEPS','FLEX','일반영어']},
+      {name:'수학/국어', subs:['유아','초등','중등','고등']}
     ];
+    var CS_LINKS=['고객센터.html#notice','고객센터.html#faq','고객센터.html#event','고객센터.html#errata','고객센터.html#qna','고객센터.html#branch'];
+    var MY_LINKS=['마이페이지.html','마이페이지.html#orders','마이페이지.html#points','마이페이지.html#wish','마이페이지.html#qna','마이페이지.html#review','마이페이지.html#event'];
+    var MENU=BOOKCATS.concat([
+      {name:'학습자료실', accordion:true},
+      {name:'도서몰', accordion:true},
+      {name:'고객센터', subs:['공지사항','FAQ','이벤트/신간·개정/세미나','교재 오류정정','1:1문의','지사안내'], links:CS_LINKS},
+      {name:'마이페이지', subs:['홈','주문내역','포인트','찜','문의/답변','후기','이벤트/세미나'], links:MY_LINKS}
+    ]);
     var drawer=document.getElementById('mDrawer'); if(!drawer) return;
     var catsEl=drawer.querySelector('#mdCats'), subsEl=drawer.querySelector('#mdSubs');
     var menuBtn=document.querySelector('.m-menu'), closeBtn=drawer.querySelector('.md-close');
     var closeX=drawer.querySelector('.md-x');
     var siteHeader=document.getElementById('site-header');
     var active=0;
+    function esc(s){ return s; }
     function render(){
       catsEl.innerHTML=MENU.map(function(m,i){ return '<button type="button" class="md-cat'+(i===active?' on':'')+'" data-i="'+i+'">'+m.name+'</button>'; }).join('');
-      subsEl.innerHTML=MENU[active].subs.map(function(s,i){ return '<a class="md-sub'+(i===0?' all':'')+'" href="리스트_교재구매.html">'+s+(i===0?'':'<span class="md-chev" aria-hidden="true"></span>')+'</a>'; }).join('');
+      var m=MENU[active];
+      if(m.accordion){
+        /* 학습자료실·도서몰: ELT~수학/국어 전체를 아코디언(기본 펼침, 접기 가능) */
+        subsEl.innerHTML=BOOKCATS.map(function(c){
+          return '<div class="md-acc open"><button type="button" class="md-acc-h">'+c.name+'<span class="md-acc-ic" aria-hidden="true"></span></button>'
+            +'<div class="md-acc-body">'+c.subs.map(function(s){ return '<a class="md-sub" href="리스트_교재구매.html">'+s+'</a>'; }).join('')+'</div></div>';
+        }).join('');
+      } else {
+        var links=m.links;
+        subsEl.innerHTML=m.subs.map(function(s,i){ return '<a class="md-sub" href="'+(links?links[i]:'리스트_교재구매.html')+'">'+s+'</a>'; }).join('');
+      }
     }
     catsEl.addEventListener('click',function(e){ var b=e.target.closest('.md-cat'); if(!b)return; active=+b.dataset.i; render(); subsEl.scrollTop=0; });
+    /* 아코디언 헤더 클릭 → 해당 섹션 접기/펼치기 */
+    subsEl.addEventListener('click',function(e){ var h=e.target.closest('.md-acc-h'); if(!h)return; h.parentElement.classList.toggle('open'); });
     function open(){ drawer.classList.add('open'); drawer.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
       if(siteHeader){ siteHeader.classList.remove('hdr-hidden'); siteHeader.classList.add('drawer-open'); } }
     function close(){ drawer.classList.remove('open'); drawer.setAttribute('aria-hidden','true'); document.body.style.overflow='';
