@@ -8,8 +8,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260810v">
-<script src="js/layout.js?v=20260810v" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260810w">
+<script src="js/layout.js?v=20260810w" defer></script>
 <script src="js/search.js?v=9" defer></script>
 </head>
 <body class="page-my page-rvwrite">
@@ -126,6 +126,38 @@
     </div>
   </section>
 
+  <!-- ===== 상품 카테고리 검색 바텀시트 (모바일) ===== -->
+  <div class="os-sheet cs-sheet" id="bookCatSheet" hidden>
+    <div class="os-dim"></div>
+    <div class="os-box" role="dialog" aria-modal="true" aria-label="상품 검색">
+      <span class="os-grab"></span>
+      <div class="cs-head"><h3>검색</h3></div>
+      <div class="cs-cats">
+        <button type="button" class="cs-cat on">전체</button>
+        <button type="button" class="cs-cat">ELT</button>
+        <button type="button" class="cs-cat">초중고(영어)</button>
+        <button type="button" class="cs-cat">교과서 관련</button>
+        <button type="button" class="cs-cat">수험/일반</button>
+        <button type="button" class="cs-cat">수학/국어</button>
+      </div>
+      <div class="cs-search">
+        <input type="text" class="cs-search-in" placeholder="검색어를 입력해 주세요." autocomplete="off">
+        <button type="button" class="cs-search-btn" aria-label="검색"><img src="assets/ds_ic_search.svg" alt=""></button>
+      </div>
+      <div class="cs-results">
+        <button type="button" class="cs-result">세 마리 토끼 잡는 초등 독서논술 A단계 세트</button>
+        <button type="button" class="cs-result">세 마리 토끼 잡는 초등 독서논술 A1</button>
+        <button type="button" class="cs-result">세 마리 토끼 잡는 초등 독서논술 A2</button>
+        <button type="button" class="cs-result">세 마리 토끼 잡는 초등 독서논술 A3</button>
+        <button type="button" class="cs-result">세 마리 토끼 잡는 초등 독서논술 A4</button>
+        <button type="button" class="cs-result">세 마리 토끼 잡는 초등 독서논술 A5</button>
+        <button type="button" class="cs-result">세 마리 토끼 잡는 초등 독서논술 B단계 세트</button>
+        <button type="button" class="cs-result">세 마리 토끼 잡는 초등 독서논술 B1</button>
+        <button type="button" class="cs-result">세 마리 토끼 잡는 초등 독서논술 B2</button>
+      </div>
+    </div>
+  </div>
+
   <!-- ===== FOOTER ===== -->
   <div id="site-footer"></div>
 
@@ -173,6 +205,42 @@
     var fromBook=/[?&]from=book\b/.test(location.search);
     var submit=document.querySelector('.iq-btn-submit');
     if(submit) submit.addEventListener('click',function(){ alert('후기가 등록되었습니다.'); location.href= fromBook ? '교재상세.html#s-review' : '마이페이지.html#review'; });
+  })();
+
+  /* 모바일: 상품명 카테고리/검색 → 바텀시트(레이어 팝업) */
+  (function(){
+    function MB(){ return window.matchMedia('(max-width:1023px)').matches; }
+    var sheet=document.getElementById('bookCatSheet'); if(!sheet) return;
+    var catLb=document.querySelector('.iq-bookname .oh-sel.bookcat .oh-sel-lb');
+    var searchIn=document.querySelector('.iq-bookname .bk-search .iq-in');
+    function open(){ sheet.hidden=false; document.body.style.overflow='hidden'; requestAnimationFrame(function(){ sheet.classList.add('open'); }); }
+    function close(){ sheet.classList.remove('open'); setTimeout(function(){ sheet.hidden=true; document.body.style.overflow=''; },250); }
+
+    /* 카테고리 셀렉트 클릭 → 인라인 드롭다운 대신 시트 (캡처단계로 인라인 핸들러 차단) */
+    document.addEventListener('click',function(e){
+      if(!MB()) return;
+      if(e.target.closest('.iq-bookname .oh-sel-cur')){ e.preventDefault(); e.stopPropagation(); open(); }
+    },true);
+    /* 검색 인풋 포커스 → 키보드 대신 시트 */
+    if(searchIn) searchIn.addEventListener('focus',function(){ if(MB()){ searchIn.blur(); open(); } });
+
+    /* dim / grab / ESC 닫기 */
+    var dim=sheet.querySelector('.os-dim'), grab=sheet.querySelector('.os-grab');
+    if(dim) dim.addEventListener('click',close);
+    if(grab) grab.addEventListener('click',close);
+    document.addEventListener('keydown',function(e){ if(e.key==='Escape' && !sheet.hidden) close(); });
+
+    /* 카테고리 pill 토글 → 셀렉트 라벨 반영 */
+    sheet.querySelectorAll('.cs-cat').forEach(function(b){
+      b.addEventListener('click',function(){
+        sheet.querySelectorAll('.cs-cat').forEach(function(x){ x.classList.remove('on'); });
+        b.classList.add('on'); if(catLb) catLb.textContent=b.textContent.trim();
+      });
+    });
+    /* 검색 결과 클릭 → 상품명 반영 + 닫기 */
+    sheet.querySelectorAll('.cs-result').forEach(function(r){
+      r.addEventListener('click',function(){ if(searchIn){ searchIn.value=r.textContent.trim(); searchIn.dispatchEvent(new Event('input',{bubbles:true})); } close(); });
+    });
   })();
   </script>
 
