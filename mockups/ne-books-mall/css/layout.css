@@ -2536,7 +2536,7 @@ a{color:inherit;text-decoration:none;}
   /* 모바일: 페이징 삭제 */
   .page-my #tab-orders .pager{display:none;}
   /* 주문 상태 안내 = 세로 스택 회색 박스(위아래 여백 40, 각 상태 아래 불릿 중첩) */
-  .page-my #tab-orders .oh-guide{margin:0;border:0;border-radius:0;background:var(--gray-bg);padding:40px 20px;}
+  .page-my #tab-orders .oh-guide{margin:40px 0 0;border:0;border-radius:0;background:var(--gray-bg);padding:40px 20px;}
   .page-my #tab-orders .oh-guide-in{flex-direction:column;gap:32px;padding:0;max-width:none;margin:0;}
   .page-my #tab-orders .og-sep{display:none;}
   .page-my #tab-orders .og-col{flex-direction:row;flex-wrap:wrap;align-items:center;gap:0 12px;text-align:left;width:auto;padding:0;}
@@ -2638,7 +2638,7 @@ a{color:inherit;text-decoration:none;}
   .page-my .od-table{margin-top:16px;border-top:0;}
   /* 표: 라벨(볼드) 위 · 값 아래 세로 스택. 기본은 행 구분선 없음(취소정보만 행 사이 라인) */
   .page-my .od-table .tr{flex-direction:column;align-items:stretch;padding:16px 0;gap:8px;border-bottom:0;}
-  .page-my #odCancelBody .tr:not(:last-child){border-bottom:1px solid var(--line);}
+  /* 취소/환불 정보: 행 사이 회색 구분선 제거(환불사유·환불계좌 위 라인 없음) */
   .page-my .od-th{width:auto;flex:none;background:none;padding:0;min-height:0;align-items:flex-start;font-size:14px;font-weight:700;color:var(--ink);}
   .page-my .od-td{padding:0;min-height:0;align-items:flex-start;flex-direction:column;gap:4px;font-size:14px;line-height:20px;}
   .page-my .od-td .bk{display:block;color:var(--muted);}
@@ -2693,7 +2693,7 @@ a{color:inherit;text-decoration:none;}
   .page-my #tab-points .pager{display:none;}
 
   /* 포인트 안내 = 전체폭 회색 박스, 카테고리(적립/사용/차감유효기간) 볼드 헤딩 + 설명 */
-  .page-my #tab-points .pt-guide{margin:24px 0 0;border-radius:0;padding:40px 20px;gap:24px;}
+  .page-my #tab-points .pt-guide{margin:40px 0 0;border-radius:0;padding:40px 20px;gap:24px;}
   .page-my #tab-points .pt-guide-head span{font-size:14px;font-weight:700;}
   .page-my #tab-points .pt-guide-body{display:flex;flex-direction:column;gap:24px;}
   .page-my #tab-points .pt-guide-body p{font-size:12px;line-height:20px;color:var(--muted);}
