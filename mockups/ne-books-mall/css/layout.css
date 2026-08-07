@@ -2800,11 +2800,22 @@ a{color:inherit;text-decoration:none;}
   .page-rvwrite .iq-file-btn{order:2;flex:none;height:54px;padding:0 16px;border-color:var(--btn);}
   .page-rvwrite .iq-file .iq-help{display:none;}
 
-  /* 필수안내 + 등록(전체폭, 좌우 20 여백) */
+  /* 후기수정: 첨부파일명 표시(has-file) — 파일명 14, 삭제 12 */
+  .page-rvwrite .iq-file-name.has-file{font-size:14px;color:var(--ink);}
+  .page-rvwrite .iq-file-del{font-size:12px;color:var(--weak);}
+
+  /* 후기수정: 선택된 상품 카드 (회색 커버 105 + 제목/삭제 세로) */
+  .page-rvwrite .iq-bk-selected{display:grid;grid-template-columns:105px 1fr;grid-template-areas:"cover title" "cover del";column-gap:16px;row-gap:8px;align-content:center;justify-items:start;width:100%;}
+  .page-rvwrite .iq-bk-cover{grid-area:cover;width:105px;height:105px;border-radius:6px;background:var(--gray-bg);display:flex;align-items:center;justify-content:center;}
+  .page-rvwrite .iq-bk-cover img{width:auto;height:72px;object-fit:contain;box-shadow:1px 2px 5px rgba(0,0,0,.18);}
+  .page-rvwrite .iq-bk-title{grid-area:title;align-self:end;font-weight:500;color:var(--ink);}
+  .page-rvwrite .iq-bk-del{grid-area:del;align-self:start;height:28px;box-sizing:border-box;padding:0 13px;border:1px solid var(--line);border-radius:8px;font-size:12px;font-weight:500;color:var(--ink);}
+
+  /* 필수안내 + 버튼(전체폭, 좌우 20 여백). 등록 단독=풀폭 / 취소+등록=반반 */
   .page-rvwrite .iq-actions{flex-direction:column;align-items:stretch;gap:24px;padding:24px 20px 40px;}
   .page-rvwrite .iq-req-note{font-size:12px;order:1;}
-  .page-rvwrite .iq-actions-btns{order:2;margin-top:0;}
-  .page-rvwrite .iq-btn-submit{width:100%;height:48px;}
+  .page-rvwrite .iq-actions-btns{order:2;display:flex;gap:10px;margin-top:0;}
+  .page-rvwrite .iq-btn-cancel,.page-rvwrite .iq-btn-submit{flex:1 1 0;width:auto;min-width:0;height:48px;}
 }
 
 /* ===== 후기 작성 · 상품 카테고리 검색 바텀시트 (모바일, Figma 2719-7249) ===== */

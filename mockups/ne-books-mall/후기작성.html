@@ -8,8 +8,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260810w">
-<script src="js/layout.js?v=20260810w" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260810x">
+<script src="js/layout.js?v=20260810x" defer></script>
 <script src="js/search.js?v=9" defer></script>
 </head>
 <body class="page-my page-rvwrite">
@@ -213,7 +213,15 @@
     var sheet=document.getElementById('bookCatSheet'); if(!sheet) return;
     var catLb=document.querySelector('.iq-bookname .oh-sel.bookcat .oh-sel-lb');
     var searchIn=document.querySelector('.iq-bookname .bk-search .iq-in');
-    function open(){ sheet.hidden=false; document.body.style.overflow='hidden'; requestAnimationFrame(function(){ sheet.classList.add('open'); }); }
+    var sheetSearch=sheet.querySelector('.cs-search-in');
+    var resultEls=[].slice.call(sheet.querySelectorAll('.cs-result'));
+    /* 검색어 입력 시에만 결과 노출(한 글자부터 부분일치). 빈값이면 전부 숨김 */
+    function filterResults(){
+      var q=(sheetSearch.value||'').trim();
+      resultEls.forEach(function(el){ el.style.display=(q && el.textContent.indexOf(q)>-1)?'':'none'; });
+    }
+    if(sheetSearch) sheetSearch.addEventListener('input',filterResults);
+    function open(){ if(sheetSearch){ sheetSearch.value=''; filterResults(); } sheet.hidden=false; document.body.style.overflow='hidden'; requestAnimationFrame(function(){ sheet.classList.add('open'); }); }
     function close(){ sheet.classList.remove('open'); setTimeout(function(){ sheet.hidden=true; document.body.style.overflow=''; },250); }
 
     /* 카테고리 셀렉트 클릭 → 인라인 드롭다운 대신 시트 (캡처단계로 인라인 핸들러 차단) */
