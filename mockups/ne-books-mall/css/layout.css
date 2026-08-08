@@ -439,6 +439,16 @@ a{color:inherit;text-decoration:none;}
 .pcover-cart{position:absolute;right:40px;bottom:22px;width:48px;height:48px;background:var(--ink);border:0;border-radius:999px;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;z-index:3;}
 .pcover .pcover-cart img{width:20px;height:20px;flex:none;display:block;box-shadow:none;} /* 커버 이미지용 .pcover img(148px) 규칙보다 명시도 높게 — 카트 아이콘 20px 고정 */
 .prow.soldout .pcover img, .prow.off .pcover img{opacity:.55;filter:grayscale(.25);}
+/* PC 좁은 폭(1024~1319): 사이드바를 접고 모바일 필터 바를 상단으로 올려 리스트를 전체폭으로.
+   → 카드 디자인(찜·가격·버튼 가로배치)을 그대로 유지하고, 버튼줄(약 352px) 폭만큼 우측 여백을 확보해 태그 겹침 방지 */
+@media (min-width:1024px) and (max-width:1319px){
+  .page-buy .body-grid{grid-template-columns:1fr;gap:0;}
+  .page-buy .sidebar{display:none;}
+  .page-buy .mtools{display:block;}   /* 모바일 필터 바 상단 노출 */
+  .page-buy .toolbar{display:none;}   /* 상단 필터 바로 대체 */
+  .page-buy .plist-mo{display:none;}  /* PC 카드 리스트 유지 */
+  .page-buy .pinfo{padding-right:372px;} /* 버튼줄 자리 확보(겹침 방지) */
+}
 .pager{display:flex;align-items:center;justify-content:center;gap:4px;padding:40px 0 10px;}
 .pager a{width:36px;height:36px;font-size:14px;color:#a9a9a9;display:flex;align-items:center;justify-content:center;cursor:pointer;border-radius:9999px;}
 .pager a:hover{color:#1d1717;}
