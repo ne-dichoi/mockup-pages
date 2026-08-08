@@ -2586,9 +2586,17 @@ a{color:inherit;text-decoration:none;}
 .os-submit{width:100%;height:52px;border:0;border-radius:8px;background:var(--red);color:#fff;font-size:16px;font-weight:600;cursor:pointer;font-family:var(--sans);}
 .os-submit:hover{filter:brightness(.94);}
 /* 날짜선택 캘린더(시트 안, 전체폭) */
-.os-cal{padding:4px 0 8px;}
-.os-cal .dp-title{font-size:16px;}
-.os-cal .dp-days button{font-size:14px;}
+.os-head-date{margin-bottom:0;}
+.os-head-date h3{font-family:var(--display);font-weight:800;font-size:22px;color:var(--ink);}
+.os-cal{padding:24px 0 40px;display:flex;flex-direction:column;gap:24px;}
+.os-cal .dp-head{margin-bottom:0;}
+.os-cal .dp-title{font-size:16px;font-weight:800;}
+.os-cal .dp-week{margin-bottom:0;gap:16px;}
+.os-cal .dp-week span{font-size:14px;color:#000;padding:0;}
+.os-cal .dp-days{gap:16px;}
+.os-cal .dp-days button{aspect-ratio:auto;width:32px;height:32px;margin:0 auto;font-size:14px;}
+.os-cal .dp-days button.mut{color:var(--weak);}
+.os-cal .dp-days button.sel{background:var(--red);color:#fff;font-weight:700;}
 /* PC 에서는 바텀시트 grab 핸들 숨김(모바일 미디어쿼리에서 노출) */
 .cx-grab{display:none;}
 
