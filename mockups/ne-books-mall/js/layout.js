@@ -278,6 +278,8 @@
   };
   /* 마이페이지 계열 모바일 펼침메뉴(캐럿 드롭다운) 항목 */
   var MY_MENU=[['홈','마이페이지.html'],['주문내역','마이페이지.html#orders'],['포인트','마이페이지.html#points'],['찜','마이페이지.html#wish'],['문의/답변','마이페이지.html#qna'],['후기','마이페이지.html#review'],['이벤트/세미나','마이페이지.html#event']];
+  /* 고객센터 계열 모바일 펼침메뉴(캐럿 드롭다운) 항목 */
+  var CS_MENU=[['공지사항','고객센터.html#notice'],['FAQ','고객센터.html#faq'],['이벤트 / 신간·개정 / 세미나','고객센터.html#event'],['교재 오류정정','고객센터.html#errata'],['1:1 문의','고객센터.html#qna'],['지사안내','고객센터.html#branch']];
   var PAGES={
     '리스트_교재구매.html':{type:'cat', d1:'ELT', d2:'Coursebook', tag:'NE Build & Grow English Website'},
     '리스트_학습자료.html':{type:'cat', d1:'ELT', d2:'Coursebook', tag:'NE Build & Grow English Website'},
@@ -290,10 +292,10 @@
     '문의답변상세.html':{type:'simple', title:'문의/답변', crumb:['마이페이지','문의/답변'], menu:MY_MENU},
     '후기작성.html':{type:'simple', title:'후기', crumb:['마이페이지','후기'], menu:MY_MENU},
     '후기수정.html':{type:'simple', title:'후기', crumb:['마이페이지','후기'], menu:MY_MENU},
-    '고객센터.html':{type:'simple', title:'공지사항', crumb:['고객센터','공지사항']},
-    '공지사항상세.html':{type:'simple', title:'공지사항', crumb:['고객센터','공지사항']},
-    '오류정정상세.html':{type:'simple', title:'교재 오류정정', crumb:['고객센터','교재 오류정정']},
-    '비회원문의.html':{type:'simple', title:'1:1 문의', crumb:['고객센터','1:1 문의']},
+    '고객센터.html':{type:'simple', title:'공지사항', crumb:['고객센터','공지사항'], menu:CS_MENU},
+    '공지사항상세.html':{type:'simple', title:'공지사항', crumb:['고객센터','공지사항'], menu:CS_MENU},
+    '오류정정상세.html':{type:'simple', title:'교재 오류정정', crumb:['고객센터','교재 오류정정'], menu:CS_MENU},
+    '비회원문의.html':{type:'simple', title:'1:1 문의', crumb:['고객센터','1:1 문의'], menu:CS_MENU},
     '이벤트상세.html':{type:'simple', title:'이벤트/세미나', crumb:['마이페이지','이벤트/세미나'], menu:MY_MENU},
     '신간개정상세.html':{type:'simple', title:'이벤트/세미나', crumb:['마이페이지','이벤트/세미나'], menu:MY_MENU},
     '세미나상세.html':{type:'simple', title:'이벤트/세미나', crumb:['마이페이지','이벤트/세미나'], menu:MY_MENU}
