@@ -3028,6 +3028,24 @@ a{color:inherit;text-decoration:none;}
   .page-my #cc-errata .pager{display:none;}
 }
 
+/* ===== 교재 오류정정 상세 (모바일, Figma 3033-12508) — 오류정정상세.html body.page-eed ===== */
+@media (max-width:1023px){
+  /* 섹션 타이틀 숨김 + 표 상단 여백 제거(헤더 행이 최상단) */
+  .page-eed .qd-sec-t{display:none;}
+  .page-eed .nd-table{margin-top:0 !important;}
+  /* 헤더 배지: #666 / 테두리 #e5e5e5 / 11px (공지상세와 색 다름) */
+  .page-eed .nd-title-row .nd-cat{border-color:var(--line);color:var(--muted);font-size:11px;}
+  /* 교재 정보: 라벨(볼드14) + 표지105 + 불릿 정보 */
+  .page-eed .ee-info-row{display:block;border-bottom:0;padding:40px 20px 0;}
+  .page-eed .ee-info-row .nd-th{display:block;width:auto;background:none;padding:0 0 8px;font-size:14px;font-weight:700;color:var(--ink);}
+  .page-eed .ee-info-cell{display:flex;align-items:center;gap:8px;padding:0;}
+  .page-eed .ee-cover{width:105px;height:105px;border-radius:6px;background:var(--gray-bg);display:flex;align-items:center;justify-content:center;overflow:visible;}
+  .page-eed .ee-cover img{width:auto;height:72px;object-fit:contain;box-shadow:1px 2px 5px rgba(0,0,0,.18);border-radius:2px;}
+  .page-eed .ee-info-list{padding-left:21px;font-size:14px;line-height:22px;color:var(--muted);}
+  /* 본문: 교재정보 아래 24 */
+  .page-eed .nd-body{padding:24px 20px 0;}
+}
+
 /* ===== 공지사항 상세 (모바일, Figma 2759-11028) — 공지사항상세.html body.page-ntd ===== */
 @media (max-width:1023px){
   /* 헤더: 제목 라벨 숨김 → 분류 pill / 제목18 / 일자 */
