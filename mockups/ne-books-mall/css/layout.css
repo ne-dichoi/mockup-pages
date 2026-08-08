@@ -2930,6 +2930,46 @@ a{color:inherit;text-decoration:none;}
     border:1px solid var(--ink);border-radius:8px;background:#fff;font-family:var(--sans);font-size:14px;font-weight:500;color:var(--ink);cursor:pointer;}
 }
 
+/* ===== 고객센터 FAQ 리스트 (모바일, Figma 3023-11706) — 고객센터.html #cc-faq ===== */
+@media (max-width:1023px){
+  /* 필터: 밑줄 탭(가로 스크롤) + 검색 pill */
+  .page-my #cc-faq .qa-filter{margin:0;flex-direction:column;flex-wrap:nowrap;align-items:stretch;gap:0;min-width:0;}
+  .page-my #cc-faq .pt-tabs{min-width:0;gap:24px;padding:0 20px;border-bottom:1px solid var(--line);overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none;-ms-overflow-style:none;}
+  .page-my #cc-faq .pt-tabs::-webkit-scrollbar{display:none;}
+  .page-my #cc-faq .pt-tabs a{flex:none;white-space:nowrap;font-size:14px;padding:16px 0;margin-bottom:-1px;border-bottom:4px solid transparent;}
+  .page-my #cc-faq .pt-tabs a.on{font-weight:700;color:var(--ink);border-bottom-color:var(--ink);}
+  /* 검색: 분류 셀렉트/검색버튼 숨기고 인풋만 pill 로 */
+  .page-my #cc-faq .qa-tools{display:flex;padding:24px 20px 0;margin:0;gap:0;flex-wrap:nowrap;}
+  .page-my #cc-faq .oh-sel,.page-my #cc-faq .oh-search-btn{display:none;}
+  .page-my #cc-faq .oh-search{flex:1 1 auto;width:100%;gap:0;}
+  .page-my #cc-faq .oh-input-wrap{width:100%;flex:1 1 auto;}
+  .page-my #cc-faq .oh-input{width:100%;height:auto;padding:12px 48px 12px 24px;border-radius:86px;border-color:var(--line);
+    background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'><circle cx='11' cy='11' r='7' stroke='%231d1717' stroke-width='1.6'/><path d='M16 16l4 4' stroke='%231d1717' stroke-width='1.6' stroke-linecap='round'/></svg>") right 20px center/20px no-repeat;}
+  .page-my #cc-faq .oh-input-x{right:44px;}
+  /* 리스트 헤더: 전체 N건 + 진한 하단선 */
+  .page-my #cc-faq .faq-count{margin:0 20px;padding:40px 0 16px;border-bottom:1px solid var(--ink);font-size:14px;font-weight:600;color:var(--ink);}
+  .page-my #cc-faq .faq-table{margin:0;border-top:0;}
+  /* 행: Q(좌) · [배지+제목](중) · 화살표(우) */
+  .page-my #cc-faq .faq-item{position:relative;border-bottom:0;}
+  .page-my #cc-faq .faq-item::after{content:"";position:absolute;left:20px;right:20px;bottom:0;height:1px;background:#eee;}
+  .page-my #cc-faq .faq-q{display:grid;grid-template-columns:auto minmax(0,1fr) auto;column-gap:8px;row-gap:8px;align-items:center;width:100%;height:auto;padding:24px 20px;}
+  .page-my #cc-faq .faq-q:hover{background:none;}
+  .page-my #cc-faq .faq-no{display:none;}
+  .page-my #cc-faq .faq-subj{display:contents;}
+  .page-my #cc-faq .faq-qm{grid-column:1;grid-row:1/3;align-self:start;font-size:18px;font-weight:600;line-height:22px;}
+  .page-my #cc-faq .faq-cat{grid-column:2;grid-row:1;width:auto;justify-self:start;display:inline-flex;align-items:center;border:1px solid var(--weak);border-radius:30px;padding:4px 8px;font-size:10px;font-weight:600;line-height:14px;color:var(--weak);}
+  .page-my #cc-faq .faq-title{grid-column:2;grid-row:2;min-width:0;font-size:14px;font-weight:700;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;letter-spacing:-0.14px;}
+  .page-my #cc-faq .faq-chev{grid-column:3;grid-row:1/3;align-self:center;margin-left:0;}
+  /* 펼침 답변 */
+  .page-my #cc-faq .faq-a{padding:0 20px 24px 44px;border-top:0;gap:8px;}
+  .page-my #cc-faq .faq-am{font-size:16px;line-height:22px;}
+  .page-my #cc-faq .faq-body{font-size:14px;line-height:22px;}
+  /* 페이징 → 더보기 */
+  .page-my #cc-faq .pager{display:none;}
+  .page-my #cc-faq .nt-more{display:block;width:calc(100% - 40px);margin:24px 20px 40px;height:44px;box-sizing:border-box;
+    border:1px solid var(--ink);border-radius:8px;background:#fff;font-family:var(--sans);font-size:14px;font-weight:500;color:var(--ink);cursor:pointer;}
+}
+
 /* ===== 공지사항 상세 (모바일, Figma 2759-11028) — 공지사항상세.html body.page-ntd ===== */
 @media (max-width:1023px){
   /* 헤더: 제목 라벨 숨김 → 분류 pill / 제목18 / 일자 */
