@@ -8,8 +8,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260812c">
-<script src="js/layout.js?v=20260812c" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260812d">
+<script src="js/layout.js?v=20260812d" defer></script>
 <script src="js/search.js" defer></script>
 </head>
 <body class="page-my">
@@ -622,7 +622,9 @@
   (function(){
     var tabs=[].slice.call(document.querySelectorAll('.my-tabs a'));
     var panels=[].slice.call(document.querySelectorAll('.my-panel'));
-    function setTitle(label){ var t=document.querySelector('.ph-title'), c=document.querySelector('.crumb .cur'); if(t) t.textContent=label; if(c) c.textContent=label; }
+    /* 모바일 GNB(서브헤더) 타이틀은 해당 탭(현재 페이지) 이름으로 */
+    var MO_TITLES={notice:'공지사항',faq:'FAQ',event:'이벤트/세미나',errata:'교재 오류정정',qna:'1:1 문의',branch:'지사안내'};
+    function setTitle(label, moLabel){ var t=document.querySelector('.ph-title'), c=document.querySelector('.crumb .cur'); if(t) t.textContent=label; if(c) c.textContent=label; var m=document.querySelector('.m-loc-name'); if(m&&moLabel) m.textContent=moLabel; }
     tabs.forEach(function(t){
       t.addEventListener('click',function(e){
         e.preventDefault();
@@ -630,7 +632,7 @@
         t.classList.add('on');
         var id='cc-'+t.getAttribute('data-tab');
         panels.forEach(function(p){ p.hidden=(p.id!==id); });
-        setTitle(t.textContent.trim());
+        setTitle(t.textContent.trim(), MO_TITLES[t.getAttribute('data-tab')]);
         window.scrollTo({top:0});
       });
     });
