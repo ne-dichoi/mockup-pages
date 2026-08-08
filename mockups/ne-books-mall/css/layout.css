@@ -302,7 +302,7 @@ a{color:inherit;text-decoration:none;}
 .cat-card:hover{border-color:#d9d9d9;}
 .cat-card.on{border-color:#1d1717;color:#1d1717;} /* 시리즈 선택(다중 필터): 검은 테두리+검은 글씨 */
 .listwrap{padding:56px 0 70px;}
-.body-grid{display:grid;grid-template-columns:220px 1fr;gap:44px;align-items:start;}
+.body-grid{display:grid;grid-template-columns:180px 1fr;gap:32px;align-items:start;}
 .side-title{font-family:var(--display);font-weight:800;font-size:22px;min-height:54px;display:flex;align-items:center;border-bottom:2px solid var(--ink);}
 .fgroup{padding:40px 0;border-bottom:1px solid var(--line);}
 .fgroup h4{font-size:16px;font-weight:700;margin-bottom:10px;}
@@ -439,9 +439,10 @@ a{color:inherit;text-decoration:none;}
 .pcover-cart{position:absolute;right:40px;bottom:22px;width:48px;height:48px;background:var(--ink);border:0;border-radius:999px;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;z-index:3;}
 .pcover .pcover-cart img{width:20px;height:20px;flex:none;display:block;box-shadow:none;} /* 커버 이미지용 .pcover img(148px) 규칙보다 명시도 높게 — 카트 아이콘 20px 고정 */
 .prow.soldout .pcover img, .prow.off .pcover img{opacity:.55;filter:grayscale(.25);}
-/* PC 좁은 폭(1024~1319): 사이드바를 접고 모바일 필터 바를 상단으로 올려 리스트를 전체폭으로.
+/* PC 좁은 폭(1024~1199): 사이드바를 접고 모바일 필터 바를 상단으로 올려 리스트를 전체폭으로.
+   (사이드바 180px로 축소 → 사이드바 레이아웃은 1200px까지 겹침 없이 유지, 그 아래만 상단 필터)
    → 카드 디자인(찜·가격·버튼 가로배치)을 그대로 유지하고, 버튼줄(약 352px) 폭만큼 우측 여백을 확보해 태그 겹침 방지 */
-@media (min-width:1024px) and (max-width:1319px){
+@media (min-width:1024px) and (max-width:1199px){
   .page-buy .body-grid{grid-template-columns:1fr;gap:0;}
   .page-buy .sidebar{display:none;}
   .page-buy .mtools{display:block;}   /* 모바일 필터 바 상단 노출 */
