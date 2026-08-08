@@ -8,8 +8,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260812d">
-<script src="js/layout.js?v=20260812d" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260812e">
+<script src="js/layout.js?v=20260812e" defer></script>
 <script src="js/search.js" defer></script>
 </head>
 <body class="page-my">
@@ -750,17 +750,7 @@
     btn.addEventListener('click',function(){ shown=Math.min(shown+PAGE, items.length); render(); });
   })();
 
-  /* 이벤트/세미나 카드 → 라벨별 상세 (고객센터 이벤트탭과 동일 라우팅) */
-  (function(){
-    var ev=document.getElementById('tab-event'); if(!ev) return;
-    ev.addEventListener('click',function(e){
-      var card=e.target.closest('.ev-card'); if(!card) return;
-      var b=card.querySelector('.ev-badge.type'); var t=b?b.textContent.trim():'';
-      if(t==='이벤트') location.href='이벤트상세.html';
-      else if(t==='신간·개정') location.href='신간개정상세.html';
-      else if(t==='세미나') location.href='세미나상세.html';
-    });
-  })();
+  /* 마이페이지 이벤트/세미나는 리스트만 노출(상세 이동 없음) */
 
   /* 마이페이지 탭 전환 */
   (function(){
