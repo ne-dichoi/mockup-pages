@@ -2845,6 +2845,53 @@ a{color:inherit;text-decoration:none;}
   .page-evd .qd-list-btn{width:100%;}
 }
 
+/* ===== 세미나 상세 (모바일, Figma 2954-11455) — 세미나상세.html body.page-smd ===== */
+@media (max-width:1023px){
+  /* 주제/장소/강사 */
+  .page-smd .sm-mo-info{display:flex;flex-direction:column;gap:24px;padding:40px 20px;}
+  .page-smd .sm-mo-item{display:flex;flex-direction:column;gap:8px;}
+  .page-smd .sm-mo-lb{font-size:14px;font-weight:700;color:var(--ink);line-height:22px;}
+  .page-smd .sm-mo-val{font-size:14px;line-height:22px;color:var(--muted);}
+  /* 본문 이미지: 주제/장소/강사(하단 40) 다음이므로 상단 여백 0 */
+  .page-smd .ev-d-body{padding-top:0;}
+  /* PC 전용 요소 숨김(모바일은 sm-mo-actions/플로팅 CTA 사용) */
+  .page-smd .ev-d-apply,.page-smd .qd-actions{display:none;}
+  /* 모바일 하단 버튼: 목록 + 세미나 신청 (정적, 푸터 위) */
+  .page-smd .sm-mo-actions{display:flex;gap:8px;padding:0 20px 40px;}
+  .page-smd .sm-mo-list,.page-smd .sm-mo-apply{flex:1 1 0;min-width:0;height:44px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;border-radius:8px;font-family:var(--sans);font-size:14px;font-weight:500;cursor:pointer;}
+  .page-smd .sm-mo-list{border:1px solid var(--ink);background:#fff;color:var(--ink);text-decoration:none;}
+  .page-smd .sm-mo-apply{border:0;background:var(--red);color:#fff;}
+  /* 플로팅 CTA: 스크롤 따라다니다 하단 버튼 만나면(.hidden) 아래로 사라짐 */
+  .page-smd .sm-cta{position:fixed;left:0;right:0;bottom:0;z-index:900;background:#fff;
+    border-radius:20px 20px 0 0;box-shadow:0 -3px 8px rgba(0,0,0,.1);
+    padding:24px 20px calc(24px + env(safe-area-inset-bottom));transition:transform .25s ease,opacity .25s ease;}
+  .page-smd .sm-cta.hidden{transform:translateY(100%);opacity:0;pointer-events:none;}
+  .page-smd .sm-cta-btn{width:100%;box-sizing:border-box;padding:17px 25px;border:0;border-radius:8px;background:var(--red);color:#fff;font-family:var(--sans);font-size:16px;font-weight:500;cursor:pointer;}
+
+  /* 세미나 신청 팝업 → 하단 바텀시트 전환 (Figma 2958-11456) */
+  .sm-modal{align-items:flex-end;justify-content:stretch;background:rgba(0,0,0,.4);}
+  .sm-dialog{width:100%;max-width:none;max-height:88vh;border-radius:16px 16px 0 0;padding:0 20px calc(24px + env(safe-area-inset-bottom));
+    box-shadow:0 -3px 8px rgba(0,0,0,.1);transform:translateY(100%);transition:transform .28s cubic-bezier(.22,1,.36,1);}
+  .sm-modal.open .sm-dialog{transform:translateY(0);}
+  .sm-grab{display:block;width:40px;height:4px;border-radius:2px;background:#ccc;margin:24px auto;}
+  .sm-dl-head{margin-bottom:0;}
+  .sm-dl-title{font-weight:800;font-size:22px;line-height:26.4px;}
+  .sm-dl-close{display:none;}
+  /* 폼: 라벨 위 / 필드 아래 세로 스택 */
+  .sm-form{border:0;}
+  .sm-frow{flex-direction:column;align-items:stretch;min-height:0;border-bottom:0;gap:8px;padding-top:24px;}
+  .sm-flabel{width:auto;background:none;padding:0;font-size:14px;font-weight:700;color:var(--ink);align-self:flex-start;}
+  .sm-fval{padding:0;gap:8px;}
+  .sm-fval.readonly{padding:0;}
+  .sm-fval .iq-in{height:54px;border-radius:8px;}
+  .sm-fval .iq-inx-wrap .iq-in{height:54px;}
+  .sm-fval .oh-sel .oh-sel-cur{height:54px;border-radius:8px;}
+  .sm-fval .oh-sel.email-dom{flex:0 0 140px;}
+  /* CTA: 취소하기 + 등록하기 (54h) */
+  .sm-dl-actions{margin-top:0;padding:24px 0;gap:10px;}
+  .sm-btn{height:54px;font-size:16px;}
+}
+
 /* ===== 후기 작성/수정 (모바일) — Figma 2641-5037 ===== */
 @media (max-width:1023px){
   /* page-my 모바일: .container 여백 0 → 섹션이 자체 20px 부여 */
