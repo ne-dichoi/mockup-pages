@@ -2996,6 +2996,38 @@ a{color:inherit;text-decoration:none;}
   .page-my #cc-event .pager{display:none;}
 }
 
+/* ===== 고객센터 교재 오류정정 리스트 (모바일, Figma 3033-12399) — 고객센터.html #cc-errata ===== */
+@media (max-width:1023px){
+  /* PC 다중 셀렉트 필터 숨김 → 모바일은 액션버튼 + 교재검색 pill + 밑줄탭 */
+  .page-my #cc-errata .errata-filter{display:none;}
+  .page-my #cc-errata .qa-filter{margin:0;display:flex;flex-direction:column;flex-wrap:nowrap;align-items:stretch;gap:0;min-width:0;}
+  /* 액션 버튼 밴드(회색) — 상단 */
+  .page-my #cc-errata .qa-tools{order:1;display:flex;gap:8px;padding:40px 20px;margin:0;background:#f7f7f7;flex-wrap:nowrap;}
+  .page-my #cc-errata .btn-report,.page-my #cc-errata .btn-cfaq{flex:1 1 0;width:auto;min-width:0;}
+  /* 교재 검색 pill */
+  .page-my #cc-errata .errata-msearch{order:2;padding:24px 20px;}
+  .page-my #cc-errata .errata-msearch .oh-input-wrap{width:100%;}
+  .page-my #cc-errata .errata-msearch .oh-input{width:100%;height:auto;padding:12px 48px 12px 24px;border-radius:86px;border-color:var(--line);
+    background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'><circle cx='11' cy='11' r='7' stroke='%231d1717' stroke-width='1.6'/><path d='M16 16l4 4' stroke='%231d1717' stroke-width='1.6' stroke-linecap='round'/></svg>") right 20px center/20px no-repeat;}
+  .page-my #cc-errata .errata-msearch .oh-input-x{right:44px;}
+  /* 밑줄 탭(가로 스크롤) */
+  .page-my #cc-errata .pt-tabs{order:3;min-width:0;gap:24px;padding:0 20px;margin-top:0;border-bottom:1px solid var(--line);overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none;-ms-overflow-style:none;}
+  .page-my #cc-errata .pt-tabs::-webkit-scrollbar{display:none;}
+  .page-my #cc-errata .pt-tabs a{flex:none;white-space:nowrap;font-size:14px;padding:16px 0;margin-bottom:-1px;border-bottom:4px solid transparent;}
+  .page-my #cc-errata .pt-tabs a.on{font-weight:700;color:var(--ink);border-bottom-color:var(--ink);}
+  /* 리스트: 표 → 카드형(배지 + 제목 + 일자) */
+  .page-my #cc-errata .nt-table{margin-top:0;}
+  .page-my #cc-errata .nt-th{display:none;}
+  .page-my #cc-errata .nt-tr{position:relative;display:flex;flex-wrap:wrap;align-items:center;height:auto;padding:24px 20px;gap:8px;border-bottom:0;}
+  .page-my #cc-errata .nt-tr::after{content:"";position:absolute;left:20px;right:20px;bottom:0;height:1px;background:#eee;}
+  .page-my #cc-errata .nt-no{display:none;}
+  .page-my #cc-errata .nt-cat{width:auto;flex:none;text-align:left;border:1px solid var(--weak);border-radius:30px;padding:4px 8px;font-size:10px;font-weight:600;color:var(--weak);line-height:14px;}
+  .page-my #cc-errata .nt-subj{width:100%;flex:none;padding-left:0;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .page-my #cc-errata .nt-date{width:100%;flex:none;text-align:left;font-size:12px;color:var(--weak);}
+  .page-my #cc-errata .nt-views{display:none;}
+  .page-my #cc-errata .pager{display:none;}
+}
+
 /* ===== 공지사항 상세 (모바일, Figma 2759-11028) — 공지사항상세.html body.page-ntd ===== */
 @media (max-width:1023px){
   /* 헤더: 제목 라벨 숨김 → 분류 pill / 제목18 / 일자 */
