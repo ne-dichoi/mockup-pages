@@ -2970,6 +2970,29 @@ a{color:inherit;text-decoration:none;}
     border:1px solid var(--ink);border-radius:8px;background:#fff;font-family:var(--sans);font-size:14px;font-weight:500;color:var(--ink);cursor:pointer;}
 }
 
+/* ===== 고객센터 이벤트/세미나 리스트 (모바일, Figma 3027-12085) — 고객센터.html #cc-event ===== */
+@media (max-width:1023px){
+  /* 필터: 밑줄 탭(가로 스크롤) + 진행중 셀렉트(우측) */
+  .page-my #cc-event .qa-filter{margin:0;flex-direction:column;flex-wrap:nowrap;align-items:stretch;gap:0;min-width:0;}
+  .page-my #cc-event .pt-tabs{min-width:0;gap:24px;padding:0 20px;border-bottom:1px solid var(--line);overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none;-ms-overflow-style:none;}
+  .page-my #cc-event .pt-tabs::-webkit-scrollbar{display:none;}
+  .page-my #cc-event .pt-tabs a{flex:none;white-space:nowrap;font-size:14px;padding:16px 0;margin-bottom:-1px;border-bottom:4px solid transparent;}
+  .page-my #cc-event .pt-tabs a.on{font-weight:700;color:var(--ink);border-bottom-color:var(--ink);}
+  .page-my #cc-event .qa-tools{display:flex;justify-content:flex-end;padding:24px 20px 0;margin:0;}
+  .page-my #cc-event .oh-sel{width:auto;}
+  .page-my #cc-event .oh-sel .oh-sel-cur{width:auto;height:auto;border-radius:8px;padding:5px 13px;gap:8px;font-size:12px;line-height:20px;border-color:var(--line);}
+  /* 카드 그리드: 좁으면 1열, 넓으면 자동 다열(마이페이지와 동일) */
+  .page-my #cc-event .ev-grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr));gap:40px 24px;margin-top:0;padding:24px 20px 40px;}
+  .page-my #cc-event .ev-thumb{aspect-ratio:437/280;height:auto;}
+  .page-my #cc-event .ev-body{padding-top:16px;}/* 배너↔라벨 16 */
+  .page-my #cc-event .ev-badge{height:auto;padding:4px 8px;font-size:11px;line-height:normal;}
+  .page-my #cc-event .ev-badge.cat{border-color:var(--line);}
+  .page-my #cc-event .ev-title{font-size:16px;}
+  .page-my #cc-event .ev-desc{font-size:12px;}
+  .page-my #cc-event .ev-status{gap:8px;font-size:14px;}
+  .page-my #cc-event .pager{display:none;}
+}
+
 /* ===== 공지사항 상세 (모바일, Figma 2759-11028) — 공지사항상세.html body.page-ntd ===== */
 @media (max-width:1023px){
   /* 헤더: 제목 라벨 숨김 → 분류 pill / 제목18 / 일자 */
