@@ -2920,6 +2920,21 @@ a{color:inherit;text-decoration:none;}
     border:1px solid var(--ink);border-radius:8px;background:#fff;font-family:var(--sans);font-size:14px;font-weight:500;color:var(--ink);cursor:pointer;}
 }
 
+/* ===== 공지사항 상세 (모바일, Figma 2759-11028) — 공지사항상세.html body.page-ntd ===== */
+@media (max-width:1023px){
+  /* 헤더: 제목 라벨 숨김 → 분류 pill / 제목18 / 일자 */
+  .page-ntd .nd-title-row{display:block;padding:24px 20px 16px;border-bottom:1px solid var(--line);}
+  .page-ntd .nd-title-row .nd-th{display:none;}
+  .page-ntd .nd-title-cell{display:block;min-height:0;padding:0;}
+  .page-ntd .nd-title-left{display:block;}
+  .page-ntd .nd-cat{display:inline-flex;margin-bottom:8px;padding:4px 8px;border-color:var(--weak);border-radius:30px;font-size:10px;font-weight:600;line-height:14px;color:var(--muted);}
+  .page-ntd .nd-title{display:block;white-space:normal;overflow:visible;text-overflow:clip;font-size:18px;font-weight:700;line-height:22px;}
+  .page-ntd .nd-date{display:block;margin-top:8px;font-size:12px;color:var(--weak);}
+  /* 본문 + 첨부파일: 한 섹션(위 40, 사이 24, 아래 40) */
+  .page-ntd .nd-body{border-bottom:0;padding:40px 20px 0;font-size:14px;line-height:22px;color:var(--muted);}
+  .page-ntd .nd-table .qd-row{padding:24px 20px 40px;}
+}
+
 /* ===== 후기 작성/수정 (모바일) — Figma 2641-5037 ===== */
 @media (max-width:1023px){
   /* page-my 모바일: .container 여백 0 → 섹션이 자체 20px 부여 */
