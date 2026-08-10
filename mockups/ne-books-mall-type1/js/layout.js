@@ -9,7 +9,7 @@
         <div class="m-loc"><a class="m-loc-home" href="index.html" aria-label="홈"><img src="assets/ic_home_sub.svg" alt="홈"></a><button class="m-loc-btn" type="button" aria-expanded="false"><span class="m-loc-name"></span><span class="m-loc-caret"></span></button></div>
         <div class="search">
           <input type="text" class="search-input" placeholder="검색어를 입력해 주세요." autocomplete="off">
-          <button type="button" class="search-ic ico" aria-label="검색"><img src="assets/ds_ic_search.svg" alt=""></button>
+          <button type="button" class="search-ic ico" aria-label="검색"><svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block"><path d="M12.8333 21C17.3437 21 21 17.3437 21 12.8333C21 8.32301 17.3437 4.66667 12.8333 4.66667C8.32301 4.66667 4.66667 8.32301 4.66667 12.8333C4.66667 17.3437 8.32301 21 12.8333 21Z" stroke="#e83828" stroke-width="2" stroke-linecap="round"/><path d="M19 19.25L24.25 24.5" stroke="#e83828" stroke-width="2" stroke-linecap="round"/></svg></button>
           <div class="search-pop" hidden></div>
         </div>
         <div class="head-icons">
@@ -90,7 +90,7 @@
       <a class="md-home" href="index.html" aria-label="홈"><img src="assets/ic_home_sub.svg" alt=""></a>
       <span class="md-auth"><a href="index.html">로그인</a></span>
       <div class="md-top-ic">
-        <button class="md-search" type="button" aria-label="검색"><img src="assets/ds_ic_search.svg" alt=""></button>
+        <button class="md-search" type="button" aria-label="검색"><svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block"><path d="M12.8333 21C17.3437 21 21 17.3437 21 12.8333C21 8.32301 17.3437 4.66667 12.8333 4.66667C8.32301 4.66667 4.66667 8.32301 4.66667 12.8333C4.66667 17.3437 8.32301 21 12.8333 21Z" stroke="#e83828" stroke-width="2" stroke-linecap="round"/><path d="M19 19.25L24.25 24.5" stroke="#e83828" stroke-width="2" stroke-linecap="round"/></svg></button>
         <a class="md-cart" href="장바구니.html" aria-label="장바구니"><img src="assets/ic_bag.svg" alt=""></a>
         <button class="md-x" type="button" aria-label="닫기"></button>
       </div>
