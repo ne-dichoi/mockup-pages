@@ -392,7 +392,7 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
   <div class="container">
     <a class="brand" href="index.html"><span class="logo">NE<b>_</b>Books</span><span class="slogan only-pc">지금부터의 교재마켓</span></a>
     <div class="searchbox">
-      <form class="search-field" onsubmit="location.href='리스트_교재구매.html?q='+encodeURIComponent(this.q.value);return false;">
+      <form class="search-field" onsubmit="return false;">
         <input name="q" placeholder="찾으시는 교재를 검색해보세요">
         <button class="btn-search" aria-label="검색" type="submit"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5" stroke-linecap="round"/></svg></button>
       </form>
@@ -497,12 +497,12 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
         <a class="dmore" href="리스트_교재구매.html">신간 교재 더보기 ›</a>
       </div>
       <div class="dcol">
-        <div class="dhead"><h3>오늘 주문 내일 도착, 빠른배송</h3><a class="go" href="리스트_교재구매.html">바로가기 <span class="arw">›</span></a></div>
-        <div class="dbanner blue"><div class="dlogo">FAST DELIVERY</div><h4>오늘출발 · 내일도착</h4><p>급할 땐 빠른배송 교재로</p><div class="dcircle">🚚</div></div>
-        <div class="dtabs"><a class="on">베스트</a><a>스테디셀러</a><a class="pill purple" href="리스트_교재구매.html">무료배송</a></div>
+        <div class="dhead"><h3>오래 사랑받는 베스트·스테디셀러</h3><a class="go" href="리스트_교재구매.html">바로가기 <span class="arw">›</span></a></div>
+        <div class="dbanner blue"><div class="dlogo">BEST &amp; STEADY</div><h4>스테디셀러 명작</h4><p>오래도록 검증된 필독 교재</p><div class="dcircle">⭐</div></div>
+        <div class="dtabs"><a class="on">베스트</a><a>스테디셀러</a><a class="pill purple" href="리스트_교재구매.html">MD추천</a></div>
         <div class="dgrid" id="fastGrid"></div>
-        <p class="dnote">빠른배송은 1.5만원 이상 구매 시 무료배송입니다.</p>
-        <a class="dmore" href="리스트_교재구매.html">빠른배송 교재 더보기 ›</a>
+        <p class="dnote">베스트·스테디셀러는 3만원 이상 구매 시 무료배송입니다.</p>
+        <a class="dmore" href="리스트_교재구매.html">베스트·스테디셀러 더보기 ›</a>
       </div>
     </div>
   </section>
@@ -876,7 +876,10 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 
   /* ---------- 전체 카테고리 버튼 → 카테고리 리스트로 ---------- */
   var allcat=document.getElementById('allcat');
-  if(allcat) allcat.addEventListener('click',function(){ location.href='리스트_교재구매.html'; });
+  if(allcat) allcat.style.cursor='default';
+
+  /* 목업: 모든 링크(a) 이동 비활성화 — JS로 생성되는 링크(메가메뉴·3depth·상품카드)까지 클릭 캡처로 차단 */
+  document.addEventListener('click',function(e){ var t=e.target; var a=(t&&t.closest)?t.closest('a'):null; if(a) e.preventDefault(); },true);
 
 })();
 </script>
