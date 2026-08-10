@@ -140,6 +140,12 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 .couponband .ctxt em{font-style:normal;color:#fff700}
 .couponband .cget{margin-left:8px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.7);color:#fff;font-weight:700;padding:11px 22px;border-radius:24px;font-size:15px}
 .couponband .cget:hover{background:rgba(255,255,255,.3)}
+/* ---------- NE_Books 서비스 바로가기 (풀폭 빨강 밴드 · 쿠폰팩 자리) ---------- */
+.svcband{background:linear-gradient(100deg,#e01f28 0%,#ff4a3a 100%);margin-top:14px}
+.svcband .container{padding:24px 0}
+.svcband .svcicon .cc{background:#fff;box-shadow:0 3px 10px rgba(0,0,0,.12)}
+.svcband .svcicon:hover .cc{background:#ffe6e3;transform:translateY(-3px)}
+.svcband .svcicon span{color:#fff;font-weight:600}
 
 /* ---------- 공통 섹션 ---------- */
 .section{margin-top:52px}
@@ -445,12 +451,23 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
   </div>
 </section>
 
-<!-- ===== 풀폭 쿠폰 배너 ===== -->
-<div class="couponband">
+<!-- ===== NE_Books 서비스 바로가기 (풀폭 빨강 밴드) ===== -->
+<div class="svcband">
   <div class="container">
-    <span class="cbig">쿠폰팩</span>
-    <span class="ctxt">새 학기 준비를 위한 <em>최대 20% 쿠폰</em></span>
-    <a class="cget" href="이벤트상세.html">지금 혜택 받기 ›</a>
+    <div class="svcicons">
+      <a class="svcicon" href="리스트_교재구매.html"><span class="cc"><img src="assets/ic_main_buy.svg" alt=""></span><span>교재구매</span></a>
+      <a class="svcicon" href="#"><span class="cc"><img src="assets/ic_main_level.svg" alt=""></span><span>레벨차트</span></a>
+      <a class="svcicon" href="리스트_학습자료.html"><span class="cc"><img src="assets/ic_main_lib.svg" alt=""></span><span>학습자료</span></a>
+      <a class="svcicon" href="#"><span class="cc"><img src="assets/ic_main_mp3down.svg" alt=""></span><span>정답·MP3</span></a>
+      <a class="svcicon" href="#"><span class="cc"><img src="assets/ic_main_mp3listen.svg" alt=""></span><span>MP3듣기</span></a>
+      <a class="svcicon" href="#"><span class="cc"><img src="assets/ic_main_engteacher.svg" alt=""></span><span>영어쌤</span></a>
+      <a class="svcicon" href="#"><span class="cc"><img src="assets/ic_main_mathteacher.svg" alt=""></span><span>수학쌤</span></a>
+      <a class="svcicon" href="#"><span class="cc"><img src="assets/ic_tutor_nelt.svg" alt=""></span><span>NELT</span></a>
+      <a class="svcicon" href="세미나상세.html"><span class="cc"><img src="assets/ic_float_guide.svg" alt=""></span><span>교사연수</span></a>
+      <a class="svcicon" href="이벤트상세.html"><span class="cc"><img src="assets/ic_float_recommend.svg" alt=""></span><span>이벤트</span></a>
+      <a class="svcicon" href="#"><span class="cc"><img src="assets/ic_float_level.svg" alt=""></span><span>멤버십</span></a>
+      <a class="svcicon" href="고객센터.html"><span class="cc"><img src="assets/ic_chat.svg" alt=""></span><span>고객센터</span></a>
+    </div>
   </div>
 </div>
 
@@ -488,24 +505,6 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
     </div>
   </section>
 
-  <!-- ===== NE_Books 서비스 (원형 아이콘) ===== -->
-  <section class="section">
-    <div class="sec-head"><h2>NE_Books 서비스</h2></div>
-    <div class="svcicons">
-      <a class="svcicon" href="리스트_교재구매.html"><span class="cc"><img src="assets/ic_main_buy.svg" alt=""></span><span>교재구매</span></a>
-      <a class="svcicon" href="#"><span class="cc"><img src="assets/ic_main_level.svg" alt=""></span><span>레벨차트</span></a>
-      <a class="svcicon" href="리스트_학습자료.html"><span class="cc"><img src="assets/ic_main_lib.svg" alt=""></span><span>학습자료</span></a>
-      <a class="svcicon" href="#"><span class="cc"><img src="assets/ic_main_mp3down.svg" alt=""></span><span>정답·MP3</span></a>
-      <a class="svcicon" href="#"><span class="cc"><img src="assets/ic_main_mp3listen.svg" alt=""></span><span>MP3듣기</span></a>
-      <a class="svcicon" href="#"><span class="cc"><img src="assets/ic_main_engteacher.svg" alt=""></span><span>영어쌤</span></a>
-      <a class="svcicon" href="#"><span class="cc"><img src="assets/ic_main_mathteacher.svg" alt=""></span><span>수학쌤</span></a>
-      <a class="svcicon" href="#"><span class="cc"><img src="assets/ic_tutor_nelt.svg" alt=""></span><span>NELT</span></a>
-      <a class="svcicon" href="세미나상세.html"><span class="cc"><img src="assets/ic_float_guide.svg" alt=""></span><span>교사연수</span></a>
-      <a class="svcicon" href="이벤트상세.html"><span class="cc"><img src="assets/ic_float_recommend.svg" alt=""></span><span>이벤트</span></a>
-      <a class="svcicon" href="#"><span class="cc"><img src="assets/ic_float_level.svg" alt=""></span><span>멤버십</span></a>
-      <a class="svcicon" href="고객센터.html"><span class="cc"><img src="assets/ic_chat.svg" alt=""></span><span>고객센터</span></a>
-    </div>
-  </section>
 
   <!-- ===== 라이브 특강 모아보기 (ON AIR) ===== -->
   <section class="section">
