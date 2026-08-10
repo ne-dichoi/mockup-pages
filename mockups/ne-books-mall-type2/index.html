@@ -377,12 +377,11 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
     <div class="allcat" id="allcat"><span class="bars"><i></i><i></i><i></i></span>전체 카테고리</div>
     <nav class="svc">
       <a href="리스트_교재구매.html">베스트셀러</a>
-      <a class="hot" href="#superband">슈퍼딜</a>
-      <a class="blue" href="#">회원님께만</a>
       <a href="리스트_교재구매.html">신간·개정</a>
+      <a href="리스트_교재구매.html">교재몰</a>
       <a href="리스트_학습자료.html">학습자료실</a>
-      <a href="#">NE 멤버십</a>
-      <a href="세미나상세.html">교사연수<span class="nbadge">N</span></a>
+      <a href="#">영어선생님</a>
+      <a href="#">수학선생님</a>
     </nav>
     <div class="util only-pc">
       <span class="me">강서니님</span>
@@ -809,12 +808,12 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
   var COL_MATHKOR={title:'수학/국어',links:['유아','초등','중등','고등']};
   var ALLCOLS=[COL_ELT,COL_MIDELEM,COL_HIGH,COL_TEXT,COL_EXAM,COL_MATHKOR];
   var CATMENU={
-    elt:{cols:[COL_ELT]},
-    midelem:{cols:[COL_MIDELEM]},
-    high:{cols:[COL_HIGH]},
-    text:{cols:[COL_TEXT]},
-    exam:{cols:[COL_EXAM]},
-    mathkor:{cols:[COL_MATHKOR]},
+    elt:{cols:[COL_ELT],promo:{img:'img2.png',tit:'Phonics·Reading 베스트',desc:'ELT 인기 리딩·파닉스 시리즈 ›'}},
+    midelem:{cols:[COL_MIDELEM],promo:{img:'img3.png',tit:'중등 내신 완성',desc:'문법·독해·어휘를 한 번에 ›'}},
+    high:{cols:[COL_HIGH],promo:{img:'img5.png',tit:'수능 파이널 특강',desc:'독해·듣기 실전 마무리 ›'}},
+    text:{cols:[COL_TEXT],promo:{img:'best_4.png',tit:'2026 개정 자습서',desc:'학교별 맞춤 자습서 모음 ›'}},
+    exam:{cols:[COL_EXAM],promo:{img:'best_5.png',tit:'수험 필수 VOCA',desc:'TOEIC·TOEFL 대비 베스트 ›'}},
+    mathkor:{cols:[COL_MATHKOR],promo:{img:'newbook_sample.png',tit:'전과목 신간마켓',desc:'수학·국어 신간을 먼저 만나보세요 ›'}},
     lib:{href:'리스트_학습자료.html',cols:ALLCOLS},
     mall:{cols:ALLCOLS}
   };
