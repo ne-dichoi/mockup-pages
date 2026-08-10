@@ -128,7 +128,7 @@ a{color:inherit;text-decoration:none;}
 .hero2-stage{width:100%;overflow:hidden;}
 .hero2-track{display:flex;align-items:center;gap:24px;transition:transform .6s cubic-bezier(.22,1,.36,1);will-change:transform;cursor:grab;touch-action:pan-y;-webkit-user-select:none;user-select:none;}
 .hero2-track.dragging{transition:none;cursor:grabbing;}
-.hero2-card{flex:none;width:405px;height:414px;border-radius:16px;overflow:hidden;background:var(--gray-bg); transition:width .6s cubic-bezier(.22,1,.36,1),height .6s cubic-bezier(.22,1,.36,1);}
+.hero2-card{flex:none;width:405px;height:373px;border-radius:16px;overflow:hidden;background:var(--gray-bg); transition:width .6s cubic-bezier(.22,1,.36,1),height .6s cubic-bezier(.22,1,.36,1);}
 .hero2-card img{width:100%;height:100%;object-fit:cover;pointer-events:none;-webkit-user-drag:none;}
 .hero2-nav{display:flex;gap:16px;align-items:center;justify-content:center;margin-top:32px;}
 .hero2-nav .bar{width:325px;max-width:50vw;height:3px;background:var(--line);border-radius:3px;position:relative;}
