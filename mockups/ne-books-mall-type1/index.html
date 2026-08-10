@@ -107,6 +107,38 @@
     .t1s-head h2{font-size:20px;}
     .t1s-rail .rarw{display:none;}
   }
+
+  /* ===== [추가] 관심 있는 중등 어휘 시리즈 (from ne-books-mall-5) ===== */
+  .t1v-sec{padding:44px 0;background:#f7f8fa;}
+  .t1v-head{margin-bottom:20px;}
+  .t1v-head h2{font-size:24px;font-weight:800;letter-spacing:-.5px;color:#191919;}
+  .t1v-head h2 .hl{color:#6f52ff;}
+  .t1v-head .sub{font-size:14px;color:#8c8c8c;margin-top:6px;font-weight:500;}
+  .t1v-store{display:grid;grid-template-columns:280px 1fr;gap:24px;}
+  .t1v-list{display:flex;flex-direction:column;gap:4px;}
+  .t1v-list button{display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:12px;text-align:left;font-size:15px;font-weight:700;color:#333;border:1px solid transparent;background:#fff;}
+  .t1v-list button .logo{width:38px;height:38px;border-radius:50%;background:#eef0f4;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#6f52ff;overflow:hidden;flex:none;}
+  .t1v-list button .tag{font-size:12px;color:#8c8c8c;font-weight:500;margin-left:auto;}
+  .t1v-list button.on{border-color:#111;box-shadow:0 2px 10px rgba(0,0,0,.06);}
+  .t1v-right{display:flex;flex-direction:column;}
+  .t1v-prod{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;flex:1;}
+  .t1v-home{margin-top:16px;height:52px;border:1px solid #ededed;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;color:#333;background:#fff;}
+  .t1v-card .thumb{position:relative;border-radius:10px;overflow:hidden;background:#f0f1f4;aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;}
+  .t1v-card .thumb img{width:100%;height:100%;object-fit:cover;}
+  .t1v-card .heart{position:absolute;right:8px;top:8px;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.9);display:flex;align-items:center;justify-content:center;}
+  .t1v-card .heart svg{width:18px;height:18px;fill:none;stroke:#b5b5b5;}
+  .t1v-card .tit{font-size:13.5px;line-height:1.4;color:#333;margin-top:10px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+  .t1v-card .was{font-size:12px;color:#bbb;text-decoration:line-through;margin-top:6px;}
+  .t1v-card .now{display:flex;gap:5px;align-items:baseline;margin-top:2px;}
+  .t1v-card .now .rate{color:#f5444a;font-weight:800;}
+  .t1v-card .now .price{font-weight:800;}
+  @media (max-width:768px){
+    .t1v-store{grid-template-columns:1fr;}
+    .t1v-head h2{font-size:20px;}
+  }
+  @media (max-width:600px){
+    .t1v-prod{grid-template-columns:repeat(2,1fr);}
+  }
 </style>
 </head>
 <body class="page-index">
@@ -242,6 +274,23 @@
         <button class="rarw prev" id="t1sBestPrev" aria-label="이전">&#8249;</button>
         <button class="rarw next" id="t1sBestNext" aria-label="다음">&#8250;</button>
         <div class="t1s-track" id="t1sBestTrack"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== [추가] 관심 있는 중등 어휘 시리즈 (from ne-books-mall-5) ===== -->
+  <section class="t1v-sec">
+    <div class="container">
+      <div class="t1v-head">
+        <h2>관심 있는 <span class="hl">중등 어휘</span> 시리즈</h2>
+        <p class="sub">최근 관심사에서 찾은 인기 시리즈예요!</p>
+      </div>
+      <div class="t1v-store">
+        <div class="t1v-list" id="t1vList"></div>
+        <div class="t1v-right">
+          <div class="t1v-prod" id="t1vProd"></div>
+          <a class="t1v-home" href="리스트_교재구매.html">시리즈홈 바로가기 ›</a>
+        </div>
       </div>
     </div>
   </section>
@@ -752,6 +801,34 @@
     var prev=document.getElementById('t1sBestPrev'),next=document.getElementById('t1sBestNext');
     if(prev) prev.addEventListener('click',function(){el.scrollBy({left:-702,behavior:'smooth'});});
     if(next) next.addEventListener('click',function(){el.scrollBy({left:702,behavior:'smooth'});});
+  })();
+
+  /* ===== 관심 있는 중등 어휘 시리즈 (from ne-books-mall-5) ===== */
+  (function(){
+    var listEl=document.getElementById('t1vList'), prodEl=document.getElementById('t1vProd');
+    if(!listEl||!prodEl) return;
+    function cardHTML(p){
+      return '<div class="t1v-card">'
+        +'<div class="thumb"><img src="'+makeCover(p.cov)+'" alt="">'
+          +'<button class="heart" aria-label="찜"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.3-9.2-8.2C1.2 8.9 2.6 6 5.5 6 7.4 6 8.7 7 12 9.5 15.3 7 16.6 6 18.5 6c2.9 0 4.3 2.9 2.7 5.8C19 15.7 12 20 12 20z" stroke-width="1.6"/></svg></button>'
+        +'</div>'
+        +'<p class="tit">'+esc(p.t)+'</p>'
+        +'<p class="was">'+p.was+'</p>'
+        +'<div class="now"><span class="rate">'+p.rate+'</span><span class="price">'+p.now+'</span></div>'
+        +'</div>';
+    }
+    prodEl.innerHTML=PRODUCTS.slice(0,4).map(cardHTML).join('');
+    var SERIES=[
+      {n:'능률VOCA', tag:'#어원암기'},
+      {n:'리딩튜터', tag:'#유형독해'},
+      {n:'그래머존', tag:'#기초문법'},
+      {n:'주니어 리더스뱅크', tag:'#초등영어'},
+      {n:'첫단추', tag:'#수능입문'}
+    ];
+    listEl.innerHTML=SERIES.map(function(s,i){
+      return '<button class="'+(i===0?'on':'')+'"><span class="logo">'+esc(s.n.slice(0,2))+'</span><span>'+esc(s.n)+'</span><span class="tag">'+(i===0?'›':esc(s.tag))+'</span></button>';
+    }).join('');
+    [].forEach.call(listEl.children,function(b){ b.addEventListener('click',function(){ [].forEach.call(listEl.children,function(x){x.classList.remove('on');}); b.classList.add('on'); }); });
   })();
 })();
 </script>
