@@ -71,11 +71,11 @@
   .t1h .t1h-sub{margin-top:12px;font-size:14px;line-height:1.5;font-weight:500;}
   .t1h .t1h-illust{flex:1;min-height:0;display:flex;align-items:flex-end;justify-content:center;margin-top:14px;}
   .hero2-card.t1h .t1h-illust img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;object-position:bottom center;pointer-events:none;-webkit-user-drag:none;}
-  /* 교재 표지 2권을 겹치지 않게 나란히 배치 */
-  .t1h .t1h-illust--books{align-items:flex-end;justify-content:center;gap:16px;}
-  .hero2-card.t1h .t1h-illust--books .bk{width:auto;height:auto;max-width:none;max-height:172px;border-radius:7px;box-shadow:0 10px 22px rgba(0,0,0,.22);}
+  /* 교재 표지 2권을 겹치지 않게 나란히 배치 (75% 크기·우측 정렬·하단우측 여백 50px) */
+  .t1h .t1h-illust--books{align-items:flex-end;justify-content:flex-end;gap:12px;padding:0 50px 50px 0;}
+  .hero2-card.t1h .t1h-illust--books .bk{width:auto;height:auto;max-width:none;max-height:129px;border-radius:7px;box-shadow:0 10px 22px rgba(0,0,0,.22);}
   .hero2-card.t1h.active .t1h-ttl{font-size:30px;}
-  .hero2-card.t1h.active .t1h-illust--books .bk{max-height:200px;}
+  .hero2-card.t1h.active .t1h-illust--books .bk{max-height:150px;}
 
   /* hero2 테마별 배경/글자색 (배경색만 유지, 장식 그래픽은 하단 일러스트로 대체) */
   .hero2-card.t1h--orange{background:linear-gradient(160deg,#ff9d54,#ff6a2c);color:#fff;}
@@ -95,8 +95,8 @@
     .hero2-card.t1h.active .t1h-ttl{font-size:22px;}
     .t1h .t1h-sub{font-size:12.5px;margin-top:9px;}
     .t1h .t1h-flag{margin-bottom:12px;}
-    .hero2-card.t1h .t1h-illust--books{gap:12px;}
-    .hero2-card.t1h .t1h-illust--books .bk{max-height:122px;}
+    .hero2-card.t1h .t1h-illust--books{gap:10px;padding:0 28px 28px 0;}
+    .hero2-card.t1h .t1h-illust--books .bk{max-height:92px;}
   }
 
   @media (max-width:768px){

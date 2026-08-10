@@ -80,6 +80,14 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 .vslide .vcap p{font-size:17px;margin:0;opacity:.95;text-shadow:0 1px 10px rgba(0,0,0,.3)}
 .vslide .scrim{position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(0,0,0,.5),rgba(0,0,0,.05) 60%,transparent)}
 .vslide .adtag{position:absolute;top:16px;right:20px;z-index:3;background:rgba(0,0,0,.35);color:#fff;font-size:11px;padding:3px 8px;border-radius:4px}
+/* 비주얼 배너 — 이미지 대신 브랜드 톤 그라디언트(문구 테마별) */
+.vslide{background:var(--cat)}
+.vslide.v1{background:radial-gradient(130% 130% at 82% 16%,rgba(120,190,255,.38),transparent 48%),linear-gradient(120deg,#132a52 0%,#22467e 55%,#2f6bb0 100%)}
+.vslide.v2{background:radial-gradient(130% 130% at 82% 18%,rgba(255,236,150,.42),transparent 48%),linear-gradient(120deg,#0d6b5f 0%,#149a86 55%,#31c1a4 100%)}
+.vslide.v3{background:radial-gradient(130% 130% at 82% 18%,rgba(205,185,255,.42),transparent 48%),linear-gradient(120deg,#2a2360 0%,#4a3aa0 55%,#7160d6 100%)}
+.vslide.v4{background:radial-gradient(130% 130% at 82% 18%,rgba(150,200,255,.38),transparent 48%),linear-gradient(120deg,#0a2352 0%,#123f86 55%,#2f6fb0 100%)}
+.vslide.v5{background:radial-gradient(130% 130% at 82% 18%,rgba(255,180,150,.42),transparent 48%),linear-gradient(120deg,#3a1330 0%,#7a1f3a 52%,#c33350 100%)}
+.vslide::after{content:"";position:absolute;right:-40px;bottom:-60px;width:280px;height:280px;border-radius:50%;background:rgba(255,255,255,.06);z-index:0}
 /* 좌측 카테고리 패널 */
 .catpanel{position:absolute;left:calc((100% - 1240px)/2);top:0;width:250px;height:100%;background:var(--cat);z-index:8;padding:8px 0}
 @media(max-width:1264px){.catpanel{left:12px}}
@@ -404,15 +412,15 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 <section class="visual" id="visual">
   <div class="vstage">
     <div class="vtrack" id="vtrack">
-      <div class="vslide"><img src="assets/img1.png" alt=""><div class="scrim"></div><span class="adtag">AD</span>
+      <div class="vslide v1"><div class="scrim"></div><span class="adtag">AD</span>
         <div class="vcap"><span class="kk">방학특강 기획전</span><h2>성적이 달라지는<br>방학 교재 조합전</h2><p>문법 개념 + 리스닝 훈련, 지금 최대 30% 할인</p></div></div>
-      <div class="vslide"><img src="assets/img2.png" alt=""><div class="scrim"></div><span class="adtag">AD</span>
+      <div class="vslide v2"><div class="scrim"></div><span class="adtag">AD</span>
         <div class="vcap"><span class="kk">파닉스 베스트</span><h2>스스로 읽는 힘<br>Phonics Code 시리즈</h2><p>Blending·Decoding 완성, 1~4권 세트 특가</p></div></div>
-      <div class="vslide"><img src="assets/img3.png" alt=""><div class="scrim"></div><span class="adtag">AD</span>
+      <div class="vslide v3"><div class="scrim"></div><span class="adtag">AD</span>
         <div class="vcap"><span class="kk">신간 도착</span><h2>그래머 인사이드<br>개정판 출간</h2><p>내신·수능 문법을 한 권에, 지금 만나보세요</p></div></div>
-      <div class="vslide"><img src="assets/img4.png" alt=""><div class="scrim"></div><span class="adtag">AD</span>
+      <div class="vslide v4"><div class="scrim"></div><span class="adtag">AD</span>
         <div class="vcap"><span class="kk">Oxford 브랜드위크</span><h2>옥스포드 리더스<br>브랜드 위크</h2><p>원서 리딩 전 품목 최대 25% + 추가 쿠폰</p></div></div>
-      <div class="vslide"><img src="assets/img5.png" alt=""><div class="scrim"></div><span class="adtag">AD</span>
+      <div class="vslide v5"><div class="scrim"></div><span class="adtag">AD</span>
         <div class="vcap"><span class="kk">수능 D-100</span><h2>수능만만<br>파이널 특강전</h2><p>독해·듣기 실전 마무리, 무료배송</p></div></div>
     </div>
   </div>
