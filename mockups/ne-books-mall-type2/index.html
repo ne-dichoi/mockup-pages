@@ -88,7 +88,7 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 .vslide .vcap p{color:#4a4a4a;opacity:1;text-shadow:none;line-height:1.55}
 .vslide .vcap .vgo{display:inline-flex;align-items:center;gap:6px;margin-top:20px;font-size:15px;font-weight:800;color:#1d1f2b}
 .vslide .vimg{position:absolute;right:56px;top:50%;transform:translateY(-50%);height:330px;z-index:2;pointer-events:none}
-.vslide .vimg img{height:100%;width:auto;display:block;filter:drop-shadow(0 14px 26px rgba(0,0,0,.2))}
+.vslide .vimg img{position:static;inset:auto;height:100%;width:auto;object-fit:contain;display:block;filter:drop-shadow(0 14px 26px rgba(0,0,0,.2))}
 @media(max-width:1000px){.vslide .vimg{right:10px;height:210px}}
 @media(max-width:680px){.vslide .vimg{display:none}}
 .vslide .vcap{position:relative;z-index:2;padding:0 64px;color:#fff}
@@ -521,7 +521,7 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 
   <!-- ===== 지금 제일 잘 나가는 교재 (원형) ===== -->
   <section class="section">
-    <div class="sec-head"><h2>지금 제일 잘 나가는 교재</h2><a class="more" href="리스트_교재구매.html">전체보기 <span class="arw">›</span></a></div>
+    <div class="sec-head"><h2>강서니님을 위한 맞춤 교재</h2><a class="more" href="리스트_교재구매.html">전체보기 <span class="arw">›</span></a></div>
     <div class="rail">
       <button class="rarw prev" id="bestPrev" aria-label="이전">&#8249;</button>
       <button class="rarw next" id="bestNext" aria-label="다음">&#8250;</button>
@@ -535,12 +535,12 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 <div class="container">
   <!-- ===== 원서관 (GLOBAL) ===== -->
   <section class="section">
-    <div class="sec-head"><h2>원서관</h2><a class="more" href="리스트_교재구매.html">전체보기 <span class="arw">›</span></a></div>
+    <div class="sec-head"><h2>전문가 추천 교재</h2><a class="more" href="리스트_교재구매.html">전체보기 <span class="arw">›</span></a></div>
     <div class="global">
       <div class="gimg" style="background-image:url('assets/img4.png')"></div>
       <div class="gpanel">
-        <span class="gsub">쉽고, 재미있는 영어원서</span>
-        <span class="gttl">GLOBAL READERS 원서관</span>
+        <span class="gsub">현직 선생님이 직접 고른</span>
+        <span class="gttl">전문가 PICK 추천 교재</span>
         <div class="gprods" id="globalGrid"></div>
       </div>
     </div>
