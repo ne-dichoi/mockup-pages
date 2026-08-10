@@ -831,11 +831,12 @@
     if(!listEl||!prodEl) return;
     /* ne-books-mall 베스트셀러 카드 디자인(.t1vbs)로 렌더 */
     var CATS=['어휘','파닉스','독해','문법'];
+    var IMGS=['best_5.png','best_1.png','best_3.png','best_4.png'];
     function cardHTML(p,i){
       return '<div class="t1vbs">'
         +'<div class="img">'
           +'<input type="checkbox" class="chk" aria-label="선택">'
-          +'<img class="book" src="'+makeCover(p.cov)+'" alt="">'
+          +'<img class="book" src="assets/'+(IMGS[i]||'best_1.png')+'" alt="">'
           +'<div class="cart"><img src="assets/ic_cart_black.svg" alt="장바구니"></div>'
         +'</div>'
         +'<div class="meta">'
