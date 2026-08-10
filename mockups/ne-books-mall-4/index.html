@@ -9,204 +9,240 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <style>
-/* ============ G마켓 스타일 리디자인 — NE Books ============ */
+/* ============ G마켓 구조 리디자인 — NE Books ============ */
 :root{
-  --green:#19c919;      /* G마켓 브랜드 그린 */
-  --green-d:#0fb70f;
+  --green:#1bc41b;          /* 브랜드 그린 */
+  --green-d:#12a512;
+  --green-panel:#2bb32b;    /* 좌측 카테고리 패널 */
   --teal:#00b8a4;
-  --red:#ff2d2d;        /* 할인율 강조 */
-  --ink:#222;
-  --sub:#8c8c8c;
-  --sub2:#b5b5b5;
-  --line:#eee;
-  --line2:#e6e6e6;
-  --bg:#f5f6f7;
+  --blue:#3b6fe0;
+  --red:#ff2d2d;
+  --ink:#222;--sub:#8c8c8c;--sub2:#b5b5b5;
+  --line:#eee;--line2:#e6e6e6;--bg:#fff;
   --coupon:#f4fff4;
 }
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
-body{
-  font-family:"Pretendard","Noto Sans KR",-apple-system,sans-serif;
-  color:var(--ink);background:#fff;font-size:14px;line-height:1.4;-webkit-font-smoothing:antialiased;
-}
+body{font-family:"Pretendard","Noto Sans KR",-apple-system,sans-serif;color:var(--ink);background:#fff;font-size:14px;line-height:1.4;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%}
 button{font-family:inherit;cursor:pointer;border:0;background:none}
-.container{width:1240px;max-width:calc(100% - 32px);margin:0 auto}
+.container{width:1240px;max-width:calc(100% - 24px);margin:0 auto}
 .only-mo{display:none}
 
-/* ---------- 1) 상단 유틸바 ---------- */
-.utilbar{border-bottom:1px solid var(--line);background:#fff;font-size:12px;color:#767676}
-.utilbar .container{display:flex;justify-content:flex-end;align-items:center;height:38px;gap:6px}
-.utilbar a{color:#767676;padding:0 9px;position:relative}
-.utilbar a+a::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);width:1px;height:11px;background:#e2e2e2}
-.utilbar a:hover{color:var(--ink)}
-.utilbar .strong{color:#333;font-weight:600}
-
-/* ---------- 2) 헤더 (로고 + 검색 + 아이콘) ---------- */
-.header{background:#fff}
-.header .container{display:flex;align-items:center;gap:34px;height:112px}
-.brand{display:flex;align-items:baseline;gap:10px;flex:0 0 auto}
-.brand .logo{font-size:34px;font-weight:800;letter-spacing:-1.5px;color:#111}
+/* ---------- 헤더 ---------- */
+.header .container{display:flex;align-items:center;gap:34px;height:104px}
+.brand{display:flex;align-items:baseline;gap:9px;flex:0 0 auto}
+.brand .logo{font-size:33px;font-weight:800;letter-spacing:-1.5px;color:#111}
 .brand .logo b{color:var(--green)}
 .brand .slogan{font-size:12px;color:var(--sub);font-weight:600}
-.searchbox{flex:1;max-width:660px}
-.search-field{display:flex;align-items:center;border:3px solid var(--green);border-radius:26px;height:52px;padding:0 8px 0 22px}
+.searchbox{flex:1;max-width:700px}
+.search-field{display:flex;align-items:center;border:2px solid #3d9be0;border-radius:26px;height:50px;padding:0 6px 0 22px}
 .search-field input{flex:1;border:0;outline:0;font-size:16px;background:none}
-.search-field input::placeholder{color:#bdbdbd}
-.search-field .btn-search{width:44px;height:44px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;flex:0 0 auto}
-.search-field .btn-search svg{stroke:#fff}
-.search-keys{margin-top:9px;font-size:12px;color:#999;display:flex;gap:12px;padding-left:8px}
-.search-keys b{color:var(--red);font-weight:700}
-.search-keys a:hover{color:var(--ink)}
-.header-icons{display:flex;gap:24px;flex:0 0 auto}
-.hicon{display:flex;flex-direction:column;align-items:center;gap:5px;color:#555;font-size:11px;position:relative}
+.search-field input::placeholder{color:#c2c2c2}
+.search-field .btn-search{width:42px;height:42px;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.search-field .btn-search svg{stroke:#3d9be0}
+.header-icons{display:flex;gap:26px;flex:0 0 auto}
+.hicon{display:flex;flex-direction:column;align-items:center;gap:4px;color:#666;font-size:11px;position:relative}
 .hicon .ic{width:30px;height:30px;display:flex;align-items:center;justify-content:center}
 .hicon .ic svg{stroke:#555;fill:none}
-.hicon .cnt{position:absolute;top:-6px;right:2px;min-width:17px;height:17px;padding:0 4px;background:var(--red);color:#fff;border-radius:9px;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.hicon .cnt{position:absolute;top:-6px;right:0;min-width:18px;height:18px;padding:0 4px;background:var(--green);color:#fff;border-radius:9px;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center}
 .hicon:hover{color:var(--green-d)}
-.hicon:hover .ic svg{stroke:var(--green-d)}
 
-/* ---------- 3) 서비스 바로가기 바 ---------- */
-.svcbar{border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.svcbar .container{display:flex;align-items:center;height:46px;gap:2px}
-.svcbar a{padding:0 16px;font-size:14px;font-weight:600;color:#444;line-height:46px}
-.svcbar a.hot{color:var(--red)}
-.svcbar a:hover{color:var(--green-d)}
-.svcbar .sep{width:1px;height:12px;background:#e2e2e2;margin:0 2px}
+/* ---------- GNB / 서비스 줄 ---------- */
+.gnbbar{border-top:1px solid var(--line)}
+.gnbbar .container{display:flex;align-items:center;height:52px;gap:0}
+.allcat{display:flex;align-items:center;gap:10px;background:var(--green);color:#fff;font-weight:700;font-size:16px;height:52px;padding:0 22px;flex:0 0 auto;cursor:pointer}
+.allcat .bars{display:inline-flex;flex-direction:column;gap:3px}
+.allcat .bars i{width:18px;height:2px;background:#fff;border-radius:2px}
+.svc{display:flex;align-items:center;gap:2px;padding-left:16px;flex:1;overflow:hidden}
+.svc a{padding:0 15px;font-size:15px;font-weight:600;color:#333;white-space:nowrap}
+.svc a.hot{color:var(--red)}
+.svc a.blue{color:var(--blue)}
+.svc a:hover{color:var(--green-d)}
+.svc .nbadge{display:inline-block;width:14px;height:14px;background:var(--red);color:#fff;font-size:9px;font-weight:800;border-radius:50%;text-align:center;line-height:14px;vertical-align:top;margin-left:2px}
+.util{display:flex;align-items:center;gap:0;flex:0 0 auto;font-size:12.5px;color:#767676}
+.util a,.util span{padding:0 10px;position:relative;color:#767676}
+.util a+a::before,.util span+a::before,.util a+span::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);width:1px;height:11px;background:#e2e2e2}
+.util .me{color:#333;font-weight:700}
+.util a:hover{color:var(--ink)}
 
-/* ---------- 4) 카테고리 GNB ---------- */
-.gnb{background:#fff;border-bottom:2px solid var(--green);position:relative}
-.gnb .container{display:flex;align-items:stretch}
-.gnb .all{display:flex;align-items:center;gap:10px;background:var(--green);color:#fff;font-weight:700;font-size:16px;padding:0 26px;height:50px;flex:0 0 auto}
-.gnb .all .bars{display:inline-flex;flex-direction:column;gap:3px}
-.gnb .all .bars i{width:18px;height:2px;background:#fff;border-radius:2px}
-.gnb nav{display:flex;flex:1;align-items:center;padding-left:8px;overflow:hidden}
-.gnb nav a{padding:0 17px;height:50px;line-height:50px;font-size:15px;font-weight:600;color:#333;white-space:nowrap}
-.gnb nav a:hover,.gnb nav a.on{color:var(--green-d)}
-.gnb nav a.point{color:var(--red)}
+/* ---------- 메인 비주얼 (좌 카테고리 패널 + 센터모드 배너) ---------- */
+.visual{position:relative;background:#e9edf0;overflow:hidden}
+.visual .vstage{position:relative;height:500px}
+.vtrack{display:flex;gap:16px;height:100%;transition:transform .5s;will-change:transform}
+.vslide{flex:0 0 auto;width:940px;height:100%;border-radius:0;overflow:hidden;position:relative;display:flex;align-items:center}
+.vslide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.vslide .vcap{position:relative;z-index:2;padding:0 64px;color:#fff}
+.vslide .vcap .kk{display:inline-block;background:rgba(0,0,0,.25);backdrop-filter:blur(2px);font-weight:700;font-size:13px;padding:5px 13px;border-radius:14px;margin-bottom:14px}
+.vslide .vcap h2{font-size:40px;font-weight:800;line-height:1.22;margin:0 0 12px;text-shadow:0 2px 14px rgba(0,0,0,.3)}
+.vslide .vcap p{font-size:17px;margin:0;opacity:.95;text-shadow:0 1px 10px rgba(0,0,0,.3)}
+.vslide .scrim{position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(0,0,0,.5),rgba(0,0,0,.05) 60%,transparent)}
+.vslide .adtag{position:absolute;top:16px;right:20px;z-index:3;background:rgba(0,0,0,.35);color:#fff;font-size:11px;padding:3px 8px;border-radius:4px}
+/* 좌측 카테고리 패널 */
+.catpanel{position:absolute;left:calc((100% - 1240px)/2);top:0;width:250px;height:100%;background:var(--green-panel);z-index:8;padding:8px 0}
+@media(max-width:1264px){.catpanel{left:12px}}
+.catpanel a{display:block;color:#fff;font-size:15px;font-weight:500;padding:0 24px;line-height:47.5px;position:relative}
+.catpanel a:hover{background:rgba(0,0,0,.12);font-weight:700}
+.catpanel a::after{content:"›";position:absolute;right:20px;opacity:.6}
+/* 컨트롤 */
+.vctrl{position:absolute;z-index:9;bottom:26px;left:calc((100% - 1240px)/2 + 280px);display:flex;align-items:center;gap:10px}
+@media(max-width:1264px){.vctrl{left:290px}}
+.vctrl .cbtn{width:44px;height:44px;border-radius:50%;background:rgba(0,0,0,.35);color:#fff;font-size:20px;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(2px)}
+.vctrl .cbtn:hover{background:rgba(0,0,0,.6)}
+.vctrl .counter{display:flex;align-items:center;gap:8px;background:rgba(0,0,0,.35);color:#fff;border-radius:20px;padding:8px 14px;font-size:14px;font-weight:600}
+.vctrl .counter b{color:#fff}
+.vctrl .counter .pause,.vctrl .counter .plus{cursor:pointer;opacity:.85}
 
-/* mega dropdown */
-.megawrap{position:absolute;left:0;right:0;top:100%;z-index:50;display:none}
-.megawrap.open{display:block}
-.mega{background:#fff;border:1px solid var(--green);border-top:0;box-shadow:0 12px 24px rgba(0,0,0,.08)}
-.mega .container{display:flex;gap:0;padding:22px 0}
-.mega .col{flex:1;padding:0 22px;border-right:1px solid #f2f2f2}
-.mega .col:last-child{border-right:0}
-.mega .col-t{font-size:15px;font-weight:800;color:var(--ink);margin:0 0 12px}
-.mega .col a{display:block;color:#666;font-size:13px;line-height:2.05}
-.mega .col a:hover{color:var(--green-d);text-decoration:underline}
+/* ---------- 풀폭 쿠폰 배너 ---------- */
+.couponband{background:linear-gradient(90deg,#37a8e6,#3ec6e0);margin-top:14px}
+.couponband .container{display:flex;align-items:center;justify-content:center;gap:26px;height:96px;color:#fff}
+.couponband .cbig{font-size:30px;font-weight:800;letter-spacing:-1px;background:#fff;color:#0a7fc0;padding:4px 14px;border-radius:8px}
+.couponband .ctxt{font-size:22px;font-weight:700}
+.couponband .ctxt em{font-style:normal;color:#fff700}
+.couponband .cget{margin-left:8px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.7);color:#fff;font-weight:700;padding:11px 22px;border-radius:24px;font-size:15px}
+.couponband .cget:hover{background:rgba(255,255,255,.3)}
 
-/* ---------- 레이아웃 폭 ---------- */
-main{background:var(--bg);padding-bottom:60px}
-.wrap{width:1240px;max-width:calc(100% - 32px);margin:0 auto}
+/* ---------- 공통 섹션 ---------- */
+.section{margin-top:52px}
+.sec-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.sec-head h2{font-size:25px;font-weight:800;letter-spacing:-.5px;margin:0;display:flex;align-items:center;gap:10px}
+.sec-head h2 .onair{font-size:12px;font-weight:800;color:#fff;background:var(--green);border-radius:12px;padding:3px 10px}
+.sec-head .more{font-size:14px;color:#555;display:flex;align-items:center;gap:6px;font-weight:600}
+.sec-head .more .arw{width:22px;height:22px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px}
 
-/* ---------- 5) 히어로 + 사이드 ---------- */
-.hero-sec{padding-top:20px}
-.hero-grid{display:flex;gap:14px}
-.hero{position:relative;flex:1;border-radius:12px;overflow:hidden;background:#111}
-.hero .slides{position:relative;height:400px}
-.hero .slide{position:absolute;inset:0;opacity:0;transition:opacity .6s;display:flex;align-items:center}
-.hero .slide.on{opacity:1}
-.hero .slide img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
-.hero .cap{position:relative;z-index:2;padding:0 56px;color:#fff;max-width:60%}
-.hero .cap .kk{display:inline-block;background:var(--green);color:#fff;font-weight:700;font-size:13px;padding:5px 12px;border-radius:14px;margin-bottom:14px}
-.hero .cap h2{font-size:38px;font-weight:800;line-height:1.25;margin:0 0 12px;text-shadow:0 2px 12px rgba(0,0,0,.35)}
-.hero .cap p{font-size:16px;opacity:.92;margin:0;text-shadow:0 1px 8px rgba(0,0,0,.35)}
-.hero .scrim{position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,.15) 55%,rgba(0,0,0,0) 100%)}
-.hero .arrows{position:absolute;bottom:22px;left:56px;z-index:3;display:flex;align-items:center;gap:10px}
-.hero .arrows button{width:40px;height:40px;border-radius:50%;background:rgba(0,0,0,.4);color:#fff;font-size:20px;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(2px)}
-.hero .arrows button:hover{background:rgba(0,0,0,.65)}
-.hero .arrows .idx{color:#fff;font-size:14px;font-weight:600;background:rgba(0,0,0,.4);padding:8px 14px;border-radius:16px}
-.hero .arrows .idx b{color:var(--green)}
-/* side promo */
-.hero-side{width:300px;flex:0 0 auto;display:flex;flex-direction:column;gap:14px}
-.side-card{background:#fff;border-radius:12px;padding:18px 20px;flex:1;display:flex;flex-direction:column;justify-content:center;box-shadow:0 1px 4px rgba(0,0,0,.05)}
-.side-card .st{font-size:13px;color:var(--sub);font-weight:600}
-.side-card .sb{font-size:20px;font-weight:800;margin:4px 0 10px;letter-spacing:-.5px}
-.side-card .sb em{color:var(--green-d);font-style:normal}
-.side-card .go{align-self:flex-start;font-size:12px;color:#555;border:1px solid #ddd;border-radius:16px;padding:6px 14px}
-.side-card.grad{background:linear-gradient(135deg,#19c919,#00b8a4);color:#fff}
-.side-card.grad .st,.side-card.grad .sb em{color:#eaffea}
-.side-card.grad .go{border-color:rgba(255,255,255,.6);color:#fff}
+/* ---------- 원형 베스트 상품 ---------- */
+.rail{position:relative}
+.rail .rarw{position:absolute;top:88px;width:44px;height:44px;border-radius:50%;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.15);display:flex;align-items:center;justify-content:center;font-size:20px;color:#555;z-index:5}
+.rail .rarw.prev{left:-14px}.rail .rarw.next{right:-14px}
+.rail .rarw:hover{color:var(--green-d)}
+.best-track{display:flex;gap:24px;overflow-x:auto;scroll-behavior:smooth;scrollbar-width:none;padding:4px 0}
+.best-track::-webkit-scrollbar{display:none}
+.bestitem{flex:0 0 auto;width:210px;text-align:center}
+.bestitem .circle{position:relative;width:210px;height:210px;border-radius:50%;overflow:hidden;background:#f2f3f4;display:flex;align-items:center;justify-content:center}
+.bestitem .circle img{width:100%;height:100%;object-fit:cover}
+.bestitem .circle .rank{position:absolute;left:8px;top:8px;width:40px;height:40px;border-radius:50%;background:var(--green);color:#fff;font-size:17px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(0,0,0,.2)}
+.bestitem .circle .tdeal{position:absolute;right:6px;top:6px;width:46px;height:46px;border-radius:50%;background:#111;color:#fff;font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center;line-height:1.15;text-align:center}
+.bestitem .bname{font-size:14px;color:#333;line-height:1.4;height:2.8em;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;margin:14px 6px 8px}
+.bestitem .coup{font-size:12px;color:var(--sub2)}
+.bestitem .coup .cw{text-decoration:line-through}
+.bestitem .pline{font-size:20px;font-weight:800;margin-top:2px}
+.bestitem .pline .pct{color:var(--red);margin-right:5px}
+.bestitem .reward{font-size:12px;color:var(--green-d);font-weight:600;margin-top:3px}
+.bestitem .ship{font-size:12px;color:#999;margin-top:2px}
 
-/* ---------- 공통 섹션 헤더 ---------- */
-.section{margin-top:38px}
-.sec-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:16px}
-.sec-head h2{font-size:24px;font-weight:800;letter-spacing:-.5px;margin:0}
-.sec-head h2 .em{color:var(--green-d)}
-.sec-head .sub{font-size:14px;color:var(--sub);margin-left:10px;font-weight:500}
-.sec-head .more{font-size:13px;color:#666;display:flex;align-items:center;gap:3px}
-.sec-head .more:hover{color:var(--green-d)}
+/* ---------- 2단 블록 (신간마켓 / 빠른배송) ---------- */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.duo .dcol .dhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.duo .dcol .dhead h3{font-size:21px;font-weight:800;margin:0;letter-spacing:-.5px}
+.duo .dcol .dhead .go{font-size:13px;color:#555;display:flex;align-items:center;gap:6px}
+.duo .dcol .dhead .go .arw{width:20px;height:20px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px}
+.dbanner{border-radius:12px;overflow:hidden;padding:26px 28px;color:#fff;position:relative;min-height:150px;display:flex;flex-direction:column;justify-content:center}
+.dbanner.mint{background:linear-gradient(120deg,#1bc41b,#00b8a4)}
+.dbanner.blue{background:linear-gradient(120deg,#5b7cf0,#8b6ff0)}
+.dbanner .dlogo{font-size:15px;font-weight:800;opacity:.9;margin-bottom:8px}
+.dbanner h4{font-size:26px;font-weight:800;margin:0 0 8px;letter-spacing:-.5px}
+.dbanner p{margin:0;font-size:13px;opacity:.9}
+.dbanner .dcircle{position:absolute;right:22px;top:50%;transform:translateY(-50%);width:110px;height:110px;border-radius:50%;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:40px}
+.dtabs{display:flex;align-items:center;gap:0;border-bottom:1px solid var(--line);margin:16px 0 6px}
+.dtabs a{padding:12px 16px;font-size:14px;color:#888;font-weight:600}
+.dtabs a.on{color:var(--ink);font-weight:800;border-bottom:2px solid var(--ink)}
+.dtabs .pill{margin-left:auto;color:#fff;font-weight:700;border-radius:18px;padding:7px 16px;font-size:13px}
+.dtabs .pill.green{background:var(--green)}
+.dtabs .pill.purple{background:#7b6ef0}
+.dgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px 18px;padding-top:10px}
+.drow{display:flex;gap:12px}
+.drow .dth{width:74px;height:74px;border-radius:8px;background:#f3f4f5;flex:0 0 auto;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.drow .dth img{width:80%;object-fit:contain}
+.drow .dmeta{flex:1;min-width:0}
+.drow .dtag{font-size:10px;font-weight:700;color:#fff;background:var(--teal);border-radius:3px;padding:1px 5px;display:inline-block;margin-bottom:3px}
+.drow .dtag.free{background:var(--green)}
+.drow .dnm{font-size:13px;color:#444;line-height:1.35;height:2.7em;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.drow .dpr{font-size:15px;font-weight:800;margin-top:3px}
+.drow .dpr .pct{color:var(--red);margin-right:3px}
+.drow .drw{font-size:11px;color:var(--green-d);margin-top:1px}
+.dnote{font-size:12px;color:#999;margin:14px 0 12px}
+.dmore{display:block;text-align:center;border:1px solid #ddd;border-radius:26px;padding:14px 0;font-size:14px;color:#444;font-weight:600}
+.dmore:hover{border-color:var(--green);color:var(--green-d)}
 
-/* ---------- 6) 기획전 카드 띠 ---------- */
-.promos{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.promo{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.05);transition:.15s;display:block}
-.promo:hover{transform:translateY(-3px);box-shadow:0 8px 18px rgba(0,0,0,.1)}
-.promo .thumb{height:150px;background:#eef3ef;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.promo .thumb img{width:100%;height:100%;object-fit:cover}
-.promo .pb{padding:14px 16px 16px}
-.promo .tag{display:inline-block;font-size:11px;font-weight:700;color:var(--green-d);background:var(--coupon);border:1px solid #cdeccd;padding:3px 8px;border-radius:10px;margin-bottom:8px}
-.promo .tt{font-size:16px;font-weight:700;letter-spacing:-.5px;margin:0 0 4px}
-.promo .ds{font-size:12.5px;color:var(--sub);margin:0}
+/* ---------- 서비스 원형 아이콘 줄 ---------- */
+.svcicons{display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px}
+.svcicon{flex:1 1 0;min-width:80px;display:flex;flex-direction:column;align-items:center;gap:10px}
+.svcicon .cc{width:66px;height:66px;border-radius:50%;background:var(--coupon);display:flex;align-items:center;justify-content:center;transition:.15s}
+.svcicon .cc img{width:34px;height:34px}
+.svcicon:hover .cc{background:#dcf6dc;transform:translateY(-3px)}
+.svcicon span{font-size:13px;color:#444;font-weight:500}
 
-/* ---------- 상품 카드 (G마켓 스타일) ---------- */
-.pgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
-.pcard{background:#fff;border-radius:12px;overflow:hidden;position:relative;box-shadow:0 1px 4px rgba(0,0,0,.05);transition:.15s}
-.pcard:hover{transform:translateY(-3px);box-shadow:0 8px 18px rgba(0,0,0,.1)}
-.pcard .thumb{position:relative;aspect-ratio:1/1;background:#f3f4f5;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.pcard .thumb img{width:74%;height:auto;object-fit:contain;filter:drop-shadow(0 6px 12px rgba(0,0,0,.14))}
-.pcard .rank{position:absolute;left:0;top:0;width:34px;height:34px;background:rgba(0,0,0,.78);color:#fff;font-size:16px;font-weight:800;display:flex;align-items:center;justify-content:center;border-bottom-right-radius:10px}
-.pcard .rank.top{background:var(--green)}
-.pcard .corner{position:absolute;right:10px;top:10px;font-size:11px;font-weight:700;color:#fff;padding:3px 8px;border-radius:4px}
-.corner.hot{background:var(--red)}
-.corner.new{background:var(--teal)}
-.corner.best{background:var(--green)}
-.pcard .wish{position:absolute;right:8px;bottom:8px;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.9);display:flex;align-items:center;justify-content:center;box-shadow:0 1px 4px rgba(0,0,0,.12)}
-.pcard .wish svg{stroke:#999;fill:none}
-.pcard .wish.on svg{stroke:var(--red);fill:var(--red)}
-.pcard .info{padding:14px 14px 16px}
-.pcard .brand{display:flex;align-items:center;gap:6px;margin-bottom:6px}
-.pcard .brand img{height:13px;width:auto}
-.pcard .brand .btype{font-size:11px;color:var(--sub);border:1px solid var(--line2);border-radius:3px;padding:1px 5px}
-.pcard .name{font-size:14px;color:#333;line-height:1.42;height:2.84em;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;margin:0 0 9px}
-.pcard .price{display:flex;align-items:baseline;gap:6px}
-.pcard .price .pct{font-size:19px;font-weight:800;color:var(--red)}
-.pcard .price .now{font-size:19px;font-weight:800;color:var(--ink)}
-.pcard .price .now small{font-size:13px;font-weight:600}
-.pcard .was{font-size:12px;color:var(--sub2);text-decoration:line-through;margin-top:2px}
-.pcard .coupon{margin-top:8px;display:inline-flex;align-items:center;gap:5px;background:var(--coupon);border:1px solid #cfe9cf;border-radius:5px;padding:4px 8px;font-size:12px;color:var(--green-d);font-weight:700}
-.pcard .coupon .cw{color:#333;font-weight:800}
-.pcard .tags{margin-top:10px;display:flex;flex-wrap:wrap;gap:5px}
-.pcard .tags span{font-size:11px;color:#555;background:#f4f5f6;border-radius:4px;padding:3px 7px}
-.pcard .tags .free{color:var(--green-d);background:var(--coupon);font-weight:700}
-.pcard .tags .today{color:#0a84c4;background:#eef7fd;font-weight:700}
-.pcard .reward{margin-top:7px;font-size:11.5px;color:#999}
-.pcard .reward b{color:var(--green-d)}
-.pcard.soldout .thumb img{opacity:.4}
-.pcard .sold-tag{position:absolute;inset:0;display:none;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:#fff;background:rgba(0,0,0,.42)}
-.pcard.soldout .sold-tag{display:flex}
+/* ---------- 라이브 특강 (ON AIR) ---------- */
+.live-track{display:flex;gap:24px;overflow-x:auto;scrollbar-width:none}
+.live-track::-webkit-scrollbar{display:none}
+.livecard{flex:0 0 auto;width:392px}
+.livecard .lv{position:relative;height:230px;border-radius:10px;overflow:hidden;background:#111}
+.livecard .lv img{width:100%;height:100%;object-fit:cover;opacity:.92}
+.livecard .lv .badge{position:absolute;left:10px;bottom:10px;display:flex;align-items:center;gap:6px;color:#fff;font-size:12px;font-weight:700}
+.livecard .lv .badge .on{background:var(--red);border-radius:3px;padding:2px 6px;font-size:11px;font-weight:800}
+.livecard .lv .play{position:absolute;right:16px;top:50%;transform:translateY(-50%);width:56px;height:56px;border-radius:50%;border:2px solid rgba(255,255,255,.85);display:flex;align-items:center;justify-content:center;color:#fff;font-size:20px}
+.livecard .lv .prog{position:absolute;left:0;right:0;bottom:0;height:4px;background:rgba(255,255,255,.35)}
+.livecard .lv .prog i{display:block;height:100%;width:55%;background:var(--green)}
+.livecard .lbody{display:flex;gap:12px;margin-top:14px}
+.livecard .lbody .ltxt{flex:1;min-width:0}
+.livecard .lnm{font-size:15px;color:#333;line-height:1.4;height:2.8em;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;margin:0 0 6px}
+.livecard .lcoup{font-size:12px;color:var(--sub2);text-decoration:line-through}
+.livecard .lpr{font-size:18px;font-weight:800}
+.livecard .lpr .pct{color:var(--red);margin-right:4px}
+.livecard .lrw{font-size:12px;color:var(--green-d)}
+.livecard .lship{font-size:12px;color:#999}
+.livecard .chan{flex:0 0 auto;width:52px;text-align:center}
+.livecard .chan .clg{width:44px;height:44px;border-radius:50%;background:#f2f3f4;display:flex;align-items:center;justify-content:center;overflow:hidden;margin:0 auto 4px}
+.livecard .chan .clg img{width:80%}
+.livecard .chan span{font-size:10px;color:#999}
 
-/* ---------- 7) 슈퍼딜 / 타임딜 ---------- */
-.superdeal{margin-top:38px;background:linear-gradient(135deg,#0fb70f 0%,#00b8a4 100%);border-radius:16px;padding:26px 28px}
-.superdeal .sd-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
-.superdeal .sd-title{display:flex;align-items:center;gap:14px;color:#fff}
-.superdeal .sd-title .lg{font-size:26px;font-weight:800;letter-spacing:-.5px}
-.superdeal .sd-title .lg b{background:#fff;color:var(--green-d);padding:2px 8px;border-radius:6px}
-.superdeal .timer{display:flex;align-items:center;gap:6px;color:#fff;font-weight:700}
-.superdeal .timer .clock{background:rgba(0,0,0,.22);border-radius:8px;padding:6px 12px;font-variant-numeric:tabular-nums;font-size:16px}
-.superdeal .more{color:#eafff0;font-size:13px}
-.superdeal .sd-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
-.superdeal .pcard .info{padding:12px}
+/* ---------- 슈퍼딜 초록 밴드 ---------- */
+.superband{margin-top:52px;background:var(--green);padding:34px 0 40px}
+.superband .sd-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px}
+.superband .sdlogo{display:flex;align-items:center;gap:6px;color:#fff;font-size:30px;font-weight:800;letter-spacing:-1px}
+.superband .sdlogo .bolt{color:#fff700;font-size:30px}
+.superband .more{color:#fff}
+.superband .more .arw{background:#fff;color:var(--green-d)}
+.sd-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.dealcard{background:#fff;border-radius:12px;overflow:hidden}
+.dealcard .dimg{position:relative;aspect-ratio:1/1;background:#f3f4f5;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.dealcard .dimg img{width:76%;filter:drop-shadow(0 6px 12px rgba(0,0,0,.14))}
+.dealcard .tbadge{position:absolute;left:10px;bottom:10px;background:#2f6bd6;color:#fff;font-size:12px;font-weight:700;border-radius:6px;padding:4px 9px;display:flex;align-items:center;gap:4px}
+.dealcard .orn{position:absolute;right:10px;top:10px;width:48px;height:48px;border-radius:50%;background:#111;color:#fff;font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center;line-height:1.15;text-align:center}
+.dealcard .whish{position:absolute;right:10px;bottom:10px;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.9);display:flex;align-items:center;justify-content:center;box-shadow:0 1px 4px rgba(0,0,0,.12)}
+.dealcard .whish svg{stroke:#bbb;fill:none}.dealcard .whish.on svg{stroke:var(--red);fill:var(--red)}
+.dealcard .dinfo{padding:14px 16px 18px}
+.dealcard .dcoup{font-size:12px;color:var(--sub2);text-decoration:line-through}
+.dealcard .dp{font-size:21px;font-weight:800;margin-top:2px}
+.dealcard .dp .pct{color:var(--red);margin-right:5px}
+.dealcard .drw{font-size:12px;color:var(--green-d);margin-top:3px}
+.dealcard .dnm2{font-size:14px;color:#444;line-height:1.4;height:2.8em;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;margin-top:8px}
 
-/* ---------- 추천 교재 세트(묶음) ---------- */
+/* ---------- 원서관 (GLOBAL) ---------- */
+.global{background:#eef1f3;border-radius:16px;overflow:hidden;display:flex;gap:0;margin-top:20px}
+.global .gimg{flex:0 0 44%;min-height:300px;background-size:cover;background-position:center}
+.global .gpanel{flex:1;background:#fff;margin:20px;border-radius:12px;padding:34px 30px;display:flex;flex-direction:column;align-items:center}
+.global .gpanel .gsub{font-size:14px;color:#888}
+.global .gpanel .gttl{font-size:30px;font-weight:800;letter-spacing:-.5px;margin:6px 0 26px}
+.global .gprods{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;width:100%}
+.gprod{text-align:center}
+.gprod .gth{aspect-ratio:1/1;background:#f3f4f5;border-radius:10px;display:flex;align-items:center;justify-content:center;overflow:hidden;margin-bottom:10px}
+.gprod .gth img{width:70%;filter:drop-shadow(0 5px 10px rgba(0,0,0,.12))}
+.gprod .gnm{font-size:13px;color:#444;height:2.7em;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.gprod .gcoup{font-size:11px;color:var(--sub2);text-decoration:line-through;margin-top:4px}
+.gprod .gp{font-size:16px;font-weight:800}
+.gprod .gp .pct{color:var(--red);margin-right:3px}
+.gprod .grw{font-size:11px;color:var(--green-d)}
+.gprod .gship{font-size:11px;color:#999}
+
+/* ---------- 맞춤 교재 세트 ---------- */
 .sets{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.setcard{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.05);display:flex;flex-direction:column;transition:.15s}
-.setcard:hover{transform:translateY(-3px);box-shadow:0 10px 22px rgba(0,0,0,.1)}
+.setcard{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;transition:.15s}
+.setcard:hover{box-shadow:0 10px 22px rgba(0,0,0,.1);transform:translateY(-3px)}
 .setcard .st-top{position:relative;padding:20px 20px 16px;background:linear-gradient(135deg,#f2fff2,#e7fbf7)}
 .setcard .st-goal{display:inline-block;font-size:12px;font-weight:700;color:#fff;background:var(--green);border-radius:12px;padding:4px 11px;margin-bottom:10px}
-.setcard .st-goal.b{background:var(--teal)}
-.setcard .st-goal.c{background:#ff8a1e}
+.setcard .st-goal.b{background:var(--teal)}.setcard .st-goal.c{background:#ff8a1e}
 .setcard .st-name{font-size:19px;font-weight:800;letter-spacing:-.5px;margin:0 0 4px}
 .setcard .st-desc{font-size:12.5px;color:#7a8a7a;margin:0}
 .setcard .st-covers{display:flex;margin-top:16px;padding-left:6px}
@@ -215,26 +251,23 @@ main{background:var(--bg);padding-bottom:60px}
 .setcard .st-covers .cv img{width:100%;height:100%;object-fit:cover}
 .setcard .st-covers .cv.more{background:#eef3ef;color:#5a7a5a;font-weight:800;font-size:13px}
 .setcard .st-body{padding:16px 20px 20px;display:flex;flex-direction:column;flex:1}
-.setcard .st-list{list-style:none;margin:0 0 14px;padding:0;border-top:1px dashed #ececec;padding-top:12px}
+.setcard .st-list{list-style:none;margin:0 0 14px;padding:12px 0 0;border-top:1px dashed #ececec}
 .setcard .st-list li{font-size:12.5px;color:#666;line-height:1.9;display:flex;justify-content:space-between}
 .setcard .st-list li .q{color:#aaa}
 .setcard .st-pricebar{margin-top:auto;display:flex;align-items:flex-end;justify-content:space-between}
 .setcard .st-save{font-size:12px;color:var(--red);font-weight:700}
 .setcard .st-was{font-size:12px;color:var(--sub2);text-decoration:line-through}
-.setcard .st-now{font-size:22px;font-weight:800}
-.setcard .st-now .pct{color:var(--red);margin-right:4px}
+.setcard .st-now{font-size:22px;font-weight:800}.setcard .st-now .pct{color:var(--red);margin-right:4px}
 .setcard .st-cta{margin-top:14px;display:flex;gap:8px}
 .setcard .st-cta a{flex:1;text-align:center;padding:12px 0;border-radius:9px;font-weight:700;font-size:14px}
-.setcard .st-cta .cart{background:#f1f4f1;color:#333}
-.setcard .st-cta .cart:hover{background:#e6ece6}
-.setcard .st-cta .buy{background:var(--green);color:#fff}
-.setcard .st-cta .buy:hover{background:var(--green-d)}
+.setcard .st-cta .cart{background:#f1f4f1;color:#333}.setcard .st-cta .cart:hover{background:#e6ece6}
+.setcard .st-cta .buy{background:var(--green);color:#fff}.setcard .st-cta .buy:hover{background:var(--green-d)}
 
 /* ---------- 브랜드관 ---------- */
 .brands{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.brandcard{background:#fff;border-radius:12px;padding:24px;box-shadow:0 1px 4px rgba(0,0,0,.05);display:flex;flex-direction:column;gap:14px}
+.brandcard{background:#fff;border:1px solid var(--line);border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:14px}
 .brandcard .bh{display:flex;align-items:center;justify-content:space-between}
-.brandcard .bh img{height:22px;width:auto}
+.brandcard .bh img{height:22px}
 .brandcard .bh .go{font-size:12px;color:#888}
 .brandcard .row{display:flex;gap:10px}
 .brandcard .mini{flex:1;text-align:center}
@@ -243,344 +276,452 @@ main{background:var(--bg);padding-bottom:60px}
 .brandcard .mini .mn{font-size:12px;color:#555;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .brandcard .mini .mp{font-size:13px;font-weight:800}
 
-/* ---------- 하단 배너 ---------- */
-.bigbanner{margin-top:38px;border-radius:16px;overflow:hidden;background:linear-gradient(120deg,#111 0%,#1b3a1b 100%);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:40px 48px}
-.bigbanner .bt{font-size:14px;color:var(--green);font-weight:700;margin-bottom:8px}
-.bigbanner h2{font-size:30px;font-weight:800;margin:0 0 10px;letter-spacing:-.5px}
-.bigbanner p{margin:0;opacity:.85}
-.bigbanner .bbtn{background:var(--green);color:#fff;font-weight:700;padding:14px 30px;border-radius:26px;font-size:15px}
-
-/* ---------- 고객센터 띠 ---------- */
-.cs-strip{margin-top:38px;background:#fff;border-radius:12px;padding:22px 28px;display:flex;align-items:center;gap:40px;box-shadow:0 1px 4px rgba(0,0,0,.05)}
-.cs-strip .tel{display:flex;flex-direction:column}
-.cs-strip .tel .n{font-size:26px;font-weight:800;color:var(--green-d)}
-.cs-strip .tel .d{font-size:12px;color:var(--sub)}
-.cs-strip .divider{width:1px;height:44px;background:var(--line)}
-.cs-strip .links{display:flex;gap:26px}
-.cs-strip .links a{font-size:13px;color:#555}
-.cs-strip .links a:hover{color:var(--green-d)}
+/* ---------- 알립니다 ---------- */
+.notice-line{margin-top:44px;display:flex;align-items:center;gap:18px;font-size:13px;color:#555;border-top:1px solid var(--line);padding-top:22px}
+.notice-line .nt{font-weight:800;color:#333;flex:0 0 auto}
+.notice-line .nx{color:#666;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
+.notice-line .nd{color:#aaa;flex:0 0 auto}
 
 /* ---------- 푸터 ---------- */
-.footer{background:#2b2f33;color:#a9adb2;padding:40px 0 50px;font-size:12.5px}
-.footer .container{display:flex;flex-wrap:wrap;gap:40px}
-.footer .fcol h4{color:#e6e8ea;font-size:14px;margin:0 0 12px}
-.footer .fcol a{display:block;color:#a9adb2;line-height:2}
-.footer .fcol a:hover{color:#fff}
-.footer .fbrand{flex:1;min-width:220px}
-.footer .fbrand .logo{font-size:24px;font-weight:800;color:#fff;letter-spacing:-1px;margin-bottom:12px}
-.footer .fbrand .logo b{color:var(--green)}
-.footer .fbrand p{line-height:1.8;margin:0}
-.footer .copy{border-top:1px solid #3a3f44;margin-top:30px;padding-top:20px;color:#7d8288}
+.foot-font{background:var(--green);color:#fff;margin-top:36px;position:relative;overflow:hidden}
+.foot-font .container{display:flex;align-items:center;justify-content:center;gap:18px;height:70px;position:relative;z-index:2}
+.foot-font .ff-txt{font-size:16px;font-weight:600}
+.foot-font .ff-txt b{font-weight:800}
+.foot-font .ff-btn{background:#fff;color:var(--green-d);font-weight:700;padding:9px 20px;border-radius:22px;font-size:14px;display:inline-flex;align-items:center;gap:6px}
+.foot-font .ghost{position:absolute;inset:0;z-index:1;display:flex;align-items:center;justify-content:space-between;padding:0 60px;font-size:90px;font-weight:800;color:rgba(255,255,255,.12);letter-spacing:40px;pointer-events:none}
+.footer{background:#f5f6f7;padding:26px 0 60px;font-size:12.5px;color:#888}
+.footer .flinks{display:flex;align-items:center;gap:0;border-bottom:1px solid #e4e6e8;padding-bottom:18px;margin-bottom:20px}
+.footer .flinks a{padding:0 16px;color:#555;position:relative;font-weight:500}
+.footer .flinks a+a::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);width:1px;height:11px;background:#dcdcdc}
+.footer .flinks a.strong{font-weight:800;color:#333}
+.footer .flinks .seller{margin-left:auto;border:1px solid #ddd;border-radius:6px;padding:8px 14px;color:#555}
+.footer .fbody{display:flex;gap:60px}
+.footer .fbody h4{color:#555;font-size:13px;margin:0 0 8px;font-weight:700}
+.footer .fbody p{margin:0;line-height:1.9}
+.footer .fbody a{color:#0a84c4}
+.footer .copy{margin-top:22px;color:#aaa}
 
 /* ---------- 반응형 ---------- */
-@media (max-width:1000px){
+@media(max-width:1000px){
   .only-mo{display:revert}
   .header .container{height:auto;flex-wrap:wrap;gap:14px;padding:14px 0}
   .searchbox{order:3;flex-basis:100%;max-width:none}
-  .search-keys{display:none}
-  .hero-grid{flex-direction:column}
-  .hero-side{width:auto;flex-direction:row}
-  .hero .slides{height:280px}
-  .hero .cap{max-width:80%;padding:0 28px}
-  .hero .cap h2{font-size:26px}
-  .promos{grid-template-columns:repeat(2,1fr)}
-  .pgrid,.superdeal .sd-grid{grid-template-columns:repeat(2,1fr)}
-  .sets{grid-template-columns:1fr}
-  .brands{grid-template-columns:1fr}
-  .gnb nav{display:none}
-  .svcbar{overflow-x:auto}
-  .bigbanner{flex-direction:column;gap:18px;text-align:center;padding:30px 24px}
-  .cs-strip{flex-wrap:wrap;gap:18px}
+  .svc{display:none}.util{display:none}
+  .visual .vstage{height:340px}.vslide{width:88vw}
+  .catpanel{display:none}.vctrl{left:20px}
+  .sd-grid{grid-template-columns:repeat(2,1fr)}
+  .duo{grid-template-columns:1fr;gap:34px}
+  .global{flex-direction:column}.global .gimg{min-height:180px}
+  .global .gprods{grid-template-columns:repeat(2,1fr)}
+  .sets,.brands{grid-template-columns:1fr}
+  .svcicons{gap:18px}.svcicon{flex:1 1 20%}
+  .livecard{width:300px}
+  .footer .fbody{flex-direction:column;gap:20px}
+  .foot-font .ghost{display:none}
 }
-@media (max-width:560px){
-  .hero-side{flex-direction:column}
-  .promos,.pgrid,.superdeal .sd-grid{grid-template-columns:repeat(2,1fr);gap:10px}
-  .brand .slogan{display:none}
+@media(max-width:560px){
+  .couponband .container{flex-direction:column;height:auto;padding:16px 0;gap:10px;text-align:center}
+  .couponband .cbig{font-size:22px}.couponband .ctxt{font-size:16px}
+  .bestitem,.bestitem .circle{width:150px}.bestitem .circle{height:150px}
+  .dgrid,.global .gprods{grid-template-columns:1fr}
+  .sd-grid{grid-template-columns:repeat(2,1fr)}
   .sec-head h2{font-size:20px}
 }
 </style>
 </head>
 <body>
 
-<!-- ===== 1) 상단 유틸바 ===== -->
-<div class="utilbar">
+<!-- ===== 헤더 ===== -->
+<header class="header">
   <div class="container">
-    <a href="#" class="strong">로그인</a>
-    <a href="#">회원가입</a>
-    <a href="#">주문·배송</a>
-    <a href="#">관심상품</a>
-    <a href="#">최근 본 상품</a>
-    <a href="고객센터.html">고객센터</a>
-  </div>
-</div>
-
-<!-- ===== 2) 헤더 ===== -->
-<div class="header">
-  <div class="container">
-    <a class="brand" href="index.html">
-      <span class="logo">NE<b>_</b>Books</span>
-      <span class="slogan">지금부터의 교재마켓</span>
-    </a>
+    <a class="brand" href="index.html"><span class="logo">NE<b>_</b>Books</span><span class="slogan only-pc">지금부터의 교재마켓</span></a>
     <div class="searchbox">
       <form class="search-field" onsubmit="location.href='리스트_교재구매.html?q='+encodeURIComponent(this.q.value);return false;">
-        <input name="q" placeholder="찾으시는 교재를 검색해보세요 (예: 파닉스, 그래머 인사이드)">
-        <button class="btn-search" aria-label="검색" type="submit">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5" stroke-linecap="round"/></svg>
-        </button>
+        <input name="q" placeholder="찾으시는 교재를 검색해보세요">
+        <button class="btn-search" aria-label="검색" type="submit"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5" stroke-linecap="round"/></svg></button>
       </form>
-      <div class="search-keys">
-        <span>인기검색어</span>
-        <a href="리스트_교재구매.html?q=파닉스"><b>1</b> 파닉스</a>
-        <a href="리스트_교재구매.html?q=그래머"><b>2</b> 그래머인사이드</a>
-        <a href="리스트_교재구매.html?q=능률VOCA"><b>3</b> 능률VOCA</a>
-        <a href="리스트_교재구매.html?q=수능만만"><b>4</b> 수능만만</a>
-      </div>
     </div>
     <div class="header-icons">
-      <a class="hicon" href="장바구니.html">
-        <span class="ic"><svg width="27" height="27" viewBox="0 0 24 24" stroke-width="1.6"><path d="M5 7h14l-1.2 11a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8L5 7z"/><path d="M8.5 7a3.5 3.5 0 0 1 7 0" stroke-linecap="round"/></svg><span class="cnt">3</span></span>
-        <span>장바구니</span>
-      </a>
-      <a class="hicon" href="마이페이지.html">
-        <span class="ic"><svg width="27" height="27" viewBox="0 0 24 24" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0" stroke-linecap="round"/></svg></span>
-        <span>마이페이지</span>
-      </a>
+      <a class="hicon" href="마이페이지.html"><span class="ic"><svg width="27" height="27" viewBox="0 0 24 24" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0" stroke-linecap="round"/></svg></span>마이</a>
+      <a class="hicon" href="주문상세.html"><span class="ic"><svg width="27" height="27" viewBox="0 0 24 24" stroke-width="1.6"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5" stroke-linecap="round"/></svg></span>주문배송</a>
+      <a class="hicon" href="장바구니.html"><span class="ic"><svg width="28" height="28" viewBox="0 0 24 24" stroke-width="1.6"><path d="M5 7h14l-1.2 11a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8L5 7z"/><path d="M8.5 7a3.5 3.5 0 0 1 7 0" stroke-linecap="round"/></svg><span class="cnt">3</span></span>장바구니</a>
+    </div>
+  </div>
+</header>
+
+<!-- ===== GNB / 서비스 줄 ===== -->
+<div class="gnbbar">
+  <div class="container">
+    <div class="allcat" id="allcat"><span class="bars"><i></i><i></i><i></i></span>전체 카테고리</div>
+    <nav class="svc">
+      <a href="리스트_교재구매.html">베스트셀러</a>
+      <a class="hot" href="#superband">슈퍼딜</a>
+      <a class="blue" href="#">회원님께만</a>
+      <a href="리스트_교재구매.html">신간·개정</a>
+      <a href="리스트_학습자료.html">학습자료실</a>
+      <a href="#">NE 멤버십</a>
+      <a href="세미나상세.html">교사연수<span class="nbadge">N</span></a>
+    </nav>
+    <div class="util only-pc">
+      <span class="me">강서니님</span>
+      <a href="#">로그아웃</a>
+      <a href="고객센터.html">고객센터</a>
+      <a href="#">Global ▾</a>
     </div>
   </div>
 </div>
 
-<!-- ===== 3) 서비스 바로가기 바 ===== -->
-<div class="svcbar">
-  <div class="container">
-    <a href="리스트_교재구매.html">베스트셀러</a>
-    <span class="sep"></span>
-    <a class="hot" href="#superdeal">슈퍼딜</a>
-    <span class="sep"></span>
-    <a href="리스트_교재구매.html">신간·개정</a>
-    <span class="sep"></span>
+<!-- ===== 메인 비주얼 ===== -->
+<section class="visual" id="visual">
+  <div class="vstage">
+    <div class="vtrack" id="vtrack">
+      <div class="vslide"><img src="assets/img1.png" alt=""><div class="scrim"></div><span class="adtag">AD</span>
+        <div class="vcap"><span class="kk">방학특강 기획전</span><h2>성적이 달라지는<br>방학 교재 조합전</h2><p>문법 개념 + 리스닝 훈련, 지금 최대 30% 할인</p></div></div>
+      <div class="vslide"><img src="assets/img2.png" alt=""><div class="scrim"></div><span class="adtag">AD</span>
+        <div class="vcap"><span class="kk">파닉스 베스트</span><h2>스스로 읽는 힘<br>Phonics Code 시리즈</h2><p>Blending·Decoding 완성, 1~4권 세트 특가</p></div></div>
+      <div class="vslide"><img src="assets/img3.png" alt=""><div class="scrim"></div><span class="adtag">AD</span>
+        <div class="vcap"><span class="kk">신간 도착</span><h2>그래머 인사이드<br>개정판 출간</h2><p>내신·수능 문법을 한 권에, 지금 만나보세요</p></div></div>
+      <div class="vslide"><img src="assets/img4.png" alt=""><div class="scrim"></div><span class="adtag">AD</span>
+        <div class="vcap"><span class="kk">Oxford 브랜드위크</span><h2>옥스포드 리더스<br>브랜드 위크</h2><p>원서 리딩 전 품목 최대 25% + 추가 쿠폰</p></div></div>
+      <div class="vslide"><img src="assets/img5.png" alt=""><div class="scrim"></div><span class="adtag">AD</span>
+        <div class="vcap"><span class="kk">수능 D-100</span><h2>수능만만<br>파이널 특강전</h2><p>독해·듣기 실전 마무리, 무료배송</p></div></div>
+    </div>
+  </div>
+  <!-- 좌측 카테고리 패널 -->
+  <div class="catpanel">
+    <a href="리스트_교재구매.html">ELT</a>
+    <a href="리스트_교재구매.html">초등</a>
+    <a href="리스트_교재구매.html">중등</a>
+    <a href="리스트_교재구매.html">고등</a>
+    <a href="리스트_교재구매.html">교과서·자습서</a>
+    <a href="리스트_교재구매.html">수험·일반</a>
+    <a href="리스트_교재구매.html">수학·국어</a>
+    <a href="리스트_교재구매.html">유아·저학년</a>
+    <a href="리스트_교재구매.html">브랜드관</a>
     <a href="리스트_학습자료.html">학습자료실</a>
-    <span class="sep"></span>
-    <a href="#">NE 멤버십</a>
-    <span class="sep"></span>
-    <a href="세미나상세.html">세미나·연수</a>
-    <span class="sep"></span>
-    <a href="이벤트상세.html">기획전</a>
   </div>
-</div>
+  <!-- 컨트롤 -->
+  <div class="vctrl">
+    <button class="cbtn" id="vPrev" aria-label="이전">&#8249;</button>
+    <button class="cbtn" id="vNext" aria-label="다음">&#8250;</button>
+    <span class="counter"><span class="pause" id="vPause">&#10073;&#10073;</span> <b id="vIdx">1</b> / <span id="vTot">5</span> <span class="plus">&#43;</span></span>
+  </div>
+</section>
 
-<!-- ===== 4) 카테고리 GNB ===== -->
-<div class="gnb" id="gnb">
+<!-- ===== 풀폭 쿠폰 배너 ===== -->
+<div class="couponband">
   <div class="container">
-    <div class="all"><span class="bars"><i></i><i></i><i></i></span>전체 카테고리</div>
-    <nav>
-      <a href="리스트_교재구매.html" data-menu="ELT">ELT</a>
-      <a href="리스트_교재구매.html" data-menu="초/중등">초·중등</a>
-      <a href="리스트_교재구매.html" data-menu="고등">고등</a>
-      <a href="리스트_교재구매.html" data-menu="교과서/자습서">교과서·자습서</a>
-      <a href="리스트_교재구매.html" data-menu="수험/일반">수험·일반</a>
-      <a href="리스트_교재구매.html" data-menu="수학/국어">수학·국어</a>
-      <a href="리스트_학습자료.html" data-menu="학습자료실">학습자료실</a>
-      <a class="point" href="이벤트상세.html" data-menu="">기획전·이벤트</a>
-    </nav>
-  </div>
-  <div class="megawrap" id="mega">
-    <div class="mega"><div class="container" id="megaCols"></div></div>
+    <span class="cbig">쿠폰팩</span>
+    <span class="ctxt">새 학기 준비를 위한 <em>최대 20% 쿠폰</em></span>
+    <a class="cget" href="이벤트상세.html">지금 혜택 받기 ›</a>
   </div>
 </div>
 
-<main>
-  <div class="wrap">
+<div class="container">
 
-    <!-- ===== 5) 히어로 + 사이드 ===== -->
-    <section class="hero-sec">
-      <div class="hero-grid">
-        <div class="hero" id="hero">
-          <div class="slides" id="slides">
-            <div class="slide on"><img src="assets/img1.png" alt=""><div class="scrim"></div>
-              <div class="cap"><span class="kk">방학특강 기획전</span><h2>성적이 달라지는<br>방학 교재 조합전</h2><p>문법 개념 + 리스닝 훈련, 지금 최대 30% 할인</p></div></div>
-            <div class="slide"><img src="assets/img2.png" alt=""><div class="scrim"></div>
-              <div class="cap"><span class="kk">파닉스 베스트</span><h2>스스로 읽는 힘<br>Phonics Code 시리즈</h2><p>Blending·Decoding 완성, 1~4권 세트 특가</p></div></div>
-            <div class="slide"><img src="assets/img3.png" alt=""><div class="scrim"></div>
-              <div class="cap"><span class="kk">신간 도착</span><h2>그래머 인사이드<br>개정판 출간</h2><p>내신·수능 문법을 한 권에, 지금 만나보세요</p></div></div>
-            <div class="slide"><img src="assets/img4.png" alt=""><div class="scrim"></div>
-              <div class="cap"><span class="kk">Oxford 브랜드위크</span><h2>옥스포드 리더스<br>브랜드 위크</h2><p>원서 리딩 전 품목 최대 25% + 추가 쿠폰</p></div></div>
-            <div class="slide"><img src="assets/img5.png" alt=""><div class="scrim"></div>
-              <div class="cap"><span class="kk">수능 D-100</span><h2>수능만만<br>파이널 특강전</h2><p>독해·듣기 실전 마무리, 무료배송</p></div></div>
-          </div>
-          <div class="arrows">
-            <button id="hPrev" aria-label="이전">&#8249;</button>
-            <span class="idx"><b id="hIdx">1</b> / <span id="hTot">5</span></span>
-            <button id="hNext" aria-label="다음">&#8250;</button>
-          </div>
-        </div>
-        <aside class="hero-side">
-          <a class="side-card grad" href="#">
-            <span class="st">NE 멤버십 회원 혜택</span>
-            <span class="sb">교재 구매 시<br><em>최대 5% 적립</em></span>
-            <span class="go">혜택 보기 ›</span>
-          </a>
-          <a class="side-card" href="리스트_학습자료.html">
-            <span class="st">무료 학습자료실</span>
-            <span class="sb">정답·MP3<br><em>무제한 다운로드</em></span>
-            <span class="go">바로가기 ›</span>
-          </a>
-        </aside>
+  <!-- ===== 지금 제일 잘 나가는 교재 (원형) ===== -->
+  <section class="section">
+    <div class="sec-head"><h2>지금 제일 잘 나가는 교재</h2><a class="more" href="리스트_교재구매.html">전체보기 <span class="arw">›</span></a></div>
+    <div class="rail">
+      <button class="rarw prev" id="bestPrev" aria-label="이전">&#8249;</button>
+      <button class="rarw next" id="bestNext" aria-label="다음">&#8250;</button>
+      <div class="best-track" id="bestTrack"></div>
+    </div>
+  </section>
+
+  <!-- ===== 2단: 신간마켓 / 빠른배송 ===== -->
+  <section class="section">
+    <div class="duo">
+      <div class="dcol">
+        <div class="dhead"><h3>지금 뜨는 신간, NE 신간마켓</h3><a class="go" href="리스트_교재구매.html">바로가기 <span class="arw">›</span></a></div>
+        <div class="dbanner mint"><div class="dlogo">NEW ARRIVAL</div><h4>따끈한 신간·개정판</h4><p>먼저 만나는 이번 달 새 교재</p><div class="dcircle">📚</div></div>
+        <div class="dtabs"><a class="on">신간</a><a>개정판</a><a class="pill green" href="리스트_교재구매.html">MD추천</a></div>
+        <div class="dgrid" id="newGrid"></div>
+        <p class="dnote">NE 신간마켓은 3만원 이상 구매 시 무료배송입니다.</p>
+        <a class="dmore" href="리스트_교재구매.html">신간 교재 더보기 ›</a>
       </div>
-    </section>
-
-    <!-- ===== 6) 기획전 카드 ===== -->
-    <section class="section">
-      <div class="sec-head"><h2>지금 놓치면 아쉬운 <span class="em">기획전</span></h2><a class="more" href="이벤트상세.html">전체보기 ›</a></div>
-      <div class="promos">
-        <a class="promo" href="이벤트상세.html"><div class="thumb"><img src="assets/banner_books.png" alt=""></div><div class="pb"><span class="tag">쿠폰북</span><p class="tt">브랜드 교재 쿠폰북</p><p class="ds">NE능률·Build&Grow 최대 20% 쿠폰</p></div></a>
-        <a class="promo" href="이벤트상세.html"><div class="thumb"><img src="assets/event_banner.png" alt=""></div><div class="pb"><span class="tag">방학특강</span><p class="tt">방학 완성 교재전</p><p class="ds">어휘+문법+독해 조합 추천</p></div></a>
-        <a class="promo" href="이벤트상세.html"><div class="thumb"><img src="assets/banner_nelt.png" alt=""></div><div class="pb"><span class="tag">레벨테스트</span><p class="tt">NELT 응시권 이벤트</p><p class="ds">iBT 영어 레벨테스트 할인</p></div></a>
-        <a class="promo" href="세미나상세.html"><div class="thumb"><img src="assets/img3.png" alt=""></div><div class="pb"><span class="tag">교사연수</span><p class="tt">선생님 세미나 신청</p><p class="ds">티칭 노하우 무료 특강</p></div></a>
+      <div class="dcol">
+        <div class="dhead"><h3>오늘 주문 내일 도착, 빠른배송</h3><a class="go" href="리스트_교재구매.html">바로가기 <span class="arw">›</span></a></div>
+        <div class="dbanner blue"><div class="dlogo">FAST DELIVERY</div><h4>오늘출발 · 내일도착</h4><p>급할 땐 빠른배송 교재로</p><div class="dcircle">🚚</div></div>
+        <div class="dtabs"><a class="on">베스트</a><a>스테디셀러</a><a class="pill purple" href="리스트_교재구매.html">무료배송</a></div>
+        <div class="dgrid" id="fastGrid"></div>
+        <p class="dnote">빠른배송은 1.5만원 이상 구매 시 무료배송입니다.</p>
+        <a class="dmore" href="리스트_교재구매.html">빠른배송 교재 더보기 ›</a>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- ===== 7) 베스트셀러 ===== -->
-    <section class="section">
-      <div class="sec-head"><h2>지금 제일 잘 나가는 <span class="em">교재</span><span class="sub">실시간 베스트셀러</span></h2><a class="more" href="리스트_교재구매.html">전체보기 ›</a></div>
-      <div class="pgrid" id="bestGrid"></div>
-    </section>
+  <!-- ===== NE_Books 서비스 (원형 아이콘) ===== -->
+  <section class="section">
+    <div class="sec-head"><h2>NE_Books 서비스</h2></div>
+    <div class="svcicons">
+      <a class="svcicon" href="리스트_교재구매.html"><span class="cc"><img src="assets/ic_main_buy.svg" alt=""></span><span>교재구매</span></a>
+      <a class="svcicon" href="#"><span class="cc"><img src="assets/ic_main_level.svg" alt=""></span><span>레벨차트</span></a>
+      <a class="svcicon" href="리스트_학습자료.html"><span class="cc"><img src="assets/ic_main_lib.svg" alt=""></span><span>학습자료</span></a>
+      <a class="svcicon" href="#"><span class="cc"><img src="assets/ic_main_mp3down.svg" alt=""></span><span>정답·MP3</span></a>
+      <a class="svcicon" href="#"><span class="cc"><img src="assets/ic_main_mp3listen.svg" alt=""></span><span>MP3듣기</span></a>
+      <a class="svcicon" href="#"><span class="cc"><img src="assets/ic_main_engteacher.svg" alt=""></span><span>영어쌤</span></a>
+      <a class="svcicon" href="#"><span class="cc"><img src="assets/ic_main_mathteacher.svg" alt=""></span><span>수학쌤</span></a>
+      <a class="svcicon" href="#"><span class="cc"><img src="assets/ic_tutor_nelt.svg" alt=""></span><span>NELT</span></a>
+      <a class="svcicon" href="세미나상세.html"><span class="cc"><img src="assets/ic_float_guide.svg" alt=""></span><span>교사연수</span></a>
+      <a class="svcicon" href="이벤트상세.html"><span class="cc"><img src="assets/ic_float_recommend.svg" alt=""></span><span>이벤트</span></a>
+      <a class="svcicon" href="#"><span class="cc"><img src="assets/ic_float_level.svg" alt=""></span><span>멤버십</span></a>
+      <a class="svcicon" href="고객센터.html"><span class="cc"><img src="assets/ic_chat.svg" alt=""></span><span>고객센터</span></a>
+    </div>
+  </section>
 
-    <!-- ===== 8) 슈퍼딜 / 타임딜 ===== -->
-    <section class="superdeal" id="superdeal">
-      <div class="sd-head">
-        <div class="sd-title"><span class="lg"><b>슈퍼딜</b> 타임특가</span>
-          <span class="timer">오늘 마감까지 <span class="clock" id="clock">03:12:45</span></span>
-        </div>
-        <a class="more" href="리스트_교재구매.html">더보기 ›</a>
-      </div>
-      <div class="sd-grid" id="dealGrid"></div>
-    </section>
+  <!-- ===== 라이브 특강 모아보기 (ON AIR) ===== -->
+  <section class="section">
+    <div class="sec-head"><h2>라이브 특강 모아보기 <span class="onair">ON AIR</span></h2><a class="more" href="세미나상세.html">전체보기 <span class="arw">›</span></a></div>
+    <div class="live-track" id="liveTrack"></div>
+  </section>
+</div>
 
-    <!-- ===== 9) 신상품 (MD픽) ===== -->
-    <section class="section">
-      <div class="sec-head"><h2>MD가 고른 <span class="em">신상품</span><span class="sub">이번 주 새로 나온 교재</span></h2><a class="more" href="리스트_교재구매.html">전체보기 ›</a></div>
-      <div class="pgrid" id="newGrid"></div>
-    </section>
-
-    <!-- ===== 추천 교재 세트(묶음) ===== -->
-    <section class="section">
-      <div class="sec-head"><h2>이런 조합 어때요? <span class="em">맞춤 교재 세트</span><span class="sub">목표별로 묶어 더 저렴하게</span></h2><a class="more" href="리스트_교재구매.html">전체보기 ›</a></div>
-      <div class="sets" id="setZone"></div>
-    </section>
-
-    <!-- ===== 10) 브랜드관 ===== -->
-    <section class="section">
-      <div class="sec-head"><h2>브랜드관</h2><a class="more" href="리스트_교재구매.html">전체보기 ›</a></div>
-      <div class="brands" id="brandZone"></div>
-    </section>
-
-    <!-- ===== 하단 배너 ===== -->
-    <section class="bigbanner">
-      <div><div class="bt">FOR TEACHERS</div><h2>선생님을 위한 티칭 플랫폼, NE_Tutor</h2><p>지도서·시험지 자동 생성·문제뱅크를 한 곳에서.</p></div>
-      <a class="bbtn" href="#">NE_Tutor 바로가기 ›</a>
-    </section>
-
-    <!-- ===== 고객센터 ===== -->
-    <section class="cs-strip">
-      <div class="tel"><span class="n">1833-8368</span><span class="d">평일 9~16시 · 점심 12~13시</span></div>
-      <div class="divider"></div>
-      <div class="links">
-        <a href="고객센터.html">채팅상담</a>
-        <a href="비회원문의.html">1:1 문의</a>
-        <a href="고객센터.html">FAQ</a>
-        <a href="공지사항상세.html">공지사항</a>
-      </div>
-    </section>
-
+<!-- ===== 슈퍼딜 초록 밴드 ===== -->
+<section class="superband" id="superband">
+  <div class="container">
+    <div class="sd-head">
+      <div class="sdlogo">슈퍼딜<span class="bolt">⚡</span></div>
+      <a class="more" href="리스트_교재구매.html">전체보기 <span class="arw">›</span></a>
+    </div>
+    <div class="sd-grid" id="dealGrid"></div>
   </div>
-</main>
+</section>
+
+<div class="container">
+  <!-- ===== 원서관 (GLOBAL) ===== -->
+  <section class="section">
+    <div class="sec-head"><h2>원서관</h2><a class="more" href="리스트_교재구매.html">전체보기 <span class="arw">›</span></a></div>
+    <div class="global">
+      <div class="gimg" style="background-image:url('assets/img4.png')"></div>
+      <div class="gpanel">
+        <span class="gsub">쉽고, 재미있는 영어원서</span>
+        <span class="gttl">GLOBAL READERS 원서관</span>
+        <div class="gprods" id="globalGrid"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 맞춤 교재 세트 ===== -->
+  <section class="section">
+    <div class="sec-head"><h2>이런 조합 어때요? 맞춤 교재 세트</h2><a class="more" href="리스트_교재구매.html">전체보기 <span class="arw">›</span></a></div>
+    <div class="sets" id="setZone"></div>
+  </section>
+
+  <!-- ===== 브랜드관 ===== -->
+  <section class="section">
+    <div class="sec-head"><h2>브랜드관</h2><a class="more" href="리스트_교재구매.html">전체보기 <span class="arw">›</span></a></div>
+    <div class="brands" id="brandZone"></div>
+  </section>
+
+  <!-- ===== 알립니다 ===== -->
+  <div class="notice-line">
+    <span class="nt">알립니다</span>
+    <a class="nx" href="공지사항상세.html">[안내] NE능률-클래스카드 콘텐츠 제휴 지속 안내</a>
+    <span class="nd">2026-08-05</span>
+  </div>
+</div>
+
+<!-- ===== 푸터 폰트 밴드 ===== -->
+<div class="foot-font">
+  <div class="ghost"><span>N</span><span>E</span><span>B</span><span>OOKS</span></div>
+  <div class="container">
+    <span class="ff-txt">무료로 열려있는 <b>NE_Books 학습자료실</b>, 정답·MP3를 다운받아 보세요.</span>
+    <a class="ff-btn" href="리스트_학습자료.html">⤓ 학습자료 바로가기</a>
+  </div>
+</div>
 
 <!-- ===== 푸터 ===== -->
-<div class="footer">
+<footer class="footer">
   <div class="container">
-    <div class="fbrand">
-      <div class="logo">NE<b>_</b>Books</div>
-      <p>(주)NE능률 · 대표 주민홍<br>서울특별시 마포구 월드컵북로 396<br>사업자등록번호 000-00-00000<br>통신판매업 제0000호</p>
+    <div class="flinks">
+      <a href="#">회사소개</a><a href="#">채용정보</a><a href="#">이용약관</a><a class="strong" href="#">개인정보처리방침</a><a href="#">청소년보호정책</a><a href="공지사항상세.html">공지사항</a>
+      <a class="seller" href="#">판매자 서비스 ▾</a>
     </div>
-    <div class="fcol"><h4>쇼핑 안내</h4><a href="리스트_교재구매.html">교재 구매</a><a href="리스트_학습자료.html">학습자료실</a><a href="장바구니.html">장바구니</a><a href="주문상세.html">주문·배송조회</a></div>
-    <div class="fcol"><h4>고객지원</h4><a href="고객센터.html">고객센터</a><a href="비회원문의.html">1:1 문의</a><a href="공지사항상세.html">공지사항</a><a href="오류정정상세.html">오류·정정</a></div>
-    <div class="fcol"><h4>회사정보</h4><a href="#">회사소개</a><a href="#">이용약관</a><a href="#">개인정보처리방침</a><a href="#">채용정보</a></div>
+    <div class="fbody">
+      <div>
+        <h4>상호 및 호스팅 서비스 제공 : (주)NE능률</h4>
+        <p>서울특별시 마포구 월드컵북로 396 · 대표이사 주민홍<br>사업자등록번호 000-00-00000 · 통신판매업 제0000호</p>
+      </div>
+      <div>
+        <h4>고객센터 ›</h4>
+        <p>Tel. <a href="#">1833-8368</a> · 평일 9~16시 (점심 12~13시)<br>Mail. <a href="#">help@nebooks.example.com</a></p>
+      </div>
+    </div>
+    <div class="copy">© NE능률 NE_Books. 본 페이지는 목업(mockup)이며 실제 판매 페이지가 아닙니다.</div>
   </div>
-  <div class="container"><div class="copy">© NE능률 NE_Books. 본 페이지는 목업(mockup)이며 실제 판매 페이지가 아닙니다.</div></div>
-</div>
+</footer>
 
 <script>
 (function(){
   'use strict';
+  function won(n){return n.toLocaleString('ko-KR');}
 
-  /* ---------- 교재 데이터 ---------- */
-  var COVERS=['best_1.png','best_2.png','best_3.png','best_4.png','best_5.png','book_cover.jpg','newbook_sample.png'];
-  function P(o){return o;}
+  /* ---------- 데이터 ---------- */
   var BEST=[
-    P({img:'best_1.png',brand:'logo_ne_small.svg',btype:'Coursebook',name:'Phonics Code 1 : Student Book',pct:10,now:13500,was:15000,corner:'hot',free:true,today:true}),
-    P({img:'best_2.png',brand:'logo_ne_small.svg',btype:'Coursebook',name:'Phonics Code 2 : Student Book',pct:10,now:13500,was:15000,corner:'best',free:true,today:false}),
-    P({img:'best_3.png',brand:'logo_buildgrow.svg',btype:'Reading',name:'Bricks Reading 150 · Level 1',pct:15,now:12750,was:15000,corner:'',free:true,today:true}),
-    P({img:'best_4.png',brand:'logo_ne_small.svg',btype:'Grammar',name:'그래머 인사이드 Level 1 (개정판)',pct:10,now:12600,was:14000,corner:'new',free:false,today:false}),
-    P({img:'best_5.png',brand:'logo_ne_small.svg',btype:'Vocabulary',name:'능률 VOCA 어원편 (Lite)',pct:12,now:11440,was:13000,corner:'',free:true,today:true}),
-    P({img:'book_cover.jpg',brand:'logo_oxford.png',btype:'Readers',name:'Oxford Reading Tree Stage 3 팩',pct:20,now:24000,was:30000,corner:'best',free:true,today:false}),
-    P({img:'newbook_sample.png',brand:'logo_ne_small.svg',btype:'Listening',name:'1316 팬클럽 Listening Level 2',pct:10,now:12150,was:13500,corner:'',free:true,today:true}),
-    P({img:'best_2.png',brand:'logo_ne_small.svg',btype:'Reading',name:'주니어 리딩튜터 Starter 1',pct:10,now:11700,was:13000,corner:'',free:false,today:false}),
-    P({img:'best_1.png',brand:'logo_buildgrow.svg',btype:'Phonics',name:'Bricks Phonics Starter 1',pct:15,now:11050,was:13000,corner:'hot',free:true,today:true}),
-    P({img:'best_4.png',brand:'logo_ne_small.svg',btype:'Grammar',name:'문법이 된다 Level 1',pct:10,now:12600,was:14000,corner:'',free:true,today:false})
+    {img:'best_1.png',name:'Phonics Code 1 : Student Book',pct:10,now:13500,was:15000,tdeal:false},
+    {img:'best_2.png',name:'Phonics Code 2 : Student Book',pct:10,now:13500,was:15000,tdeal:true},
+    {img:'best_3.png',name:'Bricks Reading 150 · Level 1',pct:15,now:12750,was:15000,tdeal:false},
+    {img:'best_4.png',name:'그래머 인사이드 Level 1 (개정판)',pct:10,now:12600,was:14000,tdeal:false},
+    {img:'best_5.png',name:'능률 VOCA 어원편 (Lite)',pct:12,now:11440,was:13000,tdeal:true},
+    {img:'book_cover.jpg',name:'Oxford Reading Tree Stage 3 팩',pct:20,now:24000,was:30000,tdeal:false},
+    {img:'newbook_sample.png',name:'1316 팬클럽 Listening Level 2',pct:10,now:12150,was:13500,tdeal:false},
+    {img:'best_2.png',name:'주니어 리딩튜터 Starter 1',pct:10,now:11700,was:13000,tdeal:false},
+    {img:'best_1.png',name:'Bricks Phonics Starter 1',pct:15,now:11050,was:13000,tdeal:true},
+    {img:'best_4.png',name:'문법이 된다 Level 1',pct:10,now:12600,was:14000,tdeal:false}
+  ];
+  var NEWP=[
+    {img:'newbook_sample.png',tag:'NEW',name:'수능만만 기본 영어독해 (2026 개정)',pct:10,now:13500},
+    {img:'best_4.png',tag:'NEW',name:'그래머 인사이드 Level 3 (개정판)',pct:10,now:12600},
+    {img:'best_2.png',tag:'NEW',name:'Bricks Reading 200 · Level 2',pct:15,now:12750},
+    {img:'best_5.png',tag:'NEW',name:'능률 VOCA 수능완성 (신판)',pct:12,now:11440},
+    {img:'best_1.png',tag:'NEW',name:'파닉스가 된다 Starter (개정)',pct:10,now:10800},
+    {img:'best_3.png',tag:'NEW',name:'사이트워드가 된다 1',pct:10,now:11700}
+  ];
+  var FAST=[
+    {img:'best_1.png',free:true,name:'Phonics Code 1 : Student Book',pct:10,now:13500},
+    {img:'best_5.png',free:true,name:'능률 VOCA 어원편',pct:12,now:11440},
+    {img:'best_4.png',free:true,name:'그래머 인사이드 Level 1',pct:10,now:12600},
+    {img:'best_3.png',free:true,name:'Bricks Reading 150',pct:15,now:12750},
+    {img:'best_2.png',free:true,name:'주니어 리딩튜터 Starter 1',pct:10,now:11700},
+    {img:'newbook_sample.png',free:true,name:'1316 팬클럽 Listening 2',pct:10,now:12150}
   ];
   var DEALS=[
-    P({img:'best_3.png',brand:'logo_ne_small.svg',btype:'세트',name:'Phonics Code 1~4 세트 (전 4권)',pct:35,now:39000,was:60000,corner:'hot',free:true,today:true}),
-    P({img:'best_5.png',brand:'logo_ne_small.svg',btype:'세트',name:'능률 VOCA 시리즈 3권 패키지',pct:30,now:27300,was:39000,corner:'best',free:true,today:true}),
-    P({img:'book_cover.jpg',brand:'logo_oxford.png',btype:'세트',name:'Oxford Readers 입문 10권 박스',pct:40,now:48000,was:80000,corner:'hot',free:true,today:false}),
-    P({img:'best_4.png',brand:'logo_ne_small.svg',btype:'세트',name:'그래머 인사이드 Lv1~3 세트',pct:30,now:29400,was:42000,corner:'',free:true,today:true}),
-    P({img:'newbook_sample.png',brand:'logo_buildgrow.svg',btype:'세트',name:'Bricks Reading 4권 세트',pct:33,now:40200,was:60000,corner:'best',free:true,today:true})
+    {img:'best_3.png',name:'Phonics Code 1~4 세트 (전 4권)',pct:35,now:39000,was:60000,orn:true},
+    {img:'best_5.png',name:'능률 VOCA 시리즈 3권 패키지',pct:30,now:27300,was:39000,orn:true},
+    {img:'book_cover.jpg',name:'Oxford Readers 입문 10권 박스',pct:40,now:48000,was:80000,orn:false},
+    {img:'best_4.png',name:'그래머 인사이드 Lv1~3 세트',pct:30,now:29400,was:42000,orn:true}
   ];
-  var NEW=[
-    P({img:'newbook_sample.png',brand:'logo_ne_small.svg',btype:'Coursebook',name:'수능만만 기본 영어독해 (2026 개정)',pct:10,now:13500,was:15000,corner:'new',free:true,today:true}),
-    P({img:'best_4.png',brand:'logo_ne_small.svg',btype:'Grammar',name:'그래머 인사이드 Level 3 (개정판)',pct:10,now:12600,was:14000,corner:'new',free:true,today:false}),
-    P({img:'best_2.png',brand:'logo_buildgrow.svg',btype:'Reading',name:'Bricks Reading 200 · Level 2',pct:15,now:12750,was:15000,corner:'new',free:true,today:true}),
-    P({img:'best_5.png',brand:'logo_ne_small.svg',btype:'Vocabulary',name:'능률 VOCA 수능완성 (신판)',pct:12,now:11440,was:13000,corner:'new',free:false,today:false}),
-    P({img:'best_1.png',brand:'logo_ne_small.svg',btype:'Phonics',name:'파닉스가 된다 Starter (개정)',pct:10,now:10800,was:12000,corner:'new',free:true,today:true})
+  var GLOBAL=[
+    {img:'book_cover.jpg',name:'Oxford Reading Tree Stage 3',pct:20,now:24000,was:30000},
+    {img:'best_3.png',name:'Oxford Bookworms Starter',pct:15,now:12750,was:15000},
+    {img:'best_2.png',name:'Big Cat Readers Band 4',pct:18,now:14760,was:18000},
+    {img:'newbook_sample.png',name:'Usborne First Reading 세트',pct:25,now:30000,was:40000}
   ];
 
-  function won(n){return n.toLocaleString('ko-KR');}
-  function tagsHTML(p){
-    var t='';
-    if(p.free) t+='<span class="free">무료배송</span>';
-    if(p.today) t+='<span class="today">오늘출발</span>';
-    t+='<span>사은품</span>';
-    return t;
-  }
-  function cardHTML(p,rank){
-    var reward=Math.round(p.now*0.05);
-    var couponNow=Math.round(p.now*0.95);
-    return '<a class="pcard'+(p.soldout?' soldout':'')+'" href="교재상세.html">'
-      +(rank?'<span class="rank'+(rank<=3?' top':'')+'">'+rank+'</span>':'')
-      +'<div class="thumb">'
-        +(p.corner?'<span class="corner '+p.corner+'">'+(p.corner==='hot'?'HOT':p.corner==='new'?'NEW':'BEST')+'</span>':'')
-        +'<img src="assets/'+p.img+'" alt="">'
-        +'<span class="sold-tag">일시품절</span>'
-        +'<button class="wish" type="button" aria-label="찜" onclick="this.classList.toggle(\'on\');event.preventDefault();event.stopPropagation();"><svg width="18" height="18" viewBox="0 0 24 24" stroke-width="1.8"><path d="M12 20s-7-4.35-9.2-8.5C1.3 8.5 2.8 5.5 5.8 5.5c1.9 0 3.2 1.1 4.2 2.4 1-1.3 2.3-2.4 4.2-2.4 3 0 4.5 3 3 6C19 15.65 12 20 12 20z"/></svg></button>'
-      +'</div>'
-      +'<div class="info">'
-        +'<div class="brand"><img src="assets/'+p.brand+'" alt=""><span class="btype">'+p.btype+'</span></div>'
-        +'<p class="name">'+p.name+'</p>'
-        +'<div class="price"><span class="pct">'+p.pct+'%</span><span class="now">'+won(p.now)+'<small>원</small></span></div>'
-        +'<div class="was">'+won(p.was)+'원</div>'
-        +'<span class="coupon">쿠폰적용가 <span class="cw">'+won(couponNow)+'원</span></span>'
-        +'<div class="tags">'+tagsHTML(p)+'</div>'
-        +'<div class="reward">적립 <b>'+won(reward)+'P</b> · NE포인트 5%</div>'
-      +'</div>'
-    +'</a>';
-  }
+  /* ---------- 원형 베스트 ---------- */
+  (function(){
+    var el=document.getElementById('bestTrack'); if(!el) return;
+    el.innerHTML=BEST.map(function(p,i){
+      var coup=Math.round(p.now*0.95), rw=Math.round(p.now*0.05);
+      return '<a class="bestitem" href="교재상세.html">'
+        +'<div class="circle"><img src="assets/'+p.img+'" alt="">'
+          +'<span class="rank">'+(i+1)+'</span>'
+          +(p.tdeal?'<span class="tdeal">오픈런<br>타임딜</span>':'')
+        +'</div>'
+        +'<div class="bname">'+p.name+'</div>'
+        +'<div class="coup">쿠폰적용가 <span class="cw">'+won(coup)+'원</span></div>'
+        +'<div class="pline"><span class="pct">'+p.pct+'%</span>'+won(p.now)+'원</div>'
+        +'<div class="reward">NE멤버 최대 '+won(rw)+'원 적립</div>'
+        +'<div class="ship">무료배송</div>'
+      +'</a>';
+    }).join('');
+    var prev=document.getElementById('bestPrev'),next=document.getElementById('bestNext');
+    if(prev) prev.addEventListener('click',function(){el.scrollBy({left:-702,behavior:'smooth'});});
+    if(next) next.addEventListener('click',function(){el.scrollBy({left:702,behavior:'smooth'});});
+  })();
 
-  function render(id,arr,ranked){
-    var el=document.getElementById(id); if(!el) return;
-    el.innerHTML=arr.map(function(p,i){return cardHTML(p,ranked?i+1:0);}).join('');
+  /* ---------- 2단 미니 그리드 ---------- */
+  function miniRow(p){
+    var rw=Math.round(p.now*0.05);
+    return '<a class="drow" href="교재상세.html">'
+      +'<span class="dth"><img src="assets/'+p.img+'" alt=""></span>'
+      +'<span class="dmeta">'
+        +'<span class="dtag'+(p.free?' free':'')+'">'+(p.free?'무료배송':(p.tag||'NEW'))+'</span>'
+        +'<span class="dnm">'+p.name+'</span>'
+        +'<span class="dpr"><span class="pct">'+p.pct+'%</span>'+won(p.now)+'원</span>'
+        +'<span class="drw">NE멤버 '+won(rw)+'원 적립</span>'
+      +'</span></a>';
   }
-  render('bestGrid',BEST,true);
-  render('dealGrid',DEALS,false);
-  render('newGrid',NEW,false);
+  (function(){var n=document.getElementById('newGrid'); if(n) n.innerHTML=NEWP.map(miniRow).join('');})();
+  (function(){var f=document.getElementById('fastGrid'); if(f) f.innerHTML=FAST.map(miniRow).join('');})();
+
+  /* ---------- 라이브 특강 ---------- */
+  var LIVE=[
+    {img:'img1.png',state:'LIVE',time:'방송중',name:'초등 파닉스 완성 로드맵 라이브 특강',pct:0,now:0,chan:'logo_ne_small.svg',cname:'NE능률'},
+    {img:'img2.png',state:'LIVE',time:'00:35:55',name:'중등 내신 문법 총정리 세미나',pct:10,now:13500,chan:'logo_buildgrow.svg',cname:'Build&Grow'},
+    {img:'img3.png',state:'END',time:'방송종료',name:'수능 독해 실전 전략 특강 (다시보기)',pct:15,now:12750,chan:'logo_ne_small.svg',cname:'NE능률'},
+    {img:'img5.png',state:'END',time:'방송종료',name:'Oxford 원서 리딩 지도법 워크숍',pct:20,now:24000,chan:'logo_oxford.png',cname:'Oxford'}
+  ];
+  (function(){
+    var el=document.getElementById('liveTrack'); if(!el) return;
+    el.innerHTML=LIVE.map(function(v){
+      var priceBlock = v.now
+        ? '<div class="lcoup">'+won(Math.round(v.now/(1-v.pct/100)))+'원</div>'
+          +'<div class="lpr"><span class="pct">'+v.pct+'%</span>'+won(v.now)+'원</div>'
+          +'<div class="lrw">NE멤버 '+won(Math.round(v.now*0.05))+'원 적립</div>'
+          +'<div class="lship">무료배송</div>'
+        : '<div class="lpr" style="font-size:15px;color:var(--green-d)">무료 수강</div><div class="lship">선착순 신청</div>';
+      return '<a class="livecard" href="세미나상세.html">'
+        +'<div class="lv"><img src="assets/'+v.img+'" alt="">'
+          +'<div class="badge"><span class="on">'+(v.state==='LIVE'?'LIVE':'LIVE')+'</span>'+v.time+'</div>'
+          +'<div class="play">▶</div><div class="prog"><i></i></div>'
+        +'</div>'
+        +'<div class="lbody"><div class="ltxt"><p class="lnm">'+v.name+'</p>'+priceBlock+'</div>'
+          +'<div class="chan"><div class="clg"><img src="assets/'+v.chan+'" alt=""></div><span>'+v.cname+'</span></div>'
+        +'</div></a>';
+    }).join('');
+  })();
+
+  /* ---------- 슈퍼딜 ---------- */
+  (function(){
+    var el=document.getElementById('dealGrid'); if(!el) return;
+    el.innerHTML=DEALS.map(function(p){
+      var coup=p.was, rw=Math.round(p.now*0.05);
+      return '<a class="dealcard" href="교재상세.html">'
+        +'<div class="dimg"><img src="assets/'+p.img+'" alt="">'
+          +'<span class="tbadge">⏱ 타임딜 02:00:55</span>'
+          +(p.orn?'<span class="orn">오픈런<br>타임딜</span>':'')
+          +'<button class="whish" type="button" aria-label="찜" onclick="this.classList.toggle(\'on\');event.preventDefault();event.stopPropagation();"><svg width="18" height="18" viewBox="0 0 24 24" stroke-width="1.8"><path d="M12 20s-7-4.35-9.2-8.5C1.3 8.5 2.8 5.5 5.8 5.5c1.9 0 3.2 1.1 4.2 2.4 1-1.3 2.3-2.4 4.2-2.4 3 0 4.5 3 3 6C19 15.65 12 20 12 20z"/></svg></button>'
+        +'</div>'
+        +'<div class="dinfo">'
+          +'<div class="dcoup">'+won(coup)+'원</div>'
+          +'<div class="dp"><span class="pct">'+p.pct+'%</span>'+won(p.now)+'원</div>'
+          +'<div class="drw">NE멤버 최대 '+won(rw)+'원 적립</div>'
+          +'<div class="dnm2">'+p.name+'</div>'
+        +'</div></a>';
+    }).join('');
+  })();
+
+  /* ---------- 원서관 ---------- */
+  (function(){
+    var el=document.getElementById('globalGrid'); if(!el) return;
+    el.innerHTML=GLOBAL.map(function(p){
+      var rw=Math.round(p.now*0.05);
+      return '<a class="gprod" href="교재상세.html">'
+        +'<span class="gth"><img src="assets/'+p.img+'" alt=""></span>'
+        +'<span class="gnm">'+p.name+'</span>'
+        +'<span class="gcoup">'+won(p.was)+'원</span>'
+        +'<span class="gp"><span class="pct">'+p.pct+'%</span>'+won(p.now)+'원</span>'
+        +'<span class="grw">NE멤버 '+won(rw)+'원 적립</span>'
+        +'<span class="gship">무료배송</span>'
+      +'</a>';
+    }).join('');
+  })();
+
+  /* ---------- 맞춤 교재 세트 ---------- */
+  var SETS=[
+    {goal:'방학 완성',gcls:'',name:'중등 방학 3주 완성 세트',desc:'어휘 + 문법 + 독해를 한 번에',covers:['best_5.png','best_4.png','best_2.png'],was:41000,pct:28,items:[{n:'능률 VOCA 어원편',q:1},{n:'그래머 인사이드 Lv1',q:1},{n:'주니어 리딩튜터',q:1}]},
+    {goal:'파닉스 마스터',gcls:'b',name:'초등 파닉스 4권 마스터 세트',desc:'스스로 읽는 힘, 기초부터 완성',covers:['best_1.png','best_2.png','best_3.png','best_1.png'],was:60000,pct:35,items:[{n:'Phonics Code 1~4 SB',q:4},{n:'세이펜 스티커',q:1},{n:'정답·MP3 자료',q:'무료'}]},
+    {goal:'수능 파이널',gcls:'c',name:'고등 수능 파이널 세트',desc:'독해·듣기 실전 마무리 조합',covers:['newbook_sample.png','best_4.png','best_5.png'],was:45000,pct:30,items:[{n:'수능만만 영어독해',q:1},{n:'수능만만 영어듣기',q:1},{n:'능률 VOCA 수능완성',q:1}]}
+  ];
+  (function(){
+    var el=document.getElementById('setZone'); if(!el) return;
+    el.innerHTML=SETS.map(function(s){
+      var now=Math.round(s.was*(100-s.pct)/100/100)*100, save=s.was-now, MAX=4;
+      var covers=s.covers.slice(0,MAX).map(function(c,i){
+        if(i===MAX-1 && s.covers.length>MAX) return '<span class="cv more">+'+(s.covers.length-MAX+1)+'</span>';
+        return '<span class="cv"><img src="assets/'+c+'" alt=""></span>';
+      }).join('');
+      var lis=s.items.map(function(it){return '<li><span>'+it.n+'</span><span class="q">'+(typeof it.q==='number'?it.q+'권':it.q)+'</span></li>';}).join('');
+      return '<div class="setcard"><div class="st-top"><span class="st-goal '+s.gcls+'">'+s.goal+'</span>'
+        +'<p class="st-name">'+s.name+'</p><p class="st-desc">'+s.desc+'</p><div class="st-covers">'+covers+'</div></div>'
+        +'<div class="st-body"><ul class="st-list">'+lis+'</ul>'
+        +'<div class="st-pricebar"><div><div class="st-save">'+won(save)+'원 절약</div><div class="st-was">'+won(s.was)+'원</div></div>'
+        +'<div class="st-now"><span class="pct">'+s.pct+'%</span>'+won(now)+'원</div></div>'
+        +'<div class="st-cta"><a class="cart" href="장바구니.html">세트 담기</a><a class="buy" href="주문결제.html">바로구매</a></div></div></div>';
+    }).join('');
+  })();
 
   /* ---------- 브랜드관 ---------- */
   var BRANDZONE=[
@@ -591,112 +732,53 @@ main{background:var(--bg);padding-bottom:60px}
   (function(){
     var el=document.getElementById('brandZone'); if(!el) return;
     el.innerHTML=BRANDZONE.map(function(b){
-      var minis=b.items.map(function(it){
-        return '<a class="mini" href="리스트_교재구매.html"><span class="mimg"><img src="assets/'+it.img+'" alt=""></span><span class="mn">'+it.n+'</span><span class="mp">'+won(it.now)+'원</span></a>';
-      }).join('');
+      var minis=b.items.map(function(it){return '<a class="mini" href="리스트_교재구매.html"><span class="mimg"><img src="assets/'+it.img+'" alt=""></span><span class="mn">'+it.n+'</span><span class="mp">'+won(it.now)+'원</span></a>';}).join('');
       return '<div class="brandcard"><div class="bh"><img src="assets/'+b.logo+'" alt="브랜드"><a class="go" href="리스트_교재구매.html">브랜드관 ›</a></div><div class="row">'+minis+'</div></div>';
     }).join('');
   })();
 
-  /* ---------- 추천 교재 세트(묶음) ---------- */
-  var SETS=[
-    {goal:'방학 완성',gcls:'',name:'중등 방학 3주 완성 세트',desc:'어휘 + 문법 + 독해를 한 번에',covers:['best_5.png','best_4.png','best_2.png'],was:41000,pct:28,
-      items:[{n:'능률 VOCA 어원편',q:1},{n:'그래머 인사이드 Lv1',q:1},{n:'주니어 리딩튜터',q:1}]},
-    {goal:'파닉스 마스터',gcls:'b',name:'초등 파닉스 4권 마스터 세트',desc:'스스로 읽는 힘, 기초부터 완성',covers:['best_1.png','best_2.png','best_3.png','best_1.png'],was:60000,pct:35,
-      items:[{n:'Phonics Code 1~4 SB',q:4},{n:'세이펜 스티커',q:1},{n:'정답·MP3 자료',q:'무료'}]},
-    {goal:'수능 파이널',gcls:'c',name:'고등 수능 파이널 세트',desc:'독해·듣기 실전 마무리 조합',covers:['newbook_sample.png','best_4.png','best_5.png'],was:45000,pct:30,
-      items:[{n:'수능만만 영어독해',q:1},{n:'수능만만 영어듣기',q:1},{n:'능률 VOCA 수능완성',q:1}]}
-  ];
+  /* ---------- 메인 비주얼 센터모드 캐러셀 ---------- */
   (function(){
-    var el=document.getElementById('setZone'); if(!el) return;
-    el.innerHTML=SETS.map(function(s){
-      var now=Math.round(s.was*(100-s.pct)/100/100)*100;
-      var save=s.was-now;
-      var MAXCV=4;
-      var covers=s.covers.slice(0,MAXCV).map(function(c,i){
-        if(i===MAXCV-1 && s.covers.length>MAXCV) return '<span class="cv more">+'+(s.covers.length-MAXCV+1)+'</span>';
-        return '<span class="cv"><img src="assets/'+c+'" alt=""></span>';
-      }).join('');
-      var lis=s.items.map(function(it){return '<li><span>'+it.n+'</span><span class="q">'+(typeof it.q==='number'?it.q+'권':it.q)+'</span></li>';}).join('');
-      return '<div class="setcard">'
-        +'<div class="st-top"><span class="st-goal '+s.gcls+'">'+s.goal+'</span>'
-          +'<p class="st-name">'+s.name+'</p><p class="st-desc">'+s.desc+'</p>'
-          +'<div class="st-covers">'+covers+'</div></div>'
-        +'<div class="st-body"><ul class="st-list">'+lis+'</ul>'
-          +'<div class="st-pricebar"><div><div class="st-save">'+won(save)+'원 절약</div><div class="st-was">'+won(s.was)+'원</div></div>'
-          +'<div class="st-now"><span class="pct">'+s.pct+'%</span>'+won(now)+'원</div></div>'
-          +'<div class="st-cta"><a class="cart" href="장바구니.html">세트 담기</a><a class="buy" href="주문결제.html">바로구매</a></div>'
-        +'</div></div>';
-    }).join('');
-  })();
-
-  /* ---------- 히어로 캐러셀 ---------- */
-  (function(){
-    var slides=[].slice.call(document.querySelectorAll('#slides .slide'));
-    var idxEl=document.getElementById('hIdx'), totEl=document.getElementById('hTot');
-    var cur=0, timer; if(totEl) totEl.textContent=slides.length;
-    function show(i){ cur=(i+slides.length)%slides.length; slides.forEach(function(s,n){s.classList.toggle('on',n===cur);}); if(idxEl) idxEl.textContent=cur+1; }
-    function next(){ show(cur+1); } function prev(){ show(cur-1); }
-    document.getElementById('hNext').addEventListener('click',function(){next();restart();});
-    document.getElementById('hPrev').addEventListener('click',function(){prev();restart();});
-    function restart(){ clearInterval(timer); timer=setInterval(next,5000); }
-    var hero=document.getElementById('hero');
-    hero.addEventListener('mouseenter',function(){clearInterval(timer);});
-    hero.addEventListener('mouseleave',restart);
-    restart();
-  })();
-
-  /* ---------- 슈퍼딜 카운트다운 ---------- */
-  (function(){
-    var el=document.getElementById('clock'); if(!el) return;
-    var remain=3*3600+12*60+45;
-    function tick(){
-      if(remain<0) remain=0;
-      var h=Math.floor(remain/3600), m=Math.floor((remain%3600)/60), s=remain%60;
-      function pad(n){return (n<10?'0':'')+n;}
-      el.textContent=pad(h)+':'+pad(m)+':'+pad(s);
-      if(remain>0) remain--;
+    var track=document.getElementById('vtrack'); if(!track) return;
+    var stage=track.parentElement;
+    var slides=[].slice.call(track.children), N=slides.length;
+    var idxEl=document.getElementById('vIdx'), totEl=document.getElementById('vTot');
+    if(totEl) totEl.textContent=N;
+    /* 앞뒤 복제로 무한 루프 */
+    var head=document.createDocumentFragment(), tail=document.createDocumentFragment();
+    slides.forEach(function(c){head.appendChild(c.cloneNode(true));});
+    slides.forEach(function(c){tail.appendChild(c.cloneNode(true));});
+    track.insertBefore(head,track.firstChild); track.appendChild(tail);
+    var cards=[].slice.call(track.children);
+    var active=N, timer, paused=false, GAP=16;
+    function slideW(){ return cards[0].getBoundingClientRect().width; }
+    function layout(anim){
+      var W=slideW();
+      track.style.transition=anim?'transform .5s':'none';
+      /* 데스크톱에선 좌측 카테고리 패널(250px) 오른쪽 영역 기준으로 배너를 중앙정렬 */
+      var panelRight=(window.innerWidth>1000)?(Math.max(0,(window.innerWidth-1240)/2)+250):0;
+      var centerX=(panelRight+stage.clientWidth)/2;
+      var x=Math.round(centerX - (active*(W+GAP) + W/2));
+      track.style.transform='translateX('+x+'px)';
+      cards.forEach(function(c,i){ c.style.opacity=(i===active)?'1':'.45'; });
+      var real=((active-N)%N+N)%N;
+      if(idxEl) idxEl.textContent=real+1;
     }
-    tick(); setInterval(tick,1000);
+    function norm(){ var a=active; while(a<N)a+=N; while(a>=2*N)a-=N; if(a!==active){active=a; layout(false);} }
+    function go(d){ active+=d; layout(true); setTimeout(norm,520); }
+    document.getElementById('vNext').addEventListener('click',function(){go(1);restart();});
+    document.getElementById('vPrev').addEventListener('click',function(){go(-1);restart();});
+    function restart(){ clearInterval(timer); if(!paused) timer=setInterval(function(){go(1);},5000); }
+    var pauseBtn=document.getElementById('vPause');
+    if(pauseBtn) pauseBtn.addEventListener('click',function(){ paused=!paused; pauseBtn.innerHTML=paused?'&#9654;':'&#10073;&#10073;'; restart(); });
+    window.addEventListener('resize',function(){layout(false);});
+    window.addEventListener('load',function(){layout(false);});
+    layout(false); restart();
   })();
 
-  /* ---------- GNB 메가드롭다운 ---------- */
-  (function(){
-    var gnb=document.getElementById('gnb'); if(!gnb) return;
-    var mega=document.getElementById('mega'), cols=document.getElementById('megaCols');
-    var items=[].slice.call(gnb.querySelectorAll('nav a'));
-    var MENU={
-      'ELT':['Coursebook','Phonics','Readers','Reading','Listening','Speaking','Writing','Grammar','Vocabulary'],
-      '초/중등':['중학 내신','고등 선행','어휘','파닉스','쓰기','독해','듣기','문법/구문','TOEFL/TEPS/NELT'],
-      '고등':['어휘','독해','듣기','문법/구문','수능 대비','고교 내신','단기 특강','TOEFL/TEPS/NELT'],
-      '교과서/자습서':['중학영어 교과서','고등영어 교과서','수학 교과서','중국어/일본어'],
-      '수험/일반':['TOEIC','TOEIC S/W','TOEFL/OPIC/TEPS','FLEX','일반영어'],
-      '수학/국어':['유아','초등','중등','고등'],
-      '학습자료실':['서브메인','ELT 자료','초/중등 자료','고등 자료','교과서 자료','수험/일반 자료']
-    };
-    var closeT;
-    function open(a){
-      var name=a.getAttribute('data-menu'); var list=MENU[name];
-      if(!list){ close(); return; }
-      /* 한 메뉴의 항목을 3열로 분배 */
-      var per=Math.ceil(list.length/3), colsArr=[[],[],[]];
-      list.forEach(function(t,i){ colsArr[Math.floor(i/per)].push(t); });
-      cols.innerHTML=colsArr.map(function(c,ci){
-        return '<div class="col">'+(ci===0?'<p class="col-t">'+name+'</p>':'<p class="col-t">&nbsp;</p>')
-          + c.map(function(t){return '<a href="리스트_교재구매.html">'+t+'</a>';}).join('')+'</div>';
-      }).join('');
-      items.forEach(function(x){x.classList.toggle('on',x===a);});
-      mega.classList.add('open');
-    }
-    function close(){ mega.classList.remove('open'); items.forEach(function(x){x.classList.remove('on');}); }
-    items.forEach(function(a){
-      a.addEventListener('mouseenter',function(){ clearTimeout(closeT); open(a); });
-      a.addEventListener('click',function(e){ if(MENU[a.getAttribute('data-menu')]){ e.preventDefault(); open(a); } });
-    });
-    gnb.addEventListener('mouseleave',function(){ closeT=setTimeout(close,160); });
-    gnb.addEventListener('mouseenter',function(){ clearTimeout(closeT); });
-    document.addEventListener('keydown',function(e){ if(e.key==='Escape') close(); });
-  })();
+  /* ---------- 전체 카테고리 버튼 → 카테고리 리스트로 ---------- */
+  var allcat=document.getElementById('allcat');
+  if(allcat) allcat.addEventListener('click',function(){ location.href='리스트_교재구매.html'; });
 
 })();
 </script>
