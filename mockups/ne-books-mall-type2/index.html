@@ -38,12 +38,14 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 .brand .logo{font-size:33px;font-weight:800;letter-spacing:-1.5px;color:#111}
 .brand .logo b{color:var(--green)}
 .brand .slogan{font-size:12px;color:var(--sub);font-weight:600}
+.brand{align-items:center}
+.brand .logo-img{height:30px;width:auto;display:block}
 .searchbox{flex:1;max-width:700px}
-.search-field{display:flex;align-items:center;border:2px solid #3d9be0;border-radius:26px;height:50px;padding:0 6px 0 22px}
+.search-field{display:flex;align-items:center;border:2px solid var(--red);border-radius:26px;height:50px;padding:0 6px 0 22px}
 .search-field input{flex:1;border:0;outline:0;font-size:16px;background:none}
 .search-field input::placeholder{color:#c2c2c2}
 .search-field .btn-search{width:42px;height:42px;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
-.search-field .btn-search svg{stroke:#3d9be0}
+.search-field .btn-search svg{stroke:var(--red)}
 .header-icons{display:flex;gap:26px;flex:0 0 auto}
 .hicon{display:flex;flex-direction:column;align-items:center;gap:4px;color:#666;font-size:11px;position:relative}
 .hicon .ic{width:30px;height:30px;display:flex;align-items:center;justify-content:center}
@@ -54,7 +56,7 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 /* ---------- GNB / 서비스 줄 ---------- */
 .gnbbar{border-top:1px solid var(--line)}
 .gnbbar .container{display:flex;align-items:center;height:52px;gap:0}
-.allcat{display:flex;align-items:center;gap:10px;background:var(--cat);color:#fff;font-weight:700;font-size:16px;height:52px;padding:0 22px;flex:0 0 auto;cursor:pointer}
+.allcat{display:flex;align-items:center;gap:10px;background:var(--cat);color:#fff;font-weight:700;font-size:16px;height:52px;padding:0 22px;flex:0 0 auto;width:190px;cursor:pointer}
 .allcat .bars{display:inline-flex;flex-direction:column;gap:3px}
 .allcat .bars i{width:18px;height:2px;background:#fff;border-radius:2px}
 .svc{display:flex;align-items:center;gap:2px;padding-left:16px;flex:1;overflow:hidden}
@@ -117,7 +119,7 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 @media(max-width:1000px){.vslide .vbooks{right:8px}.vslide .vbooks .cv{width:86px;height:116px;margin-left:-26px}}
 @media(max-width:680px){.vslide .vbooks{display:none}}
 /* 좌측 카테고리 패널 */
-.catpanel{position:absolute;left:calc((100% - 1240px)/2);top:0;width:250px;height:100%;background:var(--cat);z-index:8;padding:8px 0}
+.catpanel{position:absolute;left:calc((100% - 1240px)/2);top:0;width:190px;height:100%;background:var(--cat);z-index:8;padding:8px 0}
 @media(max-width:1264px){.catpanel{left:12px}}
 .catpanel a{display:block;color:#fff;font-size:15px;font-weight:500;padding:0 24px;line-height:47.5px;position:relative}
 .catpanel a:hover{background:rgba(0,0,0,.12);font-weight:700}
@@ -126,9 +128,9 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 .catpanel a::after{content:"›";position:absolute;right:20px;opacity:.6}
 /* 카테고리 펼침 메가메뉴 */
 .megamenu{position:absolute;top:0;height:100%;z-index:12;display:none;flex-direction:column;
-  left:calc((100% - 1240px)/2 + 250px);right:calc((100% - 1240px)/2);
+  left:calc((100% - 1240px)/2 + 190px);right:calc((100% - 1240px)/2);
   background:#fff;box-shadow:6px 12px 30px rgba(0,0,0,.14)}
-@media(max-width:1264px){.megamenu{left:262px;right:12px}}
+@media(max-width:1264px){.megamenu{left:202px;right:12px}}
 .megamenu.show{display:flex}
 .mega-main{flex:1;display:flex;gap:24px;padding:30px 34px 22px;overflow:hidden}
 .mega-cols{flex:1;display:flex;gap:40px}
@@ -152,8 +154,8 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 .mega-quick a{font-size:13.5px;font-weight:600;color:var(--blue)}
 .mega-quick a:hover{text-decoration:underline}
 /* 컨트롤 */
-.vctrl{position:absolute;z-index:9;bottom:26px;left:calc((100% - 1240px)/2 + 280px);display:flex;align-items:center;gap:10px}
-@media(max-width:1264px){.vctrl{left:290px}}
+.vctrl{position:absolute;z-index:9;bottom:26px;left:calc((100% - 1240px)/2 + 220px);display:flex;align-items:center;gap:10px}
+@media(max-width:1264px){.vctrl{left:230px}}
 .vctrl .cbtn{width:44px;height:44px;border-radius:50%;background:rgba(0,0,0,.35);color:#fff;font-size:20px;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(2px)}
 .vctrl .cbtn:hover{background:rgba(0,0,0,.6)}
 .vctrl .counter{display:flex;align-items:center;gap:8px;background:rgba(0,0,0,.35);color:#fff;border-radius:20px;padding:8px 14px;font-size:14px;font-weight:600}
@@ -408,7 +410,7 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 <!-- ===== 헤더 ===== -->
 <header class="header">
   <div class="container">
-    <a class="brand" href="index.html"><span class="logo">NE<b>_</b>Books</span><span class="slogan only-pc">지금부터의 교재마켓</span></a>
+    <a class="brand" href="index.html"><img class="logo-img" src="assets/header_logo_dark.png" alt="NE_Books"></a>
     <div class="searchbox">
       <form class="search-field" onsubmit="return false;">
         <input name="q" placeholder="찾으시는 교재를 검색해보세요">
