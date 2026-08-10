@@ -11,17 +11,16 @@
 <style>
 /* ============ G마켓 구조 리디자인 — NE Books ============ */
 :root{
-  /* ne-books-mall(북스개편) 팔레트에 맞춤 — 검정+빨강+그레이 */
-  --green:#E83828;          /* 브랜드 액센트 → 북스개편 포인트 레드 */
-  --green-d:#C92D1F;        /* 진한 레드 (hover/강조 텍스트) */
-  --green-panel:#1D1717;    /* (미사용) */
-  --cat:#1D1717;            /* 카테고리 영역 → 잉크 블랙 */
-  --teal:#2272DD;           /* → 북스개편 블루 */
-  --blue:#2272DD;           /* 북스개편 블루 (선생님/보조 액센트) */
-  --red:#E83828;            /* 북스개편 포인트 레드 */
-  --ink:#1D1717;--sub:#666666;--sub2:#A9A9A9;
-  --line:#E5E5E5;--line2:#E5E5E5;--bg:#FFFFFF;
-  --coupon:#F3F3F3;         /* 연한 카드/배경 → 북스개편 그레이 */
+  --green:#1bc41b;          /* 브랜드 그린 */
+  --green-d:#12a512;
+  --green-panel:#2bb32b;    /* 좌측 카테고리 패널 */
+  --cat:#172E55;            /* 카테고리 영역 색(네이비) */
+  --teal:#00b8a4;
+  --blue:#3b6fe0;
+  --red:#ff2d2d;
+  --ink:#222;--sub:#8c8c8c;--sub2:#b5b5b5;
+  --line:#eee;--line2:#e6e6e6;--bg:#fff;
+  --coupon:#f4fff4;
 }
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
@@ -194,7 +193,7 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 .duo .dcol .dhead .go{font-size:13px;color:#555;display:flex;align-items:center;gap:6px}
 .duo .dcol .dhead .go .arw{width:20px;height:20px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px}
 .dbanner{border-radius:12px;overflow:hidden;padding:26px 28px;color:#fff;position:relative;min-height:150px;display:flex;flex-direction:column;justify-content:center}
-.dbanner.mint{background:linear-gradient(120deg,#E83828,#C92D1F)}
+.dbanner.mint{background:linear-gradient(120deg,#1bc41b,#00b8a4)}
 .dbanner.blue{background:linear-gradient(120deg,#5b7cf0,#8b6ff0)}
 .dbanner .dlogo{font-size:15px;font-weight:800;opacity:.9;margin-bottom:8px}
 .dbanner h4{font-size:26px;font-weight:800;margin:0 0 8px;letter-spacing:-.5px}
@@ -226,7 +225,7 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 .svcicon{flex:1 1 0;min-width:80px;display:flex;flex-direction:column;align-items:center;gap:10px}
 .svcicon .cc{width:66px;height:66px;border-radius:50%;background:var(--coupon);display:flex;align-items:center;justify-content:center;transition:.15s}
 .svcicon .cc img{width:34px;height:34px}
-.svcicon:hover .cc{background:#f3f3f3;transform:translateY(-3px)}
+.svcicon:hover .cc{background:#dcf6dc;transform:translateY(-3px)}
 .svcicon span{font-size:13px;color:#444;font-weight:500}
 
 /* ---------- 라이브 특강 (ON AIR) ---------- */
@@ -296,7 +295,7 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 .sets{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .setcard{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;transition:.15s}
 .setcard:hover{box-shadow:0 10px 22px rgba(0,0,0,.1);transform:translateY(-3px)}
-.setcard .st-top{position:relative;padding:20px 20px 16px;background:linear-gradient(135deg,#f7f7f7,#f0f0f0)}
+.setcard .st-top{position:relative;padding:20px 20px 16px;background:linear-gradient(135deg,#f2fff2,#e7fbf7)}
 .setcard .st-goal{display:inline-block;font-size:12px;font-weight:700;color:#fff;background:var(--green);border-radius:12px;padding:4px 11px;margin-bottom:10px}
 .setcard .st-goal.b{background:var(--teal)}.setcard .st-goal.c{background:#ff8a1e}
 .setcard .st-name{font-size:19px;font-weight:800;letter-spacing:-.5px;margin:0 0 4px}
