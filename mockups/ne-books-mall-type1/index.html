@@ -62,6 +62,40 @@
   .t1s-item .reward{font-size:12px;color:#12a512;font-weight:600;margin-top:3px;}
   .t1s-item .ship{font-size:12px;color:#999;margin-top:2px;}
 
+  /* ===== 비주얼 배너(hero2) HTML 리디자인: 텍스트 상단 + 주제 일러스트 하단 ===== */
+  .hero2-card.t1h{display:flex;flex-direction:column;padding:34px 32px 0;}
+  .t1h .t1h-txt{flex:none;}
+  .t1h .t1h-flag{display:inline-block;font-size:13px;font-weight:800;letter-spacing:-.2px;padding-bottom:4px;border-bottom:2px solid currentColor;margin-bottom:16px;}
+  .t1h .t1h-ttl{font-size:27px;font-weight:800;line-height:1.28;letter-spacing:-1px;margin:0;}
+  .t1h .t1h-sub{margin-top:12px;font-size:14px;line-height:1.5;font-weight:500;}
+  .t1h .t1h-illust{flex:1;min-height:0;display:flex;align-items:flex-end;justify-content:center;margin-top:14px;}
+  .hero2-card.t1h .t1h-illust img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;object-position:bottom center;pointer-events:none;-webkit-user-drag:none;}
+  .t1h .t1h-illust--emoji{align-items:center;gap:8px;font-size:96px;line-height:1;padding-bottom:26px;filter:drop-shadow(0 10px 18px rgba(0,0,0,.16));}
+  .t1h .t1h-illust--emoji .bolt{font-size:60px;}
+  .hero2-card.t1h.active .t1h-ttl{font-size:30px;}
+
+  /* hero2 테마별 배경/글자색 (배경색만 유지, 장식 그래픽은 하단 일러스트로 대체) */
+  .hero2-card.t1h--orange{background:linear-gradient(160deg,#ff9d54,#ff6a2c);color:#fff;}
+  .hero2-card.t1h--orange .t1h-sub{color:rgba(255,255,255,.9);}
+  .hero2-card.t1h--navy{background:linear-gradient(160deg,#26406f,#16264a);color:#fff;}
+  .hero2-card.t1h--navy .t1h-sub{color:rgba(255,255,255,.82);}
+  .hero2-card.t1h--sky{background:linear-gradient(160deg,#aadcff,#7cc2f5);color:#1f5fbf;}
+  .hero2-card.t1h--sky .t1h-sub{color:#3a6ea5;}
+  .hero2-card.t1h--green{background:linear-gradient(160deg,#1f9d63,#137a45);color:#fff;}
+  .hero2-card.t1h--green .t1h-sub{color:rgba(255,255,255,.88);}
+  .hero2-card.t1h--cream{background:#fbf4e3;color:#2a2a2a;}
+  .hero2-card.t1h--cream .t1h-sub{color:#7a7361;}
+
+  @media (max-width:600px){
+    .hero2-card.t1h{padding:24px 22px 0;}
+    .t1h .t1h-ttl{font-size:21px;}
+    .hero2-card.t1h.active .t1h-ttl{font-size:22px;}
+    .t1h .t1h-sub{font-size:12.5px;margin-top:9px;}
+    .t1h .t1h-flag{margin-bottom:12px;}
+    .t1h .t1h-illust--emoji{font-size:66px;padding-bottom:16px;}
+    .t1h .t1h-illust--emoji .bolt{font-size:44px;}
+  }
+
   @media (max-width:768px){
     .t1b-grid{grid-template-columns:1fr;}
     .t1b-head h2{font-size:20px;}
@@ -81,11 +115,47 @@
   <section class="hero2" id="hero2">
     <div class="hero2-stage">
       <div class="hero2-track" id="hero2Track">
-        <div class="hero2-card"><img src="assets/img1.png" alt="배너1"></div>
-        <div class="hero2-card"><img src="assets/img2.png" alt="배너2"></div>
-        <div class="hero2-card"><img src="assets/img3.png" alt="배너3"></div>
-        <div class="hero2-card"><img src="assets/img4.png" alt="배너4"></div>
-        <div class="hero2-card"><img src="assets/img5.png" alt="배너5"></div>
+        <!-- [변경] 이미지 배너 → HTML 배너: 텍스트(구분값·제목·서브문구) 상단 + 주제 일러스트 하단 -->
+        <div class="hero2-card t1h t1h--orange">
+          <div class="t1h-txt">
+            <span class="t1h-flag">세미나</span>
+            <h3 class="t1h-ttl">온라인 영어 레벨테스트<br>NELT 무료 체험</h3>
+            <p class="t1h-sub">한국 교육과정 기준 영어 레벨테스트로<br>우리 아이 실력을 정확하게.</p>
+          </div>
+          <div class="t1h-illust"><img src="assets/banner_nelt.png" alt=""></div>
+        </div>
+        <div class="hero2-card t1h t1h--navy">
+          <div class="t1h-txt">
+            <span class="t1h-flag">Promotion</span>
+            <h3 class="t1h-ttl">온라인 영어 레벨테스트<br>NELT 무료 체험</h3>
+            <p class="t1h-sub">한국 교육과정 기준 영어 레벨테스트로<br>우리 아이 실력을 정확하게.</p>
+          </div>
+          <div class="t1h-illust"><img src="assets/banner_nelt.png" alt=""></div>
+        </div>
+        <div class="hero2-card t1h t1h--sky">
+          <div class="t1h-txt">
+            <span class="t1h-flag">Promotion</span>
+            <h3 class="t1h-ttl">성적이 달라지는<br>방학 특강 조합</h3>
+            <p class="t1h-sub">문법 개념 정리 + 리스닝 훈련으로 방학 대비 끝!<br>지금 기획전에서 만나보세요.</p>
+          </div>
+          <div class="t1h-illust t1h-illust--emoji"><span>⏰</span><span class="bolt">⚡</span></div>
+        </div>
+        <div class="hero2-card t1h t1h--green">
+          <div class="t1h-txt">
+            <span class="t1h-flag">NEW</span>
+            <h3 class="t1h-ttl">신간 출시<br>지금 만나보세요</h3>
+            <p class="t1h-sub">새롭게 출간된 교재를 가장 먼저 확인하세요.<br>미리보기와 함께 제공됩니다.</p>
+          </div>
+          <div class="t1h-illust"><img src="assets/banner_books.png" alt=""></div>
+        </div>
+        <div class="hero2-card t1h t1h--cream">
+          <div class="t1h-txt">
+            <span class="t1h-flag">EVENT</span>
+            <h3 class="t1h-ttl">내신을 결정짓는<br>예비중등 추천교재</h3>
+            <p class="t1h-sub">슬슬 시작해야 할 때가 가장 빠르고 확실할 때<br>지금 내신 영어 기초 체력을 쌓아주세요.</p>
+          </div>
+          <div class="t1h-illust t1h-illust--emoji"><span>🎒</span><span class="bolt">✏️</span></div>
+        </div>
       </div>
     </div>
     <div class="hero2-ind only-mo" aria-hidden="true"><b id="hero2Idx2">1</b><span>/</span><span id="hero2Total2">6</span></div>
