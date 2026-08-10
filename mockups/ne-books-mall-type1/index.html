@@ -70,16 +70,11 @@
   .t1h .t1h-sub{margin-top:12px;font-size:14px;line-height:1.5;font-weight:500;}
   .t1h .t1h-illust{flex:1;min-height:0;display:flex;align-items:flex-end;justify-content:center;margin-top:14px;}
   .hero2-card.t1h .t1h-illust img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;object-position:bottom center;pointer-events:none;-webkit-user-drag:none;}
-  /* 교재 표지 3권을 겹쳐 배치한 일러스트형 스택 */
-  .t1h .t1h-illust--books{align-items:flex-end;justify-content:center;}
-  .hero2-card.t1h .t1h-illust--books .bk{width:auto;height:auto;max-width:none;border-radius:7px;box-shadow:0 12px 26px rgba(0,0,0,.24);}
-  .hero2-card.t1h .t1h-illust--books .bk-c{max-height:180px;z-index:3;}
-  .hero2-card.t1h .t1h-illust--books .bk-l{max-height:142px;z-index:1;transform:rotate(-10deg) translateY(8px);margin-right:-30px;}
-  .hero2-card.t1h .t1h-illust--books .bk-r{max-height:142px;z-index:1;transform:rotate(10deg) translateY(8px);margin-left:-30px;}
+  /* 교재 표지 2권을 겹치지 않게 나란히 배치 */
+  .t1h .t1h-illust--books{align-items:flex-end;justify-content:center;gap:16px;}
+  .hero2-card.t1h .t1h-illust--books .bk{width:auto;height:auto;max-width:none;max-height:172px;border-radius:7px;box-shadow:0 10px 22px rgba(0,0,0,.22);}
   .hero2-card.t1h.active .t1h-ttl{font-size:30px;}
-  .hero2-card.t1h.active .t1h-illust--books .bk-c{max-height:206px;}
-  .hero2-card.t1h.active .t1h-illust--books .bk-l,
-  .hero2-card.t1h.active .t1h-illust--books .bk-r{max-height:164px;}
+  .hero2-card.t1h.active .t1h-illust--books .bk{max-height:200px;}
 
   /* hero2 테마별 배경/글자색 (배경색만 유지, 장식 그래픽은 하단 일러스트로 대체) */
   .hero2-card.t1h--orange{background:linear-gradient(160deg,#ff9d54,#ff6a2c);color:#fff;}
@@ -99,9 +94,8 @@
     .hero2-card.t1h.active .t1h-ttl{font-size:22px;}
     .t1h .t1h-sub{font-size:12.5px;margin-top:9px;}
     .t1h .t1h-flag{margin-bottom:12px;}
-    .hero2-card.t1h .t1h-illust--books .bk-c{max-height:132px;}
-    .hero2-card.t1h .t1h-illust--books .bk-l,
-    .hero2-card.t1h .t1h-illust--books .bk-r{max-height:104px;margin-right:-24px;margin-left:-24px;}
+    .hero2-card.t1h .t1h-illust--books{gap:12px;}
+    .hero2-card.t1h .t1h-illust--books .bk{max-height:122px;}
   }
 
   @media (max-width:768px){
@@ -147,9 +141,8 @@
             <p class="t1h-sub">문법 개념 정리 + 리스닝 훈련으로 방학 대비 끝!<br>지금 기획전에서 만나보세요.</p>
           </div>
           <div class="t1h-illust t1h-illust--books">
-            <img class="bk bk-l" src="assets/best_3.png" alt="">
-            <img class="bk bk-c" src="assets/best_4.png" alt="">
-            <img class="bk bk-r" src="assets/best_2.png" alt="">
+            <img class="bk" src="assets/best_3.png" alt="">
+            <img class="bk" src="assets/best_4.png" alt="">
           </div>
         </div>
         <div class="hero2-card t1h t1h--green">
@@ -167,9 +160,8 @@
             <p class="t1h-sub">슬슬 시작해야 할 때가 가장 빠르고 확실할 때<br>지금 내신 영어 기초 체력을 쌓아주세요.</p>
           </div>
           <div class="t1h-illust t1h-illust--books">
-            <img class="bk bk-l" src="assets/best_5.png" alt="">
-            <img class="bk bk-c" src="assets/best_1.png" alt="">
-            <img class="bk bk-r" src="assets/best_2.png" alt="">
+            <img class="bk" src="assets/best_5.png" alt="">
+            <img class="bk" src="assets/best_1.png" alt="">
           </div>
         </div>
       </div>

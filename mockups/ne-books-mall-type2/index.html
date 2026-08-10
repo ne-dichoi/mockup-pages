@@ -14,6 +14,7 @@
   --green:#1bc41b;          /* 브랜드 그린 */
   --green-d:#12a512;
   --green-panel:#2bb32b;    /* 좌측 카테고리 패널 */
+  --cat:#172E55;            /* 카테고리 영역 색(네이비) */
   --teal:#00b8a4;
   --blue:#3b6fe0;
   --red:#ff2d2d;
@@ -52,7 +53,7 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 /* ---------- GNB / 서비스 줄 ---------- */
 .gnbbar{border-top:1px solid var(--line)}
 .gnbbar .container{display:flex;align-items:center;height:52px;gap:0}
-.allcat{display:flex;align-items:center;gap:10px;background:var(--green);color:#fff;font-weight:700;font-size:16px;height:52px;padding:0 22px;flex:0 0 auto;cursor:pointer}
+.allcat{display:flex;align-items:center;gap:10px;background:var(--cat);color:#fff;font-weight:700;font-size:16px;height:52px;padding:0 22px;flex:0 0 auto;cursor:pointer}
 .allcat .bars{display:inline-flex;flex-direction:column;gap:3px}
 .allcat .bars i{width:18px;height:2px;background:#fff;border-radius:2px}
 .svc{display:flex;align-items:center;gap:2px;padding-left:16px;flex:1;overflow:hidden}
@@ -80,12 +81,12 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 .vslide .scrim{position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(0,0,0,.5),rgba(0,0,0,.05) 60%,transparent)}
 .vslide .adtag{position:absolute;top:16px;right:20px;z-index:3;background:rgba(0,0,0,.35);color:#fff;font-size:11px;padding:3px 8px;border-radius:4px}
 /* 좌측 카테고리 패널 */
-.catpanel{position:absolute;left:calc((100% - 1240px)/2);top:0;width:250px;height:100%;background:var(--green-panel);z-index:8;padding:8px 0}
+.catpanel{position:absolute;left:calc((100% - 1240px)/2);top:0;width:250px;height:100%;background:var(--cat);z-index:8;padding:8px 0}
 @media(max-width:1264px){.catpanel{left:12px}}
 .catpanel a{display:block;color:#fff;font-size:15px;font-weight:500;padding:0 24px;line-height:47.5px;position:relative}
 .catpanel a:hover{background:rgba(0,0,0,.12);font-weight:700}
-.catpanel a.active{background:#fff;color:var(--green-d);font-weight:800}
-.catpanel a.active::after{color:var(--green-d);opacity:1}
+.catpanel a.active{background:#fff;color:var(--cat);font-weight:800}
+.catpanel a.active::after{color:var(--cat);opacity:1}
 .catpanel a::after{content:"›";position:absolute;right:20px;opacity:.6}
 /* 카테고리 펼침 메가메뉴 */
 .megamenu{position:absolute;top:0;height:100%;z-index:12;display:none;flex-direction:column;
@@ -97,11 +98,19 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 .mega-cols{flex:1;display:flex;gap:40px}
 .mega-col h4{font-size:15px;font-weight:800;color:#222;margin:0 0 14px}
 .mega-col a{display:block;font-size:13.5px;color:#666;line-height:2.15}
-.mega-col a:hover{color:var(--green-d);text-decoration:underline}
+.mega-col a:hover{color:var(--cat);text-decoration:underline}
+.mega-col a.on{color:var(--cat);font-weight:700}
 .mega-promo{flex:0 0 288px;display:flex;flex-direction:column;border-left:1px solid var(--line);padding-left:24px}
 .mega-promo .mp-img{height:196px;border-radius:10px;background-size:cover;background-position:center;background-color:#eef1f3}
 .mega-promo .mp-tit{font-size:16px;font-weight:800;color:#222;margin-top:16px}
-.mega-promo .mp-desc{font-size:13px;color:var(--green-d);font-weight:600;margin-top:6px}
+.mega-promo .mp-desc{font-size:13px;color:var(--cat);font-weight:600;margin-top:6px}
+/* 3depth(교재 시리즈) 우측 패널 — 2depth hover 시 배너 대신 노출 */
+.mega-3depth{flex:0 0 288px;border-left:1px solid var(--line);padding-left:24px;display:none;flex-direction:column;overflow:auto}
+.mega-main.d3 .mega-promo{display:none}
+.mega-main.d3 .mega-3depth{display:flex}
+.mega-3depth h5{font-size:15px;font-weight:800;color:var(--cat);margin:0 0 14px;line-height:1.45}
+.mega-3depth a{display:block;font-size:13.5px;color:#666;line-height:2.15}
+.mega-3depth a:hover{color:var(--cat);text-decoration:underline}
 .mega-quick{flex:0 0 auto;display:flex;align-items:center;gap:26px;height:58px;padding:0 34px;
   border-top:1px solid var(--line);background:#fafafa}
 .mega-quick .qh{font-size:14px;font-weight:800;color:#222;flex:0 0 auto}
@@ -821,6 +830,9 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
     var panel=document.querySelector('.catpanel'), mega=document.getElementById('megamenu');
     if(!panel||!mega) return;
     var items=[].slice.call(panel.querySelectorAll('a[data-cat]')), hideTimer;
+    /* 3depth(교재 시리즈) 데이터 — 2depth 라벨 → {tit, items}. 미지정 항목은 SAMPLE로 노출(목업 placeholder) */
+    var D3_SAMPLE={tit:'기본을 강하게 잡아주는 고등영어 (문법)',items:['The 상승','Grammar zone','문마고(문제로 마스터하는 고등 영문법)','필히 통하는 고등영문법','다빈출코드','올클 수능 어법','능률기본영어','필히 통하는 고등 서술형','수능 구문 빅데이터','천문장']};
+    var D3={'문법/구문':D3_SAMPLE};
     function render(key){
       var d=CATMENU[key]; if(!d) return;
       var href=d.href||'리스트_교재구매.html';
@@ -830,9 +842,25 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
       }).join('');
       var promo=d.promo?('<div class="mega-promo"><a href="'+href+'"><div class="mp-img" style="background-image:url(\'assets/'+d.promo.img+'\')"></div></a>'
         +'<div class="mp-tit">'+d.promo.tit+'</div><div class="mp-desc">'+d.promo.desc+'</div></div>'):'';
+      var threed=d.promo?'<div class="mega-3depth"></div>':'';
       var quick=(d.quick&&d.quick.length)?('<div class="mega-quick"><span class="qh">바로가기 ›</span>'
         +d.quick.map(function(q){return '<a href="'+href+'">'+q+'</a>';}).join('')+'</div>'):'';
-      mega.innerHTML='<div class="mega-main"><div class="mega-cols">'+cols+'</div>'+promo+'</div>'+quick;
+      mega.innerHTML='<div class="mega-main"><div class="mega-cols">'+cols+'</div>'+promo+threed+'</div>'+quick;
+      if(d.promo) wire3depth(href);
+    }
+    /* 2depth 항목 hover → 오른쪽 영역에 3depth 노출(배너 대체) */
+    function wire3depth(href){
+      var main=mega.querySelector('.mega-main'), box=mega.querySelector('.mega-3depth');
+      if(!main||!box) return;
+      var links=[].slice.call(mega.querySelectorAll('.mega-col a'));
+      links.forEach(function(a){
+        a.addEventListener('mouseenter',function(){
+          var d3=D3[a.textContent.trim()]||D3_SAMPLE;
+          box.innerHTML='<h5>'+d3.tit+'</h5>'+d3.items.map(function(t){return '<a href="'+href+'">'+t+'</a>';}).join('');
+          links.forEach(function(x){x.classList.toggle('on',x===a);});
+          main.classList.add('d3');
+        });
+      });
     }
     function open(item){
       clearTimeout(hideTimer);
