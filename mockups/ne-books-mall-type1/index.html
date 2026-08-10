@@ -15,7 +15,7 @@
 <script src="js/search.js" defer></script>
 <!-- ===== [추가] 이식 섹션 전용 스코프 스타일 (t1b: 블로그 / t1s: 베스트) ===== -->
 <style id="t1-added-styles">
-  /* 인기 합격 후기 블로그 (from ne-books-mall-5) */
+  /* 카테고리별 인기 스테디셀러 (from ne-books-mall-5 블로그 영역) */
   .t1b-sec{padding:44px 0;background:#f7f8fa;}
   .t1b-head{margin-bottom:20px;}
   .t1b-head h2{font-size:24px;font-weight:800;letter-spacing:-.5px;color:#191919;}
@@ -26,6 +26,7 @@
   .t1b-banner{border-radius:14px;overflow:hidden;background:linear-gradient(120deg,#2b2b3a,#4a3a5a);color:#fff;padding:22px;display:flex;justify-content:space-between;align-items:center;min-height:120px;}
   .t1b-banner .bt{font-size:17px;font-weight:800;line-height:1.35;max-width:66%;margin-top:6px;}
   .t1b-banner .tag{display:inline-block;background:#03C75A;color:#fff;font-size:11px;font-weight:700;border-radius:5px;padding:2px 7px;margin-bottom:8px;}
+  .t1b-banner .series{font-size:12.5px;font-weight:700;color:rgba(255,255,255,.92);letter-spacing:-.2px;}
   .t1b-banner .thumb{width:74px;height:74px;border-radius:10px;object-fit:cover;flex:none;}
   .t1b-item{display:flex;gap:12px;}
   .t1b-item .th{width:88px;height:88px;border-radius:10px;background:#f7f8fa;flex:none;overflow:hidden;display:flex;align-items:center;justify-content:center;}
@@ -222,12 +223,12 @@
     </div>
   </section>
 
-  <!-- ===== [추가] 인기 합격 후기 블로그와 함께 보는 교재 (from ne-books-mall-5) ===== -->
+  <!-- ===== [추가] 카테고리별 인기 스테디셀러 (from ne-books-mall-5 블로그 영역) ===== -->
   <section class="t1b-sec">
     <div class="container">
       <div class="t1b-head">
-        <h2>인기 <span class="hl">합격 후기</span> 블로그와 함께 보는 교재</h2>
-        <p class="sub">최근 7일간 학습 후기 분야 클릭 많은 블로그</p>
+        <h2>카테고리별 <span class="hl">인기 스테디셀러</span></h2>
+        <p class="sub">최근 7일간 많이 팔린 스테디셀러 시리즈</p>
       </div>
       <div class="t1b-grid" id="t1bBlogRow"></div>
     </div>
@@ -698,13 +699,14 @@
     {t:'능률 기본영어 - 중학 내신 대비', was:'11,000원', rate:'10%', now:'9,900원', cov:{c1:'#94A3B8',c2:'#475569',big:'능률|기본영어',sub:'중학 내신',lv:'2'}}
   ];
 
-  /* ===== 블로그: 인기 합격 후기 (from ne-books-mall-5) ===== */
+  /* ===== 카테고리별 인기 스테디셀러 (from ne-books-mall-5 블로그 영역) ===== */
   (function(){
     var el=document.getElementById('t1bBlogRow'); if(!el) return;
+    /* cat = 2depth 카테고리, series = 3depth 시리즈, tt = 영역 제목 */
     var BLOGS=[
-      {tag:'by. 영어맘', tt:'능률VOCA로 3개월 만에 어휘 1000개 끝낸 후기', th:0, items:[0,4,8]},
-      {tag:'by. 수능독해러', tt:'리딩튜터 고등 독해 완주 리얼 후기 (레벨 팁)', th:5, items:[5,2,9]},
-      {tag:'by. 초등맘일기', tt:'파닉스 시작 교재 뭐 살까? Phonics Code 추천', th:1, items:[1,7,3]}
+      {cat:'어휘 VOCA', series:'능률VOCA', tt:'수능 필수 어휘 스테디셀러', th:0, items:[0,4,8]},
+      {cat:'독해 Reading', series:'리딩튜터', tt:'유형별 독해 훈련 스테디셀러', th:5, items:[5,2,9]},
+      {cat:'파닉스 Phonics', series:'Phonics Code', tt:'파닉스 입문 스테디셀러', th:1, items:[1,7,3]}
     ];
     el.innerHTML=BLOGS.map(function(b){
       var items=b.items.map(function(pi){ var p=PRODUCTS[pi];
@@ -712,7 +714,7 @@
           +'<div class="info"><p class="tit">'+esc(p.t)+'</p><p class="was">'+p.was+'</p>'
           +'<div class="now"><span class="rate">'+p.rate+'</span><span class="price">'+p.now+'</span></div></div></div>';
       }).join('');
-      return '<div class="t1b-col"><div class="t1b-banner"><div><span class="tag">blog</span> '+esc(b.tag)
+      return '<div class="t1b-col"><div class="t1b-banner"><div><span class="tag">'+esc(b.cat)+'</span> <span class="series">'+esc(b.series)+'</span>'
         +'<div class="bt">'+esc(b.tt)+'</div></div><img class="thumb" src="'+makeCover(PRODUCTS[b.th].cov)+'" alt=""></div>'+items+'</div>';
     }).join('');
   })();

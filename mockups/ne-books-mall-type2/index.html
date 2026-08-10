@@ -104,9 +104,8 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 .mega-promo .mp-img{height:196px;border-radius:10px;background-size:cover;background-position:center;background-color:#eef1f3}
 .mega-promo .mp-tit{font-size:16px;font-weight:800;color:#222;margin-top:16px}
 .mega-promo .mp-desc{font-size:13px;color:var(--cat);font-weight:600;margin-top:6px}
-/* 3depth(교재 시리즈) 우측 패널 — 2depth hover 시 배너 대신 노출 */
-.mega-3depth{flex:0 0 288px;border-left:1px solid var(--line);padding-left:24px;display:none;flex-direction:column;overflow:auto}
-.mega-main.d3 .mega-promo{display:none}
+/* 3depth(교재 시리즈) — 2depth 컬럼 옆 빈 영역에 노출(배너는 그대로 유지) */
+.mega-3depth{flex:1;min-width:0;border-left:1px solid var(--line);padding-left:34px;margin-left:6px;display:none;flex-direction:column;overflow:auto}
 .mega-main.d3 .mega-3depth{display:flex}
 .mega-3depth h5{font-size:15px;font-weight:800;color:var(--cat);margin:0 0 14px;line-height:1.45}
 .mega-3depth a{display:block;font-size:13.5px;color:#666;line-height:2.15}
@@ -845,7 +844,7 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
       var threed=d.promo?'<div class="mega-3depth"></div>':'';
       var quick=(d.quick&&d.quick.length)?('<div class="mega-quick"><span class="qh">바로가기 ›</span>'
         +d.quick.map(function(q){return '<a href="'+href+'">'+q+'</a>';}).join('')+'</div>'):'';
-      mega.innerHTML='<div class="mega-main"><div class="mega-cols">'+cols+'</div>'+promo+threed+'</div>'+quick;
+      mega.innerHTML='<div class="mega-main"><div class="mega-cols">'+cols+threed+'</div>'+promo+'</div>'+quick;
       if(d.promo) wire3depth(href);
     }
     /* 2depth 항목 hover → 오른쪽 영역에 3depth 노출(배너 대체) */
