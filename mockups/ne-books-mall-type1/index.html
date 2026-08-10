@@ -132,6 +132,9 @@
   .t1v-card .now{display:flex;gap:5px;align-items:baseline;margin-top:2px;}
   .t1v-card .now .rate{color:#f5444a;font-weight:800;}
   .t1v-card .now .price{font-weight:800;}
+  /* 베스트셀러(숨김) 카드도 t1v 스타일 재사용 — 가로 스크롤에 맞춰 고정폭·상단 정렬 */
+  .bs-list{align-items:flex-start;}
+  .bs-list .t1v-card{width:200px;flex:none;}
   @media (max-width:768px){
     .t1v-store{grid-template-columns:1fr;}
     .t1v-head h2{font-size:20px;}
@@ -393,23 +396,25 @@
   /* ---------- Bestseller product cards (6 identical, per design) ---------- */
   (function(){
     var list=document.getElementById('bsList'); if(!list) return;
-    var covers=['best_1.png','best_2.png','best_3.png','best_4.png','best_5.png'];
-    var html='';
-    for(var i=0;i<6;i++){
-      html+='<div class="bs-card">'
-        +'<div class="img">'
-          +'<img class="book" src="assets/'+covers[i%covers.length]+'" alt="">'
-          +'<input type="checkbox" class="chk" aria-label="선택">'
-          +'<div class="cart"><span class="ico"><img src="assets/ic_cart_black.svg" alt="장바구니"></span></div>'
+    /* [변경] 관심 시리즈(t1v) 카드 스타일로 교재정보(제목·정가취소선·할인율·판매가) 표시 */
+    var BSBOOKS=[
+      {t:'능률VOCA 어원편 - 수능 필수 어휘', was:'15,000원', rate:'10%', now:'13,500원', img:'best_1.png'},
+      {t:'리딩튜터 기본 - 유형별 독해 훈련', was:'14,000원', rate:'10%', now:'12,600원', img:'best_2.png'},
+      {t:'그래머존 Basic - 기초 영문법', was:'13,000원', rate:'10%', now:'11,700원', img:'best_3.png'},
+      {t:'중등 영어문법 3800제 Level 1', was:'15,000원', rate:'10%', now:'13,500원', img:'best_4.png'},
+      {t:'스스로 읽는 파닉스 Phonics Code 1', was:'14,000원', rate:'10%', now:'12,600원', img:'best_5.png'},
+      {t:'첫단추 독해편 - 수능 유형 입문', was:'13,500원', rate:'10%', now:'12,150원', img:'best_1.png'}
+    ];
+    list.innerHTML=BSBOOKS.map(function(b){
+      return '<div class="t1v-card">'
+        +'<div class="thumb"><img src="assets/'+b.img+'" alt="">'
+          +'<button class="heart" aria-label="찜"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.3-9.2-8.2C1.2 8.9 2.6 6 5.5 6 7.4 6 8.7 7 12 9.5 15.3 7 16.6 6 18.5 6c2.9 0 4.3 2.9 2.7 5.8C19 15.7 12 20 12 20z" stroke-width="1.6"/></svg></button>'
         +'</div>'
-        +'<div class="bs-meta">'
-          +'<div class="ph">Phonics</div>'
-          +'<div class="name">Bricks Reading 150 · L1</div>'
-          +'<div class="price"><span class="now">13,500원</span><span class="was">15,000원</span></div>'
-        +'</div>'
+        +'<p class="tit">'+b.t+'</p>'
+        +'<p class="was">'+b.was+'</p>'
+        +'<div class="now"><span class="rate">'+b.rate+'</span><span class="price">'+b.now+'</span></div>'
       +'</div>';
-    }
-    list.innerHTML=html;
+    }).join('');
 
     /* mobile-only: bestseller as a vertical list of rows */
     var mo=document.getElementById('bsMoList');
