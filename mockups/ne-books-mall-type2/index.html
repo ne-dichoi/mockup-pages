@@ -292,6 +292,8 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 .gprod .gp{font-size:16px;font-weight:800}
 .gprod .gp .pct{color:var(--red);margin-right:3px}
 .gprod .grw{font-size:11px;color:var(--green-d)}
+/* 적립 문구 초록 계열 */
+.bestitem .reward,.drow .drw,.livecard .lrw,.dealcard .drw,.gprod .grw{color:#12A512}
 .gprod .gship{font-size:11px;color:#999}
 
 /* ---------- 맞춤 교재 세트 ---------- */
@@ -634,7 +636,7 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
         +'<div class="bname">'+p.name+'</div>'
         +'<div class="coup">쿠폰적용가 <span class="cw">'+won(coup)+'원</span></div>'
         +'<div class="pline"><span class="pct">'+p.pct+'%</span>'+won(p.now)+'원</div>'
-        +'<div class="reward">NE멤버 최대 '+won(rw)+'원 적립</div>'
+        +'<div class="reward">최대 '+won(rw)+'원 적립</div>'
         +'<div class="ship">무료배송</div>'
       +'</a>';
     }).join('');
@@ -652,7 +654,7 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
         +'<span class="dtag'+(p.free?' free':'')+'">'+(p.free?'무료배송':(p.tag||'NEW'))+'</span>'
         +'<span class="dnm">'+p.name+'</span>'
         +'<span class="dpr"><span class="pct">'+p.pct+'%</span>'+won(p.now)+'원</span>'
-        +'<span class="drw">NE멤버 '+won(rw)+'원 적립</span>'
+        +'<span class="drw">'+won(rw)+'원 적립</span>'
       +'</span></a>';
   }
   (function(){var n=document.getElementById('newGrid'); if(n) n.innerHTML=NEWP.map(miniRow).join('');})();
@@ -671,7 +673,7 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
       var priceBlock = v.now
         ? '<div class="lcoup">'+won(Math.round(v.now/(1-v.pct/100)))+'원</div>'
           +'<div class="lpr"><span class="pct">'+v.pct+'%</span>'+won(v.now)+'원</div>'
-          +'<div class="lrw">NE멤버 '+won(Math.round(v.now*0.05))+'원 적립</div>'
+          +'<div class="lrw">'+won(Math.round(v.now*0.05))+'원 적립</div>'
           +'<div class="lship">무료배송</div>'
         : '<div class="lpr" style="font-size:15px;color:var(--green-d)">무료 수강</div><div class="lship">선착순 신청</div>';
       return '<a class="livecard" href="세미나상세.html">'
@@ -699,7 +701,7 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
         +'<div class="dinfo">'
           +'<div class="dcoup">'+won(coup)+'원</div>'
           +'<div class="dp"><span class="pct">'+p.pct+'%</span>'+won(p.now)+'원</div>'
-          +'<div class="drw">NE멤버 최대 '+won(rw)+'원 적립</div>'
+          +'<div class="drw">최대 '+won(rw)+'원 적립</div>'
           +'<div class="dnm2">'+p.name+'</div>'
         +'</div></a>';
     }).join('');
@@ -715,7 +717,7 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
         +'<span class="gnm">'+p.name+'</span>'
         +'<span class="gcoup">'+won(p.was)+'원</span>'
         +'<span class="gp"><span class="pct">'+p.pct+'%</span>'+won(p.now)+'원</span>'
-        +'<span class="grw">NE멤버 '+won(rw)+'원 적립</span>'
+        +'<span class="grw">'+won(rw)+'원 적립</span>'
         +'<span class="gship">무료배송</span>'
       +'</a>';
     }).join('');
