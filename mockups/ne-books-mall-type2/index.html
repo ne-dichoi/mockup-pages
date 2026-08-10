@@ -71,10 +71,12 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 
 /* ---------- 메인 비주얼 (좌 카테고리 패널 + 센터모드 배너) ---------- */
 .visual{position:relative;background:#e9edf0;overflow:hidden}
-.visual .vstage{position:relative;height:500px}
+.visual .vstage{position:relative;height:400px}
 .vtrack{display:flex;gap:16px;height:100%;transition:transform .5s;will-change:transform}
 .vslide{flex:0 0 auto;width:940px;height:100%;border-radius:0;overflow:hidden;position:relative;display:flex;align-items:center}
 .vslide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.vslide .bg{object-fit:cover;filter:blur(26px) saturate(1.15) brightness(.96);transform:scale(1.12);z-index:0}
+.vslide .fg{object-fit:contain;z-index:1}
 .vslide .vcap{position:relative;z-index:2;padding:0 64px;color:#fff}
 .vslide .vcap .kk{display:inline-block;background:rgba(0,0,0,.25);backdrop-filter:blur(2px);font-weight:700;font-size:13px;padding:5px 13px;border-radius:14px;margin-bottom:14px}
 .vslide .vcap h2{font-size:40px;font-weight:800;line-height:1.22;margin:0 0 12px;text-shadow:0 2px 14px rgba(0,0,0,.3)}
@@ -430,16 +432,10 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 <section class="visual" id="visual">
   <div class="vstage">
     <div class="vtrack" id="vtrack">
-      <div class="vslide v1"><div class="scrim"></div><span class="adtag">AD</span><div class="vbooks"><span class="cv"><img src="assets/best_5.png" alt=""></span><span class="cv"><img src="assets/best_4.png" alt=""></span><span class="cv"><img src="assets/best_2.png" alt=""></span></div>
-        <div class="vcap"><span class="kk">맞춤 교재 세트</span><span class="vgoal">방학 완성</span><h2>중등 방학 3주 완성 세트</h2><p>어휘 + 문법 + 독해를 한 번에</p></div></div>
-      <div class="vslide v2"><div class="scrim"></div><span class="adtag">AD</span><div class="vbooks"><span class="cv"><img src="assets/best_1.png" alt=""></span><span class="cv"><img src="assets/best_2.png" alt=""></span><span class="cv"><img src="assets/best_3.png" alt=""></span></div>
-        <div class="vcap"><span class="kk">맞춤 교재 세트</span><span class="vgoal">초등 파닉스</span><h2>초등 파닉스 첫걸음 세트</h2><p>소리부터 읽기까지 4주 완성</p></div></div>
-      <div class="vslide v3"><div class="scrim"></div><span class="adtag">AD</span><div class="vbooks"><span class="cv"><img src="assets/best_3.png" alt=""></span><span class="cv"><img src="assets/best_4.png" alt=""></span><span class="cv"><img src="assets/best_1.png" alt=""></span></div>
-        <div class="vcap"><span class="kk">맞춤 교재 세트</span><span class="vgoal">중등 내신</span><h2>중등 문법 완성 세트</h2><p>개정 문법 + 서술형 대비까지</p></div></div>
-      <div class="vslide v4"><div class="scrim"></div><span class="adtag">AD</span><div class="vbooks"><span class="cv"><img src="assets/book_cover.jpg" alt=""></span><span class="cv"><img src="assets/best_2.png" alt=""></span><span class="cv"><img src="assets/best_5.png" alt=""></span></div>
-        <div class="vcap"><span class="kk">맞춤 교재 세트</span><span class="vgoal">원서 리딩</span><h2>Oxford 리더스 브랜드 세트</h2><p>레벨별 리딩 습관 만들기</p></div></div>
-      <div class="vslide v5"><div class="scrim"></div><span class="adtag">AD</span><div class="vbooks"><span class="cv"><img src="assets/best_5.png" alt=""></span><span class="cv"><img src="assets/best_1.png" alt=""></span><span class="cv"><img src="assets/best_4.png" alt=""></span></div>
-        <div class="vcap"><span class="kk">맞춤 교재 세트</span><span class="vgoal">수능 파이널</span><h2>고등 수능 마무리 세트</h2><p>독해 + 듣기 실전 3주 완성</p></div></div>
+      <div class="vslide"><img class="bg" src="빌앤글배너.png" alt=""><img class="fg" src="빌앤글배너.png" alt="Phonics Code 신간 출시"></div>
+      <div class="vslide"><img class="bg" src="빌앤글배너02.png" alt=""><img class="fg" src="빌앤글배너02.png" alt="내신을 결정짓는 예비 중등 추천 교재"></div>
+      <div class="vslide"><img class="bg" src="빌앤글배너03.png" alt=""><img class="fg" src="빌앤글배너03.png" alt="READ IT! 120 출시"></div>
+      <div class="vslide"><img class="bg" src="빌앤글배너04.png" alt=""><img class="fg" src="빌앤글배너04.png" alt="Blue Dot 신간"></div>
     </div>
   </div>
   <!-- 좌측 카테고리 패널 -->
