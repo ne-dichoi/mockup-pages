@@ -13,6 +13,64 @@
 <link rel="stylesheet" href="css/layout.css?v=20260812n">
 <script src="js/layout.js?v=20260812n" defer></script>
 <script src="js/search.js" defer></script>
+<!-- ===== [추가] 이식 섹션 전용 스코프 스타일 (t1b: 블로그 / t1s: 베스트) ===== -->
+<style id="t1-added-styles">
+  /* 인기 합격 후기 블로그 (from ne-books-mall-5) */
+  .t1b-sec{padding:44px 0;background:#f7f8fa;}
+  .t1b-head{margin-bottom:20px;}
+  .t1b-head h2{font-size:24px;font-weight:800;letter-spacing:-.5px;color:#191919;}
+  .t1b-head h2 .hl{color:#6f52ff;}
+  .t1b-head .sub{font-size:14px;color:#8c8c8c;margin-top:6px;font-weight:500;}
+  .t1b-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .t1b-col{display:flex;flex-direction:column;gap:14px;}
+  .t1b-banner{border-radius:14px;overflow:hidden;background:linear-gradient(120deg,#2b2b3a,#4a3a5a);color:#fff;padding:22px;display:flex;justify-content:space-between;align-items:center;min-height:120px;}
+  .t1b-banner .bt{font-size:17px;font-weight:800;line-height:1.35;max-width:66%;margin-top:6px;}
+  .t1b-banner .tag{display:inline-block;background:#03C75A;color:#fff;font-size:11px;font-weight:700;border-radius:5px;padding:2px 7px;margin-bottom:8px;}
+  .t1b-banner .thumb{width:74px;height:74px;border-radius:10px;object-fit:cover;flex:none;}
+  .t1b-item{display:flex;gap:12px;}
+  .t1b-item .th{width:88px;height:88px;border-radius:10px;background:#f7f8fa;flex:none;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+  .t1b-item .th img{width:100%;height:100%;object-fit:cover;}
+  .t1b-item .info{flex:1;min-width:0;}
+  .t1b-item .info .tit{font-size:13.5px;line-height:1.4;color:#333;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+  .t1b-item .info .was{font-size:12px;color:#bbb;text-decoration:line-through;margin-top:6px;}
+  .t1b-item .info .now{display:flex;gap:5px;align-items:baseline;margin-top:2px;}
+  .t1b-item .info .now .rate{color:#f5444a;font-weight:800;}
+  .t1b-item .info .now .price{font-weight:800;}
+
+  /* 지금 제일 잘 나가는 교재 (from ne-books-mall-4) */
+  .t1s-sec{padding:44px 0 8px;}
+  .t1s-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;}
+  .t1s-head h2{font-size:25px;font-weight:800;letter-spacing:-.5px;margin:0;color:#222;}
+  .t1s-head .more{font-size:14px;color:#555;display:flex;align-items:center;gap:6px;font-weight:600;}
+  .t1s-head .more .arw{width:22px;height:22px;border-radius:50%;background:#1bc41b;color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;}
+  .t1s-rail{position:relative;}
+  .t1s-rail .rarw{position:absolute;top:88px;width:44px;height:44px;border-radius:50%;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.15);display:flex;align-items:center;justify-content:center;font-size:20px;color:#555;z-index:5;}
+  .t1s-rail .rarw.prev{left:-14px;}
+  .t1s-rail .rarw.next{right:-14px;}
+  .t1s-track{display:flex;gap:24px;overflow-x:auto;scroll-behavior:smooth;scrollbar-width:none;padding:4px 0;}
+  .t1s-track::-webkit-scrollbar{display:none;}
+  .t1s-item{flex:0 0 auto;width:210px;text-align:center;}
+  .t1s-item .circle{position:relative;width:210px;height:210px;border-radius:50%;overflow:hidden;background:#f2f3f4;display:flex;align-items:center;justify-content:center;}
+  .t1s-item .circle img{width:100%;height:100%;object-fit:cover;}
+  .t1s-item .circle .rank{position:absolute;left:8px;top:8px;width:40px;height:40px;border-radius:50%;background:#1bc41b;color:#fff;font-size:17px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(0,0,0,.2);}
+  .t1s-item .circle .tdeal{position:absolute;right:6px;top:6px;width:46px;height:46px;border-radius:50%;background:#111;color:#fff;font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center;line-height:1.15;text-align:center;}
+  .t1s-item .bname{font-size:14px;color:#333;line-height:1.4;height:2.8em;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;margin:14px 6px 8px;}
+  .t1s-item .coup{font-size:12px;color:#b5b5b5;}
+  .t1s-item .coup .cw{text-decoration:line-through;}
+  .t1s-item .pline{font-size:20px;font-weight:800;margin-top:2px;}
+  .t1s-item .pline .pct{color:#ff2d2d;margin-right:5px;}
+  .t1s-item .reward{font-size:12px;color:#12a512;font-weight:600;margin-top:3px;}
+  .t1s-item .ship{font-size:12px;color:#999;margin-top:2px;}
+
+  @media (max-width:768px){
+    .t1b-grid{grid-template-columns:1fr;}
+    .t1b-head h2{font-size:20px;}
+    .t1s-item,.t1s-item .circle{width:150px;}
+    .t1s-item .circle{height:150px;}
+    .t1s-head h2{font-size:20px;}
+    .t1s-rail .rarw{display:none;}
+  }
+</style>
 </head>
 <body class="page-index">
 
@@ -57,8 +115,8 @@
     </div>
   </section>
 
-  <!-- ===== BESTSELLER ===== -->
-  <section class="bestseller">
+  <!-- ===== BESTSELLER (숨김 처리 — type1) ===== -->
+  <section class="bestseller" hidden>
     <div class="container">
       <div class="bs-wrap">
         <div class="bs-head">
@@ -82,6 +140,29 @@
           <div class="bs-mo-list only-mo" id="bsMoList"></div>
           <a class="bs-mo-btn only-mo" href="장바구니.html">장바구니 담기</a>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== [추가] 인기 합격 후기 블로그와 함께 보는 교재 (from ne-books-mall-5) ===== -->
+  <section class="t1b-sec">
+    <div class="container">
+      <div class="t1b-head">
+        <h2>인기 <span class="hl">합격 후기</span> 블로그와 함께 보는 교재</h2>
+        <p class="sub">최근 7일간 학습 후기 분야 클릭 많은 블로그</p>
+      </div>
+      <div class="t1b-grid" id="t1bBlogRow"></div>
+    </div>
+  </section>
+
+  <!-- ===== [추가] 지금 제일 잘 나가는 교재 (from ne-books-mall-4) ===== -->
+  <section class="t1s-sec">
+    <div class="container">
+      <div class="t1s-head"><h2>지금 제일 잘 나가는 교재</h2><a class="more" href="리스트_교재구매.html">전체보기 <span class="arw">›</span></a></div>
+      <div class="t1s-rail">
+        <button class="rarw prev" id="t1sBestPrev" aria-label="이전">&#8249;</button>
+        <button class="rarw next" id="t1sBestNext" aria-label="다음">&#8250;</button>
+        <div class="t1s-track" id="t1sBestTrack"></div>
       </div>
     </div>
   </section>
@@ -492,6 +573,106 @@
     dragScroll(document.querySelector('.bs-tabs'));
   })();
 
+})();
+</script>
+
+<!-- ===== [추가] 블로그(mall-5) · 베스트(mall-4) 렌더 스크립트 ===== -->
+<script>
+(function(){
+  'use strict';
+  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  /* 교재별 표지를 색·제목·레벨이 모두 다르게 SVG로 생성 (실제 표지 이미지가 없어 목업용으로 생성) */
+  function makeCover(c){
+    var dark = c.ink==='dark';
+    var tcol = dark ? '#1a1a1a' : '#ffffff';
+    var sub  = dark ? 'rgba(0,0,0,.55)' : 'rgba(255,255,255,.82)';
+    var lines = c.big.split('|');
+    var tspans = lines.map(function(t,i){ return '<tspan x="26" dy="'+(i===0?0:34)+'">'+esc(t)+'</tspan>'; }).join('');
+    var svg =
+      '<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 320 320">'
+      +'<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="'+c.c1+'"/><stop offset="1" stop-color="'+c.c2+'"/></linearGradient></defs>'
+      +'<rect width="320" height="320" fill="url(#g)"/>'
+      +'<circle cx="288" cy="52" r="120" fill="rgba(255,255,255,.10)"/>'
+      +'<circle cx="40" cy="300" r="90" fill="rgba(0,0,0,.06)"/>'
+      +'<rect x="26" y="24" width="88" height="24" rx="12" fill="rgba(255,255,255,.92)"/>'
+      +'<text x="70" y="41" font-family="Pretendard,sans-serif" font-size="13" font-weight="800" fill="'+c.c2+'" text-anchor="middle">NE능률</text>'
+      +'<text x="26" y="150" font-family="Pretendard,sans-serif" font-size="30" font-weight="800" fill="'+tcol+'" letter-spacing="-1">'+tspans+'</text>'
+      +'<text x="26" y="'+(150+lines.length*34+8)+'" font-family="Pretendard,sans-serif" font-size="14" font-weight="600" fill="'+sub+'">'+esc(c.sub||'')+'</text>'
+      +'<circle cx="262" cy="262" r="34" fill="rgba(255,255,255,.94)"/>'
+      +'<text x="262" y="256" font-family="Pretendard,sans-serif" font-size="10" font-weight="800" fill="'+c.c2+'" text-anchor="middle">LEVEL</text>'
+      +'<text x="262" y="279" font-family="Pretendard,sans-serif" font-size="20" font-weight="800" fill="'+c.c2+'" text-anchor="middle">'+esc(c.lv||'1')+'</text>'
+      +'</svg>';
+    return 'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
+  }
+
+  var PRODUCTS=[
+    {t:'능률VOCA 어원편 - 수능 필수 어휘 완성', was:'15,000원', rate:'10%', now:'13,500원', cov:{c1:'#FF7A45',c2:'#E8442B',big:'능률VOCA|어원편',sub:'수능 필수 어휘',lv:'3'}},
+    {t:'스스로 읽는 파닉스 Phonics Code 1', was:'14,000원', rate:'10%', now:'12,600원', cov:{c1:'#FFD24A',c2:'#F59E0B',ink:'dark',big:'Phonics|Code',sub:'파닉스 입문',lv:'1'}},
+    {t:'리딩튜터 기본 - 유형별 독해 훈련', was:'14,000원', rate:'10%', now:'12,600원', cov:{c1:'#5B9BFF',c2:'#1D4ED8',big:'Reading|Tutor',sub:'유형별 독해',lv:'2'}},
+    {t:'중등 영어문법 3800제 Level 1', was:'15,000원', rate:'10%', now:'13,500원', cov:{c1:'#34D77A',c2:'#15803D',big:'영문법|3800제',sub:'중등 영문법',lv:'1'}},
+    {t:'그래머존 Basic - 기초 영문법', was:'13,000원', rate:'10%', now:'11,700원', cov:{c1:'#2DD4BF',c2:'#0D9488',big:'Grammar|Zone',sub:'기초 영문법',lv:'B'}},
+    {t:'리딩튜터 고등 독해 훈련 완성편', was:'16,000원', rate:'10%', now:'14,400원', cov:{c1:'#818CF8',c2:'#4338CA',big:'Reading|Tutor+',sub:'고등 독해 완성',lv:'4'}},
+    {t:'능률VOCA 수능완성 - 고난도 어휘', was:'17,000원', rate:'10%', now:'15,300원', cov:{c1:'#334155',c2:'#0F172A',big:'VOCA|수능완성',sub:'고난도 어휘',lv:'5'}},
+    {t:'주니어 리더스뱅크 Starter 1', was:'12,000원', rate:'10%', now:'10,800원', cov:{c1:'#F472B6',c2:'#DB2777',big:'Junior|Readers',sub:'초등 영어독해',lv:'S'}},
+    {t:'첫단추 독해편 - 수능 유형 입문', was:'13,500원', rate:'10%', now:'12,150원', cov:{c1:'#A78BFA',c2:'#6D28D9',big:'첫단추|독해편',sub:'수능 유형 입문',lv:'1'}},
+    {t:'빠른독해 바른독해 기초편', was:'14,500원', rate:'10%', now:'13,050원', cov:{c1:'#22D3EE',c2:'#0891B2',big:'빠른독해|바른독해',sub:'독해 기초',lv:'1'}},
+    {t:'능률 기본영어 - 중학 내신 대비', was:'11,000원', rate:'10%', now:'9,900원', cov:{c1:'#94A3B8',c2:'#475569',big:'능률|기본영어',sub:'중학 내신',lv:'2'}}
+  ];
+
+  /* ===== 블로그: 인기 합격 후기 (from ne-books-mall-5) ===== */
+  (function(){
+    var el=document.getElementById('t1bBlogRow'); if(!el) return;
+    var BLOGS=[
+      {tag:'by. 영어맘', tt:'능률VOCA로 3개월 만에 어휘 1000개 끝낸 후기', th:0, items:[0,4,8]},
+      {tag:'by. 수능독해러', tt:'리딩튜터 고등 독해 완주 리얼 후기 (레벨 팁)', th:5, items:[5,2,9]},
+      {tag:'by. 초등맘일기', tt:'파닉스 시작 교재 뭐 살까? Phonics Code 추천', th:1, items:[1,7,3]}
+    ];
+    el.innerHTML=BLOGS.map(function(b){
+      var items=b.items.map(function(pi){ var p=PRODUCTS[pi];
+        return '<div class="t1b-item"><div class="th"><img src="'+makeCover(p.cov)+'" alt=""></div>'
+          +'<div class="info"><p class="tit">'+esc(p.t)+'</p><p class="was">'+p.was+'</p>'
+          +'<div class="now"><span class="rate">'+p.rate+'</span><span class="price">'+p.now+'</span></div></div></div>';
+      }).join('');
+      return '<div class="t1b-col"><div class="t1b-banner"><div><span class="tag">blog</span> '+esc(b.tag)
+        +'<div class="bt">'+esc(b.tt)+'</div></div><img class="thumb" src="'+makeCover(PRODUCTS[b.th].cov)+'" alt=""></div>'+items+'</div>';
+    }).join('');
+  })();
+
+  /* ===== 베스트: 지금 제일 잘 나가는 교재 (from ne-books-mall-4) ===== */
+  (function(){
+    var el=document.getElementById('t1sBestTrack'); if(!el) return;
+    function won(n){return n.toLocaleString('ko-KR');}
+    var BEST=[
+      {img:'best_1.png',name:'Phonics Code 1 : Student Book',pct:10,now:13500,tdeal:false},
+      {img:'best_2.png',name:'Phonics Code 2 : Student Book',pct:10,now:13500,tdeal:true},
+      {img:'best_3.png',name:'Bricks Reading 150 · Level 1',pct:15,now:12750,tdeal:false},
+      {img:'best_4.png',name:'그래머 인사이드 Level 1 (개정판)',pct:10,now:12600,tdeal:false},
+      {img:'best_5.png',name:'능률 VOCA 어원편 (Lite)',pct:12,now:11440,tdeal:true},
+      {img:'book_cover.jpg',name:'Oxford Reading Tree Stage 3 팩',pct:20,now:24000,tdeal:false},
+      {img:'newbook_sample.png',name:'1316 팬클럽 Listening Level 2',pct:10,now:12150,tdeal:false},
+      {img:'best_2.png',name:'주니어 리딩튜터 Starter 1',pct:10,now:11700,tdeal:false},
+      {img:'best_1.png',name:'Bricks Phonics Starter 1',pct:15,now:11050,tdeal:true},
+      {img:'best_4.png',name:'문법이 된다 Level 1',pct:10,now:12600,tdeal:false}
+    ];
+    el.innerHTML=BEST.map(function(p,i){
+      var coup=Math.round(p.now*0.95), rw=Math.round(p.now*0.05);
+      return '<a class="t1s-item" href="교재상세.html">'
+        +'<div class="circle"><img src="assets/'+p.img+'" alt="">'
+          +'<span class="rank">'+(i+1)+'</span>'
+          +(p.tdeal?'<span class="tdeal">오픈런<br>타임딜</span>':'')
+        +'</div>'
+        +'<div class="bname">'+esc(p.name)+'</div>'
+        +'<div class="coup">쿠폰적용가 <span class="cw">'+won(coup)+'원</span></div>'
+        +'<div class="pline"><span class="pct">'+p.pct+'%</span>'+won(p.now)+'원</div>'
+        +'<div class="reward">NE멤버 최대 '+won(rw)+'원 적립</div>'
+        +'<div class="ship">무료배송</div>'
+      +'</a>';
+    }).join('');
+    var prev=document.getElementById('t1sBestPrev'),next=document.getElementById('t1sBestNext');
+    if(prev) prev.addEventListener('click',function(){el.scrollBy({left:-702,behavior:'smooth'});});
+    if(next) next.addEventListener('click',function(){el.scrollBy({left:702,behavior:'smooth'});});
+  })();
 })();
 </script>
 </body>
