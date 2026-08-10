@@ -476,7 +476,7 @@
     var cards=[].slice.call(track.children); // 3N
     var active=N, timer, normTimer, baseX=0, curW=405, curG=24;
     /* uniform G → every inter-card gap is identical; active card is actually wider/taller */
-    function sizes(){ var w=innerWidth; if(w<=600){ var A=Math.min(350,w-40), r=A/350; return {W:Math.round(304*r),H:Math.round(280*r),A:A,AH:Math.round(321*r),G:8}; } if(w<=1000) return {W:320,H:296,A:370,AH:340,G:20}; return {W:405,H:373,A:467,AH:429,G:24}; }
+    function sizes(){ var w=innerWidth; if(w<=600){ var A=Math.min(350,w-40), r=A/350; return {W:Math.round(304*r),H:Math.round(345*r),A:A,AH:Math.round(397*r),G:8}; } if(w<=1000) return {W:320,H:365,A:370,AH:420,G:20}; return {W:405,H:460,A:467,AH:530,G:24}; }
     function apply(anim){
       var s=sizes(); curW=s.W; curG=s.G;
       stage.style.height=s.AH+'px'; track.style.height=s.AH+'px';
