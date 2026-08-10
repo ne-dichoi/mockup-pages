@@ -136,6 +136,21 @@
   .t1v-card .now{display:flex;gap:5px;align-items:baseline;margin-top:2px;}
   .t1v-card .now .rate{color:#f5444a;font-weight:800;}
   .t1v-card .now .price{font-weight:800;}
+  /* 관심 시리즈 교재 카드 — ne-books-mall 베스트셀러 카드 디자인 적용 */
+  .t1v-prod .t1vbs{background:#fff;border:1px solid #ededed;border-radius:12px;overflow:hidden;display:flex;flex-direction:column;}
+  .t1v-prod .t1vbs .img{position:relative;height:230px;}
+  .t1v-prod .t1vbs .img .book{position:absolute;left:50%;top:30px;transform:translateX(-50%);width:145px;height:190px;object-fit:cover;object-position:top center;box-shadow:4px 7px 16px rgba(0,0,0,.18);display:block;border-radius:2px;}
+  .t1v-prod .t1vbs .img .chk{position:absolute;left:14px;top:14px;width:18px;height:18px;background:#fff;border:1px solid #ededed;border-radius:5px;appearance:none;-webkit-appearance:none;margin:0;padding:0;cursor:pointer;z-index:2;}
+  .t1v-prod .t1vbs .img .chk::after{content:none;}
+  .t1v-prod .t1vbs .img .chk:checked{background:#e83828;border-color:#e83828;background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.4 6.2 4.9 8.6 9.6 3.5" stroke="white" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>');background-repeat:no-repeat;background-position:center;}
+  .t1v-prod .t1vbs .img .cart{position:absolute;right:16px;bottom:14px;width:44px;height:44px;background:#191919;border-radius:999px;display:flex;align-items:center;justify-content:center;}
+  .t1v-prod .t1vbs .img .cart img{width:20px;height:20px;}
+  .t1v-prod .t1vbs .meta{padding:0 16px 18px;display:flex;flex-direction:column;gap:8px;}
+  .t1v-prod .t1vbs .meta .ph{align-self:flex-start;border:1px solid #e83828;color:#e83828;font-weight:500;font-size:12px;padding:4px 12px;border-radius:999px;}
+  .t1v-prod .t1vbs .meta .name{font-weight:500;font-size:15px;line-height:1.4;color:#191919;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.8em;}
+  .t1v-prod .t1vbs .meta .price{display:flex;gap:8px;align-items:flex-end;}
+  .t1v-prod .t1vbs .meta .price .now{font-weight:800;font-size:20px;color:#191919;}
+  .t1v-prod .t1vbs .meta .price .was{font-size:13px;color:#a9a9a9;text-decoration:line-through;}
   /* 베스트셀러(숨김) 카드도 t1v 스타일 재사용 — 가로 스크롤에 맞춰 고정폭·상단 정렬 */
   .bs-list{align-items:flex-start;}
   .bs-list .t1v-card{width:200px;flex:none;}
@@ -762,7 +777,7 @@
     var BLOGS=[
       {cat:'어휘 VOCA', series:'능률VOCA', tt:'수능 필수 어휘 스테디셀러', th:0, items:[0,4,8]},
       {cat:'독해 Reading', series:'리딩튜터', tt:'유형별 독해 훈련 스테디셀러', th:5, items:[5,2,9]},
-      {cat:'파닉스 Phonics', series:'Phonics Code', tt:'파닉스 입문 스테디셀러', th:1, items:[1,7,3]}
+      {cat:'파닉스 Phonics', series:'Phonics Code', tt:'파닉스 입문\n스테디셀러', th:1, items:[1,7,3]}
     ];
     el.innerHTML=BLOGS.map(function(b){
       var items=b.items.map(function(pi){ var p=PRODUCTS[pi];
@@ -771,7 +786,7 @@
           +'<div class="now"><span class="rate">'+p.rate+'</span><span class="price">'+p.now+'</span></div></div></div>';
       }).join('');
       return '<div class="t1b-col"><div class="t1b-banner"><div><span class="tag">'+esc(b.cat)+'</span> <span class="series">'+esc(b.series)+'</span>'
-        +'<div class="bt">'+esc(b.tt)+'</div></div><img class="thumb" src="'+makeCover(PRODUCTS[b.th].cov)+'" alt=""></div>'+items+'</div>';
+        +'<div class="bt">'+esc(b.tt).replace(/\n/g,'<br>')+'</div></div><img class="thumb" src="'+makeCover(PRODUCTS[b.th].cov)+'" alt=""></div>'+items+'</div>';
     }).join('');
   })();
 
@@ -814,15 +829,21 @@
   (function(){
     var listEl=document.getElementById('t1vList'), prodEl=document.getElementById('t1vProd');
     if(!listEl||!prodEl) return;
-    function cardHTML(p){
-      return '<div class="t1v-card">'
-        +'<div class="thumb"><img src="'+makeCover(p.cov)+'" alt="">'
-          +'<button class="heart" aria-label="찜"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.3-9.2-8.2C1.2 8.9 2.6 6 5.5 6 7.4 6 8.7 7 12 9.5 15.3 7 16.6 6 18.5 6c2.9 0 4.3 2.9 2.7 5.8C19 15.7 12 20 12 20z" stroke-width="1.6"/></svg></button>'
+    /* ne-books-mall 베스트셀러 카드 디자인(.t1vbs)로 렌더 */
+    var CATS=['어휘','파닉스','독해','문법'];
+    function cardHTML(p,i){
+      return '<div class="t1vbs">'
+        +'<div class="img">'
+          +'<input type="checkbox" class="chk" aria-label="선택">'
+          +'<img class="book" src="'+makeCover(p.cov)+'" alt="">'
+          +'<div class="cart"><img src="assets/ic_cart_black.svg" alt="장바구니"></div>'
         +'</div>'
-        +'<p class="tit">'+esc(p.t)+'</p>'
-        +'<p class="was">'+p.was+'</p>'
-        +'<div class="now"><span class="rate">'+p.rate+'</span><span class="price">'+p.now+'</span></div>'
-        +'</div>';
+        +'<div class="meta">'
+          +'<div class="ph">'+esc(CATS[i]||'교재')+'</div>'
+          +'<div class="name">'+esc(p.t)+'</div>'
+          +'<div class="price"><span class="now">'+p.now+'</span><span class="was">'+p.was+'</span></div>'
+        +'</div>'
+      +'</div>';
     }
     prodEl.innerHTML=PRODUCTS.slice(0,4).map(cardHTML).join('');
     var SERIES=[
