@@ -93,8 +93,8 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 @media(max-width:680px){.vslide .vimg{display:none}}
 .vslide .vcap{position:relative;z-index:2;padding:0 64px;color:#fff}
 .vslide .vcap .kk{display:inline-block;background:rgba(0,0,0,.25);backdrop-filter:blur(2px);font-weight:700;font-size:13px;padding:5px 13px;border-radius:14px;margin-bottom:14px}
-.vslide .vcap h2{font-size:40px;font-weight:800;line-height:1.22;margin:0 0 12px;text-shadow:0 2px 14px rgba(0,0,0,.3)}
-.vslide .vcap p{font-size:17px;margin:0;opacity:.95;text-shadow:0 1px 10px rgba(0,0,0,.3)}
+.vslide .vcap h2{font-size:40px;font-weight:800;line-height:1.22;margin:0 0 12px}
+.vslide .vcap p{font-size:17px;margin:0;opacity:.95}
 .vslide .scrim{position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(0,0,0,.5),rgba(0,0,0,.05) 60%,transparent)}
 .vslide .adtag{position:absolute;top:16px;right:20px;z-index:3;background:rgba(0,0,0,.35);color:#fff;font-size:11px;padding:3px 8px;border-radius:4px}
 /* 비주얼 배너 — 이미지 대신 브랜드 톤 그라디언트(문구 테마별) */
@@ -497,6 +497,16 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 
 <div class="container">
 
+  <!-- ===== 강서니님을 위한 맞춤 교재 (개인화) ===== -->
+  <section class="section">
+    <div class="sec-head"><h2>강서니님을 위한 맞춤 교재</h2><a class="more" href="리스트_교재구매.html">전체보기 <span class="arw">›</span></a></div>
+    <div class="rail">
+      <button class="rarw prev" id="bestPrev" aria-label="이전">&#8249;</button>
+      <button class="rarw next" id="bestNext" aria-label="다음">&#8250;</button>
+      <div class="best-track" id="bestTrack"></div>
+    </div>
+  </section>
+
   <!-- ===== 2단: 신간마켓 / 빠른배송 ===== -->
   <section class="section">
     <div class="duo">
@@ -516,16 +526,6 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
         <p class="dnote">베스트·스테디셀러는 3만원 이상 구매 시 무료배송입니다.</p>
         <a class="dmore" href="리스트_교재구매.html">베스트·스테디셀러 더보기 ›</a>
       </div>
-    </div>
-  </section>
-
-  <!-- ===== 지금 제일 잘 나가는 교재 (원형) ===== -->
-  <section class="section">
-    <div class="sec-head"><h2>강서니님을 위한 맞춤 교재</h2><a class="more" href="리스트_교재구매.html">전체보기 <span class="arw">›</span></a></div>
-    <div class="rail">
-      <button class="rarw prev" id="bestPrev" aria-label="이전">&#8249;</button>
-      <button class="rarw next" id="bestNext" aria-label="다음">&#8250;</button>
-      <div class="best-track" id="bestTrack"></div>
     </div>
   </section>
 
