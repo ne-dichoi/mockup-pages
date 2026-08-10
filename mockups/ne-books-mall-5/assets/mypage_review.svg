@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+<g id="24icon">
+<path id="Vector" d="M8 5H19L24 10V27C24 27.2652 23.8947 27.5196 23.7071 27.7071C23.5196 27.8947 23.2652 28 23 28H8C7.73479 28 7.48043 27.8947 7.29289 27.7071C7.10536 27.5196 7 27.2652 7 27V6C7 5.73479 7.10536 5.48043 7.29289 5.29289C7.48043 5.10536 7.73479 5 8 5Z" stroke="#1D1717" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+<g id="Vector_2">
+<path d="M19 5V10H24" fill="#D64835"/>
+<path d="M19 5V10H24L19 5Z" stroke="#D64835" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<path id="Vector_3" d="M15.5067 12.1334L16.8267 16.1734L21.08 16.1867L17.6534 18.7067L18.9467 22.7467L15.5067 20.2667L12.0534 22.7467L13.3467 18.7067L9.92004 16.1867L14.1734 16.1734L15.5067 12.1334Z" fill="#D64835" stroke="#D64835" stroke-width="1.33333" stroke-linejoin="round"/>
+</g>
+</svg>

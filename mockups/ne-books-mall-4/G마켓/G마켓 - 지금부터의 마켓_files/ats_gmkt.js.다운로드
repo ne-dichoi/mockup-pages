@@ -1,0 +1,61 @@
+/*
+ * AdProfiler
+ */
+if (typeof adprofiler === 'undefined') {
+	var adprofiler = {
+		
+		sendAd: function (path, data, method) {
+			var self = adprofiler;
+			method = method || "GET";
+			if(method == "GET"){
+				var r = Math.floor(Math.random() * 1000) + 1;
+				var url = path+"&rs="+r;
+				self._send(url);
+			}
+			else{
+				var url = path;
+				var body = typeof data ==='object' ? data : {};
+				self._sendPost(url, body);
+			}
+		},
+		_send: function (url) {
+			var imgTag = document.createElement('img');		// new Image(1, 1);
+			imgTag.src = url;
+		},
+		_sendPost : function(url, body){
+
+			body = body || {};
+			try {
+				var xhr = new XMLHttpRequest();
+				xhr.open("POST", url, true);
+				xhr.setRequestHeader('Content-Type', 'application/json');
+				xhr.send(JSON.stringify(body));
+			}
+			catch (e) {
+				var iframe = document.createElement('iframe');
+				iframe.style.display = 'none';
+				iframe.onload = function () {
+					var iframeDoc = this.contentWindow.document;
+
+					// make a invisible form
+					var form = iframeDoc.createElement('form');
+					form.method = 'POST';
+					form.action = url;
+					iframeDoc.body.appendChild(form);
+
+					// pass the parameters
+					for (var name in body) {
+						var input = iframeDoc.createElement('input');
+						input.type = 'hidden';
+						input.name = name;
+						input.value = body[name];
+						form.appendChild(input);
+					}
+
+					form.submit();
+				};
+				document.body.appendChild(iframe);
+			}
+		}
+	}
+}
