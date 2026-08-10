@@ -72,7 +72,7 @@
   .t1h .t1h-illust{flex:1;min-height:0;display:flex;align-items:flex-end;justify-content:center;margin-top:14px;}
   .hero2-card.t1h .t1h-illust img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;object-position:bottom center;pointer-events:none;-webkit-user-drag:none;}
   /* 교재 표지 2권을 겹치지 않게 나란히 배치 (75% 크기·우측 정렬·하단우측 여백 50px) */
-  .t1h .t1h-illust--books{align-items:flex-end;justify-content:flex-end;gap:12px;padding:0 50px 50px 0;}
+  .t1h .t1h-illust--books{align-items:flex-end;justify-content:flex-end;gap:12px;padding:0 20px 50px 0;}
   .hero2-card.t1h .t1h-illust--books .bk{width:auto;height:auto;max-width:none;max-height:129px;border-radius:7px;box-shadow:0 10px 22px rgba(0,0,0,.22);}
   .hero2-card.t1h.active .t1h-ttl{font-size:30px;}
   .hero2-card.t1h.active .t1h-illust--books .bk{max-height:150px;}
@@ -95,7 +95,7 @@
     .hero2-card.t1h.active .t1h-ttl{font-size:22px;}
     .t1h .t1h-sub{font-size:12.5px;margin-top:9px;}
     .t1h .t1h-flag{margin-bottom:12px;}
-    .hero2-card.t1h .t1h-illust--books{gap:10px;padding:0 28px 28px 0;}
+    .hero2-card.t1h .t1h-illust--books{gap:10px;padding:0 14px 28px 0;}
     .hero2-card.t1h .t1h-illust--books .bk{max-height:92px;}
   }
 
@@ -471,7 +471,7 @@
     var cards=[].slice.call(track.children); // 3N
     var active=N, timer, normTimer, baseX=0, curW=405, curG=24;
     /* uniform G → every inter-card gap is identical; active card is actually wider/taller */
-    function sizes(){ var w=innerWidth; if(w<=600){ var A=Math.min(350,w-40), r=A/350; return {W:Math.round(304*r),H:Math.round(311*r),A:A,AH:Math.round(357*r),G:8}; } if(w<=1000) return {W:320,H:329,A:370,AH:378,G:20}; return {W:405,H:414,A:467,AH:477,G:24}; }
+    function sizes(){ var w=innerWidth; if(w<=600){ var A=Math.min(350,w-40), r=A/350; return {W:Math.round(304*r),H:Math.round(280*r),A:A,AH:Math.round(321*r),G:8}; } if(w<=1000) return {W:320,H:296,A:370,AH:340,G:20}; return {W:405,H:373,A:467,AH:429,G:24}; }
     function apply(anim){
       var s=sizes(); curW=s.W; curG=s.G;
       stage.style.height=s.AH+'px'; track.style.height=s.AH+'px';
