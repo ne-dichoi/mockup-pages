@@ -419,18 +419,16 @@
     /* mobile-only: bestseller as a vertical list of rows */
     var mo=document.getElementById('bsMoList');
     if(mo){
-      var mh='';
-      for(var j=0;j<6;j++){
-        mh+='<div class="bs-mo-row">'
+      mo.innerHTML=BSBOOKS.map(function(b){
+        return '<div class="bs-mo-row">'
           +'<input type="checkbox" class="chk" aria-label="선택">'
-          +'<span class="thumb"><img src="assets/'+covers[j%covers.length]+'" alt=""></span>'
+          +'<span class="thumb"><img src="assets/'+b.img+'" alt=""></span>'
           +'<span class="meta">'
-            +'<span class="name">Phonics Code 1 : Student Book</span>'
-            +'<span class="price"><span class="now">13,500원</span><span class="was">15,000원</span></span>'
+            +'<span class="name">'+b.t+'</span>'
+            +'<span class="price"><span class="now">'+b.now+'</span><span class="was">'+b.was+'</span></span>'
           +'</span>'
         +'</div>';
-      }
-      mo.innerHTML=mh;
+      }).join('');
     }
   })();
 
