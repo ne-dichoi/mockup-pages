@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+<g id="24icon">
+<path id="Vector" d="M25 7H7C5.89543 7 5 7.89543 5 9V25C5 26.1046 5.89543 27 7 27H25C26.1046 27 27 26.1046 27 25V9C27 7.89543 26.1046 7 25 7Z" stroke="#1D1717" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_2" d="M11 5V10M21 5V10" stroke="#1D1717" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_3" d="M5 13H27" stroke="#1D1717" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_4" d="M18 18.3333C18 17.597 18.597 17 19.3333 17H23.6667C24.403 17 25 17.597 25 18.3333V22.6667C25 23.403 24.403 24 23.6667 24H19.3333C18.597 24 18 23.403 18 22.6667V18.3333Z" fill="#D64835"/>
+</g>
+</svg>
