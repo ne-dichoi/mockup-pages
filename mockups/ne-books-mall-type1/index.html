@@ -122,6 +122,7 @@
   .t1v-list{display:flex;flex-direction:column;gap:4px;}
   .t1v-list button{display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:12px;text-align:left;font-size:15px;font-weight:700;color:#333;border:1px solid transparent;background:#fff;}
   .t1v-list button .logo{width:38px;height:38px;border-radius:50%;background:#eef0f4;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#6f52ff;overflow:hidden;flex:none;}
+  .t1v-list button .logo img{width:100%;height:100%;object-fit:cover;object-position:top center;}
   .t1v-list button .tag{font-size:12px;color:#8c8c8c;font-weight:500;margin-left:auto;}
   .t1v-list button.on{border-color:#111;box-shadow:0 2px 10px rgba(0,0,0,.06);}
   .t1v-right{display:flex;flex-direction:column;}
@@ -848,14 +849,14 @@
     }
     prodEl.innerHTML=PRODUCTS.slice(0,4).map(cardHTML).join('');
     var SERIES=[
-      {n:'능률VOCA', tag:'#어원암기'},
-      {n:'리딩튜터', tag:'#유형독해'},
-      {n:'그래머존', tag:'#기초문법'},
-      {n:'주니어 리더스뱅크', tag:'#초등영어'},
-      {n:'첫단추', tag:'#수능입문'}
+      {n:'능률VOCA', tag:'#어원암기', img:'best_5.png'},
+      {n:'리딩튜터', tag:'#유형독해', img:'best_3.png'},
+      {n:'그래머존', tag:'#기초문법', img:'best_4.png'},
+      {n:'주니어 리더스뱅크', tag:'#초등영어', img:'best_2.png'},
+      {n:'첫단추', tag:'#수능입문', img:'best_1.png'}
     ];
     listEl.innerHTML=SERIES.map(function(s,i){
-      return '<button class="'+(i===0?'on':'')+'"><span class="logo">'+esc(s.n.slice(0,2))+'</span><span>'+esc(s.n)+'</span><span class="tag">'+(i===0?'›':esc(s.tag))+'</span></button>';
+      return '<button class="'+(i===0?'on':'')+'"><span class="logo"><img src="assets/'+s.img+'" alt=""></span><span>'+esc(s.n)+'</span><span class="tag">'+(i===0?'›':esc(s.tag))+'</span></button>';
     }).join('');
     [].forEach.call(listEl.children,function(b){ b.addEventListener('click',function(){ [].forEach.call(listEl.children,function(x){x.classList.remove('on');}); b.classList.add('on'); }); });
   })();
