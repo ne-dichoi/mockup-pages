@@ -755,9 +755,10 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
     function layout(anim){
       var W=slideW();
       track.style.transition=anim?'transform .5s':'none';
-      /* 데스크톱에선 좌측 카테고리 패널(250px) 오른쪽 영역 기준으로 배너를 중앙정렬 */
+      /* 데스크톱에선 좌측 카테고리 패널(250px) 오른쪽 끝 ~ 콘텐츠 컨테이너(1240px) 오른쪽 끝 사이에서 배너를 중앙정렬 */
       var panelRight=(window.innerWidth>1000)?(Math.max(0,(window.innerWidth-1240)/2)+250):0;
-      var centerX=(panelRight+stage.clientWidth)/2;
+      var rightEdge=(window.innerWidth>1000)?Math.min(stage.clientWidth,(window.innerWidth+1240)/2):stage.clientWidth;
+      var centerX=(panelRight+rightEdge)/2;
       var x=Math.round(centerX - (active*(W+GAP) + W/2));
       track.style.transform='translateX('+x+'px)';
       cards.forEach(function(c,i){ c.style.opacity=(i===active)?'1':'.45'; });
