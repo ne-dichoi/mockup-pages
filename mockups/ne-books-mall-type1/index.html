@@ -26,7 +26,12 @@
   .t1b-banner{border-radius:14px;overflow:hidden;background:linear-gradient(120deg,#2b2b3a,#4a3a5a);color:#fff;padding:22px;display:flex;justify-content:space-between;align-items:center;min-height:120px;}
   .t1b-banner .bt{font-size:17px;font-weight:800;line-height:1.35;max-width:66%;margin-top:6px;}
   .t1b-banner .tag{display:inline-block;background:#03C75A;color:#fff;font-size:11px;font-weight:700;border-radius:5px;padding:2px 7px;margin-bottom:8px;}
-  .t1b-banner .series{font-size:12.5px;font-weight:700;color:rgba(255,255,255,.92);letter-spacing:-.2px;}
+  .t1b-banner .series{display:block;font-size:12.5px;font-weight:700;color:rgba(255,255,255,.92);letter-spacing:-.2px;margin-top:2px;}
+  /* 밴드명 강조(큰 제목) + 밴드별 배경색 */
+  .t1b-banner .band{display:block;font-size:23px;font-weight:800;line-height:1.15;letter-spacing:-.5px;color:#fff;}
+  .t1b-banner.band0{background:linear-gradient(120deg,#3b6fe0,#5b7cf0);}
+  .t1b-banner.band1{background:linear-gradient(120deg,#12a512,#1bc41b);}
+  .t1b-banner.band2{background:linear-gradient(120deg,#e83828,#ff7a45);}
   .t1b-banner .thumb{width:74px;height:74px;border-radius:10px;object-fit:cover;flex:none;}
   .t1b-item{display:flex;gap:12px;}
   .t1b-item .th{width:88px;height:88px;border-radius:10px;background:#f7f8fa;flex:none;overflow:hidden;display:flex;align-items:center;justify-content:center;}
@@ -282,8 +287,8 @@
   <section class="t1b-sec">
     <div class="container">
       <div class="t1b-head">
-        <h2>카테고리별 <span class="hl">인기 스테디셀러</span></h2>
-        <p class="sub">최근 7일간 많이 팔린 스테디셀러 시리즈</p>
+        <h2>학년별 <span class="hl">인기교재</span> 바로 구매하기</h2>
+        <p class="sub">학년·과정별로 가장 많이 찾는 교재를 모았어요</p>
       </div>
       <div class="t1b-grid" id="t1bBlogRow"></div>
     </div>
@@ -776,17 +781,17 @@
     var el=document.getElementById('t1bBlogRow'); if(!el) return;
     /* cat = 2depth 카테고리, series = 3depth 시리즈, tt = 영역 제목 */
     var BLOGS=[
-      {cat:'어휘 VOCA', series:'능률VOCA', tt:'수능 필수 어휘 스테디셀러', th:0, items:[0,4,8]},
-      {cat:'독해 Reading', series:'리딩튜터', tt:'유형별 독해 훈련 스테디셀러', th:5, items:[5,2,9]},
-      {cat:'파닉스 Phonics', series:'Phonics Code', tt:'파닉스 입문\n스테디셀러', th:1, items:[1,7,3]}
+      {cat:'ELT', series:'주니어 리더스뱅크', tt:'파닉스부터 리더스까지\n영어 첫걸음', th:1, items:[1,7,9]},
+      {cat:'초/중등', series:'그래머존', tt:'중학 내신 완성\n필수 코스', th:3, items:[3,4,10]},
+      {cat:'고등', series:'리딩튜터', tt:'수능 실전 대비\n베스트 코스', th:5, items:[5,0,8]}
     ];
-    el.innerHTML=BLOGS.map(function(b){
+    el.innerHTML=BLOGS.map(function(b,i){
       var items=b.items.map(function(pi){ var p=PRODUCTS[pi];
         return '<div class="t1b-item"><div class="th"><img src="'+makeCover(p.cov)+'" alt=""></div>'
           +'<div class="info"><p class="tit">'+esc(p.t)+'</p><p class="was">'+p.was+'</p>'
           +'<div class="now"><span class="rate">'+p.rate+'</span><span class="price">'+p.now+'</span></div></div></div>';
       }).join('');
-      return '<div class="t1b-col"><div class="t1b-banner"><div><span class="tag">'+esc(b.cat)+'</span> <span class="series">'+esc(b.series)+'</span>'
+      return '<div class="t1b-col"><div class="t1b-banner band'+i+'"><div><span class="band">'+esc(b.cat)+'</span><span class="series">'+esc(b.series)+'</span>'
         +'<div class="bt">'+esc(b.tt).replace(/\n/g,'<br>')+'</div></div><img class="thumb" src="'+makeCover(PRODUCTS[b.th].cov)+'" alt=""></div>'+items+'</div>';
     }).join('');
   })();
