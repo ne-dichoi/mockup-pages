@@ -228,7 +228,7 @@ a{color:inherit;text-decoration:none;}
 .cs-col .sec-title{text-align:left;}
 .cs-cards{display:flex;flex-direction:column;gap:8px;}
 .cs-card{border:1px solid #dbdbdb;border-radius:16px;min-height:145px;display:flex;align-items:center; justify-content:space-between;gap:16px;padding:24px 24px 24px 32px;flex-wrap:wrap;}
-.cs-card .left{flex:1 1 200px;display:flex;flex-direction:column;gap:8px;}
+.cs-card .left{flex:0 1 auto;display:flex;flex-direction:column;gap:8px;}/* 전화 영역이 늘어나 아이콘을 밀어내지 않도록(내용폭만) */
 .cs-card .left .tel{font-family:var(--display);font-weight:400;font-size:20px;letter-spacing:.5px;color:var(--ink);}
 .cs-card .left .info .info-sep{display:none;}
 .cs-card .left .info{font-weight:500;font-size:13px;color:var(--muted);line-height:20px;}
@@ -239,6 +239,16 @@ a{color:inherit;text-decoration:none;}
 .cs-box span{font-weight:600;font-size:12px;color:var(--muted);line-height:18px;white-space:nowrap;}
 .sns{display:flex;gap:8px;}
 .cs-col .sns{margin-top:8px;}
+/* PC 중간 폭(1024~1259): 공지열을 줄이고 고객센터열을 넓혀 아이콘(채팅상담·1:1문의·FAQ·문자상담)이 떨어지지 않게.
+   (기본 레이아웃은 약 1211px 아래부터 아이콘이 줄바꿈되므로 여유 있게 1259까지 커버) */
+@media (min-width:1024px) and (max-width:1259px){
+  .notices .notice-col{flex:1 1 0;min-width:0;}
+  .notices .cs-col{flex:1.32 1 0;min-width:0;}
+  .notices .cs-icons{gap:22px;}
+  .notices .cs-box:not(:last-child)::after{right:-11px;}
+  /* 공지 제목: 2줄 방지 → 한 줄 말줄임 */
+  .notices .notice-list .item .t{flex:1 1 0;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+}
 .sns .card{border:1px solid #dbdbdb;border-radius:16px;height:88px;flex:1 1 0;min-width:0;position:relative;}
 .sns .card .in{position:absolute;left:20px;right:20px;top:50%;transform:translateY(-50%);display:flex;align-items:center;justify-content:space-between;gap:8px;}
 .sns .card .in .lbl{font-size:13px;color:var(--muted);line-height:18px;}
