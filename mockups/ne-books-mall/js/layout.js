@@ -175,25 +175,33 @@
     apply();
   })();
 
-  /* ===== 인덱스 PC GNB 스티키 (아래로=상단 숨기고 메뉴 고정, 위로=전체 노출) ===== */
+  /* ===== 인덱스 PC GNB 고정 (아래로=상단행 접고 메뉴 고정, 위로=전체 노출) =====
+     헤더를 fixed로 두고 body 상단 여백을 헤더 높이만큼 확보 → 접혀도 콘텐츠 리플로우 없음(떨림 방지) */
   (function(){
     var header=document.getElementById('site-header'); if(!header) return;
     if(!document.body.classList.contains('page-index')) return;
     var mq=window.matchMedia('(min-width:1024px)');
     var lastY=window.pageYOffset||0, ticking=false;
+    function measure(){
+      if(!mq.matches){ document.body.style.removeProperty('--hdr-h'); return; }
+      header.classList.remove('pc-collapsed');
+      var lh=header.querySelector('.lheader');
+      var full=lh?Math.round(lh.getBoundingClientRect().height):150;
+      document.body.style.setProperty('--hdr-h', full+'px');
+    }
     function apply(){
       ticking=false;
       if(!mq.matches){ header.classList.remove('pc-collapsed'); lastY=window.pageYOffset||0; return; }
       var y=window.pageYOffset||0; if(y<0) y=0;
       if(y<=100){ header.classList.remove('pc-collapsed'); lastY=y; return; }
       var dy=y-lastY;
-      /* 방향 데드존(10px): 트랙패드 미세 스크롤로 토글이 튀지 않도록 */
+      /* 방향 데드존(10px): 미세 스크롤로 토글이 튀지 않도록 */
       if(dy>10){ header.classList.add('pc-collapsed'); lastY=y; }
       else if(dy<-10){ header.classList.remove('pc-collapsed'); lastY=y; }
     }
     window.addEventListener('scroll',function(){ if(!ticking){ requestAnimationFrame(apply); ticking=true; } },{passive:true});
-    window.addEventListener('resize',apply);
-    apply();
+    window.addEventListener('resize',function(){ measure(); apply(); });
+    measure(); apply();
   })();
 
   /* ===== 모바일 서브페이지 GNB 카테고리 드롭다운 (Coursebook ∨ 클릭 → 펼침) ===== */
