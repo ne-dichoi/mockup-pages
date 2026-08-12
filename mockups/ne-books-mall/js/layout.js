@@ -175,19 +175,20 @@
     apply();
   })();
 
-  /* ===== 인덱스 PC GNB 고정 (아래로=상단행 접고 메뉴 고정, 위로=전체 노출) =====
+  /* ===== PC GNB 고정 (아래로=상단행 접고 메뉴 고정, 위로=전체 노출) — 전 페이지 =====
      헤더를 fixed로 두고 body 상단 여백을 헤더 높이만큼 확보 → 접혀도 콘텐츠 리플로우 없음(떨림 방지) */
   (function(){
     var header=document.getElementById('site-header'); if(!header) return;
-    if(!document.body.classList.contains('page-index')) return;
     var mq=window.matchMedia('(min-width:1024px)');
     var lastY=window.pageYOffset||0, ticking=false;
     function measure(){
-      if(!mq.matches){ document.body.style.removeProperty('--hdr-h'); return; }
+      if(!mq.matches){ document.body.style.removeProperty('--hdr-h'); document.body.style.removeProperty('--gnb-h'); return; }
       header.classList.remove('pc-collapsed');
       var lh=header.querySelector('.lheader');
-      var full=lh?Math.round(lh.getBoundingClientRect().height):150;
+      var gnb=header.querySelector('.gnb');
+      var full=lh?Math.round(lh.getBoundingClientRect().height):145;
       document.body.style.setProperty('--hdr-h', full+'px');
+      if(gnb) document.body.style.setProperty('--gnb-h', Math.round(gnb.getBoundingClientRect().height)+'px');
     }
     function apply(){
       ticking=false;
