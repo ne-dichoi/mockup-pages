@@ -175,6 +175,26 @@
     apply();
   })();
 
+  /* ===== 인덱스 PC GNB 스티키 (아래로=상단 숨기고 메뉴 고정, 위로=전체 노출) ===== */
+  (function(){
+    var header=document.getElementById('site-header'); if(!header) return;
+    if(!document.body.classList.contains('page-index')) return;
+    var mq=window.matchMedia('(min-width:1024px)');
+    var lastY=window.pageYOffset||0, ticking=false;
+    function apply(){
+      ticking=false;
+      if(!mq.matches){ header.classList.remove('pc-collapsed'); return; }
+      var y=window.pageYOffset||0;
+      var goingDown = y>lastY;
+      if(goingDown && y>140){ header.classList.add('pc-collapsed'); }
+      else if(!goingDown || y<=90){ header.classList.remove('pc-collapsed'); }
+      lastY = y<0?0:y;
+    }
+    window.addEventListener('scroll',function(){ if(!ticking){ requestAnimationFrame(apply); ticking=true; } },{passive:true});
+    window.addEventListener('resize',apply);
+    apply();
+  })();
+
   /* ===== 모바일 서브페이지 GNB 카테고리 드롭다운 (Coursebook ∨ 클릭 → 펼침) ===== */
   (function(){
     var header=document.getElementById('site-header');
