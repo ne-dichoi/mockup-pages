@@ -183,12 +183,13 @@
     var lastY=window.pageYOffset||0, ticking=false;
     function apply(){
       ticking=false;
-      if(!mq.matches){ header.classList.remove('pc-collapsed'); return; }
-      var y=window.pageYOffset||0;
-      var goingDown = y>lastY;
-      if(goingDown && y>140){ header.classList.add('pc-collapsed'); }
-      else if(!goingDown || y<=90){ header.classList.remove('pc-collapsed'); }
-      lastY = y<0?0:y;
+      if(!mq.matches){ header.classList.remove('pc-collapsed'); lastY=window.pageYOffset||0; return; }
+      var y=window.pageYOffset||0; if(y<0) y=0;
+      if(y<=100){ header.classList.remove('pc-collapsed'); lastY=y; return; }
+      var dy=y-lastY;
+      /* 방향 데드존(10px): 트랙패드 미세 스크롤로 토글이 튀지 않도록 */
+      if(dy>10){ header.classList.add('pc-collapsed'); lastY=y; }
+      else if(dy<-10){ header.classList.remove('pc-collapsed'); lastY=y; }
     }
     window.addEventListener('scroll',function(){ if(!ticking){ requestAnimationFrame(apply); ticking=true; } },{passive:true});
     window.addEventListener('resize',apply);
