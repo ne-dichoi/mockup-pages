@@ -10,8 +10,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- Pretendard (design font) via CDN, with Noto Sans KR fallback -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260812p">
-<script src="js/layout.js?v=20260812p" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260812q">
+<script src="js/layout.js?v=20260812q" defer></script>
 <script src="js/search.js" defer></script>
 </head>
 <body class="page-index">
@@ -262,7 +262,7 @@
     var cards=[].slice.call(track.children); // 3N
     var active=N, timer, normTimer, baseX=0, curW=405, curG=24;
     /* uniform G → every inter-card gap is identical; active card is actually wider/taller */
-    function sizes(){ var w=innerWidth; if(w<=600){ var A=Math.min(350,w-40), r=A/350; return {W:Math.round(304*r),H:Math.round(345*r),A:A,AH:Math.round(397*r),G:8}; } if(w<=1000) return {W:320,H:365,A:370,AH:420,G:20}; return {W:405,H:460,A:467,AH:530,G:24}; }
+    function sizes(){ var w=innerWidth; if(w<=600){ var A=Math.min(350,w-40), r=A/350; return {W:Math.round(304*r),H:Math.round(345*r),A:A,AH:Math.round(397*r),G:8}; } if(w<=1000) return {W:320,H:365,A:370,AH:420,G:20}; if(w<=1139) return {W:344,H:390,A:396,AH:448,G:20}; return {W:405,H:460,A:467,AH:530,G:24}; }
     function apply(anim){
       var s=sizes(); curW=s.W; curG=s.G;
       stage.style.height=s.AH+'px'; track.style.height=s.AH+'px';
@@ -357,8 +357,8 @@
     }
     function scale(){
       if(isArc()){
-        /* 100%에서 약간만 축소(90%) — 화면보다 넓으면 양쪽 박스가 잘려 보이도록(overflow:hidden + 가운데 정렬) */
-        var s=0.9;
+        /* 100%에서 약간만 축소(90%). 단, PC 좁은 폭(1024~1139)에선 조금 더 축소해 카드가 덜 잘리게 */
+        var s=(window.innerWidth>=1024 && window.innerWidth<=1139) ? 0.78 : 0.9;
         wrap.style.transform='scale('+s+')';
         wrap.parentElement.style.height=(542*s)+'px';
       } else {

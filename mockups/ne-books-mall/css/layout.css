@@ -249,6 +249,29 @@ a{color:inherit;text-decoration:none;}
   /* 공지 제목: 2줄 방지 → 한 줄 말줄임 */
   .notices .notice-list .item .t{flex:1 1 0;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 }
+/* PC 좁은 폭(1024~1139): 인덱스 주요 섹션을 교재리스트처럼 약간씩 비례 축소 */
+@media (min-width:1024px) and (max-width:1139px){
+  /* 상단 배너 이미지 */
+  .hero2{padding:40px 0 8px;}
+  .hero2-track{gap:20px;}
+  .hero2-card{width:344px;height:390px;}
+  /* 주요 아이콘 */
+  .mainicons{padding:32px 0 56px;}
+  .mainicons .row{gap:12px;}
+  .pill{width:118px;height:118px;}
+  .pill .ico{width:38px;height:38px;}
+  .pill span{font-size:12px;}
+  /* 베스트셀러: 알약 탭 + 교재 카드 축소(교재가 더 보이게) */
+  .bestseller{padding:44px 0 52px;}
+  .bs-wrap{gap:32px;}
+  .bs-tabs{gap:24px;}
+  .bs-tabs .tab{font-size:14px;padding:7px 18px;}
+  .bs-row{gap:28px;}
+  .bs-promo{width:236px;}
+  .bs-promo .ttl{font-size:27px;line-height:36px;}
+  .bs-list{gap:14px;}
+  .bs-card{zoom:.84;}
+}
 .sns .card{border:1px solid #dbdbdb;border-radius:16px;height:88px;flex:1 1 0;min-width:0;position:relative;}
 .sns .card .in{position:absolute;left:20px;right:20px;top:50%;transform:translateY(-50%);display:flex;align-items:center;justify-content:space-between;gap:8px;}
 .sns .card .in .lbl{font-size:13px;color:var(--muted);line-height:18px;}
