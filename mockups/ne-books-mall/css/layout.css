@@ -98,7 +98,7 @@ a{color:inherit;text-decoration:none;}
 .header .gnb{border-bottom:2px solid #1d1717;position:relative;}
 .lheader .gnb{border-bottom:2px solid #1d1717;position:relative;margin-inline:calc(50% - 50vw);}
 .header .gnb-drop{position:absolute;top:calc(100% + 2px);left:0;z-index:50;display:none;gap:40px;background:#fff; border-radius:0 0 16px 16px;box-shadow:0 22px 40px rgba(0,0,0,.10);padding:32px 40px;}
-.lheader .gnb-drop{position:absolute;top:calc(100% + 2px);z-index:50;display:none;gap:40px;background:#fff; border-radius:0 0 16px 16px;box-shadow:0 22px 40px rgba(0,0,0,.10);padding:32px 40px;}
+.lheader .gnb-drop{position:absolute;top:calc(100% + 2px);z-index:50;display:none;gap:40px;background:#fff; border-radius:0 0 16px 16px;box-shadow:0 22px 40px rgba(0,0,0,.10);padding:32px 40px; max-width:calc(100vw - 32px);box-sizing:border-box;}
 .gnb-drop.open{display:flex;}
 .gd-cats{display:flex;flex-direction:column;gap:16px;min-width:170px;}
 .gd-cats a{font-size:14px;color:#666;white-space:nowrap;}
@@ -116,6 +116,16 @@ a{color:inherit;text-decoration:none;}
 .gd-btn.blue{background:#4f74d6;}
 .gd-btn.navy{background:#0f2547;}
 .gd-btn span{font-weight:400;}
+/* PC 좁은 폭(1024~1139): 메가 펼침메뉴가 뷰포트에 맞게 컬럼 유연 축소 + 폰트 축소(스크롤 없이) */
+@media (min-width:1024px) and (max-width:1139px){
+  .lheader .gnb-drop.mega{gap:12px;padding:24px 18px;}
+  .gnb-drop.mega .gd-col,.gnb-drop.mega .gd-col:nth-of-type(6){flex:1 1 0;min-width:0;width:auto;padding-right:12px;gap:10px;}
+  .gnb-drop.mega .gd-col-t{font-size:12px;white-space:normal;word-break:keep-all;line-height:1.4;}
+  .gnb-drop.mega .gd-col .items{gap:7px;}
+  .gnb-drop.mega .gd-col .items a{font-size:11px;line-height:1.45;white-space:normal;word-break:keep-all;}
+  .gnb-drop.mega .gd-brands{flex:none;gap:6px;}
+  .gnb-drop.mega .gd-btn{width:auto;min-width:96px;padding:9px 12px;font-size:11px;}
+}
 .header .gnb-in{display:flex;align-items:center;justify-content:safe center;gap:40px;height:56px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}
 .lheader .gnb-in{width:100%;max-width:1440px;margin:0 auto;padding-inline:40px;box-sizing:border-box;display:flex;align-items:center;justify-content:safe center;gap:40px;height:56px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}
 .gnb-in::-webkit-scrollbar{display:none;}

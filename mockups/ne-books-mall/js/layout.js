@@ -395,12 +395,13 @@
     }
     items.forEach(function(x){ x.classList.toggle('on',x===a); });
     drop.classList.add('open');
-    if(mega){ var gw=gnb.getBoundingClientRect().width; var ml=Math.round((gw-drop.offsetWidth)/2); drop.style.left=(ml>0?ml:0)+'px'; }
+    var vw=window.innerWidth, M=16; /* 좌우 최소 여백 */
+    if(mega){ var ml=Math.round((vw-drop.offsetWidth)/2); drop.style.left=(ml>M?ml:M)+'px'; }
     else{
       var gr=gnb.getBoundingClientRect(), ir=a.getBoundingClientRect();
       var left=Math.round(ir.left-gr.left-24);
-      var maxLeft=Math.round(gr.width-drop.offsetWidth);
-      if(left>maxLeft) left=maxLeft; if(left<0) left=0;
+      var maxLeft=Math.round(vw-drop.offsetWidth-M); /* 우측 여백 확보(뷰포트 기준) */
+      if(left>maxLeft) left=maxLeft; if(left<M) left=M;
       drop.style.left=left+'px';
     }
   }
