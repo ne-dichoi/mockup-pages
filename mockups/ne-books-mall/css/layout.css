@@ -506,10 +506,14 @@ a{color:inherit;text-decoration:none;}
   .page-buy .pprice .now{font-size:24px;}
   .page-buy .pbtns{gap:6px;}
   .page-buy .pbtns a{min-width:0;padding:9px 12px;font-size:13px;}
-  /* 학습자료: 태그·버튼 없지만 일관성 위해 표지·제목 축소 */
+  /* 학습자료: 회색박스는 유지, 책 이미지만 더 작게 + 카트를 책 우측 귀퉁이에 걸치게 + 자료 아이콘 약간 축소 */
   .page-study .pcover{width:200px;height:200px;}
-  .page-study .pcover img{width:120px;}
+  .page-study .pcover img{width:100px;}
+  .page-study .pcover-cart{right:28px;bottom:16px;width:42px;height:42px;}
+  .page-study .pcover .pcover-cart img{width:18px;height:18px;}
   .page-study .ptitle{font-size:22px;margin-top:16px;line-height:1.25;}
+  .page-study .pres-item{width:88px;height:92px;padding:14px 6px;}
+  .page-study .pres-tutor{width:94px;height:92px;}
 }
 .pager{display:flex;align-items:center;justify-content:center;gap:4px;padding:40px 0 10px;}
 .pager a{width:36px;height:36px;font-size:14px;color:#a9a9a9;display:flex;align-items:center;justify-content:center;cursor:pointer;border-radius:9999px;}
