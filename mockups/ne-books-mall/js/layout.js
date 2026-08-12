@@ -396,8 +396,14 @@
     items.forEach(function(x){ x.classList.toggle('on',x===a); });
     drop.classList.add('open');
     var vw=window.innerWidth, M=16; /* 좌우 최소 여백 */
-    if(mega){ var ml=Math.round((vw-drop.offsetWidth)/2); drop.style.left=(ml>M?ml:M)+'px'; }
+    if(mega){
+      /* 메가: 내비(.gnb-in) 폭에 맞춰 화면을 채우고 컬럼은 flex로 넓게 분배 */
+      var grm=gnb.getBoundingClientRect(), inEl=gnb.querySelector('.gnb-in'), inm=inEl.getBoundingClientRect();
+      drop.style.width=Math.round(inm.width)+'px';
+      drop.style.left=Math.round(inm.left-grm.left)+'px';
+    }
     else{
+      drop.style.width='';
       var gr=gnb.getBoundingClientRect(), ir=a.getBoundingClientRect();
       var left=Math.round(ir.left-gr.left-24);
       var maxLeft=Math.round(vw-drop.offsetWidth-M); /* 우측 여백 확보(뷰포트 기준) */
