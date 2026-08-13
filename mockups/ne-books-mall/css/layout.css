@@ -3212,9 +3212,11 @@ a{color:inherit;text-decoration:none;}
   /* 회색박스 상단: 교재 검색 pill (탭 아래로 이동) */
   .page-my #cc-errata .errata-msearch{order:3;background:#f7f7f7;padding:40px 20px 0;}
   .page-my #cc-errata .errata-msearch .oh-input-wrap{width:100%;}
-  .page-my #cc-errata .errata-msearch .oh-input{width:100%;height:auto;padding:12px 48px 12px 24px;border-radius:86px;border-color:var(--line);
-    background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'><circle cx='11' cy='11' r='7' stroke='%231d1717' stroke-width='1.6'/><path d='M16 16l4 4' stroke='%231d1717' stroke-width='1.6' stroke-linecap='round'/></svg>") right 20px center/20px no-repeat;}
-  .page-my #cc-errata .errata-msearch .oh-input-x{right:44px;}
+  .page-my #cc-errata .errata-msearch .oh-input{width:100%;height:auto;padding:12px 56px 12px 24px;border-radius:86px;border-color:var(--line);
+    background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'><circle cx='11' cy='11' r='7.25' stroke='%231d1717' stroke-width='1.8'/><path d='M16.5 16.5l4 4' stroke='%231d1717' stroke-width='1.8' stroke-linecap='round'/></svg>") right 20px center/28px no-repeat;}
+  .page-my #cc-errata .errata-msearch .oh-input-x{right:52px;}
+  /* 교재 선택 닫힘: 하단 여백 24 */
+  .page-my #cc-errata .errata-filter.closed{padding-bottom:0;}
   /* 회색박스 하단: 교재 선택 아코디언 */
   .page-my #cc-errata .errata-filter{display:block;background:#f7f7f7;border:0;border-radius:0;margin:0;padding:0 20px 40px;}
   .page-my #cc-errata .ef-row{flex-direction:column;align-items:stretch;gap:8px;}
