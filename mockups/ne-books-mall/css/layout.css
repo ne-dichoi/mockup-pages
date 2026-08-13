@@ -858,7 +858,7 @@ a{color:inherit;text-decoration:none;}
     column-gap:16px;row-gap:16px;align-items:start;
     padding:24px 0 24px 30px;
   }
-  .citem > .row-chk{position:absolute;left:0;top:36px;justify-self:auto;margin:0;}
+  .citem > .row-chk{position:absolute;left:0;top:64px;justify-self:auto;margin:0;}  /* 썸네일(24~124, 중앙74) 세로 중앙 정렬 */
   .cthumb{grid-area:thumb;width:100px;height:100px;align-self:start;padding:12% 18%;}
   .cname{grid-area:title;align-self:start;font-size:15px;line-height:1.45;}
   .cdel{grid-area:del;align-self:start;justify-self:end;}
