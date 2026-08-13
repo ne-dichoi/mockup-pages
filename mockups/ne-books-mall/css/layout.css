@@ -850,16 +850,16 @@ a{color:inherit;text-decoration:none;}
   .co-side.cart-side, .co-side.order-side{padding:40px 28px;}
   .citem{
     position:relative;
-    grid-template-columns:100px minmax(0,1fr) auto auto;
+    grid-template-columns:120px minmax(0,1fr) auto auto;
     grid-template-rows:auto auto;
     grid-template-areas:
       "thumb title title del"
       "thumb price qty  csum";
-    column-gap:16px;row-gap:16px;align-items:start;
+    column-gap:24px;row-gap:16px;align-items:start;
     padding:24px 0 24px 30px;
   }
-  .citem > .row-chk{position:absolute;left:0;top:64px;justify-self:auto;margin:0;}  /* 썸네일(24~124, 중앙74) 세로 중앙 정렬 */
-  .cthumb{grid-area:thumb;width:100px;height:100px;align-self:start;padding:12% 18%;}
+  .citem > .row-chk{position:absolute;left:0;top:74px;justify-self:auto;margin:0;}  /* 썸네일(24~144, 중앙84) 세로 중앙 정렬 */
+  .cthumb{grid-area:thumb;width:120px;height:120px;align-self:start;padding:15% 23%;}
   .cname{grid-area:title;align-self:start;font-size:15px;line-height:1.45;}
   .cdel{grid-area:del;align-self:start;justify-self:end;}
   .cprice{grid-area:price;align-self:end;align-items:flex-start;text-align:left;}
