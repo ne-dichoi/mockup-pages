@@ -437,7 +437,8 @@ a{color:inherit;text-decoration:none;}
 .ptitle{font-family:var(--display);font-size:28px;font-weight:700;color:var(--ink);margin:24px 0 0;line-height:1.2;}
 .pdesc{font-size:14px;color:var(--muted);margin-top:8px;}
 .ptags{display:flex;column-gap:12px;row-gap:5px;flex-wrap:wrap;margin-top:auto;padding-top:18px;font-size:13px;color:#a9a9a9;}
-.page-buy .pinfo{padding-right:324px;box-sizing:border-box;}  /* 절대배치 .pactions(기본 버튼행 ~297px) 자리 확보 — 태그 2줄이어도 버튼과 겹치지 않게 */
+.page-buy .pinfo{padding-right:132px;box-sizing:border-box;}  /* 상단 우측 가격 컬럼(~114px)만 회피 — 라벨/제목/설명이 넓게 쓰이도록 */
+.page-buy .ptags{padding-right:186px;}  /* 태그(하단)만 추가로 버튼행(~297px) 회피 → 라벨/제목은 안 좁아지고 태그만 버튼과 안 겹침 */
 .page-buy .pactions{position:absolute;right:0;top:40px;bottom:40px;display:flex;flex-direction:column;align-items:flex-end;gap:14px;width:auto;}
 .page-study .pactions{position:absolute;right:0;top:40px;display:flex;flex-direction:column;align-items:flex-end;gap:14px;width:auto;}
 .page-buy .picons, .page-study .picons{display:flex;align-items:center;gap:16px;color:#666;font-size:13px;font-weight:500;}
@@ -506,7 +507,7 @@ a{color:inherit;text-decoration:none;}
   .page-buy .pprice .now{font-size:24px;}
   .page-buy .pbtns{gap:6px;}
   .page-buy .pbtns a{min-width:0;padding:9px 12px;font-size:13px;}
-  .page-buy .pinfo{padding-right:248px;}  /* 좁은 폭은 버튼이 축소(~223px)되므로 예약폭도 축소 */
+  .page-buy .ptags{padding-right:112px;}  /* 좁은 폭은 버튼 축소(~223px) → 태그 회피폭도 축소 */
   /* 학습자료: 회색박스는 유지, 책 이미지만 더 작게 + 카트를 책 우측 귀퉁이에 걸치게 + 자료 아이콘 약간 축소 */
   .page-study .pcover{width:200px;height:200px;}
   .page-study .pcover img{width:100px;}
