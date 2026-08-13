@@ -1,22 +1,24 @@
 /* GNB 검색창 레이어 팝업 — 클릭 시 인기 검색어, 입력 시 자동완성(교재명 리스트 + 미리보기) */
 (function(){
   // 자동완성 교재 데이터 (와이어프레임용 샘플)
+  // errata:true = 해당 교재에 정오표 등록됨(1:1문의 교재오류신고 시 정오안내·페이지 노출)
+  // 데모용으로 대부분 등록, 일부(errata 미표기)는 미등록 상태로 조건부 동작 확인 가능
   var BOOKS=[
-    {title:"세 마리 토끼 잡는 초등 독서논술 A단계 세트", img:"assets/best_1.png", url:"교재상세.html"},
-    {title:"세 마리 토끼 잡는 초등 독서논술 A1", img:"assets/best_1.png", url:"교재상세.html"},
-    {title:"세 마리 토끼 잡는 초등 독서논술 A2", img:"assets/best_1.png", url:"교재상세.html"},
-    {title:"세 마리 토끼 잡는 초등 독서논술 A3", img:"assets/best_1.png", url:"교재상세.html"},
+    {title:"세 마리 토끼 잡는 초등 독서논술 A단계 세트", img:"assets/best_1.png", url:"교재상세.html", errata:true},
+    {title:"세 마리 토끼 잡는 초등 독서논술 A1", img:"assets/best_1.png", url:"교재상세.html", errata:true},
+    {title:"세 마리 토끼 잡는 초등 독서논술 A2", img:"assets/best_1.png", url:"교재상세.html", errata:true},
+    {title:"세 마리 토끼 잡는 초등 독서논술 A3", img:"assets/best_1.png", url:"교재상세.html", errata:true},
     {title:"세 마리 토끼 잡는 초등 독서논술 A4", img:"assets/best_1.png", url:"교재상세.html"},
-    {title:"세 마리 토끼 잡는 초등 독서논술 A5", img:"assets/best_1.png", url:"교재상세.html"},
-    {title:"세 마리 토끼 잡는 초등 독서논술 B단계 세트", img:"assets/best_1.png", url:"교재상세.html"},
-    {title:"세 마리 토끼 잡는 초등 독서논술 B1", img:"assets/best_1.png", url:"교재상세.html"},
-    {title:"세 마리 토끼 잡는 초등 독서논술 B2", img:"assets/best_1.png", url:"교재상세.html"},
-    {title:"세 마리 토끼 잡는 초등 독서논술 B3", img:"assets/best_1.png", url:"교재상세.html"},
+    {title:"세 마리 토끼 잡는 초등 독서논술 A5", img:"assets/best_1.png", url:"교재상세.html", errata:true},
+    {title:"세 마리 토끼 잡는 초등 독서논술 B단계 세트", img:"assets/best_1.png", url:"교재상세.html", errata:true},
+    {title:"세 마리 토끼 잡는 초등 독서논술 B1", img:"assets/best_1.png", url:"교재상세.html", errata:true},
+    {title:"세 마리 토끼 잡는 초등 독서논술 B2", img:"assets/best_1.png", url:"교재상세.html", errata:true},
+    {title:"세 마리 토끼 잡는 초등 독서논술 B3", img:"assets/best_1.png", url:"교재상세.html", errata:true},
     {title:"Phonics Code 1 : Student Book", img:"assets/best_1.png", url:"교재상세.html", errata:true},
     {title:"능률 VOCA 어원편", img:"assets/best_2.png", url:"교재상세.html"},
     {title:"Bricks Reading 150 Level 1", img:"assets/best_3.png", url:"교재상세.html", errata:true},
     {title:"Grammar Zone 기본편 1", img:"assets/best_4.png", url:"교재상세.html", errata:true},
-    {title:"리딩튜터 입문", img:"assets/best_5.png", url:"교재상세.html"},
+    {title:"리딩튜터 입문", img:"assets/best_5.png", url:"교재상세.html", errata:true},
     {title:"주니어 리딩튜터 1", img:"assets/best_2.png", url:"교재상세.html", errata:true},
     {title:"중등 영어문법 3800제", img:"assets/best_3.png", url:"교재상세.html"},
     {title:"워드마스터 중등 베이직", img:"assets/best_4.png", url:"교재상세.html"}

@@ -8,9 +8,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260813h">
-<script src="js/layout.js?v=20260813h" defer></script>
-<script src="js/search.js?v=20260813h" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260813j">
+<script src="js/layout.js?v=20260813j" defer></script>
+<script src="js/search.js?v=20260813j" defer></script>
 </head>
 <body class="page-my">
 
@@ -757,6 +757,7 @@
     var errataRow=document.getElementById('iqErrataRow'), pageRow=document.getElementById('iqPageRow');
     var cat=document.getElementById('iqCat');
     var curErrata=false; /* 선택된 교재의 정오표 등록 여부 */
+    var bookPicked=false; /* 교재 선택 여부 */
     var radios=[].slice.call(qna.querySelectorAll('input[name="iqType"]'));
     var PH='문의분류를 선택해 주세요';
     var CAT={
@@ -783,22 +784,25 @@
       });
       cat.dispatchEvent(new CustomEvent('iqcatchange'));
     }
-    function setErrataUI(show){
-      if(errataRow) errataRow.hidden=!show;
-      if(pageRow) pageRow.hidden=!show;
+    function syncBookExtras(){
+      var sel=qna.querySelector('input[name="iqType"]:checked'); var v=sel?sel.value:'';
+      var isErr=(v==='error');
+      /* 페이지: 교재 오류신고 + 교재 선택 시 무조건 노출 */
+      if(pageRow) pageRow.hidden=!(isErr && bookPicked);
+      /* 정오안내: 위 조건 + 해당 교재에 정오표가 등록된 경우에만 노출 */
+      if(errataRow) errataRow.hidden=!(isErr && bookPicked && curErrata);
     }
     function upd(){
       var sel=qna.querySelector('input[name="iqType"]:checked'); var v=sel?sel.value:'';
       if(bookRow) bookRow.hidden=(v!=='error');
       if(orderRow) orderRow.hidden=(v!=='order');
-      /* 정오안내·페이지: 교재 오류신고 + 정오표 등록 교재 선택 시에만 */
-      setErrataUI(v==='error' && curErrata);
+      syncBookExtras();
       renderCat(CAT[v]||CAT.general);
     }
     radios.forEach(function(r){ r.addEventListener('change',upd); });
-    /* 교재 선택/해제 시 정오표 등록 여부에 따라 정오안내·페이지 노출 */
-    qna.addEventListener('bookselected',function(e){ curErrata=!!(e.detail&&e.detail.errata); upd(); });
-    qna.addEventListener('bookdeselected',function(){ curErrata=false; upd(); });
+    /* 교재 선택: 페이지 무조건 노출, 정오안내는 정오표 등록 시 / 해제: 둘 다 숨김 */
+    qna.addEventListener('bookselected',function(e){ curErrata=!!(e.detail&&e.detail.errata); bookPicked=true; syncBookExtras(); });
+    qna.addEventListener('bookdeselected',function(){ curErrata=false; bookPicked=false; syncBookExtras(); });
     upd();
   })();
 
