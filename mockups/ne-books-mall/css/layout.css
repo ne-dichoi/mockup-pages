@@ -1303,8 +1303,8 @@ a{color:inherit;text-decoration:none;}
 .iq-help{font-size:12px;color:var(--weak);line-height:1.7;}
 /* 정오안내(교재 오류신고) */
 .iq-errata-top{display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
-.iq-errata-msg{font-size:14px;color:var(--ink);line-height:1.6;}
-.iq-errata-sub{font-size:13px;color:var(--muted);line-height:1.6;}
+.iq-errata-msg{font-size:14px;color:#666;line-height:1.6;}
+.iq-errata-sub{font-size:14px;color:#666;line-height:1.6;}
 .iq-errata-btn{height:40px;padding:0 20px;font-size:14px;}
 .iq-form .oh-sel{width:100%;}/* 상담분류·주문번호/상품 셀렉트 풀 width (Figma) */
 /* 지사안내 – 안내 박스(불릿 없는 좌측 텍스트 + 우측 고객센터 정보) */
