@@ -8,9 +8,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260814a">
-<script src="js/layout.js?v=20260814a" defer></script>
-<script src="js/search.js?v=20260814a" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260814b">
+<script src="js/layout.js?v=20260814b" defer></script>
+<script src="js/search.js?v=20260814b" defer></script>
 </head>
 <body class="page-my">
 
@@ -319,27 +319,29 @@
       </div>
       <div class="my-panel" id="cc-errata" hidden>
 
-        <!-- 교재 선택 필터 -->
-        <div class="errata-filter">
+        <!-- 교재 선택 필터 (PC: 가로 필터 / 모바일: 아코디언) -->
+        <div class="errata-filter" id="errataFilter">
           <div class="ef-row">
-            <span class="ef-label">교재 선택</span>
-            <div class="oh-sel">
-              <button type="button" class="oh-sel-cur"><span class="oh-sel-lb">구분</span><span class="ic"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#1d1717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
-              <div class="oh-sel-menu" hidden><a class="on" data-ph>구분</a><a>정오표</a><a>수정사항</a></div>
+            <button type="button" class="ef-label ef-acc-head" id="efAccHead">교재 선택<span class="ef-acc-chev only-mo" aria-hidden="true"><svg viewBox="0 0 18 18" fill="none"><path d="M4.5 6.75L9 11.25l4.5-4.5" stroke="#1d1717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+            <div class="ef-body">
+              <div class="oh-sel">
+                <button type="button" class="oh-sel-cur"><span class="oh-sel-lb">구분</span><span class="ic"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#1d1717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+                <div class="oh-sel-menu" hidden><a class="on" data-ph>구분</a><a>정오표</a><a>수정사항</a></div>
+              </div>
+              <div class="oh-sel">
+                <button type="button" class="oh-sel-cur"><span class="oh-sel-lb">영역/대상</span><span class="ic"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#1d1717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+                <div class="oh-sel-menu" hidden><a class="on" data-ph>영역/대상</a><a>초등</a><a>중등</a><a>고등</a></div>
+              </div>
+              <div class="oh-sel grow">
+                <button type="button" class="oh-sel-cur"><span class="oh-sel-lb">교재 시리즈</span><span class="ic"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#1d1717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+                <div class="oh-sel-menu" hidden><a class="on" data-ph>교재 시리즈</a><a>문법이 마법중</a><a>내신백신</a><a>리딩튜터</a></div>
+              </div>
+              <div class="oh-sel grow">
+                <button type="button" class="oh-sel-cur"><span class="oh-sel-lb">교재명</span><span class="ic"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#1d1717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+                <div class="oh-sel-menu" hidden><a class="on" data-ph>교재명</a><a>Level 1</a><a>Level 2</a><a>Level 3</a></div>
+              </div>
+              <button type="button" class="ef-search">검색</button>
             </div>
-            <div class="oh-sel">
-              <button type="button" class="oh-sel-cur"><span class="oh-sel-lb">영역/대상</span><span class="ic"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#1d1717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
-              <div class="oh-sel-menu" hidden><a class="on" data-ph>영역/대상</a><a>초등</a><a>중등</a><a>고등</a></div>
-            </div>
-            <div class="oh-sel grow">
-              <button type="button" class="oh-sel-cur"><span class="oh-sel-lb">교재 시리즈</span><span class="ic"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#1d1717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
-              <div class="oh-sel-menu" hidden><a class="on" data-ph>교재 시리즈</a><a>문법이 마법중</a><a>내신백신</a><a>리딩튜터</a></div>
-            </div>
-            <div class="oh-sel grow">
-              <button type="button" class="oh-sel-cur"><span class="oh-sel-lb">교재명</span><span class="ic"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#1d1717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
-              <div class="oh-sel-menu" hidden><a class="on" data-ph>교재명</a><a>Level 1</a><a>Level 2</a><a>Level 3</a></div>
-            </div>
-            <button type="button" class="ef-search">검색</button>
           </div>
         </div>
 
@@ -872,6 +874,13 @@
       el.addEventListener('click',function(e){ if(moved){ e.preventDefault(); e.stopPropagation(); } },true);
     }
     [].slice.call(document.querySelectorAll('.pt-tabs')).forEach(dragScroll);
+  })();
+
+  /* 교재오류정정(모바일): '교재 선택' 아코디언 펼침/닫힘 */
+  (function(){
+    var head=document.getElementById('efAccHead'), box=document.getElementById('errataFilter');
+    if(!head||!box) return;
+    head.addEventListener('click',function(e){ e.preventDefault(); box.classList.toggle('closed'); });
   })();
   </script>
 
