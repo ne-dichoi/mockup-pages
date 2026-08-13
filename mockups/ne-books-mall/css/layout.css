@@ -1209,8 +1209,18 @@ a{color:inherit;text-decoration:none;}
 .qd-qty{color:var(--weak);font-weight:400;}
 .qd-btn{display:inline-flex;align-items:center;justify-content:center;width:280px;height:52px;box-sizing:border-box;border:1px solid var(--btn);border-radius:8px;background:#fff;color:var(--ink);font-size:14px;font-weight:500;cursor:pointer;}
 .qd-btn:hover{background:var(--gray-bg);}
+/* 답변완료: 답변 소제목 + 날짜 */
+.qd-answer-subj{margin-top:16px;font-size:16px;font-weight:700;color:var(--ink);display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;}
+.qd-answer-date{font-size:13px;font-weight:400;color:var(--weak);}
+.qd-answered .qd-table{margin-top:16px;}
+/* 답변대기: 상/하 구분선 박스 + 가운데 정렬 안내 */
+.qd-pending{margin-top:16px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:96px 20px;text-align:center;}
 .qd-pending-t{font-size:18px;font-weight:700;color:var(--ink);}
 .qd-pending-s{margin-top:8px;font-size:14px;color:var(--muted);}
+/* 탭(알약)↔첫 섹션 타이틀 간격 = 56 (탭 margin-bottom 40 + 16) */
+@media (min-width:1024px){
+  .page-my .my-tabs + .qd-sec{padding-top:16px;}
+}
 .qd-list-btn{height:44px;min-width:120px;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--ink);border-radius:8px;padding:0 25px;font-size:14px;font-weight:500;color:var(--ink);background:#fff;cursor:pointer;text-decoration:none;}
 .qd-list-btn:hover{background:var(--gray-bg);}
 
@@ -2941,9 +2951,13 @@ a{color:inherit;text-decoration:none;}
   .page-my .qd-file{font-size:14px;}
   /* 답변 = 전체폭 회색 박스(제목·날짜·라인·내용·첨부) */
   .page-my .qd-answer{background:var(--gray-bg);padding:40px 20px;border-top:0;}
+  .page-my .qd-answer .qd-sec-t{display:none;}          /* '답변' 헤딩 숨김 — 회색박스 내용으로 대체 */
+  .page-my .qd-answer-subj{margin-top:0;}
+  /* 답변대기: 회색박스 안 좌측정렬·테두리/여백 없음(PC의 상하선 가운데박스 미적용) */
+  .page-my .qd-pending{margin-top:0;border:0;padding:0;text-align:left;}
   /* 목록 버튼: 회색 박스 이어짐 + 전체폭 아웃라인 */
   .page-my .qd-actions{background:var(--gray-bg);padding:0 20px calc(40px + env(safe-area-inset-bottom));}
-  .page-my .qd-btn{width:100%;height:52px;font-size:15px;}
+  .page-my .qd-btn, .page-my .qd-list-btn{width:100%;min-width:0;height:52px;font-size:15px;}
 }
 
 /* ===== 마이페이지 후기 (모바일) — Figma 2641-4768 ===== */
