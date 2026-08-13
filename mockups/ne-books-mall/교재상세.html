@@ -8,9 +8,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260813z2">
-<script src="js/layout.js?v=20260813z2" defer></script>
-<script src="js/search.js?v=20260813z2" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260813z3">
+<script src="js/layout.js?v=20260813z3" defer></script>
+<script src="js/search.js?v=20260813z3" defer></script>
 </head>
 <body class="page-detail">
 
@@ -383,6 +383,31 @@
     </div>
   </div>
 
+  <!-- PC 렉사일 툴팁(라벨 클릭 시) -->
+  <div id="lexileTip" class="lexile-tip only-pc" aria-hidden="true">
+    <div class="lt-body">
+      <h4>Lexile® measures (렉사일 지수)</h4>
+      <p>가장 널리 활용되는 영어 리딩 지수인 Lexile® measures(국문명; 렉사일 지수)는 미국 교육연구소인 MetaMetrics®가 개발한 영어읽기지수이다. Lexile® measures는 MetaMetrics®가 수년간의 엄격한 연구결과로 개발한 Lexile® Scale(렉사일 척도)로 측정한 것으로써 독자의 리딩 실력(Reader Ability)과 텍스트 난이도(Text readability)를 따로 각각 측정한다. 현재 미국에서만 매년 3,500 만 명 학생들이 Lexile® measures를 평가, 보고 받고 있고 Lexile® measures는 1억건 이상의 각종 영어 논문, 영어 서적, 영어 자료를 측정하였다.</p>
+      <p class="lt-sub">Typical Reader Measures, by Grade (미국 학생들의 실제 Lexile® measures)</p>
+      <table class="lt-table">
+        <thead><tr><th>grade</th><th>Reader Measures, Mid-Year<br>25th percentile to 75th percentile (IQR)</th></tr></thead>
+        <tbody>
+          <tr><td class="lt-grade">1</td><td class="lt-grade">UP - 300L</td></tr>
+          <tr><td class="lt-grade">2</td><td class="lt-grade">140L - 500L</td></tr>
+          <tr><td class="lt-grade">3</td><td class="lt-grade">330L - 700L</td></tr>
+          <tr><td class="lt-grade">4</td><td class="lt-grade">445L - 810L</td></tr>
+          <tr><td class="lt-grade">5</td><td class="lt-grade">565L - 910L</td></tr>
+          <tr><td class="lt-grade">6</td><td class="lt-grade">665L - 1000L</td></tr>
+          <tr><td class="lt-grade">7</td><td class="lt-grade">735L - 1065L</td></tr>
+          <tr><td class="lt-grade">8</td><td class="lt-grade">805L - 1100L</td></tr>
+          <tr><td class="lt-grade">9</td><td class="lt-grade">855L - 1165L</td></tr>
+          <tr><td class="lt-grade">10</td><td class="lt-grade">905L - 1195L</td></tr>
+          <tr><td class="lt-grade">11 and 12</td><td class="lt-grade">940L - 1210L</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
   <!-- 안내 바텀시트 (포인트/배송비) - 모바일 전용 -->
   <div class="lex-dim only-mo" id="infoDim"></div>
   <div class="lex-sheet only-mo" id="infoSheet" role="dialog" aria-modal="true" aria-hidden="true">
@@ -620,17 +645,32 @@
       btn.addEventListener('click',function(){ btn.classList.toggle('on'); });
     });
 
-    /* 렉사일 지수 라벨 탭 → 바텀시트 열기(내용은 PC와 동일, 길면 스크롤) */
+    /* 렉사일 지수 라벨 클릭 → PC: 툴팁 팝업 / 모바일: 바텀시트 */
     (function(){
       var sheet=document.getElementById('lexSheet'), dim=document.getElementById('lexDim');
       var badge=document.querySelector('.dh-badges .badge.lexile');
-      if(!sheet||!dim||!badge) return;
-      function open(){ sheet.classList.add('open'); dim.classList.add('open'); sheet.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
-      function close(){ sheet.classList.remove('open'); dim.classList.remove('open'); sheet.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
-      badge.addEventListener('click',open);
-      dim.addEventListener('click',close);
-      var grab=sheet.querySelector('.lex-grab'); if(grab) grab.addEventListener('click',close);
-      document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&sheet.classList.contains('open')) close(); });
+      var tip=document.getElementById('lexileTip');
+      if(!badge) return;
+      function open(){ if(!sheet||!dim)return; sheet.classList.add('open'); dim.classList.add('open'); sheet.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
+      function close(){ if(!sheet||!dim)return; sheet.classList.remove('open'); dim.classList.remove('open'); sheet.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+      function positionTip(){
+        var r=badge.getBoundingClientRect(); var tw=tip.offsetWidth;
+        var left=window.scrollX+r.left;
+        var maxLeft=window.scrollX+document.documentElement.clientWidth-tw-16;
+        if(left>maxLeft)left=maxLeft; if(left<window.scrollX+8)left=window.scrollX+8;
+        tip.style.left=left+'px'; tip.style.top=(window.scrollY+r.bottom+10)+'px';
+      }
+      badge.addEventListener('click',function(e){
+        if(window.matchMedia('(min-width:1024px)').matches && tip){
+          e.stopPropagation();
+          if(tip.classList.contains('show')){ tip.classList.remove('show'); return; }
+          tip.scrollTop=0; tip.classList.add('show'); positionTip();
+        } else { open(); }
+      });
+      if(dim) dim.addEventListener('click',close);
+      var grab=sheet?sheet.querySelector('.lex-grab'):null; if(grab) grab.addEventListener('click',close);
+      document.addEventListener('click',function(e){ if(tip&&tip.classList.contains('show')&&!tip.contains(e.target)&&!badge.contains(e.target)&&e.target!==badge){ tip.classList.remove('show'); } });
+      document.addEventListener('keydown',function(e){ if(e.key==='Escape'){ if(sheet&&sheet.classList.contains('open')) close(); if(tip) tip.classList.remove('show'); } });
     })();
 
     /* 모바일: 적립/배송비 안내 i 아이콘 탭 → 안내 바텀시트 (PC는 hover 툴팁 유지) */
