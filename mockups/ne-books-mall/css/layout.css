@@ -481,9 +481,9 @@ a{color:inherit;text-decoration:none;}
 .pdiscount .tag.jeok{background:#666666;}
 .pdiscount .pct{font-weight:800;}
 .pdiscount .pct.red{color:var(--red);}
-.pprice{text-align:right;line-height:1;}
-.pprice .was{font-size:14px;color:#a9a9a9;text-decoration:line-through;}
-.pprice .now{font-family:var(--display);font-weight:800;font-size:28px;color:var(--ink);margin-top:4px;}
+.pprice{display:flex;align-items:baseline;justify-content:flex-end;gap:8px;line-height:1;}
+.pprice .was{font-size:14px;color:#a9a9a9;text-decoration:line-through;flex:none;}
+.pprice .now{font-family:var(--display);font-weight:800;font-size:28px;color:var(--ink);flex:none;}
 .pprice .now small{font-family:var(--sans);font-weight:500;font-size:14px;}
 .pbtns{display:flex;gap:8px;}
 .pbtns a{text-align:center;border-radius:8px;font-size:14px;font-weight:500;padding:16px 22px;white-space:nowrap;box-sizing:border-box;}/* 내용에 맞는 가로폭(고정 min-width 제거) */
@@ -504,6 +504,7 @@ a{color:inherit;text-decoration:none;}
   .page-buy .pcover img{width:92px;}
   .page-buy .ptitle{font-size:22px;margin-top:16px;line-height:1.25;}
   .page-buy .pdesc,.page-study .pdesc{font-size:13px;line-height:1.6;}
+  .page-buy .pdesc{padding-right:60px;}  /* 좁은 폭: 설명이 가로 정가/할인가와 겹치지 않게 회피 */
   .page-buy .pprice .now{font-size:24px;}
   .page-buy .pbtns{gap:6px;}
   .page-buy .pbtns a{min-width:0;padding:9px 12px;font-size:13px;}
