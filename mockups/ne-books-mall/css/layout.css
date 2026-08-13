@@ -529,6 +529,12 @@ a{color:inherit;text-decoration:none;}
   .page-detail .dt-body{grid-template-columns:minmax(0,1fr) 240px;column-gap:28px;}
   .page-detail .dt-main{padding-right:28px;}
 }
+/* 교재 상세: 중간 폭(1140-1279) → 커버 중간 크기로 줄여 오른쪽 잘림 방지 */
+@media (min-width:1140px) and (max-width:1279px){
+  .page-detail .dt-hero{grid-template-columns:480px minmax(0,1fr);column-gap:72px;padding-bottom:72px;}
+  .page-detail .dh-cover{width:480px;height:480px;}
+  .page-detail .dh-info{height:480px;}
+}
 .pager{display:flex;align-items:center;justify-content:center;gap:4px;padding:40px 0 10px;}
 .pager a{width:36px;height:36px;font-size:14px;color:#a9a9a9;display:flex;align-items:center;justify-content:center;cursor:pointer;border-radius:9999px;}
 .pager a:hover{color:#1d1717;}
