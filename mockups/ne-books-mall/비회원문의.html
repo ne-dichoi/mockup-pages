@@ -8,9 +8,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260813z">
-<script src="js/layout.js?v=20260813z" defer></script>
-<script src="js/search.js?v=20260813z" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260813z2">
+<script src="js/layout.js?v=20260813z2" defer></script>
+<script src="js/search.js?v=20260813z2" defer></script>
 </head>
 <body class="page-my">
 
@@ -94,6 +94,27 @@
                 <span class="iq-bk-title"></span>
                 <button type="button" class="iq-bk-del">삭제</button>
               </div>
+            </div>
+          </div>
+
+          <!-- 정오안내 (교재 오류신고 + 정오표가 등록된 교재 선택 시에만 노출) -->
+          <div class="iq-row" id="iqErrataRow" hidden>
+            <div class="iq-label">정오안내</div>
+            <div class="iq-field">
+              <div class="iq-errata-top">
+                <p class="iq-errata-msg">* 본 교재에 대한 정오표가 등록되어 있습니다.</p>
+                <a class="btn-line iq-errata-btn" href="오류정정상세.html">확인</a>
+              </div>
+              <p class="iq-errata-sub">* 정오 내용은 최근 인쇄본에 반영되었을 수 있으며, 미반영된 경우 추후 생산분에 반영될 예정입니다.</p>
+            </div>
+          </div>
+
+          <!-- 페이지 (교재 오류신고 + 교재 선택 시 무조건 노출, 필수) -->
+          <div class="iq-row" id="iqPageRow" hidden>
+            <div class="iq-label">페이지 <span class="iq-req">*</span></div>
+            <div class="iq-field">
+              <input class="iq-in full iq-clear" type="text" inputmode="numeric" placeholder="페이지 수를 입력해 주세요.">
+              <p class="iq-help">* 페이지를 특정할 수 없는 경우 숫자 0을 입력해 주세요.</p>
             </div>
           </div>
 
@@ -238,12 +259,24 @@
     });
     document.addEventListener('click',function(e){ if(!e.target.closest('.oh-sel')) closeAll(); });
 
-    /* 상담유형 → 교재명 행 토글 (비회원은 주문번호 행 없음) */
+    /* 상담유형 → 교재명/정오안내/페이지 행 토글 (비회원은 주문번호 행 없음) */
     var bookRow=document.getElementById('iqBookRow');
+    var errataRow=document.getElementById('iqErrataRow'), pageRow=document.getElementById('iqPageRow');
     var radios=[].slice.call(document.querySelectorAll('input[name="iqType"]'));
+    var curErrata=false, bookPicked=false;
+    function syncBookExtras(){
+      var sel=document.querySelector('input[name="iqType"]:checked'); var v=sel?sel.value:'';
+      var isErr=(v==='error');
+      if(pageRow) pageRow.hidden=!(isErr && bookPicked);                 /* 페이지: 교재 선택 시 무조건 */
+      if(errataRow) errataRow.hidden=!(isErr && bookPicked && curErrata); /* 정오안내: 정오표 등록 교재만 */
+    }
     function upd(){ var sel=document.querySelector('input[name="iqType"]:checked'); var v=sel?sel.value:'';
-      if(bookRow) bookRow.hidden=(v!=='error'); }
-    radios.forEach(function(r){ r.addEventListener('change',upd); }); upd();
+      if(bookRow) bookRow.hidden=(v!=='error'); syncBookExtras(); }
+    radios.forEach(function(r){ r.addEventListener('change',upd); });
+    /* 교재 선택/해제 이벤트(search.js) 수신 → 페이지·정오안내 노출 갱신 */
+    document.addEventListener('bookselected',function(e){ curErrata=!!(e.detail&&e.detail.errata); bookPicked=true; syncBookExtras(); });
+    document.addEventListener('bookdeselected',function(){ curErrata=false; bookPicked=false; syncBookExtras(); });
+    upd();
 
     /* 캡차 새로고침 */
     var refreshBtn=document.getElementById('captchaRefresh'), code=document.getElementById('captchaCode');
