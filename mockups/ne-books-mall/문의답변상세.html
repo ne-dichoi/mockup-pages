@@ -8,9 +8,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260813x">
-<script src="js/layout.js?v=20260813x" defer></script>
-<script src="js/search.js?v=20260813x" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260813y">
+<script src="js/layout.js?v=20260813y" defer></script>
+<script src="js/search.js?v=20260813y" defer></script>
 </head>
 <body class="page-my">
 
@@ -35,8 +35,21 @@
         <a href="마이페이지.html">이벤트/세미나</a>
       </div>
 
-      <!-- 문의 -->
-      <section class="qd-sec">
+      <!-- 문의 (PC): 1:1 문의 상세 = 표 형식(문의분류/제목/등록일/주문번호/상품/내용) -->
+      <section class="qd-sec only-pc">
+        <h2 class="qd-sec-t">1:1 문의 상세</h2>
+        <div class="qd-table" style="margin-top:16px">
+          <div class="qd-row"><span class="qd-th">문의분류</span><span class="qd-td">주문·배송 관련 문의</span></div>
+          <div class="qd-row"><span class="qd-th">제목</span><span class="qd-td"><span class="qd-title-row">부분 환불 하고 싶어요 <span class="qa-badge done" id="qdBadgePc">답변완료</span></span></span></div>
+          <div class="qd-row"><span class="qd-th">등록일</span><span class="qd-td">2026-06-08</span></div>
+          <div class="qd-row"><span class="qd-th">주문번호</span><span class="qd-td"><a class="qd-file" href="주문상세.html">NB20260608-000112</a></span></div>
+          <div class="qd-row"><span class="qd-th">환불 문의 상품·수량</span><span class="qd-td qd-prods"><span class="qd-prod">Bricks Reading 150 · L1<span class="qd-qty">수량 5</span></span><span class="qd-prod">Phonics Code 2 : Student Book(10)<span class="qd-qty">수량 10</span></span></span></div>
+          <div class="qd-row"><span class="qd-th">내용</span><span class="qd-td body">주문한 상품 중 일부만 환불하고 싶습니다. Bricks Reading 150 · L1 은 그대로 두고 Phonics Code 2 : Student Book 만 환불 가능한지 확인 부탁드립니다. 절차와 환불 예상 금액도 함께 안내해 주세요.</span></div>
+        </div>
+      </section>
+
+      <!-- 문의 (모바일): 기존 디자인 유지 -->
+      <section class="qd-sec only-mo">
         <div class="qd-head"><h2 class="qd-title" id="qdTitle">부분 환불 하고 싶어요</h2><p class="qd-date" id="qdDate">2026-09-25</p></div>
         <div class="qd-table">
           <div class="qd-row"><span class="qd-th">주문번호</span><span class="qd-td" id="qdOrder">NB20260608-000112</span></div>
@@ -82,6 +95,9 @@
     var answered=document.getElementById('qdAnswered'), pending=document.getElementById('qdPending');
     if(st==='wait'){ if(answered) answered.hidden=true; if(pending) pending.hidden=false; }
     else { if(answered) answered.hidden=false; if(pending) pending.hidden=true; }
+    /* PC 제목 옆 상태 배지: 대기=빨강, 완료=검정 */
+    var badge=document.getElementById('qdBadgePc');
+    if(badge){ if(st==='wait'){ badge.textContent='답변대기'; badge.className='qa-badge wait'; } else { badge.textContent='답변완료'; badge.className='qa-badge done'; } }
   })();
   </script>
 
