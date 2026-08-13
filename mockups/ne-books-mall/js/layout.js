@@ -181,25 +181,46 @@
     var header=document.getElementById('site-header'); if(!header) return;
     var mq=window.matchMedia('(min-width:1024px)');
     var lastY=window.pageYOffset||0, ticking=false;
+    var fullH=145, gnbH=58;
+    /* sticky 서브탭/사이드가 항상 '현재 헤더 높이' 바로 아래에 붙도록 --stick-top 갱신
+       (헤더가 위로 스크롤 시 펼쳐져도 탭이 덮이지 않게) */
+    function setStick(){
+      if(!mq.matches){ document.body.style.removeProperty('--stick-top'); return; }
+      var h=header.classList.contains('pc-collapsed')?gnbH:fullH;
+      document.body.style.setProperty('--stick-top', h+'px');
+    }
     function measure(){
-      if(!mq.matches){ document.body.style.removeProperty('--hdr-h'); document.body.style.removeProperty('--gnb-h'); return; }
+      if(!mq.matches){ document.body.style.removeProperty('--hdr-h'); document.body.style.removeProperty('--gnb-h'); document.body.style.removeProperty('--stick-top'); return; }
       header.classList.remove('pc-collapsed');
       var lh=header.querySelector('.lheader');
       var gnb=header.querySelector('.gnb');
-      var full=lh?Math.round(lh.getBoundingClientRect().height):145;
-      document.body.style.setProperty('--hdr-h', full+'px');
-      if(gnb) document.body.style.setProperty('--gnb-h', Math.round(gnb.getBoundingClientRect().height)+'px');
+      fullH=lh?Math.round(lh.getBoundingClientRect().height):145;
+      if(gnb) gnbH=Math.round(gnb.getBoundingClientRect().height);
+      document.body.style.setProperty('--hdr-h', fullH+'px');
+      document.body.style.setProperty('--gnb-h', gnbH+'px');
+      setStick();
     }
     function apply(){
       ticking=false;
-      if(!mq.matches){ header.classList.remove('pc-collapsed'); lastY=window.pageYOffset||0; return; }
+      if(!mq.matches){ header.classList.remove('pc-collapsed'); lastY=window.pageYOffset||0; setStick(); return; }
       var y=window.pageYOffset||0; if(y<0) y=0;
-      if(y<=100){ header.classList.remove('pc-collapsed'); lastY=y; return; }
+      if(y<=100){ header.classList.remove('pc-collapsed'); lastY=y; setStick(); return; }
       var dy=y-lastY;
       /* 방향 데드존(10px): 미세 스크롤로 토글이 튀지 않도록 */
-      if(dy>10){ header.classList.add('pc-collapsed'); lastY=y; }
-      else if(dy<-10){ header.classList.remove('pc-collapsed'); lastY=y; }
+      if(dy>10){ header.classList.add('pc-collapsed'); lastY=y; setStick(); }
+      else if(dy<-10){ header.classList.remove('pc-collapsed'); lastY=y; setStick(); }
     }
+    /* 서브탭 클릭 시: 헤더를 접힌 상태로 고정하고 스크롤 기준선을 목적지로 맞춰
+       이후 stray 스크롤 이벤트로 다시 펼쳐지지 않게 함(오프셋 어긋남 방지) */
+    window.__pcHeaderStick={
+      collapsedTop:function(){ return mq.matches?gnbH:0; },
+      collapseTo:function(y){
+        if(!mq.matches) return;
+        header.classList.add('pc-collapsed');
+        lastY=y;
+        setStick();
+      }
+    };
     window.addEventListener('scroll',function(){ if(!ticking){ requestAnimationFrame(apply); ticking=true; } },{passive:true});
     window.addEventListener('resize',function(){ measure(); apply(); });
     measure(); apply();

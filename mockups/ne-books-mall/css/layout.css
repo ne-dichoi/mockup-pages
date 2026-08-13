@@ -3481,7 +3481,8 @@ a{color:inherit;text-decoration:none;}
 
 /* ===== PC 고정 헤더 아래로 sticky 서브탭 top 보정 (파일 끝: 후순위 우선 보장) ===== */
 @media (min-width:1024px){
-  .dtabs, .page-detail .dtabs{top:var(--gnb-h,58px);}
-  .dt-body .dh-buy{top:calc(var(--gnb-h,58px) + 20px);}
-  .co-side{top:calc(var(--gnb-h,58px) + 24px);}
+  /* --stick-top = 현재 헤더 높이(접힘=gnb, 펼침=전체). 헤더가 펼쳐져도 탭이 덮이지 않음 */
+  .dtabs, .page-detail .dtabs{top:var(--stick-top, var(--gnb-h,58px));}
+  .dt-body .dh-buy{top:calc(var(--stick-top, var(--gnb-h,58px)) + 20px);}
+  .co-side{top:calc(var(--stick-top, var(--gnb-h,58px)) + 24px);}
 }

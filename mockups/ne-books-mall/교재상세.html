@@ -8,8 +8,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260813b">
-<script src="js/layout.js?v=20260813b" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260813c">
+<script src="js/layout.js?v=20260813c" defer></script>
 <script src="js/search.js" defer></script>
 </head>
 <body class="page-detail">
@@ -563,13 +563,28 @@
       });
     })();
 
-    /* PC tab click → smooth-scroll to the section title (scroll-margin-top keeps it below the sticky tabs) */
+    /* PC tab click → 섹션 제목이 '고정 헤더 + sticky 탭' 바로 아래에 오도록 스크롤
+       (헤더를 접힌 상태로 고정해 오프셋을 실제 높이로 정확히 맞춤) */
     document.querySelectorAll('.dtabs.only-pc a').forEach(function(a){
       a.addEventListener('click',function(e){
         var href=a.getAttribute('href');
         if(href && href.charAt(0)==='#' && href.length>1){
           var target=document.querySelector(href);
-          if(target){ e.preventDefault(); window.scrollTo(0,Math.round(target.getBoundingClientRect().top+window.scrollY-56)); }
+          if(target){
+            e.preventDefault();
+            var isPC=window.matchMedia('(min-width:1024px)').matches;
+            var off=56;
+            if(isPC){
+              var tabs=document.querySelector('.dtabs.only-pc');
+              var gh=(window.__pcHeaderStick?window.__pcHeaderStick.collapsedTop():58);
+              var th=tabs?Math.round(tabs.getBoundingClientRect().height):53;
+              off=gh+th+8;
+            }
+            var y=Math.round(target.getBoundingClientRect().top+window.scrollY-off);
+            if(y<0) y=0;
+            if(isPC && window.__pcHeaderStick) window.__pcHeaderStick.collapseTo(y);
+            window.scrollTo(0,y);
+          }
         }
         document.querySelectorAll('.dtabs.only-pc a').forEach(function(x){x.classList.remove('active');});
         a.classList.add('active');
