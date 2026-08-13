@@ -3286,9 +3286,9 @@ a{color:inherit;text-decoration:none;}
 
   /* 상품 이미지: 좌측 안내 박스 + 우측 파일첨부 버튼 */
   .page-rvwrite .iq-file{gap:8px;align-items:stretch;}
-  .page-rvwrite .iq-file-name{order:1;flex:1 1 0;height:54px;border-radius:10px;font-size:12px;padding:0 16px;}
+  .page-rvwrite .iq-file-name{order:2;flex:1 1 0;height:54px;border-radius:10px;font-size:12px;padding:0 16px;}
   .page-rvwrite .iq-file-name:empty::before{content:"첨부파일의 용량은 5MB까지 가능합니다.";color:var(--weak);}
-  .page-rvwrite .iq-file-btn{order:2;flex:none;height:54px;padding:0 16px;border-color:var(--btn);}
+  .page-rvwrite .iq-file-btn{order:1;flex:none;height:54px;padding:0 16px;border-color:var(--btn);}
   .page-rvwrite .iq-file .iq-help{display:none;}
 
   /* 후기수정: 첨부파일명 표시(has-file) — 파일명 14, 삭제 12 */
