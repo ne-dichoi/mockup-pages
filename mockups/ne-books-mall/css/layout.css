@@ -730,7 +730,7 @@ a{color:inherit;text-decoration:none;}
 .sel-actions .chk{width:16px;height:16px;border:1px solid #d9d9d9;border-radius:5px;background:#fff; appearance:none;-webkit-appearance:none;margin:0;cursor:pointer;flex:none;}
 .sel-actions .chk:hover{border-color:#b9b9b9;}
 .sel-actions .btn{border:1px solid #4d4e4d;border-radius:8px;padding:16px 24px;font-size:14px;font-weight:500;color:var(--ink);white-space:nowrap;}
-.rev-top{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;padding:0 0 24px 0;border-bottom:1px solid var(--line);}
+.rev-top{display:flex;justify-content:space-between;align-items:center;gap:24px;padding:0 0 24px 0;border-bottom:1px solid var(--line);}
 .rev-notice{flex:1 1 auto;min-width:0;}
 .rev-notice p{font-size:14px;color:#666;line-height:1.7;}
 .rev-notice .hl{color:var(--red);}
@@ -1301,6 +1301,11 @@ a{color:inherit;text-decoration:none;}
 .iq-static{font-size:14px;color:var(--ink);}
 .iq-at{font-size:14px;color:var(--muted);}
 .iq-help{font-size:12px;color:var(--weak);line-height:1.7;}
+/* 정오안내(교재 오류신고) */
+.iq-errata-top{display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+.iq-errata-msg{font-size:14px;color:var(--ink);line-height:1.6;}
+.iq-errata-sub{font-size:13px;color:var(--muted);line-height:1.6;}
+.iq-errata-btn{height:40px;padding:0 20px;font-size:14px;}
 .iq-form .oh-sel{width:100%;}/* 상담분류·주문번호/상품 셀렉트 풀 width (Figma) */
 /* 지사안내 – 안내 박스(불릿 없는 좌측 텍스트 + 우측 고객센터 정보) */
 .br-info{align-items:center;}

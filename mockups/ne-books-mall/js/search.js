@@ -12,12 +12,12 @@
     {title:"세 마리 토끼 잡는 초등 독서논술 B1", img:"assets/best_1.png", url:"교재상세.html"},
     {title:"세 마리 토끼 잡는 초등 독서논술 B2", img:"assets/best_1.png", url:"교재상세.html"},
     {title:"세 마리 토끼 잡는 초등 독서논술 B3", img:"assets/best_1.png", url:"교재상세.html"},
-    {title:"Phonics Code 1 : Student Book", img:"assets/best_1.png", url:"교재상세.html"},
+    {title:"Phonics Code 1 : Student Book", img:"assets/best_1.png", url:"교재상세.html", errata:true},
     {title:"능률 VOCA 어원편", img:"assets/best_2.png", url:"교재상세.html"},
-    {title:"Bricks Reading 150 Level 1", img:"assets/best_3.png", url:"교재상세.html"},
-    {title:"Grammar Zone 기본편 1", img:"assets/best_4.png", url:"교재상세.html"},
+    {title:"Bricks Reading 150 Level 1", img:"assets/best_3.png", url:"교재상세.html", errata:true},
+    {title:"Grammar Zone 기본편 1", img:"assets/best_4.png", url:"교재상세.html", errata:true},
     {title:"리딩튜터 입문", img:"assets/best_5.png", url:"교재상세.html"},
-    {title:"주니어 리딩튜터 1", img:"assets/best_2.png", url:"교재상세.html"},
+    {title:"주니어 리딩튜터 1", img:"assets/best_2.png", url:"교재상세.html", errata:true},
     {title:"중등 영어문법 3800제", img:"assets/best_3.png", url:"교재상세.html"},
     {title:"워드마스터 중등 베이직", img:"assets/best_4.png", url:"교재상세.html"}
   ];
@@ -135,6 +135,8 @@
           if(bookname) bookname.hidden=true; selected.hidden=false;
         }
         var pop=b.querySelector('.search-pop'); if(pop) pop.hidden=true;
+        /* 교재 선택 알림 — 정오표 등록 여부(book.errata) 전달 */
+        if(field) field.dispatchEvent(new CustomEvent('bookselected',{detail:book,bubbles:true}));
       }});
       if(selected){
         var del=selected.querySelector('.iq-bk-del');
@@ -143,6 +145,7 @@
           var inp=b.querySelector('.search-input');
           if(inp){ inp.value=''; var w=inp.closest('.iq-inx-wrap'); if(w) w.classList.remove('has-val'); }
           var pop=b.querySelector('.search-pop'); if(pop) pop.hidden=true;
+          if(field) field.dispatchEvent(new CustomEvent('bookdeselected',{bubbles:true}));
         });
       }
     });
