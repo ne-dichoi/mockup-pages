@@ -3144,9 +3144,9 @@ a{color:inherit;text-decoration:none;}
   .page-my #cc-faq .oh-sel,.page-my #cc-faq .oh-search-btn{display:none;}
   .page-my #cc-faq .oh-search{flex:1 1 auto;width:100%;gap:0;}
   .page-my #cc-faq .oh-input-wrap{width:100%;flex:1 1 auto;}
-  .page-my #cc-faq .oh-input{width:100%;height:auto;padding:12px 48px 12px 24px;border-radius:86px;border-color:var(--line);
-    background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'><circle cx='11' cy='11' r='7' stroke='%231d1717' stroke-width='1.6'/><path d='M16 16l4 4' stroke='%231d1717' stroke-width='1.6' stroke-linecap='round'/></svg>") right 20px center/20px no-repeat;}
-  .page-my #cc-faq .oh-input-x{right:44px;}
+  .page-my #cc-faq .oh-input{width:100%;height:auto;padding:16px 56px 16px 24px;border-radius:86px;border-color:var(--line);
+    background:#fff url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'><circle cx='11' cy='11' r='7.25' stroke='%231d1717' stroke-width='1.8'/><path d='M16.5 16.5l4 4' stroke='%231d1717' stroke-width='1.8' stroke-linecap='round'/></svg>") right 20px center/28px no-repeat;}
+  .page-my #cc-faq .oh-input-x{right:52px;}
   /* 리스트 헤더: 전체 N건 + 진한 하단선 */
   .page-my #cc-faq .faq-count{margin:0 20px;padding:40px 0 16px;border-bottom:1px solid var(--ink);font-size:14px;font-weight:600;color:var(--ink);}
   .page-my #cc-faq .faq-table{margin:0;border-top:0;}
@@ -3210,7 +3210,7 @@ a{color:inherit;text-decoration:none;}
   .page-my #cc-errata .pt-tabs a{flex:none;white-space:nowrap;font-size:14px;padding:16px 0;margin-bottom:-1px;border-bottom:4px solid transparent;}
   .page-my #cc-errata .pt-tabs a.on{font-weight:700;color:var(--ink);border-bottom-color:var(--ink);}
   /* 회색박스 상단: 교재 검색 pill (탭 아래로 이동) */
-  .page-my #cc-errata .errata-msearch{order:3;background:#f7f7f7;padding:40px 20px 0;}
+  .page-my #cc-errata .errata-msearch{order:3;background:var(--gray-bg);padding:40px 20px 0;}
   .page-my #cc-errata .errata-msearch .oh-input-wrap{width:100%;}
   .page-my #cc-errata .errata-msearch .oh-input{width:100%;height:auto;padding:16px 56px 16px 24px;border-radius:86px;border-color:var(--line);
     background:#fff url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'><circle cx='11' cy='11' r='7.25' stroke='%231d1717' stroke-width='1.8'/><path d='M16.5 16.5l4 4' stroke='%231d1717' stroke-width='1.8' stroke-linecap='round'/></svg>") right 20px center/28px no-repeat;}
@@ -3218,7 +3218,7 @@ a{color:inherit;text-decoration:none;}
   /* 교재 선택 닫힘: 하단 여백 24 (라벨 하단패딩 제거했으므로 박스 패딩으로 24) */
   .page-my #cc-errata .errata-filter.closed{padding-bottom:24px;}
   /* 회색박스 하단: 교재 선택 아코디언 */
-  .page-my #cc-errata .errata-filter{display:block;background:#f7f7f7;border:0;border-radius:0;margin:0;padding:0 20px 40px;}
+  .page-my #cc-errata .errata-filter{display:block;background:var(--gray-bg);border:0;border-radius:0;margin:0;padding:0 20px 40px;}
   .page-my #cc-errata .ef-row{flex-direction:column;align-items:stretch;gap:16px;}  /* 타이틀↔셀렉트 16 */
   .page-my #cc-errata .ef-label{order:-1;display:flex;align-items:center;justify-content:space-between;width:100%;margin:0;padding:24px 0 0;font-family:var(--display);font-weight:700;font-size:18px;color:var(--ink);cursor:pointer;}
   .page-my #cc-errata .ef-acc-chev{display:flex;flex:none;width:18px;height:18px;transform:rotate(180deg);transition:transform .2s;}
@@ -3241,6 +3241,9 @@ a{color:inherit;text-decoration:none;}
   .page-my #cc-errata .nt-date{width:100%;flex:none;text-align:left;font-size:12px;color:var(--weak);}
   .page-my #cc-errata .nt-views{display:none;}
   .page-my #cc-errata .pager{display:none;}
+  /* 더보기 (모바일): 리스트 10개일 때 노출 */
+  .page-my #cc-errata .nt-more{display:block;width:calc(100% - 40px);margin:24px 20px 40px;height:44px;box-sizing:border-box;
+    border:1px solid var(--ink);border-radius:8px;background:#fff;font-family:var(--sans);font-size:14px;font-weight:500;color:var(--ink);cursor:pointer;}
 }
 
 /* ===== 교재 오류정정 상세 (모바일, Figma 3033-12508) — 오류정정상세.html body.page-eed ===== */
