@@ -91,10 +91,10 @@
         <section class="my-sec">
           <h3 class="my-sec-t">최근 본 학습자료</h3>
           <div class="res-grid">
-            <a class="res-card" href="리스트_학습자료.html"><div class="res-body"><span class="res-cat">중등</span><span class="res-title">유형 더블 중1-1</span><span class="res-sub">유형 더블 체크</span></div><span class="res-ic">→</span></a>
-            <a class="res-card" href="리스트_학습자료.html"><div class="res-body"><span class="res-cat">초등</span><span class="res-title">일공한 계산력 4-2</span><span class="res-sub">교사용 정답 PDF</span></div><span class="res-ic">→</span></a>
-            <a class="res-card" href="리스트_학습자료.html"><div class="res-body"><span class="res-cat">유아</span><span class="res-title">사고력 6세 2호 (2014년)</span><span class="res-sub">진단평가</span></div><span class="res-ic">→</span></a>
-            <a class="res-card" href="리스트_학습자료.html"><div class="res-body"><span class="res-cat">고등</span><span class="res-title">수능 빈칸백서 실전편</span><span class="res-sub">수능 빈칸백서 정답·해설</span></div><span class="res-ic">→</span></a>
+            <a class="res-card" href="교재상세.html"><div class="res-body"><span class="res-cat">중등</span><span class="res-title">유형 더블 중1-1</span><span class="res-sub">유형 더블 체크</span></div><span class="res-ic">→</span></a>
+            <a class="res-card" href="교재상세.html"><div class="res-body"><span class="res-cat">초등</span><span class="res-title">일공한 계산력 4-2</span><span class="res-sub">교사용 정답 PDF</span></div><span class="res-ic">→</span></a>
+            <a class="res-card" href="교재상세.html"><div class="res-body"><span class="res-cat">유아</span><span class="res-title">사고력 6세 2호 (2014년)</span><span class="res-sub">진단평가</span></div><span class="res-ic">→</span></a>
+            <a class="res-card" href="교재상세.html"><div class="res-body"><span class="res-cat">고등</span><span class="res-title">수능 빈칸백서 실전편</span><span class="res-sub">수능 빈칸백서 정답·해설</span></div><span class="res-ic">→</span></a>
           </div>
         </section>
 
@@ -360,7 +360,7 @@
         <div class="pt-guide">
           <div class="pt-guide-head"><span class="pt-guide-ic"><svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7.25" stroke="#1d1717" stroke-width="1.4"/><path d="M9 8v4.2" stroke="#1d1717" stroke-width="1.4" stroke-linecap="round"/><circle cx="9" cy="5.6" r="0.95" fill="#1d1717"/></svg></span><span>포인트 안내</span></div>
           <div class="pt-guide-body">
-            <p><span class="lb">적립</span>마케팅 SMS 또는 전화 수신 동의 최초 1회 2,000P · 구매 교재 후기 교재별 최초 1회 500P · 온라인 엽서 교재당 1회 500P · 교재 구매 확정 시 상품 정가 기준 적립 · 상시 이벤트별 포인트 지급</p>
+            <p><span class="lb">적립</span>마케팅 SMS 또는 전화 수신 동의 최초 1회 2,000P · 교재 구매 확정 시 상품 정가 기준 적립 · 상시 이벤트별 포인트 지급</p>
             <p><span class="lb">사용</span>NE Books 교재 구매 시 100P 단위로 사용 가능</p>
             <p><span class="lb">차감/유효기간</span>유효기간 임박 포인트 우선 차감 · 구매 적립 포인트 유효기간 1년 · 이벤트 포인트는 이벤트별 정책 적용 · 마케팅 동의 차단 시 적립된 포인트 회수</p>
             <p>기적립된 포인트를 모두 사용 후 포인트 회수가 이루어질 경우 사용 가능 포인트가 (-)로 변경될 수 있습니다.</p>
@@ -890,7 +890,7 @@
     panel.addEventListener('click',function(e){
       var x=e.target.closest('.mb-x');
       if(x){ var c=x.closest('.mb-card'); if(c){ c.remove(); refresh(); } return; }
-      if(e.target.closest('.wl-clear')){ [].slice.call(grid.querySelectorAll('.mb-card')).forEach(function(c){ c.remove(); }); refresh(); }
+      if(e.target.closest('.wl-clear')){ if(!confirm('찜 내역을 전체 삭제하겠습니까?')) return; [].slice.call(grid.querySelectorAll('.mb-card')).forEach(function(c){ c.remove(); }); refresh(); }
     });
   })();
 
