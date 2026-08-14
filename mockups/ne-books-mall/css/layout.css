@@ -3688,7 +3688,7 @@ body.bsheet-lock{overflow:hidden;}
     opacity:0;pointer-events:none;transition:opacity .28s ease;}
   .page-detail .lex-dim.open{opacity:1;pointer-events:auto;}
   .page-detail .lex-sheet{display:flex;flex-direction:column;position:fixed;left:0;right:0;bottom:0;z-index:1001;
-    background:#fff;border-radius:20px 20px 0 0;max-height:88vh;box-sizing:border-box;padding-top:24px;
+    background:#fff;border-radius:20px 20px 0 0;max-height:88vh;max-height:88dvh;box-sizing:border-box;padding-top:24px;
     transform:translateY(100%);transition:transform .3s cubic-bezier(.4,0,.2,1);box-shadow:0 -6px 24px rgba(0,0,0,.18);}
   .page-detail .lex-sheet.open{transform:translateY(0);}
   .page-detail .lex-grab{flex:none;display:flex;justify-content:center;padding:0 0 24px;cursor:pointer;}
@@ -3734,7 +3734,7 @@ body.bsheet-lock{overflow:hidden;}
     font-family:var(--sans);font-size:14px;font-weight:500;letter-spacing:-0.14px;}
   /* 하단 고정 구매바 */
   .pdp-bar{display:flex;align-items:center;gap:8px;position:fixed;left:0;right:0;bottom:0;z-index:900;
-    background:#fff;border-top:1px solid var(--line);box-shadow:0 -2px 12px rgba(0,0,0,.06);
+    background:#fff;border-top:1px solid var(--line);border-radius:16px 16px 0 0;box-shadow:0 -2px 12px rgba(0,0,0,.06);
     padding:10px 16px;padding-bottom:calc(10px + env(safe-area-inset-bottom));box-sizing:border-box;}
   /* 푸터에 안착(도킹)했을 때: 플로팅 느낌 제거 — 상단 라인·그림자 없앰 */
   .pdp-bar.docked{border-top-color:transparent;box-shadow:none;}
@@ -3744,10 +3744,14 @@ body.bsheet-lock{overflow:hidden;}
   .pdp-like .h-on{display:none;}
   .pdp-like.on{color:var(--red);}
   .pdp-like.on .h-off{display:none;} .pdp-like.on .h-on{display:inline;}
-  .pdp-cart{flex:1;height:52px;border:1px solid var(--btn);border-radius:8px;background:#fff;
-    display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;color:var(--ink);text-decoration:none;}
-  .pdp-buy{flex:1;height:52px;border:0;border-radius:8px;background:var(--red);color:#fff;cursor:pointer;
-    display:flex;align-items:center;justify-content:center;font-family:var(--sans);font-size:14px;font-weight:600;text-decoration:none;}
+  .pdp-cart{flex:1;height:auto;padding:24px 0;box-sizing:border-box;border:1px solid var(--btn);border-radius:8px;background:#fff;
+    display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;color:var(--ink);text-decoration:none;line-height:1;}
+  .pdp-buy{flex:1;height:auto;padding:24px 0;box-sizing:border-box;border:0;border-radius:8px;background:var(--red);color:#fff;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;font-family:var(--sans);font-size:14px;font-weight:600;text-decoration:none;line-height:1;}
+}
+/* 후기 이름·날짜: 좁은 폰은 한 줄(row), 태블릿(768~1023)은 기존 두 줄(column) */
+@media (max-width:767px){
+  .page-detail #s-review .rev-meta{flex-direction:row;align-items:center;gap:6px;}
 }
 
 /* ===== 태블릿(768~1023): 주요 아이콘 키우기 (모바일 79 → 태블릿 110, 롤링배너처럼 커짐) ===== */
