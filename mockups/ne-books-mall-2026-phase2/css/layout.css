@@ -704,6 +704,14 @@ a{color:inherit;text-decoration:none;}
 .rev-title{font-size:16px;font-weight:700;color:var(--ink);margin-bottom:8px;cursor:pointer;}
 .rev-desc{font-size:14px;color:#666;line-height:1.6;cursor:pointer;}
 .rev-meta{flex:none;display:flex;flex-direction:column;align-items:flex-end;justify-content:flex-end;gap:4px;font-size:13px;color:#a9a9a9;}
+/* 후기: 일반 회원 / 선생님 하위 탭 (항목5) */
+.rev-subtabs{display:flex;gap:28px;padding:20px 0 4px;border-bottom:1px solid var(--line);}
+.rev-subtabs a{font-size:15px;font-weight:500;color:var(--weak);padding-bottom:14px;border-bottom:2px solid transparent;cursor:pointer;}
+.rev-subtabs a .cnt{color:var(--weak);font-weight:500;}
+.rev-subtabs a.on{color:var(--ink);font-weight:700;border-color:var(--ink);}
+.rev-subtabs a.on .cnt{color:var(--ink);}
+.rev-badge-teacher{display:inline-flex;align-items:center;height:20px;padding:0 8px;border-radius:5px;background:#eaf1ff;color:#2272dd;font-size:11px;font-weight:700;margin-right:6px;vertical-align:middle;}
+.rev-empty{padding:56px 0;text-align:center;color:var(--weak);font-size:14px;}
 .ntable.ntable-wide th{width:200px;}
 .rev-modal{position:fixed;inset:0;z-index:120;display:none;align-items:center;justify-content:center;padding:40px 20px;background:rgba(0,0,0,.45);}
 .rev-modal.open{display:flex;}
@@ -1625,7 +1633,8 @@ a{color:inherit;text-decoration:none;}
 .oh-price-row{display:flex;align-items:center;gap:8px;}
 .oh-price{font-size:16px;font-weight:800;color:var(--ink);}
 .oh-receipt{font-size:12px;font-weight:700;color:var(--ink);text-decoration:underline;letter-spacing:-0.14px;white-space:nowrap;}
-.oh-btns{display:flex;gap:8px;justify-content:flex-end;}
+.oh-btns{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;max-width:280px;}
+.oh-btn.oh-tocart{cursor:pointer;font-family:var(--sans);}
 .oh-badge{display:inline-flex;align-items:center;justify-content:center;min-width:50px;padding:4px 8px;border-radius:30px;border:1px solid;font-size:10px;font-weight:600;line-height:14px;white-space:nowrap;}
 .oh-badge.ship{border-color:#e83828;color:#e83828;}
 .oh-badge.cancel{border-color:var(--weak);color:var(--weak);}
@@ -1696,6 +1705,38 @@ a{color:inherit;text-decoration:none;}
 .pt-guide-body p{font-size:14px;line-height:24px;color:var(--weak);margin:0;}
 .pt-guide-body .lb{color:var(--ink);font-weight:500;}
 .pt-guide-body .lb::after{content:" : ";}
+/* ---------- 쿠폰함 (마이페이지, 회원등급 혜택) ---------- */
+.my-3col{grid-template-columns:1fr 1fr 1fr;}
+.mc-cta{margin-top:14px;display:inline-flex;align-items:center;gap:4px;font-size:13px;font-weight:700;color:var(--red);}
+.cpn-sum{border:1px solid var(--line);border-radius:12px;padding:24px 28px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+.cpn-grade{flex:none;display:flex;align-items:center;gap:8px;}
+.cpn-grade-badge{display:inline-flex;align-items:center;justify-content:center;height:26px;padding:0 12px;border-radius:20px;background:#caa24a;color:#fff;font-size:13px;font-weight:800;letter-spacing:.2px;}
+.cpn-grade-name{font-size:15px;font-weight:700;color:var(--ink);}
+.cpn-sum-txt{font-size:13px;color:var(--weak);}
+.cpn-sum-txt b{color:var(--ink);font-weight:700;}
+.cpn-tabs{display:flex;gap:24px;margin:32px 0 16px;border-bottom:1px solid var(--line);}
+.cpn-tabs a{padding-bottom:14px;font-size:15px;font-weight:500;color:var(--weak);border-bottom:2px solid transparent;cursor:pointer;}
+.cpn-tabs a.on{color:var(--ink);font-weight:700;border-color:var(--ink);}
+.cpn-list{display:flex;flex-direction:column;gap:12px;}
+.cpn-card{display:flex;align-items:center;justify-content:space-between;gap:20px;border:1px solid var(--line);border-radius:12px;padding:20px 24px;}
+.cpn-card.used,.cpn-card.expired{opacity:.5;}
+.cpn-left{min-width:0;}
+.cpn-badge{display:inline-flex;align-items:center;height:20px;padding:0 8px;border-radius:5px;font-size:11px;font-weight:700;margin-bottom:8px;}
+.cpn-badge.grade{background:#fbf0dc;color:#a97a10;}
+.cpn-badge.all{background:var(--gray-bg);color:var(--muted);}
+.cpn-title{font-size:15px;font-weight:700;color:var(--ink);}
+.cpn-cond{font-size:13px;color:var(--muted);margin-top:4px;}
+.cpn-exp{font-size:12px;color:var(--weak);margin-top:6px;}
+.cpn-right{flex:none;text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:6px;}
+.cpn-rate{font-size:24px;font-weight:800;color:var(--red);}
+.cpn-state{font-size:12px;font-weight:600;color:var(--muted);}
+.cpn-card:not(.used):not(.expired) .cpn-state{color:var(--red);}
+.cpn-empty{text-align:center;padding:80px 0;color:var(--weak);font-size:14px;}
+@media(max-width:1023px){
+  .cpn-sum{border-radius:0;border-width:1px 0;padding:20px;}
+  .cpn-card{flex-wrap:wrap;padding:16px;}
+  .cpn-tabs{gap:16px;}
+}
 /* ---------- responsive visibility utilities ---------- */
 .only-mo{display:none;}
 .m-loc{display:none;}

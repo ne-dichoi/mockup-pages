@@ -7,6 +7,7 @@
       <div class="header-top">
         <a class="logo" href="index.html"><img src="assets/header_logo_dark.png" alt="NE_Books"></a>
         <div class="m-loc"><a class="m-loc-home" href="index.html" aria-label="홈"><img src="assets/ic_home_sub.svg" alt="홈"></a><button class="m-loc-btn" type="button" aria-expanded="false"><span class="m-loc-name"></span><span class="m-loc-caret"></span></button></div>
+        <!-- [항목1, 보류] 맞춤형 교재추천 진입 아이콘을 검색어 옆으로 추후 배치 예정(요청자 확인 후 반영) -->
         <div class="search">
           <input type="text" class="search-input" placeholder="검색어를 입력해 주세요." autocomplete="off">
           <button type="button" class="search-ic ico" aria-label="검색"><img src="assets/ds_ic_search.svg" alt=""></button>

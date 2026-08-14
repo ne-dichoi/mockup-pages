@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>NE_Books · 선생님 전용 교재</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="css/layout.css?v=20260814a">
+<script src="js/layout.js?v=20260814a" defer></script>
+<script src="js/search.js" defer></script>
+<!-- [항목6] 선생님 전용 교재 목록. 일반 리스트_교재구매.html과 별도 URL, 교사 인증가·대량채택 문의 중심으로 구성.
+     간이 목업이라 모바일 전용 렌더(JS)는 생략하고 동일 카드가 모든 화면에서 노출되도록 함(body 클래스도 .page-buy와 분리) -->
+<style id="t1tl-styles">
+  .t1tl-gate{background:linear-gradient(160deg,#20304f,#16243d);color:#fff;padding:24px 0;}
+  .t1tl-gate .container{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+  .t1tl-gate .badge{display:inline-flex;align-items:center;height:24px;padding:0 10px;border-radius:20px;background:rgba(255,255,255,.14);font-size:11px;font-weight:800;margin-right:10px;}
+  .t1tl-gate .txt{font-size:14px;color:rgba(255,255,255,.85);}
+  .t1tl-gate .link{font-size:13px;font-weight:700;color:#fff;text-decoration:underline;flex:none;}
+  .t1tl-price{display:flex;flex-direction:column;align-items:flex-end;gap:2px;}
+  .t1tl-was{font-size:12px;color:#bbb;text-decoration:line-through;}
+  .t1tl-now{font-size:20px;font-weight:800;color:#191919;}
+  .t1tl-now em{color:#f5444a;font-style:normal;margin-right:4px;}
+  .t1tl-badge{display:inline-flex;align-items:center;height:20px;padding:0 8px;border-radius:5px;background:#eaf1ff;color:#2272dd;font-size:11px;font-weight:700;}
+</style>
+</head>
+<body class="page-buy-teacher">
+
+  <!-- ===== HEADER ===== -->
+  <div id="site-header"></div>
+  <div id="site-location"></div>
+
+  <!-- ===== 교사 인증 안내 배너 ===== -->
+  <section class="t1tl-gate">
+    <div class="container">
+      <span class="txt"><span class="badge">TEACHER</span>교사 인증 회원에게는 <b>교사 인증가</b>가 자동 적용됩니다. 학원·학교 대량 채택은 별도 문의해 주세요.</span>
+      <a class="link" href="비회원문의.html">대량 채택 문의 &#8250;</a>
+    </div>
+  </section>
+
+  <!-- ===== CATEGORY BAND ===== -->
+  <section class="catband">
+    <div class="container">
+      <div class="cat-row">
+        <a class="cat-card">문법이<br>된다</a>
+        <a class="cat-card">Grammar<br>Inside</a>
+        <a class="cat-card">Grammar<br>Ten</a>
+        <a class="cat-card">파닉스가<br>된다</a>
+        <a class="cat-card">사이트<br>워드가 된다</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BODY: SIDEBAR + LIST ===== -->
+  <section class="listwrap">
+    <div class="container">
+      <div class="body-grid">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+          <div class="side-title">교재 찾기</div>
+          <div class="fgroup">
+            <h4>학습대상</h4>
+            <label class="fopt"><input type="checkbox" class="chk">유아</label>
+            <label class="fopt"><input type="checkbox" class="chk">초등</label>
+            <label class="fopt"><input type="checkbox" class="chk">중등</label>
+            <label class="fopt"><input type="checkbox" class="chk">고등</label>
+            <label class="fopt"><input type="checkbox" class="chk">성인</label>
+          </div>
+          <div class="fgroup">
+            <h4>제품유형</h4>
+            <label class="fopt"><input type="checkbox" class="chk">메인교재</label>
+            <label class="fopt"><input type="checkbox" class="chk">Teacher&rsquo;s Guide</label>
+            <label class="fopt"><input type="checkbox" class="chk">Test &amp; Worksheet</label>
+            <label class="fopt"><input type="checkbox" class="chk">Class Pack</label>
+          </div>
+          <div class="fgroup">
+            <h4>브랜드</h4>
+            <label class="fopt brand-opt"><input type="checkbox" class="chk"><img src="assets/logo_ne_small.svg" alt="NE능률"></label>
+            <label class="fopt brand-opt"><input type="checkbox" class="chk"><img src="assets/logo_buildgrow.svg" alt="NE_Build & Grow"></label>
+            <label class="fopt brand-opt"><input type="checkbox" class="chk"><img class="brand-oxf" src="assets/logo_oxford.png" alt="OXFORD"></label>
+          </div>
+          <a class="nechart"><img src="assets/ic_nechart.png" alt=""><span>인기교재 NE차트</span></a>
+        </aside>
+
+        <!-- Right column -->
+        <div class="rightcol">
+          <div class="toolbar">
+            <div class="tb-left">
+              <span class="count">총 <b>52</b>개 상품</span>
+              <label><input type="checkbox" class="chk">판매중 교재만 보기</label>
+            </div>
+            <div class="tb-right">
+              <a class="tab active"><span class="ico"><img src="assets/ic_tab_buy.svg" alt=""></span>선생님 전용 교재</a>
+              <span class="tb-divider"></span>
+              <div class="sort-wrap">
+                <span class="sort"><span class="sort-label">인기순</span> <span class="ico"><img src="assets/ic_sort_new.svg" alt=""></span></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="plist">
+
+            <!-- Product 1 -->
+            <article class="prow">
+              <div class="pcover"><span class="pcorner hot">HOT</span><img src="assets/best_4.png" alt="그래머 인사이드 Lv.1"></div>
+              <div class="pinfo">
+                <div class="pbrand-row">
+                  <img class="pbrand" src="assets/logo_ne_small.svg" alt="NE능률">
+                  <span class="badge-course">Coursebook</span>
+                  <span class="badge-level">중등</span>
+                  <span class="t1tl-badge">교사 인증가</span>
+                </div>
+                <h3 class="ptitle">그래머 인사이드 Lv.1 · Teacher&rsquo;s Pack</h3>
+                <p class="pdesc">정답지·단원별 평가지·수업용 PPT가 포함된 교사용 패키지. 학원·학교 채택 시 인증가 적용.</p>
+                <div class="ptags"><span>#문법</span><span>#중등</span><span>#Teacher's Guide</span></div>
+              </div>
+              <div class="pactions">
+                <div class="t1tl-price"><span class="t1tl-was">12,600원</span><span class="t1tl-now"><em>15%</em>10,710원</span></div>
+                <div class="pbtns"><a class="study" href="교재상세_선생님.html#s-res">학습자료</a><a class="cart" href="장바구니.html">장바구니</a><a class="buy" href="교재상세_선생님.html">상세보기</a></div>
+              </div>
+            </article>
+
+            <!-- Product 2 -->
+            <article class="prow">
+              <div class="pcover"><img src="assets/best_1.png" alt="Phonics Code 1"></div>
+              <div class="pinfo">
+                <div class="pbrand-row">
+                  <img class="pbrand" src="assets/logo_ne_small.svg" alt="NE능률">
+                  <span class="badge-course">Coursebook</span>
+                  <span class="badge-level">유치~초등(저)</span>
+                  <span class="t1tl-badge">교사 인증가</span>
+                </div>
+                <h3 class="ptitle">Phonics Code 1 · Teacher&rsquo;s Pack</h3>
+                <p class="pdesc">파닉스 기초 지도서·듣기 MP3·시험지 자료가 포함된 교사용 패키지.</p>
+                <div class="ptags"><span>#파닉스</span><span>#초등</span><span>#Teacher's Guide</span></div>
+              </div>
+              <div class="pactions">
+                <div class="t1tl-price"><span class="t1tl-was">13,500원</span><span class="t1tl-now"><em>15%</em>11,480원</span></div>
+                <div class="pbtns"><a class="study" href="교재상세_선생님.html#s-res">학습자료</a><a class="cart" href="장바구니.html">장바구니</a><a class="buy" href="교재상세_선생님.html">상세보기</a></div>
+              </div>
+            </article>
+
+            <!-- Product 3 -->
+            <article class="prow">
+              <div class="pcover"><span class="pcorner new">NEW</span><img src="assets/best_2.png" alt="리딩튜터 기본"></div>
+              <div class="pinfo">
+                <div class="pbrand-row">
+                  <img class="pbrand" src="assets/logo_ne_small.svg" alt="NE능률">
+                  <span class="badge-course">Coursebook</span>
+                  <span class="badge-level">중등</span>
+                  <span class="t1tl-badge">교사 인증가</span>
+                </div>
+                <h3 class="ptitle">리딩튜터 기본 · Teacher&rsquo;s Pack</h3>
+                <p class="pdesc">유형별 독해 훈련 지도서와 단원 평가지가 포함된 교사용 패키지.</p>
+                <div class="ptags"><span>#독해</span><span>#중등</span><span>#Teacher's Guide</span></div>
+              </div>
+              <div class="pactions">
+                <div class="t1tl-price"><span class="t1tl-was">12,600원</span><span class="t1tl-now"><em>15%</em>10,710원</span></div>
+                <div class="pbtns"><a class="study" href="교재상세_선생님.html#s-res">학습자료</a><a class="cart" href="장바구니.html">장바구니</a><a class="buy" href="교재상세_선생님.html">상세보기</a></div>
+              </div>
+            </article>
+
+            <!-- Product 4 -->
+            <article class="prow">
+              <div class="pcover"><img src="assets/best_5.png" alt="능률VOCA 어원편"></div>
+              <div class="pinfo">
+                <div class="pbrand-row">
+                  <img class="pbrand" src="assets/logo_ne_small.svg" alt="NE능률">
+                  <span class="badge-course">Word Book</span>
+                  <span class="badge-level">고등</span>
+                  <span class="t1tl-badge">교사 인증가</span>
+                </div>
+                <h3 class="ptitle">능률VOCA 어원편 · Teacher&rsquo;s Pack</h3>
+                <p class="pdesc">단어시험지 자동 생성 자료가 포함된 교사용 패키지.</p>
+                <div class="ptags"><span>#어휘</span><span>#고등</span><span>#Teacher's Guide</span></div>
+              </div>
+              <div class="pactions">
+                <div class="t1tl-price"><span class="t1tl-was">13,500원</span><span class="t1tl-now"><em>15%</em>11,470원</span></div>
+                <div class="pbtns"><a class="study" href="교재상세_선생님.html#s-res">학습자료</a><a class="cart" href="장바구니.html">장바구니</a><a class="buy" href="교재상세_선생님.html">상세보기</a></div>
+              </div>
+            </article>
+
+          </div>
+
+          <!-- Pagination (PC) -->
+          <nav class="pager">
+            <a class="arw" aria-label="이전">&#8249;</a>
+            <a class="on">1</a>
+            <a>2</a><a>3</a><a>4</a><a>5</a>
+            <a class="arw" aria-label="다음">&#8250;</a>
+          </nav>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <div id="site-footer"></div>
+
+</body>
+</html>

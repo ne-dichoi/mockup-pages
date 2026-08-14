@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>NE_Books · 선생님 홈</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="css/layout.css?v=20260814a">
+<script src="js/layout.js?v=20260814a" defer></script>
+<script src="js/search.js" defer></script>
+<!-- [항목7] B2C(index.html)와 분리된 B2B(선생님) 전용 메인. 학습·교강사 자료·전용 채널 중심으로 구성, 상업적 프로모션은 최소화 -->
+<style id="t1t-styles">
+  .t1t-hero{padding:56px 0 40px;background:linear-gradient(160deg,#20304f,#16243d);color:#fff;}
+  .t1t-badge{display:inline-flex;align-items:center;height:26px;padding:0 12px;border-radius:20px;background:rgba(255,255,255,.14);color:#fff;font-size:12px;font-weight:800;letter-spacing:.5px;margin-bottom:16px;}
+  .t1t-hero h2{font-size:30px;font-weight:800;line-height:1.4;letter-spacing:-.5px;}
+  .t1t-hero p{font-size:15px;color:rgba(255,255,255,.78);margin-top:14px;line-height:1.6;}
+  .t1t-hero-actions{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap;}
+  .t1t-btn-fill{display:inline-flex;align-items:center;gap:6px;height:48px;padding:0 22px;border-radius:8px;background:#fff;color:#16243d;font-weight:800;font-size:15px;}
+  .t1t-btn-line{display:inline-flex;align-items:center;height:48px;padding:0 22px;border-radius:8px;border:1px solid rgba(255,255,255,.5);color:#fff;font-weight:600;font-size:14px;}
+  .t1t-sec{padding:44px 0;}
+  .t1t-sec .sec-title{font-size:24px;font-weight:800;letter-spacing:-.5px;color:#191919;margin-bottom:8px;}
+  .t1t-sec .sub{font-size:14px;color:#8c8c8c;margin-bottom:24px;}
+  .t1t-nt-grid{display:flex;gap:16px;flex-wrap:wrap;}
+  .t1t-nt-card{flex:1 1 260px;display:flex;align-items:center;gap:14px;border:1px solid var(--line);border-radius:14px;padding:20px;text-decoration:none;color:inherit;}
+  .t1t-nt-card .ico{flex:none;width:44px;height:44px;border-radius:10px;background:#eef1f5;display:flex;align-items:center;justify-content:center;}
+  .t1t-nt-card .ico img{width:24px;height:24px;}
+  .t1t-nt-card .sub{font-size:12px;color:#999;margin:0;}
+  .t1t-nt-card .tt{font-size:15px;font-weight:700;color:#191919;}
+  .t1t-picks{background:#f7f8fa;}
+  .t1t-pick-card{position:relative;border-radius:12px;overflow:hidden;background:#fff;text-decoration:none;color:inherit;display:block;}
+  .t1t-pick-card .th{width:100%;aspect-ratio:1/1;background:#f2f3f4;overflow:hidden;}
+  .t1t-pick-card .th img{width:100%;height:100%;object-fit:cover;}
+  .t1t-pick-card .bd{padding:14px;}
+  .t1t-pick-badge{display:inline-flex;align-items:center;height:20px;padding:0 8px;border-radius:5px;background:#eaf1ff;color:#2272dd;font-size:11px;font-weight:700;margin-bottom:8px;}
+  .t1t-pick-card .tit{font-size:14px;font-weight:700;color:#222;line-height:1.4;height:2.8em;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;}
+  .t1t-pick-card .pr{font-size:14px;font-weight:800;color:#191919;margin-top:8px;}
+  .t1t-pick-card .pr s{color:#bbb;font-weight:500;margin-left:6px;font-size:12px;}
+  .t1t-grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+  .t1t-more{display:inline-flex;align-items:center;gap:4px;margin-top:20px;font-size:14px;font-weight:700;color:#191919;}
+  .t1t-sem-list{display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;}
+  .t1t-sem-row{display:flex;align-items:center;justify-content:space-between;gap:16px;background:#fff;padding:18px 20px;}
+  .t1t-sem-tag{display:inline-flex;align-items:center;height:22px;padding:0 10px;border-radius:20px;border:1px solid var(--line);font-size:12px;font-weight:600;color:#666;margin-right:10px;}
+  .t1t-sem-name{font-size:15px;font-weight:700;color:#191919;}
+  .t1t-sem-date{font-size:13px;color:#999;flex:none;}
+  @media (max-width:900px){ .t1t-grid4{grid-template-columns:repeat(2,1fr);} .t1t-hero h2{font-size:24px;} }
+  @media (max-width:600px){ .t1t-sem-row{flex-direction:column;align-items:flex-start;gap:6px;} }
+</style>
+</head>
+<body class="page-index page-teacher">
+
+  <!-- ===== HEADER ===== -->
+  <div id="site-header"></div>
+
+  <!-- ===== 선생님 히어로 ===== -->
+  <section class="t1t-hero">
+    <div class="container">
+      <span class="t1t-badge">TEACHER</span>
+      <h2>선생님, 안녕하세요.<br>수업에 필요한 모든 것을 한 곳에서.</h2>
+      <p>NE Tutor 교강사 자료부터 선생님 전용 교재, 대량 채택 문의까지<br>NE Books 선생님 페이지에서 빠르게 이용하세요.</p>
+      <div class="t1t-hero-actions">
+        <a class="t1t-btn-fill" href="리스트_교재구매_선생님.html">선생님 전용 교재 보기 &#8250;</a>
+        <a class="t1t-btn-line" href="index.html">일반(학부모·학생) 몰로 이동</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 바로가기 (교사용) ===== -->
+  <section class="mainicons">
+    <div class="container">
+      <div class="row">
+        <a class="pill" href="#nt"><span class="ico"><img src="assets/ic_tutor_ebook.svg" alt=""></span><span>NE Tutor 바로가기</span></a>
+        <a class="pill" href="리스트_학습자료.html"><span class="ico"><img src="assets/ic_main_lib.svg" alt=""></span><span>학습자료실</span></a>
+        <a class="pill" href="리스트_학습자료.html"><span class="ico"><img src="assets/ic_main_mp3down.svg" alt=""></span><span>정답·MP3 다운</span></a>
+        <a class="pill" href="리스트_교재구매_선생님.html"><span class="ico"><img src="assets/ic_main_buy.svg" alt=""></span><span>선생님 전용 교재</span></a>
+        <a class="pill" href="세미나상세.html"><span class="ico"><img src="assets/mypage_seminar.svg" alt=""></span><span>세미나·연수 신청</span></a>
+        <a class="pill" href="비회원문의.html"><span class="ico"><img src="assets/ic_customer.svg" alt=""></span><span>교재 채택 문의</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 회원등급 혜택 (기존 index.html t1pz-sec 재사용) ===== -->
+  <section class="t1pz-sec">
+    <div class="container">
+      <div class="t1pz-box">
+        <div class="t1pz-user">
+          <span class="t1pz-grade">GOLD 학원회원</span>
+          <div class="t1pz-txt">
+            <strong>김민준 원장님, 다시 오셨네요!</strong>
+            <span>자주 담으신 <b>그래머 인사이드</b> 시리즈 새 학기 물량이 들어왔어요.</span>
+          </div>
+        </div>
+        <a class="t1pz-btn" href="리스트_교재구매_선생님.html">바로 확인하기 &#8250;</a>
+      </div>
+      <div class="t1pz-perks">
+        <span>GOLD 혜택</span>
+        <span>구매 적립 3% · 대량구매 전담 상담 · 신간 우선 안내</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== NE Tutor 서비스 (교사용 학습 플랫폼, 간이 그리드) ===== -->
+  <section class="t1t-sec" id="nt">
+    <div class="container">
+      <div class="sec-title">선생님을 위한 티칭 플랫폼, NE Tutor</div>
+      <p class="sub">지도서·시험지 자동 생성부터 레벨테스트까지, 수업 준비 시간을 줄여드립니다.</p>
+      <div class="t1t-nt-grid">
+        <a class="t1t-nt-card" href="#" target="_blank" rel="noopener"><span class="ico"><img src="assets/ic_tutor_ebook.svg" alt=""></span><span><p class="sub">지도서/수업자료</p><p class="tt">E-Book・자료</p></span></a>
+        <a class="t1t-nt-card" href="#" target="_blank" rel="noopener"><span class="ico"><img src="assets/ic_tutor_vocab.svg" alt=""></span><span><p class="sub">시험지 자동 생성</p><p class="tt">어휘 문제 마법사</p></span></a>
+        <a class="t1t-nt-card" href="#" target="_blank" rel="noopener"><span class="ico"><img src="assets/ic_tutor_grammar.svg" alt=""></span><span><p class="sub">문제 무제한 출제</p><p class="tt">문법 문제뱅크</p></span></a>
+        <a class="t1t-nt-card" href="#" target="_blank" rel="noopener"><span class="ico"><img src="assets/ic_tutor_nelt.svg" alt=""></span><span><p class="sub">iBT 영어 레벨테스트</p><p class="tt">NELT</p></span></a>
+        <a class="t1t-nt-card" href="#" target="_blank" rel="noopener"><span class="ico"><img src="assets/ic_tutor_test.svg" alt=""></span><span><p class="sub">평가/오답 자동화</p><p class="tt">성취TEST</p></span></a>
+        <a class="t1t-nt-card" href="#" target="_blank" rel="noopener"><span class="ico"><img src="assets/ic_tutor_search.svg" alt=""></span><span><p class="sub">예문검색 1분컷</p><p class="tt">문법 예문 검색</p></span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 선생님 전용 교재 미리보기 ===== -->
+  <section class="t1t-sec t1t-picks">
+    <div class="container">
+      <div class="sec-title">선생님 전용 교재</div>
+      <p class="sub">일반 판매가와 별도로 학원·학교 채택 시 적용되는 교사 인증가를 확인해 보세요. (로그인 후 교사 인증 시 노출)</p>
+      <div class="t1t-grid4">
+        <a class="t1t-pick-card" href="교재상세_선생님.html"><span class="th"><img src="assets/best_4.png" alt=""></span><span class="bd"><span class="t1t-pick-badge">교사 인증가</span><p class="tit">그래머 인사이드 Lv.1 · Teacher's Pack</p><p class="pr">10,800원 <s>12,600원</s></p></span></a>
+        <a class="t1t-pick-card" href="교재상세_선생님.html"><span class="th"><img src="assets/best_1.png" alt=""></span><span class="bd"><span class="t1t-pick-badge">교사 인증가</span><p class="tit">Phonics Code 1 · Teacher's Pack</p><p class="pr">11,480원 <s>13,500원</s></p></span></a>
+        <a class="t1t-pick-card" href="교재상세_선생님.html"><span class="th"><img src="assets/best_2.png" alt=""></span><span class="bd"><span class="t1t-pick-badge">교사 인증가</span><p class="tit">리딩튜터 기본 · Teacher's Pack</p><p class="pr">10,710원 <s>12,600원</s></p></span></a>
+        <a class="t1t-pick-card" href="교재상세_선생님.html"><span class="th"><img src="assets/best_5.png" alt=""></span><span class="bd"><span class="t1t-pick-badge">교사 인증가</span><p class="tit">능률VOCA 어원편 · Teacher's Pack</p><p class="pr">11,470원 <s>13,500원</s></p></span></a>
+      </div>
+      <a class="t1t-more" href="리스트_교재구매_선생님.html">선생님 전용 교재 전체보기 &#8250;</a>
+    </div>
+  </section>
+
+  <!-- ===== 세미나·연수 안내 ===== -->
+  <section class="t1t-sec">
+    <div class="container">
+      <div class="sec-title">세미나·연수 안내</div>
+      <p class="sub">교재 채택과 연계된 무료 세미나·연수 일정을 확인하세요.</p>
+      <div class="t1t-sem-list">
+        <a class="t1t-sem-row" href="세미나상세.html"><span><span class="t1t-sem-tag">세미나</span><span class="t1t-sem-name">고등 영어 내신 대비 세미나</span></span><span class="t1t-sem-date">2026.07.05 ~ 2026.07.25</span></a>
+        <a class="t1t-sem-row" href="세미나상세.html"><span><span class="t1t-sem-tag">연수</span><span class="t1t-sem-name">Grammar Inside 채택교 교사 연수</span></span><span class="t1t-sem-date">2026.08.10 ~ 2026.08.14</span></a>
+        <a class="t1t-sem-row" href="세미나상세.html"><span><span class="t1t-sem-tag">세미나</span><span class="t1t-sem-name">파닉스&#183;리딩 연계 커리큘럼 설계 세미나</span></span><span class="t1t-sem-date">2026.08.20</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 공지사항 (교사용) ===== -->
+  <section class="notices">
+    <div class="container">
+      <div class="nt-inner">
+        <div class="notice-col">
+          <div class="sec-title">공지사항</div>
+          <div class="notice-list">
+            <div class="item"><span class="t">[안내] 2026학년도 2학기 교사 인증 재신청 안내</span><span class="d">2026. 08. 05</span></div>
+            <div class="item"><span class="t">[필독] 대량 채택 문의 접수 방법 변경 안내</span><span class="d">2026. 07. 28</span></div>
+            <div class="item"><span class="t">[중요] NE Tutor 어휘 문제 마법사 업데이트 안내</span><span class="d">2026. 07. 20</span></div>
+            <div class="item"><span class="t">[안내] 신간 Teacher's Guide 배포 일정 안내</span><span class="d">2026. 07. 12</span></div>
+          </div>
+        </div>
+        <div class="cs-col">
+          <div class="sec-title">고객센터</div>
+          <div class="cs-cards">
+            <div class="cs-card">
+              <div class="left"><span class="tel">1833-8368</span><span class="info">NE능률 고객센터<br><span class="info-sep">l</span>평일 9~16시 · 점심 12~13시</span></div>
+              <div class="cs-icons">
+                <div class="cs-box"><span class="ico"><img src="assets/ic_chat.svg" alt=""></span><span>채팅상담</span></div>
+                <div class="cs-box"><span class="ico"><img src="assets/ic_11.svg" alt=""></span><span>1:1문의</span></div>
+                <div class="cs-box"><span class="ico"><img src="assets/ic_faq.svg" alt=""></span><span>FAQ</span></div>
+                <div class="cs-box"><span class="ico"><img src="assets/ic_sms.svg" alt=""></span><span>문자상담</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="sec-title only-mo sns-title">SNS</div>
+          <div class="sns">
+            <div class="card"><div class="in"><div class="lbl"><span class="sns-brand">NE능률<br></span>Lounge 카페</div><div class="logo"><img src="assets/sns_lounge.png" alt=""></div></div></div>
+            <div class="card"><div class="in"><div class="lbl"><span class="sns-brand">NE능률<br></span>인스타그램</div><div class="logo"><img src="assets/sns_instagram.png" alt=""></div></div></div>
+            <div class="card"><div class="in"><div class="lbl"><span class="sns-brand">NE능률<br></span>유튜브</div><div class="logo"><img src="assets/sns_youtube.svg" alt=""></div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 카카오톡 채널 (index.html과 동일) ===== -->
+  <section class="t1nl-sec">
+    <div class="container">
+      <div class="t1nl-box">
+        <div class="t1nl-txt">
+          <span class="ic"><img src="assets/ic_kakao.svg" alt=""></span>
+          <div class="t1nl-copy">
+            <strong>NE Books 카카오톡 채널로 소식 받아보기</strong>
+            <span>신간·자료 업데이트·세미나 일정을 카카오톡 채널 친구 추가로 편하게 받아보세요.</span>
+          </div>
+        </div>
+        <a class="t1nl-btn" href="#" target="_blank" rel="noopener"><img src="assets/ic_kakao.svg" alt="">채널 추가</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <div id="site-footer"></div>
+
+</body>
+</html>
