@@ -25,12 +25,10 @@
 
   function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
 
-  /* [10월반영] 장바구니 담기(목업) — 헤더 장바구니 뱃지 증가 + 토스트 안내 */
+  /* [10월반영] 장바구니 담기(목업) — 공용 저장소(NECart)에 담고 헤더 뱃지 동기화 + 토스트 */
   function addToCart(book){
-    var badge=document.querySelector('.cart-badge');
-    if(badge){
-      var n=(parseInt(badge.getAttribute('data-count'),10)||0)+1;
-      badge.setAttribute('data-count',n); badge.textContent=n; badge.hidden=false;
+    if(window.NECart){
+      NECart.add({id:(book&&book.url? book.url+'|'+book.title : (book&&book.title)||'item'), name:(book&&book.title)||'교재', img:(book&&book.img)||'assets/best_1.png', orig:15000, unit:13500, rate:'10%', cat:'교재'}, 1);
     }
     showToast('장바구니에 담았어요'+(book&&book.title?' · '+book.title:''));
   }
@@ -54,7 +52,7 @@
       pop.classList.remove('wide');
       var html='<p class="sp-head">인기 검색어</p><ol class="sp-pop">';
       POPULAR.forEach(function(k,idx){
-        html+='<li><a href="리스트_교재구매.html"><span class="rk">'+(idx+1)+'</span>'+esc(k)+'</a></li>';
+        html+='<li><a href="검색결과.html?q='+encodeURIComponent(k)+'"><span class="rk">'+(idx+1)+'</span>'+esc(k)+'</a></li>';
       });
       html+='</ol><p class="sp-note">* 최근 10일간 인기 검색어 입니다.</p>';
       pop.innerHTML=html;
@@ -119,7 +117,7 @@
       if(opts.onSelect) return; // 폼 내 교재명 검색은 이동하지 않음
       var q=input.value.trim();
       if(!q){ input.focus(); return; }
-      location.href='리스트_교재구매.html?q='+encodeURIComponent(q);
+      location.href='검색결과.html?q='+encodeURIComponent(q);
     }
     input.addEventListener('focus',openPop);
     input.addEventListener('click',openPop);
