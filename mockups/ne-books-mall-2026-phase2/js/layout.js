@@ -9,6 +9,12 @@
           <a class="logo" href="index.html"><img src="assets/header_logo_dark.png" alt="NE_Books"></a>
           <!-- [임시/검토용] B2C·B2B 목업 빠른 전환 버튼 — 실제 배포 시 제거 -->
           <a class="t1dev-switch only-pc" id="devViewSwitch" href="index-teacher.html">선생님 화면 보기</a>
+          <!-- [임시/검토용] 선생님 페이지 바로가기 — 선생님 화면에서만 노출 -->
+          <span class="t1dev-nav only-pc" id="devNav" hidden>
+            <a href="리스트_교재구매_선생님.html">교재목록</a>
+            <a href="교재상세_선생님.html">교재상세</a>
+            <a href="마이페이지.html#orders">주문내역</a>
+          </span>
         </div>
         <div class="m-loc"><a class="m-loc-home" href="index.html" aria-label="홈"><img src="assets/ic_home_sub.svg" alt="홈"></a><button class="m-loc-btn" type="button" aria-expanded="false"><span class="m-loc-name"></span><span class="m-loc-caret"></span></button></div>
         <!-- [항목1] 통합검색영역: 검색창 + 우측 버튼(맞춤교재찾기·추천커리큘럼), 빨간 라인으로 영역 강조. 일반몰·선생님몰 공통 헤더 -->
@@ -166,8 +172,9 @@
     var btn=document.getElementById('devViewSwitch'); if(!btn) return;
     var file=decodeURIComponent(location.pathname.split('/').pop()||'');
     var isTeacher=(file.indexOf('선생님')>=0)||file==='index-teacher.html';
-    btn.textContent=isTeacher?'일반몰 화면 보기':'선생님 화면 보기';
+    btn.textContent=isTeacher?'일반몰':'선생님 화면 보기';
     btn.href=isTeacher?'index.html':'index-teacher.html';
+    var nav=document.getElementById('devNav'); if(nav && isTeacher) nav.hidden=false;
   })();
 
   /* ===== 모바일 GNB 자동 숨김/표시 (아래로 스크롤=숨김, 위로 스크롤=표시+그림자 고정) ===== */
