@@ -98,13 +98,14 @@
   .t1t-mcard .mc-msg b{color:#16243d;font-weight:800;}
   .t1t-mcard .mc-cta{display:inline-flex;align-items:center;gap:3px;margin-top:12px;font-size:14px;font-weight:800;color:#e0533a;text-decoration:none;transition:.15s;}
   .t1t-mcard .mc-cta:hover{text-decoration:underline;}
-  /* 가운데 회원 등급 혜택 박스 */
-  .t1t-perks-box{background:#fff;border:1px solid #e6ecf5;box-shadow:0 12px 34px rgba(22,36,61,.10);border-radius:18px;padding:26px 22px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;}
-  .t1t-perks-box .mc-perks-h{display:inline-flex;align-items:center;height:24px;padding:0 12px;border-radius:20px;background:#fbf0dc;color:#a97a10;font-size:12.5px;font-weight:800;margin-bottom:18px;}
-  .t1t-perks-box ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;align-items:center;gap:14px;}
-  .t1t-perks-box li{font-size:14px;color:#3a4a63;line-height:1.5;white-space:nowrap;}
-  .t1t-perks-box li::before{content:"✓";color:#1a9d54;font-weight:900;font-size:13px;margin-right:6px;}
-  .t1t-perks-box li b{color:#e0533a;font-weight:800;}
+  /* 가운데 회원 등급 혜택 박스 — GOLD 프리미엄 카드(다크 네이비 + 골드 포인트) */
+  .t1t-perks-box{position:relative;overflow:hidden;background:linear-gradient(165deg,#22345a 0%,#16243d 58%,#0f1a2e 100%);border:1px solid rgba(255,216,115,.28);box-shadow:0 16px 40px rgba(15,26,46,.32);border-radius:18px;padding:26px 22px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;color:#fff;}
+  .t1t-perks-box::before{content:"";position:absolute;top:-46px;right:-46px;width:130px;height:130px;border-radius:50%;background:radial-gradient(circle,rgba(255,216,115,.22),transparent 70%);pointer-events:none;}
+  .t1t-perks-box .mc-perks-h{position:relative;display:inline-flex;align-items:center;gap:5px;height:30px;padding:0 16px;border-radius:20px;background:linear-gradient(135deg,#ffe391,#f4bf4c);color:#5a3d05;font-size:12.5px;font-weight:800;letter-spacing:-.2px;margin-bottom:20px;box-shadow:0 5px 14px rgba(244,191,76,.35);}
+  .t1t-perks-box ul{position:relative;list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;width:100%;}
+  .t1t-perks-box li{display:flex;align-items:center;justify-content:center;gap:9px;font-size:13.5px;color:#e8eefb;line-height:1.45;white-space:nowrap;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);border-radius:11px;padding:10px 12px;}
+  .t1t-perks-box li::before{content:"✓";flex:none;display:inline-flex;align-items:center;justify-content:center;width:19px;height:19px;border-radius:50%;background:#1a9d54;color:#fff;font-size:11px;font-weight:900;}
+  .t1t-perks-box li b{color:#ffd873;font-weight:800;}
   .t1t-mcard .mc-actions{margin-top:auto;padding-top:24px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
   .t1t-mcard .mc-actions .t1t-btn-fill{width:auto;height:48px;font-size:15px;}
   .t1t-mcard .mc-switch{font-size:13px;color:#2b4a86;font-weight:700;text-decoration:underline;}
@@ -271,7 +272,7 @@
         </div>
       </div>
       <aside class="t1t-perks-box">
-        <span class="mc-perks-h">GOLD 회원 등급 혜택</span>
+        <span class="mc-perks-h">&#128081; GOLD 회원 등급 혜택</span>
         <ul>
           <li>추가 할인 <b>10%</b> · 추가 적립 <b>10%</b></li>
           <li>대량구매 전담 상담 · 신간 우선 안내</li>
@@ -351,8 +352,8 @@
       <div class="t2exp">
         <div class="t2exp-img" style="background-image:url('assets/img4.png')"></div>
         <div class="t2exp-panel">
-          <span class="sub">현직 선생님이 직접 고른</span>
-          <span class="ttl">전문가 PICK 추천 교재</span>
+          <span class="sub">베테랑 선생님의 10년 노하우</span>
+          <span class="ttl">믿고 쓰는 전문가 PICK 교재</span>
           <div class="t2exp-grid">
             <a class="t2exp-prod" href="교재상세_선생님.html"><span class="th"><img src="assets/book_cover.jpg" alt=""></span><span class="nm">Oxford Reading Tree Stage 3</span><span class="coup">30,000원</span><span class="p"><span class="pct">20%</span>24,000원</span><span class="rw">1,200원 적립</span></a>
             <a class="t2exp-prod" href="교재상세_선생님.html"><span class="th"><img src="assets/best_3.png" alt=""></span><span class="nm">Oxford Bookworms Starter</span><span class="coup">15,000원</span><span class="p"><span class="pct">15%</span>12,750원</span><span class="rw">638원 적립</span></a>
@@ -367,7 +368,7 @@
   <!-- ===== [from mall-type2] 이런 조합 어때요? 맞춤 교재 세트 (선생님몰) ===== -->
   <section class="t2set-sec">
     <div class="container">
-      <div class="t2-head"><h2>이런 조합 어때요? <span class="hl">맞춤 교재 세트</span></h2><a class="t2-more" href="리스트_교재구매_선생님.html">전체보기 &#8250;</a></div>
+      <div class="t2-head"><h2>2학기 개학 대비, <span class="hl">맞춤 교재 세트</span></h2><a class="t2-more" href="리스트_교재구매_선생님.html">전체보기 &#8250;</a></div>
       <div class="t2set-grid">
         <div class="t2set-card">
           <div class="st-top"><span class="st-goal">방학 완성</span><p class="st-name">중등 방학 3주 완성 세트</p><p class="st-desc">어휘 + 문법 + 독해를 한 번에</p>
