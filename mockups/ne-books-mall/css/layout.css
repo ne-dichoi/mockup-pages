@@ -2344,7 +2344,7 @@ body.bsheet-lock{overflow:hidden;}
     border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;}
   /* 판매중 / 정렬 바 */
   .mtools .msort{display:flex;align-items:center;justify-content:space-between;gap:12px;
-    padding:40px 20px 40px;border-bottom:1px solid var(--line);}
+    padding:40px 20px 16px;border-bottom:1px solid var(--line);}
   .msort-l{display:flex;align-items:center;gap:16px;}
   .msort-chk{display:inline-flex;align-items:center;gap:4px;font-size:12px;color:#666;cursor:pointer;}
   .msort-chk .chk{width:18px;height:18px;flex:none;appearance:none;-webkit-appearance:none;margin:0;
@@ -2354,7 +2354,7 @@ body.bsheet-lock{overflow:hidden;}
     background-repeat:no-repeat;background-position:center;}
   .msort-sort{display:inline-flex;align-items:center;gap:4px;border:0;background:none;padding:0;
     font-size:12px;color:#666;cursor:pointer;}
-  .msort-nsel{appearance:none;-webkit-appearance:none;border:0;padding:0 18px 0 0;font-family:var(--sans);font-size:12px;color:#666;cursor:pointer;background:transparent url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none'><path d='M4 6l4 4 4-4' stroke='%23666' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/></svg>") right center/13px no-repeat;}
+  .msort-nsel{appearance:none;-webkit-appearance:none;field-sizing:content;border:0;padding:0 18px 0 0;font-family:var(--sans);font-size:12px;color:#666;cursor:pointer;background:transparent url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none'><path d='M4 6l4 4 4-4' stroke='%23666' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/></svg>") right center/13px no-repeat;}
   .msort-r{display:inline-flex;align-items:center;gap:4px;font-size:14px;font-weight:600;color:#666;text-decoration:none;flex:none;}
   .msort-r .msort-r-ic{width:17px;height:17px;display:block;flex:none;}
   /* 상품 카드 */
@@ -2365,7 +2365,7 @@ body.bsheet-lock{overflow:hidden;}
     font-family:var(--sans);font-size:14px;font-weight:500;line-height:22px;padding:12px 24px;color:var(--ink);}
   .mo-more .mo-more-ic{width:20px;height:20px;display:inline-flex;flex:none;}
   .mo-more .mo-more-ic img{width:20px;height:20px;filter:brightness(0);}
-  .mcard{position:relative;display:flex;flex-direction:column;gap:16px;padding:24px 20px;}
+  .mcard{position:relative;display:flex;flex-direction:column;gap:16px;padding:40px 20px;}
   .mcard::after{content:"";position:absolute;left:20px;right:20px;bottom:0;height:1px;background:var(--line);}
   .mc-top{display:flex;gap:16px;align-items:stretch;}
   .mc-cover{position:relative;flex:none;width:131px;height:131px;border-radius:8px;background:var(--gray-bg);
