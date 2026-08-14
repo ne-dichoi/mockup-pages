@@ -265,6 +265,16 @@
   .t2set-card .st-cta .buy{background:#e83828;color:#fff;}
   .t2set-card .st-cta .buy:hover{background:#c92e20;}
   @media (max-width:900px){.t2set-grid{grid-template-columns:1fr;}}
+
+  /* 목적별 추천 코스 제목 프리셋 드롭다운 (oct-launch 동일) */
+  .bs-title-edit{position:relative;display:inline-flex;flex-direction:column;align-items:center;}
+  .bs-title-btn{display:inline-flex;align-items:center;gap:12px;background:none;border:0;cursor:pointer;padding:0;font-family:var(--sans);}
+  .bs-title-caret{width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-top:10px solid #191919;transition:transform .15s;}
+  .bs-title-btn[aria-expanded="true"] .bs-title-caret{transform:rotate(180deg);}
+  .bs-title-menu{position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%);z-index:40;min-width:280px;background:#fff;border:1px solid #ededed;border-radius:12px;box-shadow:0 14px 34px rgba(0,0,0,.14);padding:8px;list-style:none;margin:0;}
+  .bs-title-menu[hidden]{display:none;}
+  .bs-title-menu li{padding:12px 16px;border-radius:8px;font-size:15px;font-weight:600;color:#333;cursor:pointer;white-space:nowrap;text-align:left;}
+  .bs-title-menu li:hover,.bs-title-menu li.on{background:#f5f6f8;color:#e83828;}
 </style>
 </head>
 <body class="page-index">
@@ -380,7 +390,23 @@
     <div class="container">
       <div class="bs-wrap">
         <div class="bs-head">
-          <div class="sec-title">목적별 추천 코스</div>
+          <!-- 섹션 제목 드롭다운(프리셋 전환) — oct-launch '지금 학원에서 가장 많이 쓰는 교재' 동일 -->
+          <div class="bs-title-edit">
+            <button class="bs-title-btn" type="button" id="bsTitleBtn" aria-haspopup="listbox" aria-expanded="false">
+              <span class="sec-title" id="bsTitleText">목적별 추천 코스</span>
+              <span class="bs-title-caret" aria-hidden="true"></span>
+            </button>
+            <ul class="bs-title-menu" id="bsTitleMenu" role="listbox" hidden>
+              <li role="option">목적별 추천 코스</li>
+              <li role="option">학년별 추천코스</li>
+              <li role="option">영역별 추천코스</li>
+              <li role="option">방학특강 대비 추천 교재</li>
+              <li role="option">신학기 대비 추천 교재</li>
+              <li role="option">지금 학원에서 가장 많이 쓰는 교재</li>
+              <li role="option">이 달의 추천 교재</li>
+              <li role="option">유명 선생님의 추천 교재</li>
+            </ul>
+          </div>
           <div class="bs-tabs" id="bsTabs">
             <span class="tab active" data-course="0">중등 어휘암기 추천 코스</span>
             <span class="tab" data-course="1">쉬운 암기 필수 VOCA</span>
@@ -692,6 +718,25 @@
     // NOTE: no wheel handler — mouse wheel scrolls the page normally; move the list by dragging.
   }
   enableDragScroll(document.getElementById('bsList'));
+
+  /* 목적별 추천 코스 제목 프리셋 드롭다운 */
+  (function(){
+    var btn=document.getElementById('bsTitleBtn'), menu=document.getElementById('bsTitleMenu'), text=document.getElementById('bsTitleText');
+    if(!btn||!menu||!text) return;
+    function open(){ menu.hidden=false; btn.setAttribute('aria-expanded','true'); }
+    function close(){ menu.hidden=true; btn.setAttribute('aria-expanded','false'); }
+    btn.addEventListener('click',function(e){ e.stopPropagation(); if(menu.hidden) open(); else close(); });
+    [].forEach.call(menu.children,function(li){
+      if(li.textContent.trim()===text.textContent.trim()) li.classList.add('on');
+      li.addEventListener('click',function(){
+        text.textContent=li.textContent.trim();
+        [].forEach.call(menu.children,function(x){ x.classList.remove('on'); });
+        li.classList.add('on'); close();
+      });
+    });
+    document.addEventListener('click',function(e){ if(!menu.hidden && !btn.contains(e.target) && !menu.contains(e.target)) close(); });
+    document.addEventListener('keydown',function(e){ if(e.key==='Escape') close(); });
+  })();
 
   /* 베스트셀러 카드의 장바구니 아이콘 → 장바구니 페이지 */
   (function(){
