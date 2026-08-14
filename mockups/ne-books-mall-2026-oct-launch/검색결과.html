@@ -8,9 +8,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260814g">
-<script src="js/layout.js?v=20260814g" defer></script>
-<script src="js/search.js?v=20260814g" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260814h">
+<script src="js/layout.js?v=20260814h" defer></script>
+<script src="js/search.js?v=20260814h" defer></script>
 <style id="sr-styles">
   .page-search .sr-wrap{padding:48px 0 80px;}
   .sr-head{display:flex;flex-direction:column;align-items:center;gap:16px;margin-bottom:40px;}
@@ -49,6 +49,10 @@
   .sr-page a{min-width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:8px;font-size:14px;color:#666;cursor:pointer;}
   .sr-page a.cur{background:var(--ink);color:#fff;font-weight:700;}
   .sr-page a.arw{color:#bbb;}
+  .sr-grid.sr-empty{display:block;}
+  .sr-noresult{text-align:center;padding:70px 20px 100px;}
+  .sr-noresult .srn-t{font-size:20px;font-weight:800;color:#191919;}
+  .sr-noresult .srn-s{font-size:15px;color:#8c8c8c;margin-top:10px;}
   .sr-toast{position:fixed;left:50%;bottom:40px;transform:translateX(-50%) translateY(20px);background:rgba(29,23,23,.94);color:#fff;font-size:14px;font-weight:600;padding:14px 22px;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.25);z-index:2000;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;max-width:calc(100vw - 40px);text-align:center;}
   .sr-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
   @media (max-width:900px){.sr-grid{grid-template-columns:repeat(2,1fr);}}
@@ -97,12 +101,12 @@ document.addEventListener('DOMContentLoaded', function(){
 
   /* 검색어 반영: ?q= → 제목 + 헤더 검색창 */
   var q='파닉스';
-  try{ var p=new URLSearchParams(location.search); if(p.get('q')) q=p.get('q'); }catch(e){}
+  try{ var p=new URLSearchParams(location.search); var v=(p.get('q')||'').trim(); if(v) q=v; }catch(e){}
   var qEl=document.getElementById('srQuery'); if(qEl) qEl.textContent=q;
   var si=document.querySelector('.search-input'); if(si) si.value=q;
 
-  /* 상품 (와이어프레임 샘플) */
-  var PRODUCTS=[
+  /* 검색어별 결과 데이터 — '파닉스'와 '세마리'만 결과 있음, 그 외는 결과 없음 */
+  var PHONICS=[
     {id:'pc1-sb', badge:'HOT', bt:'hot', cat:'Phonics', name:'Phonics Code 1: Student Book', img:'best_1.png', orig:15000, unit:13500, rate:'10%'},
     {id:'pc1-wb', badge:'NEW', bt:'new', cat:'Phonics', name:'Phonics Code 1: Workbook', img:'best_1.png', orig:15000, unit:13500, rate:'10%'},
     {id:'pc2-sb-a', badge:'절판', bt:'off', state:'discontinued', cat:'Phonics', name:'Phonics Code 2: Student Book', img:'best_2.png', orig:15000, unit:13500, rate:'10%'},
@@ -112,6 +116,39 @@ document.addEventListener('DOMContentLoaded', function(){
     {id:'pc2-sb-d', cat:'Phonics', name:'Phonics Code 2: Student Book', img:'best_4.png', orig:15000, unit:13500, rate:'10%'},
     {id:'pc2-sb-e', cat:'Phonics', name:'Phonics Code 2: Student Book', img:'best_5.png', orig:15000, unit:13500, rate:'10%'}
   ];
+  var SEMARI=[
+    {id:'sm-a-set', badge:'HOT', bt:'hot', cat:'독서논술', name:'세 마리 토끼 잡는 초등 독서논술 A단계 세트', img:'best_2.png', orig:48000, unit:43200, rate:'10%'},
+    {id:'sm-a1', badge:'NEW', bt:'new', cat:'독서논술', name:'세 마리 토끼 잡는 초등 독서논술 A1', img:'best_3.png', orig:12000, unit:10800, rate:'10%'},
+    {id:'sm-a2', cat:'독서논술', name:'세 마리 토끼 잡는 초등 독서논술 A2', img:'best_4.png', orig:12000, unit:10800, rate:'10%'},
+    {id:'sm-a3', cat:'독서논술', name:'세 마리 토끼 잡는 초등 독서논술 A3', img:'best_5.png', orig:12000, unit:10800, rate:'10%'},
+    {id:'sm-b-set', badge:'일시품절', bt:'off', state:'soldout', cat:'독서논술', name:'세 마리 토끼 잡는 초등 독서논술 B단계 세트', img:'best_1.png', orig:48000, unit:43200, rate:'10%'},
+    {id:'sm-b1', cat:'독서논술', name:'세 마리 토끼 잡는 초등 독서논술 B1', img:'best_2.png', orig:12000, unit:10800, rate:'10%'},
+    {id:'sm-b2', cat:'독서논술', name:'세 마리 토끼 잡는 초등 독서논술 B2', img:'best_3.png', orig:12000, unit:10800, rate:'10%'},
+    {id:'sm-b3', cat:'독서논술', name:'세 마리 토끼 잡는 초등 독서논술 B3', img:'best_4.png', orig:12000, unit:10800, rate:'10%'}
+  ];
+  function pick(query){
+    var s=(query||'').toLowerCase().replace(/\s+/g,'');
+    if(s.indexOf('파닉스')>=0 || s.indexOf('phonics')>=0) return {count:128, items:PHONICS};
+    if(s.indexOf('세마리')>=0 || s.indexOf('토끼')>=0 || s.indexOf('독서논술')>=0) return {count:57, items:SEMARI};
+    return null;
+  }
+
+  var grid=document.getElementById('srGrid');
+  var pager=document.querySelector('.sr-page');
+  var countEl=document.getElementById('srCount');
+  var result=pick(q);
+
+  /* 결과 없음: 하단 리스트 제거 + 안내 문구 */
+  if(!result){
+    if(countEl) countEl.textContent='0';
+    if(pager) pager.style.display='none';
+    grid.classList.add('sr-empty');
+    grid.innerHTML='<div class="sr-noresult"><p class="srn-t">검색한 결과가 없습니다.</p><p class="srn-s">상품을 다시 검색해주세요.</p></div>';
+    return;
+  }
+  if(countEl) countEl.textContent=result.count;
+
+  var PRODUCTS=result.items;
   var byId={}; PRODUCTS.forEach(function(p){ byId[p.id]=p; });
 
   /* 현재 장바구니 수량 (localStorage 반영) */
@@ -119,7 +156,6 @@ document.addEventListener('DOMContentLoaded', function(){
   function cartQty(id){ return (cart[id] && cart[id].qty) || 0; }
 
   var HEART='<svg viewBox="0 0 24 24"><path d="M12 20s-7-4.3-9.2-8.2C1.2 8.9 2.6 6 5.5 6 7.4 6 8.7 7 12 9.5 15.3 7 16.6 6 18.5 6c2.9 0 4.3 2.9 2.7 5.8C19 15.7 12 20 12 20z" stroke-width="1.6"/></svg>';
-  var grid=document.getElementById('srGrid');
   grid.innerHTML=PRODUCTS.map(function(p){
     var cq=cartQty(p.id);
     var badge=p.badge?'<span class="sr-badge '+p.bt+'">'+p.badge+'</span>':'';
@@ -133,7 +169,7 @@ document.addEventListener('DOMContentLoaded', function(){
       +'</div>'
       +'<div class="sr-step'+inCls+'">'
         +'<button type="button" class="minus"'+dis+'>&minus;</button>'
-        +'<input type="text" class="q" value="'+(cq>0?cq:1)+'" readonly aria-label="수량">'
+        +'<input type="text" class="q" value="'+(cq>0?cq:0)+'" readonly aria-label="수량">'
         +'<button type="button" class="plus"'+dis+'>+</button>'
       +'</div>'
       +'<div class="sr-meta">'
@@ -167,7 +203,7 @@ document.addEventListener('DOMContentLoaded', function(){
     /* 스테퍼 = 장바구니 수량 (0이면 빠짐) */
     if(window.NECart){ if(cq>0){ NECart.setQty(toCartItem(p), cq); } else { NECart.remove(p.id); } cart=NECart.read(); }
     var step=card.querySelector('.sr-step'), input=step.querySelector('.q');
-    input.value = cq>0 ? cq : 1;
+    input.value = cq>0 ? cq : 0;
     step.classList.toggle('in', cq>0);
     toast(cq>0 ? '장바구니에 담았어요 · '+p.name+' '+cq+'권' : '장바구니에서 뺐어요 · '+p.name);
   });
