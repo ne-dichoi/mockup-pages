@@ -1381,6 +1381,38 @@ a{color:inherit;text-decoration:none;}
 .br-tr span{font-size:14px;color:var(--muted);}
 .br-c1,.br-c2,.br-c3,.br-c4{text-align:center;}
 .br-c5{text-align:left;}
+@media (max-width:1023px){
+  /* ===== 고객센터 · 지사안내 (모바일) : 탭 → 안내회색박스(불릿+지역세그먼트) → 지사카드 ===== */
+  .page-my #cc-branch:not([hidden]){display:flex;flex-direction:column;}
+  /* 밑줄탭 먼저 */
+  .page-my #cc-branch .qa-filter{order:1;margin:0;flex-direction:column;align-items:stretch;gap:0;min-width:0;}
+  .page-my #cc-branch .pt-tabs{min-width:0;gap:24px;padding:0 20px;border-bottom:1px solid var(--line);overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none;-ms-overflow-style:none;}
+  .page-my #cc-branch .pt-tabs::-webkit-scrollbar{display:none;}
+  .page-my #cc-branch .pt-tabs a{flex:none;white-space:nowrap;font-size:14px;padding:16px 0;margin-bottom:-1px;border-bottom:4px solid transparent;}
+  .page-my #cc-branch .pt-tabs a.on{font-weight:700;color:var(--ink);border-bottom-color:var(--ink);}
+  .page-my #cc-branch .qa-tools{display:none;}
+  /* 안내 회색박스 */
+  .page-my #cc-branch .br-info{order:2;margin:0;border:0;border-radius:0;background:var(--gray-bg);padding:24px 20px;flex-direction:column;align-items:stretch;gap:16px;}
+  .page-my #cc-branch .br-info-list{list-style:none;margin:0;padding:0;}
+  .page-my #cc-branch .br-info-list li{position:relative;padding-left:21px;font-size:14px;line-height:22px;color:var(--muted);}
+  .page-my #cc-branch .br-info-list li::before{content:"";position:absolute;left:7px;top:9px;width:3px;height:3px;border-radius:50%;background:var(--muted);}
+  /* 지역 세그먼트 2열 그리드 */
+  .page-my #cc-branch .br-seg{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line);border-left:1px solid var(--line);}
+  .page-my #cc-branch .br-seg-btn{box-sizing:border-box;padding:8px 16px;border:0;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:#fff;font-family:var(--sans);font-size:14px;line-height:22px;color:var(--muted);cursor:pointer;text-align:center;}
+  .page-my #cc-branch .br-seg-btn.on{background:#fff2f0;color:var(--red);font-weight:700;outline:1px solid var(--red);outline-offset:-1px;position:relative;z-index:1;}
+  /* 지사 목록 카드 */
+  .page-my #cc-branch .br-table{order:3;margin:0;border-top:0;padding:0 20px;}
+  .page-my #cc-branch .br-th{display:none;}
+  .page-my #cc-branch .br-tr{display:flex;flex-wrap:wrap;align-items:center;column-gap:8px;row-gap:8px;padding:24px 0;min-height:0;border-bottom:1px solid #eee;}
+  .page-my #cc-branch .br-tr::before{content:"";order:3;flex-basis:100%;height:0;}
+  .page-my #cc-branch .br-tr::after{content:"";order:6;flex-basis:100%;height:0;}
+  .page-my #cc-branch .br-c1{order:1;flex:none;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;height:22px;padding:4px 8px;border:1px solid var(--weak);border-radius:30px;font-size:10px;font-weight:600;line-height:14px;color:var(--weak);white-space:nowrap;}
+  .page-my #cc-branch .br-c2{order:2;flex:none;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;height:22px;padding:4px 8px;background:var(--gray-bg);border-radius:30px;font-size:10px;font-weight:600;line-height:14px;color:var(--muted);white-space:nowrap;}
+  .page-my #cc-branch .br-c3{order:4;flex:1 1 auto;text-align:left;font-size:14px;font-weight:500;line-height:22px;color:var(--ink);white-space:nowrap;}
+  .page-my #cc-branch .br-c4{order:5;flex:none;margin-left:auto;text-align:right;font-size:14px;font-weight:500;line-height:22px;color:var(--ink);white-space:nowrap;}
+  .page-my #cc-branch .br-c5{order:7;flex-basis:100%;text-align:left;font-size:12px;line-height:20px;color:var(--weak);}
+  .page-my #cc-branch .pager{order:4;margin-top:24px;}
+}
 /* 1:1문의 부분환불 상품·권수 선택 (주문번호 선택 시) */
 .pr-refund{display:flex;flex-direction:column;gap:8px;padding-top:12px;width:100%;}
 .pr-refund[hidden]{display:none;}
@@ -3197,7 +3229,7 @@ a{color:inherit;text-decoration:none;}
 /* ===== 고객센터 교재 오류정정 리스트 (모바일, Figma 3033-12399) — 고객센터.html #cc-errata ===== */
 @media (max-width:1023px){
   /* 순서: [액션버튼(흰배경)] → [밑줄탭] → [회색박스: 교재검색 + 교재선택 아코디언] → [목록] */
-  .page-my #cc-errata{display:flex;flex-direction:column;}
+  .page-my #cc-errata:not([hidden]){display:flex;flex-direction:column;}
   .page-my #cc-errata .qa-filter{order:1;margin:0;display:flex;flex-direction:column;flex-wrap:nowrap;align-items:stretch;gap:0;min-width:0;}
   .page-my #cc-errata .errata-filter{order:2;}
   .page-my #cc-errata .nt-table{order:3;margin-top:0;}

@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "autoPort": true,
+  "configurations": [
+    {
+      "name": "nebooks",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server"],
+      "port": 5510
+    }
+  ]
+}
