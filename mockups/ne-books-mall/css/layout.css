@@ -1368,14 +1368,21 @@ a{color:inherit;text-decoration:none;}
 .br-info-text{font-size:14px;color:var(--muted);line-height:1.7;}
 .br-cs{display:flex;align-items:center;gap:16px;flex:none;}
 .br-cs-num{display:inline-flex;align-items:center;gap:6px;font-size:14px;color:var(--muted);white-space:nowrap;}
-.br-cs-num .ic{width:20px;height:20px;display:inline-flex;}
-.br-cs-num b{color:var(--red);font-size:20px;font-weight:700;margin-left:2px;}
+.br-cs-num .ic{width:24px;height:24px;display:inline-flex;}
+.br-cs-num .ic svg{width:100%;height:100%;}
+.br-cs-num b{color:var(--red);font-size:24px;font-weight:700;margin-left:2px;}
 .br-cs-time{font-size:14px;color:var(--muted);white-space:nowrap;}
 .br-cs-time .dim{color:var(--weak);font-size:12px;}
+/* 지역 세그먼트 탭 바(라인탭 아래) — 8열 균등, 활성 검정 */
+.br-seg{display:flex;margin-top:16px;}
+.br-seg-btn{flex:1 1 0;min-width:0;box-sizing:border-box;height:64px;padding:0 8px;border:1px solid var(--line);background:#fff;font-family:var(--sans);font-size:14px;color:var(--muted);cursor:pointer;text-align:center;white-space:nowrap;}
+.br-seg-btn + .br-seg-btn{margin-left:-1px;}
+.br-seg-btn:hover{background:var(--gray-bg);position:relative;z-index:1;}
+.br-seg-btn.on{background:var(--ink);border-color:var(--ink);color:#fff;font-weight:700;position:relative;z-index:2;}
 /* 지사 목록 표 */
 .br-table{margin-top:16px;border-top:1px solid var(--line);}
 .br-th,.br-tr{display:grid;grid-template-columns:120px 160px 160px 240px 1fr;align-items:center;padding:0 24px;box-sizing:border-box;}
-.br-th{height:50px;background:var(--gray-bg);border-bottom:1px solid var(--line);}
+.br-th{height:54px;background:var(--gray-bg);border-bottom:1px solid var(--line);}
 .br-th span{font-size:14px;font-weight:700;color:var(--ink);text-align:center;}
 .br-tr{min-height:54px;border-bottom:1px solid var(--line);}
 .br-tr span{font-size:14px;color:var(--muted);}
@@ -1392,16 +1399,19 @@ a{color:inherit;text-decoration:none;}
   .page-my #cc-branch .pt-tabs a.on{font-weight:700;color:var(--ink);border-bottom-color:var(--ink);}
   .page-my #cc-branch .qa-tools{display:none;}
   /* 안내 회색박스 */
-  .page-my #cc-branch .br-info{order:2;margin:0;border:0;border-radius:0;background:var(--gray-bg);padding:40px 20px;flex-direction:column;align-items:stretch;gap:16px;}
+  .page-my #cc-branch .br-info{order:2;margin:0;border:0;border-radius:0;background:var(--gray-bg);padding:40px 20px 0;flex-direction:column;align-items:stretch;gap:16px;}
   .page-my #cc-branch .br-info-list{list-style:none;margin:0;padding:0;}
   .page-my #cc-branch .br-info-list li{position:relative;padding-left:21px;font-size:14px;line-height:22px;color:var(--muted);}
   .page-my #cc-branch .br-info-list li::before{content:"";position:absolute;left:7px;top:9px;width:3px;height:3px;border-radius:50%;background:var(--muted);}
-  /* 지역 세그먼트 2열 그리드 */
-  .page-my #cc-branch .br-seg{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line);border-left:1px solid var(--line);}
-  .page-my #cc-branch .br-seg-btn{box-sizing:border-box;padding:12px 16px;border:0;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:#fff;font-family:var(--sans);font-size:14px;line-height:22px;color:var(--muted);cursor:pointer;text-align:center;}
-  .page-my #cc-branch .br-seg-btn.on{background:#fff2f0;color:var(--red);font-weight:700;outline:1px solid var(--red);outline-offset:-1px;position:relative;z-index:1;}
+  /* 지역 세그먼트 2열 그리드 (회색박스 이어짐) */
+  .page-my #cc-branch .br-seg{order:3;display:grid;grid-template-columns:1fr 1fr;background:var(--gray-bg);padding:16px 20px 40px;margin-top:0;}
+  .page-my #cc-branch .br-seg-btn{flex:none;height:auto;box-sizing:border-box;padding:12px 16px;border:1px solid var(--line);background:#fff;font-family:var(--sans);font-size:14px;line-height:22px;color:var(--muted);cursor:pointer;text-align:center;}
+  .page-my #cc-branch .br-seg-btn + .br-seg-btn{margin-left:0;}
+  .page-my #cc-branch .br-seg-btn:nth-child(even){margin-left:-1px;}
+  .page-my #cc-branch .br-seg-btn:nth-child(n+3){margin-top:-1px;}
+  .page-my #cc-branch .br-seg-btn.on{background:#fff2f0;border-color:var(--red);color:var(--red);font-weight:700;position:relative;z-index:1;}
   /* 지사 목록 카드 */
-  .page-my #cc-branch .br-table{order:3;margin:0;border-top:0;padding:0 20px;}
+  .page-my #cc-branch .br-table{order:4;margin:0;border-top:0;padding:0 20px;}
   .page-my #cc-branch .br-th{display:none;}
   .page-my #cc-branch .br-tr{display:flex;flex-wrap:wrap;align-items:center;column-gap:8px;row-gap:0;padding:24px 0;min-height:0;border-bottom:1px solid #eee;}
   .page-my #cc-branch .br-tr::before{content:"";order:3;flex-basis:100%;height:8px;}
@@ -1411,7 +1421,7 @@ a{color:inherit;text-decoration:none;}
   .page-my #cc-branch .br-c3{order:4;flex:1 1 auto;text-align:left;font-size:14px;font-weight:500;line-height:22px;color:var(--ink);white-space:nowrap;}
   .page-my #cc-branch .br-c4{order:5;flex:none;margin-left:auto;text-align:right;font-size:14px;font-weight:500;line-height:22px;color:var(--ink);white-space:nowrap;}
   .page-my #cc-branch .br-c5{order:7;flex-basis:100%;text-align:left;font-size:12px;line-height:20px;color:var(--weak);}
-  .page-my #cc-branch .pager{order:4;margin-top:24px;}
+  .page-my #cc-branch .pager{order:5;margin-top:24px;}
 }
 /* 1:1문의 부분환불 상품·권수 선택 (주문번호 선택 시) */
 .pr-refund{display:flex;flex-direction:column;gap:8px;padding-top:12px;width:100%;}
