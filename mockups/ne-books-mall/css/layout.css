@@ -1636,9 +1636,10 @@ a{color:inherit;text-decoration:none;}
 .iq-nsel:invalid{color:var(--weak);}  /* 미선택(placeholder) 시 #a9a9a9, 선택 시 #1d1717 */
 /* 커스텀 셀렉트 위에 얹는 투명 네이티브 셀렉트(모바일에서 폰 기본 셀렉트 UI 사용) */
 .oh-nsel{display:none;}
-/* 교재검색 트리거(바텀시트 오픈) */
-.iq-book-open{width:100%;height:54px;box-sizing:border-box;align-items:center;justify-content:space-between;border:1px solid var(--line);border-radius:8px;padding:0 16px;background:#fff;font-family:var(--sans);font-size:14px;color:var(--weak);cursor:pointer;text-align:left;}
+/* 상품명 트리거(바텀시트 오픈): 카테고리 셀렉트(전체) + 검색 인풋(제목·내용 검색) 둘 다 시트 오픈 */
+.iq-book-open{width:100%;height:54px;box-sizing:border-box;align-items:center;justify-content:space-between;border:1px solid var(--line);border-radius:8px;padding:0 16px;background:#fff;font-family:var(--sans);font-size:14px;color:var(--ink);cursor:pointer;text-align:left;}
 .iq-book-open .ic{width:14px;height:14px;flex:none;display:inline-flex;}
+.iq-book-search{display:none;width:100%;height:54px;box-sizing:border-box;align-items:center;border:1px solid var(--line);border-radius:8px;padding:0 16px;background:#fff;font-family:var(--sans);font-size:14px;color:var(--weak);cursor:pointer;text-align:left;}
 /* ===== 바텀시트 (상품/교재 검색) ===== */
 body.bsheet-lock{overflow:hidden;}
 .bsheet{position:fixed;inset:0;z-index:300;}
@@ -1734,8 +1735,9 @@ body.bsheet-lock{overflow:hidden;}
   .page-my #cc-qna .iq-btn-submit{width:100%;height:54px;}
   /* 이메일 도메인 네이티브 셀렉트 폭 */
   .page-my #cc-qna .iq-inline .iq-nsel.dom{width:130px;flex:none;}
-  /* 교재 오류신고: 상품명(교재명) — 모바일은 바텀시트 트리거 1개 */
+  /* 교재 오류신고: 상품명 — 모바일은 셀렉트(전체)+검색(제목·내용 검색) 두 박스, 둘 다 시트 오픈 */
   .page-my #cc-qna .iq-book-open{display:flex;}
+  .page-my #cc-qna .iq-book-search{display:flex;}
   .page-my #cc-qna .iq-form .oh-sel.bookcat{width:100%;}
   .page-my #cc-qna .iq-bookname{flex-direction:column;align-items:stretch;gap:8px;}
   .page-my #cc-qna .iq-bookname .oh-sel-cur{height:54px;border-radius:8px;}

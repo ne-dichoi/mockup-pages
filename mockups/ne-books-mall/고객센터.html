@@ -8,9 +8,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260815j">
-<script src="js/layout.js?v=20260815j" defer></script>
-<script src="js/search.js?v=20260815j" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260815k">
+<script src="js/layout.js?v=20260815k" defer></script>
+<script src="js/search.js?v=20260815k" defer></script>
 </head>
 <body class="page-my">
 
@@ -438,9 +438,9 @@
             </div>
           </div>
 
-          <!-- 교재명 (교재 오류신고 선택 시에만 노출) -->
+          <!-- 상품명 (교재 오류신고 선택 시에만 노출) -->
           <div class="iq-row" id="iqBookRow" hidden>
-            <div class="iq-label">교재명 <span class="iq-req">*</span></div>
+            <div class="iq-label">상품명 <span class="iq-req">*</span></div>
             <div class="iq-field">
               <div class="iq-bookname">
                 <div class="oh-sel bookcat only-pc">
@@ -452,7 +452,8 @@
                   <div class="search-pop" hidden></div>
                 </div>
                 <button type="button" class="ef-search only-pc">검색</button>
-                <button type="button" class="iq-book-open only-mo" id="iqBookOpen"><span class="iq-book-open-lb">교재를 검색해 주세요</span><span class="ic"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#1d1717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+                <button type="button" class="iq-book-open only-mo" id="iqBookOpen"><span class="iq-book-open-lb">전체</span><span class="ic"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#1d1717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+                <button type="button" class="iq-book-search only-mo" id="iqBookSearch"><span class="iq-book-search-lb">제목·내용 검색</span></button>
               </div>
               <div class="iq-bk-selected" hidden>
                 <span class="iq-bk-cover"><img src="assets/best_1.png" alt=""></span>
@@ -988,6 +989,7 @@
     function open(){ sheet.hidden=false; sheet.setAttribute('aria-hidden','false'); document.body.classList.add('bsheet-lock'); requestAnimationFrame(function(){ sheet.classList.add('open'); }); render(input.value.trim()); setTimeout(function(){ try{ input.focus(); }catch(e){} },260); }
     function close(){ sheet.classList.remove('open'); sheet.setAttribute('aria-hidden','true'); document.body.classList.remove('bsheet-lock'); setTimeout(function(){ sheet.hidden=true; },260); }
     openBtn.addEventListener('click',open);
+    var searchBtn=document.getElementById('iqBookSearch'); if(searchBtn) searchBtn.addEventListener('click',open);
     [].forEach.call(sheet.querySelectorAll('[data-close]'),function(el){ el.addEventListener('click',close); });
     input.addEventListener('input',function(){ render(input.value.trim()); });
     results.addEventListener('click',function(e){
