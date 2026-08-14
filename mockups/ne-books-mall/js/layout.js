@@ -441,3 +441,38 @@
   gnb.addEventListener('mouseenter',function(){ clearTimeout(closeT); });
   document.addEventListener('click',function(e){ if(!gnb.contains(e.target)) hideGnb(); });
 })();
+
+/* 모바일: 지정 위치의 커스텀 셀렉트(.oh-sel)를 폰 네이티브 <select> 오버레이로 대체
+   (고객센터 이벤트·교재오류정정 교재선택, 마이페이지 포인트·문의답변 기간) */
+(function(){
+  var SEL='#cc-event .oh-sel, #errataFilter .oh-sel, #tab-points .oh-sel, #tab-qna .oh-sel';
+  function attach(sel){
+    if(sel.getAttribute('data-nsel')) return;
+    var menu=sel.querySelector('.oh-sel-menu'), lb=sel.querySelector('.oh-sel-lb');
+    if(!menu||!lb) return;
+    var opts=[].slice.call(menu.querySelectorAll('a'));
+    if(!opts.length) return;
+    var ns=document.createElement('select');
+    ns.className='oh-nsel';
+    ns.setAttribute('aria-label', lb.textContent.trim());
+    opts.forEach(function(a,i){
+      var o=document.createElement('option');
+      o.value=String(i); o.textContent=a.textContent.trim();
+      if(a.classList.contains('on')) o.selected=true;
+      ns.appendChild(o);
+    });
+    ns.addEventListener('change',function(){
+      var a=opts[ns.selectedIndex]; if(!a) return;
+      lb.textContent=a.textContent.trim();
+      opts.forEach(function(x){ x.classList.remove('on'); });
+      a.classList.add('on');
+      a.dispatchEvent(new MouseEvent('click',{bubbles:true,cancelable:true}));
+    });
+    sel.classList.add('oh-sel--native');
+    sel.appendChild(ns);
+    sel.setAttribute('data-nsel','1');
+  }
+  function boot(){ [].forEach.call(document.querySelectorAll(SEL),attach); }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot);
+  else boot();
+})();
