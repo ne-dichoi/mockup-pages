@@ -59,9 +59,10 @@
         </div>
         <div class="gnb-drop" id="gnbDrop">
           <div class="gd-cats"></div>
-          <div class="gd-brands">
-            <a class="gd-btn blue" href="#">Come on Series <span>&#8250;</span></a>
-            <a class="gd-btn navy" href="oxford.html">Oxford <span>&#8250;</span></a>
+          <div class="gd-promo">
+            <a href="#"><span class="gd-promo-img" style="background-image:url('assets/event_banner.png')"></span></a>
+            <div class="gd-promo-tit">NE_Books 리뉴얼 OPEN 이벤트</div>
+            <div class="gd-promo-desc">지금 참여하고 SNS 공유 혜택 받기 &#8250;</div>
           </div>
         </div>
       </div>
@@ -353,12 +354,10 @@
   function openFor(a){
     var name=a.textContent.trim();
     var mega=(name==='학습자료실'||name==='도서몰');
-    var BR='<div class="gd-brands"><a class="gd-btn blue" href="#">Come on Series <span>&#8250;</span></a><a class="gd-btn navy" href="oxford.html">Oxford <span>&#8250;</span></a></div>';
-    /* [10월반영] 메가메뉴 하단 프로모션 배너 — 우선 하드코딩 이미지, 추후 기능화(관리자 등록) 예정 */
-    var MEGA_BANNER='<a class="gd-mega-banner" href="리스트_교재구매.html" aria-label="프로모션 배너"><img src="assets/banner_nelt.png" alt="프로모션 배너"><span class="gd-mega-banner-tag">배너 영역 · 추후 등록</span></a>';
+    var BR='<div class="gd-promo"><a href="#"><span class="gd-promo-img" style="background-image:url(\'assets/event_banner.png\')"></span></a><div class="gd-promo-tit">NE_Books 리뉴얼 OPEN 이벤트</div><div class="gd-promo-desc">지금 참여하고 SNS 공유 혜택 받기 &#8250;</div></div>';
     if(mega){
       var COLS=[['ELT','Coursebook','Phonics','Reading','Readers','Listening','Speaking','Grammar','Writing','Vocabulary'],['초등/중등','중학 내신','고등 선행','파닉스','어휘','쓰기','독해','듣기','문법/구분','TOEFL/TEPS/NELT'],['고등','어휘','독해','듣기','문법/구분','수능 대비','고교 내신','단기 특강','TOEFL/TEPS/NELT'],['교과서/자습서','중학영어 교과서','고등영어 교과서','수학 교과서','중국어/일본어'],['수험/일반','TOEIC','TOEIC SPEAKING|/WRITING','TOEFL/OPIC/TEPS','FLEX','일반영어'],['수학/국어','유아','초등','중등','고등']];
-      drop.innerHTML=COLS.map(function(c){ return '<div class="gd-col"><p class="gd-col-t">'+c[0]+'</p><div class="items">'+c.slice(1).map(function(i){ return '<a href="리스트_교재구매.html">'+i.replace('|','<br>')+'</a>'; }).join('')+'</div></div>'; }).join('')+BR+MEGA_BANNER;
+      drop.innerHTML=COLS.map(function(c){ return '<div class="gd-col"><p class="gd-col-t">'+c[0]+'</p><div class="items">'+c.slice(1).map(function(i){ return '<a href="리스트_교재구매.html">'+i.replace('|','<br>')+'</a>'; }).join('')+'</div></div>'; }).join('')+BR;
       drop.classList.add('mega');
     } else {
       var list=MENU[name]; if(!list){ hideGnb(); return; }
