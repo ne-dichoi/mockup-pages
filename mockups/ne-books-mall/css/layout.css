@@ -1646,6 +1646,51 @@ a{color:inherit;text-decoration:none;}
 .iq-preinfo .pre-text .msg{position:relative;padding-left:14px;}
 .iq-preinfo .pre-text .msg::before{content:"";position:absolute;left:2px;top:9px;width:3px;height:3px;border-radius:50%;background:var(--muted);}
 
+/* ===== 고객센터 · 1:1 문의 (모바일) : 회색안내박스+FAQ → 폼(라벨 상단 스택) → 등록 ===== */
+@media (max-width:1023px){
+  /* 안내 회색박스 + FAQ 바로가기 버튼 */
+  .page-my #cc-qna .iq-preinfo{margin:0;border:0;border-radius:0;background:var(--gray-bg);padding:40px 20px;flex-direction:column;align-items:stretch;gap:16px;}
+  .page-my #cc-qna .iq-preinfo .msg{padding-left:0;font-size:14px;line-height:20px;color:var(--muted);}
+  .page-my #cc-qna .iq-preinfo .msg::before{display:none;}
+  .page-my #cc-qna .iq-preinfo .btns{flex-wrap:wrap;gap:8px;}
+  .page-my #cc-qna .iq-preinfo .btns a{flex:1 1 calc(50% - 4px);width:auto;min-width:0;height:44px;border-color:var(--btn);}
+  .page-my #cc-qna .iq-preinfo .btns a:first-child{flex-basis:100%;}
+  /* 폼 제목 */
+  .page-my #cc-qna .iq-form-title{padding:40px 20px 16px;font-family:var(--display);font-weight:700;font-size:18px;line-height:24px;color:var(--ink);}
+  /* 폼: 세로 스택 */
+  .page-my #cc-qna .iq-form{margin-top:0;border-top:0;padding:0 20px 24px;display:flex;flex-direction:column;gap:24px;}
+  .page-my #cc-qna .iq-row{flex-direction:column;align-items:stretch;border-bottom:0;gap:8px;padding:0;}
+  .page-my #cc-qna .iq-label{width:auto;background:none;padding:0;font-size:14px;font-weight:700;color:var(--ink);}
+  .page-my #cc-qna .iq-field{padding:0;gap:8px;}
+  .page-my #cc-qna .iq-static{color:var(--ink);}
+  .page-my #cc-qna .iq-radios{gap:16px;}
+  /* 인풋·셀렉트 54px */
+  .page-my #cc-qna .iq-in{height:54px;border-radius:8px;padding:0 16px;}
+  .page-my #cc-qna .iq-in.full{height:54px;width:100%;}
+  .page-my #cc-qna .oh-sel .oh-sel-cur{height:54px;}
+  .page-my #cc-qna .iq-textarea{height:160px;border-radius:8px;padding:12px;}
+  /* 이메일: [아이디] @ [도메인 셀렉트] — 중복 도메인 텍스트 인풋 숨김 */
+  .page-my #cc-qna .iq-inline{gap:8px;flex-wrap:nowrap;align-items:center;}
+  .page-my #cc-qna .iq-inline .iq-in.email{flex:1 1 0;width:auto;min-width:0;height:54px;}
+  .page-my #cc-qna .iq-inline .iq-at + .iq-in.email{display:none;}
+  .page-my #cc-qna .iq-form .oh-sel.dom{width:130px;flex:none;}
+  /* 휴대폰: 3칸이 한 줄을 채우고 SMS 체크는 다음 줄 */
+  .page-my #cc-qna .iq-row .iq-inline{flex-wrap:wrap;}
+  .page-my #cc-qna .iq-in.phone{flex:1 1 0;width:auto;min-width:0;height:54px;}
+  .page-my #cc-qna .iq-sms{flex-basis:100%;margin-left:0;color:var(--muted);}
+  /* 파일첨부: [파일첨부] [파일명 인풋] */
+  .page-my #cc-qna .iq-file{gap:6px;align-items:stretch;}
+  .page-my #cc-qna .iq-file-btn{flex:none;height:54px;padding:0 16px;border-color:var(--btn);}
+  .page-my #cc-qna .iq-file-name{flex:1 1 0;min-width:0;height:54px;border-radius:8px;font-size:12px;padding:0 16px;}
+  .page-my #cc-qna .iq-file-name:empty::before{content:"첨부파일의 용량은 5MB까지 가능합니다.";color:var(--weak);}
+  .page-my #cc-qna .iq-file .iq-help{display:none;}
+  /* 하단: 필수안내 + 풀폭 빨강 등록 */
+  .page-my #cc-qna .iq-actions{flex-direction:column;align-items:stretch;gap:16px;padding:0 20px 40px;}
+  .page-my #cc-qna .iq-req-note{font-size:14px;color:var(--muted);}
+  .page-my #cc-qna .iq-actions-btns{margin-top:0;}
+  .page-my #cc-qna .iq-btn-submit{width:100%;height:54px;}
+}
+
 /* 자동등록방지 (캡차) */
 .iq-captcha{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
 .iq-captcha-code{height:44px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;padding:0 18px;background:#eaeaea;border:1px solid var(--line);border-radius:6px;font-weight:700;font-size:16px;letter-spacing:4px;color:#7a7a7a;user-select:none;}
