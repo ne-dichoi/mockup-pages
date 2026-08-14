@@ -70,10 +70,6 @@
         </div>
         <div class="gnb-drop" id="gnbDrop">
           <div class="gd-cats"></div>
-          <div class="gd-brands">
-            <a class="gd-btn blue" href="#">Come on Series <span>&#8250;</span></a>
-            <a class="gd-btn navy" href="oxford.html">Oxford <span>&#8250;</span></a>
-          </div>
         </div>
       </div>
     </div>
@@ -400,18 +396,20 @@
   }
   function openFor(a){
     var name=a.textContent.trim();
-    if(isTeacher){ openTeacherMega(a,name); return; }
     var mega=(name==='학습자료실'||name==='교재몰');
-    var BR='<div class="gd-brands"><a class="gd-btn blue" href="#">Come on Series <span>&#8250;</span></a><a class="gd-btn navy" href="oxford.html">Oxford <span>&#8250;</span></a></div>';
+    /* 선생님 페이지: 학습자료실·교재몰은 일반몰(oct-launch)과 동일한 6단 카테고리 메가, 그 외 카테고리만 3depth 메가 */
+    if(isTeacher && !mega){ openTeacherMega(a,name); return; }
+    var LL = isTeacher ? '리스트_교재구매_선생님.html' : '리스트_교재구매.html';
+    var BR=''; /* [일반몰] GNB 드롭다운의 Come on Series·Oxford 브랜드 버튼 삭제(요청) */
     /* GNB 드롭다운 레이어 우측 이벤트 프로모 배너 */
-    var GPROMO='<a class="gd-promo" href="이벤트상세.html"><span class="img" style="background-image:url(\'assets/banner_nelt.png\')"></span><span class="tit">방학 특강 기획전</span><span class="desc">지금 최대 30% 할인 &#8250;</span></a>';
+    var GPROMO='<a class="gd-promo" href="이벤트상세.html"><span class="img" style="background-image:url(\'assets/banner_books.png\'),linear-gradient(160deg,#1f9d63,#137a45)"></span><span class="tit">신간 출시, 지금 만나보세요</span><span class="desc">새롭게 출간된 교재를 가장 먼저 확인하세요 &#8250;</span></a>';
     if(mega){
       var COLS=[['ELT','Coursebook','Phonics','Reading','Readers','Listening','Speaking','Grammar','Writing','Vocabulary'],['초등/중등','중학 내신','고등 선행','파닉스','어휘','쓰기','독해','듣기','문법/구분','TOEFL/TEPS/NELT'],['고등','어휘','독해','듣기','문법/구분','수능 대비','고교 내신','단기 특강','TOEFL/TEPS/NELT'],['교과서/자습서','중학영어 교과서','고등영어 교과서','수학 교과서','중국어/일본어'],['수험/일반','TOEIC','TOEIC SPEAKING|/WRITING','TOEFL/OPIC/TEPS','FLEX','일반영어'],['수학/국어','유아','초등','중등','고등']];
-      drop.innerHTML=COLS.map(function(c){ return '<div class="gd-col"><p class="gd-col-t">'+c[0]+'</p><div class="items">'+c.slice(1).map(function(i){ return '<a href="리스트_교재구매.html">'+i.replace('|','<br>')+'</a>'; }).join('')+'</div></div>'; }).join('')+BR+GPROMO;
-      drop.classList.add('mega');
+      drop.innerHTML=COLS.map(function(c){ return '<div class="gd-col"><p class="gd-col-t">'+c[0]+'</p><div class="items">'+c.slice(1).map(function(i){ return '<a href="'+LL+'">'+i.replace('|','<br>')+'</a>'; }).join('')+'</div></div>'; }).join('')+BR+GPROMO;
+      drop.classList.remove('tmega'); drop.classList.add('mega');
     } else {
       var list=MENU[name]; if(!list){ hideGnb(); return; }
-      drop.innerHTML='<div class="gd-cats">'+list.map(function(t){ return '<a href="리스트_교재구매.html">'+t+'</a>'; }).join('')+'</div>'+BR+GPROMO;
+      drop.innerHTML='<div class="gd-cats">'+list.map(function(t){ return '<a href="'+LL+'">'+t+'</a>'; }).join('')+'</div>'+BR+GPROMO;
       drop.classList.remove('mega');
     }
     items.forEach(function(x){ x.classList.toggle('on',x===a); });
