@@ -11,7 +11,7 @@
         <div class="search-wrap">
           <div class="search">
             <input type="text" class="search-input" placeholder="검색어를 입력해 주세요." autocomplete="off">
-            <button type="button" class="search-ic ico" aria-label="검색"><img src="assets/ds_ic_search.svg" alt=""></button>
+            <button type="button" class="search-ic ico" aria-label="검색"><img src="assets/ds_ic_search_red.svg" alt=""></button>
             <div class="search-pop" hidden></div>
           </div>
           <div class="search-extra only-pc">
