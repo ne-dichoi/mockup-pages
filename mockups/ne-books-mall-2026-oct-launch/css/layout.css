@@ -143,10 +143,9 @@ a{color:inherit;text-decoration:none;}
 .gnb nav a.gnb-study:hover::after,.gnb nav a.gnb-study.on::after{background:var(--blue);}
 /* [10월반영] 교재몰 세로 롤링 (교재몰 ⇄ 지금 바로 구매) · GNB 호버 시 교재몰 고정 */
 .gnb-mall{display:inline-flex;align-items:center;}
-.gnb-mall .gnb-roll{display:block;height:24px;line-height:24px;overflow:hidden;width:120px;text-align:center;}
-.gnb-mall .gr-track{display:block;animation:gnbRoll 4.2s cubic-bezier(.6,0,.2,1) infinite;}
-.gnb-mall .gr-i{display:block;height:24px;line-height:24px;white-space:nowrap;}
-.gnb-mall .gr-i.sub{color:var(--red);}
+.gnb-mall .gnb-roll{display:block;height:24px;line-height:24px;overflow:hidden;width:102px;text-align:left;}
+.gnb-mall .gr-track{display:block;animation:gnbRoll 3.4s cubic-bezier(.6,0,.2,1) infinite;}
+.gnb-mall .gr-i{display:block;height:24px;line-height:24px;white-space:nowrap;color:var(--red);}
 @keyframes gnbRoll{0%,38%{transform:translateY(0);}50%,88%{transform:translateY(-24px);}96%,100%{transform:translateY(0);}}
 .gnb:hover .gnb-mall .gr-track{animation:none;transform:translateY(0);}
 .hero2{background:#fff;padding:56px 0 8px;overflow:hidden;}
