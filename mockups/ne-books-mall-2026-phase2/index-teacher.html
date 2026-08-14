@@ -25,19 +25,27 @@
   .t1t-member .perks .lb{font-size:12px;font-weight:800;color:#c9820a;}
   .t1t-member .perks .val{font-size:12.5px;color:#7a6a3a;line-height:1.5;}
   /* 우측 배너: 일반몰 히어로 배너 축소판, 1개씩 자동 롤링 */
-  .t1t-roll{position:relative;align-self:stretch;min-height:260px;border-radius:16px;overflow:hidden;box-shadow:0 6px 20px rgba(22,36,61,.12);}
+  .t1t-roll{position:relative;align-self:stretch;min-height:260px;border-radius:16px;overflow:hidden;box-shadow:0 6px 20px rgba(22,36,61,.12);touch-action:pan-y;user-select:none;}
+  .t1t-roll-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:5;width:34px;height:34px;padding:0;border:0;border-radius:50%;background:rgba(0,0,0,.28);color:#fff;font-size:22px;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .15s;}
+  .t1t-roll-arrow:hover{background:rgba(0,0,0,.5);}
+  .t1t-roll-arrow.prev{left:12px;}
+  .t1t-roll-arrow.next{right:12px;}
   .t1t-slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-start;align-items:flex-start;text-align:left;padding:28px 28px 0;color:#fff;text-decoration:none;opacity:0;transition:opacity .55s ease;pointer-events:none;}
   .t1t-slide.on{opacity:1;pointer-events:auto;}
   .t1t-slide .fl{display:inline-block;align-self:flex-start;font-size:12px;font-weight:800;padding-bottom:4px;border-bottom:2px solid currentColor;margin-bottom:14px;}
   .t1t-slide strong{font-family:var(--display);font-size:23px;font-weight:800;line-height:1.3;letter-spacing:-.5px;}
   .t1t-slide .sb{font-size:13px;line-height:1.5;margin-top:10px;color:rgba(255,255,255,.9);}
   /* 슬라이드 하단 교재 2권 미니 카드 */
-  .t1t-slide-books{margin-top:auto;align-self:stretch;display:flex;gap:12px;justify-content:flex-end;padding:18px 0 24px;}
-  .t1t-slide-books .bk{width:118px;background:#fff;border-radius:10px;box-shadow:0 8px 20px rgba(0,0,0,.18);padding:9px;display:flex;flex-direction:column;gap:5px;color:#222;text-decoration:none;}
-  .t1t-slide-books .bk img{width:100%;aspect-ratio:1/1;object-fit:cover;object-position:top center;border-radius:6px;background:#f0f1f4;}
-  .t1t-slide-books .bk .pn{font-size:11.5px;font-weight:600;line-height:1.3;color:#333;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-  .t1t-slide-books .bk .pp{font-size:12.5px;font-weight:800;color:#191919;}
+  .t1t-slide-books{position:absolute;right:28px;bottom:18px;display:flex;gap:10px;justify-content:flex-end;}
+  .t1t-slide-books .bk{width:92px;background:#fff;border-radius:9px;box-shadow:0 8px 20px rgba(0,0,0,.18);padding:7px;display:flex;flex-direction:column;gap:4px;color:#222;text-decoration:none;}
+  .t1t-slide-books .bk img{width:100%;aspect-ratio:1/1;object-fit:cover;object-position:top center;border-radius:5px;background:#f0f1f4;}
+  .t1t-slide-books .bk .pn{font-size:10.5px;font-weight:600;line-height:1.3;color:#333;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .t1t-slide-books .bk .pp{font-size:11.5px;font-weight:800;color:#191919;}
   .t1t-slide-books .bk .pp em{font-style:normal;color:#f5444a;margin-right:4px;}
+  /* 세미나 슬라이드: 일반몰 강연 이미지 축소 노출 */
+  .t1t-slide-img{margin-top:auto;align-self:flex-end;padding:0 2px 16px;}
+  .t1t-slide-img img{height:185px;width:auto;object-fit:contain;border-radius:10px;filter:drop-shadow(0 10px 22px rgba(0,0,0,.28));}
+  @media (max-width:1023px){ .t1t-slide-img img{height:130px;} }
   .t1t-slide.o{background:#F55F16;}
   .t1t-slide.nv{background:linear-gradient(160deg,#26406f,#16264a);}
   .t1t-slide.gr{background:linear-gradient(160deg,#1f9d63,#137a45);}
@@ -78,7 +86,7 @@
   .t1t-hero h2{font-family:var(--display);font-size:28px;font-weight:800;line-height:1.4;letter-spacing:-.5px;}
   .t1t-hero p{font-size:14.5px;color:#5a6a85;margin-top:14px;line-height:1.6;}
   /* GOLD 멤버십 카드 (좌측) */
-  .t1t-mcard{background:transparent;border:0;box-shadow:none;padding:0;}
+  .t1t-mcard{background:transparent;border:0;box-shadow:none;padding:0;flex:1;display:flex;flex-direction:column;}
   .t1t-mcard .mc-top{display:flex;align-items:center;gap:8px;margin-bottom:14px;}
   .t1t-mcard .mc-top .t1t-badge{align-self:center;margin-bottom:0;}
   .t1t-mcard .mc-hot{display:inline-flex;align-items:center;gap:4px;height:24px;padding:0 10px;border-radius:20px;background:#ffece8;color:#e0533a;font-size:12px;font-weight:800;}
@@ -97,7 +105,7 @@
   .t1t-perks-box li{font-size:14px;color:#3a4a63;line-height:1.5;white-space:nowrap;}
   .t1t-perks-box li::before{content:"✓";color:#1a9d54;font-weight:900;font-size:13px;margin-right:6px;}
   .t1t-perks-box li b{color:#e0533a;font-weight:800;}
-  .t1t-mcard .mc-actions{margin-top:24px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+  .t1t-mcard .mc-actions{margin-top:auto;padding-top:24px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
   .t1t-mcard .mc-actions .t1t-btn-fill{width:auto;height:48px;font-size:15px;}
   .t1t-mcard .mc-switch{font-size:13px;color:#2b4a86;font-weight:700;text-decoration:underline;}
   .t1t-mcard .mc-switch:hover{color:#16243d;}
@@ -121,7 +129,7 @@
   @media (max-width:600px){ #nt .sec-title{white-space:normal;font-size:20px;} }
   .t1t-sec .sub{font-size:14px;color:#8c8c8c;margin-bottom:24px;}
   .t1t-nt-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;}
-  .t1t-nt-card{display:flex;flex-direction:column;align-items:flex-start;gap:12px;border:1px solid var(--line);border-radius:14px;padding:18px 16px;text-decoration:none;color:inherit;}
+  .t1t-nt-card{display:flex;flex-direction:row;align-items:center;gap:10px;border:1px solid var(--line);border-radius:14px;padding:14px 12px;text-decoration:none;color:inherit;}
   .t1t-nt-card .ico{flex:none;width:44px;height:44px;border-radius:10px;background:#eef1f5;display:flex;align-items:center;justify-content:center;}
   .t1t-nt-card .ico img{width:24px;height:24px;}
   @media (max-width:960px){ .t1t-nt-grid{grid-template-columns:repeat(3,1fr);} }
@@ -275,15 +283,12 @@
           <span class="fl">세미나</span>
           <strong>Grammar Inside로 완성하는<br>중등 문법 루틴</strong>
           <span class="sb">NE Tutor 문제뱅크 반복 강화 시스템</span>
-          <span class="t1t-slide-books">
-            <span class="bk"><img src="assets/best_4.png" alt=""><span class="pn">그래머 인사이드 Lv.1</span><span class="pp"><em>10%</em>12,600원</span></span>
-            <span class="bk"><img src="assets/best_2.png" alt=""><span class="pn">그래머 인사이드 Lv.2</span><span class="pp"><em>10%</em>13,050원</span></span>
-          </span>
+          <span class="t1t-slide-img"><img src="assets/seminar_banner_1.png" alt="세미나 특별 강연"></span>
         </a>
         <a class="t1t-slide nv" href="이벤트상세.html">
           <span class="fl">이벤트</span>
           <strong>온라인 영어 레벨테스트<br>NELT 무료 체험</strong>
-          <span class="sb">우리 반 아이들 실력을 정확하게</span>
+          <span class="sb">우리 아이 실력을<br>정확하게</span>
           <span class="t1t-slide-books">
             <span class="bk"><img src="assets/best_1.png" alt=""><span class="pn">NELT 대비 리딩 Lv.1</span><span class="pp"><em>10%</em>12,600원</span></span>
             <span class="bk"><img src="assets/newbook_sample.png" alt=""><span class="pn">NELT 기출유형 문제집</span><span class="pp"><em>15%</em>11,900원</span></span>
@@ -291,13 +296,15 @@
         </a>
         <a class="t1t-slide gr" href="신간개정상세.html">
           <span class="fl">신간 소식</span>
-          <strong>신간 출시<br>지금 만나보세요</strong>
-          <span class="sb">새 교재를 가장 먼저 확인하세요</span>
+          <strong>신간 출시 지금 만나보세요</strong>
+          <span class="sb">새 교재를 가장 먼저<br>확인하세요.</span>
           <span class="t1t-slide-books">
             <span class="bk"><img src="assets/best_5.png" alt=""><span class="pn">능률VOCA 어원편</span><span class="pp"><em>12%</em>11,440원</span></span>
             <span class="bk"><img src="assets/best_3.png" alt=""><span class="pn">Bricks Reading 150</span><span class="pp"><em>15%</em>12,750원</span></span>
           </span>
         </a>
+        <button type="button" class="t1t-roll-arrow prev" id="t1tRollPrev" aria-label="이전 배너">&#8249;</button>
+        <button type="button" class="t1t-roll-arrow next" id="t1tRollNext" aria-label="다음 배너">&#8250;</button>
         <div class="t1t-roll-dots" id="t1tRollDots"></div>
       </div>
     </div>
@@ -469,6 +476,16 @@
     function start(){ stop(); timer=setInterval(function(){ go(cur+1); }, 4000); }
     function stop(){ if(timer) clearInterval(timer); }
     dots.forEach(function(d,i){ d.addEventListener('click',function(e){ e.preventDefault(); go(i); start(); }); });
+    var prevBtn=document.getElementById('t1tRollPrev'), nextBtn=document.getElementById('t1tRollNext');
+    if(prevBtn) prevBtn.addEventListener('click',function(e){ e.preventDefault(); go(cur-1); start(); });
+    if(nextBtn) nextBtn.addEventListener('click',function(e){ e.preventDefault(); go(cur+1); start(); });
+    /* 좌우 스와이프(터치·마우스 드래그) */
+    var pdown=false, px=0, dragged=false;
+    root.addEventListener('pointerdown',function(e){ pdown=true; px=e.clientX; dragged=false; stop(); });
+    root.addEventListener('pointermove',function(e){ if(pdown && Math.abs(e.clientX-px)>10) dragged=true; });
+    root.addEventListener('pointerup',function(e){ if(!pdown) return; pdown=false; var dx=e.clientX-px; if(Math.abs(dx)>40){ go(cur+(dx<0?1:-1)); } start(); });
+    root.addEventListener('pointercancel',function(){ if(pdown){ pdown=false; start(); } });
+    slides.forEach(function(s){ s.addEventListener('click',function(e){ if(dragged) e.preventDefault(); }); });
     root.addEventListener('mouseenter', stop);
     root.addEventListener('mouseleave', start);
     start();
