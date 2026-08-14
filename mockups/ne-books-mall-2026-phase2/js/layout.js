@@ -174,7 +174,19 @@
     var isTeacher=(file.indexOf('선생님')>=0)||file==='index-teacher.html';
     btn.textContent=isTeacher?'일반몰':'선생님 화면 보기';
     btn.href=isTeacher?'index.html':'index-teacher.html';
-    var nav=document.getElementById('devNav'); if(nav && isTeacher) nav.hidden=false;
+    /* 검토용 바로가기: 선생님 페이지 + 바로가기 대상 페이지에서 노출, 현재 위치 버튼 활성화 */
+    var nav=document.getElementById('devNav');
+    if(nav){
+      var links=[].slice.call(nav.querySelectorAll('a'));
+      var onTarget=false;
+      links.forEach(function(link){
+        var lf=decodeURIComponent((link.getAttribute('href')||'').split('#')[0].split('/').pop());
+        var active=(lf===file);
+        link.classList.toggle('on', active);
+        if(active) onTarget=true;
+      });
+      if(isTeacher||onTarget) nav.hidden=false;
+    }
   })();
 
   /* ===== 모바일 GNB 자동 숨김/표시 (아래로 스크롤=숨김, 위로 스크롤=표시+그림자 고정) ===== */
