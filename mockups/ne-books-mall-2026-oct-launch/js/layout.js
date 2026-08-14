@@ -54,7 +54,7 @@
             <a href="#">수험/일반</a>
             <a href="#">수학/국어</a>
             <a href="#" class="gnb-study">학습자료실</a>
-            <a href="리스트_교재구매.html" class="gnb-mall" aria-label="교재몰"><span class="gnb-roll"><span class="gr-track"><span class="gr-i">교재몰</span><span class="gr-i sub">지금 바로 구매</span></span></span></a>
+            <a href="리스트_교재구매.html" class="gnb-mall" aria-label="교재몰"><span class="gnb-roll"><span class="gr-track"><span class="gr-i">교재몰</span><span class="gr-i sub">지금 바로구매</span></span></span></a>
           </nav>
         </div>
         <div class="gnb-drop" id="gnbDrop">
