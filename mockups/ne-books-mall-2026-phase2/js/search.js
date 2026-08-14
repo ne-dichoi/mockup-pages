@@ -23,6 +23,11 @@
   ];
   var POPULAR=["능률VOCA","Course book","E-book","단어장","영어문법","중등문법","리딩튜터","중등독해","주니어 리딩튜터","grammar"];
 
+  /* 선생님 페이지 여부에 따라 검색결과·상세 경로 분기 */
+  var IS_TEACHER=/index-teacher|선생님/.test(decodeURIComponent(location.pathname));
+  var SR_PAGE=IS_TEACHER?'검색결과_선생님.html':'검색결과.html';
+  var DETAIL_PAGE=IS_TEACHER?'교재상세_선생님.html':'교재상세.html';
+
   function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
 
   function initSearch(box, opts){
@@ -36,7 +41,7 @@
       pop.classList.remove('wide');
       var html='<p class="sp-head">인기 검색어</p><ol class="sp-pop">';
       POPULAR.forEach(function(k,idx){
-        html+='<li><a href="리스트_교재구매.html"><span class="rk">'+(idx+1)+'</span>'+esc(k)+'</a></li>';
+        html+='<li><a href="'+SR_PAGE+'?q='+encodeURIComponent(k)+'"><span class="rk">'+(idx+1)+'</span>'+esc(k)+'</a></li>';
       });
       html+='</ol><p class="sp-note">* 최근 10일간 인기 검색어 입니다.</p>';
       html+='<a class="sp-event" href="이벤트상세.html"><img src="assets/search_event_banner.png" alt="NE Books 이벤트 리스트"></a>';
@@ -52,7 +57,7 @@
       }
       pop.classList.add('wide');
       var list=matches.map(function(b,i){
-        return '<li class="it'+(i===0?' on':'')+'" data-i="'+i+'"><a href="'+b.url+'">'+esc(b.title)+'</a></li>';
+        return '<li class="it'+(i===0?' on':'')+'" data-i="'+i+'"><a href="'+DETAIL_PAGE+'">'+esc(b.title)+'</a></li>';
       }).join('');
       var first=matches[0];
       pop.innerHTML='<div class="sa-wrap">'
@@ -104,7 +109,7 @@
       if(opts.onSelect) return; // 폼 내 교재명 검색은 이동하지 않음
       var q=input.value.trim();
       if(!q){ input.focus(); return; }
-      location.href='리스트_교재구매.html?q='+encodeURIComponent(q);
+      location.href=SR_PAGE+'?q='+encodeURIComponent(q);
     }
     input.addEventListener('focus',openPop);
     input.addEventListener('click',openPop);
