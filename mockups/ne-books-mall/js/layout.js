@@ -330,6 +330,17 @@
     else { badge.hidden=true; }
   })();
 
+  /* ===== 사이드 퀵메뉴: '맞춤형 교재추천' → NE Pick 새창 (UC-PROMO-10) ===== */
+  (function(){
+    var cards=[].slice.call(document.querySelectorAll('.floating .float-card'));
+    cards.forEach(function(c){
+      if((c.textContent||'').replace(/\s+/g,'').indexOf('맞춤형교재추천')>-1){
+        c.style.cursor='pointer';
+        c.addEventListener('click',function(){ window.open('https://www.nebooks.co.kr/nepick/index.asp','_blank','noopener'); });
+      }
+    });
+  })();
+
   /* ===== 로케이션 (페이지별 depth 이름을 여기서 수정) ===== */
   var CATEGORIES={
     'ELT':['Coursebook','Phonics','Readers','Reading','Listening','Speaking','Writing','Grammar','Vocabulary']
