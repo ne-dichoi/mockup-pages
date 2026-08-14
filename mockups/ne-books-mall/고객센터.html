@@ -8,9 +8,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260815h">
-<script src="js/layout.js?v=20260815h" defer></script>
-<script src="js/search.js?v=20260815h" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260815i">
+<script src="js/layout.js?v=20260815i" defer></script>
+<script src="js/search.js?v=20260815i" defer></script>
 </head>
 <body class="page-my">
 
@@ -819,6 +819,7 @@
     var bookRow=document.getElementById('iqBookRow'), orderRow=document.getElementById('iqOrderRow');
     var errataRow=document.getElementById('iqErrataRow'), pageRow=document.getElementById('iqPageRow');
     var cat=document.getElementById('iqCat');
+    var natCat=qna.querySelector('.iq-nsel[aria-label="상담분류"]'); /* 모바일 네이티브 셀렉트 */
     var curErrata=false; /* 선택된 교재의 정오표 등록 여부 */
     var bookPicked=false; /* 교재 선택 여부 */
     var radios=[].slice.call(qna.querySelectorAll('input[name="iqType"]'));
@@ -847,6 +848,10 @@
       });
       cat.dispatchEvent(new CustomEvent('iqcatchange'));
     }
+    function renderNativeCat(list){
+      if(!natCat) return;
+      natCat.innerHTML='<option value="" selected>'+PH+'</option>'+(list||[]).map(function(t){ return '<option>'+t+'</option>'; }).join('');
+    }
     function syncBookExtras(){
       var sel=qna.querySelector('input[name="iqType"]:checked'); var v=sel?sel.value:'';
       var isErr=(v==='error');
@@ -861,6 +866,7 @@
       if(orderRow) orderRow.hidden=(v!=='order');
       syncBookExtras();
       renderCat(CAT[v]||CAT.general);
+      renderNativeCat(CAT[v]||CAT.general);
     }
     radios.forEach(function(r){ r.addEventListener('change',upd); });
     /* 교재 선택: 페이지 무조건 노출, 정오안내는 정오표 등록 시 / 해제: 둘 다 숨김 */
