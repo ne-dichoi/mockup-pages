@@ -45,14 +45,14 @@
           </div>
           <div class="od-items">
             <div class="od-item">
-              <span class="od-thumb"><img src="assets/best_2.png" alt=""></span>
+              <span class="od-thumb"><img src="assets/best_2.png" alt=""><button type="button" class="oh-thumb-cart od-tocart" aria-label="장바구니 담기"><img src="assets/ic_cart_black.svg" alt=""></button></span>
               <div class="od-item-info">
                 <p class="od-item-name">Phonics Code 2 : Student Book</p>
                 <div class="od-item-meta"><span class="q">수량 1개</span><span class="od-bar"></span><span class="od-price">14,400원</span></div>
               </div>
             </div>
             <div class="od-item">
-              <span class="od-thumb"><img src="assets/best_1.png" alt=""></span>
+              <span class="od-thumb"><img src="assets/best_1.png" alt=""><button type="button" class="oh-thumb-cart od-tocart" aria-label="장바구니 담기"><img src="assets/ic_cart_black.svg" alt=""></button></span>
               <div class="od-item-info">
                 <p class="od-item-name">Phonics Code 1 : Student Book</p>
                 <div class="od-item-meta"><span class="q">수량 1개</span><span class="od-bar"></span><span class="od-price">14,400원</span></div>
@@ -143,14 +143,19 @@
     var info=STATUS[st]||STATUS.cancel;
     var s=document.getElementById('odStatus'); if(s) s.textContent=info.label;
     var bw=document.getElementById('odStatusBtns');
-    /* 재주문·장바구니는 주문 상태와 무관하게 공통 제공 */
-    var allBtns=(info.btns||[]).concat([['재주문','gray'],['장바구니','gray']]);
+    /* 재주문은 상태와 무관하게 공통 제공(빨강 강조). 장바구니는 상품 썸네일 아이콘으로 이동 */
+    var allBtns=(info.btns||[]).concat([['재주문','reorder']]);
     if(bw) bw.innerHTML=allBtns.map(function(b){ return '<a class="oh-btn '+b[1]+'" href="#">'+b[0]+'</a>'; }).join('');
     if(bw) bw.addEventListener('click',function(e){
       var b=e.target.closest('.oh-btn'); if(!b) return;
       var t=b.textContent.trim();
       if(t==='재주문'){ e.preventDefault(); location.href='주문결제.html'; }
-      else if(t==='장바구니'){ e.preventDefault(); if(confirm('장바구니에 담겼습니다. 이동하시겠습니까?')){ location.href='장바구니.html'; } }
+    });
+    /* 상품 썸네일 장바구니 아이콘 → 담기 확인 */
+    document.addEventListener('click',function(e){
+      if(!e.target.closest('.od-tocart')) return;
+      e.preventDefault();
+      if(confirm('장바구니에 담겼습니다. 이동하시겠습니까?')){ location.href='장바구니.html'; }
     });
     /* 취소/환불 정보 박스: box 있으면 주입, 없으면 섹션 제거 */
     var c=document.getElementById('odCancel');
