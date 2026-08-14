@@ -8,9 +8,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260814h">
-<script src="js/layout.js?v=20260814h" defer></script>
-<script src="js/search.js?v=20260814h" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260814i">
+<script src="js/layout.js?v=20260814i" defer></script>
+<script src="js/search.js?v=20260814i" defer></script>
 <style id="sr-styles">
   .page-search .sr-wrap{padding:48px 0 80px;}
   .sr-head{display:flex;flex-direction:column;align-items:center;gap:16px;margin-bottom:40px;}
@@ -126,10 +126,21 @@ document.addEventListener('DOMContentLoaded', function(){
     {id:'sm-b2', cat:'독서논술', name:'세 마리 토끼 잡는 초등 독서논술 B2', img:'best_3.png', orig:12000, unit:10800, rate:'10%'},
     {id:'sm-b3', cat:'독서논술', name:'세 마리 토끼 잡는 초등 독서논술 B3', img:'best_4.png', orig:12000, unit:10800, rate:'10%'}
   ];
+  var VOCA=[
+    {id:'voca-eowon', badge:'HOT', bt:'hot', cat:'어휘', name:'능률VOCA 어원편', img:'best_5.png', orig:15000, unit:13500, rate:'10%'},
+    {id:'voca-suneung', badge:'NEW', bt:'new', cat:'어휘', name:'능률VOCA 수능완성', img:'best_1.png', orig:17000, unit:15300, rate:'10%'},
+    {id:'voca-gogi', cat:'어휘', name:'능률VOCA 고교기본', img:'best_2.png', orig:14000, unit:12600, rate:'10%'},
+    {id:'voca-junggi', cat:'어휘', name:'능률VOCA 중학기본', img:'best_3.png', orig:12000, unit:10800, rate:'10%'},
+    {id:'voca-wm-basic', cat:'어휘', name:'워드마스터 중등 베이직', img:'best_4.png', orig:12000, unit:10800, rate:'10%'},
+    {id:'voca-wm-2000', cat:'어휘', name:'워드마스터 수능 2000', img:'best_5.png', orig:15000, unit:13500, rate:'10%'},
+    {id:'voca-eowon-lite', badge:'일시품절', bt:'off', state:'soldout', cat:'어휘', name:'능률VOCA 어원편 Lite', img:'best_1.png', orig:11000, unit:9900, rate:'10%'},
+    {id:'voca-power', cat:'어휘', name:'능률VOCA 파워업', img:'best_2.png', orig:13000, unit:11700, rate:'10%'}
+  ];
   function pick(query){
     var s=(query||'').toLowerCase().replace(/\s+/g,'');
     if(s.indexOf('파닉스')>=0 || s.indexOf('phonics')>=0) return {count:128, items:PHONICS};
     if(s.indexOf('세마리')>=0 || s.indexOf('토끼')>=0 || s.indexOf('독서논술')>=0) return {count:57, items:SEMARI};
+    if(s.indexOf('voca')>=0 || s.indexOf('보카')>=0 || s.indexOf('능률voca')>=0 || s.indexOf('어휘')>=0 || s.indexOf('단어')>=0) return {count:96, items:VOCA};
     return null;
   }
 
