@@ -138,6 +138,17 @@ a{color:inherit;text-decoration:none;}
 .gnb nav{display:flex;gap:40px;align-items:center;}
 .gnb nav a.on, .gnb nav a:hover{font-weight:700;color:var(--red);}
 .gnb nav a.on::after, .gnb nav a:hover::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;background:var(--red);}
+/* [10월반영] 학습자료실 파랑 (교재 리스트 Lexile 배지 색 = var(--blue)) */
+.gnb nav a.gnb-study,.gnb nav a.gnb-study:hover,.gnb nav a.gnb-study.on{color:var(--blue);}
+.gnb nav a.gnb-study:hover::after,.gnb nav a.gnb-study.on::after{background:var(--blue);}
+/* [10월반영] 교재몰 세로 롤링 (교재몰 ⇄ 지금 바로 구매) · GNB 호버 시 교재몰 고정 */
+.gnb-mall{display:inline-flex;align-items:center;}
+.gnb-mall .gnb-roll{display:block;height:24px;line-height:24px;overflow:hidden;width:120px;text-align:center;}
+.gnb-mall .gr-track{display:block;animation:gnbRoll 4.2s cubic-bezier(.6,0,.2,1) infinite;}
+.gnb-mall .gr-i{display:block;height:24px;line-height:24px;white-space:nowrap;}
+.gnb-mall .gr-i.sub{color:var(--red);}
+@keyframes gnbRoll{0%,38%{transform:translateY(0);}50%,88%{transform:translateY(-24px);}96%,100%{transform:translateY(0);}}
+.gnb:hover .gnb-mall .gr-track{animation:none;transform:translateY(0);}
 .hero2{background:#fff;padding:56px 0 8px;overflow:hidden;}
 .hero2-stage{width:100%;overflow:hidden;}
 .hero2-track{display:flex;align-items:center;gap:24px;transition:transform .6s cubic-bezier(.22,1,.36,1);will-change:transform;cursor:grab;touch-action:pan-y;-webkit-user-select:none;user-select:none;}
