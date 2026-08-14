@@ -143,7 +143,15 @@
     var info=STATUS[st]||STATUS.cancel;
     var s=document.getElementById('odStatus'); if(s) s.textContent=info.label;
     var bw=document.getElementById('odStatusBtns');
-    if(bw) bw.innerHTML=(info.btns||[]).map(function(b){ return '<a class="oh-btn '+b[1]+'" href="#">'+b[0]+'</a>'; }).join('');
+    /* 재주문·장바구니는 주문 상태와 무관하게 공통 제공 */
+    var allBtns=(info.btns||[]).concat([['재주문','gray'],['장바구니','gray']]);
+    if(bw) bw.innerHTML=allBtns.map(function(b){ return '<a class="oh-btn '+b[1]+'" href="#">'+b[0]+'</a>'; }).join('');
+    if(bw) bw.addEventListener('click',function(e){
+      var b=e.target.closest('.oh-btn'); if(!b) return;
+      var t=b.textContent.trim();
+      if(t==='재주문'){ e.preventDefault(); location.href='주문결제.html'; }
+      else if(t==='장바구니'){ e.preventDefault(); if(confirm('장바구니에 담겼습니다. 이동하시겠습니까?')){ location.href='장바구니.html'; } }
+    });
     /* 취소/환불 정보 박스: box 있으면 주입, 없으면 섹션 제거 */
     var c=document.getElementById('odCancel');
     if(c){

@@ -29,6 +29,7 @@
         <a class="on" data-tab="home" href="#">홈</a>
         <a data-tab="orders" href="#">주문내역</a>
         <a data-tab="points" href="#">포인트</a>
+        <a data-tab="coupon" href="#">쿠폰</a>
         <a data-tab="wish" href="#">찜</a>
         <a data-tab="qna" href="#">문의/답변</a>
         <a data-tab="review" href="#">후기</a>
@@ -64,8 +65,8 @@
           </div>
         </div>
 
-        <!-- 주문 현황 · 포인트 -->
-        <div class="my-2col">
+        <!-- 주문 현황 · 포인트 · 쿠폰 -->
+        <div class="my-2col my-3col">
           <div class="my-card">
             <div class="mc-head"><h3>주문 현황</h3><a class="mc-more" href="#orders" data-goto="orders">주문내역 보기 ›</a></div>
             <div class="os-row">
@@ -83,6 +84,13 @@
             <div class="pt-row">
               <div class="pt"><span class="lb">사용 가능 포인트</span><b>7,800P</b></div>
               <div class="pt red"><span class="lb">30일 이내 소멸 예정 포인트</span><b>200P</b></div>
+            </div>
+          </div>
+          <div class="my-card">
+            <div class="mc-head"><h3>쿠폰</h3><a class="mc-more" href="#coupon" data-goto="coupon">쿠폰함 보기 ›</a></div>
+            <div class="pt-row">
+              <div class="pt"><span class="lb">사용 가능 쿠폰</span><b>3장</b></div>
+              <div class="pt red"><span class="lb">이번 달 GOLD 등급 발급</span><b>1장</b></div>
             </div>
           </div>
         </div>
@@ -154,7 +162,7 @@
             </div>
             <div class="oh-right">
               <div class="oh-price-row"><span class="oh-price">27,000원</span><a class="oh-receipt" href="#">온라인 영수증</a></div>
-              <div class="oh-btns"><a class="oh-btn dark" href="#">결제취소</a></div>
+              <div class="oh-btns"><a class="oh-btn dark" href="#">결제취소</a><a class="oh-btn gray" href="주문결제.html">재주문</a><button type="button" class="oh-btn gray oh-tocart">장바구니</button></div>
             </div>
           </div>
 
@@ -167,7 +175,7 @@
             </div>
             <div class="oh-right">
               <div class="oh-price-row"><span class="oh-price">27,000원</span><a class="oh-receipt" href="#">온라인 영수증</a></div>
-              <div class="oh-btns"><a class="oh-btn dark" href="#">배송조회</a></div>
+              <div class="oh-btns"><a class="oh-btn dark" href="#">배송조회</a><a class="oh-btn gray" href="주문결제.html">재주문</a><button type="button" class="oh-btn gray oh-tocart">장바구니</button></div>
             </div>
           </div>
 
@@ -180,7 +188,7 @@
             </div>
             <div class="oh-right">
               <div class="oh-price-row"><span class="oh-price">27,000원</span><a class="oh-receipt" href="#">온라인 영수증</a></div>
-              <div class="oh-btns"><a class="oh-btn dark" href="#">배송조회</a><a class="oh-btn fill" href="#">구매확정</a></div>
+              <div class="oh-btns"><a class="oh-btn dark" href="#">배송조회</a><a class="oh-btn fill" href="#">구매확정</a><a class="oh-btn gray" href="주문결제.html">재주문</a><button type="button" class="oh-btn gray oh-tocart">장바구니</button></div>
             </div>
           </div>
 
@@ -193,7 +201,7 @@
             </div>
             <div class="oh-right">
               <div class="oh-price-row"><span class="oh-price">27,000원</span><a class="oh-receipt" href="#">온라인 영수증</a></div>
-              <div class="oh-btns"><a class="oh-btn dark" href="#">입금취소</a></div>
+              <div class="oh-btns"><a class="oh-btn dark" href="#">입금취소</a><a class="oh-btn gray" href="주문결제.html">재주문</a><button type="button" class="oh-btn gray oh-tocart">장바구니</button></div>
             </div>
           </div>
 
@@ -206,7 +214,8 @@
             </div>
             <div class="oh-right">
               <div class="oh-price-row"><span class="oh-price">27,000원</span><a class="oh-receipt" href="#">온라인 영수증</a></div>
-              <!-- 구매확정: 온라인 영수증만, 배송조회·반품/환불 버튼 없음 -->
+              <!-- 구매확정: 배송조회·반품/환불 버튼 없음(정책 유지), 재주문/장바구니는 상태 무관 공통 제공 -->
+              <div class="oh-btns"><a class="oh-btn gray" href="주문결제.html">재주문</a><button type="button" class="oh-btn gray oh-tocart">장바구니</button></div>
             </div>
           </div>
 
@@ -221,6 +230,7 @@
             <div class="oh-right">
               <div class="oh-price-row"><span class="oh-price">27,000원</span></div>
               <!-- 입금취소: 온라인 영수증 미노출(미결제 건) -->
+              <div class="oh-btns"><a class="oh-btn gray" href="주문결제.html">재주문</a><button type="button" class="oh-btn gray oh-tocart">장바구니</button></div>
             </div>
           </div>
 
@@ -234,6 +244,7 @@
             </div>
             <div class="oh-right">
               <div class="oh-price-row"><span class="oh-price">27,000원</span><a class="oh-receipt" href="#">온라인 영수증</a></div>
+              <div class="oh-btns"><a class="oh-btn gray" href="주문결제.html">재주문</a><button type="button" class="oh-btn gray oh-tocart">장바구니</button></div>
             </div>
           </div>
 
@@ -247,6 +258,7 @@
             </div>
             <div class="oh-right">
               <div class="oh-price-row"><span class="oh-price">27,000원</span><a class="oh-receipt" href="#">온라인 영수증</a></div>
+              <div class="oh-btns"><a class="oh-btn gray" href="주문결제.html">재주문</a><button type="button" class="oh-btn gray oh-tocart">장바구니</button></div>
             </div>
           </div>
         </div>
@@ -364,6 +376,81 @@
             <p><span class="lb">사용</span>NE Books 교재 구매 시 100P 단위로 사용 가능</p>
             <p><span class="lb">차감/유효기간</span>유효기간 임박 포인트 우선 차감 · 구매 적립 포인트 유효기간 1년 · 이벤트 포인트는 이벤트별 정책 적용 · 마케팅 동의 차단 시 적립된 포인트 회수</p>
             <p>기적립된 포인트를 모두 사용 후 포인트 회수가 이루어질 경우 사용 가능 포인트가 (-)로 변경될 수 있습니다.</p>
+          </div>
+        </div>
+      </div>
+      <div class="my-panel" id="tab-coupon" hidden>
+        <!-- 회원등급 · 보유 쿠폰 요약 -->
+        <div class="cpn-sum">
+          <div class="cpn-grade"><span class="cpn-grade-badge">GOLD</span><span class="cpn-grade-name">학원회원</span></div>
+          <p class="cpn-sum-txt">사용 가능 쿠폰 <b>3장</b> · 등급이 오를수록 더 좋은 혜택의 쿠폰이 매월 자동 발급돼요.</p>
+        </div>
+
+        <!-- 상태 탭 -->
+        <div class="cpn-tabs">
+          <a class="on" data-cst="all">전체</a>
+          <a data-cst="live">사용가능</a>
+          <a data-cst="used">사용완료</a>
+          <a data-cst="expired">기간만료</a>
+        </div>
+
+        <!-- 쿠폰 목록 -->
+        <div class="cpn-list" id="cpnList">
+          <div class="cpn-card" data-state="live">
+            <div class="cpn-left">
+              <span class="cpn-badge grade">GOLD 등급 전용</span>
+              <p class="cpn-title">전 상품 10% 할인 쿠폰</p>
+              <p class="cpn-cond">3만원 이상 구매 시 · 최대 5,000원 할인</p>
+              <p class="cpn-exp">유효기간 2026-08-31까지</p>
+            </div>
+            <div class="cpn-right"><span class="cpn-rate">10%</span><span class="cpn-state">사용가능</span></div>
+          </div>
+          <div class="cpn-card" data-state="live">
+            <div class="cpn-left">
+              <span class="cpn-badge all">전체 회원</span>
+              <p class="cpn-title">무료배송 쿠폰</p>
+              <p class="cpn-cond">금액 제한 없음 · 배송비 2,500원 즉시 할인</p>
+              <p class="cpn-exp">유효기간 2026-08-20까지</p>
+            </div>
+            <div class="cpn-right"><span class="cpn-rate">배송비</span><span class="cpn-state">사용가능</span></div>
+          </div>
+          <div class="cpn-card" data-state="live">
+            <div class="cpn-left">
+              <span class="cpn-badge all">신규가입 축하</span>
+              <p class="cpn-title">3,000원 할인 쿠폰</p>
+              <p class="cpn-cond">1만원 이상 구매 시 · 1회 사용</p>
+              <p class="cpn-exp">유효기간 2026-09-05까지</p>
+            </div>
+            <div class="cpn-right"><span class="cpn-rate">3,000원</span><span class="cpn-state">사용가능</span></div>
+          </div>
+          <div class="cpn-card used" data-state="used">
+            <div class="cpn-left">
+              <span class="cpn-badge grade">SILVER 등급 전용</span>
+              <p class="cpn-title">전 상품 5% 할인 쿠폰</p>
+              <p class="cpn-cond">2만원 이상 구매 시 · 최대 3,000원 할인</p>
+              <p class="cpn-exp">2026-07-15 주문(NB20260710-000042)에 사용</p>
+            </div>
+            <div class="cpn-right"><span class="cpn-rate">5%</span><span class="cpn-state">사용완료</span></div>
+          </div>
+          <div class="cpn-card expired" data-state="expired">
+            <div class="cpn-left">
+              <span class="cpn-badge all">생일 축하</span>
+              <p class="cpn-title">2,000원 할인 쿠폰</p>
+              <p class="cpn-cond">1만원 이상 구매 시 · 1회 사용</p>
+              <p class="cpn-exp">유효기간 2026-05-31 만료</p>
+            </div>
+            <div class="cpn-right"><span class="cpn-rate">2,000원</span><span class="cpn-state">기간만료</span></div>
+          </div>
+        </div>
+        <p class="cpn-empty" id="cpnEmpty" hidden>해당하는 쿠폰이 없습니다.</p>
+
+        <!-- 쿠폰 안내 -->
+        <div class="pt-guide">
+          <div class="pt-guide-head"><span class="pt-guide-ic"><svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7.25" stroke="#1d1717" stroke-width="1.4"/><path d="M9 8v4.2" stroke="#1d1717" stroke-width="1.4" stroke-linecap="round"/><circle cx="9" cy="5.6" r="0.95" fill="#1d1717"/></svg></span><span>쿠폰 안내</span></div>
+          <div class="pt-guide-body">
+            <p><span class="lb">등급 발급</span>매월 1일 회원등급(NEW·SILVER·GOLD·VIP) 기준 할인 쿠폰 자동 지급 · 등급이 높을수록 할인율 상승</p>
+            <p><span class="lb">사용</span>주문결제 화면의 쿠폰함에서 선택 후 적용, 1개 주문에 1장만 사용 가능</p>
+            <p><span class="lb">유효기간</span>등급 쿠폰은 발급월 말일까지, 이벤트 쿠폰은 쿠폰별 기재된 기한까지 · 미사용 시 자동 소멸(재발급 불가)</p>
           </div>
         </div>
       </div>
@@ -894,6 +981,27 @@
     });
   })();
 
+  /* 쿠폰함: 상태 탭(전체/사용가능/사용완료/기간만료) 필터 */
+  (function(){
+    var panel=document.getElementById('tab-coupon'); if(!panel) return;
+    var tabs=[].slice.call(panel.querySelectorAll('.cpn-tabs a'));
+    var cards=[].slice.call(panel.querySelectorAll('.cpn-card'));
+    var empty=document.getElementById('cpnEmpty');
+    tabs.forEach(function(t){
+      t.addEventListener('click',function(){
+        tabs.forEach(function(x){ x.classList.remove('on'); });
+        t.classList.add('on');
+        var st=t.getAttribute('data-cst'), shown=0;
+        cards.forEach(function(c){
+          var ok=(st==='all')||(c.getAttribute('data-state')===st);
+          c.style.display=ok?'':'none';
+          if(ok) shown++;
+        });
+        if(empty) empty.hidden=(shown>0);
+      });
+    });
+  })();
+
   /* 주문상태 버튼 → 결제취소 / 입금취소 레이어 팝업 */
   (function(){
     function bind(modal){
@@ -913,6 +1021,11 @@
       var t=b.textContent.trim();
       if(t==='결제취소'){ e.preventDefault(); pay.open(); }
       else if(t==='입금취소'){ e.preventDefault(); dep.open(); }
+    });
+    document.addEventListener('click',function(e){
+      if(!e.target.closest('.oh-tocart')) return;
+      e.preventDefault();
+      if(confirm('장바구니에 담겼습니다. 이동하시겠습니까?')){ location.href='장바구니.html'; }
     });
     document.addEventListener('keydown',function(e){
       if(e.key!=='Escape') return;
