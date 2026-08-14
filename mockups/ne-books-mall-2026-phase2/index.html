@@ -42,28 +42,33 @@
   .t1b-item .info .now{display:flex;gap:5px;align-items:baseline;margin-top:2px;}
   .t1b-item .info .now .rate{color:#f5444a;font-weight:800;}
   .t1b-item .info .now .price{font-weight:800;}
+  /* 인기교재 바로 구매: 상품 체크박스 + 컬럼 하단 담기/바로구매 */
+  .t1b-item{align-items:center;}
+  .t1b-chk{width:18px;height:18px;flex:none;accent-color:#e83828;cursor:pointer;margin:0;}
+  .t1b-buy{display:flex;gap:8px;margin-top:8px;}
+  .t1b-buy button{flex:1;height:42px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;font-family:var(--sans);}
+  .t1b-buy .t1b-cart{background:#fff;border:1px solid #d5d5d5;color:#333;}
+  .t1b-buy .t1b-cart:hover{background:#f2f2f2;}
+  .t1b-buy .t1b-order{background:#e83828;border:1px solid #e83828;color:#fff;}
+  .t1b-buy .t1b-order:hover{background:#c92e20;}
 
-  /* ===== [항목6·7] 선생님 전용 페이지 진입 링크 ===== */
-  .t1te-link{padding:12px 0;text-align:center;background:#eef1f5;}
-  .t1te-link a{font-size:13px;font-weight:600;color:#20304f;text-decoration:underline;}
-
-  /* ===== [항목1 강화] 커리큘럼 코스별 추천 (레벨 단계 진행형) ===== */
-  .t1cur-sec{padding:8px 0 44px;}
-  .t1cur-head .sec-title{font-size:24px;font-weight:800;letter-spacing:-.5px;color:#191919;margin-bottom:8px;}
-  .t1cur-head .sub{font-size:14px;color:#8c8c8c;font-weight:500;margin-bottom:20px;}
-  .t1cur-tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px;}
-  .t1cur-tabs .tab{padding:10px 18px;border-radius:24px;border:1px solid #ddd;font-size:14px;font-weight:600;color:#666;cursor:pointer;white-space:nowrap;}
-  .t1cur-tabs .tab.active{background:#191919;border-color:#191919;color:#fff;}
-  .t1cur-path{display:flex;align-items:stretch;gap:0;overflow-x:auto;padding:4px 2px 12px;}
-  .t1cur-step{flex:0 0 auto;width:190px;display:flex;flex-direction:column;text-decoration:none;color:inherit;}
-  .t1cur-lv{display:inline-flex;align-self:flex-start;align-items:center;height:24px;padding:0 10px;border-radius:20px;background:#eef1f5;color:#444;font-size:12px;font-weight:800;margin-bottom:10px;}
-  .t1cur-step.now .t1cur-lv{background:#191919;color:#fff;}
-  .t1cur-thumb{width:100%;aspect-ratio:1/1;border-radius:12px;overflow:hidden;background:#f2f3f4;}
-  .t1cur-thumb img{width:100%;height:100%;object-fit:cover;}
-  .t1cur-name{font-size:14px;font-weight:700;color:#222;line-height:1.4;margin-top:12px;height:2.8em;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;}
-  .t1cur-price{font-size:14px;font-weight:800;color:#191919;margin-top:6px;}
-  .t1cur-arrow{flex:0 0 auto;width:32px;display:flex;align-items:center;justify-content:center;color:#c9c9c9;font-size:20px;align-self:center;}
-  @media (max-width:600px){ .t1cur-step{width:140px;} .t1cur-arrow{width:20px;} }
+  /* ===== [항목6·7] 선생님 전용 페이지 진입 링크(카드형 배너, index-teacher.html 히어로와 톤 통일) ===== */
+  .t1te-link{padding:28px 0;}
+  .t1te-box{display:flex;align-items:center;gap:20px;background:linear-gradient(160deg,#20304f,#16243d);border-radius:16px;padding:24px 32px;color:#fff;}
+  .t1te-ico{flex:none;width:52px;height:52px;border-radius:14px;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;}
+  .t1te-ico img{width:26px;height:26px;filter:brightness(0) invert(1);}
+  .t1te-badge{display:inline-flex;align-items:center;height:22px;padding:0 10px;border-radius:20px;background:rgba(255,255,255,.16);font-size:11px;font-weight:800;letter-spacing:.5px;margin-bottom:6px;}
+  .t1te-txt{flex:1;min-width:0;}
+  .t1te-txt strong{display:block;font-size:17px;font-weight:800;letter-spacing:-.3px;}
+  .t1te-txt .t1te-desc{display:block;margin-top:4px;font-size:13.5px;color:rgba(255,255,255,.72);line-height:1.5;}
+  .t1te-btn{flex:none;display:inline-flex;align-items:center;gap:6px;height:44px;padding:0 20px;border-radius:9999px;background:#fff;color:#16243d;font-weight:800;font-size:14px;white-space:nowrap;transition:background .15s;}
+  .t1te-btn:hover{background:#ffe066;}
+  @media (max-width:700px){
+    .t1te-box{flex-wrap:wrap;padding:22px 20px;}
+    .t1te-ico{display:none;}
+    .t1te-txt{width:100%;}
+    .t1te-btn{width:100%;justify-content:center;margin-top:6px;}
+  }
 
   /* 지금 제일 잘 나가는 교재 (from ne-books-mall-4) */
   .t1s-sec{padding:44px 0 8px;}
@@ -104,17 +109,17 @@
   .hero2-card.t1h .t1h-illust--books .t1h-prod:hover{transform:translateY(-4px);}
   .hero2-card.t1h .t1h-illust--books .t1h-prod img{width:100%;aspect-ratio:1/1;height:auto;max-width:100%;max-height:none;object-fit:cover;object-position:top center;border-radius:6px;display:block;background:#f0f1f4;}
   .hero2-card.t1h .t1h-illust--books .t1h-prod .pn{font-size:11.5px;font-weight:600;line-height:1.3;color:#333;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-  .hero2-card.t1h .t1h-illust--books .t1h-prod .pp{font-size:12.5px;font-weight:800;color:#222;display:flex;align-items:baseline;gap:4px;}
-  .hero2-card.t1h .t1h-illust--books .t1h-prod .pp em{font-style:normal;color:#f5444a;}
+  .hero2-card.t1h .t1h-illust--books .t1h-prod .pp{font-size:11px;font-weight:800;color:#222;display:flex;align-items:baseline;gap:3px;white-space:nowrap;overflow:hidden;}
+  .hero2-card.t1h .t1h-illust--books .t1h-prod .pp em{font-style:normal;font-size:10px;font-weight:700;color:#f5444a;flex:none;}
   .hero2-card.t1h.active .t1h-ttl{font-size:30px;}
   .hero2-card.t1h.active .t1h-illust--books .t1h-prod{width:106px;}
 
   /* hero2 테마별 배경/글자색 (배경색만 유지, 장식 그래픽은 하단 일러스트로 대체) */
-  .hero2-card.t1h--orange{background:linear-gradient(160deg,#ff9d54,#ff6a2c);color:#fff;}
+  .hero2-card.t1h--orange{background:#F55F16;color:#fff;}
   .hero2-card.t1h--orange .t1h-sub{color:rgba(255,255,255,.9);}
   .hero2-card.t1h--navy{background:linear-gradient(160deg,#26406f,#16264a);color:#fff;}
   .hero2-card.t1h--navy .t1h-sub{color:rgba(255,255,255,.82);}
-  .hero2-card.t1h--sky{background:linear-gradient(160deg,#aadcff,#7cc2f5);color:#1f5fbf;}
+  .hero2-card.t1h--sky{background:url('assets/hero_sky_bg.png') center/cover no-repeat;color:#1f5fbf;}
   .hero2-card.t1h--sky .t1h-sub{color:#3a6ea5;}
   .hero2-card.t1h--green{background:linear-gradient(160deg,#1f9d63,#137a45);color:#fff;}
   .hero2-card.t1h--green .t1h-sub{color:rgba(255,255,255,.88);}
@@ -129,6 +134,9 @@
     .t1h .t1h-flag{margin-bottom:12px;}
     .hero2-card.t1h .t1h-illust--books{gap:6px;padding:0 12px 14px 0;}
     .hero2-card.t1h .t1h-illust--books .t1h-prod{width:72px;padding:6px;}
+    .hero2-card.t1h .t1h-illust--books .t1h-prod .pn{font-size:10px;}
+    .hero2-card.t1h .t1h-illust--books .t1h-prod .pp{font-size:9.5px;gap:2px;}
+    .hero2-card.t1h .t1h-illust--books .t1h-prod .pp em{font-size:9px;}
   }
 
   @media (max-width:768px){
@@ -140,28 +148,6 @@
     .t1s-rail .rarw{display:none;}
   }
 
-  /* ===== [추가] 전문가 PICK · 동료 원장 추천 ===== */
-  .t1p-sec{padding:44px 0;background:#f7f8fa;}
-  .t1p-head{margin-bottom:20px;}
-  .t1p-head h2{font-size:24px;font-weight:800;letter-spacing:-.5px;color:#191919;}
-  .t1p-head h2 .hl{color:#2272dd;}
-  .t1p-head .sub{font-size:14px;color:#8c8c8c;margin-top:6px;font-weight:500;}
-  .t1p-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
-  .t1p-card{border:1px solid #ededed;border-radius:12px;overflow:hidden;background:#fff;display:flex;flex-direction:column;}
-  .t1p-card .badge{align-self:flex-start;font-size:11.5px;font-weight:800;padding:4px 10px;border-radius:999px;margin:14px 0 0 14px;}
-  .t1p-card .badge.expert{background:#eaf1ff;color:#2272dd;}
-  .t1p-card .badge.peer{background:#eafbf0;color:#1a9d54;}
-  .t1p-card .who{font-size:12px;color:#8c8c8c;margin:6px 14px 0;}
-  .t1p-card .thumb{margin:12px 14px 0;border-radius:8px;overflow:hidden;aspect-ratio:1/1;background:#f7f8fa;}
-  .t1p-card .thumb img{width:100%;height:100%;object-fit:cover;}
-  .t1p-card .name{font-size:13.5px;line-height:1.4;color:#333;margin:10px 14px 0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.8em;}
-  .t1p-card .price{display:flex;gap:6px;align-items:baseline;margin:6px 14px 14px;}
-  .t1p-card .price .rate{color:#f5444a;font-weight:800;font-size:13px;}
-  .t1p-card .price .now{font-weight:800;font-size:16px;color:#191919;}
-  @media (max-width:768px){
-    .t1p-grid{grid-template-columns:repeat(2,1fr);}
-    .t1p-head h2{font-size:20px;}
-  }
 
   /* ===== [추가] 관심 있는 중등 어휘 시리즈 (from ne-books-mall-5) ===== */
   .t1v-sec{padding:44px 0;background:#fff;}
@@ -185,6 +171,10 @@
   .t1v-card .thumb img{width:100%;height:100%;object-fit:cover;}
   .t1v-card .heart{position:absolute;right:8px;top:8px;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.9);display:flex;align-items:center;justify-content:center;}
   .t1v-card .heart svg{width:18px;height:18px;fill:none;stroke:#b5b5b5;}
+  /* 목적별 코스 썸네일 장바구니 아이콘 (hover 시 배경 빨강 = ON 컬러) */
+  .t1v-card .thumb .bs-cart{position:absolute;right:8px;bottom:8px;width:34px;height:34px;border-radius:50%;background:var(--ink);border:0;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;transition:background .15s;box-shadow:0 2px 8px rgba(0,0,0,.2);z-index:2;}
+  .t1v-card .thumb .bs-cart:hover{background:var(--red);}
+  .t1v-card .thumb .bs-cart img{width:18px;height:18px;display:block;}
   .t1v-card .tit{font-size:13.5px;line-height:1.4;color:#333;margin-top:10px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
   .t1v-card .was{font-size:12px;color:#bbb;text-decoration:line-through;margin-top:6px;}
   .t1v-card .now{display:flex;gap:5px;align-items:baseline;margin-top:2px;}
@@ -197,7 +187,8 @@
   .t1v-prod .t1vbs .img .chk{position:absolute;left:14px;top:14px;width:18px;height:18px;background:#fff;border:1px solid #ededed;border-radius:5px;appearance:none;-webkit-appearance:none;margin:0;padding:0;cursor:pointer;z-index:2;}
   .t1v-prod .t1vbs .img .chk::after{content:none;}
   .t1v-prod .t1vbs .img .chk:checked{background:#e83828;border-color:#e83828;background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.4 6.2 4.9 8.6 9.6 3.5" stroke="white" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>');background-repeat:no-repeat;background-position:center;}
-  .t1v-prod .t1vbs .img .cart{position:absolute;right:16px;bottom:14px;width:44px;height:44px;background:#191919;border-radius:999px;display:flex;align-items:center;justify-content:center;}
+  .t1v-prod .t1vbs .img .cart{position:absolute;right:16px;bottom:14px;width:44px;height:44px;background:#191919;border-radius:999px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .15s;}
+  .t1v-prod .t1vbs .img .cart:hover{background:var(--red);}
   .t1v-prod .t1vbs .img .cart img{width:20px;height:20px;}
   .t1v-prod .t1vbs .meta{padding:0 16px 18px;display:flex;flex-direction:column;gap:8px;}
   .t1v-prod .t1vbs .meta .ph{align-self:flex-start;border:1px solid #e83828;color:#e83828;font-weight:500;font-size:12px;padding:4px 12px;border-radius:999px;}
@@ -208,6 +199,7 @@
   /* 목적별 추천 코스 카드도 t1v 스타일 재사용 — 가로 스크롤에 맞춰 고정폭·상단 정렬 */
   .bs-list{align-items:flex-start;}
   .bs-list .t1v-card{width:200px;flex:none;}
+  .bs-list .t1v-card .thumb img{object-position:top;}
   /* 묶음담기용 선택 체크박스 (디폴트 모두 선택) */
   .bs-list .t1v-card .chk{position:absolute;left:8px;top:8px;width:18px;height:18px;background:#fff;border:1px solid #ededed;border-radius:5px;appearance:none;-webkit-appearance:none;margin:0;padding:0;cursor:pointer;z-index:2;}
   .bs-list .t1v-card .chk::after{content:none;}
@@ -220,22 +212,6 @@
     .t1v-prod{grid-template-columns:repeat(2,1fr);}
   }
 
-  /* ===== [P3 추가] 개인화 추천 배너 + 회원 등급 ===== */
-  .t1pz-sec{padding:20px 0 0;}
-  .t1pz-box{display:flex;align-items:center;justify-content:space-between;gap:16px;background:linear-gradient(120deg,#fff7e6,#fff1cf);border:1px solid #f3ddA0;border-radius:14px;padding:20px 24px;}
-  .t1pz-user{display:flex;align-items:center;gap:14px;}
-  .t1pz-grade{flex:none;background:#191919;color:#ffd873;font-size:12px;font-weight:800;padding:6px 12px;border-radius:999px;letter-spacing:-.2px;}
-  .t1pz-txt{display:flex;flex-direction:column;gap:4px;}
-  .t1pz-txt strong{font-size:15px;font-weight:800;color:#191919;}
-  .t1pz-txt span{font-size:13px;color:#7a6a3a;}
-  .t1pz-txt b{color:#c9820a;}
-  .t1pz-btn{flex:none;background:#191919;color:#fff;font-weight:700;font-size:14px;padding:12px 18px;border-radius:10px;white-space:nowrap;}
-  .t1pz-perks{margin-top:10px;display:flex;gap:10px;font-size:12.5px;color:#8c7a45;padding:0 4px;}
-  .t1pz-perks span:first-child{font-weight:800;color:#c9820a;}
-  @media (max-width:600px){
-    .t1pz-box{flex-direction:column;align-items:flex-start;}
-    .t1pz-btn{align-self:stretch;text-align:center;}
-  }
 
   /* ===== [항목8] 뉴스레터(이메일) → 카카오톡 채널 전환 (열람률 저조로 채널 이관) ===== */
   .t1nl-sec{padding:36px 0;background:#f3f3f3;}
@@ -253,17 +229,42 @@
     .t1nl-btn{align-self:stretch;justify-content:center;}
   }
 
-  /* ===== [추가] 자료→교재 브릿지 ===== */
-  .t1br-sec{padding:0 0 44px;}
-  .t1br-box{display:flex;align-items:center;justify-content:space-between;gap:16px;background:#eaf1ff;border-radius:14px;padding:22px 26px;}
-  .t1br-txt{display:flex;flex-direction:column;gap:4px;}
-  .t1br-txt strong{font-size:16px;font-weight:800;color:#191919;}
-  .t1br-txt span{font-size:13px;color:#5b6673;}
-  .t1br-btn{flex:none;background:#2272dd;color:#fff;font-weight:700;font-size:14px;padding:12px 18px;border-radius:10px;white-space:nowrap;}
-  @media (max-width:600px){
-    .t1br-box{flex-direction:column;align-items:flex-start;}
-    .t1br-btn{align-self:stretch;text-align:center;}
-  }
+  /* [from mall-type2] 이런 조합 어때요? 맞춤 교재 세트 */
+  .t2set-sec{padding:44px 0;}
+  .t2-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:20px;}
+  .t2-head h2{font-size:24px;font-weight:800;letter-spacing:-.5px;color:#191919;}
+  .t2-head h2 .hl{color:#e83828;}
+  .t2-more{font-size:14px;color:#555;font-weight:600;}
+  .t2set-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .t2set-card{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;transition:.15s;}
+  .t2set-card:hover{box-shadow:0 10px 22px rgba(0,0,0,.1);transform:translateY(-3px);}
+  .t2set-card .st-top{position:relative;padding:20px 20px 16px;background:linear-gradient(135deg,#f7f7f7,#f0f0f0);}
+  .t2set-card .st-goal{display:inline-block;font-size:12px;font-weight:700;color:#fff;background:#1a9d54;border-radius:12px;padding:4px 11px;margin-bottom:10px;}
+  .t2set-card .st-goal.b{background:#0d9488;}
+  .t2set-card .st-goal.c{background:#ff8a1e;}
+  .t2set-card .st-name{font-size:19px;font-weight:800;letter-spacing:-.5px;margin:0 0 4px;color:#191919;}
+  .t2set-card .st-desc{font-size:12.5px;color:#7a8a7a;margin:0;}
+  .t2set-card .st-covers{display:flex;margin-top:16px;padding-left:6px;}
+  .t2set-card .st-covers .cv{width:66px;height:88px;border-radius:6px;overflow:hidden;box-shadow:0 4px 10px rgba(0,0,0,.16);background:#fff;margin-left:-14px;display:flex;align-items:center;justify-content:center;border:1px solid #f0f0f0;}
+  .t2set-card .st-covers .cv:first-child{margin-left:0;}
+  .t2set-card .st-covers .cv img{width:100%;height:100%;object-fit:cover;}
+  .t2set-card .st-covers .cv.more{background:#eef3ef;color:#5a7a5a;font-weight:800;font-size:13px;}
+  .t2set-card .st-body{padding:16px 20px 20px;display:flex;flex-direction:column;flex:1;}
+  .t2set-card .st-list{list-style:none;margin:0 0 14px;padding:12px 0 0;border-top:1px dashed #ececec;}
+  .t2set-card .st-list li{font-size:12.5px;color:#666;line-height:1.9;display:flex;justify-content:space-between;}
+  .t2set-card .st-list li .q{color:#aaa;}
+  .t2set-card .st-pricebar{margin-top:auto;display:flex;align-items:flex-end;justify-content:space-between;}
+  .t2set-card .st-save{font-size:12px;color:#e83828;font-weight:700;}
+  .t2set-card .st-was{font-size:12px;color:#aaa;text-decoration:line-through;}
+  .t2set-card .st-now{font-size:22px;font-weight:800;color:#191919;}
+  .t2set-card .st-now .pct{color:#e83828;margin-right:4px;}
+  .t2set-card .st-cta{margin-top:14px;display:flex;gap:8px;}
+  .t2set-card .st-cta a{flex:1;text-align:center;padding:12px 0;border-radius:9px;font-weight:700;font-size:14px;}
+  .t2set-card .st-cta .cart{background:#f1f1f1;color:#333;}
+  .t2set-card .st-cta .cart:hover{background:#e6e6e6;}
+  .t2set-card .st-cta .buy{background:#e83828;color:#fff;}
+  .t2set-card .st-cta .buy:hover{background:#c92e20;}
+  @media (max-width:900px){.t2set-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body class="page-index">
@@ -282,11 +283,7 @@
             <h3 class="t1h-ttl">Grammar Inside로 완성하는<br>중등 문법 루틴</h3>
             <p class="t1h-sub">NE Tutor 문제뱅크를 활용한 반복 강화 시스템을 소개합니다.<br>지금 바로 세미나 신청하시고 문법 정착형 학습법 확인하세요!</p>
           </div>
-          <div class="t1h-illust t1h-illust--books">
-            <a class="t1h-prod" href="교재상세.html"><img src="assets/best_4.png" alt=""><span class="pn">그래머 인사이드 Lv.1</span><span class="pp"><em>10%</em>12,600원</span></a>
-            <a class="t1h-prod" href="교재상세.html"><img src="assets/best_2.png" alt=""><span class="pn">그래머 인사이드 Lv.2</span><span class="pp"><em>10%</em>13,050원</span></a>
-            <a class="t1h-prod" href="교재상세.html"><img src="assets/best_3.png" alt=""><span class="pn">그래머 인사이드 Lv.3</span><span class="pp"><em>10%</em>13,500원</span></a>
-          </div>
+          <div class="t1h-illust"><img src="assets/seminar_banner_1.png" alt="특별 강연 배우 이도현"></div>
         </div>
         <div class="hero2-card t1h t1h--navy">
           <div class="t1h-txt">
@@ -364,32 +361,22 @@
   <!-- ===== [항목6·7] 선생님 전용 페이지 진입 링크 (B2B 메인 분리) ===== -->
   <section class="t1te-link">
     <div class="container">
-      <a href="index-teacher.html">선생님이신가요? 교강사 자료·전용가를 확인할 수 있는 선생님 전용 페이지로 이동 &#8250;</a>
+      <div class="t1te-box">
+        <span class="t1te-ico"><img src="assets/ic_main_engteacher.svg" alt=""></span>
+        <div class="t1te-txt">
+          <span class="t1te-badge">TEACHER</span>
+          <strong>선생님이신가요?</strong>
+          <span class="t1te-desc">교강사 자료·전용가를 확인할 수 있는 선생님 전용 페이지로 이동하세요.</span>
+        </div>
+        <a class="t1te-btn" href="index-teacher.html">선생님 전용 페이지 &#8250;</a>
+      </div>
     </div>
   </section>
 
-  <!-- ===== [P3 추가] 개인화 추천 배너 + 회원 등급 (로그인 세그먼트 분기) ===== -->
-  <section class="t1pz-sec">
-    <div class="container">
-      <div class="t1pz-box">
-        <div class="t1pz-user">
-          <span class="t1pz-grade">GOLD 학원회원</span>
-          <div class="t1pz-txt">
-            <strong>김민준 원장님, 다시 오셨네요!</strong>
-            <span>자주 담으신 <b>그래머 인사이드</b> 시리즈 새 학기 물량이 들어왔어요.</span>
-          </div>
-        </div>
-        <a class="t1pz-btn" href="리스트_교재구매.html">바로 확인하기 &#8250;</a>
-      </div>
-      <div class="t1pz-perks">
-        <span>GOLD 혜택</span>
-        <span>구매 적립 3% · 대량구매 전담 상담 · 신간 우선 안내</span>
-      </div>
-    </div>
-  </section>
+  <!-- ===== 개인화 추천 배너(GOLD 학원회원·원장님 인사) index.html(일반 회원 페이지)에서 완전 제거 — index-teacher.html에만 유지 ===== -->
 
   <!-- ===== 목적별 추천 코스 (구 베스트셀러 탭 구조 재활용 — 인기순위→목적별 코스로 재정의, 2026 반영) ===== -->
-  <section class="bestseller">
+  <section class="bestseller" id="courseSec">
     <div class="container">
       <div class="bs-wrap">
         <div class="bs-head">
@@ -417,19 +404,48 @@
     </div>
   </section>
 
-  <!-- ===== [항목1 강화] 커리큘럼 코스별 추천: 레벨 단계 진행형 상품 추천 ===== -->
-  <section class="t1cur-sec" id="curriculumSec">
+  <!-- ===== [from mall-type2] 이런 조합 어때요? 맞춤 교재 세트 (일반몰) ===== -->
+  <section class="t2set-sec">
     <div class="container">
-      <div class="t1cur-head">
-        <div class="sec-title">커리큘럼 코스별 추천</div>
-        <p class="sub">지금 내 레벨에 맞는 교재부터 다음 단계까지, 커리큘럼을 따라 차근차근 실력을 쌓아보세요.</p>
-        <div class="t1cur-tabs" id="curTabs">
-          <span class="tab active" data-cur="0">문법 마스터 커리큘럼</span>
-          <span class="tab" data-cur="1">어휘 마스터 커리큘럼</span>
-          <span class="tab" data-cur="2">독해 마스터 커리큘럼</span>
+      <div class="t2-head"><h2>이런 조합 어때요? <span class="hl">맞춤 교재 세트</span></h2><a class="t2-more" href="리스트_교재구매.html">전체보기 &#8250;</a></div>
+      <div class="t2set-grid">
+        <div class="t2set-card">
+          <div class="st-top"><span class="st-goal">방학 완성</span><p class="st-name">중등 방학 3주 완성 세트</p><p class="st-desc">어휘 + 문법 + 독해를 한 번에</p>
+            <div class="st-covers"><span class="cv"><img src="assets/best_5.png" alt=""></span><span class="cv"><img src="assets/best_4.png" alt=""></span><span class="cv"><img src="assets/best_2.png" alt=""></span></div></div>
+          <div class="st-body"><ul class="st-list">
+            <li><span>능률 VOCA 어원편</span><span class="q">1권</span></li>
+            <li><span>그래머 인사이드 Lv1</span><span class="q">1권</span></li>
+            <li><span>주니어 리딩튜터</span><span class="q">1권</span></li>
+          </ul>
+            <div class="st-pricebar"><div><div class="st-save">11,500원 절약</div><div class="st-was">41,000원</div></div><div class="st-now"><span class="pct">28%</span>29,500원</div></div>
+            <div class="st-cta"><a class="cart" href="장바구니.html">세트 담기</a><a class="buy" href="주문결제.html">바로구매</a></div>
+          </div>
+        </div>
+        <div class="t2set-card">
+          <div class="st-top"><span class="st-goal b">파닉스 마스터</span><p class="st-name">초등 파닉스 4권 마스터 세트</p><p class="st-desc">스스로 읽는 힘, 기초부터 완성</p>
+            <div class="st-covers"><span class="cv"><img src="assets/best_1.png" alt=""></span><span class="cv"><img src="assets/best_2.png" alt=""></span><span class="cv"><img src="assets/best_3.png" alt=""></span><span class="cv"><img src="assets/best_1.png" alt=""></span></div></div>
+          <div class="st-body"><ul class="st-list">
+            <li><span>Phonics Code 1~4 SB</span><span class="q">4권</span></li>
+            <li><span>세이펜 스티커</span><span class="q">1권</span></li>
+            <li><span>정답·MP3 자료</span><span class="q">무료</span></li>
+          </ul>
+            <div class="st-pricebar"><div><div class="st-save">21,000원 절약</div><div class="st-was">60,000원</div></div><div class="st-now"><span class="pct">35%</span>39,000원</div></div>
+            <div class="st-cta"><a class="cart" href="장바구니.html">세트 담기</a><a class="buy" href="주문결제.html">바로구매</a></div>
+          </div>
+        </div>
+        <div class="t2set-card">
+          <div class="st-top"><span class="st-goal c">수능 파이널</span><p class="st-name">고등 수능 파이널 세트</p><p class="st-desc">독해·듣기 실전 마무리 조합</p>
+            <div class="st-covers"><span class="cv"><img src="assets/newbook_sample.png" alt=""></span><span class="cv"><img src="assets/best_4.png" alt=""></span><span class="cv"><img src="assets/best_5.png" alt=""></span></div></div>
+          <div class="st-body"><ul class="st-list">
+            <li><span>수능만만 영어독해</span><span class="q">1권</span></li>
+            <li><span>수능만만 영어듣기</span><span class="q">1권</span></li>
+            <li><span>능률 VOCA 수능완성</span><span class="q">1권</span></li>
+          </ul>
+            <div class="st-pricebar"><div><div class="st-save">13,500원 절약</div><div class="st-was">45,000원</div></div><div class="st-now"><span class="pct">30%</span>31,500원</div></div>
+            <div class="st-cta"><a class="cart" href="장바구니.html">세트 담기</a><a class="buy" href="주문결제.html">바로구매</a></div>
+          </div>
         </div>
       </div>
-      <div class="t1cur-path" id="curPath"></div>
     </div>
   </section>
 
@@ -444,16 +460,7 @@
     </div>
   </section>
 
-  <!-- ===== [추가] 전문가 PICK · 동료 원장 추천 (설문 근거: 동료 추천 71%, 전문가 PICK 도움됨) ===== -->
-  <section class="t1p-sec">
-    <div class="container">
-      <div class="t1p-head">
-        <h2>선생님들이 <span class="hl">많이 선택한</span> 교재</h2>
-        <p class="sub">전문가 PICK과 동료 원장님 추천을 모았어요</p>
-      </div>
-      <div class="t1p-grid" id="t1pGrid"></div>
-    </div>
-  </section>
+  <!-- ===== 전문가 PICK·동료 원장 추천 섹션은 index.html(일반 회원 페이지)에서 제거 — 선생님 지향 콘텐츠라 index-teacher.html로 이관 ===== -->
 
   <!-- ===== [추가] 지금 제일 잘 나가는 교재 (숨김 처리) (from ne-books-mall-4) ===== -->
   <section class="t1s-sec" hidden>
@@ -487,61 +494,9 @@
     </div>
   </section>
 
-  <!-- ===== NETUTOR ===== -->
-  <section class="netutor" id="sec-netutor">
-    <div class="nt-viewport">
-      <div class="nt-wrap" id="ntWrap">
-        <div class="nt-arc">
-          <img class="circle" src="assets/netutor_arc.svg" alt="">
-          <img class="dot" src="assets/netutor_dot.svg" alt="">
-        </div>
-        <div class="nt-hot" id="ntHot" title="스크롤하여 배너 이동"></div>
-        <div class="nt-center">
-          <div class="cap"><span class="cap-sub">선생님을 위한</span> <span class="cap-main">티칭 플랫폼</span><span class="cap-logo only-mo"><img src="assets/netutor_logo.svg" alt="NE_Tutor"></span></div>
-          <div class="logo only-pc"><img src="assets/netutor_logo.svg" alt="NE_Tutor" style="width:100%;height:100%;object-fit:contain;"></div>
-        </div>
-        <div class="nt-cards" id="ntCards">
-          <div class="nt-card">
-            <div class="body"><span class="sub">지도서/수업자료</span><span class="tt">E-Book・자료</span></div>
-            <span class="ic ico"><img src="assets/ic_tutor_ebook.svg" data-n="assets/ic_tutor_ebook.svg" data-w="assets/ic_tutor_ebook_w.svg" alt=""></span>
-          </div>
-          <div class="nt-card">
-            <div class="body"><span class="sub">시험지 자동 생성</span><span class="tt">어휘 문제 마법사</span></div>
-            <span class="ic ico"><img src="assets/ic_tutor_vocab.svg" data-n="assets/ic_tutor_vocab.svg" data-w="assets/ic_tutor_vocab_w.svg" alt=""></span>
-          </div>
-          <div class="nt-card">
-            <div class="body"><span class="sub">문제 무제한 출제</span><span class="tt">문법 문제뱅크</span></div>
-            <span class="ic ico"><img src="assets/ic_tutor_grammar.svg" data-n="assets/ic_tutor_grammar.svg" data-w="assets/ic_tutor_grammar_w.svg" alt=""></span>
-          </div>
-          <div class="nt-card">
-            <div class="body"><span class="sub">iBT 영어 레벨테스트</span><span class="tt">NELT</span></div>
-            <span class="ic ico"><img src="assets/ic_tutor_nelt.svg" data-n="assets/ic_tutor_nelt.svg" data-w="assets/ic_tutor_nelt_w.svg" alt=""></span>
-          </div>
-          <div class="nt-card">
-            <div class="body"><span class="sub">평가/오답 자동화</span><span class="tt">성취TEST</span></div>
-            <span class="ic ico"><img src="assets/ic_tutor_test.svg" data-n="assets/ic_tutor_test.svg" data-w="assets/ic_tutor_test_w.svg" alt=""></span>
-          </div>
-          <div class="nt-card">
-            <div class="body"><span class="sub">예문검색 1분컷</span><span class="tt">문법 예문 검색</span></div>
-            <span class="ic ico"><img src="assets/ic_tutor_search.svg" data-n="assets/ic_tutor_search.svg" data-w="assets/ic_tutor_search_w.svg" alt=""></span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- ===== NETUTOR 섹션은 index.html(일반 회원 페이지)에서 제거 — 선생님 전용 콘텐츠라 index-teacher.html로 완전 이관 ===== -->
 
-  <!-- ===== [추가] 자료→교재 브릿지 (설문 근거: 채택 결정요인 1위=티칭/학습 자료 7/7) ===== -->
-  <section class="t1br-sec">
-    <div class="container">
-      <div class="t1br-box">
-        <div class="t1br-txt">
-          <strong>지금 본 자료, 어떤 교재랑 같이 쓰나요?</strong>
-          <span>NE Tutor 자료와 짝을 이루는 교재를 바로 확인하고 담아보세요.</span>
-        </div>
-        <a class="t1br-btn" href="리스트_교재구매.html">관련 교재 보기 &#8250;</a>
-      </div>
-    </div>
-  </section>
+  <!-- 자료→교재 브릿지 섹션 삭제 (요청) -->
 
   <!-- ===== NOTICES / CUSTOMER CENTER ===== -->
   <section class="notices">
@@ -669,6 +624,7 @@
         return '<div class="t1v-card">'
           +'<div class="thumb"><input type="checkbox" class="chk" checked aria-label="선택"><img src="assets/'+b.img+'" alt="">'
             +'<button class="heart" aria-label="찜"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.3-9.2-8.2C1.2 8.9 2.6 6 5.5 6 7.4 6 8.7 7 12 9.5 15.3 7 16.6 6 18.5 6c2.9 0 4.3 2.9 2.7 5.8C19 15.7 12 20 12 20z" stroke-width="1.6"/></svg></button>'
+            +'<button class="bs-cart" aria-label="장바구니 담기"><img src="assets/ic_cart_black.svg" alt=""></button>'
           +'</div>'
           +'<p class="tit">'+b.t+'</p>'
           +'<p class="was">'+b.was+'</p>'
@@ -708,53 +664,11 @@
     if(promoBtn) promoBtn.addEventListener('click', bundleAdd);
     var moBtn=document.querySelector('.bs-mo-btn');
     if(moBtn) moBtn.addEventListener('click', bundleAdd);
-  })();
-
-  /* ---------- 커리큘럼 코스별 추천: 레벨 단계 진행형(Lv.1→Lv.4) ---------- */
-  (function(){
-    var path=document.getElementById('curPath'); if(!path) return;
-    var tabs=[].slice.call(document.querySelectorAll('#curTabs .tab'));
-    var CURRICULUM=[
-      [ /* 문법 마스터 커리큘럼 */
-        {lv:'Lv.1 입문', t:'그래머존 Basic - 기초 영문법', p:'11,700원', img:'best_3.png'},
-        {lv:'Lv.2 기본', t:'그래머 인사이드 Lv.1', p:'12,600원', img:'best_4.png'},
-        {lv:'Lv.3 심화', t:'그래머 인사이드 Lv.2', p:'13,050원', img:'best_2.png'},
-        {lv:'Lv.4 실전', t:'중등 영어문법 3800제 Level 1', p:'13,500원', img:'best_1.png'}
-      ],
-      [ /* 어휘 마스터 커리큘럼 */
-        {lv:'Lv.1 입문', t:'초등 필수 VOCA 800', p:'10,800원', img:'best_5.png'},
-        {lv:'Lv.2 기본', t:'중등 VOCA 데이북 Level 1', p:'11,700원', img:'best_3.png'},
-        {lv:'Lv.3 심화', t:'능률VOCA 어원편 - 수능 필수 어휘', p:'13,500원', img:'best_1.png'},
-        {lv:'Lv.4 실전', t:'수능 VOCA 어원편 심화', p:'13,950원', img:'best_4.png'}
-      ],
-      [ /* 독해 마스터 커리큘럼 */
-        {lv:'Lv.1 입문', t:'스스로 읽는 파닉스 Phonics Code 1', p:'12,600원', img:'best_5.png'},
-        {lv:'Lv.2 기본', t:'Bricks Reading 150 · L1', p:'13,500원', img:'best_2.png'},
-        {lv:'Lv.3 심화', t:'리딩튜터 기본 - 유형별 독해 훈련', p:'12,600원', img:'best_2.png'},
-        {lv:'Lv.4 실전', t:'첫단추 독해편 - 수능 유형 입문', p:'12,150원', img:'best_1.png'}
-      ]
-    ];
-    function render(idx){
-      var steps=CURRICULUM[idx]; if(!steps) return;
-      var html='';
-      steps.forEach(function(s,i){
-        html+='<a class="t1cur-step" href="교재상세.html">'
-          +'<span class="t1cur-lv">'+s.lv+'</span>'
-          +'<span class="t1cur-thumb"><img src="assets/'+s.img+'" alt=""></span>'
-          +'<span class="t1cur-name">'+s.t+'</span>'
-          +'<span class="t1cur-price">'+s.p+'</span>'
-        +'</a>';
-        if(i<steps.length-1) html+='<span class="t1cur-arrow">&#8250;</span>';
-      });
-      path.innerHTML=html;
-    }
-    render(0);
-    tabs.forEach(function(t){
-      t.addEventListener('click',function(){
-        tabs.forEach(function(x){ x.classList.remove('active'); });
-        t.classList.add('active');
-        render(parseInt(t.getAttribute('data-cur'),10)||0);
-      });
+    /* 카드 썸네일 장바구니 아이콘 = 단건 담기 */
+    list.addEventListener('click',function(e){
+      if(!e.target.closest('.bs-cart')) return;
+      e.preventDefault();
+      if(confirm('상품이 장바구니에 담겼습니다. 장바구니로 이동하시겠습니까?')){ location.href='장바구니.html'; }
     });
   })();
 
@@ -1088,34 +1002,24 @@
     ];
     el.innerHTML=BLOGS.map(function(b,i){
       var items=b.items.map(function(pi){ var p=PRODUCTS[pi];
-        return '<div class="t1b-item"><div class="th"><img src="'+makeCover(p.cov)+'" alt=""></div>'
+        return '<div class="t1b-item"><input type="checkbox" class="t1b-chk" checked aria-label="선택"><div class="th"><img src="'+makeCover(p.cov)+'" alt=""></div>'
           +'<div class="info"><p class="tit">'+esc(p.t)+'</p><p class="was">'+p.was+'</p>'
           +'<div class="now"><span class="rate">'+p.rate+'</span><span class="price">'+p.now+'</span></div></div></div>';
       }).join('');
+      var buy='<div class="t1b-buy"><button type="button" class="t1b-cart">담기</button><button type="button" class="t1b-order">바로구매</button></div>';
       return '<div class="t1b-col"><div class="t1b-banner band'+i+'"><div><span class="band">'+esc(b.cat)+'</span><span class="series">'+esc(b.series)+'</span>'
-        +'<div class="bt">'+esc(b.tt).replace(/\n/g,'<br>')+'</div></div><img class="thumb" src="'+makeCover(PRODUCTS[b.th].cov)+'" alt=""></div>'+items+'</div>';
+        +'<div class="bt">'+esc(b.tt).replace(/\n/g,'<br>')+'</div></div><img class="thumb" src="'+makeCover(PRODUCTS[b.th].cov)+'" alt=""></div>'+items+buy+'</div>';
     }).join('');
-  })();
-
-  /* ===== 전문가 PICK · 동료 원장 추천 ===== */
-  (function(){
-    var el=document.getElementById('t1pGrid'); if(!el) return;
-    var PICKS=[
-      {kind:'expert', label:'전문가 PICK', who:'NE능률 교육연구소', pi:2},
-      {kind:'peer', label:'동료 원장 추천', who:'대구 은혜영어학원 · 김OO 원장', pi:6},
-      {kind:'peer', label:'동료 원장 추천', who:'대전 하이라이트어학원 · 박OO 원장', pi:9},
-      {kind:'expert', label:'전문가 PICK', who:'NE능률 교육연구소', pi:4}
-    ];
-    el.innerHTML=PICKS.map(function(p){
-      var pr=PRODUCTS[p.pi];
-      return '<div class="t1p-card">'
-        +'<span class="badge '+p.kind+'">'+esc(p.label)+'</span>'
-        +'<p class="who">'+esc(p.who)+'</p>'
-        +'<div class="thumb"><img src="'+makeCover(pr.cov)+'" alt=""></div>'
-        +'<p class="name">'+esc(pr.t)+'</p>'
-        +'<div class="price"><span class="rate">'+pr.rate+'</span><span class="now">'+pr.now+'</span></div>'
-      +'</div>';
-    }).join('');
+    /* 컬럼별 담기/바로구매 (체크된 상품 대상, 0건 얼럿) */
+    el.addEventListener('click',function(e){
+      var col=e.target.closest('.t1b-col'); if(!col) return;
+      var isCart=e.target.closest('.t1b-cart'), isOrder=e.target.closest('.t1b-order');
+      if(!isCart&&!isOrder) return;
+      var n=col.querySelectorAll('.t1b-chk:checked').length;
+      if(!n){ alert('선택된 교재가 없습니다.'); return; }
+      if(isCart){ if(confirm('상품이 장바구니에 담겼습니다. 장바구니로 이동하시겠습니까?')) location.href='장바구니.html'; }
+      else { location.href='주문결제.html'; }
+    });
   })();
 
   /* ===== 베스트: 지금 제일 잘 나가는 교재 (from ne-books-mall-4) ===== */
@@ -1163,7 +1067,7 @@
     function cardHTML(p,i){
       return '<div class="t1vbs">'
         +'<div class="img">'
-          +'<input type="checkbox" class="chk" aria-label="선택">'
+          +'<input type="checkbox" class="chk" checked aria-label="선택">'
           +'<img class="book" src="assets/'+(IMGS[i]||'best_1.png')+'" alt="">'
           +'<div class="cart"><img src="assets/ic_cart_black.svg" alt="장바구니"></div>'
         +'</div>'

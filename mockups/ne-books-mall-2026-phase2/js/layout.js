@@ -5,18 +5,22 @@
   var HEADER = `<header class="lheader">
     <div class="container">
       <div class="header-top">
-        <a class="logo" href="index.html"><img src="assets/header_logo_dark.png" alt="NE_Books"></a>
+        <div class="logo-wrap">
+          <a class="logo" href="index.html"><img src="assets/header_logo_dark.png" alt="NE_Books"></a>
+          <!-- [임시/검토용] B2C·B2B 목업 빠른 전환 버튼 — 실제 배포 시 제거 -->
+          <a class="t1dev-switch only-pc" id="devViewSwitch" href="index-teacher.html">선생님 화면 보기</a>
+        </div>
         <div class="m-loc"><a class="m-loc-home" href="index.html" aria-label="홈"><img src="assets/ic_home_sub.svg" alt="홈"></a><button class="m-loc-btn" type="button" aria-expanded="false"><span class="m-loc-name"></span><span class="m-loc-caret"></span></button></div>
-        <!-- [항목1] 통합검색영역: 검색창 + 우측 버튼(맞춤교재찾기·추천커리큘럼), 빨간 라인으로 영역 강조 -->
+        <!-- [항목1] 통합검색영역: 검색창 + 우측 버튼(맞춤교재찾기·추천커리큘럼), 빨간 라인으로 영역 강조. 일반몰·선생님몰 공통 헤더 -->
         <div class="search-wrap">
           <div class="search">
-            <input type="text" class="search-input" placeholder="검색어를 입력해 주세요." autocomplete="off">
+            <input type="text" class="search-input" placeholder="필요한 교재, 3초 안에 찾기!" autocomplete="off">
             <button type="button" class="search-ic ico" aria-label="검색"><img src="assets/ds_ic_search_red.svg" alt=""></button>
             <div class="search-pop" hidden></div>
           </div>
           <div class="search-extra only-pc">
             <a class="se-btn" href="https://nebooks.co.kr/nepick/index.asp" target="_blank" rel="noopener">맞춤교재찾기</a>
-            <a class="se-btn" href="index.html#curriculumSec">추천커리큘럼</a>
+            <a class="se-btn" href="index.html#courseSec">추천커리큘럼</a>
           </div>
         </div>
         <div class="head-icons">
@@ -60,8 +64,8 @@
             <a href="#">교과서/자습서</a>
             <a href="#">수험/일반</a>
             <a href="#">수학/국어</a>
-            <a href="#">학습자료실</a>
-            <a href="#">도서몰</a>
+            <a class="c-blue" href="#">학습자료실</a>
+            <a class="c-red" href="#">교재몰</a>
           </nav>
         </div>
         <div class="gnb-drop" id="gnbDrop">
@@ -161,6 +165,15 @@
   var h=document.getElementById('site-header'); if(h) h.innerHTML=HEADER;
   var f=document.getElementById('site-footer'); if(f) f.innerHTML=FOOTER;
 
+  /* [임시/검토용] 현재 보고 있는 화면이 선생님(B2B) 목업이면 "일반몰 보기"로, 아니면 "선생님 화면 보기"로 전환 */
+  (function(){
+    var btn=document.getElementById('devViewSwitch'); if(!btn) return;
+    var file=decodeURIComponent(location.pathname.split('/').pop()||'');
+    var isTeacher=(file.indexOf('선생님')>=0)||file==='index-teacher.html';
+    btn.textContent=isTeacher?'일반몰 화면 보기':'선생님 화면 보기';
+    btn.href=isTeacher?'index.html':'index-teacher.html';
+  })();
+
   /* ===== 모바일 GNB 자동 숨김/표시 (아래로 스크롤=숨김, 위로 스크롤=표시+그림자 고정) ===== */
   (function(){
     var header=document.getElementById('site-header');
@@ -224,7 +237,7 @@
     var MY_LINKS=['마이페이지.html','마이페이지.html#orders','마이페이지.html#points','마이페이지.html#wish','마이페이지.html#qna','마이페이지.html#review','마이페이지.html#event'];
     var MENU=BOOKCATS.concat([
       {name:'학습자료실', accordion:true},
-      {name:'도서몰', accordion:true},
+      {name:'교재몰', accordion:true},
       {name:'고객센터', subs:['공지사항','FAQ','이벤트/신간·개정/세미나','교재 오류정정','1:1문의','지사안내'], links:CS_LINKS},
       {name:'마이페이지', subs:['홈','주문내역','포인트','찜','문의/답변','후기','이벤트/세미나'], links:MY_LINKS}
     ]);
@@ -354,20 +367,51 @@
     '수험/일반':['TOEIC','TOEIC Speaking/Writing','TOEFL/OPIC/TEPS','FLEX','일반영어'],
     '수학/국어':['유아','초등','중등','고등'],
     '학습자료실':['서브메인','ELT자료','초/중등교재 자료','고등교재 자료','교과서/자습서 자료','수험/일반 자료','수학/국어 자료'],
-    '도서몰':['ELT','초/중등','고등영어 교과서','교과서/자습서','수험/일반','교구/부가상품','세트/패키지','온라인 서비스/이용권']
+    '교재몰':['ELT','초/중등','고등영어 교과서','교과서/자습서','수험/일반','교구/부가상품','세트/패키지','온라인 서비스/이용권']
   };
+  /* 선생님몰 3depth(교재 시리즈) 데이터 — mall-type2 메가메뉴 스타일 */
+  var isTeacher = /index-teacher|선생님/.test(decodeURIComponent(location.pathname));
+  var TSERIES={
+    'ELT':['Bricks Reading','Phonics Code','Grammar Inside','리딩튜터','능률VOCA','주니어 리더스뱅크','Come on Series','빠른독해 바른독해'],
+    '초/중등':['그래머 인사이드','능률VOCA 어원편','중등 영어문법 3800제','리딩튜터 기본','첫단추','1316 팬클럽'],
+    '고등':['수능만만','빠른독해 바른독해','수능 빈칸백서','능률VOCA 수능완성','올클 수능독해','유형독해'],
+    '교과서/자습서':['중학영어 자습서','고등영어 자습서','평가문제집','올백 시리즈'],
+    '수험/일반':['토마토 TOEIC','능률 TEPS','FLEX 시리즈','일반영어 회화'],
+    '수학/국어':['개념유형 수학','일공한 계산력','빠작 국어','우공비 시리즈'],
+    '_default':['Grammar Inside','리딩튜터','능률VOCA','Bricks Reading','수능만만']
+  };
+  var TPROMO={img:'banner_books.png', tit:'교사 인증가 안내', desc:'학원·학교 채택 시 전용가 적용', href:'교재상세_선생님.html'};
   var closeT;
+  function openTeacherMega(a, name){
+    var TL='리스트_교재구매_선생님.html';
+    var list2=MENU[name]||[];
+    var cols='<div class="gd-col"><p class="gd-col-t">'+name+'</p><div class="items">'
+      +list2.map(function(t){ return '<a href="'+TL+'">'+t+'</a>'; }).join('')+'</div></div>';
+    var series=TSERIES[name]||TSERIES._default;
+    var threed='<div class="gd-3depth"><h5>교재 시리즈</h5>'
+      +series.map(function(s){ return '<a href="'+TL+'">'+s+'</a>'; }).join('')+'</div>';
+    var promo='<a class="gd-promo" href="'+TPROMO.href+'"><span class="img" style="background-image:url(\'assets/'+TPROMO.img+'\')"></span>'
+      +'<span class="tit">'+TPROMO.tit+'</span><span class="desc">'+TPROMO.desc+'</span></a>';
+    drop.innerHTML='<div class="tmega-cols">'+cols+'</div>'+threed+promo;
+    drop.classList.remove('mega'); drop.classList.add('tmega');
+    items.forEach(function(x){ x.classList.toggle('on',x===a); });
+    drop.classList.add('open');
+    var gw=gnb.getBoundingClientRect().width; var ml=Math.round((gw-drop.offsetWidth)/2); drop.style.left=(ml>0?ml:0)+'px';
+  }
   function openFor(a){
     var name=a.textContent.trim();
-    var mega=(name==='학습자료실'||name==='도서몰');
+    if(isTeacher){ openTeacherMega(a,name); return; }
+    var mega=(name==='학습자료실'||name==='교재몰');
     var BR='<div class="gd-brands"><a class="gd-btn blue" href="#">Come on Series <span>&#8250;</span></a><a class="gd-btn navy" href="oxford.html">Oxford <span>&#8250;</span></a></div>';
+    /* GNB 드롭다운 레이어 우측 이벤트 프로모 배너 */
+    var GPROMO='<a class="gd-promo" href="이벤트상세.html"><span class="img" style="background-image:url(\'assets/banner_nelt.png\')"></span><span class="tit">방학 특강 기획전</span><span class="desc">지금 최대 30% 할인 &#8250;</span></a>';
     if(mega){
       var COLS=[['ELT','Coursebook','Phonics','Reading','Readers','Listening','Speaking','Grammar','Writing','Vocabulary'],['초등/중등','중학 내신','고등 선행','파닉스','어휘','쓰기','독해','듣기','문법/구분','TOEFL/TEPS/NELT'],['고등','어휘','독해','듣기','문법/구분','수능 대비','고교 내신','단기 특강','TOEFL/TEPS/NELT'],['교과서/자습서','중학영어 교과서','고등영어 교과서','수학 교과서','중국어/일본어'],['수험/일반','TOEIC','TOEIC SPEAKING|/WRITING','TOEFL/OPIC/TEPS','FLEX','일반영어'],['수학/국어','유아','초등','중등','고등']];
-      drop.innerHTML=COLS.map(function(c){ return '<div class="gd-col"><p class="gd-col-t">'+c[0]+'</p><div class="items">'+c.slice(1).map(function(i){ return '<a href="리스트_교재구매.html">'+i.replace('|','<br>')+'</a>'; }).join('')+'</div></div>'; }).join('')+BR;
+      drop.innerHTML=COLS.map(function(c){ return '<div class="gd-col"><p class="gd-col-t">'+c[0]+'</p><div class="items">'+c.slice(1).map(function(i){ return '<a href="리스트_교재구매.html">'+i.replace('|','<br>')+'</a>'; }).join('')+'</div></div>'; }).join('')+BR+GPROMO;
       drop.classList.add('mega');
     } else {
       var list=MENU[name]; if(!list){ hideGnb(); return; }
-      drop.innerHTML='<div class="gd-cats">'+list.map(function(t){ return '<a href="리스트_교재구매.html">'+t+'</a>'; }).join('')+'</div>'+BR;
+      drop.innerHTML='<div class="gd-cats">'+list.map(function(t){ return '<a href="리스트_교재구매.html">'+t+'</a>'; }).join('')+'</div>'+BR+GPROMO;
       drop.classList.remove('mega');
     }
     items.forEach(function(x){ x.classList.toggle('on',x===a); });

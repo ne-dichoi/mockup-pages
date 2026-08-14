@@ -13,13 +13,73 @@
 <script src="js/search.js" defer></script>
 <!-- [항목7] B2C(index.html)와 분리된 B2B(선생님) 전용 메인. 학습·교강사 자료·전용 채널 중심으로 구성, 상업적 프로모션은 최소화 -->
 <style id="t1t-styles">
-  .t1t-hero{padding:56px 0 40px;background:linear-gradient(160deg,#20304f,#16243d);color:#fff;}
-  .t1t-badge{display:inline-flex;align-items:center;height:26px;padding:0 12px;border-radius:20px;background:rgba(255,255,255,.14);color:#fff;font-size:12px;font-weight:800;letter-spacing:.5px;margin-bottom:16px;}
-  .t1t-hero h2{font-size:30px;font-weight:800;line-height:1.4;letter-spacing:-.5px;}
-  .t1t-hero p{font-size:15px;color:rgba(255,255,255,.78);margin-top:14px;line-height:1.6;}
+  /* 상단 히어로 3단: 좌(선생님 안내) · 중(GOLD 회원 안내·혜택) · 우(이벤트/신간/세미나 배너) */
+  .t1t-member{background:#fff;border:1px solid #e6ecf5;box-shadow:0 6px 20px rgba(22,36,61,.06);border-radius:16px;padding:20px 22px;color:#191919;}
+  .t1t-member .grade{display:inline-flex;align-items:center;background:#191919;color:#ffd873;font-size:12px;font-weight:800;padding:5px 12px;border-radius:999px;letter-spacing:-.2px;margin-bottom:12px;}
+  .t1t-member strong{display:block;font-size:16px;font-weight:800;color:#191919;}
+  .t1t-member .msg{display:block;font-size:13px;color:#666;margin-top:5px;line-height:1.5;}
+  .t1t-member .msg b{color:#c9820a;font-weight:700;}
+  .t1t-member .go{display:inline-flex;align-items:center;margin-top:12px;font-size:13px;font-weight:700;color:#16243d;}
+  .t1t-member .div{height:1px;background:#eee;margin:16px 0;}
+  .t1t-member .perks{display:flex;flex-direction:column;gap:3px;}
+  .t1t-member .perks .lb{font-size:12px;font-weight:800;color:#c9820a;}
+  .t1t-member .perks .val{font-size:12.5px;color:#7a6a3a;line-height:1.5;}
+  /* 우측 배너: 일반몰 히어로 배너 축소판, 1개씩 자동 롤링 */
+  .t1t-roll{position:relative;align-self:stretch;min-height:210px;border-radius:16px;overflow:hidden;box-shadow:0 6px 20px rgba(22,36,61,.12);}
+  .t1t-slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:24px 22px;color:#fff;text-decoration:none;opacity:0;transition:opacity .55s ease;pointer-events:none;}
+  .t1t-slide.on{opacity:1;pointer-events:auto;}
+  .t1t-slide .fl{display:inline-block;align-self:flex-start;font-size:12px;font-weight:800;padding-bottom:4px;border-bottom:2px solid currentColor;margin-bottom:12px;}
+  .t1t-slide strong{font-size:19px;font-weight:800;line-height:1.32;letter-spacing:-.4px;}
+  .t1t-slide .sb{font-size:12.5px;line-height:1.45;margin-top:8px;color:rgba(255,255,255,.88);}
+  .t1t-slide.o{background:#F55F16;}
+  .t1t-slide.nv{background:linear-gradient(160deg,#26406f,#16264a);}
+  .t1t-slide.gr{background:linear-gradient(160deg,#1f9d63,#137a45);}
+  .t1t-slide.sk{background:linear-gradient(160deg,#5b9bff,#1d4ed8);}
+  .t1t-roll-dots{position:absolute;left:22px;bottom:16px;display:flex;gap:6px;z-index:3;}
+  .t1t-roll-dots i{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.5);transition:width .3s,background .3s;cursor:pointer;}
+  .t1t-roll-dots i.on{width:16px;border-radius:3px;background:#fff;}
+  @media (max-width:1023px){ .t1t-roll{min-height:180px;} }
+
+  /* 전문가 PICK·동료 원장 추천 — index.html(일반 회원 페이지)에서 이관(설문 근거: 동료 추천 71%·전문가 PICK 도움됨) */
+  .t1p-sec{padding:0 0 44px;}
+  .t1p-head{margin-bottom:20px;}
+  .t1p-head h2{font-size:24px;font-weight:800;letter-spacing:-.5px;color:#191919;}
+  .t1p-head h2 .hl{color:#2272dd;}
+  .t1p-head .sub{font-size:14px;color:#8c8c8c;margin-top:6px;font-weight:500;}
+  .t1p-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+  .t1p-card{border:1px solid #ededed;border-radius:12px;overflow:hidden;background:#fff;display:flex;flex-direction:column;}
+  .t1p-card .badge{align-self:flex-start;font-size:11.5px;font-weight:800;padding:4px 10px;border-radius:999px;margin:14px 0 0 14px;}
+  .t1p-card .badge.expert{background:#eaf1ff;color:#2272dd;}
+  .t1p-card .badge.peer{background:#eafbf0;color:#1a9d54;}
+  .t1p-card .who{font-size:12px;color:#8c8c8c;margin:6px 14px 0;}
+  .t1p-card .thumb{margin:12px 14px 0;border-radius:8px;overflow:hidden;aspect-ratio:1/1;background:#f7f8fa;}
+  .t1p-card .thumb img{width:100%;height:100%;object-fit:cover;}
+  .t1p-card .name{font-size:13.5px;line-height:1.4;color:#333;margin:10px 14px 0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.8em;}
+  .t1p-card .price{display:flex;gap:6px;align-items:baseline;margin:6px 14px 14px;}
+  .t1p-card .price .rate{color:#f5444a;font-weight:800;font-size:13px;}
+  .t1p-card .price .now{font-weight:800;font-size:16px;color:#191919;}
+  @media (max-width:768px){
+    .t1p-grid{grid-template-columns:repeat(2,1fr);}
+    .t1p-head h2{font-size:20px;}
+  }
+
+  .t1t-hero{padding:48px 0;background:linear-gradient(160deg,#eef4fc,#dfe9f7);color:#16243d;}
+  .t1t-hero .container{display:grid;grid-template-columns:minmax(0,1fr) 300px 260px;gap:24px;align-items:center;}
+  .t1t-hero-main{min-width:0;}
+  .t1t-badge{display:inline-flex;align-items:center;height:26px;padding:0 12px;border-radius:20px;background:#d6e3f6;color:#2b4a86;font-size:12px;font-weight:800;letter-spacing:.5px;margin-bottom:16px;}
+  .t1t-hero h2{font-size:28px;font-weight:800;line-height:1.4;letter-spacing:-.5px;}
+  .t1t-hero p{font-size:14.5px;color:#5a6a85;margin-top:14px;line-height:1.6;}
   .t1t-hero-actions{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap;}
-  .t1t-btn-fill{display:inline-flex;align-items:center;gap:6px;height:48px;padding:0 22px;border-radius:8px;background:#fff;color:#16243d;font-weight:800;font-size:15px;}
-  .t1t-btn-line{display:inline-flex;align-items:center;height:48px;padding:0 22px;border-radius:8px;border:1px solid rgba(255,255,255,.5);color:#fff;font-weight:600;font-size:14px;}
+  @media (max-width:1023px){
+    .t1t-hero .container{grid-template-columns:1fr 1fr;}
+    .t1t-hero-main{grid-column:1 / -1;}
+  }
+  @media (max-width:600px){
+    .t1t-hero .container{grid-template-columns:1fr;gap:16px;}
+    .t1t-hero h2{font-size:24px;}
+  }
+  .t1t-btn-fill{display:inline-flex;align-items:center;gap:6px;height:48px;padding:0 22px;border-radius:8px;background:#16243d;color:#fff;font-weight:800;font-size:15px;}
+  .t1t-btn-line{display:inline-flex;align-items:center;height:48px;padding:0 22px;border-radius:8px;border:1px solid #b7c6de;color:#2b4a86;font-weight:600;font-size:14px;}
   .t1t-sec{padding:44px 0;}
   .t1t-sec .sec-title{font-size:24px;font-weight:800;letter-spacing:-.5px;color:#191919;margin-bottom:8px;}
   .t1t-sec .sub{font-size:14px;color:#8c8c8c;margin-bottom:24px;}
@@ -47,6 +107,58 @@
   .t1t-sem-date{font-size:13px;color:#999;flex:none;}
   @media (max-width:900px){ .t1t-grid4{grid-template-columns:repeat(2,1fr);} .t1t-hero h2{font-size:24px;} }
   @media (max-width:600px){ .t1t-sem-row{flex-direction:column;align-items:flex-start;gap:6px;} }
+
+  /* [from mall-type2] 공통 섹션 헤더 */
+  .t2-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:20px;}
+  .t2-head h2{font-size:24px;font-weight:800;letter-spacing:-.5px;color:#191919;}
+  .t2-head h2 .hl{color:#e83828;}
+  .t2-more{font-size:14px;color:#555;font-weight:600;}
+  /* [from mall-type2] 전문가 추천 교재 */
+  .t2exp-sec{padding:44px 0;}
+  .t2exp{background:#eef1f3;border-radius:16px;overflow:hidden;display:flex;}
+  .t2exp-img{flex:0 0 44%;min-height:300px;background-size:cover;background-position:center;}
+  .t2exp-panel{flex:1;background:#fff;margin:20px;border-radius:12px;padding:34px 30px;display:flex;flex-direction:column;align-items:center;}
+  .t2exp-panel .sub{font-size:14px;color:#888;}
+  .t2exp-panel .ttl{font-size:28px;font-weight:800;letter-spacing:-.5px;margin:6px 0 26px;color:#191919;}
+  .t2exp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;width:100%;}
+  .t2exp-prod{text-align:center;text-decoration:none;color:inherit;}
+  .t2exp-prod .th{aspect-ratio:1/1;background:#f3f4f5;border-radius:10px;display:flex;align-items:center;justify-content:center;overflow:hidden;margin-bottom:10px;}
+  .t2exp-prod .th img{width:100%;height:100%;object-fit:cover;object-position:top center;}
+  .t2exp-prod .nm{font-size:13px;color:#444;height:2.7em;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;}
+  .t2exp-prod .coup{display:block;font-size:11px;color:#aaa;text-decoration:line-through;margin-top:6px;}
+  .t2exp-prod .p{display:block;font-size:16px;font-weight:800;margin:1px 0 5px;color:#191919;}
+  .t2exp-prod .p .pct{color:#e83828;margin-right:3px;}
+  .t2exp-prod .rw{font-size:11px;color:#12A512;}
+  @media (max-width:900px){ .t2exp{flex-direction:column;} .t2exp-img{min-height:200px;} .t2exp-grid{grid-template-columns:repeat(2,1fr);} }
+  /* [from mall-type2] 이런 조합 어때요? 맞춤 교재 세트 */
+  .t2set-sec{padding:44px 0;}
+  .t2set-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .t2set-card{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;transition:.15s;}
+  .t2set-card:hover{box-shadow:0 10px 22px rgba(0,0,0,.1);transform:translateY(-3px);}
+  .t2set-card .st-top{position:relative;padding:20px 20px 16px;background:linear-gradient(135deg,#f7f7f7,#f0f0f0);}
+  .t2set-card .st-goal{display:inline-block;font-size:12px;font-weight:700;color:#fff;background:#1a9d54;border-radius:12px;padding:4px 11px;margin-bottom:10px;}
+  .t2set-card .st-goal.b{background:#0d9488;}
+  .t2set-card .st-goal.c{background:#ff8a1e;}
+  .t2set-card .st-name{font-size:19px;font-weight:800;letter-spacing:-.5px;margin:0 0 4px;color:#191919;}
+  .t2set-card .st-desc{font-size:12.5px;color:#7a8a7a;margin:0;}
+  .t2set-card .st-covers{display:flex;margin-top:16px;padding-left:6px;}
+  .t2set-card .st-covers .cv{width:66px;height:88px;border-radius:6px;overflow:hidden;box-shadow:0 4px 10px rgba(0,0,0,.16);background:#fff;margin-left:-14px;display:flex;align-items:center;justify-content:center;border:1px solid #f0f0f0;}
+  .t2set-card .st-covers .cv:first-child{margin-left:0;}
+  .t2set-card .st-covers .cv img{width:100%;height:100%;object-fit:cover;}
+  .t2set-card .st-body{padding:16px 20px 20px;display:flex;flex-direction:column;flex:1;}
+  .t2set-card .st-list{list-style:none;margin:0 0 14px;padding:12px 0 0;border-top:1px dashed #ececec;}
+  .t2set-card .st-list li{font-size:12.5px;color:#666;line-height:1.9;display:flex;justify-content:space-between;}
+  .t2set-card .st-list li .q{color:#aaa;}
+  .t2set-card .st-pricebar{margin-top:auto;display:flex;align-items:flex-end;justify-content:space-between;}
+  .t2set-card .st-save{font-size:12px;color:#e83828;font-weight:700;}
+  .t2set-card .st-was{font-size:12px;color:#aaa;text-decoration:line-through;}
+  .t2set-card .st-now{font-size:22px;font-weight:800;color:#191919;}
+  .t2set-card .st-now .pct{color:#e83828;margin-right:4px;}
+  .t2set-card .st-cta{margin-top:14px;display:flex;gap:8px;}
+  .t2set-card .st-cta a{flex:1;text-align:center;padding:12px 0;border-radius:9px;font-weight:700;font-size:14px;}
+  .t2set-card .st-cta .cart{background:#f1f1f1;color:#333;}
+  .t2set-card .st-cta .buy{background:#e83828;color:#fff;}
+  @media (max-width:900px){.t2set-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body class="page-index page-teacher">
@@ -54,52 +166,51 @@
   <!-- ===== HEADER ===== -->
   <div id="site-header"></div>
 
-  <!-- ===== 선생님 히어로 ===== -->
+  <!-- ===== 선생님 히어로 3단: 좌(선생님 안내) · 중(GOLD 회원 안내) · 우(이벤트 배너) ===== -->
   <section class="t1t-hero">
     <div class="container">
-      <span class="t1t-badge">TEACHER</span>
-      <h2>선생님, 안녕하세요.<br>수업에 필요한 모든 것을 한 곳에서.</h2>
-      <p>NE Tutor 교강사 자료부터 선생님 전용 교재, 대량 채택 문의까지<br>NE Books 선생님 페이지에서 빠르게 이용하세요.</p>
-      <div class="t1t-hero-actions">
-        <a class="t1t-btn-fill" href="리스트_교재구매_선생님.html">선생님 전용 교재 보기 &#8250;</a>
-        <a class="t1t-btn-line" href="index.html">일반(학부모·학생) 몰로 이동</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== 바로가기 (교사용) ===== -->
-  <section class="mainicons">
-    <div class="container">
-      <div class="row">
-        <a class="pill" href="#nt"><span class="ico"><img src="assets/ic_tutor_ebook.svg" alt=""></span><span>NE Tutor 바로가기</span></a>
-        <a class="pill" href="리스트_학습자료.html"><span class="ico"><img src="assets/ic_main_lib.svg" alt=""></span><span>학습자료실</span></a>
-        <a class="pill" href="리스트_학습자료.html"><span class="ico"><img src="assets/ic_main_mp3down.svg" alt=""></span><span>정답·MP3 다운</span></a>
-        <a class="pill" href="리스트_교재구매_선생님.html"><span class="ico"><img src="assets/ic_main_buy.svg" alt=""></span><span>선생님 전용 교재</span></a>
-        <a class="pill" href="세미나상세.html"><span class="ico"><img src="assets/mypage_seminar.svg" alt=""></span><span>세미나·연수 신청</span></a>
-        <a class="pill" href="비회원문의.html"><span class="ico"><img src="assets/ic_customer.svg" alt=""></span><span>교재 채택 문의</span></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== 회원등급 혜택 (기존 index.html t1pz-sec 재사용) ===== -->
-  <section class="t1pz-sec">
-    <div class="container">
-      <div class="t1pz-box">
-        <div class="t1pz-user">
-          <span class="t1pz-grade">GOLD 학원회원</span>
-          <div class="t1pz-txt">
-            <strong>김민준 원장님, 다시 오셨네요!</strong>
-            <span>자주 담으신 <b>그래머 인사이드</b> 시리즈 새 학기 물량이 들어왔어요.</span>
-          </div>
+      <div class="t1t-hero-main">
+        <span class="t1t-badge">TEACHER</span>
+        <h2>선생님, 안녕하세요.<br>수업에 필요한 모든 것을 한 곳에서.</h2>
+        <p>NE Tutor 교강사 자료부터 선생님 전용 교재, 대량 채택 문의까지<br>NE Books 선생님 페이지에서 빠르게 이용하세요.</p>
+        <div class="t1t-hero-actions">
+          <a class="t1t-btn-fill" href="리스트_교재구매_선생님.html">선생님 전용 교재 보기 &#8250;</a>
+          <a class="t1t-btn-line" href="index.html">일반(학부모·학생) 몰로 이동</a>
         </div>
-        <a class="t1pz-btn" href="리스트_교재구매_선생님.html">바로 확인하기 &#8250;</a>
       </div>
-      <div class="t1pz-perks">
-        <span>GOLD 혜택</span>
-        <span>구매 적립 3% · 대량구매 전담 상담 · 신간 우선 안내</span>
+      <div class="t1t-member">
+        <span class="grade">GOLD 학원회원</span>
+        <strong>김민준 원장님, 다시 오셨네요!</strong>
+        <span class="msg">자주 담으신 <b>그래머 인사이드</b> 시리즈 새 학기 물량이 들어왔어요.</span>
+        <a class="go" href="리스트_교재구매_선생님.html">바로 확인하기 &#8250;</a>
+        <div class="div"></div>
+        <div class="perks">
+          <span class="lb">GOLD 혜택</span>
+          <span class="val">구매 적립 3% · 대량구매 전담 상담 · 신간 우선 안내</span>
+        </div>
+      </div>
+      <div class="t1t-roll" id="t1tRoll">
+        <a class="t1t-slide o on" href="세미나상세.html">
+          <span class="fl">세미나</span>
+          <strong>Grammar Inside로 완성하는<br>중등 문법 루틴</strong>
+          <span class="sb">NE Tutor 문제뱅크 반복 강화 시스템</span>
+        </a>
+        <a class="t1t-slide nv" href="이벤트상세.html">
+          <span class="fl">PROMOTION</span>
+          <strong>온라인 영어 레벨테스트<br>NELT 무료 체험</strong>
+          <span class="sb">우리 반 아이들 실력을 정확하게</span>
+        </a>
+        <a class="t1t-slide gr" href="신간개정상세.html">
+          <span class="fl">신간 소식</span>
+          <strong>신간 출시<br>지금 만나보세요</strong>
+          <span class="sb">새 교재를 가장 먼저 확인하세요</span>
+        </a>
+        <div class="t1t-roll-dots" id="t1tRollDots"></div>
       </div>
     </div>
   </section>
+
+  <!-- 바로가기(교사용) 영역 삭제 (요청) -->
 
   <!-- ===== NE Tutor 서비스 (교사용 학습 플랫폼, 간이 그리드) ===== -->
   <section class="t1t-sec" id="nt">
@@ -117,18 +228,70 @@
     </div>
   </section>
 
-  <!-- ===== 선생님 전용 교재 미리보기 ===== -->
-  <section class="t1t-sec t1t-picks">
+  <!-- 기존 전문가 PICK·동료 원장 추천(t1p) 섹션은 mall-type2 '전문가 추천 교재'로 대체 -->
+
+  <!-- ===== [from mall-type2] 전문가 추천 교재 (선생님몰) ===== -->
+  <section class="t2exp-sec">
     <div class="container">
-      <div class="sec-title">선생님 전용 교재</div>
-      <p class="sub">일반 판매가와 별도로 학원·학교 채택 시 적용되는 교사 인증가를 확인해 보세요. (로그인 후 교사 인증 시 노출)</p>
-      <div class="t1t-grid4">
-        <a class="t1t-pick-card" href="교재상세_선생님.html"><span class="th"><img src="assets/best_4.png" alt=""></span><span class="bd"><span class="t1t-pick-badge">교사 인증가</span><p class="tit">그래머 인사이드 Lv.1 · Teacher's Pack</p><p class="pr">10,800원 <s>12,600원</s></p></span></a>
-        <a class="t1t-pick-card" href="교재상세_선생님.html"><span class="th"><img src="assets/best_1.png" alt=""></span><span class="bd"><span class="t1t-pick-badge">교사 인증가</span><p class="tit">Phonics Code 1 · Teacher's Pack</p><p class="pr">11,480원 <s>13,500원</s></p></span></a>
-        <a class="t1t-pick-card" href="교재상세_선생님.html"><span class="th"><img src="assets/best_2.png" alt=""></span><span class="bd"><span class="t1t-pick-badge">교사 인증가</span><p class="tit">리딩튜터 기본 · Teacher's Pack</p><p class="pr">10,710원 <s>12,600원</s></p></span></a>
-        <a class="t1t-pick-card" href="교재상세_선생님.html"><span class="th"><img src="assets/best_5.png" alt=""></span><span class="bd"><span class="t1t-pick-badge">교사 인증가</span><p class="tit">능률VOCA 어원편 · Teacher's Pack</p><p class="pr">11,470원 <s>13,500원</s></p></span></a>
+      <div class="t2-head"><h2>전문가 추천 교재</h2><a class="t2-more" href="리스트_교재구매_선생님.html">전체보기 &#8250;</a></div>
+      <div class="t2exp">
+        <div class="t2exp-img" style="background-image:url('assets/img4.png')"></div>
+        <div class="t2exp-panel">
+          <span class="sub">현직 선생님이 직접 고른</span>
+          <span class="ttl">전문가 PICK 추천 교재</span>
+          <div class="t2exp-grid">
+            <a class="t2exp-prod" href="교재상세_선생님.html"><span class="th"><img src="assets/book_cover.jpg" alt=""></span><span class="nm">Oxford Reading Tree Stage 3</span><span class="coup">30,000원</span><span class="p"><span class="pct">20%</span>24,000원</span><span class="rw">1,200원 적립</span></a>
+            <a class="t2exp-prod" href="교재상세_선생님.html"><span class="th"><img src="assets/best_3.png" alt=""></span><span class="nm">Oxford Bookworms Starter</span><span class="coup">15,000원</span><span class="p"><span class="pct">15%</span>12,750원</span><span class="rw">638원 적립</span></a>
+            <a class="t2exp-prod" href="교재상세_선생님.html"><span class="th"><img src="assets/best_2.png" alt=""></span><span class="nm">Big Cat Readers Band 4</span><span class="coup">18,000원</span><span class="p"><span class="pct">18%</span>14,760원</span><span class="rw">738원 적립</span></a>
+            <a class="t2exp-prod" href="교재상세_선생님.html"><span class="th"><img src="assets/newbook_sample.png" alt=""></span><span class="nm">Usborne First Reading 세트</span><span class="coup">40,000원</span><span class="p"><span class="pct">25%</span>30,000원</span><span class="rw">1,500원 적립</span></a>
+          </div>
+        </div>
       </div>
-      <a class="t1t-more" href="리스트_교재구매_선생님.html">선생님 전용 교재 전체보기 &#8250;</a>
+    </div>
+  </section>
+
+  <!-- ===== [from mall-type2] 이런 조합 어때요? 맞춤 교재 세트 (선생님몰) ===== -->
+  <section class="t2set-sec">
+    <div class="container">
+      <div class="t2-head"><h2>이런 조합 어때요? <span class="hl">맞춤 교재 세트</span></h2><a class="t2-more" href="리스트_교재구매_선생님.html">전체보기 &#8250;</a></div>
+      <div class="t2set-grid">
+        <div class="t2set-card">
+          <div class="st-top"><span class="st-goal">방학 완성</span><p class="st-name">중등 방학 3주 완성 세트</p><p class="st-desc">어휘 + 문법 + 독해를 한 번에</p>
+            <div class="st-covers"><span class="cv"><img src="assets/best_5.png" alt=""></span><span class="cv"><img src="assets/best_4.png" alt=""></span><span class="cv"><img src="assets/best_2.png" alt=""></span></div></div>
+          <div class="st-body"><ul class="st-list">
+            <li><span>능률 VOCA 어원편</span><span class="q">1권</span></li>
+            <li><span>그래머 인사이드 Lv1</span><span class="q">1권</span></li>
+            <li><span>주니어 리딩튜터</span><span class="q">1권</span></li>
+          </ul>
+            <div class="st-pricebar"><div><div class="st-save">11,500원 절약</div><div class="st-was">41,000원</div></div><div class="st-now"><span class="pct">28%</span>29,500원</div></div>
+            <div class="st-cta"><a class="cart" href="장바구니.html">세트 담기</a><a class="buy" href="주문결제.html">바로구매</a></div>
+          </div>
+        </div>
+        <div class="t2set-card">
+          <div class="st-top"><span class="st-goal b">파닉스 마스터</span><p class="st-name">초등 파닉스 4권 마스터 세트</p><p class="st-desc">스스로 읽는 힘, 기초부터 완성</p>
+            <div class="st-covers"><span class="cv"><img src="assets/best_1.png" alt=""></span><span class="cv"><img src="assets/best_2.png" alt=""></span><span class="cv"><img src="assets/best_3.png" alt=""></span><span class="cv"><img src="assets/best_1.png" alt=""></span></div></div>
+          <div class="st-body"><ul class="st-list">
+            <li><span>Phonics Code 1~4 SB</span><span class="q">4권</span></li>
+            <li><span>세이펜 스티커</span><span class="q">1권</span></li>
+            <li><span>정답·MP3 자료</span><span class="q">무료</span></li>
+          </ul>
+            <div class="st-pricebar"><div><div class="st-save">21,000원 절약</div><div class="st-was">60,000원</div></div><div class="st-now"><span class="pct">35%</span>39,000원</div></div>
+            <div class="st-cta"><a class="cart" href="장바구니.html">세트 담기</a><a class="buy" href="주문결제.html">바로구매</a></div>
+          </div>
+        </div>
+        <div class="t2set-card">
+          <div class="st-top"><span class="st-goal c">수능 파이널</span><p class="st-name">고등 수능 파이널 세트</p><p class="st-desc">독해·듣기 실전 마무리 조합</p>
+            <div class="st-covers"><span class="cv"><img src="assets/newbook_sample.png" alt=""></span><span class="cv"><img src="assets/best_4.png" alt=""></span><span class="cv"><img src="assets/best_5.png" alt=""></span></div></div>
+          <div class="st-body"><ul class="st-list">
+            <li><span>수능만만 영어독해</span><span class="q">1권</span></li>
+            <li><span>수능만만 영어듣기</span><span class="q">1권</span></li>
+            <li><span>능률 VOCA 수능완성</span><span class="q">1권</span></li>
+          </ul>
+            <div class="st-pricebar"><div><div class="st-save">13,500원 절약</div><div class="st-was">45,000원</div></div><div class="st-now"><span class="pct">30%</span>31,500원</div></div>
+            <div class="st-cta"><a class="cart" href="장바구니.html">세트 담기</a><a class="buy" href="주문결제.html">바로구매</a></div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -200,6 +363,29 @@
 
   <!-- ===== FOOTER ===== -->
   <div id="site-footer"></div>
+
+  <script>
+  /* 상단 우측 배너: 1개씩 자동 롤링(4초), 호버 시 정지 */
+  (function(){
+    var root=document.getElementById('t1tRoll'); if(!root) return;
+    var slides=[].slice.call(root.querySelectorAll('.t1t-slide')); if(!slides.length) return;
+    var dotsWrap=document.getElementById('t1tRollDots');
+    dotsWrap.innerHTML=slides.map(function(_,i){ return '<i'+(i===0?' class="on"':'')+'></i>'; }).join('');
+    var dots=[].slice.call(dotsWrap.children);
+    var cur=0, timer;
+    function go(n){
+      cur=(n+slides.length)%slides.length;
+      slides.forEach(function(s,i){ s.classList.toggle('on', i===cur); });
+      dots.forEach(function(d,i){ d.classList.toggle('on', i===cur); });
+    }
+    function start(){ stop(); timer=setInterval(function(){ go(cur+1); }, 4000); }
+    function stop(){ if(timer) clearInterval(timer); }
+    dots.forEach(function(d,i){ d.addEventListener('click',function(e){ e.preventDefault(); go(i); start(); }); });
+    root.addEventListener('mouseenter', stop);
+    root.addEventListener('mouseleave', start);
+    start();
+  })();
+  </script>
 
 </body>
 </html>
