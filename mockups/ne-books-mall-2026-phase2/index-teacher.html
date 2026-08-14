@@ -159,6 +159,34 @@
   .t2set-card .st-cta .cart{background:#f1f1f1;color:#333;}
   .t2set-card .st-cta .buy{background:#e83828;color:#fff;}
   @media (max-width:900px){.t2set-grid{grid-template-columns:1fr;}}
+
+  /* [from ne-books-mall-2] 원장님을 위한 추천 교재 (탭 전환 · 1행 스크롤) */
+  .reco-v3{background:var(--gray-bg);padding:44px 0;}
+  .rc-top{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:24px;}
+  .reco-v3 .v3-head .tt{font-family:var(--display);font-weight:800;font-size:24px;line-height:1.3;color:var(--ink);letter-spacing:-.5px;}
+  .rc-seg{display:inline-flex;gap:4px;background:#fff;border:1px solid var(--line);border-radius:9999px;padding:4px;}
+  .rc-seg button{padding:8px 20px;border:0;background:none;border-radius:9999px;font-size:14px;color:var(--muted);cursor:pointer;font-family:var(--sans);}
+  .rc-seg button.on{background:var(--ink);color:#fff;font-weight:700;}
+  .rc-scroll{display:flex;gap:16px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none;}
+  .rc-scroll::-webkit-scrollbar{display:none;}
+  .rc-card{width:168px;flex:none;background:#fff;border-radius:12px;padding:16px;}
+  .rc-card .thumb{background:var(--gray-bg);border-radius:8px;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .rc-card .thumb img{width:92px;aspect-ratio:7/8;object-fit:cover;object-position:top center;border-radius:3px;box-shadow:2px 4px 10px rgba(0,0,0,.16);}
+  .rc-card .tag{margin-top:12px;font-size:12px;color:var(--red);font-weight:700;}
+  .rc-card .nm{margin-top:4px;font-size:13px;color:var(--ink);line-height:1.4;height:2.8em;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;}
+  .rc-card .pr{margin-top:8px;font-size:14px;font-weight:800;color:var(--ink);}
+  .rc-card .act{margin-top:12px;width:100%;padding:9px 0;border-radius:8px;font-size:13px;cursor:pointer;border:1px solid var(--red);background:#fff;color:var(--red);font-family:var(--sans);}
+  .rc-card .act:hover{background:var(--red);color:#fff;}
+  @media (max-width:600px){ .rc-top{flex-direction:column;align-items:stretch;} .rc-seg{align-self:flex-start;} }
+
+  /* 선생님 메인 우측 플로팅 바로가기 */
+  .t-float{position:fixed;right:20px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px;z-index:40;}
+  .t-float a{position:relative;width:80px;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 6px 18px rgba(0,0,0,.10);display:flex;flex-direction:column;align-items:center;gap:6px;padding:16px 8px;text-decoration:none;color:#555;font-size:12px;font-weight:600;text-align:center;line-height:1.3;transition:.15s;}
+  .t-float a:hover{border-color:var(--red);color:var(--red);transform:translateY(-2px);}
+  .t-float .ico{width:28px;height:28px;display:flex;align-items:center;justify-content:center;}
+  .t-float .ico img{width:26px;height:26px;}
+  .t-float .fl-badge{position:absolute;top:8px;right:12px;min-width:18px;height:18px;padding:0 5px;box-sizing:border-box;border-radius:9999px;background:var(--red);color:#fff;font-size:11px;font-weight:800;line-height:18px;text-align:center;}
+  @media (max-width:1023px){ .t-float{display:none;} }
 </style>
 </head>
 <body class="page-index page-teacher">
@@ -211,6 +239,20 @@
   </section>
 
   <!-- 바로가기(교사용) 영역 삭제 (요청) -->
+
+  <!-- ===== [from ne-books-mall-2] 김민준 원장님을 위한 추천 교재 ===== -->
+  <section class="reco-v3">
+    <div class="container">
+      <div class="rc-top">
+        <div class="v3-head"><div class="tt">김민준 원장님을 위한 추천 교재</div></div>
+        <div class="rc-seg" id="rcSeg" role="tablist" aria-label="추천 탭">
+          <button type="button" data-seg="reco" class="on">원장님을 위한 교재</button>
+          <button type="button" data-seg="wish">내가 찜한 교재</button>
+        </div>
+      </div>
+      <div class="rc-body" id="rcBody"></div>
+    </div>
+  </section>
 
   <!-- ===== NE Tutor 서비스 (교사용 학습 플랫폼, 간이 그리드) ===== -->
   <section class="t1t-sec" id="nt">
@@ -295,18 +337,7 @@
     </div>
   </section>
 
-  <!-- ===== 세미나·연수 안내 ===== -->
-  <section class="t1t-sec">
-    <div class="container">
-      <div class="sec-title">세미나·연수 안내</div>
-      <p class="sub">교재 채택과 연계된 무료 세미나·연수 일정을 확인하세요.</p>
-      <div class="t1t-sem-list">
-        <a class="t1t-sem-row" href="세미나상세.html"><span><span class="t1t-sem-tag">세미나</span><span class="t1t-sem-name">고등 영어 내신 대비 세미나</span></span><span class="t1t-sem-date">2026.07.05 ~ 2026.07.25</span></a>
-        <a class="t1t-sem-row" href="세미나상세.html"><span><span class="t1t-sem-tag">연수</span><span class="t1t-sem-name">Grammar Inside 채택교 교사 연수</span></span><span class="t1t-sem-date">2026.08.10 ~ 2026.08.14</span></a>
-        <a class="t1t-sem-row" href="세미나상세.html"><span><span class="t1t-sem-tag">세미나</span><span class="t1t-sem-name">파닉스&#183;리딩 연계 커리큘럼 설계 세미나</span></span><span class="t1t-sem-date">2026.08.20</span></a>
-      </div>
-    </div>
-  </section>
+  <!-- 세미나·연수 안내 영역 삭제 (요청) -->
 
   <!-- ===== 공지사항 (교사용) ===== -->
   <section class="notices">
@@ -361,6 +392,12 @@
     </div>
   </section>
 
+  <!-- ===== 우측 플로팅 바로가기 (찜한 교재 개수 · 카톡 소식) ===== -->
+  <div class="t-float">
+    <a href="마이페이지.html#wish"><span class="ico"><img src="assets/ic_heart.svg" alt=""></span>내가 찜한<br>교재<span class="fl-badge">5</span></a>
+    <a href="#" target="_blank" rel="noopener"><span class="ico"><img src="assets/ic_kakao.svg" alt=""></span>카톡<br>소식 받기</a>
+  </div>
+
   <!-- ===== FOOTER ===== -->
   <div id="site-footer"></div>
 
@@ -384,6 +421,51 @@
     root.addEventListener('mouseenter', stop);
     root.addEventListener('mouseleave', start);
     start();
+  })();
+
+  /* 김민준 원장님을 위한 추천 교재 — 탭(원장님을 위한 교재 / 내가 찜한 교재) 전환, 1행 스크롤 */
+  (function(){
+    var reco=[
+      {n:'그래머 인사이드 Lv.1', tag:'문법', pr:'12,600원', c:'assets/best_4.png'},
+      {n:'리딩튜터 기본', tag:'독해', pr:'12,600원', c:'assets/best_2.png'},
+      {n:'능률VOCA 어원편', tag:'어휘', pr:'13,500원', c:'assets/best_5.png'},
+      {n:'Bricks Reading 150 · L1', tag:'Reading', pr:'13,500원', c:'assets/best_3.png'},
+      {n:'Phonics Code 1', tag:'Phonics', pr:'12,600원', c:'assets/best_1.png'},
+      {n:'중등 영어문법 3800제', tag:'문법', pr:'13,500원', c:'assets/best_4.png'}
+    ];
+    var wish=[
+      {n:'그래머 인사이드 Lv.2', tag:'문법', pr:'13,050원', c:'assets/best_2.png'},
+      {n:'주니어 리딩튜터 1', tag:'독해', pr:'12,150원', c:'assets/best_3.png'},
+      {n:'워드마스터 중등 베이직', tag:'어휘', pr:'10,800원', c:'assets/best_4.png'},
+      {n:'능률VOCA 수능완성', tag:'어휘', pr:'15,300원', c:'assets/best_5.png'},
+      {n:'Phonics Code 2', tag:'Phonics', pr:'12,600원', c:'assets/best_1.png'}
+    ];
+    function cards(arr){
+      return '<div class="rc-scroll">'+arr.map(function(b){
+        return '<div class="rc-card"><a class="thumb" href="교재상세_선생님.html"><img src="'+b.c+'" alt=""></a>'
+          +'<div class="tag">'+b.tag+'</div><div class="nm">'+b.n+'</div><div class="pr">'+b.pr+'</div>'
+          +'<button type="button" class="act rc-add">장바구니</button></div>';
+      }).join('')+'</div>';
+    }
+    var PANELS={reco:cards(reco), wish:cards(wish)};
+    var body=document.getElementById('rcBody'), seg=document.getElementById('rcSeg');
+    if(!body||!seg) return;
+    function show(k){ body.innerHTML=PANELS[k]||''; }
+    show('reco');
+    seg.addEventListener('click',function(e){ var b=e.target.closest('button'); if(!b) return; [].slice.call(seg.children).forEach(function(x){ x.classList.toggle('on',x===b); }); show(b.getAttribute('data-seg')); });
+    body.addEventListener('click',function(e){ if(!e.target.closest('.rc-add')) return; if(confirm('상품이 장바구니에 담겼습니다. 장바구니로 이동하시겠습니까?')){ location.href='장바구니.html'; } });
+  })();
+
+  /* 히어로 우측 롤링 배너 높이 = 가운데 GOLD 회원 카드 높이와 동일하게(데스크톱 3단 레이아웃) */
+  (function(){
+    var member=document.querySelector('.t1t-member'), roll=document.getElementById('t1tRoll');
+    if(!member||!roll) return;
+    function sync(){
+      if(window.innerWidth>900){ roll.style.height=member.offsetHeight+'px'; roll.style.minHeight='0'; }
+      else { roll.style.height=''; roll.style.minHeight=''; }
+    }
+    sync();
+    window.addEventListener('resize', sync);
   })();
   </script>
 
