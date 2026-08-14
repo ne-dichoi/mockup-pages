@@ -1596,6 +1596,8 @@ a{color:inherit;text-decoration:none;}
 .iq-in::placeholder{color:var(--weak);}
 .iq-in:focus{border-color:var(--ink);}
 .iq-in.full{width:100%;}
+.iq-in:disabled{background:#f5f5f5;border-color:var(--line);color:var(--weak);-webkit-text-fill-color:var(--weak);cursor:default;}
+.iq-form .iq-in.iq-author{width:320px;max-width:100%;}
 .iq-in.email{width:150px;}
 .iq-form .iq-in.author{width:320px;max-width:100%;}
 .iq-in.phone{width:110px;text-align:center;}
@@ -1748,6 +1750,29 @@ body.bsheet-lock{overflow:hidden;}
   .page-my #cc-qna .iq-bk-del{grid-area:del;align-self:start;height:28px;box-sizing:border-box;padding:0 13px;border:1px solid var(--line);border-radius:8px;font-size:12px;font-weight:500;color:var(--ink);}
   /* 정오안내 '확인' 버튼: 위 '삭제' 버튼과 동일 스타일 */
   .page-my #cc-qna .iq-errata-btn{height:28px;box-sizing:border-box;padding:0 13px;border:1px solid var(--line);border-radius:8px;background:#fff;font-size:12px;font-weight:500;color:var(--ink);}
+  /* 주문·배송 문의: 문의 상품 선택 버튼 */
+  .page-my #cc-qna .iq-order-pick{flex-direction:column;align-items:flex-start;gap:0;margin-top:0;}
+  .page-my #cc-qna .iq-order-pick .btn-line{height:auto;padding:16px 24px;flex:none;}
+  .page-my #cc-qna .iq-pick-hint{display:none;}  /* 위 주문번호 도움말과 중복 → 숨김 */
+  /* 환불 문의 상품·수량 선택 테이블 (Figma) */
+  .page-my #cc-qna .pr-refund{gap:0;padding:40px 0 24px;}
+  .page-my #cc-qna .pr-head{display:block;padding:0 0 16px;border-bottom:1px solid var(--ink);}
+  .page-my #cc-qna .pr-head-t{font-size:14px;font-weight:500;color:var(--ink);white-space:normal;}
+  .page-my #cc-qna .pr-head-hint{display:none;}
+  .page-my #cc-qna .pr-table{border:0;}
+  .page-my #cc-qna .pr-thead{display:none;}
+  .page-my #cc-qna .pr-item{display:flex;align-items:center;gap:8px;min-height:0;padding:16px;border-top:0;border-bottom:1px solid #eee;}
+  .page-my #cc-qna .pr-c-sel{flex:none;display:flex;align-items:center;}
+  .page-my #cc-qna .pr-c-name{flex:1 1 auto;min-width:0;padding-left:0;display:flex;align-items:center;}
+  .page-my #cc-qna .pr-c-qty{flex:none;margin-left:auto;display:flex;align-items:center;justify-content:flex-end;}
+  .page-my #cc-qna .pr-name{font-size:14px;white-space:normal;color:#666;}
+  .page-my #cc-qna .pr-item.on .pr-name{color:var(--ink);}
+  .page-my #cc-qna .pr-stepper{height:36px;}
+  .page-my #cc-qna .pr-stepper .pr-dec,.page-my #cc-qna .pr-stepper .pr-inc{width:32px;height:36px;}
+  .page-my #cc-qna .pr-stepper .pr-qty{width:36px;height:36px;}
+  .page-my #cc-qna .pr-foot{display:flex;justify-content:space-between;align-items:center;height:auto;padding:16px;background:var(--gray-bg);border-top:0;}
+  .page-my #cc-qna .pr-foot-t{padding-left:0;font-size:14px;font-weight:700;color:var(--ink);}
+  .page-my #cc-qna .pr-foot-v{font-size:14px;font-weight:700;color:var(--ink);text-align:right;}
 }
 
 /* 자동등록방지 (캡차) */

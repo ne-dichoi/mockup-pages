@@ -8,9 +8,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260815i">
-<script src="js/layout.js?v=20260815i" defer></script>
-<script src="js/search.js?v=20260815i" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260815j">
+<script src="js/layout.js?v=20260815j" defer></script>
+<script src="js/search.js?v=20260815j" defer></script>
 </head>
 <body class="page-my">
 
@@ -539,8 +539,8 @@
           </div>
 
           <div class="iq-row">
-            <div class="iq-label">작성자 <span class="iq-req">*</span></div>
-            <div class="iq-field"><span class="iq-static">홍길동 (user01)</span></div>
+            <div class="iq-label">작성자</div>
+            <div class="iq-field"><input class="iq-in full iq-author" type="text" value="홍길동" disabled></div>
           </div>
 
           <div class="iq-row">
@@ -897,13 +897,17 @@
        단, 주문번호 dropdown에서 주문번호를 선택하면(placeholder 아님) 버튼+안내는 비노출. */
     var pick=document.getElementById('iqOrderPick'), pickBtn=document.getElementById('iqPickBtn');
     var cat=document.getElementById('iqCat');
+    var natCat=document.querySelector('#cc-qna .iq-nsel[aria-label="상담분류"]'); /* 모바일 네이티브 셀렉트 */
     var orderSel=document.getElementById('orderSel');
-    var orderPicked=false;
+    var orderPicked=false, pickOpened=false;
     function syncPick(){
-      var lb=cat&&cat.querySelector('.oh-sel-lb'); var isRefund=lb&&lb.textContent.trim()==='반품/환불';
+      var lb=cat&&cat.querySelector('.oh-sel-lb'); var pcVal=lb?lb.textContent.trim():'';
+      var moVal=natCat?(natCat.value||'').trim():'';
+      var isRefund=(pcVal==='반품/환불')||(moVal==='반품/환불');
       var show=isRefund && !orderPicked;               /* 주문번호 선택 시 비노출 */
-      if(pick) pick.hidden=!show;
-      if(!show){ panel.hidden=true; } /* 미노출 상태면 상품 리스트도 숨김 */
+      if(!show) pickOpened=false;                       /* 반품/환불 아니면 리셋 */
+      if(pick) pick.hidden=!(show && !pickOpened);      /* 테이블 열리면 버튼 숨김 */
+      if(panel) panel.hidden=!(show && pickOpened);     /* 문의상품선택 클릭 시에만 테이블 노출 */
     }
     /* 주문번호 dropdown 선택 감지: 실제 주문번호(=data-ph 아님) 선택 시 버튼+안내 숨김 */
     if(orderSel){
@@ -913,7 +917,8 @@
       }); }
     }
     if(cat){ cat.addEventListener('iqcatchange',syncPick); } /* 옵션 동적 재구성 대응(커스텀 이벤트) */
-    if(pickBtn){ pickBtn.addEventListener('click',function(){ panel.hidden=false; }); }
+    if(natCat){ natCat.addEventListener('change',function(){ pickOpened=false; syncPick(); }); } /* 모바일 네이티브 셀렉트 변경 */
+    if(pickBtn){ pickBtn.addEventListener('click',function(){ pickOpened=true; syncPick(); }); }
     syncPick();
   })();
 
