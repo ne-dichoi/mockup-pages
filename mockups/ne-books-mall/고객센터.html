@@ -8,9 +8,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260815g">
-<script src="js/layout.js?v=20260815g" defer></script>
-<script src="js/search.js?v=20260815g" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260815h">
+<script src="js/layout.js?v=20260815h" defer></script>
+<script src="js/search.js?v=20260815h" defer></script>
 </head>
 <body class="page-my">
 
@@ -427,8 +427,8 @@
                 <button type="button" class="oh-sel-cur"><span class="oh-sel-lb">문의분류를 선택해 주세요</span><span class="ic"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#1d1717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
                 <div class="oh-sel-menu" hidden><a class="on" data-ph>문의분류를 선택해 주세요</a><a>배송문의</a><a>취소/환불</a><a>회원정보</a><a>교재문의</a><a>기타</a></div>
               </div>
-              <select class="iq-nsel only-mo" aria-label="상담분류">
-                <option value="">문의분류를 선택해 주세요</option>
+              <select class="iq-nsel only-mo" aria-label="상담분류" required>
+                <option value="" selected>문의분류를 선택해 주세요</option>
                 <option>배송문의</option>
                 <option>취소/환불</option>
                 <option>회원정보</option>
@@ -547,7 +547,7 @@
             <div class="iq-label">이메일 <span class="iq-req">*</span></div>
             <div class="iq-field">
               <div class="iq-inline">
-                <input class="iq-in email" type="text" value="neungyule">
+                <input class="iq-in email" type="text" placeholder="이메일을 입력해 주세요.">
                 <span class="iq-at">@</span>
                 <input class="iq-in email" type="text" value="naver.com">
                 <div class="oh-sel dom only-pc">
