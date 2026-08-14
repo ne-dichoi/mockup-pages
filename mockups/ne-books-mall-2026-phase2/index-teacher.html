@@ -187,6 +187,15 @@
   .t-float .ico img{width:26px;height:26px;}
   .t-float .fl-badge{position:absolute;top:8px;right:12px;min-width:18px;height:18px;padding:0 5px;box-sizing:border-box;border-radius:9999px;background:var(--red);color:#fff;font-size:11px;font-weight:800;line-height:18px;text-align:center;}
   @media (max-width:1023px){ .t-float{display:none;} }
+
+  /* 선생님 메인: 영역별 구분선 + 추천/공지·CS 배경 투명(요청) */
+  .page-teacher .reco-v3{background:transparent;}
+  .page-teacher .notices{background:transparent;}
+  .page-teacher .reco-v3,
+  .page-teacher #nt,
+  .page-teacher .t2exp-sec,
+  .page-teacher .t2set-sec,
+  .page-teacher .notices{border-top:1px solid var(--line);}
 </style>
 </head>
 <body class="page-index page-teacher">
@@ -376,21 +385,7 @@
     </div>
   </section>
 
-  <!-- ===== 카카오톡 채널 (index.html과 동일) ===== -->
-  <section class="t1nl-sec">
-    <div class="container">
-      <div class="t1nl-box">
-        <div class="t1nl-txt">
-          <span class="ic"><img src="assets/ic_kakao.svg" alt=""></span>
-          <div class="t1nl-copy">
-            <strong>NE Books 카카오톡 채널로 소식 받아보기</strong>
-            <span>신간·자료 업데이트·세미나 일정을 카카오톡 채널 친구 추가로 편하게 받아보세요.</span>
-          </div>
-        </div>
-        <a class="t1nl-btn" href="#" target="_blank" rel="noopener"><img src="assets/ic_kakao.svg" alt="">채널 추가</a>
-      </div>
-    </div>
-  </section>
+  <!-- 카카오톡 채널 소식받기 영역 삭제 (요청) -->
 
   <!-- ===== 우측 플로팅 바로가기 (찜한 교재 개수 · 카톡 소식) ===== -->
   <div class="t-float">

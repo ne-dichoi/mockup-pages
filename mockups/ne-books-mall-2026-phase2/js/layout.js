@@ -65,7 +65,7 @@
             <a href="#">수험/일반</a>
             <a href="#">수학/국어</a>
             <a class="c-blue" href="#">학습자료실</a>
-            <a class="c-red" href="#">교재몰</a>
+            <a class="c-red gnb-roll" href="#" data-cat="교재몰"><span class="rollbox"><span class="ri">교재몰</span><span class="ri">지금바로구매</span></span></a>
           </nav>
         </div>
         <div class="gnb-drop" id="gnbDrop">
@@ -367,35 +367,97 @@
   };
   /* 선생님몰 3depth(교재 시리즈) 데이터 — mall-type2 메가메뉴 스타일 */
   var isTeacher = /index-teacher|선생님/.test(decodeURIComponent(location.pathname));
-  var TSERIES={
-    'ELT':['Bricks Reading','Phonics Code','Grammar Inside','리딩튜터','능률VOCA','주니어 리더스뱅크','Come on Series','빠른독해 바른독해'],
-    '초/중등':['그래머 인사이드','능률VOCA 어원편','중등 영어문법 3800제','리딩튜터 기본','첫단추','1316 팬클럽'],
-    '고등':['수능만만','빠른독해 바른독해','수능 빈칸백서','능률VOCA 수능완성','올클 수능독해','유형독해'],
-    '교과서/자습서':['중학영어 자습서','고등영어 자습서','평가문제집','올백 시리즈'],
-    '수험/일반':['토마토 TOEIC','능률 TEPS','FLEX 시리즈','일반영어 회화'],
-    '수학/국어':['개념유형 수학','일공한 계산력','빠작 국어','우공비 시리즈'],
-    '_default':['Grammar Inside','리딩튜터','능률VOCA','Bricks Reading','수능만만']
+  /* 2depth 라벨(카테고리별) — mall-type2 동일 */
+  var T2DEPTH={
+    'ELT':['Coursebook','Phonics','Readers','Reading','Listening','Speaking','Writing','Grammar','Vocabulary'],
+    '초/중등':['중학내신','고등선행','어휘','Phonics','쓰기','독해','듣기','문법/구문','TOEFL/TEPS/NELT'],
+    '고등':['어휘','독해','듣기','문법/구문','수능대비','고교내신','단기특강','TOEFL/TEPS/NELT'],
+    '교과서/자습서':['중학영어 교과서','고등영어 교과서','수학 교과서','중국어/일본어'],
+    '수험/일반':['TOEIC','TOEIC SPEAKING/WRITING','TOEFL/OPIC/TEPS','FLEX','일반영어'],
+    '수학/국어':['유아','초등','중등','고등']
+  };
+  /* 3depth 시리즈(카테고리 → 2depth → 시리즈) — mall-type2 동일 */
+  var T3DEPTH={
+    'ELT':{
+      'Coursebook':['Oxford Show&Tell','Oxford Discover','English Time','Magic Time','Oxford Pic, Dic.','Up & Away in Eng.','Starlight','Grammar For Schools','Shine On!','Learn English with Dora','Come On Everyone','Buzz','Beehive American','Shine On! Plus','Toy Team Plus','Blue Dot','Little Blue Dot'],
+      'Phonics':['Phonics Show','Come On, Phonics','Phonics Code'],
+      'Readers':['Dolphins Readers','Classic Tales','Dominoes','Reading Stars','Fly Frog','Show Time'],
+      'Reading':['Reading Comprehension','Reading Skills','Contents Area Reading','Curriculum Integration Reading','Reading Sketch','Reading Sense','Reading Source','Reading Sponge','Read Up','Reading Peak','Reading Clue','Read & Retell','The Basic Way','Read to Reach','The Best Way','Subject Link','Subject Link (2nd Edition)','Insight Link','Easy Link','Read It'],
+      'Listening':['Listening Season','Listening Planner','Listening Seed','Listening Stage','Listening Stage Plus'],
+      'Speaking':['Everyone, Speak!','Speaking Stage'],
+      'Writing':['Write Right','Write It!'],
+      'Grammar':['The Grammar Lab','Grammar For Schools','Grammar Space','Grammar in Focus','Grammar in Mind','Grammar Effect','Grammar Ten','Grammar Stage','요즘 초등 영문법'],
+      'Vocabulary':['요즘 초등 영단어','Word Up']
+    },
+    '초/중등':{
+      '중학내신':['1316 팬클럽','능률중학영어','능률 중학영어듣기','쓰기로 마스터하는 중학 서술형','자습서','평가문제집/내신백신'],
+      '고등선행':['첫 번째 수능 영어'],
+      '어휘':['능률VOCA 중등','능률VOCA 초등','능률VOCA 어원','초등영어 단어가 된다','초등영어 사이트 워드가 된다'],
+      'Phonics':['초등영어 파닉스가 된다','초등영어 사이트 워드가 된다'],
+      '쓰기':['달곰한 Sentence Writing','Writing Builder','쓰기로 마스터하는 중학서술형'],
+      '독해':['초등영어 리딩이 된다','열중 16강 독해+문법','주니어 리딩튜터','1316 Reading','정말 기특한 구문독해','Reading Forward','리딩튜터','Reading Expert','리딩버디','Reading Inside','Junior Reading Expert','RADIX READING for the TOEFL iBT','* 원서형 교재','첫 번째 수능 영어 (첫수)','주니어 리딩튜터 스타터','수능 딥독','달곰한 Literacy Reading'],
+      '듣기':['Junior Listening Expert','1316 Listening','주니어 리스닝튜터','능률 중학영어 듣기 모의고사','리스닝버디','초등영어 리스닝튜터','RADIX LISTENING for the TOEFL iBT','* 원서형 교재','능률 초등영어 듣기 모의고사'],
+      '문법/구문':['초등 Grammar Inside','초등영어 문법이 된다','Grammar zone','문마중(문제로 마스터하는 중학 영문법)','Grammar Inside','열중 16강 문법','그래머 버디','Grammar Bean','고득점 독해를 위한 중학 구문 마스터','원리를 더한 영문법','중학영문법 총정리 모의고사','1316 Grammar','능률중학영어','천문장','NELT 문법 실전 모의고사','중학영문법 Link','Grammar Ten','Grammar Effect'],
+      'TOEFL/TEPS/NELT':['RADIX (for the TOEFL iBT)','TEPS BY STEP','NELT']
+    },
+    '고등':{
+      '어휘':['능률VOCA 고등','다빈출코드','능률VOCA 어원','특급 수능·EBS 기출 VOCA'],
+      '독해':['Advanced Reading Expert','Reading Expert','리딩튜터','빠른독해 바른독해','능률 고급영문독해','기본을 강하게 잡아주는 고등영어 (독해)','다빈출코드 (독해)','The 상승 (독해)','수능유형 PICK (독해)','특급 독해','얇고 빠른 미니 모의고사','이명학의 리드미컬'],
+      '듣기':['리스닝튜터','Listening Expert','수능만만 (듣기)','특급 듣기','다빈출코드 (듣기)','수능유형 PICK (듣기)'],
+      '문법/구문':['기본을 강하게 잡아주는 고등영어 (문법)','The 상승','Grammar zone','문마고(문제로 마스터하는 고등 영문법)','필히 통하는 고등영문법','다빈출코드','올클 수능 어법','능률기본영어','필히 통하는 고등 서술형','수능 구문 빅데이터','천문장','특급 어법','NELT 문법 실전 모의고사'],
+      '수능대비':['얇고 빠른 미니 모의고사','수능만만','수능 1 Up','다빈출코드','능률기본영어','맞수','잡아라! 유형','The 상승','특별한 1등급 커리타기 특급','수능구문 빅데이터','EBS 수능특강 변형문제','섹션뽀개기','수능유형 PICK'],
+      '고교내신':['자습서','내신 100신 기출 예상 문제집','내신평정 평가문제집','내신 기출 예상문제집'],
+      '단기특강':['맞수'],
+      'TOEFL/TEPS/NELT':['NELT','TEPS BY STEP']
+    },
+    '교과서/자습서':{
+      '중학영어 교과서':['교과서','자습서','문제집','1학년','2학년','3학년'],
+      '고등영어 교과서':['2022 개정 교과서','2022 개정 자습서','2015 개정 교과서','2015 개정 자습서','문제집','심화영어','영어권문화/진로영어','고등영어(김)','고등영어1','고등영어2','기본영어','English Critical Reading','실용영어','고등영어(양)','영어 독해와작문','영어회화','수학'],
+      '수학 교과서':['교과서','자습서/문제집'],
+      '중국어/일본어':['자습서','교과서']
+    },
+    '수험/일반':{
+      'TOEIC':['토마토 TOEIC LC','토마토 TOEIC RC','토마토 TOEIC 실전','토마토 TOEIC Voca','TOEIC 입문','33토익 실전','33토익','토마토 토익','토마토 TOEIC DIRECT','토마토 COMPACT','토마토 TOEIC','토마토 BASIC','토마토 INTENSIVE','토마토 TOEIC FINISH 1000제','토마토 COMBO'],
+      'TOEIC SPEAKING/WRITING':['입문','중급/고급','토마토 TOEIC','토마토 WRITING FLOW','토마토 SPEAKING'],
+      'TOEFL/OPIC/TEPS':['토마토 TOEFL 입문','토마토 TOEFL 중급/고급','토마토 TOEFL 실전/Voca','토마토 TOEFL iBT'],
+      'FLEX':['FLEX 영어수험서'],
+      '일반영어':['TOMATALK','능률롱맨','사전에 길이 있다','능률 JUNIOR','능률한영사전','The Grammar Guide','토마토 GRAMMARing']
+    },
+    '수학/국어':{
+      '유아':['사고셈','세 마리 토끼 잡는 독서 논술','세 마리 토끼 잡는 초등 어휘','세 마리 토끼 잡는 급수 한자','세 마리 토끼 잡는 역사 탐험'],
+      '초등':['달곰한 계산력','사고셈','월등한 개념 수학','수능까지 이어지는 초등 고학년 수학','수학의 고수','세 마리 토끼 잡는 초등 어휘','세 마리 토끼 잡는 독서 논술','세 마리 토끼 잡는 초등 한국사','세 마리 토끼 잡는 급수 한자','세 마리 토끼 잡는 초등 독해력','세 마리 토끼 잡는 쓰기','달곰한 문해력 초등 독해','달곰한 문해력 초등 어휘','달곰한 문해력 기본서','달곰한 문해력 초등 문법'],
+      '중등':['중등 각','월등한 개념 수학','월등한 개념 수학 기본+','월등한 개념 수학 실력+','유형 더블','수학에 심장을 달다','수학의 고수','테크닉','한 번에 수능까지 완성하는 중학국어'],
+      '고등':['고등 각','수능 기출 각','스코어','HIGH-END (내신)','HIGH-END (수능)','수능엔유형','시험직전R','해설의 역습','EBS 수능특강 변형문제']
+    }
   };
   var TPROMO={img:'banner_books.png', tit:'교사 인증가 안내', desc:'학원·학교 채택 시 전용가 적용', href:'교재상세_선생님.html'};
   var closeT;
   function openTeacherMega(a, name){
     var TL='리스트_교재구매_선생님.html';
-    var list2=MENU[name]||[];
+    var two=T2DEPTH[name]||MENU[name]||[];
+    var d3map=T3DEPTH[name]||{};
     var cols='<div class="gd-col"><p class="gd-col-t">'+name+'</p><div class="items">'
-      +list2.map(function(t){ return '<a href="'+TL+'">'+t+'</a>'; }).join('')+'</div></div>';
-    var series=TSERIES[name]||TSERIES._default;
-    var threed='<div class="gd-3depth"><h5>교재 시리즈</h5>'
-      +series.map(function(s){ return '<a href="'+TL+'">'+s+'</a>'; }).join('')+'</div>';
+      +two.map(function(t){ return '<a class="t2d" href="'+TL+'">'+t+'</a>'; }).join('')+'</div></div>';
+    var threed='<div class="gd-3depth" id="tmega3d"></div>';
     var promo='<a class="gd-promo" href="'+TPROMO.href+'"><span class="img" style="background-image:url(\'assets/'+TPROMO.img+'\')"></span>'
       +'<span class="tit">'+TPROMO.tit+'</span><span class="desc">'+TPROMO.desc+'</span></a>';
     drop.innerHTML='<div class="tmega-cols">'+cols+'</div>'+threed+promo;
     drop.classList.remove('mega'); drop.classList.add('tmega');
     items.forEach(function(x){ x.classList.toggle('on',x===a); });
     drop.classList.add('open');
+    /* 2depth hover → 3depth 시리즈 노출(첫 2depth 기본 선택) */
+    var box=drop.querySelector('#tmega3d'), links=[].slice.call(drop.querySelectorAll('.t2d'));
+    function show3(x){
+      var lbl=x.textContent.trim(), list=d3map[lbl]||[];
+      box.innerHTML='<h5>'+lbl+'</h5>'+list.map(function(s){ return '<a href="'+TL+'">'+s+'</a>'; }).join('');
+      links.forEach(function(y){ y.classList.toggle('t2d-on',y===x); });
+    }
+    links.forEach(function(x){ x.addEventListener('mouseenter',function(){ show3(x); }); });
+    if(links.length) show3(links[0]);
     var gw=gnb.getBoundingClientRect().width; var ml=Math.round((gw-drop.offsetWidth)/2); drop.style.left=(ml>0?ml:0)+'px';
   }
   function openFor(a){
-    var name=a.textContent.trim();
+    var name=a.getAttribute('data-cat')||a.textContent.trim();
     var mega=(name==='학습자료실'||name==='교재몰');
     /* 선생님 페이지: 학습자료실·교재몰은 일반몰(oct-launch)과 동일한 6단 카테고리 메가, 그 외 카테고리만 3depth 메가 */
     if(isTeacher && !mega){ openTeacherMega(a,name); return; }
@@ -426,7 +488,7 @@
   function hideGnb(){ drop.classList.remove('open'); items.forEach(function(x){ x.classList.remove('on'); }); }
   items.forEach(function(a){
     a.addEventListener('mouseenter',function(){ clearTimeout(closeT); openFor(a); });
-    a.addEventListener('click',function(e){ if(MENU[a.textContent.trim()]){ e.preventDefault(); openFor(a); } });
+    a.addEventListener('click',function(e){ if(MENU[a.getAttribute('data-cat')||a.textContent.trim()]){ e.preventDefault(); openFor(a); } });
   });
   gnb.addEventListener('mouseleave',function(){ closeT=setTimeout(hideGnb,160); });
   gnb.addEventListener('mouseenter',function(){ clearTimeout(closeT); });
