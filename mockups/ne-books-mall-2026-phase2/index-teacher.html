@@ -26,7 +26,7 @@
   .t1t-member .perks .val{font-size:12.5px;color:#7a6a3a;line-height:1.5;}
   /* 우측 배너: 일반몰 히어로 배너 축소판, 1개씩 자동 롤링 */
   .t1t-roll{position:relative;align-self:center;min-height:210px;border-radius:16px;overflow:hidden;box-shadow:0 6px 20px rgba(22,36,61,.12);}
-  .t1t-slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:24px 22px;color:#fff;text-decoration:none;opacity:0;transition:opacity .55s ease;pointer-events:none;}
+  .t1t-slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-start;align-items:flex-start;text-align:left;padding:24px 22px;color:#fff;text-decoration:none;opacity:0;transition:opacity .55s ease;pointer-events:none;}
   .t1t-slide.on{opacity:1;pointer-events:auto;}
   .t1t-slide .fl{display:inline-block;align-self:flex-start;font-size:12px;font-weight:800;padding-bottom:4px;border-bottom:2px solid currentColor;margin-bottom:12px;}
   .t1t-slide strong{font-size:19px;font-weight:800;line-height:1.32;letter-spacing:-.4px;}
@@ -218,7 +218,7 @@
       </div>
       <div class="t1t-member">
         <span class="grade">GOLD 학원회원</span>
-        <strong>김민준 원장님, 다시 오셨네요!</strong>
+        <strong>김능률 원장님, 다시 오셨네요!</strong>
         <span class="msg">자주 담으신 <b>그래머 인사이드</b> 시리즈 새 학기 물량이 들어왔어요.</span>
         <a class="go" href="리스트_교재구매_선생님.html">바로 확인하기 &#8250;</a>
         <div class="div"></div>
@@ -250,11 +250,11 @@
 
   <!-- 바로가기(교사용) 영역 삭제 (요청) -->
 
-  <!-- ===== [from ne-books-mall-2] 김민준 원장님을 위한 추천 교재 ===== -->
+  <!-- ===== [from ne-books-mall-2] 김능률 원장님을 위한 추천 교재 ===== -->
   <section class="reco-v3">
     <div class="container">
       <div class="rc-top">
-        <div class="v3-head"><div class="tt"><span style="color:#2272dd">김민준 원장님</span>을 위한 추천 교재</div></div>
+        <div class="v3-head"><div class="tt"><span style="color:#2272dd">김능률 원장님</span>을 위한 추천 교재</div></div>
         <div class="rc-seg" id="rcSeg" role="tablist" aria-label="추천 탭">
           <button type="button" data-seg="reco" class="on">원장님을 위한 교재</button>
           <button type="button" data-seg="wish">내가 찜한 교재</button>
@@ -419,7 +419,7 @@
     start();
   })();
 
-  /* 김민준 원장님을 위한 추천 교재 — 탭(원장님을 위한 교재 / 내가 찜한 교재) 전환, 1행 스크롤 */
+  /* 김능률 원장님을 위한 추천 교재 — 탭(원장님을 위한 교재 / 내가 찜한 교재) 전환, 1행 스크롤 */
   (function(){
     var reco=[
       {n:'그래머 인사이드 Lv.1', tag:'문법', pr:'12,600원', c:'assets/best_4.png'},
