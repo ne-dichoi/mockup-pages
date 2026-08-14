@@ -3617,6 +3617,7 @@ body.bsheet-lock{overflow:hidden;}
   .page-detail .dsec-h:has(.sel-actions){flex-wrap:nowrap;align-items:center;gap:12px;}
   .page-detail .dsec-h:has(.sel-actions) > h3{flex:1 1 auto;min-width:0;}
   .page-detail .dsec-h .sel-actions{flex:none;}
+  .page-detail .dsec-h .sel-actions label{font-size:12px;}  /* 전체선택 텍스트 12px */
   /* 파란박스 아래 회색 라인 + 다운로드 버튼 */
   .page-detail #s-res .rt-actions{margin-top:16px;border-top:1px solid var(--line);padding-top:24px;gap:8px;}
   .page-detail #s-res .rt-actions a{font-size:14px;line-height:22px;padding:12px 24px;}
