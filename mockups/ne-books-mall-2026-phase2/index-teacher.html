@@ -25,12 +25,19 @@
   .t1t-member .perks .lb{font-size:12px;font-weight:800;color:#c9820a;}
   .t1t-member .perks .val{font-size:12.5px;color:#7a6a3a;line-height:1.5;}
   /* 우측 배너: 일반몰 히어로 배너 축소판, 1개씩 자동 롤링 */
-  .t1t-roll{position:relative;align-self:center;min-height:210px;border-radius:16px;overflow:hidden;box-shadow:0 6px 20px rgba(22,36,61,.12);}
-  .t1t-slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-start;align-items:flex-start;text-align:left;padding:24px 22px;color:#fff;text-decoration:none;opacity:0;transition:opacity .55s ease;pointer-events:none;}
+  .t1t-roll{position:relative;align-self:stretch;min-height:260px;border-radius:16px;overflow:hidden;box-shadow:0 6px 20px rgba(22,36,61,.12);}
+  .t1t-slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-start;align-items:flex-start;text-align:left;padding:28px 28px 0;color:#fff;text-decoration:none;opacity:0;transition:opacity .55s ease;pointer-events:none;}
   .t1t-slide.on{opacity:1;pointer-events:auto;}
-  .t1t-slide .fl{display:inline-block;align-self:flex-start;font-size:12px;font-weight:800;padding-bottom:4px;border-bottom:2px solid currentColor;margin-bottom:12px;}
-  .t1t-slide strong{font-size:19px;font-weight:800;line-height:1.32;letter-spacing:-.4px;}
-  .t1t-slide .sb{font-size:12.5px;line-height:1.45;margin-top:8px;color:rgba(255,255,255,.88);}
+  .t1t-slide .fl{display:inline-block;align-self:flex-start;font-size:12px;font-weight:800;padding-bottom:4px;border-bottom:2px solid currentColor;margin-bottom:14px;}
+  .t1t-slide strong{font-size:23px;font-weight:800;line-height:1.3;letter-spacing:-.5px;}
+  .t1t-slide .sb{font-size:13px;line-height:1.5;margin-top:10px;color:rgba(255,255,255,.9);}
+  /* 슬라이드 하단 교재 2권 미니 카드 */
+  .t1t-slide-books{margin-top:auto;align-self:stretch;display:flex;gap:12px;justify-content:flex-end;padding:18px 0 24px;}
+  .t1t-slide-books .bk{width:118px;background:#fff;border-radius:10px;box-shadow:0 8px 20px rgba(0,0,0,.18);padding:9px;display:flex;flex-direction:column;gap:5px;color:#222;text-decoration:none;}
+  .t1t-slide-books .bk img{width:100%;aspect-ratio:1/1;object-fit:cover;object-position:top center;border-radius:6px;background:#f0f1f4;}
+  .t1t-slide-books .bk .pn{font-size:11.5px;font-weight:600;line-height:1.3;color:#333;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .t1t-slide-books .bk .pp{font-size:12.5px;font-weight:800;color:#191919;}
+  .t1t-slide-books .bk .pp em{font-style:normal;color:#f5444a;margin-right:4px;}
   .t1t-slide.o{background:#F55F16;}
   .t1t-slide.nv{background:linear-gradient(160deg,#26406f,#16264a);}
   .t1t-slide.gr{background:linear-gradient(160deg,#1f9d63,#137a45);}
@@ -64,19 +71,22 @@
   }
 
   .t1t-hero{padding:48px 0;background:linear-gradient(160deg,#eef4fc,#dfe9f7);color:#16243d;}
-  .t1t-hero .container{display:grid;grid-template-columns:minmax(0,1fr) 300px 260px;gap:24px;align-items:center;}
-  .t1t-hero-main{min-width:0;}
+  .t1t-hero .container{display:grid;grid-template-columns:minmax(0,1fr) 460px;gap:24px;align-items:stretch;}
+  .t1t-hero-main{min-width:0;display:flex;flex-direction:column;}
+  .t1t-hero-main .t1t-member{margin-top:24px;}
   .t1t-badge{display:inline-flex;align-items:center;height:26px;padding:0 12px;border-radius:20px;background:#d6e3f6;color:#2b4a86;font-size:12px;font-weight:800;letter-spacing:.5px;margin-bottom:16px;}
   .t1t-hero h2{font-size:28px;font-weight:800;line-height:1.4;letter-spacing:-.5px;}
   .t1t-hero p{font-size:14.5px;color:#5a6a85;margin-top:14px;line-height:1.6;}
   .t1t-hero-actions{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap;}
   @media (max-width:1023px){
-    .t1t-hero .container{grid-template-columns:1fr 1fr;}
-    .t1t-hero-main{grid-column:1 / -1;}
+    .t1t-hero .container{grid-template-columns:1fr;}
+    .t1t-roll{min-height:300px;}
   }
   @media (max-width:600px){
-    .t1t-hero .container{grid-template-columns:1fr;gap:16px;}
+    .t1t-hero .container{gap:16px;}
     .t1t-hero h2{font-size:24px;}
+    .t1t-slide strong{font-size:20px;}
+    .t1t-slide-books .bk{width:100px;}
   }
   .t1t-btn-fill{display:inline-flex;align-items:center;gap:6px;height:48px;padding:0 22px;border-radius:8px;background:#16243d;color:#fff;font-weight:800;font-size:15px;}
   .t1t-btn-line{display:inline-flex;align-items:center;height:48px;padding:0 22px;border-radius:8px;border:1px solid #b7c6de;color:#2b4a86;font-weight:600;font-size:14px;}
@@ -215,16 +225,16 @@
           <a class="t1t-btn-fill" href="리스트_교재구매_선생님.html">선생님 전용 교재 보기 &#8250;</a>
           <a class="t1t-btn-line" href="index.html">일반(학부모·학생) 몰로 이동</a>
         </div>
-      </div>
-      <div class="t1t-member">
-        <span class="grade">GOLD 학원회원</span>
-        <strong>김능률 원장님, 다시 오셨네요!</strong>
-        <span class="msg">자주 담으신 <b>그래머 인사이드</b> 시리즈 새 학기 물량이 들어왔어요.</span>
-        <a class="go" href="리스트_교재구매_선생님.html">바로 확인하기 &#8250;</a>
-        <div class="div"></div>
-        <div class="perks">
-          <span class="lb">GOLD 혜택</span>
-          <span class="val">구매 적립 3% · 대량구매 전담 상담 · 신간 우선 안내</span>
+        <div class="t1t-member">
+          <span class="grade">GOLD 학원회원</span>
+          <strong>김능률 원장님, 다시 오셨네요!</strong>
+          <span class="msg">자주 담으신 <b>그래머 인사이드</b> 시리즈 새 학기 물량이 들어왔어요.</span>
+          <a class="go" href="리스트_교재구매_선생님.html">바로 확인하기 &#8250;</a>
+          <div class="div"></div>
+          <div class="perks">
+            <span class="lb">GOLD 혜택</span>
+            <span class="val">구매 적립 3% · 대량구매 전담 상담 · 신간 우선 안내</span>
+          </div>
         </div>
       </div>
       <div class="t1t-roll" id="t1tRoll">
@@ -232,16 +242,28 @@
           <span class="fl">세미나</span>
           <strong>Grammar Inside로 완성하는<br>중등 문법 루틴</strong>
           <span class="sb">NE Tutor 문제뱅크 반복 강화 시스템</span>
+          <span class="t1t-slide-books">
+            <span class="bk"><img src="assets/best_4.png" alt=""><span class="pn">그래머 인사이드 Lv.1</span><span class="pp"><em>10%</em>12,600원</span></span>
+            <span class="bk"><img src="assets/best_2.png" alt=""><span class="pn">그래머 인사이드 Lv.2</span><span class="pp"><em>10%</em>13,050원</span></span>
+          </span>
         </a>
         <a class="t1t-slide nv" href="이벤트상세.html">
-          <span class="fl">PROMOTION</span>
+          <span class="fl">이벤트</span>
           <strong>온라인 영어 레벨테스트<br>NELT 무료 체험</strong>
           <span class="sb">우리 반 아이들 실력을 정확하게</span>
+          <span class="t1t-slide-books">
+            <span class="bk"><img src="assets/best_1.png" alt=""><span class="pn">NELT 대비 리딩 Lv.1</span><span class="pp"><em>10%</em>12,600원</span></span>
+            <span class="bk"><img src="assets/newbook_sample.png" alt=""><span class="pn">NELT 기출유형 문제집</span><span class="pp"><em>15%</em>11,900원</span></span>
+          </span>
         </a>
         <a class="t1t-slide gr" href="신간개정상세.html">
           <span class="fl">신간 소식</span>
           <strong>신간 출시<br>지금 만나보세요</strong>
           <span class="sb">새 교재를 가장 먼저 확인하세요</span>
+          <span class="t1t-slide-books">
+            <span class="bk"><img src="assets/best_5.png" alt=""><span class="pn">능률VOCA 어원편</span><span class="pp"><em>12%</em>11,440원</span></span>
+            <span class="bk"><img src="assets/best_3.png" alt=""><span class="pn">Bricks Reading 150</span><span class="pp"><em>15%</em>12,750원</span></span>
+          </span>
         </a>
         <div class="t1t-roll-dots" id="t1tRollDots"></div>
       </div>
@@ -452,17 +474,7 @@
     body.addEventListener('click',function(e){ if(!e.target.closest('.rc-add')) return; if(confirm('상품이 장바구니에 담겼습니다. 장바구니로 이동하시겠습니까?')){ location.href='장바구니.html'; } });
   })();
 
-  /* 히어로 우측 롤링 배너 높이 = 가운데 GOLD 회원 카드 높이와 동일하게(데스크톱 3단 레이아웃) */
-  (function(){
-    var member=document.querySelector('.t1t-member'), roll=document.getElementById('t1tRoll');
-    if(!member||!roll) return;
-    function sync(){
-      if(window.innerWidth>900){ roll.style.height=member.offsetHeight+'px'; roll.style.minHeight='0'; }
-      else { roll.style.height=''; roll.style.minHeight=''; }
-    }
-    sync();
-    window.addEventListener('resize', sync);
-  })();
+  /* (히어로 우측 배너는 좌측 컬럼 높이를 CSS align-self:stretch로 자동 매칭 — JS 동기화 불필요) */
   </script>
 
 </body>
