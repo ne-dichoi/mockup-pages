@@ -8,9 +8,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260815d">
-<script src="js/layout.js?v=20260815d" defer></script>
-<script src="js/search.js?v=20260815d" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260815e">
+<script src="js/layout.js?v=20260815e" defer></script>
+<script src="js/search.js?v=20260815e" defer></script>
 </head>
 <body class="page-my">
 
@@ -31,7 +31,6 @@
         <a href="고객센터.html#event">이벤트 / 신간·개정 / 세미나</a>
         <a href="고객센터.html#errata">교재 오류정정</a>
         <a class="on" href="고객센터.html#qna">1:1 문의</a>
-        <a href="고객센터.html#branch">지사안내</a>
       </div>
 
       <div id="qnaGuest">
@@ -45,7 +44,7 @@
             <div class="btns">
               <a href="고객센터.html#faq">도움말(FAQ)</a>
               <a href="고객센터.html#errata">교재정오 알림</a>
-              <a href="https://www.nebooks.co.kr/ne_faq/textbook.asp" target="_blank" rel="noopener">교과서 콘텐츠 FAQ</a>
+              <a href="#">교과서 콘텐츠 FAQ</a>
             </div>
             <p class="msg">문의 전에 먼저 확인하여 주시면 문의를 쉽고 빠르게 해결하실 수 있습니다.</p>
           </div>
@@ -68,7 +67,7 @@
           <div class="iq-row">
             <div class="iq-label">상담분류 <span class="iq-req">*</span></div>
             <div class="iq-field">
-              <div class="oh-sel" id="iqCat">
+              <div class="oh-sel">
                 <button type="button" class="oh-sel-cur"><span class="oh-sel-lb">문의분류를 선택해 주세요</span><span class="ic"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#1d1717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
                 <div class="oh-sel-menu" hidden><a class="on" data-ph>문의분류를 선택해 주세요</a><a>배송문의</a><a>결제/환불</a><a>회원정보</a><a>교재문의</a><a>기타</a></div>
               </div>
@@ -272,29 +271,6 @@
     var errataRow=document.getElementById('iqErrataRow'), pageRow=document.getElementById('iqPageRow');
     var radios=[].slice.call(document.querySelectorAll('input[name="iqType"]'));
     var curErrata=false, bookPicked=false;
-    var cat=document.getElementById('iqCat');
-    var PH='문의분류를 선택해 주세요';
-    var CAT={
-      general:['회원정보','교재,교과서 문의','부가서비스 문의','자료요청','사이트이용','이벤트','영업 및 제휴문의','의견,제안','기타'],
-      error:['교재내용이상','문법오류','오/탈자','기타오류'],
-      order:['주문/결제','취소','반품/환불','배송']
-    };
-    function renderCat(list){
-      if(!cat) return;
-      var menu=cat.querySelector('.oh-sel-menu'), cur=cat.querySelector('.oh-sel-cur'), lb=cat.querySelector('.oh-sel-lb');
-      if(!menu) return;
-      menu.innerHTML='<a class="on" data-ph>'+PH+'</a>'+(list||[]).map(function(t){ return '<a>'+t+'</a>'; }).join('');
-      if(lb) lb.textContent=PH; if(cur) cur.classList.add('is-ph');
-      cat.classList.remove('open'); menu.hidden=true;
-      [].forEach.call(menu.querySelectorAll('a'),function(a){
-        a.addEventListener('click',function(e){ e.preventDefault();
-          [].forEach.call(menu.querySelectorAll('a'),function(x){ x.classList.remove('on'); });
-          a.classList.add('on'); if(lb) lb.textContent=a.textContent.trim();
-          if(cur) cur.classList.toggle('is-ph', a.hasAttribute('data-ph'));
-          cat.classList.remove('open'); menu.hidden=true;
-        });
-      });
-    }
     function syncBookExtras(){
       var sel=document.querySelector('input[name="iqType"]:checked'); var v=sel?sel.value:'';
       var isErr=(v==='error');
@@ -302,7 +278,7 @@
       if(errataRow) errataRow.hidden=!(isErr && bookPicked && curErrata); /* 정오안내: 정오표 등록 교재만 */
     }
     function upd(){ var sel=document.querySelector('input[name="iqType"]:checked'); var v=sel?sel.value:'';
-      if(bookRow) bookRow.hidden=(v!=='error'); syncBookExtras(); renderCat(CAT[v]||CAT.general); }
+      if(bookRow) bookRow.hidden=(v!=='error'); syncBookExtras(); }
     radios.forEach(function(r){ r.addEventListener('change',upd); });
     /* 교재 선택/해제 이벤트(search.js) 수신 → 페이지·정오안내 노출 갱신 */
     document.addEventListener('bookselected',function(e){ curErrata=!!(e.detail&&e.detail.errata); bookPicked=true; syncBookExtras(); });

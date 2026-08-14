@@ -3613,10 +3613,10 @@ body.bsheet-lock{overflow:hidden;}
   .page-detail #s-res .tb-cta-text{font-size:14px;text-align:center;}
   .page-detail #s-res .tb-cta-text br{display:none;}
   .page-detail #s-res .tb-cta-btn{width:100%;text-align:center;padding:12px 24px;font-size:14px;line-height:22px;}
-  /* 연관교재 섹션 헤더: 제목 한 줄 + 전체선택·선택장바구니는 아래 한 줄(모든 섹션 일관) — 다음단계처럼 제각각 줄바꿈 방지 */
-  .page-detail .dsec-h:has(.sel-actions){flex-wrap:wrap;row-gap:16px;}
-  .page-detail .dsec-h:has(.sel-actions) > h3{flex:1 1 100%;}
-  .page-detail .dsec-h .sel-actions{width:100%;justify-content:space-between;}
+  /* 연관교재 섹션 헤더: 제목 옆(오른쪽)에 전체선택·선택장바구니를 인라인으로 — 줄바꿈 없이 항상 우측 정렬(제목이 길면 제목만 줄바꿈) */
+  .page-detail .dsec-h:has(.sel-actions){flex-wrap:nowrap;align-items:center;gap:12px;}
+  .page-detail .dsec-h:has(.sel-actions) > h3{flex:1 1 auto;min-width:0;}
+  .page-detail .dsec-h .sel-actions{flex:none;}
   /* 파란박스 아래 회색 라인 + 다운로드 버튼 */
   .page-detail #s-res .rt-actions{margin-top:16px;border-top:1px solid var(--line);padding-top:24px;gap:8px;}
   .page-detail #s-res .rt-actions a{font-size:14px;line-height:22px;padding:12px 24px;}
@@ -3735,19 +3735,18 @@ body.bsheet-lock{overflow:hidden;}
   /* 하단 고정 구매바 */
   .pdp-bar{display:flex;align-items:center;gap:8px;position:fixed;left:0;right:0;bottom:0;z-index:900;
     background:#fff;border-top:1px solid var(--line);border-radius:16px 16px 0 0;box-shadow:0 -2px 12px rgba(0,0,0,.06);
-    padding:10px 16px;padding-bottom:calc(10px + env(safe-area-inset-bottom));box-sizing:border-box;}
+    padding:24px 16px;padding-bottom:calc(24px + env(safe-area-inset-bottom));box-sizing:border-box;}
   /* 푸터에 안착(도킹)했을 때: 플로팅 느낌 제거 — 상단 라인·그림자 없앰 */
   .pdp-bar.docked{border-top-color:transparent;box-shadow:none;}
   .pdp-like{flex:none;display:flex;flex-direction:column;align-items:center;gap:2px;border:0;background:none;
-    font-size:11px;color:#666;cursor:pointer;padding:0 6px;}
-  .pdp-like .ico{width:24px;height:24px;display:inline-flex;} .pdp-like .ico img{width:24px;height:24px;}
-  .pdp-like .h-on{display:none;}
-  .pdp-like.on{color:var(--red);}
-  .pdp-like.on .h-off{display:none;} .pdp-like.on .h-on{display:inline;}
-  .pdp-cart{flex:1;height:auto;padding:24px 0;box-sizing:border-box;border:1px solid var(--btn);border-radius:8px;background:#fff;
-    display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;color:var(--ink);text-decoration:none;line-height:1;}
-  .pdp-buy{flex:1;height:auto;padding:24px 0;box-sizing:border-box;border:0;border-radius:8px;background:var(--red);color:#fff;cursor:pointer;
-    display:flex;align-items:center;justify-content:center;font-family:var(--sans);font-size:14px;font-weight:600;text-decoration:none;line-height:1;}
+    font-size:11px;color:var(--weak);cursor:pointer;padding:0 6px;}  /* 기본: 회색(#a9a9a9) 채운 하트 + 회색 글자 */
+  .pdp-like .ico{width:24px;height:24px;display:inline-flex;}
+  .pdp-like .ico svg{width:24px;height:24px;display:block;fill:currentColor;}
+  .pdp-like.on{color:var(--red);}  /* 클릭 시 아이콘·글자 빨강 */
+  .pdp-cart{flex:1;height:auto;padding:16px 0;box-sizing:border-box;border:1px solid var(--btn);border-radius:8px;background:#fff;
+    display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;color:var(--ink);text-decoration:none;line-height:22px;}
+  .pdp-buy{flex:1;height:auto;padding:16px 0;box-sizing:border-box;border:0;border-radius:8px;background:var(--red);color:#fff;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;font-family:var(--sans);font-size:14px;font-weight:600;text-decoration:none;line-height:22px;}
 }
 /* 후기 이름·날짜: 좁은 폰은 한 줄(row), 태블릿(768~1023)은 기존 두 줄(column) */
 @media (max-width:767px){
