@@ -1390,7 +1390,7 @@ a{color:inherit;text-decoration:none;}
 .br-c5{text-align:left;}
 /* 좁은 PC: 안내박스 우측(고객센터 번호·이용시간)을 2단으로 쌓아 겹침/가독성 개선 */
 @media (min-width:1024px) and (max-width:1319px){
-  .br-cs{flex-direction:column;align-items:flex-start;gap:8px;}
+  .br-cs{flex-direction:column;align-items:flex-end;gap:8px;text-align:right;}
 }
 @media (max-width:1023px){
   /* ===== 고객센터 · 지사안내 (모바일) : 탭 → 안내회색박스(불릿+지역세그먼트) → 지사카드 ===== */
