@@ -29,7 +29,7 @@
   .t1t-slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-start;align-items:flex-start;text-align:left;padding:28px 28px 0;color:#fff;text-decoration:none;opacity:0;transition:opacity .55s ease;pointer-events:none;}
   .t1t-slide.on{opacity:1;pointer-events:auto;}
   .t1t-slide .fl{display:inline-block;align-self:flex-start;font-size:12px;font-weight:800;padding-bottom:4px;border-bottom:2px solid currentColor;margin-bottom:14px;}
-  .t1t-slide strong{font-size:23px;font-weight:800;line-height:1.3;letter-spacing:-.5px;}
+  .t1t-slide strong{font-family:var(--display);font-size:23px;font-weight:800;line-height:1.3;letter-spacing:-.5px;}
   .t1t-slide .sb{font-size:13px;line-height:1.5;margin-top:10px;color:rgba(255,255,255,.9);}
   /* 슬라이드 하단 교재 2권 미니 카드 */
   .t1t-slide-books{margin-top:auto;align-self:stretch;display:flex;gap:12px;justify-content:flex-end;padding:18px 0 24px;}
@@ -50,7 +50,7 @@
   /* 전문가 PICK·동료 원장 추천 — index.html(일반 회원 페이지)에서 이관(설문 근거: 동료 추천 71%·전문가 PICK 도움됨) */
   .t1p-sec{padding:0 0 44px;}
   .t1p-head{margin-bottom:20px;}
-  .t1p-head h2{font-size:24px;font-weight:800;letter-spacing:-.5px;color:#191919;}
+  .t1p-head h2{font-family:var(--display);font-size:24px;font-weight:800;letter-spacing:-.5px;color:#191919;}
   .t1p-head h2 .hl{color:#2272dd;}
   .t1p-head .sub{font-size:14px;color:#8c8c8c;margin-top:6px;font-weight:500;}
   .t1p-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
@@ -71,12 +71,36 @@
   }
 
   .t1t-hero{padding:48px 0;background:linear-gradient(160deg,#eef4fc,#dfe9f7);color:#16243d;}
-  .t1t-hero .container{display:grid;grid-template-columns:minmax(0,1fr) 460px;gap:24px;align-items:stretch;}
+  .t1t-hero .container{display:grid;grid-template-columns:minmax(0,1fr) 340px 400px;gap:20px;align-items:stretch;}
   .t1t-hero-main{min-width:0;display:flex;flex-direction:column;}
-  .t1t-hero-main .t1t-member{margin-top:24px;}
-  .t1t-badge{display:inline-flex;align-items:center;height:26px;padding:0 12px;border-radius:20px;background:#d6e3f6;color:#2b4a86;font-size:12px;font-weight:800;letter-spacing:.5px;margin-bottom:16px;}
-  .t1t-hero h2{font-size:28px;font-weight:800;line-height:1.4;letter-spacing:-.5px;}
+  .t1t-badge{align-self:flex-start;display:inline-flex;align-items:center;height:26px;padding:0 12px;border-radius:20px;background:#d6e3f6;color:#2b4a86;font-size:12px;font-weight:800;letter-spacing:.5px;margin-bottom:16px;}
+  .t1t-badge.grade{background:#191919;color:#ffd873;letter-spacing:-.2px;}
+  .t1t-hero h2{font-family:var(--display);font-size:28px;font-weight:800;line-height:1.4;letter-spacing:-.5px;}
   .t1t-hero p{font-size:14.5px;color:#5a6a85;margin-top:14px;line-height:1.6;}
+  /* GOLD 멤버십 카드 (좌측) */
+  .t1t-mcard{background:transparent;border:0;box-shadow:none;padding:0;}
+  .t1t-mcard .mc-top{display:flex;align-items:center;gap:8px;margin-bottom:14px;}
+  .t1t-mcard .mc-top .t1t-badge{align-self:center;margin-bottom:0;}
+  .t1t-mcard .mc-hot{display:inline-flex;align-items:center;gap:4px;height:24px;padding:0 10px;border-radius:20px;background:#ffece8;color:#e0533a;font-size:12px;font-weight:800;}
+  .t1t-mcard h2.mc-h{font-family:var(--display);font-size:24px;font-weight:800;color:#16243d;line-height:1.35;letter-spacing:-.5px;margin:0;}
+  .t1t-mcard .mc-lead{font-size:15px;font-weight:700;color:#2b4a86;margin:10px 0 0;line-height:1.5;}
+  .t1t-mcard .mc-lead b{color:#e0533a;font-weight:800;}
+  .t1t-mcard .mc-lead u{text-decoration:none;color:#e0533a;font-weight:800;}
+  .t1t-mcard .mc-msg{font-size:13.5px;color:#6b7a92;margin:8px 0 0;line-height:1.55;}
+  .t1t-mcard .mc-msg b{color:#16243d;font-weight:800;}
+  .t1t-mcard .mc-cta{display:inline-flex;align-items:center;gap:3px;margin-top:12px;font-size:14px;font-weight:800;color:#e0533a;text-decoration:none;transition:.15s;}
+  .t1t-mcard .mc-cta:hover{text-decoration:underline;}
+  /* 가운데 회원 등급 혜택 박스 */
+  .t1t-perks-box{background:#fff;border:1px solid #e6ecf5;box-shadow:0 12px 34px rgba(22,36,61,.10);border-radius:18px;padding:26px 22px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;}
+  .t1t-perks-box .mc-perks-h{display:inline-flex;align-items:center;height:24px;padding:0 12px;border-radius:20px;background:#fbf0dc;color:#a97a10;font-size:12.5px;font-weight:800;margin-bottom:18px;}
+  .t1t-perks-box ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;align-items:center;gap:14px;}
+  .t1t-perks-box li{font-size:14px;color:#3a4a63;line-height:1.5;white-space:nowrap;}
+  .t1t-perks-box li::before{content:"✓";color:#1a9d54;font-weight:900;font-size:13px;margin-right:6px;}
+  .t1t-perks-box li b{color:#e0533a;font-weight:800;}
+  .t1t-mcard .mc-actions{margin-top:24px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+  .t1t-mcard .mc-actions .t1t-btn-fill{width:auto;height:48px;font-size:15px;}
+  .t1t-mcard .mc-switch{font-size:13px;color:#2b4a86;font-weight:700;text-decoration:underline;}
+  .t1t-mcard .mc-switch:hover{color:#16243d;}
   .t1t-hero-actions{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap;}
   @media (max-width:1023px){
     .t1t-hero .container{grid-template-columns:1fr;}
@@ -92,11 +116,16 @@
   .t1t-btn-line{display:inline-flex;align-items:center;height:48px;padding:0 22px;border-radius:8px;border:1px solid #b7c6de;color:#2b4a86;font-weight:600;font-size:14px;}
   .t1t-sec{padding:44px 0;}
   .t1t-sec .sec-title{font-size:24px;font-weight:800;letter-spacing:-.5px;color:#191919;margin-bottom:8px;}
+  #nt .sec-title{white-space:nowrap;text-align:left;}
+  #nt .sub{text-align:left;}
+  @media (max-width:600px){ #nt .sec-title{white-space:normal;font-size:20px;} }
   .t1t-sec .sub{font-size:14px;color:#8c8c8c;margin-bottom:24px;}
-  .t1t-nt-grid{display:flex;gap:16px;flex-wrap:wrap;}
-  .t1t-nt-card{flex:1 1 260px;display:flex;align-items:center;gap:14px;border:1px solid var(--line);border-radius:14px;padding:20px;text-decoration:none;color:inherit;}
+  .t1t-nt-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;}
+  .t1t-nt-card{display:flex;flex-direction:column;align-items:flex-start;gap:12px;border:1px solid var(--line);border-radius:14px;padding:18px 16px;text-decoration:none;color:inherit;}
   .t1t-nt-card .ico{flex:none;width:44px;height:44px;border-radius:10px;background:#eef1f5;display:flex;align-items:center;justify-content:center;}
   .t1t-nt-card .ico img{width:24px;height:24px;}
+  @media (max-width:960px){ .t1t-nt-grid{grid-template-columns:repeat(3,1fr);} }
+  @media (max-width:560px){ .t1t-nt-grid{grid-template-columns:repeat(2,1fr);} }
   .t1t-nt-card .sub{font-size:12px;color:#999;margin:0;}
   .t1t-nt-card .tt{font-size:15px;font-weight:700;color:#191919;}
   .t1t-picks{background:#f7f8fa;}
@@ -120,7 +149,7 @@
 
   /* [from mall-type2] 공통 섹션 헤더 */
   .t2-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:20px;}
-  .t2-head h2{font-size:24px;font-weight:800;letter-spacing:-.5px;color:#191919;}
+  .t2-head h2{font-family:var(--display);font-size:24px;font-weight:800;letter-spacing:-.5px;color:#191919;}
   .t2-head h2 .hl{color:#e83828;}
   .t2-more{font-size:14px;color:#555;font-weight:600;}
   /* [from mall-type2] 전문가 추천 교재 */
@@ -129,7 +158,7 @@
   .t2exp-img{flex:0 0 44%;min-height:300px;background-size:cover;background-position:center;}
   .t2exp-panel{flex:1;background:#fff;margin:20px;border-radius:12px;padding:34px 30px;display:flex;flex-direction:column;align-items:center;}
   .t2exp-panel .sub{font-size:14px;color:#888;}
-  .t2exp-panel .ttl{font-size:28px;font-weight:800;letter-spacing:-.5px;margin:6px 0 26px;color:#191919;}
+  .t2exp-panel .ttl{font-family:var(--display);font-size:28px;font-weight:800;letter-spacing:-.5px;margin:6px 0 26px;color:#191919;}
   .t2exp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;width:100%;}
   .t2exp-prod{text-align:center;text-decoration:none;color:inherit;}
   .t2exp-prod .th{aspect-ratio:1/1;background:#f3f4f5;border-radius:10px;display:flex;align-items:center;justify-content:center;overflow:hidden;margin-bottom:10px;}
@@ -149,7 +178,7 @@
   .t2set-card .st-goal{display:inline-block;font-size:12px;font-weight:700;color:#fff;background:#1a9d54;border-radius:12px;padding:4px 11px;margin-bottom:10px;}
   .t2set-card .st-goal.b{background:#0d9488;}
   .t2set-card .st-goal.c{background:#ff8a1e;}
-  .t2set-card .st-name{font-size:19px;font-weight:800;letter-spacing:-.5px;margin:0 0 4px;color:#191919;}
+  .t2set-card .st-name{font-family:var(--display);font-size:19px;font-weight:800;letter-spacing:-.5px;margin:0 0 4px;color:#191919;}
   .t2set-card .st-desc{font-size:12.5px;color:#7a8a7a;margin:0;}
   .t2set-card .st-covers{display:flex;margin-top:16px;padding-left:6px;}
   .t2set-card .st-covers .cv{width:66px;height:88px;border-radius:6px;overflow:hidden;box-shadow:0 4px 10px rgba(0,0,0,.16);background:#fff;margin-left:-14px;display:flex;align-items:center;justify-content:center;border:1px solid #f0f0f0;}
@@ -170,7 +199,7 @@
   .t2set-card .st-cta .buy{background:#e83828;color:#fff;}
   @media (max-width:900px){.t2set-grid{grid-template-columns:1fr;}}
 
-  /* [from ne-books-mall-2] 원장님을 위한 추천 교재 (탭 전환 · 1행 스크롤) */
+  /* [from ne-books-mall-2] 선생님을 위한 추천 교재 (탭 전환 · 1행 스크롤) */
   .reco-v3{background:var(--gray-bg);padding:44px 0;}
   .rc-top{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:24px;}
   .reco-v3 .v3-head .tt{font-family:var(--display);font-weight:800;font-size:24px;line-height:1.3;color:var(--ink);letter-spacing:-.5px;}
@@ -218,25 +247,29 @@
   <section class="t1t-hero">
     <div class="container">
       <div class="t1t-hero-main">
-        <span class="t1t-badge">TEACHER</span>
-        <h2>선생님, 안녕하세요.<br>수업에 필요한 모든 것을 한 곳에서.</h2>
-        <p>NE Tutor 교강사 자료부터 선생님 전용 교재, 대량 채택 문의까지<br>NE Books 선생님 페이지에서 빠르게 이용하세요.</p>
-        <div class="t1t-hero-actions">
-          <a class="t1t-btn-fill" href="리스트_교재구매_선생님.html">선생님 전용 교재 보기 &#8250;</a>
-          <a class="t1t-btn-line" href="index.html">일반(학부모·학생) 몰로 이동</a>
-        </div>
-        <div class="t1t-member">
-          <span class="grade">GOLD 학원회원</span>
-          <strong>김능률 원장님, 다시 오셨네요!</strong>
-          <span class="msg">자주 담으신 <b>그래머 인사이드</b> 시리즈 새 학기 물량이 들어왔어요.</span>
-          <a class="go" href="리스트_교재구매_선생님.html">바로 확인하기 &#8250;</a>
-          <div class="div"></div>
-          <div class="perks">
-            <span class="lb">GOLD 혜택</span>
-            <span class="val">구매 적립 3% · 대량구매 전담 상담 · 신간 우선 안내</span>
+        <div class="t1t-mcard">
+          <div class="mc-top">
+            <span class="t1t-badge grade">GOLD 학원회원</span>
+            <span class="mc-hot">🔥 이번 주 한정</span>
+          </div>
+          <h2 class="mc-h">김능률 선생님, 다시 오셨네요!</h2>
+          <p class="mc-lead">선생님께만 드리는 <b>추가 할인 · 10% 적립</b>, <u>이번 주까지</u> 지금 바로 챙기세요.</p>
+          <p class="mc-msg">관심 있던 <b>'그래머 인사이드'</b> 새 학기 교재가 입고됐어요.</p>
+          <a class="mc-cta" href="리스트_교재구매_선생님.html">바로 확인하기 &#8250;</a>
+          <div class="mc-actions">
+            <a class="t1t-btn-fill" href="리스트_교재구매_선생님.html">김능률 선생님 전용 교재 보기 &#8250;</a>
+            <a class="mc-switch" href="index.html">일반(학부모·학생)몰로 이동</a>
           </div>
         </div>
       </div>
+      <aside class="t1t-perks-box">
+        <span class="mc-perks-h">GOLD 회원 등급 혜택</span>
+        <ul>
+          <li>추가 할인 <b>10%</b> · 추가 적립 <b>10%</b></li>
+          <li>대량구매 전담 상담 · 신간 우선 안내</li>
+          <li>무료배송 <b>2회</b> · 9월 우대 쿠폰 <b>2건</b> 제공</li>
+        </ul>
+      </aside>
       <div class="t1t-roll" id="t1tRoll">
         <a class="t1t-slide o on" href="세미나상세.html">
           <span class="fl">세미나</span>
@@ -272,13 +305,13 @@
 
   <!-- 바로가기(교사용) 영역 삭제 (요청) -->
 
-  <!-- ===== [from ne-books-mall-2] 김능률 원장님을 위한 추천 교재 ===== -->
+  <!-- ===== [from ne-books-mall-2] 김능률 선생님을 위한 추천 교재 ===== -->
   <section class="reco-v3">
     <div class="container">
       <div class="rc-top">
-        <div class="v3-head"><div class="tt"><span style="color:#2272dd">김능률 원장님</span>을 위한 추천 교재</div></div>
+        <div class="v3-head"><div class="tt"><span style="color:#2272dd">김능률 선생님</span>을 위한 추천 교재</div></div>
         <div class="rc-seg" id="rcSeg" role="tablist" aria-label="추천 탭">
-          <button type="button" data-seg="reco" class="on">원장님을 위한 교재</button>
+          <button type="button" data-seg="reco" class="on">선생님을 위한 교재</button>
           <button type="button" data-seg="wish">내가 찜한 교재</button>
         </div>
       </div>
@@ -441,7 +474,7 @@
     start();
   })();
 
-  /* 김능률 원장님을 위한 추천 교재 — 탭(원장님을 위한 교재 / 내가 찜한 교재) 전환, 1행 스크롤 */
+  /* 김능률 선생님을 위한 추천 교재 — 탭(선생님을 위한 교재 / 내가 찜한 교재) 전환, 1행 스크롤 */
   (function(){
     var reco=[
       {n:'그래머 인사이드 Lv.1', tag:'문법', pr:'12,600원', c:'assets/best_4.png'},
