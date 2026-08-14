@@ -25,6 +25,24 @@
 
   function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
 
+  /* [10월반영] 장바구니 담기(목업) — 헤더 장바구니 뱃지 증가 + 토스트 안내 */
+  function addToCart(book){
+    var badge=document.querySelector('.cart-badge');
+    if(badge){
+      var n=(parseInt(badge.getAttribute('data-count'),10)||0)+1;
+      badge.setAttribute('data-count',n); badge.textContent=n; badge.hidden=false;
+    }
+    showToast('장바구니에 담았어요'+(book&&book.title?' · '+book.title:''));
+  }
+  var toastT;
+  function showToast(msg){
+    var t=document.getElementById('sa-toast');
+    if(!t){ t=document.createElement('div'); t.id='sa-toast'; t.className='sa-toast'; document.body.appendChild(t); }
+    t.textContent=msg;
+    t.classList.add('show');
+    clearTimeout(toastT); toastT=setTimeout(function(){ t.classList.remove('show'); },1800);
+  }
+
   function initSearch(box, opts){
     opts=opts||{};
     var input=box.querySelector('.search-input');
@@ -50,13 +68,17 @@
         return;
       }
       pop.classList.add('wide');
+      /* GNB(헤더) 검색에서만 장바구니 버튼 노출 — 폼 내 교재선택(onSelect)에서는 제외 */
+      var showCart=!opts.onSelect;
+      var cartBtn=showCart?'<button class="sa-cart" type="button" aria-label="장바구니 담기"><img src="assets/ic_cart_black.svg" alt=""></button>':'';
       var list=matches.map(function(b,i){
-        return '<li class="it'+(i===0?' on':'')+'" data-i="'+i+'"><a href="'+b.url+'">'+esc(b.title)+'</a></li>';
+        return '<li class="it'+(i===0?' on':'')+'" data-i="'+i+'"><a href="'+b.url+'">'+esc(b.title)+'</a>'+cartBtn+'</li>';
       }).join('');
       var first=matches[0];
+      var pvCart=showCart?'<button class="sa-pv-cart" type="button" aria-label="장바구니 담기"><img src="assets/ic_cart_black.svg" alt=""><span>장바구니 담기</span></button>':'';
       pop.innerHTML='<div class="sa-wrap">'
         +'<ul class="sa-list">'+list+'</ul>'
-        +'<div class="sa-preview"><div class="sa-pv-card"><img src="'+first.img+'" alt=""></div>'
+        +'<div class="sa-preview"><div class="sa-pv-card"><img src="'+first.img+'" alt="">'+pvCart+'</div>'
         +'<p class="sa-pv-name">'+esc(first.title)+'</p></div>'
         +'</div>';
       var items=[].slice.call(pop.querySelectorAll('.sa-list .it'));
@@ -73,7 +95,13 @@
         if(opts.onSelect){
           li.querySelector('a').addEventListener('click',function(e){ e.preventDefault(); opts.onSelect(matches[+li.getAttribute('data-i')]); });
         }
+        /* [10월반영] 검색결과 행에서 바로 장바구니 담기 */
+        var rowCart=li.querySelector('.sa-cart');
+        if(rowCart){ rowCart.addEventListener('click',function(e){ e.preventDefault(); e.stopPropagation(); addToCart(matches[+li.getAttribute('data-i')]); }); }
       });
+      /* [10월반영] 미리보기 이미지의 장바구니 버튼 */
+      var pvCartBtn=pop.querySelector('.sa-pv-cart');
+      if(pvCartBtn){ pvCartBtn.addEventListener('click',function(e){ e.preventDefault(); e.stopPropagation(); addToCart(curBook); }); }
       if(opts.onSelect){
         var pv=pop.querySelector('.sa-preview'); pv.style.cursor='pointer';
         pv.addEventListener('click',function(){ opts.onSelect(curBook); });
