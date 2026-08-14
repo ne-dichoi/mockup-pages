@@ -1694,6 +1694,19 @@ a{color:inherit;text-decoration:none;}
   .page-my #cc-qna .iq-req-note{font-size:14px;color:var(--muted);}
   .page-my #cc-qna .iq-actions-btns{margin-top:0;}
   .page-my #cc-qna .iq-btn-submit{width:100%;height:54px;}
+  /* 교재 오류신고: 상품명(교재명) — 카테고리 셀렉트 + 검색 인풋 세로 스택 */
+  .page-my #cc-qna .iq-form .oh-sel.bookcat{width:100%;}
+  .page-my #cc-qna .iq-bookname{flex-direction:column;align-items:stretch;gap:8px;}
+  .page-my #cc-qna .iq-bookname .oh-sel-cur{height:54px;border-radius:8px;}
+  .page-my #cc-qna .iq-bookname .ef-search{display:none;}
+  .page-my #cc-qna .iq-bookname .bk-search{width:100%;}
+  .page-my #cc-qna .iq-bookname .bk-search .iq-in{height:54px;border-radius:10px;padding:0 16px;}
+  /* 교재 선택 후: 커버+제목+삭제 */
+  .page-my #cc-qna .iq-bk-selected:not([hidden]){display:grid;grid-template-columns:105px 1fr;grid-template-areas:"cover title" "cover del";column-gap:16px;row-gap:8px;align-content:center;justify-items:start;width:100%;}
+  .page-my #cc-qna .iq-bk-cover{grid-area:cover;width:105px;height:105px;border-radius:6px;background:var(--gray-bg);display:flex;align-items:center;justify-content:center;}
+  .page-my #cc-qna .iq-bk-cover img{width:auto;height:72px;object-fit:contain;box-shadow:1px 2px 5px rgba(0,0,0,.18);}
+  .page-my #cc-qna .iq-bk-title{grid-area:title;align-self:end;font-weight:500;color:var(--ink);}
+  .page-my #cc-qna .iq-bk-del{grid-area:del;align-self:start;height:28px;box-sizing:border-box;padding:0 13px;border:1px solid var(--line);border-radius:8px;font-size:12px;font-weight:500;color:var(--ink);}
 }
 
 /* 자동등록방지 (캡차) */
