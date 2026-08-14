@@ -53,8 +53,8 @@
             <a href="#">교과서/자습서</a>
             <a href="#">수험/일반</a>
             <a href="#">수학/국어</a>
-            <a href="#">학습자료실</a>
-            <a href="#">도서몰</a>
+            <a href="#" class="gnb-study">학습자료실</a>
+            <a href="리스트_교재구매.html" class="gnb-mall" aria-label="교재몰"><span class="gnb-roll"><span class="gr-track"><span class="gr-i">교재몰</span><span class="gr-i sub">지금 바로 구매</span></span></span></a>
           </nav>
         </div>
         <div class="gnb-drop" id="gnbDrop">
@@ -234,7 +234,7 @@
     var MY_LINKS=['마이페이지.html','마이페이지.html#orders','마이페이지.html#points','마이페이지.html#wish','마이페이지.html#qna','마이페이지.html#review','마이페이지.html#event'];
     var MENU=BOOKCATS.concat([
       {name:'학습자료실', accordion:true},
-      {name:'도서몰', accordion:true},
+      {name:'교재몰', accordion:true},
       {name:'고객센터', subs:['공지사항','FAQ','이벤트/신간·개정/세미나','교재 오류정정','1:1문의','지사안내'], links:CS_LINKS},
       {name:'마이페이지', subs:['홈','주문내역','포인트','찜','문의/답변','후기','이벤트/세미나'], links:MY_LINKS}
     ]);
@@ -364,12 +364,12 @@
     '수험/일반':['TOEIC','TOEIC Speaking/Writing','TOEFL/OPIC/TEPS','FLEX','일반영어'],
     '수학/국어':['유아','초등','중등','고등'],
     '학습자료실':['서브메인','ELT자료','초/중등교재 자료','고등교재 자료','교과서/자습서 자료','수험/일반 자료','수학/국어 자료'],
-    '도서몰':['ELT','초/중등','고등영어 교과서','교과서/자습서','수험/일반','교구/부가상품','세트/패키지','온라인 서비스/이용권']
+    '교재몰':['ELT','초/중등','고등영어 교과서','교과서/자습서','수험/일반','교구/부가상품','세트/패키지','온라인 서비스/이용권']
   };
   var closeT;
   function openFor(a){
-    var name=a.textContent.trim();
-    var mega=(name==='학습자료실'||name==='도서몰');
+    var name=a.classList.contains('gnb-mall')?'교재몰':a.textContent.trim();
+    var mega=(name==='학습자료실'||name==='교재몰');
     var BR='<div class="gd-promo"><a href="#"><span class="gd-promo-img" style="background-image:url(\'assets/banner_books.png\'),linear-gradient(160deg,#1f9d63,#137a45)"></span></a><div class="gd-promo-tit">신간 출시, 지금 만나보세요</div><div class="gd-promo-desc">새롭게 출간된 교재를 가장 먼저 확인하세요 &#8250;</div></div>';
     if(mega){
       var COLS=[['ELT','Coursebook','Phonics','Reading','Readers','Listening','Speaking','Grammar','Writing','Vocabulary'],['초등/중등','중학 내신','고등 선행','파닉스','어휘','쓰기','독해','듣기','문법/구분','TOEFL/TEPS/NELT'],['고등','어휘','독해','듣기','문법/구분','수능 대비','고교 내신','단기 특강','TOEFL/TEPS/NELT'],['교과서/자습서','중학영어 교과서','고등영어 교과서','수학 교과서','중국어/일본어'],['수험/일반','TOEIC','TOEIC SPEAKING|/WRITING','TOEFL/OPIC/TEPS','FLEX','일반영어'],['수학/국어','유아','초등','중등','고등']];
@@ -394,7 +394,7 @@
   function hideGnb(){ drop.classList.remove('open'); items.forEach(function(x){ x.classList.remove('on'); }); }
   items.forEach(function(a){
     a.addEventListener('mouseenter',function(){ clearTimeout(closeT); openFor(a); });
-    a.addEventListener('click',function(e){ if(MENU[a.textContent.trim()]){ e.preventDefault(); openFor(a); } });
+    a.addEventListener('click',function(e){ if(a.classList.contains('gnb-mall')||MENU[a.textContent.trim()]){ e.preventDefault(); openFor(a); } });
   });
   gnb.addEventListener('mouseleave',function(){ closeT=setTimeout(hideGnb,160); });
   gnb.addEventListener('mouseenter',function(){ clearTimeout(closeT); });
