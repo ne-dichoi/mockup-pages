@@ -56,12 +56,14 @@
       var first=matches[0];
       pop.innerHTML='<div class="sa-wrap">'
         +'<ul class="sa-list">'+list+'</ul>'
-        +'<div class="sa-preview"><div class="sa-pv-card"><img src="'+first.img+'" alt=""></div>'
+        +'<div class="sa-preview"><div class="sa-pv-card"><img src="'+first.img+'" alt="">'
+        +'<button type="button" class="sa-pv-cart" aria-label="장바구니 담기"><img src="assets/ic_bag.svg" alt=""></button></div>'
         +'<p class="sa-pv-name">'+esc(first.title)+'</p></div>'
         +'</div>';
       var items=[].slice.call(pop.querySelectorAll('.sa-list .it'));
       var pvImg=pop.querySelector('.sa-pv-card img');
       var pvName=pop.querySelector('.sa-pv-name');
+      var pvCart=pop.querySelector('.sa-pv-cart');
       var curBook=first;
       items.forEach(function(li){
         li.addEventListener('mouseenter',function(){
@@ -77,6 +79,13 @@
       if(opts.onSelect){
         var pv=pop.querySelector('.sa-preview'); pv.style.cursor='pointer';
         pv.addEventListener('click',function(){ opts.onSelect(curBook); });
+      }
+      /* 검색 미리보기 썸네일 우하단 장바구니 아이콘 → 담기 확인 얼럿(리스트/미리보기 이동 클릭과 분리) */
+      if(pvCart){
+        pvCart.addEventListener('click',function(e){
+          e.preventDefault(); e.stopPropagation();
+          if(confirm('장바구니에 담겼습니다. 이동하시겠습니까?')){ location.href='장바구니.html'; }
+        });
       }
     }
 
