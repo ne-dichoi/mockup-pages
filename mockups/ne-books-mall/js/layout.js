@@ -163,6 +163,8 @@
     function apply(){
       ticking=false;
       if(!mq.matches){ header.classList.remove('hdr-hidden','hdr-shown'); return; }
+      /* 모바일 전체메뉴(드로어) 열림 중에는 헤더(햄버거) 계속 노출 유지 */
+      if(header.classList.contains('drawer-open')){ header.classList.remove('hdr-hidden'); lastY=window.pageYOffset||0; return; }
       var y=window.pageYOffset||0;
       var goingDown = y>lastY;
       if(y>80 && goingDown){ header.classList.add('hdr-hidden'); }
