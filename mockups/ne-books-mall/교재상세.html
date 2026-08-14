@@ -8,9 +8,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260815b">
-<script src="js/layout.js?v=20260815b" defer></script>
-<script src="js/search.js?v=20260815b" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260815c">
+<script src="js/layout.js?v=20260815c" defer></script>
+<script src="js/search.js?v=20260815c" defer></script>
 </head>
 <body class="page-detail">
 
@@ -624,6 +624,10 @@
       function apply(tab){
         secs.forEach(function(s){ s.classList.toggle('mo-hide', s.getAttribute('data-motab')!==tab); });
         motabs.forEach(function(x){ x.classList.toggle('active', x.getAttribute('data-motab')===tab); });
+        /* 탭(패널) 전환으로 문서 높이가 바뀌므로 하단 CTA 도킹 재계산 트리거(레이아웃 안정화 대비 지연 포함) */
+        var ping=function(){ window.dispatchEvent(new Event('scroll')); };
+        requestAnimationFrame(function(){ ping(); requestAnimationFrame(ping); });
+        setTimeout(ping,80); setTimeout(ping,200);
       }
       motabs.forEach(function(a){
         a.addEventListener('click',function(e){

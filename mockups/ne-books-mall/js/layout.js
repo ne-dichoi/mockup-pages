@@ -160,17 +160,22 @@
     if(!header) return;
     var mq=window.matchMedia('(max-width:767px)');
     var lastY=window.pageYOffset||0, ticking=false;
+    function setStick(){
+      /* sticky 서브탭(교재상세 등)이 항상 '보이는 헤더' 바로 아래에 붙도록: 헤더 숨김=0, 표시=74 */
+      document.documentElement.style.setProperty('--m-stick', header.classList.contains('hdr-hidden') ? '0px' : '74px');
+    }
     function apply(){
       ticking=false;
-      if(!mq.matches){ header.classList.remove('hdr-hidden','hdr-shown'); return; }
+      if(!mq.matches){ header.classList.remove('hdr-hidden','hdr-shown'); document.documentElement.style.setProperty('--m-stick','74px'); return; }
       /* 모바일 전체메뉴(드로어) 열림 중에는 헤더(햄버거) 계속 노출 유지 */
-      if(header.classList.contains('drawer-open')){ header.classList.remove('hdr-hidden'); lastY=window.pageYOffset||0; return; }
+      if(header.classList.contains('drawer-open')){ header.classList.remove('hdr-hidden'); lastY=window.pageYOffset||0; setStick(); return; }
       var y=window.pageYOffset||0;
       var goingDown = y>lastY;
       if(y>80 && goingDown){ header.classList.add('hdr-hidden'); }
       else if(!goingDown || y<=80){ header.classList.remove('hdr-hidden'); }
       header.classList.toggle('hdr-shown', y>4 && !header.classList.contains('hdr-hidden'));
       lastY = y<0 ? 0 : y;
+      setStick();
     }
     window.addEventListener('scroll',function(){ if(!ticking){ requestAnimationFrame(apply); ticking=true; } },{passive:true});
     window.addEventListener('resize',apply);

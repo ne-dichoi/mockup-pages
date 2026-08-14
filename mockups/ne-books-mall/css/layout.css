@@ -3537,7 +3537,7 @@ body.bsheet-lock{overflow:hidden;}
   .page-detail .dh-badges .badge.lexile{color:#4056a1;border-color:#4056a1;font-size:9.5px;padding:5px 9px;}
   .page-detail .dh-badges .badge.lexile .ico{display:none;}
   .page-detail .dh-title{font-family:var(--display);font-weight:700;font-size:18px;line-height:22px;margin-top:16px;}
-  .page-detail .dh-sub{font-size:14px;color:#666;margin-top:4px;}
+  .page-detail .dh-sub{font-size:12px;color:#666;margin-top:8px;}
   .page-detail .dh-price{margin-top:16px;align-items:flex-end;gap:8px;}
   .page-detail .dh-price .pct{font-family:var(--display);font-weight:800;font-size:18px;line-height:24px;color:var(--red);}
   .page-detail .dh-price .now{font-family:var(--display);font-weight:700;font-size:18px;line-height:24px;color:var(--ink);}
@@ -3550,8 +3550,8 @@ body.bsheet-lock{overflow:hidden;}
   /* 정보 세로 배치 + 순서: 가격 → 구분선 → 적립/배송 → 공지 */
   .page-detail .dh-info{display:flex;flex-direction:column;}
   .page-detail .dh-hr2{display:none;}
-  .page-detail .dh-hr1{border:0;border-top:1px solid #1d1717;height:0;margin:40px 0 0;}
-  .page-detail .dh-buy{order:2;margin-top:24px;}
+  .page-detail .dh-hr1{border:0;border-top:1px solid #1d1717;height:0;margin:16px 0 0;}
+  .page-detail .dh-buy{order:2;margin-top:40px;}
   .page-detail .dh-buy .row{gap:0;font-size:14px;}
   .page-detail .dh-buy .row>span:first-child{width:80px;min-width:0;flex:none;}
   /* 모바일: 적립·배송비 안내는 hover 말풍선 대신 하단 바텀시트(#infoSheet)로 노출 */
@@ -3565,7 +3565,7 @@ body.bsheet-lock{overflow:hidden;}
   .page-detail .dh-notice .msg{font-size:12px;line-height:1.6;color:#666;}
   .page-detail .dh-notice .msg .tag{background:#fff;border-radius:999px;padding:4px 10px;font-size:11px;color:#666;margin-right:8px;}
   /* 탭 가로 스크롤 */
-  .page-detail .dtabs{position:sticky;top:0;background:#fff;z-index:30;}
+  .page-detail .dtabs{position:sticky;top:var(--m-stick,74px);background:#fff;z-index:30;}
   .page-detail .dtabs-inner{overflow-x:auto;overflow-y:hidden;scrollbar-width:none;gap:0;}
   .page-detail .dtabs-inner::-webkit-scrollbar{display:none;}
   .page-detail .dtabs-inner a{flex:none;white-space:nowrap;padding:14px 16px;font-size:14px;}
@@ -3609,10 +3609,14 @@ body.bsheet-lock{overflow:hidden;}
   .page-detail #s-res .tb-rows{padding:0 8px;}
   .page-detail #s-res .tb-row{grid-template-columns:24px 48px 96px minmax(0,1fr);column-gap:8px;font-size:14px;}
   .page-detail #s-res .tb-row > *{padding:16px 0;}
-  .page-detail #s-res .tb-cta{width:auto;flex-direction:column;gap:16px;padding:24px 16px;border-top:1px solid var(--line);}  /* CTA 위 라인 */
+  .page-detail #s-res .tb-cta{flex:none;width:auto;flex-direction:column;gap:16px;padding:24px 16px;border-top:1px solid var(--line);}  /* flex:none → flex-basis 320px 세로높이 제거(빈 공간 방지) / CTA 위 라인 */
   .page-detail #s-res .tb-cta-text{font-size:14px;text-align:center;}
   .page-detail #s-res .tb-cta-text br{display:none;}
   .page-detail #s-res .tb-cta-btn{width:100%;text-align:center;padding:12px 24px;font-size:14px;line-height:22px;}
+  /* 연관교재 섹션 헤더: 제목 한 줄 + 전체선택·선택장바구니는 아래 한 줄(모든 섹션 일관) — 다음단계처럼 제각각 줄바꿈 방지 */
+  .page-detail .dsec-h:has(.sel-actions){flex-wrap:wrap;row-gap:16px;}
+  .page-detail .dsec-h:has(.sel-actions) > h3{flex:1 1 100%;}
+  .page-detail .dsec-h .sel-actions{width:100%;justify-content:space-between;}
   /* 파란박스 아래 회색 라인 + 다운로드 버튼 */
   .page-detail #s-res .rt-actions{margin-top:16px;border-top:1px solid var(--line);padding-top:24px;gap:8px;}
   .page-detail #s-res .rt-actions a{font-size:14px;line-height:22px;padding:12px 24px;}
@@ -3674,7 +3678,7 @@ body.bsheet-lock{overflow:hidden;}
   .page-detail .ntable tbody{display:block;}
   .page-detail .ntable tr{display:flex;flex-wrap:wrap;}
   .page-detail .ntable th{flex:0 0 116px;box-sizing:border-box;width:auto;padding:14px 16px;font-size:12px;font-weight:600;
-    white-space:normal;word-break:keep-all;border-bottom:1px solid var(--line);}
+    white-space:normal;word-break:keep-all;border-bottom:1px solid var(--line);display:flex;align-items:center;}
   .page-detail .ntable td{flex:1 1 calc(100% - 116px);box-sizing:border-box;width:auto;padding:14px 16px;font-size:12px;
     border-bottom:1px solid var(--line);}
   .page-detail .ntable.ntable-wide th{flex-basis:116px;width:auto;}
