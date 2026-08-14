@@ -155,6 +155,22 @@
   var h=document.getElementById('site-header'); if(h) h.innerHTML=HEADER;
   var f=document.getElementById('site-footer'); if(f) f.innerHTML=FOOTER;
 
+  /* [10월반영] 공용 장바구니 저장소 (localStorage) + 헤더 뱃지 동기화 — 검색결과↔장바구니 연동 */
+  window.NECart = (function(){
+    var KEY='ne_cart';
+    function read(){ try{ return JSON.parse(localStorage.getItem(KEY))||{}; }catch(e){ return {}; } }
+    function persist(o){ try{ localStorage.setItem(KEY, JSON.stringify(o)); }catch(e){} syncBadge(); }
+    function setQty(item, qty){ var c=read(); if(qty>0){ c[item.id]=Object.assign({}, item, {qty:qty}); } else { delete c[item.id]; } persist(c); }
+    function add(item, n){ var c=read(); var cur=c[item.id]; var q=(cur?cur.qty:0)+(n||1); c[item.id]=Object.assign({}, item, {qty:q}); persist(c); }
+    function remove(id){ var c=read(); delete c[id]; persist(c); }
+    function write(o){ persist(o); }
+    function items(){ var c=read(), a=[]; for(var k in c){ a.push(c[k]); } return a; }
+    function totalQty(){ var c=read(), n=0; for(var k in c){ n+=(c[k].qty||0); } return n; }
+    function syncBadge(){ var b=document.querySelector('.cart-badge'); if(!b) return; var n=totalQty(); b.setAttribute('data-count', n); b.textContent=n; b.hidden=(n<=0); }
+    return {KEY:KEY, read:read, write:write, setQty:setQty, add:add, remove:remove, items:items, totalQty:totalQty, syncBadge:syncBadge};
+  })();
+  window.NECart.syncBadge();
+
   /* ===== 모바일 GNB 자동 숨김/표시 (아래로 스크롤=숨김, 위로 스크롤=표시+그림자 고정) ===== */
   (function(){
     var header=document.getElementById('site-header');
@@ -264,11 +280,11 @@
     render();
   })();
 
-  /* ===== 장바구니 수량 뱃지 (상품이 담기면 N 표시) ===== */
-  /* 페이지에서 window.CART_COUNT = N 으로 실제 수량을 넣을 수 있음. 미지정 시 데모값 2. */
+  /* ===== 장바구니 수량 뱃지 ===== */
+  /* [10월반영] 실제 장바구니(NECart, localStorage) 총 수량을 표시. window.CART_COUNT로 강제 지정 가능. */
   (function(){
     var badge=document.querySelector('.cart-badge'); if(!badge) return;
-    var n=(typeof window.CART_COUNT==='number') ? window.CART_COUNT : 2;
+    var n=(typeof window.CART_COUNT==='number') ? window.CART_COUNT : (window.NECart ? window.NECart.totalQty() : 0);
     if(n>0){ badge.textContent=(n>99?'99+':n); badge.setAttribute('data-count',n); badge.hidden=false; }
     else { badge.hidden=true; }
   })();

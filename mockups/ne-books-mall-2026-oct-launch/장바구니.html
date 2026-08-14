@@ -8,9 +8,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260814f">
-<script src="js/layout.js?v=20260814f" defer></script>
-<script src="js/search.js?v=20260814f" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260814g">
+<script src="js/layout.js?v=20260814g" defer></script>
+<script src="js/search.js?v=20260814g" defer></script>
 </head>
 <body class="page-cart">
 
@@ -115,6 +115,45 @@
 
   <!-- ===== FOOTER ===== -->
   <div id="site-footer"></div>
+
+  <!-- [10월반영] 검색결과에서 담은 장바구니(localStorage)를 실제 목록에 렌더 → 수량 그대로 반영 -->
+  <script>
+  (function(){
+    var KEY='ne_cart', c;
+    try{ c=JSON.parse(localStorage.getItem(KEY))||{}; }catch(e){ c={}; }
+    var ids=Object.keys(c);
+    var list=document.getElementById('cartList');
+    if(!list || !ids.length) return;   /* 담긴 게 없으면 기존 데모 항목 유지 */
+    function won(n){ return (Number(n)||0).toLocaleString('ko-KR')+'원'; }
+    list.innerHTML=ids.map(function(id){
+      var it=c[id]||{}; var pct=it.rate||''; var unit=Number(it.unit)||0; var orig=Number(it.orig)||0;
+      var pt=Math.round(unit*0.01);
+      var img=(/^assets\//.test(it.img||'')||/^data:/.test(it.img||''))?it.img:('assets/'+(it.img||'best_1.png'));
+      return '<div class="citem" data-id="'+id+'" data-orig="'+orig+'" data-unit="'+unit+'" data-pt="'+pt+'">'
+        +'<input type="checkbox" class="chk row-chk" checked>'
+        +'<a class="cthumb" href="교재상세.html"><img src="'+img+'" alt=""></a>'
+        +'<a class="cname" href="교재상세.html">'+(it.name||'교재')+'</a>'
+        +'<div class="cprice"><span class="pct">'+pct+'</span><span class="was">'+won(orig)+'</span><span class="now">'+won(unit)+'</span><span class="note">('+(pct?pct+'할인+':'')+pt+'P 적립)</span></div>'
+        +'<span class="qty"><button type="button" class="minus">&minus;</button><input type="number" class="q" value="'+(Number(it.qty)||1)+'" min="1"><button type="button" class="plus">+</button></span>'
+        +'<div class="csum"><span class="amt"></span><span class="pt"></span></div>'
+        +'<button type="button" class="cdel" aria-label="삭제">&times;</button>'
+      +'</div>';
+    }).join('');
+    /* 장바구니에서 수량 변경/삭제 시 localStorage·헤더 뱃지에 되반영 */
+    function resync(){
+      var rows=[].slice.call(document.querySelectorAll('#cartList .citem')), nc={};
+      rows.forEach(function(r){
+        var id=r.getAttribute('data-id'); if(!id) return;
+        var q=parseInt(r.querySelector('.q').value,10)||0; if(q<=0) return;
+        nc[id]={id:id, name:r.querySelector('.cname').textContent, img:r.querySelector('.cthumb img').getAttribute('src'), orig:+r.dataset.orig, unit:+r.dataset.unit, rate:(r.querySelector('.pct')?r.querySelector('.pct').textContent:''), qty:q};
+      });
+      try{ localStorage.setItem(KEY, JSON.stringify(nc)); }catch(e){}
+      var b=document.querySelector('.cart-badge'); if(b){ var n=0; for(var k in nc){ n+=nc[k].qty; } b.setAttribute('data-count',n); b.textContent=n; b.hidden=(n<=0); }
+    }
+    list.addEventListener('click',function(){ setTimeout(resync,0); });
+    list.addEventListener('input',function(){ setTimeout(resync,0); });
+  })();
+  </script>
 
   <script>
   (function(){
