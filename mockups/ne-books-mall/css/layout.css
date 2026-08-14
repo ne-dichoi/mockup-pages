@@ -1181,7 +1181,7 @@ a{color:inherit;text-decoration:none;}
 .qa-tr:hover{background:#fafafa;}
 .qa-no{width:80px;flex:none;text-align:center;font-size:14px;color:var(--muted);}
 .qa-cat{width:140px;flex:none;text-align:center;font-size:14px;font-weight:400;color:var(--muted);}
-.qa-subj{flex:1 1 0;min-width:0;padding-left:24px;font-size:14px;font-weight:600;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.qa-subj{flex:1 1 0;min-width:0;padding-left:24px;font-size:14px;font-weight:500;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 .qa-date{width:180px;flex:none;text-align:center;font-size:14px;color:var(--muted);}
 .qa-ans{width:180px;flex:none;display:flex;align-items:center;justify-content:center;font-size:14px;}
 .qa-th .qa-no,.qa-th .qa-cat,.qa-th .qa-date,.qa-th .qa-ans,.qa-th .qa-subj{font-weight:700;color:var(--ink);}
