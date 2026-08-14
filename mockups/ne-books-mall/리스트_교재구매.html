@@ -10,9 +10,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- Pretendard (design font) via CDN, with Noto Sans KR fallback -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260815a">
-<script src="js/layout.js?v=20260815a" defer></script>
-<script src="js/search.js?v=20260815a" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260815b">
+<script src="js/layout.js?v=20260815b" defer></script>
+<script src="js/search.js?v=20260815b" defer></script>
 </head>
 <body class="page-buy">
 
@@ -369,7 +369,7 @@
         <div class="fs-stitle">제품유형</div>
         <div class="fs-wrap">
           <button class="fs-chip" type="button">전체</button>
-          <button class="fs-chip on" type="button">메인 교재</button>
+          <button class="fs-chip" type="button">메인 교재</button>
           <button class="fs-chip" type="button">Word Book</button>
           <button class="fs-chip" type="button">Test&amp;Worksheet</button>
           <button class="fs-chip" type="button">Test</button>
@@ -477,11 +477,8 @@
     });
   })();
 
-  /* 필터 칩 토글 + 가로 스와이프/드래그 스크롤 (키워드·시리즈·필터) */
+  /* 가로 스와이프/드래그 스크롤 (키워드·시리즈·필터) */
   (function(){
-    [].forEach.call(document.querySelectorAll('.mf-chip'),function(c){
-      c.addEventListener('click',function(){ c.classList.toggle('on'); });
-    });
     function dragScroll(el){
       if(!el) return;
       var down=false,sx=0,ss=0,moved=false;
@@ -496,20 +493,38 @@
     [].forEach.call(document.querySelectorAll('.mc-hash'),dragScroll);
   })();
 
-  /* 필터 바텀시트: 필터 버튼 → 딤 + 시트 슬라이드업 */
+  /* 필터 바텀시트 + 상단 필터 칩 동기화
+     (시트에서 카테고리 선택 후 검색 → 해당 칩=검정 X 알약, 미선택=회색 셀렉트형 / 필터 배지=총 선택수) */
   (function(){
     var openBtn=document.querySelector('.mf-filter');
     var dim=document.getElementById('fsheetDim'), sheet=document.getElementById('fsheet');
     if(!openBtn||!sheet||!dim) return;
+    var badge=openBtn.querySelector('.mf-badge');
+    var mfChips=[].slice.call(document.querySelectorAll('.mfilter .mf-chip'));
+    var sections=[].slice.call(sheet.querySelectorAll('.fs-section'));
+    /* 상단 칩[i] ↔ 시트 섹션[i] (순서 매핑: 학습자료는 섹션명이 '레벨'이라 이름 매칭 불가) */
+    function sectionFor(c){ var i=mfChips.indexOf(c); return i>=0?sections[i]:null; }
+    function sync(){
+      var total=0;
+      mfChips.forEach(function(c,i){ var sec=sections[i]; var n=sec?sec.querySelectorAll('.fs-chip.on').length:0; c.classList.toggle('on', n>0); });
+      sections.forEach(function(s){ total+=s.querySelectorAll('.fs-chip.on').length; });
+      if(badge){ badge.textContent=total; badge.style.display= total>0 ? '' : 'none'; }
+    }
     function open(){ dim.classList.add('open'); sheet.classList.add('open'); document.body.style.overflow='hidden'; }
     function close(){ dim.classList.remove('open'); sheet.classList.remove('open'); document.body.style.overflow=''; }
     openBtn.addEventListener('click',open);
     dim.addEventListener('click',close);
-    var apply=sheet.querySelector('.fs-apply'); if(apply) apply.addEventListener('click',close);
+    var apply=sheet.querySelector('.fs-apply'); if(apply) apply.addEventListener('click',function(){ sync(); close(); });
     [].forEach.call(sheet.querySelectorAll('.fs-chip'),function(c){ c.addEventListener('click',function(){ c.classList.toggle('on'); }); });
     var reset=sheet.querySelector('.fs-reset');
     if(reset) reset.addEventListener('click',function(){ [].forEach.call(sheet.querySelectorAll('.fs-chip.on'),function(c){ c.classList.remove('on'); }); });
+    /* 상단 칩: 활성(X)이면 클릭 시 해당 카테고리 해제, 비활성이면 필터 시트 열기 */
+    mfChips.forEach(function(c){ c.addEventListener('click',function(){
+      if(c.classList.contains('on')){ var sec=sectionFor(c); if(sec){ [].forEach.call(sec.querySelectorAll('.fs-chip.on'),function(x){ x.classList.remove('on'); }); } sync(); }
+      else { open(); }
+    }); });
     document.addEventListener('keydown',function(e){ if(e.key==='Escape' && sheet.classList.contains('open')) close(); });
+    sync();
   })();
 
   /* 검색어(?q=)로 진입 시: 제목 매칭 필터 → 결과 없으면 '검색 결과 없음' 화면 */

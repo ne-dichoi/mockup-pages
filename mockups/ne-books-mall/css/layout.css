@@ -2049,8 +2049,11 @@ body.bsheet-lock{overflow:hidden;}
   .only-mo{display:block;}
   .pill.only-mo,.hero2-ind.only-mo,.bs-mo-btn.only-mo,.bs-mo-list.only-mo{display:flex;}
   .only-pc{display:none !important;}
-  /* --- 모바일 GNB 자동 숨김/표시 (스크롤 방향 감지) --- */
-  #site-header{position:sticky;top:0;z-index:100;background:#fff;
+  /* --- 모바일 GNB 자동 숨김/표시 (스크롤 방향 감지) ---
+     헤더를 fixed(문서 흐름 밖) + body 상단 여백 = 헤더 높이로 두어야
+     숨김/표시(transform) 시 sticky+transform 조합에서 생기던 스크롤 점프가 없음 */
+  body{padding-top:74px;}
+  #site-header{position:fixed;top:0;left:0;right:0;z-index:100;background:#fff;
     transition:transform .28s ease, box-shadow .2s ease;}
   /* 드로어/카테고리 펼침 시: 하단 플로팅 CTA바(z-900) 위로 올려 최상단 표시 */
   #site-header.drawer-open,#site-header.mcat-open{z-index:2000;}
