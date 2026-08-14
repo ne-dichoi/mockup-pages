@@ -39,6 +39,7 @@
         html+='<li><a href="리스트_교재구매.html"><span class="rk">'+(idx+1)+'</span>'+esc(k)+'</a></li>';
       });
       html+='</ol><p class="sp-note">* 최근 10일간 인기 검색어 입니다.</p>';
+      html+='<a class="sp-event" href="이벤트상세.html"><img src="assets/search_event_banner.png" alt="NE Books 이벤트 리스트"></a>';
       pop.innerHTML=html;
     }
 
@@ -56,14 +57,14 @@
       var first=matches[0];
       pop.innerHTML='<div class="sa-wrap">'
         +'<ul class="sa-list">'+list+'</ul>'
-        +'<div class="sa-preview"><div class="sa-pv-card"><img src="'+first.img+'" alt="">'
-        +'<button type="button" class="sa-pv-cart" aria-label="장바구니 담기"><img src="assets/ic_bag.svg" alt=""></button></div>'
+        +'<div class="sa-preview"><div class="sa-pv-card pcover"><img src="'+first.img+'" alt="">'
+        +'<button type="button" class="pcover-cart" aria-label="장바구니 담기"><img src="assets/ic_cart_black.svg" alt=""></button></div>'
         +'<p class="sa-pv-name">'+esc(first.title)+'</p></div>'
         +'</div>';
       var items=[].slice.call(pop.querySelectorAll('.sa-list .it'));
-      var pvImg=pop.querySelector('.sa-pv-card img');
+      var pvImg=pop.querySelector('.sa-pv-card > img');
       var pvName=pop.querySelector('.sa-pv-name');
-      var pvCart=pop.querySelector('.sa-pv-cart');
+      var pvCart=pop.querySelector('.pcover-cart');
       var curBook=first;
       items.forEach(function(li){
         li.addEventListener('mouseenter',function(){
