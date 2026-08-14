@@ -70,12 +70,12 @@
       pop.classList.add('wide');
       /* GNB(헤더) 검색에서만 장바구니 버튼 노출 — 폼 내 교재선택(onSelect)에서는 제외 */
       var showCart=!opts.onSelect;
-      var cartBtn=showCart?'<button class="sa-cart" type="button" aria-label="장바구니 담기"><img src="assets/ic_cart_black.svg" alt=""></button>':'';
       var list=matches.map(function(b,i){
-        return '<li class="it'+(i===0?' on':'')+'" data-i="'+i+'"><a href="'+b.url+'">'+esc(b.title)+'</a>'+cartBtn+'</li>';
+        return '<li class="it'+(i===0?' on':'')+'" data-i="'+i+'"><a href="'+b.url+'">'+esc(b.title)+'</a></li>';
       }).join('');
       var first=matches[0];
-      var pvCart=showCart?'<button class="sa-pv-cart" type="button" aria-label="장바구니 담기"><img src="assets/ic_cart_black.svg" alt=""><span>장바구니 담기</span></button>':'';
+      /* 미리보기 이미지에만 장바구니 버튼(관심 시리즈 원형 버튼 스타일) */
+      var pvCart=showCart?'<button class="sa-pv-cart" type="button" aria-label="장바구니 담기"><img src="assets/ic_cart_black.svg" alt="장바구니"></button>':'';
       pop.innerHTML='<div class="sa-wrap">'
         +'<ul class="sa-list">'+list+'</ul>'
         +'<div class="sa-preview"><div class="sa-pv-card"><img src="'+first.img+'" alt="">'+pvCart+'</div>'
@@ -95,9 +95,6 @@
         if(opts.onSelect){
           li.querySelector('a').addEventListener('click',function(e){ e.preventDefault(); opts.onSelect(matches[+li.getAttribute('data-i')]); });
         }
-        /* [10월반영] 검색결과 행에서 바로 장바구니 담기 */
-        var rowCart=li.querySelector('.sa-cart');
-        if(rowCart){ rowCart.addEventListener('click',function(e){ e.preventDefault(); e.stopPropagation(); addToCart(matches[+li.getAttribute('data-i')]); }); }
       });
       /* [10월반영] 미리보기 이미지의 장바구니 버튼 */
       var pvCartBtn=pop.querySelector('.sa-pv-cart');
