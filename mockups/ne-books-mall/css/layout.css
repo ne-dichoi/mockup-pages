@@ -1655,10 +1655,8 @@ a{color:inherit;text-decoration:none;}
   .page-my #cc-qna .iq-preinfo .btns{flex-wrap:wrap;gap:8px;}
   .page-my #cc-qna .iq-preinfo .btns a{flex:1 1 calc(50% - 4px);width:auto;min-width:0;height:44px;border-color:var(--btn);background:#fff;}
   .page-my #cc-qna .iq-preinfo .btns a:first-child{flex-basis:100%;}
-  /* 폼 제목 */
-  .page-my #cc-qna .iq-form-title{padding:40px 20px 16px;font-family:var(--display);font-weight:700;font-size:18px;line-height:24px;color:var(--ink);}
-  /* 폼: 세로 스택 */
-  .page-my #cc-qna .iq-form{margin-top:0;border-top:0;padding:0 20px 24px;display:flex;flex-direction:column;gap:24px;}
+  /* 폼: 세로 스택 (회색박스↔상담유형 40px, 첨부파일↔하단안내 40px) */
+  .page-my #cc-qna .iq-form{margin-top:0;border-top:0;padding:40px 20px 40px;display:flex;flex-direction:column;gap:24px;}
   .page-my #cc-qna .iq-row{flex-direction:column;align-items:stretch;border-bottom:0;gap:8px;padding:0;}
   .page-my #cc-qna .iq-label{width:auto;background:none;padding:0;font-size:14px;font-weight:700;color:var(--ink);}
   .page-my #cc-qna .iq-field{padding:0;gap:8px;}
