@@ -127,7 +127,7 @@ a{color:inherit;text-decoration:none;}
 .gd-btn span{font-weight:400;}
 /* [10월반영] GNB 호버 드롭다운 우측 프로모션 (type1 동일) */
 .gd-promo{flex:0 0 260px;display:flex;flex-direction:column;border-left:1px solid var(--line);padding-left:24px;}
-.gd-promo .gd-promo-img{display:block;height:180px;border-radius:10px;background-size:cover;background-position:center;background-color:#eef1f3;}
+.gd-promo .gd-promo-img{display:block;height:180px;border-radius:10px;background-size:cover;background-position:center;background-color:#1f9d63;}
 .gd-promo .gd-promo-tit{font-size:16px;font-weight:800;color:var(--ink);margin-top:16px;line-height:1.35;}
 .gd-promo .gd-promo-desc{font-size:13px;color:var(--red);font-weight:600;margin-top:6px;}
 .header .gnb-in{display:flex;align-items:center;justify-content:safe center;gap:40px;height:56px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}
