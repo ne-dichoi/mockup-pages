@@ -1368,8 +1368,8 @@ a{color:inherit;text-decoration:none;}
 .br-info-text{font-size:14px;color:var(--muted);line-height:1.7;}
 .br-cs{display:flex;align-items:center;gap:16px;flex:none;}
 .br-cs-num{display:inline-flex;align-items:center;gap:6px;font-size:14px;color:var(--muted);white-space:nowrap;}
-.br-cs-num .ic{width:24px;height:24px;display:inline-flex;}
-.br-cs-num .ic svg{width:100%;height:100%;}
+.br-cs-num .ic{width:20px;height:20px;display:inline-flex;align-items:center;justify-content:center;}
+.br-cs-num .ic svg{display:block;}
 .br-cs-num b{color:var(--red);font-size:24px;font-weight:700;margin-left:2px;}
 .br-cs-time{font-size:14px;color:var(--muted);white-space:nowrap;}
 .br-cs-time .dim{color:var(--weak);font-size:12px;}
