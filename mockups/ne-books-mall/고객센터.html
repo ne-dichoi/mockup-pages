@@ -8,9 +8,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260815k">
-<script src="js/layout.js?v=20260815k" defer></script>
-<script src="js/search.js?v=20260815k" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260815l">
+<script src="js/layout.js?v=20260815l" defer></script>
+<script src="js/search.js?v=20260815l" defer></script>
 </head>
 <body class="page-my">
 
@@ -492,10 +492,11 @@
                 <button type="button" class="oh-sel-cur"><span class="oh-sel-lb">주문번호 선택 (선택)</span><span class="ic"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#1d1717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
                 <div class="oh-sel-menu" hidden><a class="on" data-ph>주문번호 선택 (선택)</a><a>NB20260608-000112 · 2026.06.08 주문</a><a>NB20260525-000041 · 2026.05.25 주문</a><a>NB20260511-000027 · 2026.05.11 주문</a></div>
               </div>
-              <!-- 취소/환불 상담분류 선택 시에만 노출: 문의 상품 선택 버튼 + 안내 -->
+              <!-- 안내(주문번호/상품 아래, 문의 상품 선택 버튼 위) -->
+              <p class="iq-help iq-order-help">* 주문번호 혹은 상품을 선택해서 문의해주시면 더 빠른 답변이 가능합니다.<br>* 상품 선택은 상담을 위한 절차이며, 반품/환불 여부는 상담 후 안내됩니다.</p>
+              <!-- 반품/환불 상담분류 선택 시에만 노출: 문의 상품 선택 버튼(설명은 위) -->
               <div class="iq-order-pick" id="iqOrderPick" hidden>
                 <button type="button" class="btn-line" id="iqPickBtn">문의 상품 선택</button>
-                <span class="iq-pick-hint">* 상품 선택은 상담을 위한 절차이며, 반품/환불 여부는 상담 후 안내됩니다.</span>
               </div>
               <!-- 환불 문의 상품·수량 선택 (문의 상품 선택 버튼 클릭 시 노출) -->
               <div class="pr-refund" id="prRefund" hidden>
@@ -535,7 +536,6 @@
                   <div class="pr-foot"><span class="pr-foot-t">문의 상품 수량 합계</span><span class="pr-foot-v"><b id="prTotal">15</b></span></div>
                 </div>
               </div>
-              <p class="iq-help">* 주문번호 혹은 상품을 선택해주시면 더 빠른 답변이 가능합니다.</p>
             </div>
           </div>
 
@@ -982,7 +982,8 @@
     ];
     function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
     function render(q){
-      var list=BOOKS.filter(function(b){return !q||b.title.toLowerCase().indexOf(q.toLowerCase())>=0;});
+      if(!q){ results.innerHTML=''; return; } /* 입력 전에는 결과 미노출(자동완성) */
+      var list=BOOKS.filter(function(b){return b.title.toLowerCase().indexOf(q.toLowerCase())>=0;});
       if(!list.length){ results.innerHTML='<li class="bsheet-empty">\''+esc(q)+'\'에 대한 검색 결과가 없습니다.</li>'; return; }
       results.innerHTML=list.map(function(b){ return '<li><button type="button" class="bsheet-item" data-i="'+BOOKS.indexOf(b)+'">'+esc(b.title)+'</button></li>'; }).join('');
     }
