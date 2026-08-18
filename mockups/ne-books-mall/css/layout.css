@@ -1156,13 +1156,13 @@ a{color:inherit;text-decoration:none;}
 .wl-count .n{color:var(--ink);}
 .wl-clear{height:44px;box-sizing:border-box;border:1px solid var(--btn);border-radius:8px;padding:0 24px;background:#fff;font-family:var(--sans);font-size:14px;font-weight:500;color:var(--ink);cursor:pointer;}
 .wl-clear:hover{background:var(--gray-bg);}
-/* 찜 페이지: 최대 6열 반응형(넓으면 6열까지 채우고, 카드가 220px보다 좁아지면 카드가 아래 줄로 떨어짐). max()로 6열 상한 유지 */
-.wl-grid{margin-top:16px;gap:24px;grid-template-columns:repeat(auto-fill,minmax(max(220px, (100% - 5 * 24px) / 6), 1fr));}
+/* 찜 페이지: 최대 6열 반응형(넓으면 6열, 카드가 270px보다 좁아지면 카드가 아래 줄로 떨어짐 → 6개 안 돼도 됨). max()로 6열 상한 유지 */
+.wl-grid{margin-top:16px;gap:24px;grid-template-columns:repeat(auto-fill,minmax(max(248px, (100% - 5 * 24px) / 6), 1fr));}
 /* 찜 탭: 알약 탭은 기존 위치(컨테이너 최대폭 안) 유지하고, 찜 콘텐츠(#tab-wish)만 전체폭(양옆 40px)으로 확장 */
 @media (min-width:1024px){
   body[data-mytab="wish"] #tab-wish{margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);padding-left:40px;padding-right:40px;box-sizing:border-box;}
-  /* 카드가 좁아져도 교재 이미지가 잘리지 않게(비율 유지). 좌우 과여백 제거 → 좁아지면 열이 줄어 카드가 아래로 */
-  #tab-wish .wl-grid .mb-cover{padding:0 16px;}
+  /* 카드 안 좌우 40px 여백 유지 + 교재 이미지는 비율 유지(잘림 방지). 카드가 좁아지면 열이 줄어 카드가 아래로 */
+  #tab-wish .wl-grid .mb-cover{padding:0 40px;}
   #tab-wish .wl-grid .mb-cover img{width:188px;max-width:100%;height:auto;aspect-ratio:188 / 246;object-fit:cover;}
 }
 /* 홈 찜/최근본 미리보기: 한 줄만 노출(다음 줄로 안 넘기고 폭에 맞는 개수만: 3개 fit→3개, 4개 fit→4개).
