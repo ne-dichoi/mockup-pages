@@ -256,26 +256,27 @@
   .cn-cat:hover{background:#f7f8fa;color:#191919;}
   .cn-cat.on{background:#e83828;color:#fff;font-weight:700;}
   .cn-cat.on .arw{opacity:1;}
-  .cn-banner{position:relative;border-radius:14px;overflow:hidden;padding:28px 32px;min-height:310px;display:flex;flex-direction:column;justify-content:flex-start;transition:background .35s ease;}
-  .cn-bn-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px;}
-  .cn-bn-flag{font-size:13px;font-weight:700;color:#e83828;margin-bottom:0;}
-  .cn-bn-cta{font-size:13px;color:#555;white-space:nowrap;flex:none;}
+  .cn-banner{position:relative;border-radius:14px;overflow:hidden;padding:28px 32px;display:grid;grid-template-columns:260px 1fr;gap:40px;align-items:center;transition:background .35s ease;}
+  .cn-bn-left{display:flex;flex-direction:column;align-items:flex-start;}
+  .cn-bn-flag{font-size:12px;font-weight:700;color:#e83828;margin-bottom:12px;}
+  .cn-bn-ttl{font-weight:800;font-size:24px;line-height:1.32;color:#191919;margin-bottom:10px;}
+  .cn-bn-desc{font-size:13px;color:#555;line-height:1.6;margin-bottom:18px;}
+  .cn-bn-cta{font-size:13px;color:#555;font-weight:600;}
   .cn-bn-cta:hover{color:#191919;}
-  .cn-bn-ttl{font-weight:800;font-size:22px;line-height:1.35;color:#191919;}
-  .cn-bn-desc{margin-top:10px;font-size:14px;color:#555;line-height:1.6;max-width:520px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
-  .cn-bn-series{margin-top:16px;display:flex;flex-wrap:wrap;gap:6px;}
-  .cn-bn-series a{padding:6px 14px;border-radius:9999px;background:rgba(255,255,255,.75);border:1px solid #ededed;font-size:13px;color:#191919;}
+  .cn-bn-right{display:flex;flex-direction:column;gap:14px;}
+  .cn-bn-series{display:flex;flex-wrap:wrap;gap:7px;}
+  .cn-bn-series a{padding:5px 13px;border-radius:9999px;background:rgba(255,255,255,.8);border:1px solid rgba(0,0,0,.1);font-size:13px;color:#191919;}
   .cn-bn-series a:hover{border-color:#191919;}
-  .cn-bn-books{margin-top:20px;display:flex;gap:12px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px;}
-  .cn-bn-books::-webkit-scrollbar{display:none;}
-  .cn-bn-book{display:flex;flex-direction:column;align-items:center;gap:6px;width:80px;flex:none;}
-  .cn-bn-book-img{position:relative;width:80px;}
-  .cn-bn-book-img img{width:80px;aspect-ratio:2/3;object-fit:cover;border-radius:6px;box-shadow:3px 6px 14px rgba(0,0,0,.18);background:#fff;display:block;}
-  .cn-bn-cart{position:absolute;right:4px;bottom:4px;width:32px;height:32px;background:#191919;border:0;border-radius:999px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.35);z-index:1;}
-  .cn-bn-cart img{width:16px;height:16px;filter:invert(1);}
-  .cn-bn-book .nm{font-size:11px;color:#555;line-height:1.4;text-align:center;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;width:80px;}
+  .cn-bn-books{display:flex;gap:10px;}
+  .cn-bn-book{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;gap:5px;}
+  .cn-bn-book-img{position:relative;width:100%;}
+  .cn-bn-book-img img{width:100%;aspect-ratio:2/3;object-fit:cover;border-radius:6px;box-shadow:3px 6px 14px rgba(0,0,0,.18);background:#fff;display:block;}
+  .cn-bn-cart{position:absolute;right:3px;bottom:3px;width:28px;height:28px;background:#191919;border:0;border-radius:999px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.35);z-index:1;}
+  .cn-bn-cart img{width:14px;height:14px;filter:invert(1);}
+  .cn-bn-book .nm{font-size:11px;color:#555;line-height:1.3;text-align:center;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;width:100%;}
+  @media (max-width:1023px){.cn-banner{grid-template-columns:1fr;gap:16px;padding:20px;}}
   /* ===== 맞춤 교재 세트 (from phase2) ===== */
-  .t2set-sec{padding:44px 0;background:#fff;}
+  .t2set-sec{padding:24px 0 44px;background:#fff;}
   .t2-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:20px;}
   .t2-head h2{font-size:24px;font-weight:800;letter-spacing:-.5px;color:#191919;}
   .t2-head h2 .hl{color:#e83828;}
@@ -674,13 +675,19 @@
       btns.forEach(function(b,idx){ b.classList.toggle('on',idx===i); });
       var c=CATS[i];
       bnEl.style.background=c.bg;
-      bnEl.innerHTML='<div class="cn-bn-top"><span class="cn-bn-flag">'+c.flag+'</span><a class="v3-more cn-bn-cta" href="리스트_교재구매.html">'+c.name+' 전체 보기 &#8250;</a></div>'
-        +'<h3 class="cn-bn-ttl">'+c.ttl+'</h3>'
-        +'<p class="cn-bn-desc">'+c.desc+'</p>'
-        +'<div class="cn-bn-series">'+c.series.map(function(s){ return '<a href="리스트_교재구매.html">'+s+'</a>'; }).join('')+'</div>'
-        +'<div class="cn-bn-books">'+c.books.map(function(b){
-          return '<div class="cn-bn-book"><div class="cn-bn-book-img"><img src="'+b.c+'" alt="'+b.n+'"><button class="cn-bn-cart" aria-label="장바구니" onclick="location.href=\'장바구니.html\'"><img src="assets/ic_cart_black.svg" alt=""></button></div><span class="nm">'+b.n+'</span></div>';
-        }).join('')+'</div>';
+      bnEl.innerHTML=
+        '<div class="cn-bn-left">'
+          +'<span class="cn-bn-flag">'+c.flag+'</span>'
+          +'<h3 class="cn-bn-ttl">'+c.ttl+'</h3>'
+          +'<p class="cn-bn-desc">'+c.desc+'</p>'
+          +'<a class="v3-more cn-bn-cta" href="리스트_교재구매.html">'+c.name+' 전체 보기 &#8250;</a>'
+        +'</div>'
+        +'<div class="cn-bn-right">'
+          +'<div class="cn-bn-series">'+c.series.map(function(s){ return '<a href="리스트_교재구매.html">'+s+'</a>'; }).join('')+'</div>'
+          +'<div class="cn-bn-books">'+c.books.map(function(b){
+            return '<div class="cn-bn-book"><div class="cn-bn-book-img"><img src="'+b.c+'" alt="'+b.n+'"><button class="cn-bn-cart" aria-label="장바구니" onclick="event.preventDefault();location.href=\'장바구니.html\'"><img src="assets/ic_cart_black.svg" alt=""></button></div><span class="nm">'+b.n+'</span></div>';
+          }).join('')+'</div>'
+        +'</div>';
     }
     function startRoll(){
       clearInterval(rollTimer);
