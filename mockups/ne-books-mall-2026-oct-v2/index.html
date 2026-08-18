@@ -256,13 +256,13 @@
   .cn-cat:hover{background:#f7f8fa;color:#191919;}
   .cn-cat.on{background:#e83828;color:#fff;font-weight:700;}
   .cn-cat.on .arw{opacity:1;}
-  .cn-banner{position:relative;border-radius:14px;overflow:hidden;padding:28px 32px;min-height:0;display:flex;flex-direction:column;justify-content:center;transition:background .35s ease;}
+  .cn-banner{position:relative;border-radius:14px;overflow:hidden;padding:28px 32px;min-height:310px;display:flex;flex-direction:column;justify-content:flex-start;transition:background .35s ease;}
   .cn-bn-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px;}
   .cn-bn-flag{font-size:13px;font-weight:700;color:#e83828;margin-bottom:0;}
   .cn-bn-cta{font-size:13px;color:#555;white-space:nowrap;flex:none;}
   .cn-bn-cta:hover{color:#191919;}
   .cn-bn-ttl{font-weight:800;font-size:22px;line-height:1.35;color:#191919;}
-  .cn-bn-desc{margin-top:10px;font-size:14px;color:#555;line-height:1.6;max-width:520px;}
+  .cn-bn-desc{margin-top:10px;font-size:14px;color:#555;line-height:1.6;max-width:520px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
   .cn-bn-series{margin-top:16px;display:flex;flex-wrap:wrap;gap:6px;}
   .cn-bn-series a{padding:6px 14px;border-radius:9999px;background:rgba(255,255,255,.75);border:1px solid #ededed;font-size:13px;color:#191919;}
   .cn-bn-series a:hover{border-color:#191919;}
@@ -271,9 +271,70 @@
   .cn-bn-book{display:flex;flex-direction:column;align-items:center;gap:6px;width:80px;flex:none;}
   .cn-bn-book-img{position:relative;width:80px;}
   .cn-bn-book-img img{width:80px;aspect-ratio:2/3;object-fit:cover;border-radius:6px;box-shadow:3px 6px 14px rgba(0,0,0,.18);background:#fff;display:block;}
-  .cn-bn-cart{position:absolute;right:4px;bottom:4px;width:28px;height:28px;background:#191919;border:0;border-radius:999px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.25);}
-  .cn-bn-cart img{width:14px;height:14px;filter:brightness(0) invert(1);}
+  .cn-bn-cart{position:absolute;right:4px;bottom:4px;width:32px;height:32px;background:#191919;border:0;border-radius:999px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.35);z-index:1;}
+  .cn-bn-cart img{width:16px;height:16px;filter:invert(1);}
   .cn-bn-book .nm{font-size:11px;color:#555;line-height:1.4;text-align:center;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;width:80px;}
+  /* ===== 맞춤 교재 세트 (from phase2) ===== */
+  .t2set-sec{padding:44px 0;background:#fff;}
+  .t2-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:20px;}
+  .t2-head h2{font-size:24px;font-weight:800;letter-spacing:-.5px;color:#191919;}
+  .t2-head h2 .hl{color:#e83828;}
+  .t2set-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .t2set-card{background:#fff;border:1px solid #ededed;border-radius:14px;overflow:hidden;display:flex;flex-direction:column;transition:.15s;}
+  .t2set-card:hover{box-shadow:0 10px 22px rgba(0,0,0,.1);transform:translateY(-3px);}
+  .t2set-card .st-top{position:relative;padding:20px 20px 16px;background:linear-gradient(135deg,#f7f7f7,#f0f0f0);}
+  .t2set-card .st-goal{display:inline-block;font-size:12px;font-weight:700;color:#fff;background:#1a9d54;border-radius:12px;padding:4px 11px;margin-bottom:10px;}
+  .t2set-card .st-goal.b{background:#0d9488;}
+  .t2set-card .st-goal.c{background:#ff8a1e;}
+  .t2set-card .st-name{font-size:19px;font-weight:800;letter-spacing:-.5px;margin:0 0 4px;color:#191919;}
+  .t2set-card .st-desc{font-size:12.5px;color:#7a8a7a;margin:0;}
+  .t2set-card .st-covers{display:flex;margin-top:16px;padding-left:6px;}
+  .t2set-card .st-covers .cv{width:66px;height:88px;border-radius:6px;overflow:hidden;box-shadow:0 4px 10px rgba(0,0,0,.16);background:#fff;margin-left:-14px;display:flex;align-items:center;justify-content:center;border:1px solid #f0f0f0;}
+  .t2set-card .st-covers .cv:first-child{margin-left:0;}
+  .t2set-card .st-covers .cv img{width:100%;height:100%;object-fit:cover;}
+  .t2set-card .st-body{padding:16px 20px 20px;display:flex;flex-direction:column;flex:1;}
+  .t2set-card .st-list{list-style:none;margin:0 0 14px;padding:12px 0 0;border-top:1px dashed #ececec;}
+  .t2set-card .st-list li{font-size:12.5px;color:#666;line-height:1.9;display:flex;justify-content:space-between;}
+  .t2set-card .st-list li .q{color:#aaa;}
+  .t2set-card .st-pricebar{margin-top:auto;display:flex;align-items:flex-end;justify-content:space-between;}
+  .t2set-card .st-save{font-size:12px;color:#e83828;font-weight:700;}
+  .t2set-card .st-was{font-size:12px;color:#aaa;text-decoration:line-through;}
+  .t2set-card .st-now{font-size:22px;font-weight:800;color:#191919;}
+  .t2set-card .st-now .pct{color:#e83828;margin-right:4px;}
+  .t2set-card .st-cta{margin-top:14px;display:flex;gap:8px;}
+  .t2set-card .st-cta a{flex:1;text-align:center;padding:12px 0;border-radius:9px;font-weight:700;font-size:14px;}
+  .t2set-card .st-cta .cart{background:#f1f1f1;color:#333;}
+  .t2set-card .st-cta .cart:hover{background:#e6e6e6;}
+  .t2set-card .st-cta .buy{background:#e83828;color:#fff;}
+  .t2set-card .st-cta .buy:hover{background:#c92e20;}
+  @media (max-width:900px){.t2set-grid{grid-template-columns:1fr;}}
+
+  /* ===== 이벤트 · 신간 · 세미나 리스트 ===== */
+  .evlist-sec{padding:0 0 48px;background:#fff;}
+  .evlist-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;}
+  .evlist-head h2{font-size:24px;font-weight:800;color:#191919;letter-spacing:-.5px;}
+  .evlist-more{font-size:14px;color:#8c8c8c;font-weight:600;}
+  .evlist-more:hover{color:#191919;}
+  .evlist-row{display:flex;gap:16px;overflow-x:auto;scrollbar-width:none;cursor:grab;padding-bottom:4px;}
+  .evlist-row::-webkit-scrollbar{display:none;}
+  .evlist-row.dragging{cursor:grabbing;}
+  .evlist-card{flex:none;width:260px;border:1px solid #ededed;border-radius:12px;overflow:hidden;background:#fff;transition:box-shadow .15s;}
+  .evlist-card:hover{box-shadow:0 6px 18px rgba(0,0,0,.1);}
+  .evlist-thumb{aspect-ratio:3/2;overflow:hidden;background:#f7f8fa;}
+  .evlist-thumb img{width:100%;height:100%;object-fit:cover;}
+  .evlist-body{padding:12px 14px 14px;border-top:1px solid #ededed;}
+  .evlist-badges{display:flex;gap:5px;margin-bottom:8px;}
+  .evlist-bdg{font-size:11px;font-weight:700;padding:3px 8px;border-radius:6px;}
+  .evlist-bdg.type{background:#191919;color:#fff;}
+  .evlist-bdg.cat{background:#f5f5f5;color:#555;}
+  .evlist-ttl{font-size:13.5px;font-weight:700;color:#191919;line-height:1.4;margin-bottom:3px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+  .evlist-desc{font-size:12px;color:#8c8c8c;line-height:1.4;}
+  .evlist-status{margin-top:10px;display:flex;align-items:center;gap:8px;}
+  .evlist-state{font-size:11px;font-weight:700;padding:2px 9px;border-radius:999px;background:#e8f5e9;color:#2e7d32;}
+  .evlist-state.done{background:#f5f5f5;color:#aaa;}
+  .evlist-state.end{background:#fff3e0;color:#e65100;}
+  .evlist-date{font-size:11px;color:#aaa;}
+
   /* 메인 아이콘 바로가기 축소 (데스크톱) */
   .mainicons{padding:20px 0 28px !important;}
   .mainicons .pill{width:100px !important;height:100px !important;}
@@ -340,31 +401,113 @@
     </div>
   </section>
 
-  <!-- ===== 목적별 추천 코스 (구 베스트셀러 탭 구조 재활용 — 인기순위→목적별 코스로 재정의, 2026 반영) ===== -->
-  <section class="bestseller">
+  <!-- ===== 2학기 개학 대비, 맞춤 교재 세트 ===== -->
+  <section class="t2set-sec">
     <div class="container">
-      <div class="bs-wrap">
-        <div class="bs-head">
-          <div class="sec-title">지금 학원에서 가장 많이 쓰는 교재</div>
-          <div class="bs-tabs">
-            <span class="tab active">중등 어휘암기 추천 코스</span>
-            <span class="tab">쉬운 암기 필수 VOCA</span>
-            <span class="tab">스스로 읽는 파닉스</span>
-            <span class="tab">패턴미학 조통문법서</span>
-            <span class="tab">고등 독해 완성</span>
+      <div class="t2-head"><h2>2학기 개학 대비, <span class="hl">맞춤 교재 세트</span></h2></div>
+      <div class="t2set-grid">
+        <div class="t2set-card">
+          <div class="st-top"><span class="st-goal">방학 완성</span><p class="st-name">중등 방학 3주 완성 세트</p><p class="st-desc">어휘 + 문법 + 독해를 한 번에</p>
+            <div class="st-covers"><span class="cv"><img src="assets/best_5.png" alt=""></span><span class="cv"><img src="assets/best_4.png" alt=""></span><span class="cv"><img src="assets/best_2.png" alt=""></span></div></div>
+          <div class="st-body"><ul class="st-list">
+            <li><span>능률 VOCA 어원편</span><span class="q">1권</span></li>
+            <li><span>그래머 인사이드 Lv1</span><span class="q">1권</span></li>
+            <li><span>주니어 리딩튜터</span><span class="q">1권</span></li>
+          </ul>
+            <div class="st-pricebar"><div><div class="st-save">11,500원 절약</div><div class="st-was">41,000원</div></div><div class="st-now"><span class="pct">28%</span>29,500원</div></div>
+            <div class="st-cta"><a class="cart" href="장바구니.html">세트 담기</a><a class="buy" href="주문결제.html">바로구매</a></div>
           </div>
         </div>
-        <div class="bs-row">
-          <div class="bs-promo">
-            <span class="label">중등 어휘암기 추천 코스</span>
-            <div class="ttl">성적이 달라지는<br>방학 특강 조합</div>
-            <div class="desc">문법 개념 정리 + 리스닝 훈련으로 방학 대비 끝!<br>지금 기획전에서 만나보세요.</div>
-            <a class="btn" href="#">장바구니 담기</a>
+        <div class="t2set-card">
+          <div class="st-top"><span class="st-goal b">파닉스 마스터</span><p class="st-name">초등 파닉스 4권 마스터 세트</p><p class="st-desc">스스로 읽는 힘, 기초부터 완성</p>
+            <div class="st-covers"><span class="cv"><img src="assets/best_1.png" alt=""></span><span class="cv"><img src="assets/best_2.png" alt=""></span><span class="cv"><img src="assets/best_3.png" alt=""></span><span class="cv"><img src="assets/best_1.png" alt=""></span></div></div>
+          <div class="st-body"><ul class="st-list">
+            <li><span>Phonics Code 1~4 SB</span><span class="q">4권</span></li>
+            <li><span>세이펜 스티커</span><span class="q">1권</span></li>
+            <li><span>정답·MP3 자료</span><span class="q">무료</span></li>
+          </ul>
+            <div class="st-pricebar"><div><div class="st-save">21,000원 절약</div><div class="st-was">60,000원</div></div><div class="st-now"><span class="pct">35%</span>39,000원</div></div>
+            <div class="st-cta"><a class="cart" href="장바구니.html">세트 담기</a><a class="buy" href="주문결제.html">바로구매</a></div>
           </div>
-          <div class="bs-list" id="bsList"></div>
-          <div class="bs-mo-list only-mo" id="bsMoList"></div>
-          <a class="bs-mo-btn only-mo" href="장바구니.html">장바구니 담기</a>
         </div>
+        <div class="t2set-card">
+          <div class="st-top"><span class="st-goal c">수능 파이널</span><p class="st-name">고등 수능 파이널 세트</p><p class="st-desc">독해·듣기 실전 마무리 조합</p>
+            <div class="st-covers"><span class="cv"><img src="assets/newbook_sample.png" alt=""></span><span class="cv"><img src="assets/best_4.png" alt=""></span><span class="cv"><img src="assets/best_5.png" alt=""></span></div></div>
+          <div class="st-body"><ul class="st-list">
+            <li><span>수능만만 영어독해</span><span class="q">1권</span></li>
+            <li><span>수능만만 영어듣기</span><span class="q">1권</span></li>
+            <li><span>능률 VOCA 수능완성</span><span class="q">1권</span></li>
+          </ul>
+            <div class="st-pricebar"><div><div class="st-save">13,500원 절약</div><div class="st-was">45,000원</div></div><div class="st-now"><span class="pct">30%</span>31,500원</div></div>
+            <div class="st-cta"><a class="cart" href="장바구니.html">세트 담기</a><a class="buy" href="주문결제.html">바로구매</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 이벤트 · 신간 · 세미나 ===== -->
+  <section class="evlist-sec">
+    <div class="container">
+      <div class="evlist-head">
+        <h2>이벤트 · 신간 · 세미나</h2>
+        <a class="evlist-more" href="고객센터.html#event">전체보기 &#8250;</a>
+      </div>
+      <div class="evlist-row" id="evlistRow">
+        <a class="evlist-card" href="이벤트상세.html">
+          <div class="evlist-thumb"><img src="assets/img1.png" alt=""></div>
+          <div class="evlist-body">
+            <div class="evlist-badges"><span class="evlist-bdg type">이벤트</span><span class="evlist-bdg cat">ELT</span></div>
+            <p class="evlist-ttl">성적이 달라지는 방학 특강 조합</p>
+            <p class="evlist-desc">문법 개념 정리 + 리스닝 훈련</p>
+            <div class="evlist-status"><span class="evlist-state">진행중</span><span class="evlist-date">2026.07.01 ~ 2026.07.31</span></div>
+          </div>
+        </a>
+        <a class="evlist-card" href="세미나상세.html">
+          <div class="evlist-thumb"><img src="assets/img2.png" alt=""></div>
+          <div class="evlist-body">
+            <div class="evlist-badges"><span class="evlist-bdg type">세미나</span><span class="evlist-bdg cat">ELT</span></div>
+            <p class="evlist-ttl">성적이 달라지는 방학 특강 조합</p>
+            <p class="evlist-desc">문법 개념 정리 + 리스닝 훈련</p>
+            <div class="evlist-status"><span class="evlist-state end">당첨자발표</span><span class="evlist-date">2026.06.01 ~ 2026.07.01</span></div>
+          </div>
+        </a>
+        <a class="evlist-card" href="신간개정상세.html">
+          <div class="evlist-thumb"><img src="assets/img3.png" alt=""></div>
+          <div class="evlist-body">
+            <div class="evlist-badges"><span class="evlist-bdg type">신간·개정</span><span class="evlist-bdg cat">초/중/고</span></div>
+            <p class="evlist-ttl">[신간] 달곰한 Literacy</p>
+            <p class="evlist-desc">문법 개념 정리 + 리스닝 훈련</p>
+            <div class="evlist-status"><span class="evlist-state done">종료</span><span class="evlist-date">2025.06.01 ~ 2025.07.01</span></div>
+          </div>
+        </a>
+        <a class="evlist-card" href="세미나상세.html">
+          <div class="evlist-thumb"><img src="assets/img4.png" alt=""></div>
+          <div class="evlist-body">
+            <div class="evlist-badges"><span class="evlist-bdg type">세미나</span><span class="evlist-bdg cat">공통</span></div>
+            <p class="evlist-ttl">성적이 달라지는 방학 특강 조합</p>
+            <p class="evlist-desc">문법 개념 정리 + 리스닝 훈련</p>
+            <div class="evlist-status"><span class="evlist-state">진행중</span></div>
+          </div>
+        </a>
+        <a class="evlist-card" href="세미나상세.html">
+          <div class="evlist-thumb"><img src="assets/img5.png" alt=""></div>
+          <div class="evlist-body">
+            <div class="evlist-badges"><span class="evlist-bdg type">세미나</span><span class="evlist-bdg cat">공통</span></div>
+            <p class="evlist-ttl">[세미나] 8월 혼강 세미나</p>
+            <p class="evlist-desc">수업이 달라지는 기준</p>
+            <div class="evlist-status"><span class="evlist-state">진행중</span><span class="evlist-date">2026.06.01 ~ 2026.07.01</span></div>
+          </div>
+        </a>
+        <a class="evlist-card" href="신간개정상세.html">
+          <div class="evlist-thumb"><img src="assets/img1.png" alt=""></div>
+          <div class="evlist-body">
+            <div class="evlist-badges"><span class="evlist-bdg type">신간·개정</span><span class="evlist-bdg cat">공통</span></div>
+            <p class="evlist-ttl">[개정] 능률VOCA (11종)</p>
+            <p class="evlist-desc">어휘의 뜻과 쓰임을 확실하게 기억시키는 특별한 어휘각인 체계</p>
+            <div class="evlist-status"><span class="evlist-state">진행중</span></div>
+          </div>
+        </a>
       </div>
     </div>
   </section>
@@ -464,48 +607,7 @@
 (function(){
   'use strict';
 
-  /* ---------- Bestseller product cards (6 identical, per design) ---------- */
-  (function(){
-    var list=document.getElementById('bsList'); if(!list) return;
-    /* [10월반영] ne-books-mall 베스트셀러(.bs-card) 디자인으로 렌더 */
-    var BSBOOKS=[
-      {t:'능률VOCA 어원편 - 수능 필수 어휘', ph:'어휘', was:'15,000원', rate:'10%', now:'13,500원', img:'best_1.png'},
-      {t:'리딩튜터 기본 - 유형별 독해 훈련', ph:'독해', was:'14,000원', rate:'10%', now:'12,600원', img:'best_2.png'},
-      {t:'그래머존 Basic - 기초 영문법', ph:'문법', was:'13,000원', rate:'10%', now:'11,700원', img:'best_3.png'},
-      {t:'중등 영어문법 3800제 Level 1', ph:'문법', was:'15,000원', rate:'10%', now:'13,500원', img:'best_4.png'},
-      {t:'스스로 읽는 파닉스 Phonics Code 1', ph:'파닉스', was:'14,000원', rate:'10%', now:'12,600원', img:'best_5.png'},
-      {t:'첫단추 독해편 - 수능 유형 입문', ph:'독해', was:'13,500원', rate:'10%', now:'12,150원', img:'best_1.png'}
-    ];
-    list.innerHTML=BSBOOKS.map(function(b){
-      return '<div class="bs-card">'
-        +'<div class="img">'
-          +'<img class="book" src="assets/'+b.img+'" alt="">'
-          +'<input type="checkbox" class="chk" checked aria-label="선택">'
-          +'<div class="cart"><span class="ico"><img src="assets/ic_cart_black.svg" alt="장바구니"></span></div>'
-        +'</div>'
-        +'<div class="bs-meta">'
-          +'<div class="ph">'+b.ph+'</div>'
-          +'<div class="name">'+b.t+'</div>'
-          +'<div class="price"><span class="now">'+b.now+'</span><span class="was">'+b.was+'</span></div>'
-        +'</div>'
-      +'</div>';
-    }).join('');
-
-    /* mobile-only: bestseller as a vertical list of rows */
-    var mo=document.getElementById('bsMoList');
-    if(mo){
-      mo.innerHTML=BSBOOKS.map(function(b){
-        return '<div class="bs-mo-row">'
-          +'<input type="checkbox" class="chk" checked aria-label="선택">'
-          +'<span class="thumb"><img src="assets/'+b.img+'" alt=""></span>'
-          +'<span class="meta">'
-            +'<span class="name">'+b.t+'</span>'
-            +'<span class="price"><span class="now">'+b.now+'</span><span class="was">'+b.was+'</span></span>'
-          +'</span>'
-        +'</div>';
-      }).join('');
-    }
-  })();
+  /* ---------- 이벤트 리스트 드래그 스크롤 ---------- */
 
   /* ---------- Click-and-drag to move a horizontal track (mouse only, no wheel hijack) ---------- */
   function enableDragScroll(el){
@@ -526,13 +628,7 @@
     el.addEventListener('click',function(e){ if(moved){ e.preventDefault(); e.stopPropagation(); } },true);
     // NOTE: no wheel handler — mouse wheel scrolls the page normally; move the list by dragging.
   }
-  enableDragScroll(document.getElementById('bsList'));
-
-  /* 베스트셀러 카드의 장바구니 아이콘 → 장바구니 페이지 */
-  (function(){
-    var list=document.getElementById('bsList'); if(!list) return;
-    list.addEventListener('click',function(e){ if(e.target.closest('.cart')){ location.href='장바구니.html'; } });
-  })();
+  enableDragScroll(document.getElementById('evlistRow'));
 
   /* ---------- 카테고리로 빠르게 ---------- */
   (function(){
