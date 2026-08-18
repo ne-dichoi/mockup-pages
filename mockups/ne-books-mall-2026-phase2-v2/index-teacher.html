@@ -217,15 +217,19 @@
   .rc-seg button.on{background:var(--ink);color:#fff;font-weight:700;}
   .rc-scroll{display:flex;gap:16px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none;}
   .rc-scroll::-webkit-scrollbar{display:none;}
-  .rc-card{width:168px;flex:none;background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;transition:box-shadow .15s,transform .15s;}
+  .rc-card{width:200px;flex:none;background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;transition:box-shadow .15s,transform .15s;}
   .rc-card:hover{box-shadow:0 8px 20px rgba(0,0,0,.08);transform:translateY(-2px);}
-  .rc-card .thumb{background:var(--gray-bg);border-radius:8px;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;overflow:hidden;}
-  .rc-card .thumb img{width:92px;aspect-ratio:7/8;object-fit:cover;object-position:top center;border-radius:3px;box-shadow:2px 4px 10px rgba(0,0,0,.16);}
-  .rc-card .tag{margin-top:12px;font-size:12px;color:var(--red);font-weight:700;}
-  .rc-card .nm{margin-top:4px;font-size:13px;color:var(--ink);line-height:1.4;height:2.8em;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;}
-  .rc-card .pr{margin-top:8px;font-size:14px;font-weight:800;color:var(--ink);}
-  .rc-card .act{margin-top:12px;width:100%;padding:9px 0;border-radius:8px;font-size:13px;cursor:pointer;border:1px solid var(--red);background:#fff;color:var(--red);font-family:var(--sans);}
-  .rc-card .act:hover{background:var(--red);color:#fff;}
+  .rc-thumb{position:relative;background:var(--gray-bg);aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .rc-thumb img{width:130px;aspect-ratio:2/3;object-fit:cover;object-position:top center;border-radius:4px;box-shadow:3px 6px 14px rgba(0,0,0,.2);}
+  .rc-cart{position:absolute;right:10px;bottom:10px;width:38px;height:38px;background:#262626;border:0;border-radius:999px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 3px 8px rgba(0,0,0,.3);}
+  .rc-cart svg{width:19px;height:19px;display:block;}
+  .rc-meta{padding:12px 14px 16px;}
+  .rc-card .tag{font-size:12px;color:var(--red);font-weight:700;}
+  .rc-card .nm{margin-top:5px;font-size:13.5px;color:var(--ink);line-height:1.4;height:2.8em;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;}
+  .rc-price{margin-top:10px;display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;}
+  .rc-price .rate{font-size:16px;font-weight:800;color:var(--red);}
+  .rc-price .now{font-size:16px;font-weight:800;color:var(--ink);}
+  .rc-price .was{font-size:12px;color:var(--weak);text-decoration:line-through;}
   @media (max-width:600px){ .rc-top{flex-direction:column;align-items:stretch;} .rc-seg{align-self:flex-start;} }
 
   /* 선생님 메인 우측 플로팅 바로가기 */
@@ -586,26 +590,30 @@
 
   /* 김능률 선생님을 위한 추천 교재 — 탭(선생님을 위한 교재 / 내가 찜한 교재) 전환, 1행 스크롤 */
   (function(){
+    var RC_CART='<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>';
     var reco=[
-      {n:'그래머 인사이드 Lv.1', tag:'문법', pr:'12,600원', c:'assets/best_4.png'},
-      {n:'리딩튜터 기본', tag:'독해', pr:'12,600원', c:'assets/best_2.png'},
-      {n:'능률VOCA 어원편', tag:'어휘', pr:'13,500원', c:'assets/best_5.png'},
-      {n:'Bricks Reading 150 · L1', tag:'Reading', pr:'13,500원', c:'assets/best_3.png'},
-      {n:'Phonics Code 1', tag:'Phonics', pr:'12,600원', c:'assets/best_1.png'},
-      {n:'중등 영어문법 3800제', tag:'문법', pr:'13,500원', c:'assets/best_4.png'}
+      {n:'그래머 인사이드 Lv.1', tag:'문법', rate:'10%', now:'12,600원', was:'14,000원', c:'assets/best_4.png'},
+      {n:'리딩튜터 기본', tag:'독해', rate:'10%', now:'12,600원', was:'14,000원', c:'assets/best_2.png'},
+      {n:'능률VOCA 어원편', tag:'어휘', rate:'10%', now:'13,500원', was:'15,000원', c:'assets/best_5.png'},
+      {n:'Bricks Reading 150 · L1', tag:'Reading', rate:'10%', now:'13,500원', was:'15,000원', c:'assets/best_3.png'},
+      {n:'Phonics Code 1', tag:'Phonics', rate:'10%', now:'12,600원', was:'14,000원', c:'assets/best_1.png'},
+      {n:'중등 영어문법 3800제', tag:'문법', rate:'10%', now:'13,500원', was:'15,000원', c:'assets/best_4.png'}
     ];
     var wish=[
-      {n:'그래머 인사이드 Lv.2', tag:'문법', pr:'13,050원', c:'assets/best_2.png'},
-      {n:'주니어 리딩튜터 1', tag:'독해', pr:'12,150원', c:'assets/best_3.png'},
-      {n:'워드마스터 중등 베이직', tag:'어휘', pr:'10,800원', c:'assets/best_4.png'},
-      {n:'능률VOCA 수능완성', tag:'어휘', pr:'15,300원', c:'assets/best_5.png'},
-      {n:'Phonics Code 2', tag:'Phonics', pr:'12,600원', c:'assets/best_1.png'}
+      {n:'그래머 인사이드 Lv.2', tag:'문법', rate:'10%', now:'13,050원', was:'14,500원', c:'assets/best_2.png'},
+      {n:'주니어 리딩튜터 1', tag:'독해', rate:'10%', now:'12,150원', was:'13,500원', c:'assets/best_3.png'},
+      {n:'워드마스터 중등 베이직', tag:'어휘', rate:'10%', now:'10,800원', was:'12,000원', c:'assets/best_4.png'},
+      {n:'능률VOCA 수능완성', tag:'어휘', rate:'10%', now:'15,300원', was:'17,000원', c:'assets/best_5.png'},
+      {n:'Phonics Code 2', tag:'Phonics', rate:'10%', now:'12,600원', was:'14,000원', c:'assets/best_1.png'}
     ];
     function cards(arr){
       return '<div class="rc-scroll">'+arr.map(function(b){
-        return '<div class="rc-card"><a class="thumb" href="교재상세_선생님.html"><img src="'+b.c+'" alt=""></a>'
-          +'<div class="tag">'+b.tag+'</div><div class="nm">'+b.n+'</div><div class="pr">'+b.pr+'</div>'
-          +'<button type="button" class="act rc-add">장바구니</button></div>';
+        return '<div class="rc-card">'
+          +'<div class="rc-thumb"><a href="교재상세_선생님.html"><img src="'+b.c+'" alt=""></a>'
+            +'<button type="button" class="rc-cart" aria-label="장바구니">'+RC_CART+'</button></div>'
+          +'<div class="rc-meta"><div class="tag">'+b.tag+'</div><div class="nm">'+b.n+'</div>'
+          +'<div class="rc-price"><span class="rate">'+b.rate+'</span><span class="now">'+b.now+'</span><span class="was">'+b.was+'</span></div></div>'
+        +'</div>';
       }).join('')+'</div>';
     }
     var PANELS={reco:cards(reco), wish:cards(wish)};
@@ -614,7 +622,7 @@
     function show(k){ body.innerHTML=PANELS[k]||''; }
     show('reco');
     seg.addEventListener('click',function(e){ var b=e.target.closest('button'); if(!b) return; [].slice.call(seg.children).forEach(function(x){ x.classList.toggle('on',x===b); }); show(b.getAttribute('data-seg')); });
-    body.addEventListener('click',function(e){ if(!e.target.closest('.rc-add')) return; if(confirm('상품이 장바구니에 담겼습니다. 장바구니로 이동하시겠습니까?')){ location.href='장바구니.html'; } });
+    body.addEventListener('click',function(e){ if(!e.target.closest('.rc-cart')) return; e.preventDefault(); if(confirm('상품이 장바구니에 담겼습니다. 장바구니로 이동하시겠습니까?')){ location.href='장바구니.html'; } });
   })();
 
   /* (히어로 우측 배너는 좌측 컬럼 높이를 CSS align-self:stretch로 자동 매칭 — JS 동기화 불필요) */
