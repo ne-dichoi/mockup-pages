@@ -511,18 +511,45 @@
     </div>
   </section>
 
-  <!-- ===== NE Tutor 서비스 (교사용 학습 플랫폼, 간이 그리드) ===== -->
-  <section class="t1t-sec" id="nt">
-    <div class="container">
-      <div class="sec-title">선생님을 위한 티칭 플랫폼, NE Tutor</div>
-      <p class="sub">지도서·시험지 자동 생성부터 레벨테스트까지, 수업 준비 시간을 줄여드립니다.</p>
-      <div class="t1t-nt-grid">
-        <a class="t1t-nt-card" href="#" target="_blank" rel="noopener"><span class="ico"><img src="assets/ic_tutor_ebook.svg" alt=""></span><span><p class="sub">지도서/수업자료</p><p class="tt">E-Book・자료</p></span></a>
-        <a class="t1t-nt-card" href="#" target="_blank" rel="noopener"><span class="ico"><img src="assets/ic_tutor_vocab.svg" alt=""></span><span><p class="sub">시험지 자동 생성</p><p class="tt">어휘 문제 마법사</p></span></a>
-        <a class="t1t-nt-card" href="#" target="_blank" rel="noopener"><span class="ico"><img src="assets/ic_tutor_grammar.svg" alt=""></span><span><p class="sub">문제 무제한 출제</p><p class="tt">문법 문제뱅크</p></span></a>
-        <a class="t1t-nt-card" href="#" target="_blank" rel="noopener"><span class="ico"><img src="assets/ic_tutor_nelt.svg" alt=""></span><span><p class="sub">iBT 영어 레벨테스트</p><p class="tt">NELT</p></span></a>
-        <a class="t1t-nt-card" href="#" target="_blank" rel="noopener"><span class="ico"><img src="assets/ic_tutor_test.svg" alt=""></span><span><p class="sub">평가/오답 자동화</p><p class="tt">성취TEST</p></span></a>
-        <a class="t1t-nt-card" href="#" target="_blank" rel="noopener"><span class="ico"><img src="assets/ic_tutor_search.svg" alt=""></span><span><p class="sub">예문검색 1분컷</p><p class="tt">문법 예문 검색</p></span></a>
+  <!-- ===== NE Tutor (일반몰 동일 아치 롤링 디자인) ===== -->
+  <section class="netutor" id="sec-netutor">
+    <div class="nt-viewport">
+      <div class="nt-wrap" id="ntWrap">
+        <div class="nt-arc">
+          <img class="circle" src="assets/netutor_arc.svg" alt="">
+          <img class="dot" src="assets/netutor_dot.svg" alt="">
+        </div>
+        <div class="nt-hot" id="ntHot" title="스크롤하여 배너 이동"></div>
+        <div class="nt-center">
+          <div class="cap"><span class="cap-sub">선생님을 위한</span> <span class="cap-main">티칭 플랫폼</span><span class="cap-logo only-mo"><img src="assets/netutor_logo.svg" alt="NE_Tutor"></span></div>
+          <div class="logo only-pc"><img src="assets/netutor_logo.svg" alt="NE_Tutor" style="width:100%;height:100%;object-fit:contain;"></div>
+        </div>
+        <div class="nt-cards" id="ntCards">
+          <div class="nt-card">
+            <div class="body"><span class="sub">지도서/수업자료</span><span class="tt">E-Book・자료</span></div>
+            <span class="ic ico"><img src="assets/ic_tutor_ebook.svg" data-n="assets/ic_tutor_ebook.svg" data-w="assets/ic_tutor_ebook_w.svg" alt=""></span>
+          </div>
+          <div class="nt-card">
+            <div class="body"><span class="sub">시험지 자동 생성</span><span class="tt">어휘 문제 마법사</span></div>
+            <span class="ic ico"><img src="assets/ic_tutor_vocab.svg" data-n="assets/ic_tutor_vocab.svg" data-w="assets/ic_tutor_vocab_w.svg" alt=""></span>
+          </div>
+          <div class="nt-card">
+            <div class="body"><span class="sub">문제 무제한 출제</span><span class="tt">문법 문제뱅크</span></div>
+            <span class="ic ico"><img src="assets/ic_tutor_grammar.svg" data-n="assets/ic_tutor_grammar.svg" data-w="assets/ic_tutor_grammar_w.svg" alt=""></span>
+          </div>
+          <div class="nt-card">
+            <div class="body"><span class="sub">iBT 영어 레벨테스트</span><span class="tt">NELT</span></div>
+            <span class="ic ico"><img src="assets/ic_tutor_nelt.svg" data-n="assets/ic_tutor_nelt.svg" data-w="assets/ic_tutor_nelt_w.svg" alt=""></span>
+          </div>
+          <div class="nt-card">
+            <div class="body"><span class="sub">평가/오답 자동화</span><span class="tt">성취TEST</span></div>
+            <span class="ic ico"><img src="assets/ic_tutor_test.svg" data-n="assets/ic_tutor_test.svg" data-w="assets/ic_tutor_test_w.svg" alt=""></span>
+          </div>
+          <div class="nt-card">
+            <div class="body"><span class="sub">예문검색 1분컷</span><span class="tt">문법 예문 검색</span></div>
+            <span class="ic ico"><img src="assets/ic_tutor_search.svg" data-n="assets/ic_tutor_search.svg" data-w="assets/ic_tutor_search_w.svg" alt=""></span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -790,6 +817,68 @@
     function end(){ if(!down) return; down=false; el.classList.remove('dragging'); }
     el.addEventListener('pointerup',end); el.addEventListener('pointercancel',end);
     el.addEventListener('click',function(e){ if(moved){ e.preventDefault(); e.stopPropagation(); } },true);
+  })();
+
+  /* ---------- NETUTOR: 아치 롤링 (일반몰 동일) ---------- */
+  (function(){
+    var wrap=document.getElementById('ntWrap'),cardsWrap=document.getElementById('ntCards');
+    if(!wrap||!cardsWrap) return;
+    var cards=[].slice.call(cardsWrap.querySelectorAll('.nt-card'));
+    var M=cards.length;
+    var stops=[{l:32,t:260},{l:407,t:130},{l:782,t:0},{l:1157,t:130},{l:1532,t:260},{l:1600,t:440,hidden:true}];
+    var CENTER=2, HIDDEN=5, offset=0;
+    function isArc(){ return window.innerWidth>1023; }
+    function stopOf(c){ return ((c+offset)%M+M)%M; }
+    function render(){
+      if(!isArc()){ cards.forEach(function(c){ c.classList.remove('red'); c._stop=undefined; c.style.opacity=''; c.style.pointerEvents=''; var im=c.querySelector('.ic img'); if(im){ var n=im.getAttribute('data-n'); if(n) im.src=n; } }); return; }
+      cards.forEach(function(card,c){
+        var s=stopOf(c), prev=card._stop, st=stops[s];
+        var entering=(prev===HIDDEN) && !st.hidden;
+        var targetOp=st.hidden?'0':'1';
+        if(entering){
+          var side=st.l<782?-1:1;
+          card.style.transition='none';
+          card.style.left=(st.l+side*90)+'px'; card.style.top=(st.t+150)+'px'; card.style.opacity='0';
+          void card.offsetWidth;
+          card.style.transition='';
+          card.style.left=st.l+'px'; card.style.top=st.t+'px'; card.style.opacity=targetOp;
+        } else {
+          card.style.transition='';
+          card.style.left=st.l+'px'; card.style.top=st.t+'px';
+          card.style.opacity=targetOp;
+        }
+        card.style.pointerEvents=st.hidden?'none':'auto';
+        card.classList.toggle('red', s===CENTER);
+        var img=card.querySelector('.ic img');
+        if(img){ var w=img.getAttribute('data-w'), n=img.getAttribute('data-n'); if(n){ img.src=(s===CENTER&&w)?w:n; } }
+        card._stop=s;
+      });
+    }
+    function scale(){
+      if(isArc()){
+        var s=0.72;
+        wrap.style.transform='scale('+s+')';
+        wrap.parentElement.style.height=(542*s)+'px';
+      } else {
+        wrap.style.transform=''; wrap.parentElement.style.height='';
+        cards.forEach(function(card){ card.style.left=''; card.style.top=''; card.style.opacity=''; card.style.pointerEvents=''; });
+      }
+    }
+    var acc=0,lastT=0;
+    function onWheel(e){
+      if(!isArc()) return;
+      var c1,c3; cards.forEach(function(c){ if(c._stop===1)c1=c; if(c._stop===3)c3=c; });
+      if(c1&&c3){ var L=c1.getBoundingClientRect().left, R=c3.getBoundingClientRect().right;
+        if(e.clientX<L || e.clientX>R) return; }
+      e.preventDefault();
+      var now=Date.now(); if(now-lastT>400) acc=0; lastT=now; acc+=e.deltaY;
+      if(acc>=90){ offset++; acc=0; render(); } else if(acc<=-90){ offset--; acc=0; render(); }
+    }
+    wrap.addEventListener('wheel',onWheel,{passive:false});
+    cards.forEach(function(card,c){ card.addEventListener('click',function(){ if(!isArc()) return; var s=stopOf(c); if(s===HIDDEN) return; offset+=(CENTER-s); render(); }); });
+    window.addEventListener('resize',function(){ scale(); render(); });
+    window.addEventListener('load',function(){ scale(); render(); });
+    scale(); render();
   })();
 })();
 </script>
