@@ -36,6 +36,9 @@
   .sr-qty{min-width:16px;text-align:center;font-size:15px;font-weight:700;color:#191919;}
   .sr-step button{width:28px;height:28px;border:1px solid var(--line);border-radius:6px;background:#fff;font-size:16px;line-height:1;color:#333;cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center;}
   .sr-step button:disabled{color:#cfcfcf;cursor:default;}
+  .sr-step .sr-buy{width:auto;margin-left:6px;padding:0 14px;height:28px;background:var(--red);border:1px solid var(--red);border-radius:6px;color:#fff;font-size:13px;font-weight:700;white-space:nowrap;}
+  .sr-step .sr-buy:hover{background:#c92e20;border-color:#c92e20;}
+  .sr-step .sr-buy:disabled{background:#e6e6e6;border-color:#e6e6e6;color:#bbb;}
   .sr-step.in .sr-qty{color:var(--red);}
   .sr-step.in .sr-cart-ic{color:var(--red);}
   .sr-card.off .sr-step{opacity:.45;}
@@ -183,6 +186,7 @@ document.addEventListener('DOMContentLoaded', function(){
         +'<span class="q sr-qty">'+(cq>0?cq:0)+'</span>'
         +'<button type="button" class="minus"'+dis+'>&minus;</button>'
         +'<button type="button" class="plus"'+dis+'>+</button>'
+        +'<button type="button" class="sr-buy"'+dis+'>바로구매</button>'
       +'</div>'
       +'<div class="sr-meta">'
         +'<span class="sr-cat">'+p.cat+'</span>'
@@ -205,6 +209,8 @@ document.addEventListener('DOMContentLoaded', function(){
 
     var card=e.target.closest('.sr-card'); if(!card) return;
     var p=byId[card.getAttribute('data-id')]; if(!p || p.state) return;
+    /* 바로구매 → 주문결제로 이동 */
+    if(e.target.classList.contains('sr-buy')){ if(window.NECart){ NECart.setQty(toCartItem(p), Math.max(1, parseInt(card.querySelector('.q').textContent,10)||1)); } location.href='주문결제.html'; return; }
     var isPlus=e.target.classList.contains('plus');
     var isMinus=e.target.classList.contains('minus');
     if(!isPlus && !isMinus) return;
