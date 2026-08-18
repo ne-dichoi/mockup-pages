@@ -21,7 +21,7 @@
   --gray-bg:#f3f3f3;
   --sans:'Pretendard','Noto Sans KR',sans-serif;
   --display:'Paperlogy','Pretendard','Noto Sans KR',sans-serif;
-  --maxw:1440px;
+  --maxw:1600px;  /* 실험: 상한 1440→1600 (넓은 화면에서 콘텐츠 1360→1520). 원복 시 1440px */
   --blue:#2f74d1;
   --weak:#a9a9a9;
   --btn:#4d4e4d;
