@@ -1662,6 +1662,26 @@ body.bsheet-lock{overflow:hidden;}
 .bsheet-results{list-style:none;margin:0;padding:16px 0 0 16px;overflow-y:auto;flex:1 1 auto;min-height:0;display:flex;flex-direction:column;gap:16px;-webkit-overflow-scrolling:touch;}
 .bsheet-item{display:block;width:100%;border:0;background:none;padding:0;font-family:var(--sans);font-size:14px;line-height:22px;color:var(--muted);text-align:left;cursor:pointer;}
 .bsheet-empty{font-size:14px;line-height:22px;color:var(--weak);}
+
+/* 모바일 통합검색 진입화면 (GNB 검색 아이콘 → 오른쪽에서 슬라이드 인) */
+.msearch{position:fixed;inset:0;z-index:1200;background:#fff;display:flex;flex-direction:column;overflow-y:auto;-webkit-overflow-scrolling:touch;transform:translateX(100%);transition:transform .28s ease;}
+.msearch[hidden]{display:none;}
+.msearch.open{transform:translateX(0);}
+.msearch-bar{flex:none;display:flex;align-items:center;gap:8px;padding:24px 20px;background:#fff;}
+.msearch-field{flex:1 1 0;min-width:0;display:flex;align-items:center;gap:8px;height:44px;box-sizing:border-box;border:1px solid #000;border-radius:9999px;padding:0 19px;}
+.msearch-input{flex:1 1 0;min-width:0;border:0;outline:none;background:none;font-family:var(--sans);font-size:14px;line-height:22px;color:var(--ink);}
+.msearch-input::placeholder{color:var(--weak);}
+.msearch-go{flex:none;width:28px;height:28px;border:0;background:none;padding:0;display:flex;align-items:center;justify-content:center;cursor:pointer;}
+.msearch-cancel{flex:none;border:0;background:none;padding:0 4px;font-family:var(--sans);font-weight:600;font-size:16px;line-height:22px;color:var(--ink);cursor:pointer;}
+.msearch-hot{padding:24px 20px;}
+.msearch-hot-head{display:flex;align-items:center;gap:8px;padding-bottom:24px;}
+.msearch-hot-head h3{margin:0;font-family:var(--display);font-weight:800;font-size:18px;line-height:1.2;color:var(--ink);}
+.msearch-hot-note{font-size:12px;line-height:22px;color:var(--weak);}
+.msearch-hot-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(5,auto);grid-auto-flow:column;gap:16px 8px;}
+.msearch-hot-list li{display:flex;align-items:center;gap:8px;min-width:0;}
+.msearch-hot-list .rk{flex:none;min-width:23px;height:22px;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;padding:0 8px;background:var(--ink);border-radius:999px;font-weight:700;font-size:14px;line-height:22px;color:#fff;}
+.msearch-hot-list a{font-size:14px;line-height:22px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+
 @media (max-width:1023px){
   .oh-sel--native{position:relative;}
   .oh-sel--native > .oh-nsel{display:block;position:absolute;inset:0;width:100%;height:100%;margin:0;padding:0;border:0;background:transparent;opacity:0;font-size:16px;-webkit-appearance:none;appearance:none;cursor:pointer;z-index:5;}
@@ -1708,7 +1728,7 @@ body.bsheet-lock{overflow:hidden;}
   .page-my :is(#cc-qna,#qnaGuest) .iq-label{width:auto;background:none;padding:0;font-size:14px;font-weight:700;color:var(--ink);}
   .page-my :is(#cc-qna,#qnaGuest) .iq-field{padding:0;gap:8px;}
   .page-my :is(#cc-qna,#qnaGuest) .iq-static{color:var(--ink);}
-  .page-my :is(#cc-qna,#qnaGuest) .iq-radios{gap:20px;}
+  .page-my :is(#cc-qna,#qnaGuest) .iq-radios{column-gap:20px;row-gap:12px;}
   .page-my :is(#cc-qna,#qnaGuest) .iq-radio{font-weight:400;color:var(--muted);}
   .page-my :is(#cc-qna,#qnaGuest) .iq-radio:has(input:checked){font-weight:600;color:var(--ink);}
   /* 인풋·셀렉트 54px */

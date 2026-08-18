@@ -105,6 +105,30 @@
       <div class="md-subs" id="mdSubs"></div>
     </div>
     </div>
+  </div>
+  <div class="msearch" id="mSearch" hidden aria-hidden="true">
+    <div class="msearch-bar">
+      <div class="msearch-field">
+        <input type="text" class="msearch-input" placeholder="상품 검색" autocomplete="off">
+        <button type="button" class="msearch-go" aria-label="검색"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7.25" stroke="#1d1717" stroke-width="1.8"/><path d="M16.5 16.5l4 4" stroke="#1d1717" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+      </div>
+      <button type="button" class="msearch-cancel">취소</button>
+    </div>
+    <div class="msearch-hot">
+      <div class="msearch-hot-head"><h3>인기 검색어</h3><span class="msearch-hot-note">* 최근 10일간 인기 검색어 입니다.</span></div>
+      <ol class="msearch-hot-list">
+        <li><span class="rk">1</span><a href="리스트_교재구매.html">능률VOCA</a></li>
+        <li><span class="rk">2</span><a href="리스트_교재구매.html">Course book</a></li>
+        <li><span class="rk">3</span><a href="리스트_교재구매.html">E-book</a></li>
+        <li><span class="rk">4</span><a href="리스트_교재구매.html">단어장</a></li>
+        <li><span class="rk">5</span><a href="리스트_교재구매.html">영어문법</a></li>
+        <li><span class="rk">6</span><a href="리스트_교재구매.html">중등문법</a></li>
+        <li><span class="rk">7</span><a href="리스트_교재구매.html">리딩튜터</a></li>
+        <li><span class="rk">8</span><a href="리스트_교재구매.html">중등독해</a></li>
+        <li><span class="rk">9</span><a href="리스트_교재구매.html">주니어 리딩튜터</a></li>
+        <li><span class="rk">10</span><a href="리스트_교재구매.html">grammar</a></li>
+      </ol>
+    </div>
   </div>`;
   var FOOTER = `<footer class="footer">
     <div class="container">
@@ -258,6 +282,26 @@
     /* 카테고리 항목 터치 → 해당 메뉴로 이동하면서 펼침 패널도 닫기(현재 페이지와 동일 URL이라 리로드가 없어도 닫힘). 항목은 페이지별로 재생성되므로 위임 처리 */
     mcat.addEventListener('click',function(e){ if(e.target.closest('.mcat-item')) close(); });
     document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&mcat.classList.contains('open')) close(); });
+  })();
+
+  /* ===== 모바일 통합검색 진입화면 (GNB 검색 아이콘 → 오른쪽에서 슬라이드 인) ===== */
+  (function(){
+    var header=document.getElementById('site-header'); if(!header) return;
+    var ms=document.getElementById('mSearch'); if(!ms) return;
+    var input=ms.querySelector('.msearch-input');
+    function isMobile(){ return window.matchMedia('(max-width:1023px)').matches; }
+    function open(){ ms.hidden=false; ms.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; requestAnimationFrame(function(){ ms.classList.add('open'); }); setTimeout(function(){ try{ input.focus(); }catch(e){} },300); }
+    function close(){ ms.classList.remove('open'); ms.setAttribute('aria-hidden','true'); document.body.style.overflow=''; setTimeout(function(){ ms.hidden=true; },300); }
+    /* 상단 GNB 검색 아이콘(모바일): 데스크톱 검색동작(search.js)을 가로채 진입화면 오픈 */
+    var topIc=header.querySelector('.search-ic');
+    if(topIc){ topIc.addEventListener('click',function(e){ if(isMobile()){ e.preventDefault(); e.stopImmediatePropagation(); open(); } },true); }
+    /* 전체메뉴 드로어 내 검색 버튼: 드로어 닫고 진입화면 오픈 */
+    var drawerBtn=document.querySelector('.md-search');
+    if(drawerBtn){ drawerBtn.addEventListener('click',function(e){ e.preventDefault(); var x=document.querySelector('.md-x'); if(x) x.click(); open(); }); }
+    var cancel=ms.querySelector('.msearch-cancel'); if(cancel) cancel.addEventListener('click',close);
+    var go=ms.querySelector('.msearch-go'); if(go) go.addEventListener('click',function(){ if(input&&input.value.trim()) location.href='리스트_교재구매.html'; else if(input) input.focus(); });
+    if(input){ input.addEventListener('keydown',function(e){ if(e.key==='Enter'){ e.preventDefault(); location.href='리스트_교재구매.html'; } else if(e.key==='Escape'){ close(); } }); }
+    window.addEventListener('resize',function(){ if(!isMobile() && ms.classList.contains('open')) close(); });
   })();
 
   /* ===== 모바일 전체메뉴 드로어 (햄버거 → 좌 카테고리 / 우 하위목록) ===== */
