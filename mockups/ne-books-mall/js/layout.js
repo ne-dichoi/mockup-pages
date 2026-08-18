@@ -129,6 +129,7 @@
         <li><span class="rk">10</span><a href="리스트_교재구매.html">grammar</a></li>
       </ol>
     </div>
+    <ul class="msearch-results" hidden></ul>
   </div>`;
   var FOOTER = `<footer class="footer">
     <div class="container">
@@ -289,8 +290,21 @@
     var header=document.getElementById('site-header'); if(!header) return;
     var ms=document.getElementById('mSearch'); if(!ms) return;
     var input=ms.querySelector('.msearch-input');
+    var hot=ms.querySelector('.msearch-hot');
+    var results=ms.querySelector('.msearch-results');
     function isMobile(){ return window.matchMedia('(max-width:1023px)').matches; }
-    function open(){ ms.hidden=false; ms.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; requestAnimationFrame(function(){ ms.classList.add('open'); }); setTimeout(function(){ try{ input.focus(); }catch(e){} },300); }
+    /* 자동완성 샘플 교재 데이터 */
+    var BOOKS=['능률VOCA 어원편','능률VOCA 수능완성','능률VOCA 고교필수','Grammar Zone 기본편 1','Grammar Zone 입문편','리딩튜터 입문','주니어 리딩튜터','주니어 능률VOCA','Bricks Reading 150 Level 1','중학영문법 3800제','수능특강 영어','세 마리 토끼 잡는 초등 독서논술 A1','올클 중등 국어 문법','중등독해 완성','영어문법 총정리'];
+    function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+    function renderResults(q){
+      if(!q){ if(results){ results.hidden=true; results.innerHTML=''; } if(hot) hot.hidden=false; return; }
+      if(hot) hot.hidden=true; if(!results) return; results.hidden=false;
+      var list=BOOKS.filter(function(b){return b.toLowerCase().indexOf(q.toLowerCase())>=0;});
+      if(!list.length){ results.innerHTML='<li class="msearch-empty">\''+esc(q)+'\'에 대한 검색 결과가 없습니다.</li>'; return; }
+      results.innerHTML=list.map(function(b){ return '<li><a href="리스트_교재구매.html">'+esc(b)+'</a></li>'; }).join('');
+    }
+    if(input) input.addEventListener('input',function(){ renderResults(input.value.trim()); });
+    function open(){ ms.hidden=false; ms.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; if(input) input.value=''; renderResults(''); requestAnimationFrame(function(){ ms.classList.add('open'); }); setTimeout(function(){ try{ input.focus(); }catch(e){} },300); }
     function close(){ ms.classList.remove('open'); ms.setAttribute('aria-hidden','true'); document.body.style.overflow=''; setTimeout(function(){ ms.hidden=true; },300); }
     /* 상단 GNB 검색 아이콘(모바일): 데스크톱 검색동작(search.js)을 가로채 진입화면 오픈 */
     var topIc=header.querySelector('.search-ic');

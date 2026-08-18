@@ -1656,7 +1656,7 @@ body.bsheet-lock{overflow:hidden;}
 .bsheet-cat.on{background:#fff2f0;border-color:var(--red);color:var(--red);font-weight:700;}
 .bsheet-body{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;padding-bottom:24px;}
 .bsheet-search{flex:none;position:relative;}
-.bsheet-input{width:100%;height:58px;box-sizing:border-box;border:1px solid var(--ink);border-radius:9999px;padding:0 60px 0 24px;font-family:var(--sans);font-size:14px;color:var(--ink);outline:none;background:#fff;}
+.bsheet-input{width:100%;height:50px;box-sizing:border-box;border:1px solid var(--ink);border-radius:9999px;padding:0 60px 0 24px;font-family:var(--sans);font-size:14px;color:var(--ink);outline:none;background:#fff;}
 .bsheet-input::placeholder{color:var(--weak);}
 .bsheet-search-ic{position:absolute;right:24px;top:50%;transform:translateY(-50%);width:28px;height:28px;border:0;background:none;padding:0;display:flex;align-items:center;justify-content:center;cursor:pointer;}
 .bsheet-results{list-style:none;margin:0;padding:16px 0 0 16px;overflow-y:auto;flex:1 1 auto;min-height:0;display:flex;flex-direction:column;gap:16px;-webkit-overflow-scrolling:touch;}
@@ -1668,7 +1668,7 @@ body.bsheet-lock{overflow:hidden;}
 .msearch[hidden]{display:none;}
 .msearch.open{transform:translateX(0);}
 .msearch-bar{flex:none;display:flex;align-items:center;gap:8px;padding:24px 20px;background:#fff;}
-.msearch-field{flex:1 1 0;min-width:0;display:flex;align-items:center;gap:8px;height:44px;box-sizing:border-box;border:1px solid #000;border-radius:9999px;padding:0 19px;}
+.msearch-field{flex:1 1 0;min-width:0;display:flex;align-items:center;gap:8px;height:50px;box-sizing:border-box;border:1px solid #000;border-radius:9999px;padding:0 19px;}
 .msearch-input{flex:1 1 0;min-width:0;border:0;outline:none;background:none;font-family:var(--sans);font-size:14px;line-height:22px;color:var(--ink);}
 .msearch-input::placeholder{color:var(--weak);}
 .msearch-go{flex:none;width:28px;height:28px;border:0;background:none;padding:0;display:flex;align-items:center;justify-content:center;cursor:pointer;}
@@ -1681,6 +1681,10 @@ body.bsheet-lock{overflow:hidden;}
 .msearch-hot-list li{display:flex;align-items:center;gap:8px;min-width:0;}
 .msearch-hot-list .rk{flex:none;min-width:23px;height:22px;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;padding:0 8px;background:var(--ink);border-radius:999px;font-weight:700;font-size:14px;line-height:22px;color:#fff;}
 .msearch-hot-list a{font-size:14px;line-height:22px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.msearch-results{list-style:none;margin:0;padding:24px 20px;display:flex;flex-direction:column;gap:16px;}
+.msearch-results[hidden]{display:none;}
+.msearch-results a{display:block;font-size:14px;line-height:22px;color:var(--muted);}
+.msearch-empty{font-size:14px;line-height:22px;color:var(--weak);}
 
 @media (max-width:1023px){
   .oh-sel--native{position:relative;}
@@ -1700,9 +1704,15 @@ body.bsheet-lock{overflow:hidden;}
 .iq-file-del svg{width:12px;height:12px;display:block;}
 
 /* 비회원 1:1 문의 추가 요소 */
-.iq-preinfo.guest{align-items:center;}
-.iq-preinfo .pre-text{display:flex;flex-direction:column;gap:12px;min-width:0;}
-.iq-preinfo .pre-right{display:flex;flex-direction:column;align-items:flex-start;gap:16px;flex:none;}
+.iq-preinfo.guest{align-items:stretch;gap:40px;}
+.iq-preinfo .pre-text{display:flex;flex-direction:column;justify-content:center;gap:12px;min-width:0;}
+.iq-preinfo .pre-right{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:16px;flex:none;}
+/* 비회원 안내: 좌(텍스트)·우(버튼) 구분 명확화 — 세로 구분선(넓은 PC) / 가로 구분선 후 세로 스택(좁은 PC) */
+.iq-preinfo.guest .pre-right{border-left:1px solid var(--line);padding-left:40px;}
+@media (min-width:1024px) and (max-width:1200px){
+  .iq-preinfo.guest{flex-direction:column;align-items:stretch;gap:24px;}
+  .iq-preinfo.guest .pre-right{border-left:0;padding-left:0;border-top:1px solid var(--line);padding-top:24px;}
+}
 .iq-preinfo .pre-right .msg{padding-left:14px;position:relative;font-size:14px;color:var(--muted);}
 .iq-preinfo .pre-right .msg::before{content:"";position:absolute;left:2px;top:9px;width:3px;height:3px;border-radius:50%;background:var(--muted);}
 .iq-preinfo .pre-text>p{font-size:14px;color:var(--muted);line-height:1.7;}
@@ -3554,7 +3564,7 @@ body.bsheet-lock{overflow:hidden;}
 .cs-cats{display:flex;flex-wrap:wrap;gap:8px;padding:24px 0;}
 .cs-cat{padding:8px 16px;border:1px solid var(--line);border-radius:8px;background:#fff;font-family:var(--sans);font-size:14px;color:var(--muted);cursor:pointer;transition:border-color .15s,background .15s,color .15s;}
 .cs-cat.on{background:#fff2f0;border-color:var(--red);color:var(--red);font-weight:700;}
-.cs-search{display:flex;align-items:center;gap:8px;border:1px solid #000;border-radius:9999px;padding:9px 19px;}
+.cs-search{display:flex;align-items:center;gap:8px;height:50px;box-sizing:border-box;border:1px solid #000;border-radius:9999px;padding:0 19px;}
 .cs-search-in{flex:1 1 0;min-width:0;border:0;outline:none;background:none;font-family:var(--sans);font-size:14px;color:var(--ink);}
 .cs-search-in::placeholder{color:var(--weak);}
 .cs-search-btn{flex:none;width:28px;height:28px;border:0;background:none;padding:0;cursor:pointer;display:flex;align-items:center;justify-content:center;}
