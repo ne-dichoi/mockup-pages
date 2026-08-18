@@ -8,17 +8,17 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260815n">
-<script src="js/layout.js?v=20260815n" defer></script>
-<script src="js/search.js?v=20260815n" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260815o">
+<script src="js/layout.js?v=20260815o" defer></script>
+<script src="js/search.js?v=20260815o" defer></script>
 </head>
 <body class="page-my">
 
   <!-- ===== HEADER ===== -->
   <div id="site-header"></div>
 
-  <!-- ===== PAGE HEAD (하드코딩: layout.js 캐시와 무관하게 항상 표시) ===== -->
-  <div id="site-location"><section class="pagehead"><div class="container cart-head-row"><div class="ph-left"><h1 class="ph-title">1:1 문의</h1></div><div class="crumb"><a class="home ico" href="index.html"><img src="assets/ic_home.svg" alt="홈"></a><span class="sep">·</span><a href="#">고객센터</a><span class="sep">·</span><span class="cur">1:1 문의</span></div></div></section></div>
+  <!-- ===== PAGE HEAD (layout.js가 회원 페이지와 동일하게 생성) ===== -->
+  <div id="site-location"></div>
 
   <!-- ===== 1:1 문의 (비회원) ===== -->
   <section class="mywrap">
@@ -69,14 +69,18 @@
             <div class="iq-field">
               <div class="oh-sel only-pc" id="iqCat">
                 <button type="button" class="oh-sel-cur"><span class="oh-sel-lb">문의분류를 선택해 주세요</span><span class="ic"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#1d1717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
-                <div class="oh-sel-menu" hidden><a class="on" data-ph>문의분류를 선택해 주세요</a><a>배송문의</a><a>결제/환불</a><a>회원정보</a><a>교재문의</a><a>기타</a></div>
+                <div class="oh-sel-menu" hidden><a class="on" data-ph>문의분류를 선택해 주세요</a><a>회원정보</a><a>교재,교과서 문의</a><a>부가서비스 문의</a><a>자료요청</a><a>사이트이용</a><a>이벤트</a><a>영업 및 제휴문의</a><a>의견,제안</a><a>기타</a></div>
               </div>
               <select class="iq-nsel only-mo" aria-label="상담분류" required>
                 <option value="" selected>문의분류를 선택해 주세요</option>
-                <option>배송문의</option>
-                <option>결제/환불</option>
                 <option>회원정보</option>
-                <option>교재문의</option>
+                <option>교재,교과서 문의</option>
+                <option>부가서비스 문의</option>
+                <option>자료요청</option>
+                <option>사이트이용</option>
+                <option>이벤트</option>
+                <option>영업 및 제휴문의</option>
+                <option>의견,제안</option>
                 <option>기타</option>
               </select>
             </div>
@@ -315,7 +319,7 @@
     var curErrata=false, bookPicked=false;
     var PH='문의분류를 선택해 주세요';
     var CAT={
-      general:['배송문의','결제/환불','회원정보','교재문의','기타'],
+      general:['회원정보','교재,교과서 문의','부가서비스 문의','자료요청','사이트이용','이벤트','영업 및 제휴문의','의견,제안','기타'],
       error:['교재내용이상','문법 오류','오·탈자','기타오류'],
       order:['배송문의','결제/환불','회원정보','교재문의','기타']
     };
