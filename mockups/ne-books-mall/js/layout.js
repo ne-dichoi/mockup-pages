@@ -379,13 +379,24 @@
     render();
   })();
 
-  /* ===== 장바구니 수량 뱃지 (상품이 담기면 N 표시) ===== */
-  /* 페이지에서 window.CART_COUNT = N 으로 실제 수량을 넣을 수 있음. 미지정 시 데모값 2. */
+  /* ===== 장바구니 수량 뱃지 + 담기 헬퍼 (localStorage 로 페이지 간 유지) ===== */
+  /* 초기값: localStorage 없으면 window.CART_COUNT(있을 때) 또는 데모값 2. window.neCartAdd(n)로 담기. */
   (function(){
-    var badge=document.querySelector('.cart-badge'); if(!badge) return;
-    var n=(typeof window.CART_COUNT==='number') ? window.CART_COUNT : 2;
-    if(n>0){ badge.textContent=(n>99?'99+':n); badge.setAttribute('data-count',n); badge.hidden=false; }
-    else { badge.hidden=true; }
+    var KEY='ne_cart_count';
+    function read(){
+      var v=parseInt(localStorage.getItem(KEY),10);
+      if(isNaN(v)) v=(typeof window.CART_COUNT==='number') ? window.CART_COUNT : 2;
+      return v<0?0:v;
+    }
+    function paint(n){
+      var badge=document.querySelector('.cart-badge'); if(!badge) return;
+      if(n>0){ badge.textContent=(n>99?'99+':n); badge.setAttribute('data-count',n); badge.hidden=false; }
+      else { badge.textContent='0'; badge.setAttribute('data-count',0); badge.hidden=true; }
+    }
+    window.neCartCount=read;
+    window.neCartAdd=function(k){ var n=read()+(k||1); try{ localStorage.setItem(KEY,n); }catch(e){} paint(n); return n; };
+    window.neCartPaint=function(){ paint(read()); };
+    paint(read());
   })();
 
   /* ===== 로케이션 (페이지별 depth 이름을 여기서 수정) ===== */

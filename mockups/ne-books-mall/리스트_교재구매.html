@@ -10,9 +10,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- Pretendard (design font) via CDN, with Noto Sans KR fallback -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260815y">
-<script src="js/layout.js?v=20260815y" defer></script>
-<script src="js/search.js?v=20260815y" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260815z">
+<script src="js/layout.js?v=20260815z" defer></script>
+<script src="js/search.js?v=20260815z" defer></script>
 </head>
 <body class="page-buy">
 
@@ -474,6 +474,17 @@
     mo.addEventListener('click',function(e){
       if(e.target.closest('a,button,.mc-btns,.mc-cover-cart')) return;
       if(e.target.closest('.mc-cover,.mc-title')) location.href='교재상세.html';
+    });
+  })();
+
+  /* 장바구니 담기: 리스트 카드의 장바구니 버튼(모바일 .mc-cart / PC .cart) → 페이지 이동 대신 담기 + 뱃지 갱신 + 알럿 (품절 제외) */
+  (function(){
+    document.addEventListener('click',function(e){
+      var btn=e.target.closest('.mc-cart, .pbtns .cart');
+      if(!btn || btn.classList.contains('soldout')) return;
+      e.preventDefault();
+      if(typeof window.neCartAdd==='function') window.neCartAdd(1);
+      alert('장바구니에 상품을 담았습니다.');
     });
   })();
 
