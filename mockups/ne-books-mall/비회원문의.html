@@ -8,9 +8,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260815m">
-<script src="js/layout.js?v=20260815m" defer></script>
-<script src="js/search.js?v=20260815m" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260815n">
+<script src="js/layout.js?v=20260815n" defer></script>
+<script src="js/search.js?v=20260815n" defer></script>
 </head>
 <body class="page-my">
 
@@ -38,7 +38,7 @@
         <!-- 안내 박스 (비회원) -->
         <div class="iq-preinfo guest">
           <div class="pre-text">
-            <p>비회원 문의 게시판 입니다.<br>회원인 경우, 특히 교사/강사 회원님은 학원/학교 정보확인과 상담이력관리를 위해 <a class="pre-login" href="#">[회원 로그인]</a> 후 문의 이용을 부탁드립니다.<br>답변은 이메일을 통해 제공되며 업무일 기준, 1~2일 가량 시간이 소요될 수 있으나 가능한 빠르게 회신 드리도록 하겠습니다.</p>
+            <p>비회원 문의 게시판 입니다.<br>회원인 경우, 특히 교사/강사 회원님은 학원/학교 정보확인과 상담이력관리를 위해 <a class="pre-login" href="#">[회원 로그인]</a> 후 문의 이용을 부탁드립니다.<br><br>답변은 이메일을 통해 제공되며 업무일 기준, 1~2일 가량 시간이 소요될 수 있으나 가능한 빠르게 회신 드리도록 하겠습니다.</p>
           </div>
           <div class="pre-right">
             <div class="btns">
@@ -67,7 +67,7 @@
           <div class="iq-row">
             <div class="iq-label">상담분류 <span class="iq-req">*</span></div>
             <div class="iq-field">
-              <div class="oh-sel only-pc">
+              <div class="oh-sel only-pc" id="iqCat">
                 <button type="button" class="oh-sel-cur"><span class="oh-sel-lb">문의분류를 선택해 주세요</span><span class="ic"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#1d1717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
                 <div class="oh-sel-menu" hidden><a class="on" data-ph>문의분류를 선택해 주세요</a><a>배송문의</a><a>결제/환불</a><a>회원정보</a><a>교재문의</a><a>기타</a></div>
               </div>
@@ -131,7 +131,7 @@
           <!-- 작성자 (비회원: 이름 입력) -->
           <div class="iq-row">
             <div class="iq-label">작성자 <span class="iq-req">*</span></div>
-            <div class="iq-field"><input class="iq-in author iq-clear" type="text" placeholder="이름을 입력해 주세요."></div>
+            <div class="iq-field"><input class="iq-in full author iq-clear" type="text" placeholder="이름을 입력해 주세요."></div>
           </div>
 
           <div class="iq-row">
@@ -209,7 +209,7 @@
               <div class="iq-captcha">
                 <span class="iq-captcha-code" id="captchaCode">A7K9Q2</span>
                 <button type="button" class="iq-captcha-refresh" id="captchaRefresh"><span aria-hidden="true">↻</span> 새로고침</button>
-                <input class="iq-in iq-clear" type="text" placeholder="보안문자를 입력해 주세요.">
+                <input class="iq-in full iq-clear" type="text" placeholder="보안문자를 입력해 주세요.">
               </div>
               <p class="iq-help">* 자동 등록 방지를 위해 보안문자를 입력해 주세요.</p>
             </div>
@@ -306,11 +306,39 @@
     });
     document.addEventListener('click',function(e){ if(!e.target.closest('.oh-sel')) closeAll(); });
 
-    /* 상담유형 → 교재명/정오안내/페이지 행 토글 (비회원은 주문번호 행 없음) */
+    /* 상담유형 → 교재명/정오안내/페이지 행 토글 + 상담분류 옵션 갱신 (비회원은 주문번호 행 없음) */
     var bookRow=document.getElementById('iqBookRow');
     var errataRow=document.getElementById('iqErrataRow'), pageRow=document.getElementById('iqPageRow');
+    var iqCat=document.getElementById('iqCat');
+    var natCat=document.querySelector('#qnaGuest .iq-nsel[aria-label="상담분류"]');
     var radios=[].slice.call(document.querySelectorAll('input[name="iqType"]'));
     var curErrata=false, bookPicked=false;
+    var PH='문의분류를 선택해 주세요';
+    var CAT={
+      general:['배송문의','결제/환불','회원정보','교재문의','기타'],
+      error:['교재내용이상','문법 오류','오·탈자','기타오류'],
+      order:['배송문의','결제/환불','회원정보','교재문의','기타']
+    };
+    function renderCat(list){
+      if(!iqCat) return;
+      var menu=iqCat.querySelector('.oh-sel-menu'), cur=iqCat.querySelector('.oh-sel-cur'), lb=iqCat.querySelector('.oh-sel-lb');
+      if(!menu) return;
+      menu.innerHTML='<a class="on" data-ph>'+PH+'</a>'+(list||[]).map(function(t){ return '<a>'+t+'</a>'; }).join('');
+      if(lb) lb.textContent=PH; if(cur) cur.classList.add('is-ph');
+      iqCat.classList.remove('open'); menu.hidden=true;
+      [].forEach.call(menu.querySelectorAll('a'),function(a){
+        a.addEventListener('click',function(e){ e.preventDefault();
+          [].forEach.call(menu.querySelectorAll('a'),function(x){ x.classList.remove('on'); });
+          a.classList.add('on'); if(lb) lb.textContent=a.textContent.trim();
+          if(cur) cur.classList.toggle('is-ph', a.hasAttribute('data-ph'));
+          iqCat.classList.remove('open'); menu.hidden=true;
+        });
+      });
+    }
+    function renderNativeCat(list){
+      if(!natCat) return;
+      natCat.innerHTML='<option value="" selected>'+PH+'</option>'+(list||[]).map(function(t){ return '<option>'+t+'</option>'; }).join('');
+    }
     function syncBookExtras(){
       var sel=document.querySelector('input[name="iqType"]:checked'); var v=sel?sel.value:'';
       var isErr=(v==='error');
@@ -318,7 +346,9 @@
       if(errataRow) errataRow.hidden=!(isErr && bookPicked && curErrata); /* 정오안내: 정오표 등록 교재만 */
     }
     function upd(){ var sel=document.querySelector('input[name="iqType"]:checked'); var v=sel?sel.value:'';
-      if(bookRow) bookRow.hidden=(v!=='error'); syncBookExtras(); }
+      if(bookRow) bookRow.hidden=(v!=='error'); syncBookExtras();
+      renderCat(CAT[v]||CAT.general);
+      renderNativeCat(CAT[v]||CAT.general); }
     radios.forEach(function(r){ r.addEventListener('change',upd); });
     /* 교재 선택/해제 이벤트(search.js) 수신 → 페이지·정오안내 노출 갱신 */
     document.addEventListener('bookselected',function(e){ curErrata=!!(e.detail&&e.detail.errata); bookPicked=true; syncBookExtras(); });

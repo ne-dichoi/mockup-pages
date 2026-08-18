@@ -1778,6 +1778,11 @@ body.bsheet-lock{overflow:hidden;}
   .page-my :is(#cc-qna,#qnaGuest) .pr-foot{display:flex;justify-content:space-between;align-items:center;height:auto;padding:16px;background:var(--gray-bg);border-top:0;}
   .page-my :is(#cc-qna,#qnaGuest) .pr-foot-t{padding-left:0;font-size:14px;font-weight:700;color:var(--ink);}
   .page-my :is(#cc-qna,#qnaGuest) .pr-foot-v{font-size:14px;font-weight:700;color:var(--ink);text-align:right;}
+  /* 자동등록방지(캡차): 코드 회색박스(flex-1)+새로고침 버튼 한 줄, 입력칸은 아래 전체폭 */
+  .page-my #qnaGuest .iq-captcha{gap:10px;}
+  .page-my #qnaGuest .iq-captcha-code{flex:1 1 0;min-width:0;height:54px;font-size:20px;letter-spacing:4px;border-radius:6px;}
+  .page-my #qnaGuest .iq-captcha-refresh{flex:none;height:54px;padding:0 24px;border-radius:8px;font-size:14px;color:var(--muted);}
+  .page-my #qnaGuest .iq-captcha .iq-in{flex:1 1 100%;width:100%;}
 }
 
 /* 자동등록방지 (캡차) */
