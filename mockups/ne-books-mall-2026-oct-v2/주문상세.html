@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>NE_Books · 주문 상세내역</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="css/layout.css?v=20260814n">
+<script src="js/layout.js?v=20260814n" defer></script>
+<script src="js/search.js?v=20260814n" defer></script>
+</head>
+<body class="page-my">
+
+  <!-- ===== HEADER ===== -->
+  <div id="site-header"></div>
+
+  <!-- ===== PAGE HEAD ===== -->
+  <div id="site-location"></div>
+
+  <!-- ===== MY PAGE ===== -->
+  <section class="mywrap">
+    <div class="container">
+
+      <!-- 탭 (주문내역 활성) -->
+      <div class="my-tabs">
+        <a href="마이페이지.html">홈</a>
+        <a class="on" href="마이페이지.html#orders">주문내역</a>
+        <a href="마이페이지.html#points">포인트</a>
+        <a href="마이페이지.html#wish">찜</a>
+        <a href="마이페이지.html#qna">문의/답변</a>
+        <a href="마이페이지.html">후기</a>
+        <a href="마이페이지.html">이벤트/세미나</a>
+      </div>
+
+      <!-- 1. 주문 상세내역 -->
+      <section class="od-sec">
+        <p class="od-sec-t">주문 상세내역</p>
+        <div class="od-order">
+          <div class="od-order-info">
+            <p class="od-date">2026-06-18</p>
+            <p class="od-ono">주문번호 : NB20260618-000123</p>
+          </div>
+          <div class="od-items">
+            <div class="od-item">
+              <span class="od-thumb"><img src="assets/best_2.png" alt=""></span>
+              <div class="od-item-info">
+                <p class="od-item-name">Phonics Code 2 : Student Book</p>
+                <div class="od-item-meta"><span class="q">수량 1개</span><span class="od-bar"></span><span class="od-price">14,400원</span></div>
+              </div>
+            </div>
+            <div class="od-item">
+              <span class="od-thumb"><img src="assets/best_1.png" alt=""></span>
+              <div class="od-item-info">
+                <p class="od-item-name">Phonics Code 1 : Student Book</p>
+                <div class="od-item-meta"><span class="q">수량 1개</span><span class="od-bar"></span><span class="od-price">14,400원</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="od-status">
+            <span class="od-status-lb" id="odStatus">결제취소</span>
+            <div class="od-status-btns" id="odStatusBtns"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. 결제 정보 -->
+      <section class="od-sec">
+        <p class="od-sec-t">결제 정보</p>
+        <div class="od-table">
+          <div class="tr"><span class="od-th">결제수단</span><span class="od-td">무통장 입금<span class="bk">[우리은행] 46514571418816 (주)엔이능률 (NE능률)</span></span></div>
+          <div class="tr"><span class="od-th">입금기한</span><span class="od-td red">2026-03-25</span></div>
+        </div>
+        <div class="od-pay">
+          <div class="od-pay-left">
+            <div class="od-pay-row"><span>주문금액</span><span class="v">28,800원</span></div>
+            <div class="od-pay-row"><span>배송비</span><span class="v">2,500원</span></div>
+            <div class="od-pay-row"><span>포인트 사용</span><span class="v">0P</span></div>
+            <div class="od-pay-row"><span>결제일시</span><span class="v">2026-03-18 09:52:12</span></div>
+          </div>
+          <div class="od-pay-right">
+            <span class="od-final-lb">최종 결제금액</span>
+            <span class="od-final"><b>27,000</b><em>원</em></span>
+            <span class="od-earn">1,600P 적립예정</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. 취소/환불 정보 (취소·환불완료 주문에만 노출, 내용은 JS 에서 상태별 주입) -->
+      <section class="od-sec" id="odCancel">
+        <p class="od-sec-t" id="odCancelT">취소 정보</p>
+        <div class="od-table" id="odCancelBody"></div>
+      </section>
+
+      <!-- 4. 배송지 정보 -->
+      <section class="od-sec">
+        <p class="od-sec-t">배송지 정보</p>
+        <div class="od-table">
+          <div class="tr"><span class="od-th">받는사람</span><span class="od-td">홍길동</span></div>
+          <div class="tr"><span class="od-th">휴대폰</span><span class="od-td">010-1234-5678</span></div>
+          <div class="tr"><span class="od-th">배송지</span><span class="od-td">(06234) 서울특별시 강남구 테헤란로 OO빌딩 5층</span></div>
+          <div class="tr"><span class="od-th">요청사항</span><span class="od-td">-</span></div>
+        </div>
+      </section>
+
+      <!-- 목록으로 -->
+      <div class="od-actions"><a class="od-btn" href="마이페이지.html#orders">목록</a></div>
+
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <div id="site-footer"></div>
+
+  <script>
+  (function(){
+    /* 상태별 라벨 + 액션 버튼(주문내역 목록 .oh-btn 과 동일 세트) */
+    /* 취소·환불 사유 옵션 (결제취소/환불완료 공통) */
+    var REASONS='고객변심, 결제변경, 다른상품구매, 배송지연, 배송오류, 배송불가지역, 포장불량, 상품 불만족, 상품정보상이, 상품불량, 서비스불만족, 품절, 기타, 직접입력';
+    var STATUS={
+      paid:{label:'결제완료',btns:[['결제취소','dark']]},
+      ship:{label:'배송중',btns:[['배송조회','dark']]},
+      done:{label:'배송완료',btns:[['배송조회','dark'],['구매확정','fill']]},
+      wait:{label:'입금대기',btns:[['입금취소','dark']]},
+      confirm:{label:'구매확정',btns:[]}, /* 구매확정: 배송조회·반품/환불 버튼 없음 */
+      cancel:{label:'결제취소',btns:[],box:{title:'취소 정보',rows:[
+        ['취소일자','2026-07-15 오후 06:02:00',''],
+        ['취소사유','고객변심','dark']
+      ]}},
+      wcancel:{label:'입금취소',btns:[],box:{title:'취소 정보',rows:[
+        ['취소일자','2026-03-26 00:00:01',''],
+        ['취소사유','입금기한 초과 자동취소','dark']
+      ]}},
+      refund:{label:'환불완료',btns:[],box:{title:'환불 정보',rows:[
+        ['취소일자','2026-07-15 오후 06:02:00',''],
+        ['환불사유','고객변심','dark'],
+        ['환불계좌','[환불은행명] 환불계좌번호 / 환불계좌 예금주','']
+      ]}}
+    };
+    var st=(new URLSearchParams(location.search).get('st'))||'cancel';
+    var info=STATUS[st]||STATUS.cancel;
+    var s=document.getElementById('odStatus'); if(s) s.textContent=info.label;
+    var bw=document.getElementById('odStatusBtns');
+    if(bw) bw.innerHTML=(info.btns||[]).map(function(b){ return '<a class="oh-btn '+b[1]+'" href="#">'+b[0]+'</a>'; }).join('');
+    /* 취소/환불 정보 박스: box 있으면 주입, 없으면 섹션 제거 */
+    var c=document.getElementById('odCancel');
+    if(c){
+      if(info.box){
+        document.getElementById('odCancelT').textContent=info.box.title;
+        document.getElementById('odCancelBody').innerHTML=info.box.rows.map(function(r){
+          return '<div class="tr"><span class="od-th">'+r[0]+'</span><span class="od-td'+(r[2]?' '+r[2]:'')+'">'+r[1]+'</span></div>';
+        }).join('');
+      } else { c.remove(); }
+    }
+  })();
+
+  /* 모바일: 섹션 헤더(∧) 클릭 시 접기/펼치기 */
+  (function(){
+    function MB(){ return window.matchMedia('(max-width:1023px)').matches; }
+    document.querySelectorAll('.od-sec > .od-sec-t').forEach(function(t){
+      t.addEventListener('click',function(){ if(!MB()) return; t.parentElement.classList.toggle('od-collapsed'); });
+    });
+  })();
+  </script>
+
+</body>
+</html>

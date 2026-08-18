@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>NE_Books · 주문/결제</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="css/layout.css?v=20260814n">
+<script src="js/layout.js?v=20260814n" defer></script>
+<script src="js/search.js?v=20260814n" defer></script>
+</head>
+<body class="page-order">
+
+  <!-- ===== HEADER ===== -->
+  <div id="site-header"></div>
+
+  <!-- ===== PAGE HEAD ===== -->
+  <div id="site-location"></div>
+
+  <!-- ===== CHECKOUT ===== -->
+  <section class="cowrap">
+    <div class="container">
+      <div class="co-grid">
+
+        <!-- LEFT -->
+        <div class="co-main">
+
+          <!-- 주문 상품 -->
+          <section class="co-sec s-items">
+            <h2>주문 상품 <span class="oa-count only-mo">총 2건</span></h2>
+            <div class="oi-row">
+              <a class="oi-thumb" href="교재상세.html"><img src="assets/best_1.png" alt=""></a>
+              <a class="oi-name" href="교재상세.html">Phonics Code 1 : Student Book</a>
+              <div class="oi-price"><span class="was">15,000원</span><span class="now">13,500원</span><span class="note">(10%할인+150P 적립)</span></div>
+              <div class="oi-qty"><span class="oq-lb">수량 </span>2개</div>
+              <div class="oi-sum"><span class="amt">27,000원</span><span class="pt">(300P 적립예정)</span></div>
+            </div>
+          </section>
+
+          <!-- 주문자 정보 (회원 데이터 · 읽기전용) -->
+          <section class="co-sec s-orderer">
+            <h2>주문자 정보</h2>
+            <dl class="oi-userinfo">
+              <div><dt>이름</dt><dd>홍길동</dd></div>
+              <div><dt>휴대폰</dt><dd>010-1234-5678</dd></div>
+              <div><dt>이메일</dt><dd>user@nebooks.com</dd></div>
+              <div><dt>주소</dt><dd>(03925) 서울시 마포구 월드컵북로 396(상암동) 누리꿈스퀘어 비즈니스타워 10층</dd></div>
+            </dl>
+          </section>
+
+          <!-- 배송지 정보 -->
+          <section class="co-sec s-ship">
+            <h2>배송지 정보</h2>
+            <div class="ship-tabs"><a class="on">회원정보와 동일</a><a>새로입력</a><a>최근배송지</a></div>
+            <div class="fgrid fg2">
+              <label class="fld"><span class="lbl">이름 <em>*</em></span><input class="field" placeholder="이름을 입력해 주세요."></label>
+              <label class="fld"><span class="lbl">휴대폰 <em>*</em></span><input class="field" placeholder="010-1234-5678"></label>
+            </div>
+            <div class="addr">
+              <div class="addr-top">
+                <label class="fld zip"><span class="lbl">주소 <em>*</em></span><input class="field" placeholder="우편번호"></label>
+                <button type="button" class="btn-line">우편번호 검색</button>
+              </div>
+              <input class="field" placeholder="기본 주소를 입력해 주세요.">
+              <input class="field" placeholder="상세 주소를 입력해 주세요.">
+            </div>
+            <label class="fld solo"><span class="lbl">요청사항</span><input class="field" placeholder="배송 메시지를 입력하세요."></label>
+          </section>
+
+          <!-- 할인 혜택 -->
+          <section class="co-sec s-point">
+            <h2>할인 혜택</h2>
+            <p class="point-have only-mo">보유 포인트 <b>2,400P</b></p>
+            <div class="point-row">
+              <label class="fld"><span class="lbl">포인트 사용 (보유 3,200 P)</span><input class="field" value="0"></label>
+              <button type="button" class="btn-line">전액 사용</button>
+            </div>
+            <p class="fnote">※ 현재 보유 포인트에서 최소 100 P 단위로 사용이 가능하며 유효기간이 가까운 포인트부터 차감됩니다.</p>
+          </section>
+
+          <!-- 결제수단 -->
+          <section class="co-sec s-pay">
+            <h2>결제수단</h2>
+            <div class="pay-methods">
+              <label class="pm"><input type="radio" name="pay" checked><b>신용카드</b><span>간편/일반 카드 결제</span></label>
+              <label class="pm"><input type="radio" name="pay"><b>무통장입금</b><span>가상계좌 발급</span></label>
+              <label class="pm"><input type="radio" name="pay"><b><span class="rtc-full">실시간 </span>계좌이체</b><span>계좌 즉시 이체</span></label>
+            </div>
+          </section>
+
+          <!-- 결제수단 안내 -->
+          <section class="co-sec co-sec-nb s-payguide">
+            <h2>결제수단 안내</h2>
+            <ol class="pay-notes">
+              <li><b>신용카드</b>
+                <ul><li>신용카드로 30만원 이상 결제 시 은행/신용카드/보험용 공인인증서가 필요합니다.</li></ul>
+              </li>
+              <li><b>실시간 계좌이체</b>
+                <ul><li>계좌이체 휴대폰 인증은 본인계좌 인증 방식으로 결제통장과 휴대폰 소유자가 동일해야 합니다.</li></ul>
+              </li>
+              <li><b>무통장입금</b>
+                <ul><li>무통장 입금의 경우, 입금 예정일이 지나면 결제취소 되오니 입금기한을 반드시 확인해 주시기 바랍니다.</li></ul>
+              </li>
+              <li><b>현금영수증</b>
+                <ul>
+                  <li>계좌이체 및 무통장 입금 등 현금 결제 건의 경우, 현금영수증이 자동으로 발급됩니다.</li>
+                  <li>결제 진행 시 결제 창 하단에 현금영수증 발행 정보 입력란에 해당 정보를 입력 부탁 드립니다.</li>
+                  <li>현금영수증 발행을 선택하지 않았을 경우, 자동으로 국세청지정번호 (010-000-1234)로 발행됩니다.</li>
+                </ul>
+              </li>
+            </ol>
+          </section>
+
+        </div>
+
+        <!-- RIGHT (summary) -->
+        <aside class="co-side order-side">
+          <div class="order-amount">
+            <h3>주문금액</h3>
+            <div class="pay-line"><span>총 상품금액</span><span class="v"><b>30,000</b>원</span></div>
+            <div class="pay-line"><span>상품 할인금액</span><span class="v"><b>-3,000</b>원</span></div>
+            <div class="pay-line"><span>포인트 사용</span><span class="v"><b>0</b>원</span></div>
+            <div class="pay-line"><span>배송비</span><span class="v"><b>0</b>원</span></div>
+            <div class="pay-total"><span class="lb">총 결제금액</span><span class="v"><b>27,000</b>원</span></div>
+            <div class="pay-earn"><span>적립 예정</span><span class="e"><b>+ 300</b>P</span></div>
+          </div>
+          <div class="agree-box">
+            <p class="agree-title" id="termsOpen">이용규정 및 환불 안내</p>
+            <label class="agree-chk"><input type="checkbox" class="chk"><span>주문 할 상품의 상품명, 가격, 배송정보 등을 최종 확인하였으며, 구매에 동의합니다. (전자상거래법 제8조 제2항)</span></label>
+          </div>
+          <a class="btn pay-btn" href="주문완료.html">결제하기</a>
+          <p class="pay-hint">※ 약관 동의 후 결제 가능합니다.</p>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 모바일 하단 결제 CTA (푸터 도킹) ===== -->
+  <div class="order-cta only-mo">
+    <p class="order-cta-hint">* 약관 동의 후 결제 가능합니다.</p>
+    <a class="order-cta-btn is-disabled" href="주문완료.html"><b>27,000원</b> <span>결제하기</span></a>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <div id="site-footer"></div>
+
+  <!-- ===== 이용규정 및 환불 안내 레이어 팝업 ===== -->
+  <div class="terms-modal" id="termsModal" hidden>
+    <div class="terms-modal-dim"></div>
+    <div class="terms-modal-box" role="dialog" aria-modal="true" aria-label="이용규정 및 환불 안내">
+      <div class="terms-grab" aria-hidden="true"><span></span></div>
+      <div class="terms-modal-head">
+        <h3>이용규정 및 환불 안내</h3>
+        <button type="button" class="terms-modal-x" aria-label="닫기"></button>
+      </div>
+      <div class="terms-body">
+        <h4>1. 주문 및 결제</h4>
+        <p>주문하실 상품의 상품명, 가격, 배송정보 등을 최종 확인하신 후 구매에 동의해 주시기 바랍니다. (전자상거래 등에서의 소비자보호에 관한 법률 제8조 제2항)</p>
+        <ul>
+          <li>결제 수단은 신용카드, 무통장입금, 실시간 계좌이체를 지원합니다.</li>
+          <li>무통장입금의 경우 입금 예정일이 지나면 주문이 자동 취소됩니다.</li>
+          <li>30만원 이상 신용카드 결제 시 공인인증서가 필요할 수 있습니다.</li>
+        </ul>
+        <h4>2. 배송 안내</h4>
+        <p>결제 완료 후 평균 2~3 영업일 이내에 상품이 발송됩니다. (주말 및 공휴일 제외)</p>
+        <ul>
+          <li>도서/산간 지역은 추가 배송비가 발생하거나 배송이 지연될 수 있습니다.</li>
+          <li>일부 예약판매 상품은 별도 안내된 출고일에 발송됩니다.</li>
+          <li>기본 배송비는 3,000원이며, 일정 금액 이상 구매 시 무료 배송이 적용됩니다.</li>
+        </ul>
+        <h4>3. 교환 및 반품</h4>
+        <p>상품 수령 후 7일 이내에 교환/반품 신청이 가능합니다. 단, 아래의 경우에는 교환/반품이 제한됩니다.</p>
+        <ul>
+          <li>포장을 개봉하였거나 사용하여 상품 가치가 훼손된 경우</li>
+          <li>고객의 책임 있는 사유로 상품이 멸실·훼손된 경우</li>
+          <li>복제가 가능한 상품(전자책, 이용권 등)의 포장을 개봉한 경우</li>
+          <li>시간의 경과에 의해 재판매가 곤란할 정도로 상품 가치가 현저히 감소한 경우</li>
+        </ul>
+        <h4>4. 환불 규정</h4>
+        <p>반품 상품이 회수 확인된 후 3영업일 이내에 결제 수단으로 환불이 진행됩니다.</p>
+        <ul>
+          <li>신용카드 결제 건은 카드사 사정에 따라 취소 반영이 3~5영업일 소요될 수 있습니다.</li>
+          <li>현금 결제 건은 등록하신 환불 계좌로 입금됩니다.</li>
+          <li>단순 변심에 의한 반품의 경우 왕복 배송비가 차감될 수 있습니다.</li>
+          <li>적립된 포인트는 환불 시 함께 회수되며, 사용한 포인트는 재적립됩니다.</li>
+        </ul>
+        <h4>5. 개인정보 및 기타</h4>
+        <p>주문 처리를 위해 수집된 개인정보는 관련 법령에 따라 안전하게 관리되며, 배송 및 고객 응대 목적 외로 사용되지 않습니다. 기타 문의사항은 고객센터(1833-8368)로 연락 주시기 바랍니다.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 최근 배송지 레이어 팝업 ===== -->
+  <div class="addr-modal" id="addrModal" hidden>
+    <div class="addr-modal-dim"></div>
+    <div class="addr-modal-box" role="dialog" aria-modal="true" aria-label="최근 배송지 선택">
+      <div class="addr-grab" aria-hidden="true"><span></span></div>
+      <div class="addr-modal-head">
+        <h3>최근 배송지 선택</h3>
+        <button type="button" class="addr-modal-x" aria-label="닫기"></button>
+      </div>
+      <ul class="addr-list">
+        <li class="addr-item">
+          <div class="addr-info">
+            <p class="ai-name">홍길동</p>
+            <p class="ai-phone">010-1234-5678</p>
+            <p class="ai-addr">(06234) 서울특별시 강남구 테헤란로 OO빌딩 5층</p>
+          </div>
+          <button type="button" class="btn btn-outline addr-pick">선택</button>
+        </li>
+        <li class="addr-item">
+          <div class="addr-info">
+            <p class="ai-name">홍길동</p>
+            <p class="ai-phone">010-9876-5432</p>
+            <p class="ai-addr">(06234) 서울특별시 강남구 테헤란로 OO빌딩 5층</p>
+          </div>
+          <button type="button" class="btn btn-outline addr-pick">선택</button>
+        </li>
+        <li class="addr-item">
+          <div class="addr-info">
+            <p class="ai-name">홍길동</p>
+            <p class="ai-phone">010-2222-3333</p>
+            <p class="ai-addr">(06234) 서울특별시 강남구 테헤란로 OO빌딩 5층</p>
+          </div>
+          <button type="button" class="btn btn-outline addr-pick">선택</button>
+        </li>
+        <li class="addr-item">
+          <div class="addr-info">
+            <p class="ai-name">홍길동</p>
+            <p class="ai-phone">010-4444-5555</p>
+            <p class="ai-addr">(06234) 서울특별시 강남구 테헤란로 OO빌딩 5층</p>
+          </div>
+          <button type="button" class="btn btn-outline addr-pick">선택</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    var gnb=document.querySelector('.gnb'); if(!gnb) return;
+    var drop=document.getElementById('gnbDrop'); if(!drop) return;
+    var cats=drop.querySelector('.gd-cats');
+    var items=[].slice.call(gnb.querySelectorAll('nav a'));
+    var MENU={
+      'ELT':['Coursebook','Phonics','Readers','Reading','Listening','Speaking','Writing','Grammar','Vocabulary'],
+      '초/중등':['중학내신','고등선행','어휘','Phonics','쓰기','독해','듣기','문법/구문','TOEFL/TEPS/NELT'],
+      '고등':['어휘','독해','듣기','문법/구문','수능대비','고교내신','단기특강','TOEFL/TEPS/NELT'],
+      '교과서/자습서':['중학영어 교과서','고등영어 교과서','수학 교과서','중국어/일본어'],
+      '수험/일반':['TOEIC','TOEIC Speaking/Writing','TOEFL/OPIC/TEPS','FLEX','일반영어'],
+      '수학/국어':['유아','초등','중등','고등'],
+      '학습자료실':['서브메인','ELT자료','초/중등교재 자료','고등교재 자료','교과서/자습서 자료','수험/일반 자료','수학/국어 자료'],
+      '도서몰':['ELT','초/중등','고등영어 교과서','교과서/자습서','수험/일반','교구/부가상품','세트/패키지','온라인 서비스/이용권']
+    };
+    var closeT;
+    function openFor(a){
+      var name=a.textContent.trim();
+      var mega=(name==='학습자료실'||name==='도서몰');
+      var BR='<div class="gd-brands"><a class="gd-btn blue" href="#">Come on Series <span>&#8250;</span></a><a class="gd-btn navy" href="#">Oxford <span>&#8250;</span></a></div>';
+      if(mega){
+        var COLS=[['ELT','Coursebook','Phonics','Reading','Readers','Listening','Speaking','Grammar','Writing','Vocabulary'],['초등/중등','중학 내신','고등 선행','파닉스','어휘','쓰기','독해','듣기','문법/구분','TOEFL/TEPS/NELT'],['고등','어휘','독해','듣기','문법/구분','수능 대비','고교 내신','단기 특강','TOEFL/TEPS/NELT'],['교과서/자습서','중학영어 교과서','고등영어 교과서','수학 교과서','중국어/일본어'],['수험/일반','TOEIC','TOEIC SPEAKING|/WRITING','TOEFL/OPIC/TEPS','FLEX','일반영어'],['수학/국어','유아','초등','중등','고등']];
+        drop.innerHTML=COLS.map(function(c){ return '<div class="gd-col"><p class="gd-col-t">'+c[0]+'</p><div class="items">'+c.slice(1).map(function(i){ return '<a href="리스트_교재구매.html">'+i.replace('|','<br>')+'</a>'; }).join('')+'</div></div>'; }).join('')+BR;
+        drop.classList.add('mega');
+      } else {
+        var list=MENU[name]; if(!list){ hideGnb(); return; }
+        drop.innerHTML='<div class="gd-cats">'+list.map(function(t){ return '<a href="리스트_교재구매.html">'+t+'</a>'; }).join('')+'</div>'+BR;
+        drop.classList.remove('mega');
+      }
+      items.forEach(function(x){ x.classList.toggle('on',x===a); });
+      drop.classList.add('open');
+      if(mega){ var gw=gnb.getBoundingClientRect().width; var ml=Math.round((gw-drop.offsetWidth)/2); drop.style.left=(ml>0?ml:0)+'px'; }
+      else{
+        var gr=gnb.getBoundingClientRect(), ir=a.getBoundingClientRect();
+        var left=Math.round(ir.left-gr.left-24);
+        var maxLeft=Math.round(gr.width-drop.offsetWidth);
+        if(left>maxLeft) left=maxLeft; if(left<0) left=0;
+        drop.style.left=left+'px';
+      }
+    }
+    function hideGnb(){ drop.classList.remove('open'); items.forEach(function(x){ x.classList.remove('on'); }); }
+    items.forEach(function(a){
+      a.addEventListener('mouseenter',function(){ clearTimeout(closeT); openFor(a); });
+      a.addEventListener('click',function(e){ if(MENU[a.textContent.trim()]){ e.preventDefault(); openFor(a); } });
+    });
+    gnb.addEventListener('mouseleave',function(){ closeT=setTimeout(hideGnb,160); });
+    gnb.addEventListener('mouseenter',function(){ clearTimeout(closeT); });
+    document.addEventListener('click',function(e){ if(!gnb.contains(e.target)) hideGnb(); });
+  })();
+
+  /* 인풋 지우기(X) — 포커스 + 입력값일 때 노출, 클릭 시 내용 삭제 */
+  (function(){
+    [].forEach.call(document.querySelectorAll('input.field'),function(inp){
+      var wrap=document.createElement('span'); wrap.className='field-wrap';
+      inp.parentNode.insertBefore(wrap,inp); wrap.appendChild(inp);
+      var btn=document.createElement('button'); btn.type='button'; btn.className='field-clear'; btn.setAttribute('aria-label','지우기');
+      wrap.appendChild(btn);
+      function upd(){ wrap.classList.toggle('has-val', inp.value.trim().length>0); }
+      inp.addEventListener('input',upd);
+      btn.addEventListener('mousedown',function(e){ e.preventDefault(); });
+      btn.addEventListener('click',function(){ inp.value=''; upd(); inp.focus(); });
+      upd();
+    });
+  })();
+
+  /* 오른쪽 요약 섹션 sticky 스크롤 인터랙션 — 고정될 때 그림자 부여 */
+  (function(){
+    var side=document.querySelector('.co-side'); if(!side) return;
+    var stickTop=parseInt(getComputedStyle(side).top,10)||24;
+    function onScroll(){ side.classList.toggle('stuck', side.getBoundingClientRect().top<=stickTop+1); }
+    window.addEventListener('scroll',onScroll,{passive:true});
+    window.addEventListener('resize',onScroll,{passive:true});
+    onScroll();
+  })();
+
+  /* 배송지 알약탭 전환 + 최근배송지 레이어 팝업 */
+  (function(){
+    var tabs=[].slice.call(document.querySelectorAll('.ship-tabs a'));
+    var modal=document.getElementById('addrModal'); if(!modal) return;
+    function openM(){ modal.hidden=false; requestAnimationFrame(function(){ modal.classList.add('open'); }); document.body.style.overflow='hidden'; }
+    function closeM(){ modal.classList.remove('open'); setTimeout(function(){ modal.hidden=true; },300); document.body.style.overflow=''; }
+    tabs.forEach(function(t){
+      t.addEventListener('click',function(){
+        tabs.forEach(function(x){ x.classList.remove('on'); });
+        t.classList.add('on');
+        if(t.textContent.trim()==='최근배송지') openM();
+      });
+    });
+    modal.querySelector('.addr-modal-dim').addEventListener('click',closeM);
+    modal.querySelector('.addr-modal-x').addEventListener('click',closeM);
+    var agrab=modal.querySelector('.addr-grab'); if(agrab) agrab.addEventListener('click',closeM); /* 모바일 바텀시트: 그랩 탭 → 닫기 */
+    document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!modal.hidden) closeM(); });
+    // 배송지 정보 섹션 필드 채우기
+    var shipSec=[].slice.call(document.querySelectorAll('.co-sec')).filter(function(s){
+      var h=s.querySelector('h2'); return h && h.textContent.trim()==='배송지 정보';
+    })[0];
+    function setVal(inp,v){ if(!inp) return; inp.value=v; inp.dispatchEvent(new Event('input',{bubbles:true})); }
+    modal.querySelectorAll('.addr-pick').forEach(function(b){
+      b.addEventListener('click',function(){
+        var it=b.closest('.addr-item');
+        var name=it.querySelector('.ai-name').childNodes[0].textContent.trim();
+        var phone=it.querySelector('.ai-phone').textContent.trim();
+        var addr=it.querySelector('.ai-addr').textContent.trim();
+        if(shipSec){
+          var f2=shipSec.querySelectorAll('.fgrid .field');
+          setVal(f2[0],name); setVal(f2[1],phone);
+          var base=shipSec.querySelector('.addr input[placeholder^="기본 주소"]');
+          setVal(base,addr);
+        }
+        closeM();
+      });
+    });
+  })();
+
+  /* 약관 동의 체크 시 결제하기 버튼 활성(빨강) */
+  (function(){
+    var chk=document.querySelector('.agree-chk .chk');
+    var btn=document.querySelector('.order-side .pay-btn');
+    if(!chk||!btn) return;
+    chk.addEventListener('change',function(){ btn.classList.toggle('ready',chk.checked); });
+    btn.addEventListener('click',function(e){ if(!chk.checked){ e.preventDefault(); chk.focus(); } });
+  })();
+
+  /* 이용규정 및 환불 안내 레이어 팝업 (타이틀 고정 + 본문 스크롤) */
+  (function(){
+    var open=document.getElementById('termsOpen');
+    var modal=document.getElementById('termsModal');
+    if(!open||!modal) return;
+    function openM(){ modal.hidden=false; requestAnimationFrame(function(){ modal.classList.add('open'); }); document.body.style.overflow='hidden'; }
+    function closeM(){ modal.classList.remove('open'); setTimeout(function(){ modal.hidden=true; },300); document.body.style.overflow=''; }
+    open.addEventListener('click',openM);
+    modal.querySelector('.terms-modal-dim').addEventListener('click',closeM);
+    modal.querySelector('.terms-modal-x').addEventListener('click',closeM);
+    var grab=modal.querySelector('.terms-grab'); if(grab) grab.addEventListener('click',closeM); /* 모바일 바텀시트: 그랩 핸들 탭 → 닫기 */
+    document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!modal.hidden) closeM(); });
+  })();
+
+  /* 모바일: 섹션 아코디언 (헤더 탭 → 펼치기/접기). PC 에서는 클릭 무시 */
+  (function(){
+    var secs=[].slice.call(document.querySelectorAll('.co-sec, .order-amount'));
+    secs.forEach(function(sec){
+      var head=sec.querySelector('h2')||sec.querySelector('h3'); if(!head) return;
+      var body=document.createElement('div'); body.className='acc-body';
+      var n=head.nextSibling;
+      while(n){ var next=n.nextSibling; body.appendChild(n); n=next; }
+      sec.appendChild(body);
+      sec.classList.add('acc');
+      if(!sec.classList.contains('s-payguide')) sec.classList.add('open'); /* 결제수단 안내만 기본 접힘 */
+      head.addEventListener('click',function(){
+        if(window.innerWidth>1023) return; /* PC: 아코디언 미적용 */
+        sec.classList.toggle('open');
+      });
+    });
+  })();
+
+  /* 모바일 하단 결제 CTA: 약관 동의 게이팅 + 푸터 도킹 (교재상세 pdp-bar/장바구니 cart-cta 와 동일) */
+  (function(){
+    var cta=document.querySelector('.order-cta'); if(!cta) return;
+    var btn=cta.querySelector('.order-cta-btn');
+    var chk=document.querySelector('.agree-chk .chk');
+    if(chk&&btn){
+      function sync(){ btn.classList.toggle('is-disabled', !chk.checked); }
+      chk.addEventListener('change',sync); sync();
+      btn.addEventListener('click',function(e){ if(!chk.checked){ e.preventDefault(); chk.focus(); } });
+    }
+    function dock(){
+      var footer=document.querySelector('#site-footer');
+      if(!footer){ cta.style.transform=''; return; }
+      var GAP=20, ft=footer.getBoundingClientRect().top;
+      var t=(window.innerHeight-ft)+GAP;
+      cta.style.transform = t>0 ? 'translateY('+(-t)+'px)' : '';
+      cta.classList.toggle('docked', t>0);
+    }
+    window.addEventListener('scroll',dock,{passive:true});
+    window.addEventListener('resize',dock);
+    window.addEventListener('load',dock);
+    dock();
+  })();
+  </script>
+</body>
+</html>

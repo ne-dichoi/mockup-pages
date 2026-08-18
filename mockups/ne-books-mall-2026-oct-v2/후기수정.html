@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>NE_Books · 마이페이지 · 후기 수정</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="css/layout.css?v=20260814n">
+<script src="js/layout.js?v=20260814n" defer></script>
+<script src="js/search.js?v=20260814n" defer></script>
+</head>
+<body class="page-my page-rvwrite">
+
+  <!-- ===== HEADER ===== -->
+  <div id="site-header"></div>
+
+  <!-- ===== PAGE HEAD (하드코딩: layout.js 캐시와 무관하게 항상 표시) ===== -->
+  <div id="site-location"><section class="pagehead"><div class="container cart-head-row"><div class="ph-left"><h1 class="ph-title">후기</h1></div><div class="crumb"><a class="home ico" href="index.html"><img src="assets/ic_home.svg" alt="홈"></a><span class="sep">·</span><a href="마이페이지.html#review">마이페이지</a><span class="sep">·</span><span class="cur">후기</span></div></div></section></div>
+
+  <!-- ===== 후기 수정 ===== -->
+  <section class="mywrap">
+    <div class="container">
+
+      <!-- 마이페이지 대탭 (후기 활성) -->
+      <div class="my-tabs">
+        <a href="마이페이지.html#home">홈</a>
+        <a href="마이페이지.html#orders">주문내역</a>
+        <a href="마이페이지.html#points">포인트</a>
+        <a href="마이페이지.html#wish">찜</a>
+        <a href="마이페이지.html#qna">문의/답변</a>
+        <a class="on" href="마이페이지.html#review">후기</a>
+        <a href="마이페이지.html#event">이벤트/세미나</a>
+      </div>
+
+      <!-- 안내 박스 -->
+      <div class="rv-guide">
+        <ul class="rv-guide-list">
+          <li>상품과 무관한 내용이나 동일 문자의 반복 등 부적합한 내용의 경우에는 무통보 삭제 될 수 있습니다.</li>
+        </ul>
+      </div>
+
+      <!-- 작성 폼 -->
+      <div class="iq-form">
+        <!-- 상품명 (이미 선택된 교재) -->
+        <div class="iq-row">
+          <div class="iq-label">상품명 <span class="iq-req">*</span></div>
+          <div class="iq-field">
+            <div class="iq-bk-selected">
+              <span class="iq-bk-cover"><img src="assets/best_2.png" alt=""></span>
+              <span class="iq-bk-title">Phonics Code 2: Student Book</span>
+              <button type="button" class="iq-bk-del">삭제</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 별점 -->
+        <div class="iq-row">
+          <div class="iq-label">별점 <span class="iq-req">*</span></div>
+          <div class="iq-field">
+            <div class="rw-rate">
+              <div class="rw-stars" id="rwStars">
+                <button type="button" class="rw-star on" data-v="1" aria-label="1점">★</button>
+                <button type="button" class="rw-star on" data-v="2" aria-label="2점">★</button>
+                <button type="button" class="rw-star on" data-v="3" aria-label="3점">★</button>
+                <button type="button" class="rw-star on" data-v="4" aria-label="4점">★</button>
+                <button type="button" class="rw-star on" data-v="5" aria-label="5점">★</button>
+              </div>
+              <span class="rw-score"><b id="rwScore">5.0</b> / 5.0</span>
+            </div>
+            <span class="rw-hint">* 해당 교재의 평점을 선택해주세요.</span>
+          </div>
+        </div>
+
+        <!-- 제목 -->
+        <div class="iq-row">
+          <div class="iq-label">제목 <span class="iq-req">*</span></div>
+          <div class="iq-field">
+            <input class="iq-in full iq-clear" type="text" placeholder="제목을 입력해 주세요." value="재밌고 유쾌하게 공부하기^V^">
+          </div>
+        </div>
+
+        <!-- 내용 -->
+        <div class="iq-row">
+          <div class="iq-label">내용 <span class="iq-req">*</span></div>
+          <div class="iq-field">
+            <textarea class="iq-textarea" style="height:250px" placeholder="내용을 입력해 주세요.">능률보카 어원편은 단어를 어근과 연관지어 학습할 수 있어 암기 부담을 줄여주는 교재였습니다.
+단순 암기가 아니라 단어가 만들어진 원리를 이해하니 다른 어휘도 자연스럽게 확장되어 실력이 눈에 띄게 늘었어요.
+짧은 시간에도 효율이 높아 꾸준한 학습에 특히 도움이 되었습니다.</textarea>
+          </div>
+        </div>
+
+        <!-- 상품 이미지 (첨부됨) -->
+        <div class="iq-row">
+          <div class="iq-label">상품 이미지</div>
+          <div class="iq-field">
+            <div class="iq-file">
+              <button type="button" class="iq-file-btn" id="rwFileBtn">파일첨부</button>
+              <span class="iq-file-name has-file" id="rwFileName">1234554567.png<button type="button" class="iq-file-del" id="rwFileDel">삭제 <svg viewBox="0 0 12 12" fill="none"><path d="M3 3l6 6M9 3l-6 6" stroke="#666" stroke-width="1.3" stroke-linecap="round"/></svg></button></span>
+              <span class="iq-help">(첨부파일의 용량은 5MB까지 가능합니다.)</span>
+              <input type="file" id="rwFile" hidden accept="image/*">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 필수 안내 + 취소/등록 -->
+      <div class="iq-actions">
+        <span class="iq-req-note"><b>*</b> 표시는 필수 입력 사항 입니다.</span>
+        <div class="iq-actions-btns">
+          <button type="button" class="iq-btn-cancel" id="rwCancel">취소</button>
+          <button type="button" class="iq-btn-submit">등록</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <div id="site-footer"></div>
+
+  <script>
+  (function(){
+    /* 별점 선택 */
+    var stars=[].slice.call(document.querySelectorAll('#rwStars .rw-star'));
+    var scoreEl=document.getElementById('rwScore');
+    var cur=5;
+    function paint(n){ stars.forEach(function(st,i){ st.classList.toggle('on', i<n); }); }
+    stars.forEach(function(st){
+      var v=+st.getAttribute('data-v');
+      st.addEventListener('mouseenter',function(){ paint(v); });
+      st.addEventListener('click',function(){ cur=v; paint(v); if(scoreEl) scoreEl.textContent=v.toFixed(1); });
+    });
+    var wrap=document.getElementById('rwStars');
+    if(wrap) wrap.addEventListener('mouseleave',function(){ paint(cur); });
+
+    /* 교재 삭제 → 검색 상태로 (와이어프레임: 안내만) */
+    var bkDel=document.querySelector('.iq-bk-del');
+    if(bkDel) bkDel.addEventListener('click',function(){ alert('선택한 교재를 삭제했습니다.'); });
+
+    /* 파일첨부 → 파일명 표시 / 삭제 */
+    var fileBtn=document.getElementById('rwFileBtn'), fileInp=document.getElementById('rwFile'), fileName=document.getElementById('rwFileName'), fileDel=document.getElementById('rwFileDel');
+    if(fileBtn&&fileInp){
+      fileBtn.addEventListener('click',function(){ fileInp.click(); });
+      fileInp.addEventListener('change',function(){ if(fileName){ fileName.classList.add('has-file'); fileName.textContent=fileInp.files&&fileInp.files[0]?fileInp.files[0].name:''; } });
+    }
+    if(fileDel){ fileDel.addEventListener('click',function(e){ e.stopPropagation(); if(fileName){ fileName.classList.remove('has-file'); fileName.textContent=''; } if(fileInp) fileInp.value=''; }); }
+
+    /* 취소 → 후기 목록으로 */
+    var cancel=document.getElementById('rwCancel');
+    if(cancel) cancel.addEventListener('click',function(){ location.href='마이페이지.html#review'; });
+
+    /* 등록(수정 완료) → 후기 목록으로 */
+    var submit=document.querySelector('.iq-btn-submit');
+    if(submit) submit.addEventListener('click',function(){ alert('후기가 수정되었습니다.'); location.href='마이페이지.html#review'; });
+  })();
+  </script>
+
+</body>
+</html>
