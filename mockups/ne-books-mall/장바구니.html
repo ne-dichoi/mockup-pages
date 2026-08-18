@@ -8,9 +8,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260815aa">
-<script src="js/layout.js?v=20260815aa" defer></script>
-<script src="js/search.js?v=20260815aa" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260815ab">
+<script src="js/layout.js?v=20260815ab" defer></script>
+<script src="js/search.js?v=20260815ab" defer></script>
 </head>
 <body class="page-cart">
 
@@ -216,6 +216,9 @@
       var empty=rows.length===0;
       document.getElementById('cartEmpty').style.display=empty?'flex':'none';
       document.body.classList.toggle('cart-is-empty', empty);
+      /* 헤더 장바구니 뱃지 = 실제 장바구니 상품 수, 담아온 상품목록도 현재 DOM 기준 동기화(삭제 반영) */
+      if(window.neCartSetCount) window.neCartSetCount(rows.length);
+      if(window.neCartSaveAdded){ window.neCartSaveAdded(rows.filter(function(r){return r.dataset.added;}).map(function(r){ try{return JSON.parse(r.dataset.item);}catch(e){return null;} }).filter(Boolean)); }
     }
     /* quantity + delete */
     document.getElementById('cartList').addEventListener('click',function(e){
@@ -281,6 +284,29 @@
     })();
 
     recalc();
+
+    /* 리스트/상세에서 담아온 상품(ne_cart_added)을 장바구니에 렌더 (layout.js 로드 후 = DOMContentLoaded) */
+    function citemHTML(it){
+      var img=(it&&it.img)||'assets/best_1.png', title=(it&&it.title)||'상품';
+      var data=JSON.stringify(it||{}).replace(/'/g,'&#39;');
+      return '<div class="citem" data-orig="15000" data-unit="13500" data-pt="150" data-added="1" data-item=\''+data+'\'>'
+        +'<input type="checkbox" class="chk row-chk" checked>'
+        +'<a class="cthumb" href="교재상세.html"><img src="'+img+'" alt=""></a>'
+        +'<a class="cname" href="교재상세.html">'+title+'</a>'
+        +'<div class="cprice"><span class="pct">10%</span><span class="was">15,000원</span><span class="now">13,500원</span><span class="note">(10%할인+150P 적립)</span></div>'
+        +'<span class="qty"><button type="button" class="minus">&minus;</button><input type="number" class="q" value="1" min="1"><button type="button" class="plus">+</button></span>'
+        +'<div class="csum"><span class="amt">13,500원</span><span class="pt">(150P 적립예정)</span></div>'
+        +'<button type="button" class="cdel" aria-label="삭제">&times;</button>'
+        +'</div>';
+    }
+    function renderAdded(){
+      var arr=(window.neCartAddedList?window.neCartAddedList():[]);
+      if(!arr.length){ recalc(); return; }
+      var listEl=document.getElementById('cartList');
+      arr.forEach(function(it){ listEl.insertAdjacentHTML('beforeend', citemHTML(it)); });
+      syncSelAll(); recalc();
+    }
+    if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',renderAdded); else renderAdded();
   })();
 
   /* 오른쪽 요약 섹션 sticky 스크롤 인터랙션 — 고정될 때 그림자 부여 */

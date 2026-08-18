@@ -10,9 +10,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- Pretendard (design font) via CDN, with Noto Sans KR fallback -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260815aa">
-<script src="js/layout.js?v=20260815aa" defer></script>
-<script src="js/search.js?v=20260815aa" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260815ab">
+<script src="js/layout.js?v=20260815ab" defer></script>
+<script src="js/search.js?v=20260815ab" defer></script>
 </head>
 <body class="page-buy">
 
@@ -483,7 +483,13 @@
       var btn=e.target.closest('.mc-cart, .pbtns .cart');
       if(!btn || btn.classList.contains('soldout')) return;
       e.preventDefault();
-      if(typeof window.neCartAdd==='function') window.neCartAdd(1);
+      var card=btn.closest('.mcard, .prow'), item=null;
+      if(card){
+        var t=card.querySelector('.mc-title, .ptitle'), im=card.querySelector('.mc-cover img, .pcover img'), bd=card.querySelector('.mc-tag.course, .badge-course');
+        var title=t?t.textContent.trim():'상품';
+        item={ id:title, title:title, img:im?im.getAttribute('src'):'assets/best_1.png', badge:bd?bd.textContent.trim():'' };
+      }
+      if(typeof window.neCartAdd==='function') window.neCartAdd(item);
       alert('장바구니에 상품을 담았습니다.');
     });
   })();

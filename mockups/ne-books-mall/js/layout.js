@@ -380,23 +380,37 @@
   })();
 
   /* ===== 장바구니 수량 뱃지 + 담기 헬퍼 (localStorage 로 페이지 간 유지) ===== */
-  /* 초기값: localStorage 없으면 window.CART_COUNT(있을 때) 또는 데모값 2. window.neCartAdd(n)로 담기. */
+  /* 뱃지 = 실제 장바구니 상품 수. 기본 3(장바구니 기본상품 3개). 리스트/상세에서 담은 상품은 ne_cart_added 에 저장 → 장바구니 페이지가 렌더 후 실제 수로 갱신. */
   (function(){
-    var KEY='ne_cart_count';
-    function read(){
-      var v=parseInt(localStorage.getItem(KEY),10);
-      if(isNaN(v)) v=(typeof window.CART_COUNT==='number') ? window.CART_COUNT : 2;
-      return v<0?0:v;
-    }
+    var CKEY='ne_cart_count', AKEY='ne_cart_added';
+    function readCount(){ var v=parseInt(localStorage.getItem(CKEY),10); if(isNaN(v)) v=(typeof window.CART_COUNT==='number')?window.CART_COUNT:3; return v<0?0:v; }
+    function added(){ try{ return JSON.parse(localStorage.getItem(AKEY))||[]; }catch(e){ return []; } }
+    function saveAdded(a){ try{ localStorage.setItem(AKEY,JSON.stringify(a||[])); }catch(e){} }
     function paint(n){
       var badge=document.querySelector('.cart-badge'); if(!badge) return;
       if(n>0){ badge.textContent=(n>99?'99+':n); badge.setAttribute('data-count',n); badge.hidden=false; }
       else { badge.textContent='0'; badge.setAttribute('data-count',0); badge.hidden=true; }
     }
-    window.neCartCount=read;
-    window.neCartAdd=function(k){ var n=read()+(k||1); try{ localStorage.setItem(KEY,n); }catch(e){} paint(n); return n; };
-    window.neCartPaint=function(){ paint(read()); };
-    paint(read());
+    window.neCartCount=readCount;
+    window.neCartAddedList=added;
+    window.neCartSaveAdded=function(a){ saveAdded(a); };
+    window.neCartSetCount=function(n){ n=n<0?0:n; try{ localStorage.setItem(CKEY,n); }catch(e){} paint(n); return n; };
+    /* item(객체) 전달 시 추가목록에 담고, 항상 카운트 +1 */
+    window.neCartAdd=function(item){ var n=readCount()+1; if(item&&typeof item==='object'){ var a=added(); a.push(item); saveAdded(a); } try{ localStorage.setItem(CKEY,n); }catch(e){} paint(n); return n; };
+    window.neCartPaint=function(){ paint(readCount()); };
+    paint(readCount());
+  })();
+
+  /* ===== 찜(위시리스트) 저장 헬퍼 (localStorage) ===== */
+  (function(){
+    var KEY='ne_wish';
+    function list(){ try{ return JSON.parse(localStorage.getItem(KEY))||[]; }catch(e){ return []; } }
+    function save(a){ try{ localStorage.setItem(KEY, JSON.stringify(a||[])); }catch(e){} }
+    window.neWishList=list;
+    window.neWishHas=function(id){ return list().some(function(x){ return x.id===id; }); };
+    window.neWishAdd=function(item){ var a=list(); if(!a.some(function(x){return x.id===item.id;})){ a.unshift(item); save(a); } return true; };
+    window.neWishRemove=function(id){ save(list().filter(function(x){ return x.id!==id; })); return false; };
+    window.neWishToggle=function(item){ return window.neWishHas(item.id) ? window.neWishRemove(item.id) : window.neWishAdd(item); };
   })();
 
   /* ===== 로케이션 (페이지별 depth 이름을 여기서 수정) ===== */

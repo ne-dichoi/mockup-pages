@@ -8,9 +8,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260815aa">
-<script src="js/layout.js?v=20260815aa" defer></script>
-<script src="js/search.js?v=20260815aa" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260815ab">
+<script src="js/layout.js?v=20260815ab" defer></script>
+<script src="js/search.js?v=20260815ab" defer></script>
 </head>
 <body class="page-detail">
 
@@ -512,19 +512,20 @@
     });
     enableDragScroll(document.querySelector('.dh-res'));
 
-    /* 장바구니 담기 (UC-BUY-01): 담기 완료 얼럿 + 헤더 장바구니 뱃지 카운트 갱신 */
-    function bumpCartBadge(){
-      var badge=document.querySelector('.cart-badge'); if(!badge) return;
-      var n=parseInt(badge.getAttribute('data-count')||'0',10)+1;
-      badge.textContent=(n>99?'99+':n); badge.setAttribute('data-count',n); badge.hidden=false;
+    /* 장바구니 담기 (UC-BUY-01): 페이지 이동 없이 담기 + 헤더 뱃지 카운트 갱신 + 알럿 */
+    function detailItem(){
+      var t=(document.querySelector('.dh-title')||{}).textContent||'상품';
+      var cov=document.querySelector('.dh-cover .dh-cover-book img');
+      var bd=(document.querySelector('.dh-badges .badge.course')||document.querySelector('.badge.course')||{}).textContent||'';
+      return { id:t.trim(), title:t.trim(), img:cov?cov.getAttribute('src'):'assets/best_1.png', badge:(bd||'').trim() };
     }
     function addToCart(count){
       var c=count||1;
-      for(var i=0;i<c;i++){ bumpCartBadge(); }
-      if(confirm('장바구니에 담겼습니다. 이동하시겠습니까?')){ location.href='장바구니.html'; }
+      for(var i=0;i<c;i++){ if(window.neCartAdd) window.neCartAdd(detailItem()); }
+      alert('장바구니에 상품을 담았습니다.');
     }
-    /* 상단 판매정보의 [장바구니] 버튼 (2곳) */
-    document.querySelectorAll('.btns .cart').forEach(function(btn){
+    /* 상단 판매정보 [장바구니] 버튼 + 하단 플로팅 '장바구니 담기' */
+    document.querySelectorAll('.btns .cart, .pdp-cart').forEach(function(btn){
       btn.addEventListener('click',function(e){ e.preventDefault(); addToCart(); });
     });
     /* 교재 카드: 장바구니 아이콘=담기, 체크박스=토글, 그 외 영역 탭=교재상세 이동
@@ -644,10 +645,29 @@
     })();
 
     /* 상품상세 '교재상세 펼치기' 토글 (모바일) */
-    /* 하단 플로팅 찜하기 토글: 하트 채움(빨강) + 글자 빨강 */
-    document.querySelectorAll('.pdp-like').forEach(function(btn){
-      btn.addEventListener('click',function(){ btn.classList.toggle('on'); });
-    });
+    /* 찜하기: 위시리스트 담기/해제(localStorage → 마이페이지 찜) + 상단·플로팅 버튼 상태 동기화 + 알럿 */
+    (function(){
+      var likeBtns=[].slice.call(document.querySelectorAll('.pdp-like, .pic-btn.like'));
+      if(!likeBtns.length) return;
+      function item(){
+        var t=(document.querySelector('.dh-title')||{}).textContent||'상품';
+        var cov=document.querySelector('.dh-cover .dh-cover-book img');
+        var bd=(document.querySelector('.dh-badges .badge.course')||document.querySelector('.badge.course')||{}).textContent||'';
+        var now=(document.querySelector('.dh-price .now')||{}).textContent||'';
+        var was=(document.querySelector('.dh-price .was')||{}).textContent||'';
+        return { id:t.trim(), title:t.trim(), img:cov?cov.getAttribute('src'):'assets/best_1.png', badge:(bd||'').trim(), now:(now||'').trim(), was:(was||'').trim() };
+      }
+      function paint(){ var on=window.neWishHas&&window.neWishHas(item().id); likeBtns.forEach(function(b){ b.classList.toggle('on',!!on); }); }
+      if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',paint); else paint();
+      likeBtns.forEach(function(b){
+        b.addEventListener('click',function(){
+          if(!window.neWishToggle) return;
+          var added=window.neWishToggle(item());
+          paint();
+          alert(added ? '찜 목록에 담았습니다.' : '찜을 해제했습니다.');
+        });
+      });
+    })();
 
     /* 렉사일 지수 라벨 클릭 → PC: 툴팁 팝업 / 모바일: 바텀시트 */
     (function(){
@@ -799,9 +819,7 @@
     document.addEventListener('click',function(){
       document.querySelectorAll('.share-wrap.open').forEach(function(o){o.classList.remove('open');o.querySelector('.pic-btn.share').classList.remove('on');});
     });
-    document.querySelectorAll('.pic-btn.like').forEach(function(b){
-      b.addEventListener('click',function(){ b.classList.toggle('on'); });
-    });
+    /* .pic-btn.like 찜 토글은 위(찜하기 통합 핸들러)에서 .pdp-like 와 함께 처리 */
 
     /* review modals: write form + detail view */
     function openModal(m){ if(m) m.classList.add('open'); }
