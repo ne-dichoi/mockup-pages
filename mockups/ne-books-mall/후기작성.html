@@ -8,9 +8,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260815t">
-<script src="js/layout.js?v=20260815t" defer></script>
-<script src="js/search.js?v=20260815t" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260815v">
+<script src="js/layout.js?v=20260815v" defer></script>
+<script src="js/search.js?v=20260815v" defer></script>
 </head>
 <body class="page-my page-rvwrite">
 
@@ -195,9 +195,12 @@
 
     /* 파일첨부 → 파일명 표시 */
     var fileBtn=document.getElementById('rwFileBtn'), fileInp=document.getElementById('rwFile'), fileName=document.getElementById('rwFileName');
-    if(fileBtn&&fileInp){
+    if(fileBtn&&fileInp&&fileName){
+      var RWDEL='<svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 2l8 8M10 2l-8 8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>';
+      var rwClear=function(){ fileName.classList.remove('has-file'); fileName.innerHTML=''; fileInp.value=''; };
+      var rwShow=function(fn){ fileName.classList.add('has-file'); fileName.innerHTML='<span class="iq-file-fn"></span><button type="button" class="iq-file-del">삭제 '+RWDEL+'</button>'; fileName.querySelector('.iq-file-fn').textContent=fn; fileName.querySelector('.iq-file-del').addEventListener('click',rwClear); };
       fileBtn.addEventListener('click',function(){ fileInp.click(); });
-      fileInp.addEventListener('change',function(){ if(fileName) fileName.textContent=fileInp.files&&fileInp.files[0]?fileInp.files[0].name:''; });
+      fileInp.addEventListener('change',function(){ var f=fileInp.files&&fileInp.files[0]; if(f) rwShow(f.name); else rwClear(); });
     }
 
     /* 등록 → 진입 경로에 따라 이동 (와이어프레임)

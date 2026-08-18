@@ -1621,10 +1621,9 @@ a{color:inherit;text-decoration:none;}
 .iq-file{display:flex;align-items:center;gap:12px;}
 .iq-file-btn{height:44px;box-sizing:border-box;flex:none;border:1px solid var(--ink);border-radius:8px;padding:0 25px;background:#fff;font-family:var(--sans);font-size:14px;font-weight:500;color:var(--ink);cursor:pointer;}
 .iq-file-name{flex:1 1 0;min-width:0;height:44px;box-sizing:border-box;border:1px solid var(--line);border-radius:8px;padding:0 16px;display:flex;align-items:center;font-size:14px;color:var(--weak);}
-.iq-file .iq-help{flex:none;}
-/* 1:1문의(회원·비회원): 첨부 안내문구를 인풋박스 안(플레이스홀더처럼)에 표시하고 별도 안내문구는 숨김 — PC/모바일 공통 */
-.page-my :is(#cc-qna,#qnaGuest) .iq-file-name:empty::before{content:"첨부파일의 용량은 5MB까지 가능합니다.";color:var(--weak);}
-.page-my :is(#cc-qna,#qnaGuest) .iq-file .iq-help{display:none;}
+/* 첨부파일: 안내문구를 인풋박스 안(플레이스홀더처럼)에 표시하고 별도 안내문구는 숨김 — 1:1문의·후기작성 공통 */
+.iq-file .iq-help{display:none;}
+.iq-file-name:empty::before{content:"첨부파일의 용량은 5MB까지 가능합니다.";color:var(--weak);}
 
 /* 안내사항 / 하단 */
 .iq-note{font-size:12px;color:var(--muted);line-height:1.8;}
@@ -1703,7 +1702,9 @@ body.bsheet-lock{overflow:hidden;}
 .iq-btn-cancel{width:120px;height:44px;box-sizing:border-box;border:0;border-radius:8px;background:var(--btn);font-family:var(--sans);font-size:14px;font-weight:500;color:#fff;cursor:pointer;}
 /* 첨부된 파일 표시(수정 화면) */
 .iq-file-name.has-file{color:var(--ink);justify-content:space-between;gap:12px;}
-.iq-file-del{flex:none;display:inline-flex;align-items:center;gap:6px;border:0;background:none;padding:0;font-family:var(--sans);font-size:14px;color:var(--muted);cursor:pointer;}
+.iq-file-name.has-file::before{content:none;}
+.iq-file-fn{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.iq-file-del{flex:none;display:inline-flex;align-items:center;gap:6px;border:0;background:none;padding:0;font-family:var(--sans);font-size:14px;color:var(--weak);cursor:pointer;}
 .iq-file-del svg{width:12px;height:12px;display:block;}
 
 /* 비회원 1:1 문의 추가 요소 */
@@ -3541,7 +3542,7 @@ body.bsheet-lock{overflow:hidden;}
 
   /* 상품 이미지: 좌측 안내 박스 + 우측 파일첨부 버튼 */
   .page-rvwrite .iq-file{gap:8px;align-items:stretch;}
-  .page-rvwrite .iq-file-name{order:2;flex:1 1 0;height:54px;border-radius:10px;font-size:12px;padding:0 16px;}
+  .page-rvwrite .iq-file-name{order:2;flex:1 1 0;height:54px;border-radius:10px;font-size:14px;padding:0 16px;}
   .page-rvwrite .iq-file-name:empty::before{content:"첨부파일의 용량은 5MB까지 가능합니다.";color:var(--weak);}
   .page-rvwrite .iq-file-btn{order:1;flex:none;height:54px;padding:0 16px;border-color:var(--btn);}
   .page-rvwrite .iq-file .iq-help{display:none;}

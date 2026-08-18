@@ -552,3 +552,27 @@
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot);
   else boot();
 })();
+
+/* 첨부파일: 파일 선택 시 파일명 + 삭제(×) 노출 (1:1문의 회원·비회원 등 자체 input 없는 .iq-file 대상) */
+(function(){
+  var DEL='<svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 2l8 8M10 2l-8 8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>';
+  function wire(box){
+    if(box.querySelector('input[type="file"]')) return; /* 자체 처리(후기작성 등)는 제외 */
+    var btn=box.querySelector('.iq-file-btn'), nm=box.querySelector('.iq-file-name');
+    if(!btn||!nm||box.getAttribute('data-file-wired')) return;
+    box.setAttribute('data-file-wired','1');
+    var inp=document.createElement('input'); inp.type='file'; inp.hidden=true; box.appendChild(inp);
+    function clear(){ nm.classList.remove('has-file'); nm.innerHTML=''; inp.value=''; }
+    function show(fn){
+      nm.classList.add('has-file');
+      nm.innerHTML='<span class="iq-file-fn"></span><button type="button" class="iq-file-del">삭제 '+DEL+'</button>';
+      nm.querySelector('.iq-file-fn').textContent=fn;
+      nm.querySelector('.iq-file-del').addEventListener('click',clear);
+    }
+    btn.addEventListener('click',function(){ inp.click(); });
+    inp.addEventListener('change',function(){ var f=inp.files&&inp.files[0]; if(f) show(f.name); else clear(); });
+  }
+  function boot(){ [].forEach.call(document.querySelectorAll('.iq-file'),wire); }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot);
+  else boot();
+})();
