@@ -247,7 +247,9 @@
   .catnav-v3{background:#f7f8fa;padding:56px 0 64px;}
   .cn-grid{display:grid;grid-template-columns:300px minmax(0,1fr);gap:24px;align-items:stretch;}
   .cn-list{background:#fff;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;}
-  .cn-list-title{background:#191919;color:#fff;font-weight:800;font-size:15px;padding:16px 16px 14px;letter-spacing:-.3px;flex:none;}
+  .cn-list-title{background:#191919;color:#fff;font-weight:800;font-size:20px;padding:14px 16px;letter-spacing:-.5px;flex:none;display:flex;align-items:center;justify-content:space-between;gap:8px;}
+  .cn-list-title-more{font-size:12px;font-weight:500;color:rgba(255,255,255,.6);white-space:nowrap;letter-spacing:0;}
+  .cn-list-title-more:hover{color:#fff;}
   .cn-cats{padding:8px;display:flex;flex-direction:column;}
   .cn-cat{display:flex;align-items:center;justify-content:space-between;width:100%;padding:14px 16px;border:0;background:none;border-radius:10px;cursor:pointer;font-size:16px;color:#8c8c8c;text-align:left;transition:background .15s,color .15s;}
   .cn-cat .arw{opacity:0;transition:opacity .15s;}
@@ -302,7 +304,10 @@
     <div class="container">
       <div class="cn-grid">
         <div class="cn-list">
-          <div class="cn-list-title">카테고리로 빠르게</div>
+          <div class="cn-list-title">
+            <span>카테고리로 빠르게</span>
+            <a class="cn-list-title-more" href="리스트_교재구매.html">전체 카테고리 &#8250;</a>
+          </div>
           <div class="cn-cats" id="cnList"></div>
         </div>
         <div class="cn-banner" id="cnBanner"></div>
