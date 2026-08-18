@@ -307,6 +307,18 @@
   .cn-gold-perks li{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:12px 14px;color:#dfe4f0;font-size:13px;display:flex;align-items:center;gap:9px;}
   .cn-gold-perks li::before{content:'✓';display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;background:#2ec16a;color:#fff;border-radius:999px;font-size:12px;font-weight:800;flex:none;}
   .cn-gold-perks li b{color:#fff;font-weight:800;}
+  /* GOLD 배너 버전 탭 (1/2/3) */
+  .cn-gold-tabs{position:absolute;top:16px;right:18px;display:flex;gap:6px;z-index:3;}
+  .cn-gold-tabs button{width:26px;height:26px;border-radius:999px;border:1px solid rgba(0,0,0,.15);background:#fff;color:#666;font-size:12px;font-weight:700;cursor:pointer;line-height:1;padding:0;}
+  .cn-gold-tabs button.on{background:#1a1f2e;color:#fff;border-color:#1a1f2e;}
+  /* 2번 — 선생님만을 위한 자료 카드 */
+  .cn-gold-mat{align-items:center;text-align:center;}
+  .cn-mat-book{display:flex;flex-direction:column;align-items:center;gap:8px;margin:14px 0 16px;}
+  .cn-mat-book img{width:92px;aspect-ratio:2/3;object-fit:cover;border-radius:6px;box-shadow:0 4px 14px rgba(0,0,0,.45);}
+  .cn-mat-name{font-size:12px;color:#dfe4f0;line-height:1.4;max-width:220px;}
+  .cn-mat-btns{display:flex;gap:8px;width:100%;}
+  .cn-mat-btn{flex:1;text-align:center;padding:11px 0;border-radius:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.28);color:#fff;font-size:13px;font-weight:700;}
+  .cn-mat-btn:hover{background:rgba(255,255,255,.2);}
   @media (max-width:1023px){
     .cn-grid{grid-template-columns:1fr;}
     .cn-cats{flex-direction:row;gap:8px;overflow-x:auto;scrollbar-width:none;}
@@ -738,7 +750,8 @@
   var listEl=document.getElementById('cnList'), bnEl=document.getElementById('cnBanner');
   if(!listEl||!bnEl) return;
   var CART_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>';
-  var GOLD_HTML=
+  var GOLD_VERS=[
+    /* 1번 — 등급 혜택 안내 */
     '<div class="cn-bn-left">'
       +'<div class="cn-gold-badges"><span class="cn-gold-grade">GOLD 학원회원</span><span class="cn-gold-hot">🔥 이번 주 한정</span></div>'
       +'<h3 class="cn-gold-ttl">김능률 선생님, 다시 오셨네요!</h3>'
@@ -750,7 +763,32 @@
     +'<aside class="cn-gold-perks">'
       +'<span class="cn-gold-perks-h">&#128081; GOLD 회원 등급 혜택</span>'
       +'<ul><li>추가 할인 <b>10%</b> · 추가 적립 <b>10%</b></li><li>대량구매 전담 상담 · 신간 우선 안내</li><li>무료배송 <b>2회</b> · 9월 우대 쿠폰 <b>2건</b> 제공</li></ul>'
-    +'</aside>';
+    +'</aside>',
+    /* 2번 — 구매 교재 연계 자료 추천 */
+    '<div class="cn-bn-left">'
+      +'<div class="cn-gold-badges"><span class="cn-gold-grade">GOLD 학원회원</span><span class="cn-gold-hot">🔥 이번 주 한정</span></div>'
+      +'<h3 class="cn-gold-ttl">김능률 선생님, 교재를 구매하셨네요!</h3>'
+      +'<p class="cn-gold-lead">구매하신 <b>능률VOCA 어원편 중등 (2025 개정)</b>과 함께 사용하면 좋은 어휘 문제 마법사를 무료로 사용해보세요!</p>'
+      +'<a class="cn-gold-cta" href="'+LIST+'">무료 체험해보기 &#8250;</a>'
+      +'<div class="cn-gold-actions"><a class="cn-gold-btn" href="'+LIST+'">김능률 선생님 전용 교재 보기 &#8250;</a></div>'
+    +'</div>'
+    +'<aside class="cn-gold-perks cn-gold-mat">'
+      +'<span class="cn-gold-perks-h">&#128218; 선생님만을 위한 자료</span>'
+      +'<div class="cn-mat-book"><img src="assets/best_5.png" alt=""><span class="cn-mat-name">능률VOCA 어원편 중등 (2025 개정)</span></div>'
+      +'<div class="cn-mat-btns"><a class="cn-mat-btn" href="#">E-book/자료</a><a class="cn-mat-btn" href="#">어휘 문제 마법사</a></div>'
+    +'</aside>',
+    /* 3번 — 준비 중(내용 대기) */
+    '<div class="cn-bn-left">'
+      +'<div class="cn-gold-badges"><span class="cn-gold-grade">GOLD 학원회원</span></div>'
+      +'<h3 class="cn-gold-ttl">3번 배너 준비 중이에요</h3>'
+      +'<p class="cn-gold-lead">원하는 내용을 알려주시면 이 자리에 반영해 드릴게요.</p>'
+    +'</div>'
+    +'<aside class="cn-gold-perks"><span class="cn-gold-perks-h">&#128221; 준비 중</span><ul><li>내용 대기 중</li></ul></aside>'
+  ];
+  var goldVer=0;
+  function goldTabsHTML(active){
+    return '<div class="cn-gold-tabs">'+[0,1,2].map(function(i){ return '<button type="button" data-gv="'+i+'" class="'+(i===active?'on':'')+'">'+(i+1)+'</button>'; }).join('')+'</div>';
+  }
   CATS.forEach(function(c,i){
     var b=document.createElement('button'); b.type='button'; b.className='cn-cat'; b.setAttribute('data-i',i);
     b.innerHTML='<span>'+c.name+'</span><span class="arw">&#8250;</span>';
@@ -768,7 +806,10 @@
     btns.forEach(function(b){ b.classList.remove('on'); });
     bnEl.className='cn-banner cn-gold';
     bnEl.style.background='';
-    bnEl.innerHTML=GOLD_HTML;
+    bnEl.innerHTML=goldTabsHTML(goldVer)+GOLD_VERS[goldVer];
+    [].slice.call(bnEl.querySelectorAll('.cn-gold-tabs button')).forEach(function(t){
+      t.addEventListener('mouseenter',function(){ var v=parseInt(t.getAttribute('data-gv'),10); if(v!==goldVer){ goldVer=v; renderGold(); } });
+    });
   }
   function select(i){
     btns.forEach(function(b,idx){ b.classList.toggle('on',idx===i); });
