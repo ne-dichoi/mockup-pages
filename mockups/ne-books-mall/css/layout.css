@@ -1622,6 +1622,9 @@ a{color:inherit;text-decoration:none;}
 .iq-file-btn{height:44px;box-sizing:border-box;flex:none;border:1px solid var(--ink);border-radius:8px;padding:0 25px;background:#fff;font-family:var(--sans);font-size:14px;font-weight:500;color:var(--ink);cursor:pointer;}
 .iq-file-name{flex:1 1 0;min-width:0;height:44px;box-sizing:border-box;border:1px solid var(--line);border-radius:8px;padding:0 16px;display:flex;align-items:center;font-size:14px;color:var(--weak);}
 .iq-file .iq-help{flex:none;}
+/* 1:1문의(회원·비회원): 첨부 안내문구를 인풋박스 안(플레이스홀더처럼)에 표시하고 별도 안내문구는 숨김 — PC/모바일 공통 */
+.page-my :is(#cc-qna,#qnaGuest) .iq-file-name:empty::before{content:"첨부파일의 용량은 5MB까지 가능합니다.";color:var(--weak);}
+.page-my :is(#cc-qna,#qnaGuest) .iq-file .iq-help{display:none;}
 
 /* 안내사항 / 하단 */
 .iq-note{font-size:12px;color:var(--muted);line-height:1.8;}
@@ -1760,7 +1763,7 @@ body.bsheet-lock{overflow:hidden;}
   /* 파일첨부: [파일첨부] [파일명 인풋] */
   .page-my :is(#cc-qna,#qnaGuest) .iq-file{gap:6px;align-items:stretch;}
   .page-my :is(#cc-qna,#qnaGuest) .iq-file-btn{flex:none;height:54px;padding:0 16px;border-color:var(--btn);}
-  .page-my :is(#cc-qna,#qnaGuest) .iq-file-name{flex:1 1 0;min-width:0;height:54px;border-radius:8px;font-size:12px;padding:0 16px;}
+  .page-my :is(#cc-qna,#qnaGuest) .iq-file-name{flex:1 1 0;min-width:0;height:54px;border-radius:8px;font-size:14px;padding:0 16px;}
   .page-my :is(#cc-qna,#qnaGuest) .iq-file-name:empty::before{content:"첨부파일의 용량은 5MB까지 가능합니다.";color:var(--weak);}
   .page-my :is(#cc-qna,#qnaGuest) .iq-file .iq-help{display:none;}
   /* 하단: 필수안내 + 풀폭 빨강 등록 */
