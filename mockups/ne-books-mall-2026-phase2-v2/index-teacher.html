@@ -309,6 +309,13 @@
   .cn-gold-perks li{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:12px 14px;color:#dfe4f0;font-size:13px;display:flex;align-items:center;gap:9px;}
   .cn-gold-perks li::before{content:'✓';display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;background:#2ec16a;color:#fff;border-radius:999px;font-size:12px;font-weight:800;flex:none;}
   .cn-gold-perks li b{color:#fff;font-weight:800;}
+  /* 3번 — 문법 관련 서비스 추천 (title : desc + 화살표) */
+  .cn-gold-svc li{justify-content:space-between;gap:10px;cursor:pointer;}
+  .cn-gold-svc li::before{content:none;}
+  .cn-gold-svc li:hover{background:rgba(255,255,255,.12);}
+  .cn-gold-svc .svc-x{flex:1;min-width:0;}
+  .cn-gold-svc .svc-x b{color:#fff;font-weight:800;}
+  .cn-gold-svc .svc-ar{color:#fff;font-size:17px;line-height:1;flex:none;}
   /* GOLD 배너 버전 탭 (1/2/3) */
   .cn-gold-tabs{position:absolute;top:16px;right:18px;display:flex;gap:6px;z-index:3;}
   .cn-gold-tabs button{width:26px;height:26px;border-radius:999px;border:1px solid rgba(0,0,0,.15);background:#fff;color:#666;font-size:12px;font-weight:700;cursor:pointer;line-height:1;padding:0;}
@@ -779,11 +786,19 @@
     +'</aside>',
     /* 3번 — 준비 중(내용 대기) */
     '<div class="cn-bn-left">'
-      +'<div class="cn-gold-badges"><span class="cn-gold-grade">GOLD 학원회원</span></div>'
-      +'<h3 class="cn-gold-ttl">3번 배너 준비 중이에요</h3>'
-      +'<p class="cn-gold-lead">원하는 내용을 알려주시면 이 자리에 반영해 드릴게요.</p>'
+      +'<div class="cn-gold-badges"><span class="cn-gold-grade">GOLD 학원회원</span><span class="cn-gold-hot">🔥 이번 주 한정</span></div>'
+      +'<h3 class="cn-gold-ttl">김능률 선생님, 문법교재를 자주 구매하시네요!</h3>'
+      +'<p class="cn-gold-lead cn-gold-lead2">문법 교재와 같이 사용하면 좋은<br>문법 문제 뱅크를 체험해보세요!</p>'
+      +'<div class="cn-gold-actions" style="margin-top:22px"><a class="cn-gold-btn" href="'+LIST+'">무료 체험하기 &#8250;</a></div>'
     +'</div>'
-    +'<aside class="cn-gold-perks"><span class="cn-gold-perks-h">&#128221; 준비 중</span><ul><li>내용 대기 중</li></ul></aside>'
+    +'<aside class="cn-gold-perks cn-gold-svc">'
+      +'<span class="cn-gold-perks-h">&#129513; 문법 관련 서비스 추천</span>'
+      +'<ul>'
+        +'<li><span class="svc-x"><b>문법 문제 뱅크</b> : 문제 무제한 출제</span><span class="svc-ar">&#8250;</span></li>'
+        +'<li><span class="svc-x"><b>문법 예문 검색</b> : 필요한 예문 찾기 1분컷</span><span class="svc-ar">&#8250;</span></li>'
+        +'<li><span class="svc-x"><b>NELT</b> : iBT 영어 레벨테스트</span><span class="svc-ar">&#8250;</span></li>'
+      +'</ul>'
+    +'</aside>'
   ];
   var goldVer=0;
   function goldTabsHTML(active){
