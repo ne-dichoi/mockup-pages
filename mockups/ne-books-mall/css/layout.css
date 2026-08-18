@@ -1828,6 +1828,10 @@ body.bsheet-lock{overflow:hidden;}
 .iq-consent{border:1px solid var(--line);border-radius:8px;background:#fff;padding:14px 16px;height:96px;overflow-y:auto;font-size:13px;color:var(--muted);line-height:1.85;}
 .iq-consent .tit{color:var(--ink);font-weight:600;}
 .iq-consent p{margin:0;}
+/* PC 비회원 개인정보 동의 박스: 안쪽 여백 24px, 내용 전체 노출(스크롤 없이) */
+@media (min-width:1024px){
+  .iq-consent{padding:24px;height:auto;overflow:visible;}
+}
 .iq-agree-desc{font-size:13px;color:var(--muted);line-height:1.6;margin-top:8px;}
 .iq-agree-check{display:inline-flex;align-items:center;gap:8px;font-size:14px;color:var(--ink);cursor:pointer;margin-top:8px;}
 
