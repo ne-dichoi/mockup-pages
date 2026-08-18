@@ -8,9 +8,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260815w">
-<script src="js/layout.js?v=20260815w" defer></script>
-<script src="js/search.js?v=20260815w" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260815x">
+<script src="js/layout.js?v=20260815x" defer></script>
+<script src="js/search.js?v=20260815x" defer></script>
 </head>
 <body class="page-my page-rvwrite">
 
@@ -248,9 +248,22 @@
         b.classList.add('on'); if(catLb) catLb.textContent=b.textContent.trim();
       });
     });
-    /* 검색 결과 클릭 → 상품명 반영 + 닫기 */
+    /* 검색 결과 클릭 → 선택 상품(이미지+제목) 노출 + 닫기 (PC 자동완성 선택과 동일 UI) */
+    var bkField=(document.querySelector('.iq-bookname')||{}).parentNode;
+    var bkSelected=bkField?bkField.querySelector('.iq-bk-selected'):null;
+    var bkName=bkField?bkField.querySelector('.iq-bookname'):null;
     sheet.querySelectorAll('.cs-result').forEach(function(r){
-      r.addEventListener('click',function(){ if(searchIn){ searchIn.value=r.textContent.trim(); searchIn.dispatchEvent(new Event('input',{bubbles:true})); } close(); });
+      r.addEventListener('click',function(){
+        var title=r.textContent.trim();
+        if(bkSelected){
+          var img=bkSelected.querySelector('.iq-bk-cover img'); if(img) img.src='assets/best_1.png';
+          var t=bkSelected.querySelector('.iq-bk-title'); if(t) t.textContent=title;
+          if(bkName) bkName.hidden=true; bkSelected.hidden=false;
+          if(bkField) bkField.dispatchEvent(new CustomEvent('bookselected',{detail:{title:title},bubbles:true}));
+        }
+        if(searchIn) searchIn.value='';
+        close();
+      });
     });
   })();
   </script>
