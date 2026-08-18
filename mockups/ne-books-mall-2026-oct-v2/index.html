@@ -757,8 +757,11 @@
       clearInterval(rollTimer);
       rollTimer=setInterval(function(){ select((current+1)%CATS.length); },4500);
     }
-    listEl.addEventListener('mouseenter',function(){ clearInterval(rollTimer); });
+    function pause(){ clearInterval(rollTimer); }
+    listEl.addEventListener('mouseenter',pause);
     listEl.addEventListener('mouseleave',startRoll);
+    bnEl.addEventListener('mouseenter',pause);
+    bnEl.addEventListener('mouseleave',startRoll);
     select(0); startRoll();
   })();
 
