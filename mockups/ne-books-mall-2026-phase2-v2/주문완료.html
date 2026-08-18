@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>NE_Books · 주문 완료</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="css/layout.css?v=20260814g">
+<script src="js/layout.js?v=20260814g" defer></script>
+<script src="js/search.js?v=20260814g" defer></script>
+</head>
+<body class="page-done">
+
+  <!-- ===== HEADER ===== -->
+  <div id="site-header"></div>
+
+  <!-- ===== PAGE HEAD ===== -->
+  <div id="site-location"></div>
+
+  <!-- ===== ORDER COMPLETE ===== -->
+  <section class="cowrap">
+    <div class="container oc-page">
+
+      <!-- 완료 히어로 -->
+      <div class="oc-hero">
+        <div class="oc-check" aria-hidden="true">
+          <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M9 20.5 16.5 28.5 31 12" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <p class="oc-title">주문이 완료되었습니다</p>
+        <p class="oc-desc">주문해 주셔서 감사합니다.<br class="oc-desc-br"> 아래에서 주문 내역을 확인하실 수 있습니다.</p>
+        <div class="oc-chip"><span class="lb">주문번호</span><b>20260713-0012345</b></div>
+      </div>
+
+      <!-- 결제/배송 정보 + 유의사항 -->
+      <div class="oc-groups">
+        <div class="oc-tables">
+
+          <!-- 결제 정보 -->
+          <section>
+            <p class="oc-sec-title">결제 정보</p>
+            <div class="oc-table">
+              <div class="tr"><span class="th">총 결제금액</span><span class="td">15,300원</span></div>
+              <div class="tr">
+                <div class="cell"><span class="th">결제수단</span><span class="td">무통장 입금</span></div>
+                <div class="cell"><span class="th">결제일</span><span class="td">2026-06-22 오전 11:42:05</span></div>
+              </div>
+              <div class="tr"><span class="th">입금자명</span><span class="td">강서니 (입금기한: 2026.06.29)</span></div>
+              <div class="tr"><span class="th">입금은행</span><span class="td">[우리은행] X651665661124 (주)늘교육</span></div>
+            </div>
+          </section>
+
+          <!-- 배송지 정보 -->
+          <section>
+            <p class="oc-sec-title">배송지 정보</p>
+            <div class="oc-table">
+              <div class="tr"><span class="th">받으실 분</span><span class="td">홍길동</span></div>
+              <div class="tr"><span class="th">휴대폰</span><span class="td">010-1111-2222</span></div>
+              <div class="tr"><span class="th">주소</span><span class="td">[03925] 서울특별시 마 123-456</span></div>
+              <div class="tr"><span class="th">요청사항</span><span class="td">서비스신청접 표인된 테스트</span></div>
+            </div>
+          </section>
+
+        </div>
+
+        <!-- 유의사항 -->
+        <div class="oc-notice">
+          <p class="nt-title">※ 유의사항</p>
+          <p class="nt-body">(주)NE능률은 한국소비자원의 “소비자분쟁해결기준”을 준수합니다. 결제 취소 및 환불은 고객센터(1833-8368)로 문의하시기 바랍니다.</p>
+        </div>
+      </div>
+
+      <!-- 액션 버튼 -->
+      <div class="oc-actions">
+        <a class="oc-btn dark" href="index.html">메인으로</a>
+        <a class="oc-btn red" href="#">주문현황 바로가기</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <div id="site-footer"></div>
+
+  <script>
+  (function(){
+    var gnb=document.querySelector('.gnb'); if(!gnb) return;
+    var drop=document.getElementById('gnbDrop'); if(!drop) return;
+    var cats=drop.querySelector('.gd-cats');
+    var items=[].slice.call(gnb.querySelectorAll('nav a'));
+    var MENU={
+      'ELT':['Coursebook','Phonics','Readers','Reading','Listening','Speaking','Writing','Grammar','Vocabulary'],
+      '초/중등':['중학내신','고등선행','어휘','Phonics','쓰기','독해','듣기','문법/구문','TOEFL/TEPS/NELT'],
+      '고등':['어휘','독해','듣기','문법/구문','수능대비','고교내신','단기특강','TOEFL/TEPS/NELT'],
+      '교과서/자습서':['중학영어 교과서','고등영어 교과서','수학 교과서','중국어/일본어'],
+      '수험/일반':['TOEIC','TOEIC Speaking/Writing','TOEFL/OPIC/TEPS','FLEX','일반영어'],
+      '수학/국어':['유아','초등','중등','고등'],
+      '학습자료실':['서브메인','ELT자료','초/중등교재 자료','고등교재 자료','교과서/자습서 자료','수험/일반 자료','수학/국어 자료'],
+      '도서몰':['ELT','초/중등','고등영어 교과서','교과서/자습서','수험/일반','교구/부가상품','세트/패키지','온라인 서비스/이용권']
+    };
+    var closeT;
+    function openFor(a){
+      var name=a.textContent.trim();
+      var mega=(name==='학습자료실'||name==='도서몰');
+      var BR='<div class="gd-brands"><a class="gd-btn blue" href="#">Come on Series <span>&#8250;</span></a><a class="gd-btn navy" href="#">Oxford <span>&#8250;</span></a></div>';
+      if(mega){
+        var COLS=[['ELT','Coursebook','Phonics','Reading','Readers','Listening','Speaking','Grammar','Writing','Vocabulary'],['초등/중등','중학 내신','고등 선행','파닉스','어휘','쓰기','독해','듣기','문법/구분','TOEFL/TEPS/NELT'],['고등','어휘','독해','듣기','문법/구분','수능 대비','고교 내신','단기 특강','TOEFL/TEPS/NELT'],['교과서/자습서','중학영어 교과서','고등영어 교과서','수학 교과서','중국어/일본어'],['수험/일반','TOEIC','TOEIC SPEAKING|/WRITING','TOEFL/OPIC/TEPS','FLEX','일반영어'],['수학/국어','유아','초등','중등','고등']];
+        drop.innerHTML=COLS.map(function(c){ return '<div class="gd-col"><p class="gd-col-t">'+c[0]+'</p><div class="items">'+c.slice(1).map(function(i){ return '<a href="리스트_교재구매.html">'+i.replace('|','<br>')+'</a>'; }).join('')+'</div></div>'; }).join('')+BR;
+        drop.classList.add('mega');
+      } else {
+        var list=MENU[name]; if(!list){ hideGnb(); return; }
+        drop.innerHTML='<div class="gd-cats">'+list.map(function(t){ return '<a href="리스트_교재구매.html">'+t+'</a>'; }).join('')+'</div>'+BR;
+        drop.classList.remove('mega');
+      }
+      items.forEach(function(x){ x.classList.toggle('on',x===a); });
+      drop.classList.add('open');
+      if(mega){ var gw=gnb.getBoundingClientRect().width; var ml=Math.round((gw-drop.offsetWidth)/2); drop.style.left=(ml>0?ml:0)+'px'; }
+      else{
+        var gr=gnb.getBoundingClientRect(), ir=a.getBoundingClientRect();
+        var left=Math.round(ir.left-gr.left-24);
+        var maxLeft=Math.round(gr.width-drop.offsetWidth);
+        if(left>maxLeft) left=maxLeft; if(left<0) left=0;
+        drop.style.left=left+'px';
+      }
+    }
+    function hideGnb(){ drop.classList.remove('open'); items.forEach(function(x){ x.classList.remove('on'); }); }
+    items.forEach(function(a){
+      a.addEventListener('mouseenter',function(){ clearTimeout(closeT); openFor(a); });
+      a.addEventListener('click',function(e){ if(MENU[a.textContent.trim()]){ e.preventDefault(); openFor(a); } });
+    });
+    gnb.addEventListener('mouseleave',function(){ closeT=setTimeout(hideGnb,160); });
+    gnb.addEventListener('mouseenter',function(){ clearTimeout(closeT); });
+    document.addEventListener('click',function(e){ if(!gnb.contains(e.target)) hideGnb(); });
+  })();
+  </script>
+</body>
+</html>

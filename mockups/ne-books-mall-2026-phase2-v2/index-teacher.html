@@ -1,0 +1,532 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>NE_Books · 선생님 홈</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="css/layout.css?v=20260814g">
+<script src="js/layout.js?v=20260814g" defer></script>
+<script src="js/search.js?v=20260814g" defer></script>
+<!-- [항목7] B2C(index.html)와 분리된 B2B(선생님) 전용 메인. 학습·교강사 자료·전용 채널 중심으로 구성, 상업적 프로모션은 최소화 -->
+<style id="t1t-styles">
+  /* 상단 히어로 3단: 좌(선생님 안내) · 중(GOLD 회원 안내·혜택) · 우(이벤트/신간/세미나 배너) */
+  .t1t-member{background:#fff;border:1px solid #e6ecf5;box-shadow:0 6px 20px rgba(22,36,61,.06);border-radius:16px;padding:20px 22px;color:#191919;}
+  .t1t-member .grade{display:inline-flex;align-items:center;background:#191919;color:#ffd873;font-size:12px;font-weight:800;padding:5px 12px;border-radius:999px;letter-spacing:-.2px;margin-bottom:12px;}
+  .t1t-member strong{display:block;font-size:16px;font-weight:800;color:#191919;}
+  .t1t-member .msg{display:block;font-size:13px;color:#666;margin-top:5px;line-height:1.5;}
+  .t1t-member .msg b{color:#c9820a;font-weight:700;}
+  .t1t-member .go{display:inline-flex;align-items:center;margin-top:12px;font-size:13px;font-weight:700;color:#16243d;}
+  .t1t-member .div{height:1px;background:#eee;margin:16px 0;}
+  .t1t-member .perks{display:flex;flex-direction:column;gap:3px;}
+  .t1t-member .perks .lb{font-size:12px;font-weight:800;color:#c9820a;}
+  .t1t-member .perks .val{font-size:12.5px;color:#7a6a3a;line-height:1.5;}
+  /* 우측 배너: 일반몰 히어로 배너 축소판, 1개씩 자동 롤링 */
+  .t1t-roll{position:relative;align-self:stretch;min-height:260px;border-radius:16px;overflow:hidden;box-shadow:0 6px 20px rgba(22,36,61,.12);touch-action:pan-y;user-select:none;}
+  .t1t-roll-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:5;width:34px;height:34px;padding:0;border:0;border-radius:50%;background:rgba(0,0,0,.28);color:#fff;font-size:22px;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .15s;}
+  .t1t-roll-arrow:hover{background:rgba(0,0,0,.5);}
+  .t1t-roll-arrow.prev{left:12px;}
+  .t1t-roll-arrow.next{right:12px;}
+  .t1t-slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-start;align-items:flex-start;text-align:left;padding:28px 28px 0;color:#fff;text-decoration:none;opacity:0;transition:opacity .55s ease;pointer-events:none;}
+  .t1t-slide.on{opacity:1;pointer-events:auto;}
+  .t1t-slide .fl{display:inline-block;align-self:flex-start;font-size:12px;font-weight:800;padding-bottom:4px;border-bottom:2px solid currentColor;margin-bottom:14px;}
+  .t1t-slide strong{font-family:var(--display);font-size:23px;font-weight:800;line-height:1.3;letter-spacing:-.5px;}
+  .t1t-slide .sb{font-size:13px;line-height:1.5;margin-top:10px;color:rgba(255,255,255,.9);}
+  /* 슬라이드 하단 교재 2권 미니 카드 */
+  .t1t-slide-books{position:absolute;right:28px;bottom:18px;display:flex;gap:10px;justify-content:flex-end;}
+  .t1t-slide-books .bk{width:92px;background:#fff;border-radius:9px;box-shadow:0 8px 20px rgba(0,0,0,.18);padding:7px;display:flex;flex-direction:column;gap:4px;color:#222;text-decoration:none;}
+  .t1t-slide-books .bk img{width:100%;aspect-ratio:1/1;object-fit:cover;object-position:top center;border-radius:5px;background:#f0f1f4;}
+  .t1t-slide-books .bk .pn{font-size:10.5px;font-weight:600;line-height:1.3;color:#333;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .t1t-slide-books .bk .pp{font-size:11.5px;font-weight:800;color:#191919;}
+  .t1t-slide-books .bk .pp em{font-style:normal;color:#f5444a;margin-right:4px;}
+  /* 세미나 슬라이드: 일반몰 강연 이미지 축소 노출 */
+  .t1t-slide-img{margin-top:auto;align-self:flex-end;padding:0 2px 16px;}
+  .t1t-slide-img img{height:185px;width:auto;object-fit:contain;border-radius:10px;filter:drop-shadow(0 10px 22px rgba(0,0,0,.28));}
+  @media (max-width:1023px){ .t1t-slide-img img{height:130px;} }
+  .t1t-slide.o{background:#F55F16;}
+  .t1t-slide.nv{background:linear-gradient(160deg,#26406f,#16264a);}
+  .t1t-slide.gr{background:linear-gradient(160deg,#1f9d63,#137a45);}
+  .t1t-slide.sk{background:linear-gradient(160deg,#5b9bff,#1d4ed8);}
+  .t1t-roll-dots{position:absolute;left:22px;bottom:16px;display:flex;gap:6px;z-index:3;}
+  .t1t-roll-dots i{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.5);transition:width .3s,background .3s;cursor:pointer;}
+  .t1t-roll-dots i.on{width:16px;border-radius:3px;background:#fff;}
+  @media (max-width:1023px){ .t1t-roll{min-height:180px;} }
+
+  /* 전문가 PICK·동료 원장 추천 — index.html(일반 회원 페이지)에서 이관(설문 근거: 동료 추천 71%·전문가 PICK 도움됨) */
+  .t1p-sec{padding:0 0 44px;}
+  .t1p-head{margin-bottom:20px;}
+  .t1p-head h2{font-family:var(--display);font-size:24px;font-weight:800;letter-spacing:-.5px;color:#191919;}
+  .t1p-head h2 .hl{color:#2272dd;}
+  .t1p-head .sub{font-size:14px;color:#8c8c8c;margin-top:6px;font-weight:500;}
+  .t1p-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+  .t1p-card{border:1px solid #ededed;border-radius:12px;overflow:hidden;background:#fff;display:flex;flex-direction:column;}
+  .t1p-card .badge{align-self:flex-start;font-size:11.5px;font-weight:800;padding:4px 10px;border-radius:999px;margin:14px 0 0 14px;}
+  .t1p-card .badge.expert{background:#eaf1ff;color:#2272dd;}
+  .t1p-card .badge.peer{background:#eafbf0;color:#1a9d54;}
+  .t1p-card .who{font-size:12px;color:#8c8c8c;margin:6px 14px 0;}
+  .t1p-card .thumb{margin:12px 14px 0;border-radius:8px;overflow:hidden;aspect-ratio:1/1;background:#f7f8fa;}
+  .t1p-card .thumb img{width:100%;height:100%;object-fit:cover;}
+  .t1p-card .name{font-size:13.5px;line-height:1.4;color:#333;margin:10px 14px 0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.8em;}
+  .t1p-card .price{display:flex;gap:6px;align-items:baseline;margin:6px 14px 14px;}
+  .t1p-card .price .rate{color:#f5444a;font-weight:800;font-size:13px;}
+  .t1p-card .price .now{font-weight:800;font-size:16px;color:#191919;}
+  @media (max-width:768px){
+    .t1p-grid{grid-template-columns:repeat(2,1fr);}
+    .t1p-head h2{font-size:20px;}
+  }
+
+  .t1t-hero{padding:48px 0;background:linear-gradient(160deg,#eef4fc,#dfe9f7);color:#16243d;}
+  .t1t-hero .container{display:grid;grid-template-columns:minmax(0,1fr) 340px 400px;gap:20px;align-items:stretch;}
+  .t1t-hero-main{min-width:0;display:flex;flex-direction:column;}
+  .t1t-badge{align-self:flex-start;display:inline-flex;align-items:center;height:26px;padding:0 12px;border-radius:20px;background:#d6e3f6;color:#2b4a86;font-size:12px;font-weight:800;letter-spacing:.5px;margin-bottom:16px;}
+  .t1t-badge.grade{background:#191919;color:#ffd873;letter-spacing:-.2px;}
+  .t1t-hero h2{font-family:var(--display);font-size:28px;font-weight:800;line-height:1.4;letter-spacing:-.5px;}
+  .t1t-hero p{font-size:14.5px;color:#5a6a85;margin-top:14px;line-height:1.6;}
+  /* GOLD 멤버십 카드 (좌측) */
+  .t1t-mcard{background:transparent;border:0;box-shadow:none;padding:0;flex:1;display:flex;flex-direction:column;}
+  .t1t-mcard .mc-top{display:flex;align-items:center;gap:8px;margin-bottom:14px;}
+  .t1t-mcard .mc-top .t1t-badge{align-self:center;margin-bottom:0;}
+  .t1t-mcard .mc-hot{display:inline-flex;align-items:center;gap:4px;height:24px;padding:0 10px;border-radius:20px;background:#ffece8;color:#e0533a;font-size:12px;font-weight:800;}
+  .t1t-mcard h2.mc-h{font-family:var(--display);font-size:24px;font-weight:800;color:#16243d;line-height:1.35;letter-spacing:-.5px;margin:0;}
+  .t1t-mcard .mc-lead{font-size:15px;font-weight:700;color:#2b4a86;margin:10px 0 0;line-height:1.5;}
+  .t1t-mcard .mc-lead b{color:#e0533a;font-weight:800;}
+  .t1t-mcard .mc-lead u{text-decoration:none;color:#e0533a;font-weight:800;}
+  .t1t-mcard .mc-msg{font-size:13.5px;color:#6b7a92;margin:8px 0 0;line-height:1.55;}
+  .t1t-mcard .mc-msg b{color:#16243d;font-weight:800;}
+  .t1t-mcard .mc-cta{display:inline-flex;align-items:center;gap:3px;margin-top:12px;font-size:14px;font-weight:800;color:#e0533a;text-decoration:none;transition:.15s;}
+  .t1t-mcard .mc-cta:hover{text-decoration:underline;}
+  /* 가운데 회원 등급 혜택 박스 — GOLD 프리미엄 카드(다크 네이비 + 골드 포인트) */
+  .t1t-perks-box{position:relative;overflow:hidden;background:linear-gradient(165deg,#22345a 0%,#16243d 58%,#0f1a2e 100%);border:1px solid rgba(255,216,115,.28);box-shadow:0 16px 40px rgba(15,26,46,.32);border-radius:18px;padding:26px 22px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;color:#fff;}
+  .t1t-perks-box::before{content:"";position:absolute;top:-46px;right:-46px;width:130px;height:130px;border-radius:50%;background:radial-gradient(circle,rgba(255,216,115,.22),transparent 70%);pointer-events:none;}
+  .t1t-perks-box .mc-perks-h{position:relative;display:inline-flex;align-items:center;gap:5px;height:30px;padding:0 16px;border-radius:20px;background:linear-gradient(135deg,#ffe391,#f4bf4c);color:#5a3d05;font-size:12.5px;font-weight:800;letter-spacing:-.2px;margin-bottom:20px;box-shadow:0 5px 14px rgba(244,191,76,.35);}
+  .t1t-perks-box ul{position:relative;list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;width:100%;}
+  .t1t-perks-box li{display:flex;align-items:center;justify-content:center;gap:9px;font-size:13.5px;color:#e8eefb;line-height:1.45;white-space:nowrap;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);border-radius:11px;padding:10px 12px;}
+  .t1t-perks-box li::before{content:"✓";flex:none;display:inline-flex;align-items:center;justify-content:center;width:19px;height:19px;border-radius:50%;background:#1a9d54;color:#fff;font-size:11px;font-weight:900;}
+  .t1t-perks-box li b{color:#ffd873;font-weight:800;}
+  .t1t-mcard .mc-actions{margin-top:auto;padding-top:24px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+  .t1t-mcard .mc-actions .t1t-btn-fill{width:auto;height:48px;font-size:15px;}
+  .t1t-mcard .mc-switch{font-size:13px;color:#2b4a86;font-weight:700;text-decoration:underline;}
+  .t1t-mcard .mc-switch:hover{color:#16243d;}
+  .t1t-hero-actions{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap;}
+  @media (max-width:1023px){
+    .t1t-hero .container{grid-template-columns:1fr;}
+    .t1t-roll{min-height:300px;}
+  }
+  @media (max-width:600px){
+    .t1t-hero .container{gap:16px;}
+    .t1t-hero h2{font-size:24px;}
+    .t1t-slide strong{font-size:20px;}
+    .t1t-slide-books .bk{width:100px;}
+  }
+  .t1t-btn-fill{display:inline-flex;align-items:center;gap:6px;height:48px;padding:0 22px;border-radius:8px;background:#16243d;color:#fff;font-weight:800;font-size:15px;}
+  .t1t-btn-line{display:inline-flex;align-items:center;height:48px;padding:0 22px;border-radius:8px;border:1px solid #b7c6de;color:#2b4a86;font-weight:600;font-size:14px;}
+  .t1t-sec{padding:44px 0;}
+  .t1t-sec .sec-title{font-size:24px;font-weight:800;letter-spacing:-.5px;color:#191919;margin-bottom:8px;}
+  #nt .sec-title{white-space:nowrap;text-align:left;}
+  #nt .sub{text-align:left;}
+  @media (max-width:600px){ #nt .sec-title{white-space:normal;font-size:20px;} }
+  .t1t-sec .sub{font-size:14px;color:#8c8c8c;margin-bottom:24px;}
+  .t1t-nt-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;}
+  .t1t-nt-card{display:flex;flex-direction:row;align-items:center;gap:10px;border:1px solid var(--line);border-radius:14px;padding:14px 12px;text-decoration:none;color:inherit;}
+  .t1t-nt-card .ico{flex:none;width:44px;height:44px;border-radius:10px;background:#eef1f5;display:flex;align-items:center;justify-content:center;}
+  .t1t-nt-card .ico img{width:24px;height:24px;}
+  @media (max-width:960px){ .t1t-nt-grid{grid-template-columns:repeat(3,1fr);} }
+  @media (max-width:560px){ .t1t-nt-grid{grid-template-columns:repeat(2,1fr);} }
+  .t1t-nt-card .sub{font-size:12px;color:#999;margin:0;}
+  .t1t-nt-card .tt{font-size:15px;font-weight:700;color:#191919;}
+  .t1t-picks{background:#f7f8fa;}
+  .t1t-pick-card{position:relative;border-radius:12px;overflow:hidden;background:#fff;text-decoration:none;color:inherit;display:block;}
+  .t1t-pick-card .th{width:100%;aspect-ratio:1/1;background:#f2f3f4;overflow:hidden;}
+  .t1t-pick-card .th img{width:100%;height:100%;object-fit:cover;}
+  .t1t-pick-card .bd{padding:14px;}
+  .t1t-pick-badge{display:inline-flex;align-items:center;height:20px;padding:0 8px;border-radius:5px;background:#eaf1ff;color:#2272dd;font-size:11px;font-weight:700;margin-bottom:8px;}
+  .t1t-pick-card .tit{font-size:14px;font-weight:700;color:#222;line-height:1.4;height:2.8em;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;}
+  .t1t-pick-card .pr{font-size:14px;font-weight:800;color:#191919;margin-top:8px;}
+  .t1t-pick-card .pr s{color:#bbb;font-weight:500;margin-left:6px;font-size:12px;}
+  .t1t-grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+  .t1t-more{display:inline-flex;align-items:center;gap:4px;margin-top:20px;font-size:14px;font-weight:700;color:#191919;}
+  .t1t-sem-list{display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;}
+  .t1t-sem-row{display:flex;align-items:center;justify-content:space-between;gap:16px;background:#fff;padding:18px 20px;}
+  .t1t-sem-tag{display:inline-flex;align-items:center;height:22px;padding:0 10px;border-radius:20px;border:1px solid var(--line);font-size:12px;font-weight:600;color:#666;margin-right:10px;}
+  .t1t-sem-name{font-size:15px;font-weight:700;color:#191919;}
+  .t1t-sem-date{font-size:13px;color:#999;flex:none;}
+  @media (max-width:900px){ .t1t-grid4{grid-template-columns:repeat(2,1fr);} .t1t-hero h2{font-size:24px;} }
+  @media (max-width:600px){ .t1t-sem-row{flex-direction:column;align-items:flex-start;gap:6px;} }
+
+  /* [from mall-type2] 공통 섹션 헤더 */
+  .t2-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:20px;}
+  .t2-head h2{font-family:var(--display);font-size:24px;font-weight:800;letter-spacing:-.5px;color:#191919;}
+  .t2-head h2 .hl{color:#e83828;}
+  .t2-more{font-size:14px;color:#555;font-weight:600;}
+  /* [from mall-type2] 전문가 추천 교재 */
+  .t2exp-sec{padding:44px 0;}
+  .t2exp{background:#eef1f3;border-radius:16px;overflow:hidden;display:flex;}
+  .t2exp-img{flex:0 0 44%;min-height:300px;background-size:cover;background-position:center;}
+  .t2exp-panel{flex:1;background:#fff;margin:20px;border-radius:12px;padding:34px 30px;display:flex;flex-direction:column;align-items:center;}
+  .t2exp-panel .sub{font-size:14px;color:#888;}
+  .t2exp-panel .ttl{font-family:var(--display);font-size:28px;font-weight:800;letter-spacing:-.5px;margin:6px 0 26px;color:#191919;}
+  .t2exp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;width:100%;}
+  .t2exp-prod{text-align:center;text-decoration:none;color:inherit;}
+  .t2exp-prod .th{aspect-ratio:1/1;background:#f3f4f5;border-radius:10px;display:flex;align-items:center;justify-content:center;overflow:hidden;margin-bottom:10px;}
+  .t2exp-prod .th img{width:100%;height:100%;object-fit:cover;object-position:top center;}
+  .t2exp-prod .nm{font-size:13px;color:#444;height:2.7em;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;}
+  .t2exp-prod .coup{display:block;font-size:11px;color:#aaa;text-decoration:line-through;margin-top:6px;}
+  .t2exp-prod .p{display:block;font-size:16px;font-weight:800;margin:1px 0 5px;color:#191919;}
+  .t2exp-prod .p .pct{color:#e83828;margin-right:3px;}
+  .t2exp-prod .rw{font-size:11px;color:#12A512;}
+  @media (max-width:900px){ .t2exp{flex-direction:column;} .t2exp-img{min-height:200px;} .t2exp-grid{grid-template-columns:repeat(2,1fr);} }
+  /* [from mall-type2] 이런 조합 어때요? 맞춤 교재 세트 */
+  .t2set-sec{padding:44px 0;}
+  .t2set-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .t2set-card{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;transition:.15s;}
+  .t2set-card:hover{box-shadow:0 10px 22px rgba(0,0,0,.1);transform:translateY(-3px);}
+  .t2set-card .st-top{position:relative;padding:20px 20px 16px;background:linear-gradient(135deg,#f7f7f7,#f0f0f0);}
+  .t2set-card .st-goal{display:inline-block;font-size:12px;font-weight:700;color:#fff;background:#1a9d54;border-radius:12px;padding:4px 11px;margin-bottom:10px;}
+  .t2set-card .st-goal.b{background:#0d9488;}
+  .t2set-card .st-goal.c{background:#ff8a1e;}
+  .t2set-card .st-name{font-family:var(--display);font-size:19px;font-weight:800;letter-spacing:-.5px;margin:0 0 4px;color:#191919;}
+  .t2set-card .st-desc{font-size:12.5px;color:#7a8a7a;margin:0;}
+  .t2set-card .st-covers{display:flex;margin-top:16px;padding-left:6px;}
+  .t2set-card .st-covers .cv{width:66px;height:88px;border-radius:6px;overflow:hidden;box-shadow:0 4px 10px rgba(0,0,0,.16);background:#fff;margin-left:-14px;display:flex;align-items:center;justify-content:center;border:1px solid #f0f0f0;}
+  .t2set-card .st-covers .cv:first-child{margin-left:0;}
+  .t2set-card .st-covers .cv img{width:100%;height:100%;object-fit:cover;}
+  .t2set-card .st-body{padding:16px 20px 20px;display:flex;flex-direction:column;flex:1;}
+  .t2set-card .st-list{list-style:none;margin:0 0 14px;padding:12px 0 0;border-top:1px dashed #ececec;}
+  .t2set-card .st-list li{font-size:12.5px;color:#666;line-height:1.9;display:flex;justify-content:space-between;}
+  .t2set-card .st-list li .q{color:#aaa;}
+  .t2set-card .st-pricebar{margin-top:auto;display:flex;align-items:flex-end;justify-content:space-between;}
+  .t2set-card .st-save{font-size:12px;color:#e83828;font-weight:700;}
+  .t2set-card .st-was{font-size:12px;color:#aaa;text-decoration:line-through;}
+  .t2set-card .st-now{font-size:22px;font-weight:800;color:#191919;}
+  .t2set-card .st-now .pct{color:#e83828;margin-right:4px;}
+  .t2set-card .st-cta{margin-top:14px;display:flex;gap:8px;}
+  .t2set-card .st-cta a{flex:1;text-align:center;padding:12px 0;border-radius:9px;font-weight:700;font-size:14px;}
+  .t2set-card .st-cta .cart{background:#f1f1f1;color:#333;}
+  .t2set-card .st-cta .buy{background:#e83828;color:#fff;}
+  @media (max-width:900px){.t2set-grid{grid-template-columns:1fr;}}
+
+  /* [from ne-books-mall-2] 선생님을 위한 추천 교재 (탭 전환 · 1행 스크롤) */
+  .reco-v3{background:var(--gray-bg);padding:44px 0;}
+  .rc-top{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:24px;}
+  .reco-v3 .v3-head .tt{font-family:var(--display);font-weight:800;font-size:24px;line-height:1.3;color:var(--ink);letter-spacing:-.5px;}
+  .rc-seg{display:inline-flex;gap:4px;background:#fff;border:1px solid var(--line);border-radius:9999px;padding:4px;}
+  .rc-seg button{padding:8px 20px;border:0;background:none;border-radius:9999px;font-size:14px;color:var(--muted);cursor:pointer;font-family:var(--sans);}
+  .rc-seg button.on{background:var(--ink);color:#fff;font-weight:700;}
+  .rc-scroll{display:flex;gap:16px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none;}
+  .rc-scroll::-webkit-scrollbar{display:none;}
+  .rc-card{width:168px;flex:none;background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;transition:box-shadow .15s,transform .15s;}
+  .rc-card:hover{box-shadow:0 8px 20px rgba(0,0,0,.08);transform:translateY(-2px);}
+  .rc-card .thumb{background:var(--gray-bg);border-radius:8px;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .rc-card .thumb img{width:92px;aspect-ratio:7/8;object-fit:cover;object-position:top center;border-radius:3px;box-shadow:2px 4px 10px rgba(0,0,0,.16);}
+  .rc-card .tag{margin-top:12px;font-size:12px;color:var(--red);font-weight:700;}
+  .rc-card .nm{margin-top:4px;font-size:13px;color:var(--ink);line-height:1.4;height:2.8em;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;}
+  .rc-card .pr{margin-top:8px;font-size:14px;font-weight:800;color:var(--ink);}
+  .rc-card .act{margin-top:12px;width:100%;padding:9px 0;border-radius:8px;font-size:13px;cursor:pointer;border:1px solid var(--red);background:#fff;color:var(--red);font-family:var(--sans);}
+  .rc-card .act:hover{background:var(--red);color:#fff;}
+  @media (max-width:600px){ .rc-top{flex-direction:column;align-items:stretch;} .rc-seg{align-self:flex-start;} }
+
+  /* 선생님 메인 우측 플로팅 바로가기 */
+  .t-float{position:fixed;right:20px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px;z-index:40;}
+  .t-float a{position:relative;width:80px;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 6px 18px rgba(0,0,0,.10);display:flex;flex-direction:column;align-items:center;gap:6px;padding:16px 8px;text-decoration:none;color:#555;font-size:12px;font-weight:600;text-align:center;line-height:1.3;transition:.15s;}
+  .t-float a:hover{border-color:var(--red);color:var(--red);transform:translateY(-2px);}
+  .t-float .ico{width:28px;height:28px;display:flex;align-items:center;justify-content:center;}
+  .t-float .ico img{width:26px;height:26px;}
+  .t-float .fl-badge{position:absolute;top:8px;right:12px;min-width:18px;height:18px;padding:0 5px;box-sizing:border-box;border-radius:9999px;background:var(--red);color:#fff;font-size:11px;font-weight:800;line-height:18px;text-align:center;}
+  @media (max-width:1023px){ .t-float{display:none;} }
+
+  /* 선생님 메인: 영역별 구분선 + 추천/공지·CS 배경 투명(요청) */
+  .page-teacher .reco-v3{background:transparent;}
+  .page-teacher .notices{background:transparent;}
+  .page-teacher .reco-v3,
+  .page-teacher #nt,
+  .page-teacher .t2exp-sec,
+  .page-teacher .t2set-sec,
+  .page-teacher .notices{border-top:1px solid var(--line);}
+</style>
+</head>
+<body class="page-index page-teacher">
+
+  <!-- ===== HEADER ===== -->
+  <div id="site-header"></div>
+
+  <!-- ===== 선생님 히어로 3단: 좌(선생님 안내) · 중(GOLD 회원 안내) · 우(이벤트 배너) ===== -->
+  <section class="t1t-hero">
+    <div class="container">
+      <div class="t1t-hero-main">
+        <div class="t1t-mcard">
+          <div class="mc-top">
+            <span class="t1t-badge grade">GOLD 학원회원</span>
+            <span class="mc-hot">🔥 이번 주 한정</span>
+          </div>
+          <h2 class="mc-h">김능률 선생님, 다시 오셨네요!</h2>
+          <p class="mc-lead">선생님께만 드리는 <b>추가 할인 · 10% 적립</b>, <u>이번 주까지</u> 지금 바로 챙기세요.</p>
+          <p class="mc-msg">관심 있던 <b>'그래머 인사이드'</b> 새 학기 교재가 입고됐어요.</p>
+          <a class="mc-cta" href="리스트_교재구매_선생님.html">바로 확인하기 &#8250;</a>
+          <div class="mc-actions">
+            <a class="t1t-btn-fill" href="리스트_교재구매_선생님.html">김능률 선생님 전용 교재 보기 &#8250;</a>
+            <a class="mc-switch" href="index.html">일반(학부모·학생)몰로 이동</a>
+          </div>
+        </div>
+      </div>
+      <aside class="t1t-perks-box">
+        <span class="mc-perks-h">&#128081; GOLD 회원 등급 혜택</span>
+        <ul>
+          <li>추가 할인 <b>10%</b> · 추가 적립 <b>10%</b></li>
+          <li>대량구매 전담 상담 · 신간 우선 안내</li>
+          <li>무료배송 <b>2회</b> · 9월 우대 쿠폰 <b>2건</b> 제공</li>
+        </ul>
+      </aside>
+      <div class="t1t-roll" id="t1tRoll">
+        <a class="t1t-slide o on" href="세미나상세.html">
+          <span class="fl">세미나</span>
+          <strong>Grammar Inside로 완성하는<br>중등 문법 루틴</strong>
+          <span class="sb">NE Tutor 문제뱅크 반복 강화 시스템</span>
+          <span class="t1t-slide-img"><img src="assets/seminar_banner_1.png" alt="세미나 특별 강연"></span>
+        </a>
+        <a class="t1t-slide nv" href="이벤트상세.html">
+          <span class="fl">이벤트</span>
+          <strong>온라인 영어 레벨테스트<br>NELT 무료 체험</strong>
+          <span class="sb">우리 아이 실력을<br>정확하게</span>
+          <span class="t1t-slide-books">
+            <span class="bk"><img src="assets/best_1.png" alt=""><span class="pn">NELT 대비 리딩 Lv.1</span><span class="pp"><em>10%</em>12,600원</span></span>
+            <span class="bk"><img src="assets/newbook_sample.png" alt=""><span class="pn">NELT 기출유형 문제집</span><span class="pp"><em>15%</em>11,900원</span></span>
+          </span>
+        </a>
+        <a class="t1t-slide gr" href="신간개정상세.html">
+          <span class="fl">신간 소식</span>
+          <strong>신간 출시 지금 만나보세요</strong>
+          <span class="sb">새 교재를 가장 먼저<br>확인하세요.</span>
+          <span class="t1t-slide-books">
+            <span class="bk"><img src="assets/best_5.png" alt=""><span class="pn">능률VOCA 어원편</span><span class="pp"><em>12%</em>11,440원</span></span>
+            <span class="bk"><img src="assets/best_3.png" alt=""><span class="pn">Bricks Reading 150</span><span class="pp"><em>15%</em>12,750원</span></span>
+          </span>
+        </a>
+        <button type="button" class="t1t-roll-arrow prev" id="t1tRollPrev" aria-label="이전 배너">&#8249;</button>
+        <button type="button" class="t1t-roll-arrow next" id="t1tRollNext" aria-label="다음 배너">&#8250;</button>
+        <div class="t1t-roll-dots" id="t1tRollDots"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 바로가기(교사용) 영역 삭제 (요청) -->
+
+  <!-- ===== [from ne-books-mall-2] 김능률 선생님을 위한 추천 교재 ===== -->
+  <section class="reco-v3">
+    <div class="container">
+      <div class="rc-top">
+        <div class="v3-head"><div class="tt"><span style="color:#2272dd">김능률 선생님</span>을 위한 추천 교재</div></div>
+        <div class="rc-seg" id="rcSeg" role="tablist" aria-label="추천 탭">
+          <button type="button" data-seg="reco" class="on">선생님을 위한 교재</button>
+          <button type="button" data-seg="wish">내가 찜한 교재</button>
+        </div>
+      </div>
+      <div class="rc-body" id="rcBody"></div>
+    </div>
+  </section>
+
+  <!-- ===== NE Tutor 서비스 (교사용 학습 플랫폼, 간이 그리드) ===== -->
+  <section class="t1t-sec" id="nt">
+    <div class="container">
+      <div class="sec-title">선생님을 위한 티칭 플랫폼, NE Tutor</div>
+      <p class="sub">지도서·시험지 자동 생성부터 레벨테스트까지, 수업 준비 시간을 줄여드립니다.</p>
+      <div class="t1t-nt-grid">
+        <a class="t1t-nt-card" href="#" target="_blank" rel="noopener"><span class="ico"><img src="assets/ic_tutor_ebook.svg" alt=""></span><span><p class="sub">지도서/수업자료</p><p class="tt">E-Book・자료</p></span></a>
+        <a class="t1t-nt-card" href="#" target="_blank" rel="noopener"><span class="ico"><img src="assets/ic_tutor_vocab.svg" alt=""></span><span><p class="sub">시험지 자동 생성</p><p class="tt">어휘 문제 마법사</p></span></a>
+        <a class="t1t-nt-card" href="#" target="_blank" rel="noopener"><span class="ico"><img src="assets/ic_tutor_grammar.svg" alt=""></span><span><p class="sub">문제 무제한 출제</p><p class="tt">문법 문제뱅크</p></span></a>
+        <a class="t1t-nt-card" href="#" target="_blank" rel="noopener"><span class="ico"><img src="assets/ic_tutor_nelt.svg" alt=""></span><span><p class="sub">iBT 영어 레벨테스트</p><p class="tt">NELT</p></span></a>
+        <a class="t1t-nt-card" href="#" target="_blank" rel="noopener"><span class="ico"><img src="assets/ic_tutor_test.svg" alt=""></span><span><p class="sub">평가/오답 자동화</p><p class="tt">성취TEST</p></span></a>
+        <a class="t1t-nt-card" href="#" target="_blank" rel="noopener"><span class="ico"><img src="assets/ic_tutor_search.svg" alt=""></span><span><p class="sub">예문검색 1분컷</p><p class="tt">문법 예문 검색</p></span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 기존 전문가 PICK·동료 원장 추천(t1p) 섹션은 mall-type2 '전문가 추천 교재'로 대체 -->
+
+  <!-- ===== [from mall-type2] 전문가 추천 교재 (선생님몰) ===== -->
+  <section class="t2exp-sec">
+    <div class="container">
+      <div class="t2-head"><h2>전문가가 선택한 <span class="hl">그 교재!</span></h2><a class="t2-more" href="리스트_교재구매_선생님.html">전체보기 &#8250;</a></div>
+      <div class="t2exp">
+        <div class="t2exp-img" style="background-image:url('assets/img4.png')"></div>
+        <div class="t2exp-panel">
+          <span class="sub">베테랑 선생님의 10년 노하우</span>
+          <span class="ttl">믿고 쓰는 전문가 PICK 교재</span>
+          <div class="t2exp-grid">
+            <a class="t2exp-prod" href="교재상세_선생님.html"><span class="th"><img src="assets/book_cover.jpg" alt=""></span><span class="nm">Oxford Reading Tree Stage 3</span><span class="coup">30,000원</span><span class="p"><span class="pct">20%</span>24,000원</span><span class="rw">1,200원 적립</span></a>
+            <a class="t2exp-prod" href="교재상세_선생님.html"><span class="th"><img src="assets/best_3.png" alt=""></span><span class="nm">Oxford Bookworms Starter</span><span class="coup">15,000원</span><span class="p"><span class="pct">15%</span>12,750원</span><span class="rw">638원 적립</span></a>
+            <a class="t2exp-prod" href="교재상세_선생님.html"><span class="th"><img src="assets/best_2.png" alt=""></span><span class="nm">Big Cat Readers Band 4</span><span class="coup">18,000원</span><span class="p"><span class="pct">18%</span>14,760원</span><span class="rw">738원 적립</span></a>
+            <a class="t2exp-prod" href="교재상세_선생님.html"><span class="th"><img src="assets/newbook_sample.png" alt=""></span><span class="nm">Usborne First Reading 세트</span><span class="coup">40,000원</span><span class="p"><span class="pct">25%</span>30,000원</span><span class="rw">1,500원 적립</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== [from mall-type2] 이런 조합 어때요? 맞춤 교재 세트 (선생님몰) ===== -->
+  <section class="t2set-sec">
+    <div class="container">
+      <div class="t2-head"><h2>2학기 개학 대비, <span class="hl">맞춤 교재 세트</span></h2><a class="t2-more" href="리스트_교재구매_선생님.html">전체보기 &#8250;</a></div>
+      <div class="t2set-grid">
+        <div class="t2set-card">
+          <div class="st-top"><span class="st-goal">방학 완성</span><p class="st-name">중등 방학 3주 완성 세트</p><p class="st-desc">어휘 + 문법 + 독해를 한 번에</p>
+            <div class="st-covers"><span class="cv"><img src="assets/best_5.png" alt=""></span><span class="cv"><img src="assets/best_4.png" alt=""></span><span class="cv"><img src="assets/best_2.png" alt=""></span></div></div>
+          <div class="st-body"><ul class="st-list">
+            <li><span>능률 VOCA 어원편</span><span class="q">1권</span></li>
+            <li><span>그래머 인사이드 Lv1</span><span class="q">1권</span></li>
+            <li><span>주니어 리딩튜터</span><span class="q">1권</span></li>
+          </ul>
+            <div class="st-pricebar"><div><div class="st-save">11,500원 절약</div><div class="st-was">41,000원</div></div><div class="st-now"><span class="pct">28%</span>29,500원</div></div>
+            <div class="st-cta"><a class="cart" href="장바구니.html">세트 담기</a><a class="buy" href="주문결제.html">바로구매</a></div>
+          </div>
+        </div>
+        <div class="t2set-card">
+          <div class="st-top"><span class="st-goal b">파닉스 마스터</span><p class="st-name">초등 파닉스 4권 마스터 세트</p><p class="st-desc">스스로 읽는 힘, 기초부터 완성</p>
+            <div class="st-covers"><span class="cv"><img src="assets/best_1.png" alt=""></span><span class="cv"><img src="assets/best_2.png" alt=""></span><span class="cv"><img src="assets/best_3.png" alt=""></span><span class="cv"><img src="assets/best_1.png" alt=""></span></div></div>
+          <div class="st-body"><ul class="st-list">
+            <li><span>Phonics Code 1~4 SB</span><span class="q">4권</span></li>
+            <li><span>세이펜 스티커</span><span class="q">1권</span></li>
+            <li><span>정답·MP3 자료</span><span class="q">무료</span></li>
+          </ul>
+            <div class="st-pricebar"><div><div class="st-save">21,000원 절약</div><div class="st-was">60,000원</div></div><div class="st-now"><span class="pct">35%</span>39,000원</div></div>
+            <div class="st-cta"><a class="cart" href="장바구니.html">세트 담기</a><a class="buy" href="주문결제.html">바로구매</a></div>
+          </div>
+        </div>
+        <div class="t2set-card">
+          <div class="st-top"><span class="st-goal c">수능 파이널</span><p class="st-name">고등 수능 파이널 세트</p><p class="st-desc">독해·듣기 실전 마무리 조합</p>
+            <div class="st-covers"><span class="cv"><img src="assets/newbook_sample.png" alt=""></span><span class="cv"><img src="assets/best_4.png" alt=""></span><span class="cv"><img src="assets/best_5.png" alt=""></span></div></div>
+          <div class="st-body"><ul class="st-list">
+            <li><span>수능만만 영어독해</span><span class="q">1권</span></li>
+            <li><span>수능만만 영어듣기</span><span class="q">1권</span></li>
+            <li><span>능률 VOCA 수능완성</span><span class="q">1권</span></li>
+          </ul>
+            <div class="st-pricebar"><div><div class="st-save">13,500원 절약</div><div class="st-was">45,000원</div></div><div class="st-now"><span class="pct">30%</span>31,500원</div></div>
+            <div class="st-cta"><a class="cart" href="장바구니.html">세트 담기</a><a class="buy" href="주문결제.html">바로구매</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 세미나·연수 안내 영역 삭제 (요청) -->
+
+  <!-- ===== 공지사항 (교사용) ===== -->
+  <section class="notices">
+    <div class="container">
+      <div class="nt-inner">
+        <div class="notice-col">
+          <div class="sec-title">공지사항</div>
+          <div class="notice-list">
+            <div class="item"><span class="t">[안내] 2026학년도 2학기 교사 인증 재신청 안내</span><span class="d">2026. 08. 05</span></div>
+            <div class="item"><span class="t">[필독] 대량 채택 문의 접수 방법 변경 안내</span><span class="d">2026. 07. 28</span></div>
+            <div class="item"><span class="t">[중요] NE Tutor 어휘 문제 마법사 업데이트 안내</span><span class="d">2026. 07. 20</span></div>
+            <div class="item"><span class="t">[안내] 신간 Teacher's Guide 배포 일정 안내</span><span class="d">2026. 07. 12</span></div>
+          </div>
+        </div>
+        <div class="cs-col">
+          <div class="sec-title">고객센터</div>
+          <div class="cs-cards">
+            <div class="cs-card">
+              <div class="left"><span class="tel">1833-8368</span><span class="info">NE능률 고객센터<br><span class="info-sep">l</span>평일 9~16시 · 점심 12~13시</span></div>
+              <div class="cs-icons">
+                <div class="cs-box"><span class="ico"><img src="assets/ic_chat.svg" alt=""></span><span>채팅상담</span></div>
+                <div class="cs-box"><span class="ico"><img src="assets/ic_11.svg" alt=""></span><span>1:1문의</span></div>
+                <div class="cs-box"><span class="ico"><img src="assets/ic_faq.svg" alt=""></span><span>FAQ</span></div>
+                <div class="cs-box"><span class="ico"><img src="assets/ic_sms.svg" alt=""></span><span>문자상담</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="sec-title only-mo sns-title">SNS</div>
+          <div class="sns">
+            <div class="card"><div class="in"><div class="lbl"><span class="sns-brand">NE능률<br></span>Lounge 카페</div><div class="logo"><img src="assets/sns_lounge.png" alt=""></div></div></div>
+            <div class="card"><div class="in"><div class="lbl"><span class="sns-brand">NE능률<br></span>인스타그램</div><div class="logo"><img src="assets/sns_instagram.png" alt=""></div></div></div>
+            <div class="card"><div class="in"><div class="lbl"><span class="sns-brand">NE능률<br></span>유튜브</div><div class="logo"><img src="assets/sns_youtube.svg" alt=""></div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 카카오톡 채널 소식받기 영역 삭제 (요청) -->
+
+  <!-- ===== 우측 플로팅 바로가기 (찜한 교재 개수 · 카톡 소식) ===== -->
+  <div class="t-float">
+    <a href="마이페이지.html#wish"><span class="ico"><img src="assets/ic_heart.svg" alt=""></span>내가 찜한<br>교재<span class="fl-badge">5</span></a>
+    <a href="#" target="_blank" rel="noopener"><span class="ico"><img src="assets/ic_kakao.svg" alt=""></span>카톡<br>소식 받기</a>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <div id="site-footer"></div>
+
+  <script>
+  /* 상단 우측 배너: 1개씩 자동 롤링(4초), 호버 시 정지 */
+  (function(){
+    var root=document.getElementById('t1tRoll'); if(!root) return;
+    var slides=[].slice.call(root.querySelectorAll('.t1t-slide')); if(!slides.length) return;
+    var dotsWrap=document.getElementById('t1tRollDots');
+    dotsWrap.innerHTML=slides.map(function(_,i){ return '<i'+(i===0?' class="on"':'')+'></i>'; }).join('');
+    var dots=[].slice.call(dotsWrap.children);
+    var cur=0, timer;
+    function go(n){
+      cur=(n+slides.length)%slides.length;
+      slides.forEach(function(s,i){ s.classList.toggle('on', i===cur); });
+      dots.forEach(function(d,i){ d.classList.toggle('on', i===cur); });
+    }
+    function start(){ stop(); timer=setInterval(function(){ go(cur+1); }, 4000); }
+    function stop(){ if(timer) clearInterval(timer); }
+    dots.forEach(function(d,i){ d.addEventListener('click',function(e){ e.preventDefault(); go(i); start(); }); });
+    var prevBtn=document.getElementById('t1tRollPrev'), nextBtn=document.getElementById('t1tRollNext');
+    if(prevBtn) prevBtn.addEventListener('click',function(e){ e.preventDefault(); go(cur-1); start(); });
+    if(nextBtn) nextBtn.addEventListener('click',function(e){ e.preventDefault(); go(cur+1); start(); });
+    /* 좌우 스와이프(터치·마우스 드래그) */
+    var pdown=false, px=0, dragged=false;
+    root.addEventListener('pointerdown',function(e){ pdown=true; px=e.clientX; dragged=false; stop(); });
+    root.addEventListener('pointermove',function(e){ if(pdown && Math.abs(e.clientX-px)>10) dragged=true; });
+    root.addEventListener('pointerup',function(e){ if(!pdown) return; pdown=false; var dx=e.clientX-px; if(Math.abs(dx)>40){ go(cur+(dx<0?1:-1)); } start(); });
+    root.addEventListener('pointercancel',function(){ if(pdown){ pdown=false; start(); } });
+    slides.forEach(function(s){ s.addEventListener('click',function(e){ if(dragged) e.preventDefault(); }); });
+    root.addEventListener('mouseenter', stop);
+    root.addEventListener('mouseleave', start);
+    start();
+  })();
+
+  /* 김능률 선생님을 위한 추천 교재 — 탭(선생님을 위한 교재 / 내가 찜한 교재) 전환, 1행 스크롤 */
+  (function(){
+    var reco=[
+      {n:'그래머 인사이드 Lv.1', tag:'문법', pr:'12,600원', c:'assets/best_4.png'},
+      {n:'리딩튜터 기본', tag:'독해', pr:'12,600원', c:'assets/best_2.png'},
+      {n:'능률VOCA 어원편', tag:'어휘', pr:'13,500원', c:'assets/best_5.png'},
+      {n:'Bricks Reading 150 · L1', tag:'Reading', pr:'13,500원', c:'assets/best_3.png'},
+      {n:'Phonics Code 1', tag:'Phonics', pr:'12,600원', c:'assets/best_1.png'},
+      {n:'중등 영어문법 3800제', tag:'문법', pr:'13,500원', c:'assets/best_4.png'}
+    ];
+    var wish=[
+      {n:'그래머 인사이드 Lv.2', tag:'문법', pr:'13,050원', c:'assets/best_2.png'},
+      {n:'주니어 리딩튜터 1', tag:'독해', pr:'12,150원', c:'assets/best_3.png'},
+      {n:'워드마스터 중등 베이직', tag:'어휘', pr:'10,800원', c:'assets/best_4.png'},
+      {n:'능률VOCA 수능완성', tag:'어휘', pr:'15,300원', c:'assets/best_5.png'},
+      {n:'Phonics Code 2', tag:'Phonics', pr:'12,600원', c:'assets/best_1.png'}
+    ];
+    function cards(arr){
+      return '<div class="rc-scroll">'+arr.map(function(b){
+        return '<div class="rc-card"><a class="thumb" href="교재상세_선생님.html"><img src="'+b.c+'" alt=""></a>'
+          +'<div class="tag">'+b.tag+'</div><div class="nm">'+b.n+'</div><div class="pr">'+b.pr+'</div>'
+          +'<button type="button" class="act rc-add">장바구니</button></div>';
+      }).join('')+'</div>';
+    }
+    var PANELS={reco:cards(reco), wish:cards(wish)};
+    var body=document.getElementById('rcBody'), seg=document.getElementById('rcSeg');
+    if(!body||!seg) return;
+    function show(k){ body.innerHTML=PANELS[k]||''; }
+    show('reco');
+    seg.addEventListener('click',function(e){ var b=e.target.closest('button'); if(!b) return; [].slice.call(seg.children).forEach(function(x){ x.classList.toggle('on',x===b); }); show(b.getAttribute('data-seg')); });
+    body.addEventListener('click',function(e){ if(!e.target.closest('.rc-add')) return; if(confirm('상품이 장바구니에 담겼습니다. 장바구니로 이동하시겠습니까?')){ location.href='장바구니.html'; } });
+  })();
+
+  /* (히어로 우측 배너는 좌측 컬럼 높이를 CSS align-self:stretch로 자동 매칭 — JS 동기화 불필요) */
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>NE_Books · 검색결과</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="css/layout.css?v=20260814g">
+<script src="js/layout.js?v=20260814g" defer></script>
+<script src="js/search.js?v=20260814g" defer></script>
+<style id="sr-styles">
+  .page-search .sr-wrap{padding:48px 0 80px;}
+  .sr-head{display:flex;flex-direction:column;align-items:center;gap:16px;margin-bottom:40px;}
+  .sr-check{width:56px;height:56px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;}
+  .sr-check svg{width:28px;height:28px;}
+  .sr-title{font-size:22px;font-weight:800;color:#191919;letter-spacing:-.3px;}
+  .sr-title b{color:var(--red);margin-left:6px;}
+  .sr-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+  .sr-card{border:1px solid var(--line);border-radius:12px;background:#fff;overflow:hidden;display:flex;flex-direction:column;}
+  .sr-img{position:relative;height:300px;background:#f7f8fa;display:flex;align-items:center;justify-content:center;}
+  .sr-img img{width:170px;height:222px;object-fit:cover;box-shadow:4px 7px 16px rgba(0,0,0,.18);border-radius:2px;}
+  .sr-badge{position:absolute;left:14px;top:14px;font-size:11px;font-weight:800;padding:4px 10px;border-radius:6px;color:#fff;z-index:2;letter-spacing:.2px;}
+  .sr-badge.hot{background:#e83828;}
+  .sr-badge.new{background:#2272dd;}
+  .sr-badge.off{background:#9a9a9a;}
+  .sr-heart{position:absolute;right:14px;bottom:14px;width:44px;height:44px;border-radius:50%;background:#191919;border:0;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:2;padding:0;}
+  .sr-heart svg{width:22px;height:22px;fill:none;stroke:#fff;stroke-width:1.7;}
+  .sr-heart.on svg{fill:#ff4d4d;stroke:#ff4d4d;}
+  .sr-card.off .sr-img img{opacity:.5;filter:grayscale(.25);}
+  .sr-step{display:flex;align-items:center;justify-content:center;margin:16px auto 0;border:1px solid var(--line);border-radius:8px;overflow:hidden;width:112px;height:36px;box-sizing:border-box;}
+  .sr-step button{width:36px;height:36px;border:0;background:#fff;font-size:18px;line-height:1;color:#333;cursor:pointer;padding:0;}
+  .sr-step button:disabled{color:#cfcfcf;cursor:default;}
+  .sr-step .q{width:40px;height:34px;border:0;border-left:1px solid var(--line);border-right:1px solid var(--line);text-align:center;font-size:14px;font-weight:600;color:#191919;-moz-appearance:textfield;background:#fff;}
+  .sr-step .q::-webkit-outer-spin-button,.sr-step .q::-webkit-inner-spin-button{-webkit-appearance:none;margin:0;}
+  .sr-step.in{border-color:var(--red);}
+  .sr-step.in .q{color:var(--red);}
+  .sr-step.in button{color:var(--red);}
+  .sr-card.off .sr-step{opacity:.45;}
+  .sr-meta{padding:16px 18px 20px;display:flex;flex-direction:column;gap:8px;}
+  .sr-cat{align-self:flex-start;border:1px solid var(--red);color:var(--red);font-size:12px;font-weight:500;padding:4px 12px;border-radius:999px;}
+  .sr-name{font-size:15px;line-height:1.4;color:#191919;font-weight:500;}
+  .sr-price{display:flex;align-items:baseline;gap:8px;}
+  .sr-price .now{font-size:20px;font-weight:800;color:#191919;}
+  .sr-price .was{font-size:13px;color:#a9a9a9;text-decoration:line-through;}
+  .sr-page{display:flex;justify-content:center;align-items:center;gap:6px;margin-top:48px;}
+  .sr-page a{min-width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:8px;font-size:14px;color:#666;cursor:pointer;}
+  .sr-page a.cur{background:var(--ink);color:#fff;font-weight:700;}
+  .sr-page a.arw{color:#bbb;}
+  .sr-grid.sr-empty{display:block;}
+  .sr-noresult{text-align:center;padding:70px 20px 100px;}
+  .sr-noresult .srn-t{font-size:20px;font-weight:800;color:#191919;}
+  .sr-noresult .srn-s{font-size:15px;color:#8c8c8c;margin-top:10px;}
+  .sr-toast{position:fixed;left:50%;bottom:40px;transform:translateX(-50%) translateY(20px);background:rgba(29,23,23,.94);color:#fff;font-size:14px;font-weight:600;padding:14px 22px;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.25);z-index:2000;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;max-width:calc(100vw - 40px);text-align:center;}
+  .sr-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+  @media (max-width:900px){.sr-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:520px){
+    .sr-grid{grid-template-columns:repeat(2,1fr);gap:14px;}
+    .sr-img{height:220px;}
+    .sr-img img{width:118px;height:154px;}
+    .sr-title{font-size:18px;}
+  }
+</style>
+</head>
+<body class="page-search">
+
+  <!-- ===== HEADER ===== -->
+  <div id="site-header"></div>
+
+  <!-- ===== SEARCH RESULT ===== -->
+  <section class="sr-wrap">
+    <div class="container">
+      <div class="sr-head">
+        <div class="sr-check"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5 10 17.5 19 7.5" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <p class="sr-title">'<span id="srQuery">파닉스</span>' 검색 결과 <b id="srCount">128</b>건</p>
+      </div>
+      <div class="sr-grid" id="srGrid"></div>
+      <nav class="sr-page" aria-label="페이지">
+        <a class="arw" href="#" aria-label="이전">&#8249;</a>
+        <a class="cur" href="#">1</a>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">4</a>
+        <a href="#">5</a>
+        <a class="arw" href="#" aria-label="다음">&#8250;</a>
+      </nav>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <div id="site-footer"></div>
+
+  <div class="sr-toast" id="srToast" role="status" aria-live="polite"></div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  'use strict';
+  function won(n){ return (n||0).toLocaleString('ko-KR')+'원'; }
+
+  /* 검색어 반영: ?q= → 제목 + 헤더 검색창 */
+  var q='파닉스';
+  try{ var p=new URLSearchParams(location.search); var v=(p.get('q')||'').trim(); if(v) q=v; }catch(e){}
+  var qEl=document.getElementById('srQuery'); if(qEl) qEl.textContent=q;
+  var si=document.querySelector('.search-input'); if(si) si.value=q;
+
+  /* 검색어별 결과 데이터 — '파닉스'와 '세마리'만 결과 있음, 그 외는 결과 없음 */
+  var PHONICS=[
+    {id:'pc1-sb', badge:'HOT', bt:'hot', cat:'Phonics', name:'Phonics Code 1: Student Book', img:'best_1.png', orig:15000, unit:13500, rate:'10%'},
+    {id:'pc1-wb', badge:'NEW', bt:'new', cat:'Phonics', name:'Phonics Code 1: Workbook', img:'best_1.png', orig:15000, unit:13500, rate:'10%'},
+    {id:'pc2-sb-a', badge:'절판', bt:'off', state:'discontinued', cat:'Phonics', name:'Phonics Code 2: Student Book', img:'best_2.png', orig:15000, unit:13500, rate:'10%'},
+    {id:'pc2-wb', badge:'일시품절', bt:'off', state:'soldout', cat:'Phonics', name:'Phonics Code 2: WorkBook', img:'best_2.png', orig:15000, unit:13500, rate:'10%'},
+    {id:'pc2-sb-b', cat:'Phonics', name:'Phonics Code 2: Student Book', img:'best_3.png', orig:15000, unit:13500, rate:'10%'},
+    {id:'pc2-sb-c', cat:'Phonics', name:'Phonics Code 2: Student Book', img:'best_3.png', orig:15000, unit:13500, rate:'10%'},
+    {id:'pc2-sb-d', cat:'Phonics', name:'Phonics Code 2: Student Book', img:'best_4.png', orig:15000, unit:13500, rate:'10%'},
+    {id:'pc2-sb-e', cat:'Phonics', name:'Phonics Code 2: Student Book', img:'best_5.png', orig:15000, unit:13500, rate:'10%'}
+  ];
+  var SEMARI=[
+    {id:'sm-a-set', badge:'HOT', bt:'hot', cat:'독서논술', name:'세 마리 토끼 잡는 초등 독서논술 A단계 세트', img:'best_2.png', orig:48000, unit:43200, rate:'10%'},
+    {id:'sm-a1', badge:'NEW', bt:'new', cat:'독서논술', name:'세 마리 토끼 잡는 초등 독서논술 A1', img:'best_3.png', orig:12000, unit:10800, rate:'10%'},
+    {id:'sm-a2', cat:'독서논술', name:'세 마리 토끼 잡는 초등 독서논술 A2', img:'best_4.png', orig:12000, unit:10800, rate:'10%'},
+    {id:'sm-a3', cat:'독서논술', name:'세 마리 토끼 잡는 초등 독서논술 A3', img:'best_5.png', orig:12000, unit:10800, rate:'10%'},
+    {id:'sm-b-set', badge:'일시품절', bt:'off', state:'soldout', cat:'독서논술', name:'세 마리 토끼 잡는 초등 독서논술 B단계 세트', img:'best_1.png', orig:48000, unit:43200, rate:'10%'},
+    {id:'sm-b1', cat:'독서논술', name:'세 마리 토끼 잡는 초등 독서논술 B1', img:'best_2.png', orig:12000, unit:10800, rate:'10%'},
+    {id:'sm-b2', cat:'독서논술', name:'세 마리 토끼 잡는 초등 독서논술 B2', img:'best_3.png', orig:12000, unit:10800, rate:'10%'},
+    {id:'sm-b3', cat:'독서논술', name:'세 마리 토끼 잡는 초등 독서논술 B3', img:'best_4.png', orig:12000, unit:10800, rate:'10%'}
+  ];
+  var VOCA=[
+    {id:'voca-eowon', badge:'HOT', bt:'hot', cat:'어휘', name:'능률VOCA 어원편', img:'best_5.png', orig:15000, unit:13500, rate:'10%'},
+    {id:'voca-suneung', badge:'NEW', bt:'new', cat:'어휘', name:'능률VOCA 수능완성', img:'best_1.png', orig:17000, unit:15300, rate:'10%'},
+    {id:'voca-gogi', cat:'어휘', name:'능률VOCA 고교기본', img:'best_2.png', orig:14000, unit:12600, rate:'10%'},
+    {id:'voca-junggi', cat:'어휘', name:'능률VOCA 중학기본', img:'best_3.png', orig:12000, unit:10800, rate:'10%'},
+    {id:'voca-wm-basic', cat:'어휘', name:'워드마스터 중등 베이직', img:'best_4.png', orig:12000, unit:10800, rate:'10%'},
+    {id:'voca-wm-2000', cat:'어휘', name:'워드마스터 수능 2000', img:'best_5.png', orig:15000, unit:13500, rate:'10%'},
+    {id:'voca-eowon-lite', badge:'일시품절', bt:'off', state:'soldout', cat:'어휘', name:'능률VOCA 어원편 Lite', img:'best_1.png', orig:11000, unit:9900, rate:'10%'},
+    {id:'voca-power', cat:'어휘', name:'능률VOCA 파워업', img:'best_2.png', orig:13000, unit:11700, rate:'10%'}
+  ];
+  function pick(query){
+    var s=(query||'').toLowerCase().replace(/\s+/g,'');
+    if(s.indexOf('파닉스')>=0 || s.indexOf('phonics')>=0) return {count:128, items:PHONICS};
+    if(s.indexOf('세마리')>=0 || s.indexOf('토끼')>=0 || s.indexOf('독서논술')>=0) return {count:57, items:SEMARI};
+    if(s.indexOf('voca')>=0 || s.indexOf('보카')>=0 || s.indexOf('능률voca')>=0 || s.indexOf('어휘')>=0 || s.indexOf('단어')>=0) return {count:96, items:VOCA};
+    return null;
+  }
+
+  var grid=document.getElementById('srGrid');
+  var pager=document.querySelector('.sr-page');
+  var countEl=document.getElementById('srCount');
+  var result=pick(q);
+
+  /* 결과 없음: 하단 리스트 제거 + 안내 문구 */
+  if(!result){
+    if(countEl) countEl.textContent='0';
+    if(pager) pager.style.display='none';
+    grid.classList.add('sr-empty');
+    grid.innerHTML='<div class="sr-noresult"><p class="srn-t">검색한 결과가 없습니다.</p><p class="srn-s">상품을 다시 검색해주세요.</p></div>';
+    return;
+  }
+  if(countEl) countEl.textContent=result.count;
+
+  var PRODUCTS=result.items;
+  var byId={}; PRODUCTS.forEach(function(p){ byId[p.id]=p; });
+
+  /* 현재 장바구니 수량 (NECart 있으면 반영, 없으면 0에서 시작) */
+  var cart = window.NECart ? NECart.read() : {};
+  function cartQty(id){ return (cart[id] && cart[id].qty) || 0; }
+
+  var HEART='<svg viewBox="0 0 24 24"><path d="M12 20s-7-4.3-9.2-8.2C1.2 8.9 2.6 6 5.5 6 7.4 6 8.7 7 12 9.5 15.3 7 16.6 6 18.5 6c2.9 0 4.3 2.9 2.7 5.8C19 15.7 12 20 12 20z" stroke-width="1.6"/></svg>';
+  grid.innerHTML=PRODUCTS.map(function(p){
+    var cq=cartQty(p.id);
+    var badge=p.badge?'<span class="sr-badge '+p.bt+'">'+p.badge+'</span>':'';
+    var off=p.state?' off':'';
+    var dis=p.state?' disabled':'';
+    var inCls=(cq>0?' in':'');
+    return '<div class="sr-card'+off+'" data-id="'+p.id+'">'
+      +'<div class="sr-img">'+badge
+        +'<img src="assets/'+p.img+'" alt="">'
+        +'<button class="sr-heart" type="button" aria-label="찜하기">'+HEART+'</button>'
+      +'</div>'
+      +'<div class="sr-step'+inCls+'">'
+        +'<button type="button" class="minus"'+dis+'>&minus;</button>'
+        +'<input type="text" class="q" value="'+(cq>0?cq:0)+'" readonly aria-label="수량">'
+        +'<button type="button" class="plus"'+dis+'>+</button>'
+      +'</div>'
+      +'<div class="sr-meta">'
+        +'<span class="sr-cat">'+p.cat+'</span>'
+        +'<p class="sr-name">'+p.name+'</p>'
+        +'<p class="sr-price"><b class="now">'+won(p.unit)+'</b><span class="was">'+won(p.orig)+'</span></p>'
+      +'</div>'
+    +'</div>';
+  }).join('');
+
+  /* 토스트 */
+  var toastEl=document.getElementById('srToast'), toastT;
+  function toast(msg){ toastEl.textContent=msg; toastEl.classList.add('show'); clearTimeout(toastT); toastT=setTimeout(function(){ toastEl.classList.remove('show'); },1800); }
+
+  function toCartItem(p){ return {id:p.id, name:p.name, img:p.img, orig:p.orig, unit:p.unit, rate:p.rate, cat:p.cat}; }
+
+  grid.addEventListener('click', function(e){
+    /* 하트 → 찜 얼럿 */
+    var h=e.target.closest('.sr-heart');
+    if(h){ h.classList.toggle('on'); alert('찜한 교재에 추가되었습니다'); return; }
+
+    var card=e.target.closest('.sr-card'); if(!card) return;
+    var p=byId[card.getAttribute('data-id')]; if(!p || p.state) return;
+    var isPlus=e.target.classList.contains('plus');
+    var isMinus=e.target.classList.contains('minus');
+    if(!isPlus && !isMinus) return;
+
+    var step=card.querySelector('.sr-step'), input=step.querySelector('.q');
+    var cq=parseInt(input.value,10)||0;
+    if(isMinus && cq<=0) return;   /* 담긴 게 없으면 빼기 무시 */
+    cq = isPlus ? cq+1 : Math.max(0, cq-1);
+    /* NECart 있으면 장바구니 동기화(없으면 화면 수량만 갱신) */
+    if(window.NECart){ if(cq>0){ NECart.setQty(toCartItem(p), cq); } else { NECart.remove(p.id); } cart=NECart.read(); }
+    input.value = cq>0 ? cq : 0;
+    step.classList.toggle('in', cq>0);
+    toast(cq>0 ? '장바구니에 담았어요 · '+p.name+' '+cq+'권' : '장바구니에서 뺐어요 · '+p.name);
+  });
+});
+</script>
+</body>
+</html>
