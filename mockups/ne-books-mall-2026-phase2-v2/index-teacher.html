@@ -343,6 +343,13 @@
   .evlist-state.done{background:#f5f5f5;color:#aaa;}
   .evlist-state.end{background:#fff3e0;color:#e65100;}
   .evlist-date{font-size:11px;color:#aaa;}
+
+  /* 메인 아이콘 바로가기 (일반몰 동일 크기) */
+  .mainicons{padding:10px 0 12px !important;}
+  .mainicons .pill{width:100px !important;height:100px !important;}
+  .mainicons .pill .ico{width:36px !important;height:36px !important;}
+  .mainicons .pill .ico img{width:32px !important;height:32px !important;}
+  .mainicons .pill span{font-size:12px !important;}
 </style>
 </head>
 <body class="page-index page-teacher">
@@ -363,7 +370,21 @@
     </div>
   </section>
 
-  <!-- 바로가기(교사용) 영역 삭제 (요청) -->
+  <!-- ===== MAIN ICONS (일반몰 동일) ===== -->
+  <section class="mainicons">
+    <div class="container">
+      <div class="row">
+        <a class="pill"><span class="ico"><img src="assets/ic_main_buy.svg" alt=""></span><span>교재 구매</span></a>
+        <a class="pill"><span class="ico"><img src="assets/ic_main_level.svg" alt=""></span><span>레벨차트</span></a>
+        <a class="pill"><span class="ico"><img src="assets/ic_main_lib.svg" alt=""></span><span><span class="only-pc">학습자료실</span><span class="only-mo">학습자료</span></span></a>
+        <a class="pill"><span class="ico"><img src="assets/ic_main_mp3down.svg" alt=""></span><span><span class="only-pc">정답·MP3 다운</span><span class="only-mo">정답·MP3</span></span></a>
+        <a class="pill"><span class="ico"><img src="assets/ic_main_mp3listen.svg" alt=""></span><span>음원듣기</span></a>
+        <a class="pill"><span class="ico"><img src="assets/ic_main_engteacher.svg" alt=""></span><span>영어 선생님</span></a>
+        <a class="pill"><span class="ico"><img src="assets/ic_main_mathteacher.svg" alt=""></span><span>수학 선생님</span></a>
+        <a class="pill only-mo mo-reco"><span class="ico"><img src="assets/ic_float_recommend.svg" alt=""></span><span>교재추천</span></a>
+      </div>
+    </div>
+  </section>
 
   <!-- ===== [from ne-books-mall-2] 김능률 선생님을 위한 추천 교재 ===== -->
   <section class="reco-v3">
@@ -378,24 +399,6 @@
       <div class="rc-body" id="rcBody"></div>
     </div>
   </section>
-
-  <!-- ===== NE Tutor 서비스 (교사용 학습 플랫폼, 간이 그리드) ===== -->
-  <section class="t1t-sec" id="nt">
-    <div class="container">
-      <div class="sec-title">선생님을 위한 티칭 플랫폼, NE Tutor</div>
-      <p class="sub">지도서·시험지 자동 생성부터 레벨테스트까지, 수업 준비 시간을 줄여드립니다.</p>
-      <div class="t1t-nt-grid">
-        <a class="t1t-nt-card" href="#" target="_blank" rel="noopener"><span class="ico"><img src="assets/ic_tutor_ebook.svg" alt=""></span><span><p class="sub">지도서/수업자료</p><p class="tt">E-Book・자료</p></span></a>
-        <a class="t1t-nt-card" href="#" target="_blank" rel="noopener"><span class="ico"><img src="assets/ic_tutor_vocab.svg" alt=""></span><span><p class="sub">시험지 자동 생성</p><p class="tt">어휘 문제 마법사</p></span></a>
-        <a class="t1t-nt-card" href="#" target="_blank" rel="noopener"><span class="ico"><img src="assets/ic_tutor_grammar.svg" alt=""></span><span><p class="sub">문제 무제한 출제</p><p class="tt">문법 문제뱅크</p></span></a>
-        <a class="t1t-nt-card" href="#" target="_blank" rel="noopener"><span class="ico"><img src="assets/ic_tutor_nelt.svg" alt=""></span><span><p class="sub">iBT 영어 레벨테스트</p><p class="tt">NELT</p></span></a>
-        <a class="t1t-nt-card" href="#" target="_blank" rel="noopener"><span class="ico"><img src="assets/ic_tutor_test.svg" alt=""></span><span><p class="sub">평가/오답 자동화</p><p class="tt">성취TEST</p></span></a>
-        <a class="t1t-nt-card" href="#" target="_blank" rel="noopener"><span class="ico"><img src="assets/ic_tutor_search.svg" alt=""></span><span><p class="sub">예문검색 1분컷</p><p class="tt">문법 예문 검색</p></span></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- 기존 전문가 PICK·동료 원장 추천(t1p) 섹션은 mall-type2 '전문가 추천 교재'로 대체 -->
 
   <!-- ===== [from mall-type2] 이런 조합 어때요? 맞춤 교재 세트 (선생님몰) ===== -->
   <section class="t2set-sec">
@@ -504,6 +507,22 @@
             <div class="evlist-status"><span class="evlist-state">진행중</span></div>
           </div>
         </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== NE Tutor 서비스 (교사용 학습 플랫폼, 간이 그리드) ===== -->
+  <section class="t1t-sec" id="nt">
+    <div class="container">
+      <div class="sec-title">선생님을 위한 티칭 플랫폼, NE Tutor</div>
+      <p class="sub">지도서·시험지 자동 생성부터 레벨테스트까지, 수업 준비 시간을 줄여드립니다.</p>
+      <div class="t1t-nt-grid">
+        <a class="t1t-nt-card" href="#" target="_blank" rel="noopener"><span class="ico"><img src="assets/ic_tutor_ebook.svg" alt=""></span><span><p class="sub">지도서/수업자료</p><p class="tt">E-Book・자료</p></span></a>
+        <a class="t1t-nt-card" href="#" target="_blank" rel="noopener"><span class="ico"><img src="assets/ic_tutor_vocab.svg" alt=""></span><span><p class="sub">시험지 자동 생성</p><p class="tt">어휘 문제 마법사</p></span></a>
+        <a class="t1t-nt-card" href="#" target="_blank" rel="noopener"><span class="ico"><img src="assets/ic_tutor_grammar.svg" alt=""></span><span><p class="sub">문제 무제한 출제</p><p class="tt">문법 문제뱅크</p></span></a>
+        <a class="t1t-nt-card" href="#" target="_blank" rel="noopener"><span class="ico"><img src="assets/ic_tutor_nelt.svg" alt=""></span><span><p class="sub">iBT 영어 레벨테스트</p><p class="tt">NELT</p></span></a>
+        <a class="t1t-nt-card" href="#" target="_blank" rel="noopener"><span class="ico"><img src="assets/ic_tutor_test.svg" alt=""></span><span><p class="sub">평가/오답 자동화</p><p class="tt">성취TEST</p></span></a>
+        <a class="t1t-nt-card" href="#" target="_blank" rel="noopener"><span class="ico"><img src="assets/ic_tutor_search.svg" alt=""></span><span><p class="sub">예문검색 1분컷</p><p class="tt">문법 예문 검색</p></span></a>
       </div>
     </div>
   </section>
