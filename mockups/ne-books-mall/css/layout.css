@@ -2162,11 +2162,11 @@ body.bsheet-lock{overflow:hidden;}
   .m-menu.only-mo:focus,.m-menu.only-mo:focus-visible{outline:none;}
   /* 서브페이지 로케이션형 헤더 (홈 + 카테고리명) */
   .lheader.has-loc .header-top .logo{display:none;}
-  .lheader.has-loc .header-top .m-loc{display:inline-flex;order:1;margin-right:auto;align-items:center;gap:6px;text-decoration:none;color:var(--ink);min-width:0;overflow:hidden;}
+  .lheader.has-loc .header-top .m-loc{display:inline-flex;order:1;margin-right:auto;align-items:center;gap:6px;text-decoration:none;color:var(--ink);min-width:0;}
   .m-loc .m-loc-home{display:inline-flex;flex:none;}
   .m-loc .m-loc-home img,.m-loc .m-loc-home svg{width:24px;height:24px;display:block;}
   .m-loc .m-loc-name{font-family:var(--display);font-weight:700;font-size:22px;line-height:1;color:var(--ink);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-  .m-loc .m-loc-btn{display:inline-flex;align-items:center;gap:6px;border:0;background:none;padding:0;cursor:pointer;color:inherit;-webkit-tap-highlight-color:transparent;min-width:0;overflow:hidden;}
+  .m-loc .m-loc-btn{display:inline-flex;align-items:center;gap:6px;border:0;background:none;padding:0 2px 0 0;cursor:pointer;color:inherit;-webkit-tap-highlight-color:transparent;min-width:0;}
   .m-loc .m-loc-caret{width:9px;height:9px;flex:none;margin-left:2px;
     border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);transform:rotate(45deg) translate(-1px,-1px);transition:transform .2s;}
   #site-header.mcat-open .m-loc-caret{transform:rotate(-135deg) translate(-1px,-1px);}
