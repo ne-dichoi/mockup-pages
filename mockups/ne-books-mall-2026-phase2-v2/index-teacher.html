@@ -313,6 +313,32 @@
     .cn-banner,.cn-banner.cn-gold{grid-template-columns:1fr;gap:16px;padding:20px;}
     .cn-bn-ttl{white-space:normal;}
   }
+
+  /* ===== 이벤트 · 신간 · 세미나 (일반몰 동일) ===== */
+  .evlist-sec{padding:40px 0 48px;background:#f7f8fa;}
+  .evlist-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;}
+  .evlist-head h2{font-size:24px;font-weight:800;color:#191919;letter-spacing:-.5px;}
+  .evlist-more{font-size:14px;color:#8c8c8c;font-weight:600;}
+  .evlist-more:hover{color:#191919;}
+  .evlist-row{display:flex;gap:16px;overflow-x:auto;scrollbar-width:none;cursor:grab;padding-bottom:4px;}
+  .evlist-row::-webkit-scrollbar{display:none;}
+  .evlist-row.dragging{cursor:grabbing;}
+  .evlist-card{flex:none;width:360px;border:1px solid #e4e4e4;border-radius:14px;overflow:hidden;background:#fff;transition:box-shadow .15s;}
+  .evlist-card:hover{box-shadow:0 8px 22px rgba(0,0,0,.1);}
+  .evlist-thumb{aspect-ratio:16/9;overflow:hidden;background:#ebebeb;}
+  .evlist-thumb img{width:100%;height:100%;object-fit:cover;object-position:top center;}
+  .evlist-body{padding:14px 16px 16px;border-top:1px solid #ededed;}
+  .evlist-badges{display:flex;gap:5px;margin-bottom:9px;}
+  .evlist-bdg{font-size:11px;font-weight:700;padding:3px 9px;border-radius:6px;}
+  .evlist-bdg.type{background:#191919;color:#fff;}
+  .evlist-bdg.cat{background:#f0f0f0;color:#555;}
+  .evlist-ttl{font-size:14px;font-weight:700;color:#191919;line-height:1.4;margin-bottom:4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+  .evlist-desc{font-size:12.5px;color:#8c8c8c;line-height:1.4;}
+  .evlist-status{margin-top:12px;display:flex;align-items:center;gap:8px;}
+  .evlist-state{font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px;background:#e8f5e9;color:#2e7d32;}
+  .evlist-state.done{background:#f5f5f5;color:#aaa;}
+  .evlist-state.end{background:#fff3e0;color:#e65100;}
+  .evlist-date{font-size:11px;color:#aaa;}
 </style>
 </head>
 <body class="page-index page-teacher">
@@ -367,26 +393,6 @@
 
   <!-- 기존 전문가 PICK·동료 원장 추천(t1p) 섹션은 mall-type2 '전문가 추천 교재'로 대체 -->
 
-  <!-- ===== [from mall-type2] 전문가 추천 교재 (선생님몰) ===== -->
-  <section class="t2exp-sec">
-    <div class="container">
-      <div class="t2-head"><h2>전문가가 선택한 <span class="hl">그 교재!</span></h2><a class="t2-more" href="리스트_교재구매_선생님.html">전체보기 &#8250;</a></div>
-      <div class="t2exp">
-        <div class="t2exp-img" style="background-image:url('assets/img4.png')"></div>
-        <div class="t2exp-panel">
-          <span class="sub">베테랑 선생님의 10년 노하우</span>
-          <span class="ttl">믿고 쓰는 전문가 PICK 교재</span>
-          <div class="t2exp-grid">
-            <a class="t2exp-prod" href="교재상세_선생님.html"><span class="th"><img src="assets/book_cover.jpg" alt=""></span><span class="nm">Oxford Reading Tree Stage 3</span><span class="coup">30,000원</span><span class="p"><span class="pct">20%</span>24,000원</span><span class="rw">1,200원 적립</span></a>
-            <a class="t2exp-prod" href="교재상세_선생님.html"><span class="th"><img src="assets/best_3.png" alt=""></span><span class="nm">Oxford Bookworms Starter</span><span class="coup">15,000원</span><span class="p"><span class="pct">15%</span>12,750원</span><span class="rw">638원 적립</span></a>
-            <a class="t2exp-prod" href="교재상세_선생님.html"><span class="th"><img src="assets/best_2.png" alt=""></span><span class="nm">Big Cat Readers Band 4</span><span class="coup">18,000원</span><span class="p"><span class="pct">18%</span>14,760원</span><span class="rw">738원 적립</span></a>
-            <a class="t2exp-prod" href="교재상세_선생님.html"><span class="th"><img src="assets/newbook_sample.png" alt=""></span><span class="nm">Usborne First Reading 세트</span><span class="coup">40,000원</span><span class="p"><span class="pct">25%</span>30,000원</span><span class="rw">1,500원 적립</span></a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ===== [from mall-type2] 이런 조합 어때요? 맞춤 교재 세트 (선생님몰) ===== -->
   <section class="t2set-sec">
     <div class="container">
@@ -432,7 +438,71 @@
     </div>
   </section>
 
-  <!-- 세미나·연수 안내 영역 삭제 (요청) -->
+  <!-- ===== 이벤트 · 신간 · 세미나 (일반몰 동일) ===== -->
+  <section class="evlist-sec">
+    <div class="container">
+      <div class="evlist-head">
+        <h2>이벤트 · 신간 · 세미나</h2>
+        <a class="evlist-more" href="고객센터.html#event">전체보기 &#8250;</a>
+      </div>
+      <div class="evlist-row" id="evlistRow">
+        <a class="evlist-card" href="이벤트상세.html">
+          <div class="evlist-thumb"><img src="assets/img1.png" alt=""></div>
+          <div class="evlist-body">
+            <div class="evlist-badges"><span class="evlist-bdg type">이벤트</span><span class="evlist-bdg cat">ELT</span></div>
+            <p class="evlist-ttl">성적이 달라지는 방학 특강 조합</p>
+            <p class="evlist-desc">문법 개념 정리 + 리스닝 훈련</p>
+            <div class="evlist-status"><span class="evlist-state">진행중</span><span class="evlist-date">2026.07.01 ~ 2026.07.31</span></div>
+          </div>
+        </a>
+        <a class="evlist-card" href="세미나상세.html">
+          <div class="evlist-thumb"><img src="assets/img2.png" alt=""></div>
+          <div class="evlist-body">
+            <div class="evlist-badges"><span class="evlist-bdg type">세미나</span><span class="evlist-bdg cat">ELT</span></div>
+            <p class="evlist-ttl">성적이 달라지는 방학 특강 조합</p>
+            <p class="evlist-desc">문법 개념 정리 + 리스닝 훈련</p>
+            <div class="evlist-status"><span class="evlist-state end">당첨자발표</span><span class="evlist-date">2026.06.01 ~ 2026.07.01</span></div>
+          </div>
+        </a>
+        <a class="evlist-card" href="신간개정상세.html">
+          <div class="evlist-thumb"><img src="assets/img3.png" alt=""></div>
+          <div class="evlist-body">
+            <div class="evlist-badges"><span class="evlist-bdg type">신간·개정</span><span class="evlist-bdg cat">초/중/고</span></div>
+            <p class="evlist-ttl">[신간] 달곰한 Literacy</p>
+            <p class="evlist-desc">문법 개념 정리 + 리스닝 훈련</p>
+            <div class="evlist-status"><span class="evlist-state done">종료</span><span class="evlist-date">2025.06.01 ~ 2025.07.01</span></div>
+          </div>
+        </a>
+        <a class="evlist-card" href="세미나상세.html">
+          <div class="evlist-thumb"><img src="assets/img4.png" alt=""></div>
+          <div class="evlist-body">
+            <div class="evlist-badges"><span class="evlist-bdg type">세미나</span><span class="evlist-bdg cat">공통</span></div>
+            <p class="evlist-ttl">성적이 달라지는 방학 특강 조합</p>
+            <p class="evlist-desc">문법 개념 정리 + 리스닝 훈련</p>
+            <div class="evlist-status"><span class="evlist-state">진행중</span></div>
+          </div>
+        </a>
+        <a class="evlist-card" href="세미나상세.html">
+          <div class="evlist-thumb"><img src="assets/img5.png" alt=""></div>
+          <div class="evlist-body">
+            <div class="evlist-badges"><span class="evlist-bdg type">세미나</span><span class="evlist-bdg cat">공통</span></div>
+            <p class="evlist-ttl">[세미나] 8월 혼강 세미나</p>
+            <p class="evlist-desc">수업이 달라지는 기준</p>
+            <div class="evlist-status"><span class="evlist-state">진행중</span><span class="evlist-date">2026.06.01 ~ 2026.07.01</span></div>
+          </div>
+        </a>
+        <a class="evlist-card" href="신간개정상세.html">
+          <div class="evlist-thumb"><img src="assets/img1.png" alt=""></div>
+          <div class="evlist-body">
+            <div class="evlist-badges"><span class="evlist-bdg type">신간·개정</span><span class="evlist-bdg cat">공통</span></div>
+            <p class="evlist-ttl">[개정] 능률VOCA (11종)</p>
+            <p class="evlist-desc">어휘의 뜻과 쓰임을 확실하게 기억시키는 특별한 어휘각인 체계</p>
+            <div class="evlist-status"><span class="evlist-state">진행중</span></div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
 
   <!-- ===== 공지사항 (교사용) ===== -->
   <section class="notices">
@@ -622,7 +692,7 @@
       +'<p class="cn-gold-lead">선생님께만 드리는 <b>추가 할인 · 10% 적립</b>, 이번 주까지 지금 바로 챙기세요.</p>'
       +'<p class="cn-gold-msg">관심 있던 <b>\'그래머 인사이드\'</b> 새 학기 교재가 입고됐어요.</p>'
       +'<a class="cn-gold-cta" href="'+LIST+'">바로 확인하기 &#8250;</a>'
-      +'<div class="cn-gold-actions"><a class="cn-gold-btn" href="'+LIST+'">김능률 선생님 전용 교재 보기 &#8250;</a><a class="cn-gold-switch" href="index.html">일반(학부모·학생)몰로 이동</a></div>'
+      +'<div class="cn-gold-actions"><a class="cn-gold-btn" href="'+LIST+'">김능률 선생님 전용 교재 보기 &#8250;</a></div>'
     +'</div>'
     +'<aside class="cn-gold-perks">'
       +'<span class="cn-gold-perks-h">&#128081; GOLD 회원 등급 혜택</span>'
@@ -683,6 +753,17 @@
   var wrap=document.querySelector('.catnav-v3');
   if(wrap){ wrap.addEventListener('mouseleave',renderGold); }
   renderGold();
+
+  /* 이벤트 리스트 가로 드래그 스크롤 */
+  (function(){
+    var el=document.getElementById('evlistRow'); if(!el) return;
+    var down=false,startX=0,startLeft=0,moved=false;
+    el.addEventListener('pointerdown',function(e){ if(e.pointerType==='mouse'&&e.button!==0) return; down=true;moved=false;startX=e.clientX;startLeft=el.scrollLeft; });
+    el.addEventListener('pointermove',function(e){ if(!down) return; var dx=e.clientX-startX; if(!moved&&Math.abs(dx)>4){ moved=true; el.classList.add('dragging'); el.setPointerCapture&&el.setPointerCapture(e.pointerId); } if(moved) el.scrollLeft=startLeft-dx; });
+    function end(){ if(!down) return; down=false; el.classList.remove('dragging'); }
+    el.addEventListener('pointerup',end); el.addEventListener('pointercancel',end);
+    el.addEventListener('click',function(e){ if(moved){ e.preventDefault(); e.stopPropagation(); } },true);
+  })();
 })();
 </script>
 </body>
