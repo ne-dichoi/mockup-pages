@@ -566,7 +566,7 @@ a{color:inherit;text-decoration:none;}
 .pt-sub{font-size:12px;color:#666;line-height:1.35;}
 .dt-head{display:flex;align-items:flex-end;justify-content:space-between;padding:56px 0 24px;gap:20px;flex-wrap:wrap;}
 .dt-elt{font-family:var(--display);font-weight:800;font-size:32px;line-height:1;}
-.dt-hero{display:grid;grid-template-columns:580px minmax(0,1fr);column-gap:140px;row-gap:0;align-items:start;padding-bottom:80px;}
+.dt-hero{display:grid;grid-template-columns:580px minmax(0,1fr);column-gap:80px;row-gap:0;align-items:start;padding-bottom:80px;}
 .dt-body{display:grid;grid-template-columns:minmax(0,1fr) 280px;column-gap:40px;align-items:start;padding-top:0;}
 .dt-main{border-right:1px solid #e5e5e5;padding:56px 40px 0 0;}
 .dt-body .dh-buy{position:sticky;top:76px;margin-top:56px;z-index:40;}
