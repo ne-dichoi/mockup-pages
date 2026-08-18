@@ -1707,11 +1707,13 @@ body.bsheet-lock{overflow:hidden;}
 .iq-preinfo.guest{align-items:stretch;gap:40px;}
 .iq-preinfo .pre-text{display:flex;flex-direction:column;justify-content:center;gap:12px;min-width:0;}
 .iq-preinfo .pre-right{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:16px;flex:none;}
-/* 비회원 안내: 좌(텍스트)·우(버튼) 구분 명확화 — 세로 구분선(넓은 PC) / 가로 구분선 후 세로 스택(좁은 PC) */
-.iq-preinfo.guest .pre-right{border-left:1px solid var(--line);padding-left:40px;}
+/* 비회원 안내: 좌(텍스트)·우(버튼) 구분 명확화 — 넓은 PC(≥1201) 세로 구분선 / 좁은 PC(1024–1200) 가로 구분선+세로 스택. 모바일(≤1023)은 별도 규칙, 구분선 없음 */
+@media (min-width:1201px){
+  .iq-preinfo.guest .pre-right{border-left:1px solid var(--line);padding-left:40px;}
+}
 @media (min-width:1024px) and (max-width:1200px){
   .iq-preinfo.guest{flex-direction:column;align-items:stretch;gap:24px;}
-  .iq-preinfo.guest .pre-right{border-left:0;padding-left:0;border-top:1px solid var(--line);padding-top:24px;}
+  .iq-preinfo.guest .pre-right{border-top:1px solid var(--line);padding-top:24px;}
 }
 .iq-preinfo .pre-right .msg{padding-left:14px;position:relative;font-size:14px;color:var(--muted);}
 .iq-preinfo .pre-right .msg::before{content:"";position:absolute;left:2px;top:9px;width:3px;height:3px;border-radius:50%;background:var(--muted);}

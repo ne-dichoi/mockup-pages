@@ -419,7 +419,18 @@
   (function(){
     var el=document.getElementById('site-location'); if(!el) return;
     var file=decodeURIComponent((location.pathname.split('/').pop()||''));
-    var p=PAGES[file]; if(!p) return;
+    var p=PAGES[file];
+    /* 한글 파일명 유니코드 정규화(NFC/NFD) 불일치 대비: 정규화 후 재매칭 (GitHub Pages 등) */
+    if(!p && file && file.normalize){
+      var fN=file.normalize('NFC');
+      for(var _k in PAGES){ if(_k.normalize && _k.normalize('NFC')===fN){ p=PAGES[_k]; break; } }
+    }
+    if(!p){
+      /* PAGES 매칭 실패 시: 하드코딩된 pagehead의 ph-title로 모바일 서브GNB(홈+타이틀)만이라도 복구 */
+      var _ht=el.querySelector('.ph-title'), _lh=document.querySelector('.lheader'), _mn=_lh&&_lh.querySelector('.m-loc-name');
+      if(_ht&&_mn){ _mn.textContent=_ht.textContent.trim(); _lh.classList.add('has-loc'); }
+      return;
+    }
     var crumb='<a class="home ico" href="index.html"><img src="assets/ic_home.svg" alt="홈"></a>';
     var left;
     if(p.type==='cat'){
