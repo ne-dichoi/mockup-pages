@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>NE_Books · 장바구니</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="css/layout.css?v=20260814g">
+<script src="js/layout.js?v=20260814g" defer></script>
+<script src="js/search.js?v=20260814g" defer></script>
+</head>
+<body class="page-cart">
+
+  <!-- ===== HEADER ===== -->
+  <div id="site-header"></div>
+
+  <!-- ===== PAGE HEAD ===== -->
+  <div id="site-location"></div>
+
+  <!-- ===== CART ===== -->
+  <section class="cartwrap">
+    <div class="container">
+      <div class="cart-grid">
+
+        <!-- LEFT: items -->
+        <div class="cart-main">
+          <div class="cart-bar">
+            <label class="sel-all"><input type="checkbox" class="chk" id="selAll" checked>전체선택</label>
+            <div class="bar-btns">
+              <button type="button" class="btn btn-outline" id="delSel"><span class="pc-t">선택 삭제</span><span class="mo-t">삭제</span></button>
+              <button type="button" class="btn btn-outline" id="delAll">전체 삭제</button>
+            </div>
+          </div>
+
+          <div class="cart-list" id="cartList">
+            <div class="citem" data-orig="15000" data-unit="13500" data-pt="150">
+              <input type="checkbox" class="chk row-chk" checked>
+              <a class="cthumb" href="교재상세.html"><img src="assets/best_1.png" alt=""></a>
+              <a class="cname" href="교재상세.html">Phonics Code 1 : Student Book</a>
+              <div class="cprice"><span class="pct">10%</span><span class="was">15,000원</span><span class="now">13,500원</span><span class="note">(10%할인+150P 적립)</span></div>
+              <span class="qty"><button type="button" class="minus">&minus;</button><input type="number" class="q" value="2" min="1"><button type="button" class="plus">+</button></span>
+              <div class="csum"><span class="amt">27,000원</span><span class="pt">(300P 적립예정)</span></div>
+              <button type="button" class="cdel" aria-label="삭제">&times;</button>
+            </div>
+
+            <div class="citem" data-orig="15000" data-unit="13500" data-pt="150">
+              <input type="checkbox" class="chk row-chk">
+              <a class="cthumb" href="교재상세.html"><img src="assets/best_2.png" alt=""></a>
+              <a class="cname" href="교재상세.html">Phonics Code 1 : Student Book</a>
+              <div class="cprice"><span class="pct">10%</span><span class="was">15,000원</span><span class="now">13,500원</span><span class="note">(10%할인+150P 적립)</span></div>
+              <span class="qty"><button type="button" class="minus">&minus;</button><input type="number" class="q" value="1" min="1"><button type="button" class="plus">+</button></span>
+              <div class="csum"><span class="amt">13,500원</span><span class="pt">(150P 적립예정)</span></div>
+              <button type="button" class="cdel" aria-label="삭제">&times;</button>
+            </div>
+
+            <div class="citem soldout" data-orig="15000" data-unit="13500" data-pt="150">
+              <input type="checkbox" class="chk row-chk" disabled>
+              <a class="cthumb" href="교재상세.html"><img src="assets/best_3.png" alt=""><span class="soldout-badge">품절</span></a>
+              <a class="cname" href="교재상세.html">Phonics Code 1 : Student Book</a>
+              <div class="cprice"><span class="pct">10%</span><span class="was">15,000원</span><span class="now">13,500원</span><span class="note">(10%할인+150P 적립)</span></div>
+              <span class="qty"><button type="button" class="minus" disabled>&minus;</button><input type="number" class="q" value="0" disabled><button type="button" class="plus" disabled>+</button></span>
+              <div class="csum"><span class="amt">13,500원</span><span class="pt">(150P 적립예정)</span></div>
+              <button type="button" class="cdel" aria-label="삭제">&times;</button>
+            </div>
+          </div>
+
+          <div class="cart-empty" id="cartEmpty">
+            <div class="nr-ic"><svg width="12" height="62" viewBox="0 0 12 62" fill="#d1d1d1" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="12" height="44" rx="6"/><circle cx="6" cy="56" r="6"/></svg></div>
+            <div class="nr-txt">
+              <p class="nr-title">장바구니가 비어 있습니다</p>
+              <p class="nr-sub">원하는 상품을 장바구니에 담아보세요</p>
+            </div>
+            <a class="nr-btn" href="index.html">쇼핑계속하기</a>
+          </div>
+
+          <div class="cart-notes">
+            <p>* 포인트는 주문/결제 페이지에서 적용 가능합니다.</p>
+            <p>* 총 주문금액이 3만원 미만일 경우, 배송비가 부과됩니다. (도서산간 지역일 경우 2,500원이 추가로 부과됩니다.)</p>
+          </div>
+        </div>
+
+        <!-- RIGHT: summary -->
+        <aside class="co-side cart-side">
+          <h3>결제 예상 금액</h3>
+          <div class="pay-line"><span>총 상품금액</span><span class="v"><b id="sumGoods">30,000</b>원</span></div>
+          <div class="pay-line"><span>상품 할인금액</span><span class="v"><b id="sumDisc">-3,000</b>원</span></div>
+          <div class="pay-line"><span>배송비</span><span class="v"><b id="sumShip">0</b>원</span></div>
+          <div class="pay-total"><span class="lb">총 <em id="sumCount">1</em>건</span><span class="v"><b id="sumTotal">27,000</b>원</span></div>
+          <div class="pay-earn"><span>적립 예정</span><span class="e"><b id="sumPt">+ 300</b>P</span></div>
+          <a class="btn btn-dark" id="orderSel" href="주문결제.html">선택상품 주문</a>
+          <a class="btn btn-primary" id="orderAll" href="주문결제.html">전체상품 주문</a>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MOBILE 하단 주문 CTA ===== -->
+  <div class="cart-cta only-mo">
+    <a class="cart-cta-btn" href="주문결제.html"><b id="moTotal">총 27,000원</b> <span>주문하기</span></a>
+  </div>
+
+  <!-- ===== 확인 팝업 (삭제 확인 / 주문 차단 안내) ===== -->
+  <div class="cart-modal" id="cartModal" aria-hidden="true">
+    <div class="cm-dim"></div>
+    <div class="cm-box" role="dialog" aria-modal="true" aria-labelledby="cmMsg">
+      <p class="cm-msg" id="cmMsg"></p>
+      <div class="cm-btns" id="cmBtns"></div>
+    </div>
+  </div>
+  <div class="cart-toast" id="cartToast" role="status" aria-live="polite"></div>
+
+  <!-- ===== FOOTER ===== -->
+  <div id="site-footer"></div>
+
+  <script>
+  (function(){
+    /* GNB mega-dropdown */
+    (function(){
+      var gnb=document.querySelector('.gnb'); if(!gnb) return;
+      var drop=document.getElementById('gnbDrop'); if(!drop) return;
+      var cats=drop.querySelector('.gd-cats');
+      var items=[].slice.call(gnb.querySelectorAll('nav a'));
+      var MENU={
+        'ELT':['Coursebook','Phonics','Readers','Reading','Listening','Speaking','Writing','Grammar','Vocabulary'],
+        '초/중등':['중학내신','고등선행','어휘','Phonics','쓰기','독해','듣기','문법/구문','TOEFL/TEPS/NELT'],
+        '고등':['어휘','독해','듣기','문법/구문','수능대비','고교내신','단기특강','TOEFL/TEPS/NELT'],
+        '교과서/자습서':['중학영어 교과서','고등영어 교과서','수학 교과서','중국어/일본어'],
+        '수험/일반':['TOEIC','TOEIC Speaking/Writing','TOEFL/OPIC/TEPS','FLEX','일반영어'],
+        '수학/국어':['유아','초등','중등','고등'],
+        '학습자료실':['서브메인','ELT자료','초/중등교재 자료','고등교재 자료','교과서/자습서 자료','수험/일반 자료','수학/국어 자료'],
+        '도서몰':['ELT','초/중등','고등영어 교과서','교과서/자습서','수험/일반','교구/부가상품','세트/패키지','온라인 서비스/이용권']
+      };
+      var closeT;
+      function openFor(a){
+      var name=a.textContent.trim();
+      var mega=(name==='학습자료실'||name==='도서몰');
+      var BR='<div class="gd-brands"><a class="gd-btn blue" href="#">Come on Series <span>&#8250;</span></a><a class="gd-btn navy" href="#">Oxford <span>&#8250;</span></a></div>';
+      if(mega){
+        var COLS=[['ELT','Coursebook','Phonics','Reading','Readers','Listening','Speaking','Grammar','Writing','Vocabulary'],['초등/중등','중학 내신','고등 선행','파닉스','어휘','쓰기','독해','듣기','문법/구분','TOEFL/TEPS/NELT'],['고등','어휘','독해','듣기','문법/구분','수능 대비','고교 내신','단기 특강','TOEFL/TEPS/NELT'],['교과서/자습서','중학영어 교과서','고등영어 교과서','수학 교과서','중국어/일본어'],['수험/일반','TOEIC','TOEIC SPEAKING|/WRITING','TOEFL/OPIC/TEPS','FLEX','일반영어'],['수학/국어','유아','초등','중등','고등']];
+        drop.innerHTML=COLS.map(function(c){ return '<div class="gd-col"><p class="gd-col-t">'+c[0]+'</p><div class="items">'+c.slice(1).map(function(i){ return '<a href="리스트_교재구매.html">'+i.replace('|','<br>')+'</a>'; }).join('')+'</div></div>'; }).join('')+BR;
+        drop.classList.add('mega');
+      } else {
+        var list=MENU[name]; if(!list){ hideGnb(); return; }
+        drop.innerHTML='<div class="gd-cats">'+list.map(function(t){ return '<a href="리스트_교재구매.html">'+t+'</a>'; }).join('')+'</div>'+BR;
+        drop.classList.remove('mega');
+      }
+      items.forEach(function(x){ x.classList.toggle('on',x===a); });
+      drop.classList.add('open');
+      if(mega){ var gw=gnb.getBoundingClientRect().width; var ml=Math.round((gw-drop.offsetWidth)/2); drop.style.left=(ml>0?ml:0)+'px'; }
+      else{
+        var gr=gnb.getBoundingClientRect(), ir=a.getBoundingClientRect();
+        var left=Math.round(ir.left-gr.left-24);
+        var maxLeft=Math.round(gr.width-drop.offsetWidth);
+        if(left>maxLeft) left=maxLeft; if(left<0) left=0;
+        drop.style.left=left+'px';
+      }
+    }
+      function hideGnb(){ drop.classList.remove('open'); items.forEach(function(x){ x.classList.remove('on'); }); }
+      items.forEach(function(a){
+        a.addEventListener('mouseenter',function(){ clearTimeout(closeT); openFor(a); });
+        a.addEventListener('click',function(e){ if(MENU[a.textContent.trim()]){ e.preventDefault(); openFor(a); } });
+      });
+      gnb.addEventListener('mouseleave',function(){ closeT=setTimeout(hideGnb,160); });
+      gnb.addEventListener('mouseenter',function(){ clearTimeout(closeT); });
+      document.addEventListener('click',function(e){ if(!gnb.contains(e.target)) hideGnb(); });
+    })();
+
+    /* ===== 확인 팝업 / 토스트 ===== */
+    var Modal=(function(){
+      var m=document.getElementById('cartModal'), msg=document.getElementById('cmMsg'), btns=document.getElementById('cmBtns');
+      function close(){ m.classList.remove('open'); m.setAttribute('aria-hidden','true'); }
+      function mkBtn(cls,label,fn){ var b=document.createElement('button'); b.type='button'; b.className='cm-btn '+cls; b.textContent=label; b.onclick=fn; return b; }
+      function open(){ m.classList.add('open'); m.setAttribute('aria-hidden','false'); }
+      return {
+        confirm:function(text,onOk,okLabel){ msg.textContent=text; btns.innerHTML='';
+          btns.appendChild(mkBtn('cancel','취소',close));
+          btns.appendChild(mkBtn('ok',okLabel||'삭제',function(){ close(); onOk&&onOk(); })); open(); },
+        alert:function(text,onOk){ msg.textContent=text; btns.innerHTML='';
+          btns.appendChild(mkBtn('ok','확인',function(){ close(); onOk&&onOk(); })); open(); },
+        close:close
+      };
+    })();
+    document.querySelector('#cartModal .cm-dim').addEventListener('click',Modal.close);
+    document.addEventListener('keydown',function(e){ if(e.key==='Escape') Modal.close(); });
+    function toast(text){ var t=document.getElementById('cartToast'); t.textContent=text; t.classList.add('show');
+      clearTimeout(t._t); t._t=setTimeout(function(){ t.classList.remove('show'); },2600); }
+
+    /* ===== cart logic ===== */
+    var won=function(n){ return n.toLocaleString('ko-KR')+'원'; };
+    function recalc(){
+      var rows=[].slice.call(document.querySelectorAll('#cartList .citem'));
+      var goods=0, disc=0, pt=0, count=0;
+      rows.forEach(function(r){
+        var orig=+r.dataset.orig, unit=+r.dataset.unit, ptu=+r.dataset.pt;
+        var sold=r.classList.contains('soldout');
+        if(!sold){
+          var q=parseInt(r.querySelector('.q').value,10)||0;
+          r.querySelector('.csum .amt').textContent=won(unit*q);
+          r.querySelector('.csum .pt').textContent='('+(ptu*q)+'P 적립예정)';
+          if(r.querySelector('.row-chk').checked){ goods+=orig*q; disc+=(orig-unit)*q; pt+=ptu*q; count++; }
+        }
+      });
+      var ship = goods>=30000 ? 0 : (goods>0?2500:0);
+      var num=function(n){ return n.toLocaleString('ko-KR'); };
+      document.getElementById('sumGoods').textContent=num(goods);
+      document.getElementById('sumDisc').textContent=(disc>0?'-':'')+num(disc);
+      document.getElementById('sumShip').textContent=num(ship);
+      document.getElementById('sumCount').textContent=count;
+      document.getElementById('sumTotal').textContent=num(goods-disc+ship);
+      document.getElementById('sumPt').textContent='+ '+num(pt);
+      var mo=document.getElementById('moTotal'); if(mo) mo.textContent='총 '+num(goods-disc+ship)+'원';
+      var empty=rows.length===0;
+      document.getElementById('cartEmpty').style.display=empty?'flex':'none';
+      document.body.classList.toggle('cart-is-empty', empty);
+    }
+    /* quantity + delete */
+    document.getElementById('cartList').addEventListener('click',function(e){
+      var row=e.target.closest('.citem'); if(!row) return;
+      if(e.target.classList.contains('cdel')){ Modal.confirm('이 상품을 삭제하시겠습니까?',function(){ row.remove(); syncSelAll(); recalc(); }); return; }
+      if(row.classList.contains('soldout')) return;
+      var inp=row.querySelector('.q');
+      if(e.target.classList.contains('plus')){ inp.value=(parseInt(inp.value,10)||1)+1; recalc(); }
+      if(e.target.classList.contains('minus')){ inp.value=Math.max(1,(parseInt(inp.value,10)||1)-1); recalc(); }
+    });
+    document.getElementById('cartList').addEventListener('input',function(e){
+      if(e.target.classList.contains('q')){ if(e.target.value<1)e.target.value=1; recalc(); }
+      if(e.target.classList.contains('row-chk')){ syncSelAll(); recalc(); }
+    });
+    /* select-all (skips soldout/disabled) */
+    function syncSelAll(){
+      var boxes=[].slice.call(document.querySelectorAll('.row-chk:not(:disabled)'));
+      var all=boxes.length>0 && boxes.every(function(c){return c.checked;});
+      document.getElementById('selAll').checked=all;
+    }
+    document.getElementById('selAll').addEventListener('change',function(){
+      var v=this.checked;
+      document.querySelectorAll('.row-chk:not(:disabled)').forEach(function(c){c.checked=v;});
+      recalc();
+    });
+    /* delete selected / all — 확인 팝업 경유 */
+    document.getElementById('delSel').addEventListener('click',function(){
+      var sel=[].slice.call(document.querySelectorAll('#cartList .row-chk:checked'));
+      if(!sel.length){ Modal.alert('삭제할 상품을 선택해 주세요.'); return; }
+      Modal.confirm('선택한 상품을 삭제하시겠습니까?',function(){
+        sel.forEach(function(c){ c.closest('.citem').remove(); }); syncSelAll(); recalc();
+      });
+    });
+    document.getElementById('delAll').addEventListener('click',function(){
+      if(!document.querySelector('#cartList .citem')) return;
+      Modal.confirm('장바구니를 모두 비우시겠습니까?',function(){
+        document.querySelectorAll('#cartList .citem').forEach(function(r){ r.remove(); }); syncSelAll(); recalc();
+      });
+    });
+
+    /* 주문 차단(UC-BUY-11): 선택 0건 / 일시품절 포함 시 주문 불가 안내 */
+    function orderGuard(scope){
+      if(scope==='sel'){
+        if(!document.querySelectorAll('#cartList .row-chk:checked').length){ Modal.alert('주문할 상품을 선택해 주세요.'); return false; }
+        return true;
+      }
+      if(document.querySelector('#cartList .citem.soldout')){ Modal.alert('일시품절된 상품이 있어 주문이 불가합니다.'); return false; }
+      if(!document.querySelector('#cartList .citem')){ Modal.alert('주문할 상품이 없습니다.'); return false; }
+      return true;
+    }
+    (function(){
+      var os=document.getElementById('orderSel'), oa=document.getElementById('orderAll'), moc=document.querySelector('.cart-cta-btn');
+      if(os) os.addEventListener('click',function(e){ if(!orderGuard('sel')) e.preventDefault(); });
+      if(oa) oa.addEventListener('click',function(e){ if(!orderGuard('all')) e.preventDefault(); });
+      if(moc) moc.addEventListener('click',function(e){ if(!orderGuard('all')) e.preventDefault(); });
+    })();
+
+    /* 절판 자동 제외(POL-SALE): 담긴 상품이 절판되면 장바구니에서 무조건 삭제 + 안내 */
+    (function(){
+      var gone=[].slice.call(document.querySelectorAll('#cartList .citem.discontinued'));
+      if(gone.length){ gone.forEach(function(r){ r.remove(); }); syncSelAll(); recalc();
+        toast('절판된 상품이 장바구니에서 제외되었습니다.'); }
+    })();
+
+    recalc();
+  })();
+
+  /* 오른쪽 요약 섹션 sticky 스크롤 인터랙션 — 고정될 때 그림자 부여 */
+  (function(){
+    var side=document.querySelector('.co-side'); if(!side) return;
+    var stickTop=parseInt(getComputedStyle(side).top,10)||24;
+    function onScroll(){ side.classList.toggle('stuck', side.getBoundingClientRect().top<=stickTop+1); }
+    window.addEventListener('scroll',onScroll,{passive:true});
+    window.addEventListener('resize',onScroll,{passive:true});
+    onScroll();
+  })();
+
+  /* 모바일 하단 주문 CTA: 스크롤 중엔 고정, 푸터에 닿으면 푸터 바로 위에 도킹 (교재상세 pdp-bar와 동일) */
+  (function(){
+    var bar=document.querySelector('.cart-cta');
+    if(!bar) return;
+    function dock(){
+      var footer=document.querySelector('#site-footer');
+      if(!footer){ bar.style.transform=''; return; }
+      var GAP=20; /* 푸터와 바 사이 여백 */
+      var ft=footer.getBoundingClientRect().top;
+      var t=(window.innerHeight-ft)+GAP; /* 푸터 위 GAP 만큼 띄워 안착 */
+      bar.style.transform = t>0 ? 'translateY('+(-t)+'px)' : '';
+      bar.classList.toggle('docked', t>0);
+    }
+    window.addEventListener('scroll',dock,{passive:true});
+    window.addEventListener('resize',dock);
+    window.addEventListener('load',dock);
+    dock();
+  })();
+  </script>
+</body>
+</html>
