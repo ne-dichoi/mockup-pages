@@ -294,7 +294,8 @@
   .bd-word{font-family:Arial,Helvetica,sans-serif;font-weight:900;font-style:italic;font-size:44px;line-height:.9;color:#eef5ff;text-align:center;letter-spacing:-1px;text-shadow:0 2px 0 #a9c8ff,0 5px 10px rgba(0,0,0,.45);}
   /* 모바일 하단 프로모션 배너 캐러셀 (기본 숨김 → 1023 이하에서 노출) */
   .cn-mo-promo{display:none;}
-  @media (max-width:1023px){.cn-banner{grid-template-columns:1fr;gap:16px;padding:20px;}.cn-bn-ttl{white-space:normal;}
+  @media (max-width:1023px){.cn-banner{grid-template-columns:minmax(0,1fr);gap:16px;padding:20px;}.cn-bn-ttl{white-space:normal;}
+    .cn-bn-right,.cn-bn-left{min-width:0;}
     /* 교재 표지: 폭 무관 '고정 크기' → 모든 시리즈/화면폭에서 동일한 교재 크기 (넘치면 가로 스와이프). 약 3.7개 노출 */
     .cn-bn-books{overflow-x:auto;scrollbar-width:none;gap:8px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;min-width:0;max-width:100%;}
     .cn-bn-books::-webkit-scrollbar{display:none;}
