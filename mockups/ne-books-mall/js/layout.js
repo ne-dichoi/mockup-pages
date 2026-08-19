@@ -301,7 +301,7 @@
       if(hot) hot.hidden=true; if(!results) return; results.hidden=false;
       var list=BOOKS.filter(function(b){return b.toLowerCase().indexOf(q.toLowerCase())>=0;});
       if(!list.length){ results.innerHTML='<li class="msearch-empty">\''+esc(q)+'\'에 대한 검색 결과가 없습니다.</li>'; return; }
-      results.innerHTML=list.map(function(b){ return '<li><a href="리스트_교재구매.html">'+esc(b)+'</a></li>'; }).join('');
+      results.innerHTML=list.map(function(b){ return '<li><a href="검색결과.html?q='+encodeURIComponent(b)+'">'+esc(b)+'</a></li>'; }).join('');
     }
     if(input) input.addEventListener('input',function(){ renderResults(input.value.trim()); });
     function open(){ ms.hidden=false; ms.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; if(input) input.value=''; renderResults(''); requestAnimationFrame(function(){ ms.classList.add('open'); }); setTimeout(function(){ try{ input.focus(); }catch(e){} },300); }
@@ -313,8 +313,8 @@
     var drawerBtn=document.querySelector('.md-search');
     if(drawerBtn){ drawerBtn.addEventListener('click',function(e){ e.preventDefault(); var x=document.querySelector('.md-x'); if(x) x.click(); open(); }); }
     var cancel=ms.querySelector('.msearch-cancel'); if(cancel) cancel.addEventListener('click',close);
-    var go=ms.querySelector('.msearch-go'); if(go) go.addEventListener('click',function(){ if(input&&input.value.trim()) location.href='리스트_교재구매.html'; else if(input) input.focus(); });
-    if(input){ input.addEventListener('keydown',function(e){ if(e.key==='Enter'){ e.preventDefault(); location.href='리스트_교재구매.html'; } else if(e.key==='Escape'){ close(); } }); }
+    var go=ms.querySelector('.msearch-go'); if(go) go.addEventListener('click',function(){ if(input&&input.value.trim()) location.href='검색결과.html?q='+encodeURIComponent(input.value.trim()); else if(input) input.focus(); });
+    if(input){ input.addEventListener('keydown',function(e){ if(e.key==='Enter'){ e.preventDefault(); if(input.value.trim()) location.href='검색결과.html?q='+encodeURIComponent(input.value.trim()); } else if(e.key==='Escape'){ close(); } }); }
     window.addEventListener('resize',function(){ if(!isMobile() && ms.classList.contains('open')) close(); });
   })();
 

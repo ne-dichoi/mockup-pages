@@ -3871,3 +3871,68 @@ body.bsheet-lock{overflow:hidden;}
   .dt-body .dh-buy{top:calc(var(--stick-top, var(--gnb-h,58px)) + 73px);}
   .co-side{top:calc(var(--stick-top, var(--gnb-h,58px)) + 24px);}
 }
+
+/* ============================================================
+   검색 결과 페이지 (풀화면, 로케이션 없음) — .page-search
+   ============================================================ */
+.page-search .sr-wrap{width:100%;box-sizing:border-box;padding:0 40px 80px;flex:1 0 auto;}
+.sr-hero{text-align:center;padding:40px 0 24px;}
+.sr-hero h2{font-family:var(--display);font-weight:700;font-size:28px;color:var(--ink);letter-spacing:-0.02em;}
+.sr-hero h2 .cnt{color:var(--red);}
+
+/* 한 줄 6개(1920 기준). 화면이 넓어지면 7개, 좁아지면 5개 — auto-fill + 최소 카드폭 */
+.sr-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(272px,1fr));gap:24px 24px;padding-top:16px;align-items:start;}
+.sr-card{display:flex;flex-direction:column;gap:24px;min-width:0;}
+
+/* 회색 박스: 위아래 여백 50, 교재는 박스폭 비율(60%)로 항상 축소 */
+.sr-cover{position:relative;background:#f3f3f3;border-radius:10px;padding:50px 0;display:flex;align-items:center;justify-content:center;}
+.sr-book{display:block;width:60%;aspect-ratio:171 / 223;}
+.sr-book img{width:100%;height:100%;object-fit:cover;display:block;border-radius:2px;box-shadow:4px 8px 17px rgba(0,0,0,.18);}
+.sr-cover.is-dim .sr-book{opacity:.4;}
+.sr-corner{position:absolute;left:16px;top:16px;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700;line-height:1.6;color:#fff;background:var(--red);}
+.sr-corner.new{background:#2f74d1;}
+.sr-corner.gray{background:#999;}
+.sr-wish{position:absolute;right:16px;top:16px;width:22px;height:22px;padding:0;border:0;background:transparent;cursor:pointer;line-height:0;}
+.sr-wish img{width:22px;height:22px;display:block;}
+
+.sr-info{display:flex;flex-direction:column;gap:8px;padding-bottom:40px;min-width:0;}
+.sr-cat{align-self:flex-start;border:1px solid var(--red);color:var(--red);border-radius:999px;font-size:12px;font-weight:500;padding:4px 12px;white-space:nowrap;}
+/* 교재명: 최대 2줄까지 */
+.sr-title{font-size:16px;font-weight:500;line-height:22px;color:var(--ink);text-decoration:none;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:44px;}
+.sr-title:hover{text-decoration:underline;}
+.sr-price{display:flex;align-items:flex-end;gap:8px;flex-wrap:wrap;}
+.sr-price b{font-family:var(--display);font-weight:700;font-size:16px;color:var(--ink);white-space:nowrap;}
+.sr-price s{font-size:14px;color:var(--weak);white-space:nowrap;}
+
+.sr-controls{display:flex;align-items:center;gap:8px;margin-top:8px;flex-wrap:wrap;}
+.sr-controls.end{justify-content:flex-end;}
+.sr-cartbox{display:flex;align-items:center;}
+.sr-cart{width:28px;height:28px;padding:0;border:0;cursor:pointer;background:transparent url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'><path d='M7 8V6.5a5 5 0 0 1 10 0V8m-11 0h12l-.9 11.2a1.8 1.8 0 0 1-1.8 1.6H8.7a1.8 1.8 0 0 1-1.8-1.6L6 8Z' stroke='%231d1717' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/21px no-repeat;}
+.sr-cartbox.off .sr-cart{opacity:.4;cursor:default;}
+.sr-cnt{min-width:20px;text-align:center;font-size:14px;font-weight:500;color:var(--ink);}
+.sr-cartbox.off .sr-cnt{color:var(--weak);}
+.sr-step{display:flex;height:36px;border:1px solid var(--line);border-radius:8px;overflow:hidden;}
+.sr-step.off{background:#f3f3f3;}
+.sr-step button{width:36px;height:36px;padding:0;border:0;background:transparent;font-size:16px;line-height:1;color:var(--ink);cursor:pointer;}
+.sr-step button:disabled{color:#cfcfcf;cursor:default;}
+.sr-buy{height:36px;padding:0 20px;border:0;border-radius:8px;background:var(--red);color:#fff;font-size:14px;font-weight:500;letter-spacing:-0.01em;display:inline-flex;align-items:center;justify-content:center;text-decoration:none;cursor:pointer;white-space:nowrap;}
+.sr-buy.off{background:#d3d3d3;cursor:default;}
+
+.sr-pager{margin-top:40px;}
+
+/* 모바일: 2단, 회색박스/교재 축소 */
+@media (max-width:1023px){
+  .page-search .sr-wrap{padding:0 20px 60px;}
+  .sr-hero{padding:24px 0 16px;}
+  .sr-hero h2{font-size:20px;}
+  .sr-grid{grid-template-columns:repeat(2,1fr);gap:20px 16px;}
+  .sr-card{gap:12px;}
+  .sr-cover{padding:30px 0;border-radius:8px;}
+  .sr-book{width:64%;}
+  .sr-info{padding-bottom:8px;gap:6px;}
+  .sr-title{font-size:14px;line-height:20px;min-height:40px;}
+  .sr-controls{gap:6px;}
+  .sr-step{display:none;}      /* 모바일: 수량 스테퍼 숨김 */
+  .sr-buy{flex:1;padding:0 12px;}
+  .sr-pager{margin-top:24px;}
+}

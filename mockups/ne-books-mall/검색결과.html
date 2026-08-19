@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>NE_Books 검색 결과</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="css/layout.css?v=20260815as">
+<script src="js/layout.js?v=20260815as" defer></script>
+<script src="js/search.js?v=20260815as" defer></script>
+</head>
+<body class="page-search">
+
+  <!-- ===== HEADER ===== -->
+  <div id="site-header"></div>
+
+  <!-- 로케이션 없음(풀화면 검색 결과) -->
+
+  <!-- ===== SEARCH RESULT ===== -->
+  <main class="sr-wrap">
+    <div class="sr-hero">
+      <h2><span class="q">‘파닉스’</span> 검색 결과 <span class="cnt">128건</span></h2>
+    </div>
+
+    <div class="sr-grid" id="srGrid"></div>
+
+    <!-- Pagination -->
+    <nav class="pager sr-pager">
+      <a class="arw" aria-label="이전">&#8249;</a>
+      <a class="on">1</a>
+      <a>2</a><a>3</a><a>4</a><a>5</a>
+      <a class="arw" aria-label="다음">&#8250;</a>
+    </nav>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <div id="site-footer"></div>
+
+  <script>
+  (function(){
+    var GRID=document.getElementById('srGrid');
+    if(!GRID) return;
+    /* 검색어 반영(?q=) */
+    var q=(new URLSearchParams(location.search)).get('q');
+    if(q){ var qEl=document.querySelector('.sr-hero .q'); if(qEl) qEl.textContent='‘'+q+'’'; }
+
+    /* 데모용 검색 결과 데이터 */
+    var BOOKS=[
+      {img:'best_1.png', corner:'HOT', ccls:'hot', cat:'Phonics', title:'Phonics Code 1 : Student Book', now:'13,500원', was:'15,000원', state:'normal'},
+      {img:'best_2.png', corner:'NEW', ccls:'new', cat:'Phonics', title:'Phonics Code 2 : Student Book', now:'13,500원', was:'15,000원', state:'normal'},
+      {img:'best_3.png', corner:'절판', ccls:'gray', cat:'Phonics', title:'Phonics Code 3 : Student Book', now:'15,000원', was:'', state:'off'},
+      {img:'best_4.png', corner:'일시품절', ccls:'gray', cat:'Phonics', title:'Phonics Code 4 : Student Book', now:'13,500원', was:'15,000원', state:'soldout'},
+      {img:'best_5.png', corner:'', ccls:'', cat:'Phonics', title:'세 마리 토끼 잡는 초등 독서논술 A단계 세트', now:'13,500원', was:'', state:'normal'},
+      {img:'best_1.png', corner:'HOT', ccls:'hot', cat:'Phonics', title:'Phonics Code 1 : Student Book', now:'13,500원', was:'15,000원', state:'normal'},
+      {img:'best_2.png', corner:'', ccls:'', cat:'Phonics', title:'Phonics Code 2 : Student Book', now:'13,500원', was:'15,000원', state:'normal'},
+      {img:'best_3.png', corner:'', ccls:'', cat:'Coursebook', title:'초등영어 교과서 3학년', now:'12,000원', was:'', state:'textbook'},
+      {img:'best_4.png', corner:'', ccls:'', cat:'Phonics', title:'Phonics Code 4 : Student Book', now:'13,500원', was:'15,000원', state:'normal'},
+      {img:'best_5.png', corner:'일시품절', ccls:'gray', cat:'Phonics', title:'Phonics Code 5 : Student Book', now:'13,500원', was:'15,000원', state:'soldout'},
+      {img:'best_1.png', corner:'', ccls:'', cat:'Phonics', title:'Phonics Code 1 : Student Book', now:'13,500원', was:'15,000원', state:'normal'},
+      {img:'best_2.png', corner:'절판', ccls:'gray', cat:'Phonics', title:'Phonics Code 2 : Student Book', now:'15,000원', was:'', state:'off'}
+    ];
+
+    function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+
+    function controls(p){
+      if(p.state==='textbook')
+        return '<div class="sr-controls end"><a class="sr-buy" href="https://textbook.example.com" target="_blank" rel="noopener">교과서 구매</a></div>';
+      if(p.state==='off')
+        return '<div class="sr-controls"><div class="sr-cartbox off"><span class="sr-cart"></span><span class="sr-cnt">0</span></div>'
+             +'<div class="sr-step off"><button type="button" class="sr-dec" disabled>&#8722;</button><button type="button" class="sr-inc" disabled>&#43;</button></div>'
+             +'<span class="sr-buy off">절판</span></div>';
+      var buy = (p.state==='soldout')
+        ? '<span class="sr-buy off">일시품절</span>'
+        : '<a class="sr-buy" href="주문결제.html">바로구매</a>';
+      return '<div class="sr-controls"><div class="sr-cartbox"><button type="button" class="sr-cart" aria-label="장바구니 담기"></button><span class="sr-cnt">1</span></div>'
+           +'<div class="sr-step"><button type="button" class="sr-dec" aria-label="수량 감소">&#8722;</button><button type="button" class="sr-inc" aria-label="수량 증가">&#43;</button></div>'
+           +buy+'</div>';
+    }
+
+    function card(p){
+      var dim=(p.state==='off'||p.state==='soldout')?' is-dim':'';
+      var corner=p.corner?'<span class="sr-corner '+p.ccls+'">'+esc(p.corner)+'</span>':'';
+      var was=p.was?'<s>'+esc(p.was)+'</s>':'';
+      return '<article class="sr-card" data-title="'+esc(p.title)+'" data-price="'+esc(p.now)+'" data-was="'+esc(p.was||'')+'" data-cat="'+esc(p.cat)+'" data-img="assets/'+p.img+'">'
+        +'<div class="sr-cover'+dim+'">'+corner
+        +'<button type="button" class="sr-wish" aria-label="찜하기"><img src="assets/ic_heart.svg" alt=""></button>'
+        +'<a class="sr-book" href="교재상세.html"><img src="assets/'+p.img+'" alt="'+esc(p.title)+'"></a>'
+        +'</div>'
+        +'<div class="sr-info">'
+        +'<span class="sr-cat">'+esc(p.cat)+'</span>'
+        +'<a class="sr-title" href="교재상세.html">'+esc(p.title)+'</a>'
+        +'<div class="sr-price"><b>'+esc(p.now)+'</b>'+was+'</div>'
+        +controls(p)
+        +'</div></article>';
+    }
+
+    GRID.innerHTML=BOOKS.map(card).join('');
+
+    /* 수량 스테퍼 */
+    GRID.addEventListener('click',function(e){
+      var dec=e.target.closest('.sr-dec'), inc=e.target.closest('.sr-inc');
+      if(dec||inc){
+        var cnt=e.target.closest('.sr-controls').querySelector('.sr-cnt');
+        var n=parseInt(cnt.textContent,10)||1;
+        n=inc?n+1:Math.max(1,n-1);
+        cnt.textContent=n; return;
+      }
+      /* 장바구니 담기 → 담기 + 뱃지 갱신 + 알럿 */
+      var cart=e.target.closest('.sr-cart');
+      if(cart){
+        var card=cart.closest('.sr-card');
+        var cnt2=card.querySelector('.sr-cnt');
+        var qty=parseInt(cnt2?cnt2.textContent:'1',10)||1;
+        if(window.neCartAdd){
+          neCartAdd({title:card.getAttribute('data-title'), now:card.getAttribute('data-price'), img:card.getAttribute('data-img'), qty:qty});
+          if(qty>1 && window.neCartSetCount && window.neCartCount) neCartSetCount(neCartCount()+(qty-1));
+        }
+        alert('장바구니에 상품을 담았습니다.');
+        return;
+      }
+      /* 찜 토글 */
+      var wish=e.target.closest('.sr-wish');
+      if(wish){
+        var c=wish.closest('.sr-card');
+        var id=c.getAttribute('data-title');
+        var on=wish.classList.toggle('on');
+        wish.querySelector('img').src= on ? 'assets/ic_heart_fill.svg' : 'assets/ic_heart.svg';
+        if(on && window.neWishAdd){ neWishAdd({id:id, title:id, img:c.getAttribute('data-img'), badge:c.getAttribute('data-cat'), now:c.getAttribute('data-price'), was:c.getAttribute('data-was')}); }
+        else if(!on && window.neWishRemove){ neWishRemove(id); }
+        return;
+      }
+    });
+  })();
+  </script>
+
+</body>
+</html>

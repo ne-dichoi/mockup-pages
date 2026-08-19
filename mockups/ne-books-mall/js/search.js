@@ -38,7 +38,7 @@
       pop.classList.remove('wide');
       var html='<p class="sp-head">인기 검색어</p><ol class="sp-pop">';
       POPULAR.forEach(function(k,idx){
-        html+='<li><a href="리스트_교재구매.html"><span class="rk">'+(idx+1)+'</span>'+esc(k)+'</a></li>';
+        html+='<li><a href="검색결과.html?q='+encodeURIComponent(k)+'"><span class="rk">'+(idx+1)+'</span>'+esc(k)+'</a></li>';
       });
       html+='</ol><p class="sp-note">* 최근 10일간 인기 검색어 입니다.</p>';
       pop.innerHTML=html;
@@ -96,7 +96,7 @@
       if(opts.onSelect) return; // 폼 내 교재명 검색은 이동하지 않음
       var q=input.value.trim();
       if(!q){ input.focus(); return; }
-      location.href='리스트_교재구매.html?q='+encodeURIComponent(q);
+      location.href='검색결과.html?q='+encodeURIComponent(q);
     }
     input.addEventListener('focus',openPop);
     input.addEventListener('click',openPop);
