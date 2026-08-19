@@ -41,13 +41,38 @@ button{font-family:inherit;cursor:pointer;border:0;background:none;}
 .lheader .logo{width:150px;height:28px;justify-self:start;}
 .lheader .logo img{width:100%;height:100%;object-fit:contain;}
 .lheader .search-wrap{justify-self:center;display:flex;align-items:center;gap:10px;}
-.lheader .search{position:relative;gap:8px;width:449px;max-width:100%;height:46px;border:1px solid #e5e5e5;border-radius:9999px;display:flex;align-items:center;justify-content:flex-end;padding:0 20px;background:#fff;}
+.lheader .search{position:relative;gap:8px;width:449px;max-width:100%;height:46px;border:1px solid #e83828;border-radius:9999px;display:flex;align-items:center;justify-content:flex-end;padding:0 20px;background:#fff;}
 .lheader .search-input{flex:1;min-width:0;border:0;outline:none;background:transparent;font-family:var(--sans);font-size:14px;color:#1d1717;padding:0;}
 .lheader .search-input::placeholder{color:#a9a9a9;}
 .lheader .search-ic{width:24px;height:24px;flex:none;border:0;background:none;padding:0;margin:0;cursor:pointer;}
 .lheader .search-extra{display:flex;align-items:center;gap:8px;flex:none;}
 .lheader .se-btn{display:inline-flex;align-items:center;height:38px;padding:0 16px;border-radius:9999px;border:1px solid #e83828;color:#e83828;font-size:13px;font-weight:700;white-space:nowrap;}
 .lheader .se-btn:hover{background:#e83828;color:#fff;}
+.lheader .search-pop{position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%);width:478px;max-width:calc(100vw - 40px);background:#fff;border:1px solid #ededed;border-radius:16px;box-shadow:0 14px 34px rgba(0,0,0,.12);z-index:60;padding:40px;max-height:70vh;overflow-y:auto;}
+.lheader .search-pop.wide{width:657px;}
+.lheader .search-pop[hidden]{display:none;}
+.lheader .sp-head{font-family:var(--display);font-weight:700;font-size:16px;color:#1d1717;margin-bottom:20px;}
+.lheader .sp-pop{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(5,auto);grid-auto-flow:column;gap:12px 40px;list-style:none;margin:0;padding:0;}
+.lheader .sp-pop li{list-style:none;}
+.lheader .sp-pop li a{display:flex;align-items:center;gap:12px;font-size:16px;color:#4d4e4d;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.lheader .sp-pop li a:hover{color:#1d1717;}
+.lheader .sp-pop .rk{width:28px;height:28px;flex:none;border-radius:9999px;background:#1d1717;color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;}
+.lheader .sp-note{margin-top:24px;font-size:12px;color:#a9a9a9;}
+.lheader .sp-event{display:block;margin-top:20px;border-radius:12px;overflow:hidden;line-height:0;}
+.lheader .sp-event img{width:100%;height:auto;display:block;transition:transform .2s;}
+.lheader .sp-event:hover img{transform:scale(1.02);}
+.lheader .sa-wrap{display:flex;gap:24px;align-items:flex-start;}
+.lheader .sa-list{width:308px;flex:none;height:327px;overflow-y:auto;border-right:1px solid #ededed;list-style:none;margin:0;padding:0;}
+.lheader .sa-list .it{list-style:none;}
+.lheader .sa-list .it a{display:block;height:40px;line-height:22px;padding-right:24px;box-sizing:border-box;font-size:14px;color:#666;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.lheader .sa-list .it.on a,.lheader .sa-list .it a:hover{color:#1d1717;}
+.lheader .sa-preview{flex:none;display:flex;flex-direction:column;align-items:center;gap:16px;position:relative;}
+.lheader .sa-pv-card{width:245px;height:245px;background:var(--bg-gray);border-radius:8px;display:flex;align-items:center;justify-content:center;position:relative;}
+.lheader .sa-pv-card img{width:131px;height:171px;object-fit:cover;border-radius:2px;box-shadow:3.3px 5.9px 13.2px rgba(0,0,0,.18);}
+.lheader .pcover-cart{position:absolute;right:40px;bottom:22px;width:48px;height:48px;background:#1d1717;border:0;border-radius:999px;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;z-index:3;}
+.lheader .pcover-cart img{width:20px;height:20px;flex:none;display:block;}
+.lheader .sa-pv-name{width:160px;font-size:14px;color:#666;text-align:center;line-height:22px;}
+.lheader .sp-empty{font-size:14px;color:#a9a9a9;padding:4px 0;}
 .lheader .head-icons{display:flex;gap:26px;align-items:flex-start;justify-self:end;}
 .lheader .head-ic{display:flex;flex-direction:column;gap:5px;align-items:center;width:42px;}
 .lheader .head-ic .ico{width:26px;height:26px;position:relative;}
@@ -440,6 +465,7 @@ button{font-family:inherit;cursor:pointer;border:0;background:none;}
         <div class="search">
           <input type="text" class="search-input" placeholder="필요한 교재, 3초 안에 찾기!" autocomplete="off">
           <button type="button" class="search-ic ico" aria-label="검색"><img src="assets/ds_ic_search_red.svg" alt=""></button>
+          <div class="search-pop" hidden></div>
         </div>
         <div class="search-extra only-pc">
           <a class="se-btn" href="#">맞춤교재찾기</a>
@@ -919,6 +945,104 @@ function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').rep
     document.addEventListener('keydown',function(e){ if(e.key==='Escape' && drawer.classList.contains('open')) close(); });
     render();
   }
+})();
+
+/* ===== GNB 검색창 레이어 팝업 (ne-books-mall-type3 search.js 동일 로직) ===== */
+(function(){
+  var BOOKS=[
+    {title:"세 마리 토끼 잡는 초등 독서논술 A단계 세트", img:"assets/best_1.png"},
+    {title:"세 마리 토끼 잡는 초등 독서논술 A1", img:"assets/best_1.png"},
+    {title:"세 마리 토끼 잡는 초등 독서논술 A2", img:"assets/best_1.png"},
+    {title:"세 마리 토끼 잡는 초등 독서논술 A3", img:"assets/best_1.png"},
+    {title:"세 마리 토끼 잡는 초등 독서논술 A4", img:"assets/best_1.png"},
+    {title:"세 마리 토끼 잡는 초등 독서논술 A5", img:"assets/best_1.png"},
+    {title:"세 마리 토끼 잡는 초등 독서논술 B단계 세트", img:"assets/best_1.png"},
+    {title:"세 마리 토끼 잡는 초등 독서논술 B1", img:"assets/best_1.png"},
+    {title:"세 마리 토끼 잡는 초등 독서논술 B2", img:"assets/best_1.png"},
+    {title:"세 마리 토끼 잡는 초등 독서논술 B3", img:"assets/best_1.png"},
+    {title:"Phonics Code 1 : Student Book", img:"assets/best_1.png"},
+    {title:"능률 VOCA 어원편", img:"assets/best_2.png"},
+    {title:"Bricks Reading 150 Level 1", img:"assets/best_3.png"},
+    {title:"Grammar Zone 기본편 1", img:"assets/best_4.png"},
+    {title:"리딩튜터 입문", img:"assets/best_5.png"},
+    {title:"주니어 리딩튜터 1", img:"assets/best_2.png"},
+    {title:"중등 영어문법 3800제", img:"assets/best_3.png"},
+    {title:"워드마스터 중등 베이직", img:"assets/best_4.png"}
+  ];
+  var POPULAR=["능률VOCA","Course book","E-book","단어장","영어문법","중등문법","리딩튜터","중등독해","주니어 리딩튜터","grammar"];
+
+  function initSearch(box){
+    var input=box.querySelector('.search-input');
+    var pop=box.querySelector('.search-pop');
+    var icon=box.querySelector('.search-ic');
+    if(!input||!pop) return;
+
+    function renderPopular(){
+      pop.classList.remove('wide');
+      var html='<p class="sp-head">인기 검색어</p><ol class="sp-pop">';
+      POPULAR.forEach(function(k,idx){
+        html+='<li><a href="#"><span class="rk">'+(idx+1)+'</span>'+esc(k)+'</a></li>';
+      });
+      html+='</ol><p class="sp-note">* 최근 10일간 인기 검색어 입니다.</p>';
+      html+='<a class="sp-event" href="#"><img src="assets/search_event_banner.png" alt="NE Books 이벤트 리스트"></a>';
+      pop.innerHTML=html;
+    }
+
+    function renderAuto(q){
+      var matches=BOOKS.filter(function(b){return b.title.toLowerCase().indexOf(q.toLowerCase())>=0;});
+      if(!matches.length){
+        pop.classList.remove('wide');
+        pop.innerHTML='<p class="sp-empty">\''+esc(q)+'\'에 대한 검색 결과가 없습니다.</p>';
+        return;
+      }
+      pop.classList.add('wide');
+      var list=matches.map(function(b,i){
+        return '<li class="it'+(i===0?' on':'')+'" data-i="'+i+'"><a href="#">'+esc(b.title)+'</a></li>';
+      }).join('');
+      var first=matches[0];
+      pop.innerHTML='<div class="sa-wrap">'
+        +'<ul class="sa-list">'+list+'</ul>'
+        +'<div class="sa-preview"><div class="sa-pv-card pcover"><img src="'+first.img+'" alt="">'
+        +'<button type="button" class="pcover-cart" aria-label="장바구니 담기"><img src="assets/ic_cart_black.svg" alt=""></button></div>'
+        +'<p class="sa-pv-name">'+esc(first.title)+'</p></div>'
+        +'</div>';
+      var items=[].slice.call(pop.querySelectorAll('.sa-list .it'));
+      var pvImg=pop.querySelector('.sa-pv-card > img');
+      var pvName=pop.querySelector('.sa-pv-name');
+      var pvCart=pop.querySelector('.pcover-cart');
+      items.forEach(function(li){
+        li.addEventListener('mouseenter',function(){
+          items.forEach(function(x){ x.classList.remove('on'); });
+          li.classList.add('on');
+          var b=matches[+li.getAttribute('data-i')];
+          pvImg.src=b.img; pvName.textContent=b.title;
+        });
+        li.querySelector('a').addEventListener('click',function(e){ e.preventDefault(); });
+      });
+      if(pvCart){
+        pvCart.addEventListener('click',function(e){
+          e.preventDefault(); e.stopPropagation();
+          confirm('장바구니에 담겼습니다. 이동하시겠습니까?');
+        });
+      }
+    }
+
+    function refresh(){
+      var q=input.value.trim();
+      if(q){ renderAuto(q); pop.hidden=false; }
+      else { renderPopular(); pop.hidden=false; }
+    }
+    function openPop(){ refresh(); }
+    function closePop(){ pop.hidden=true; }
+
+    input.addEventListener('focus',openPop);
+    input.addEventListener('click',openPop);
+    input.addEventListener('input',openPop);
+    input.addEventListener('keydown',function(e){ if(e.key==='Escape'){ closePop(); input.blur(); } else if(e.key==='Enter'){ e.preventDefault(); } });
+    if(icon) icon.addEventListener('click',function(){ input.focus(); openPop(); });
+    document.addEventListener('click',function(e){ if(!box.contains(e.target)) closePop(); });
+  }
+  [].forEach.call(document.querySelectorAll('.search'),function(b){ initSearch(b); });
 })();
 
 /* 교재별 표지를 색·제목·레벨이 모두 다르게 SVG로 생성 (실제 표지 이미지가 없어 목업용으로 생성) */
