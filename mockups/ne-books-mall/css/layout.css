@@ -3922,6 +3922,14 @@ body.bsheet-lock{overflow:hidden;}
 
 .sr-pager{margin-top:40px;}
 
+/* 담기/빼기 피드백 토스트: 화면 중앙 원형, 잠깐 떴다 사라짐 */
+.sr-toast{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%) scale(.92);z-index:9999;width:220px;height:220px;border-radius:999px;background:var(--red);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;color:#fff;text-align:center;pointer-events:none;opacity:0;visibility:hidden;transition:opacity .22s ease,transform .22s ease,visibility 0s linear .22s;}
+.sr-toast.show{opacity:1;visibility:visible;transform:translate(-50%,-50%) scale(1);transition:opacity .22s ease,transform .22s ease;}
+.sr-toast .st-ic{width:64px;height:70px;display:flex;align-items:center;justify-content:center;}
+.sr-toast .st-ic svg{width:100%;height:100%;display:block;}
+.sr-toast .st-msg{font-weight:700;font-size:14px;line-height:1.5;}
+@media (prefers-reduced-motion:reduce){.sr-toast{transition:opacity .1s;}.sr-toast.show{transition:opacity .1s;}}
+
 /* 모바일: 2단, 회색박스/교재 축소 */
 @media (max-width:1023px){
   .page-search .sr-wrap{padding:0 20px 60px;}

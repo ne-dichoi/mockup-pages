@@ -8,9 +8,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260815ay">
-<script src="js/layout.js?v=20260815ay" defer></script>
-<script src="js/search.js?v=20260815ay" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260815az">
+<script src="js/layout.js?v=20260815az" defer></script>
+<script src="js/search.js?v=20260815az" defer></script>
 </head>
 <body class="page-search">
 
@@ -103,6 +103,19 @@
       return {title:card.getAttribute('data-title'), now:card.getAttribute('data-price'), img:card.getAttribute('data-img')};
     }
 
+    /* 중앙 원형 토스트 (잠깐 떴다 사라짐) */
+    var BAG_SVG='<svg viewBox="0 0 28 28" fill="none"><path d="M2 9H26L24.7475 23.1888C24.6798 23.9568 24.3359 24.6709 23.7833 25.191C23.2307 25.7112 22.5094 25.9997 21.761 26H6.239C5.49056 25.9997 4.76925 25.7112 4.2167 25.191C3.66414 24.6709 3.32023 23.9568 3.2525 23.1888L2 9Z" stroke="white" stroke-width="2" stroke-linejoin="round"/><path d="M8 12V7.71429C8 6.19876 8.63214 4.74531 9.75736 3.67368C10.8826 2.60204 12.4087 2 14 2C15.5913 2 17.1174 2.60204 18.2426 3.67368C19.3679 4.74531 20 6.19876 20 7.71429V12" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>';
+    var HEART_SVG='<svg viewBox="0 0 24 24" fill="white"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>';
+    var toastEl=null, toastTimer=null;
+    function toast(iconSvg, lines){
+      if(!toastEl){ toastEl=document.createElement('div'); toastEl.className='sr-toast'; toastEl.setAttribute('role','status'); toastEl.setAttribute('aria-live','polite'); document.body.appendChild(toastEl); }
+      toastEl.innerHTML='<span class="st-ic">'+iconSvg+'</span><span class="st-msg">'+lines+'</span>';
+      void toastEl.offsetWidth;
+      toastEl.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer=setTimeout(function(){ toastEl.classList.remove('show'); }, 1100);
+    }
+
     GRID.addEventListener('click',function(e){
       var card=e.target.closest('.sr-card'); if(!card) return;
       var cntEl=card.querySelector('.sr-cnt');
@@ -111,7 +124,7 @@
       if(e.target.closest('.sr-inc')){
         var n=(parseInt(cntEl.textContent,10)||0)+1; cntEl.textContent=n;
         if(window.neCartAdd) neCartAdd(itemOf(card));
-        alert('장바구니에 담겼습니다.');
+        toast(BAG_SVG, '장바구니에 수량 1개가<br>담겼습니다.');
         return;
       }
       /* − : 장바구니에서 빼기(수량 −1) + 알럿. 0이면 동작 없음 */
@@ -126,7 +139,7 @@
           neCartSaveAdded(a);
         }
         if(window.neCartSetCount && window.neCartCount) neCartSetCount(Math.max(0, neCartCount()-1));
-        alert('장바구니에서 빠졌습니다.');
+        toast(BAG_SVG, '장바구니에서 수량 1개가<br>빠졌습니다.');
         return;
       }
       /* 바로구매: 옆에 표시된 수량으로 즉시 구매 (품절/절판 제외, 교과서 외부링크는 기본동작 유지) */
@@ -145,7 +158,7 @@
         var id=card.getAttribute('data-title');
         var on=wish.classList.toggle('on');
         wish.querySelector('img').src= on ? 'assets/ic_heart_fill.svg' : 'assets/ic_heart.svg';
-        if(on && window.neWishAdd){ neWishAdd({id:id, title:id, img:card.getAttribute('data-img'), badge:card.getAttribute('data-cat'), now:card.getAttribute('data-price'), was:card.getAttribute('data-was')}); alert('마이페이지 찜 목록에 추가되었습니다.'); }
+        if(on && window.neWishAdd){ neWishAdd({id:id, title:id, img:card.getAttribute('data-img'), badge:card.getAttribute('data-cat'), now:card.getAttribute('data-price'), was:card.getAttribute('data-was')}); toast(HEART_SVG, '마이페이지 찜 목록에<br>추가되었습니다.'); }
         else if(!on && window.neWishRemove){ neWishRemove(id); }
         return;
       }
