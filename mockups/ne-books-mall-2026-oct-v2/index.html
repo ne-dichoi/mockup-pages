@@ -270,7 +270,7 @@
   .cn-bn-books{display:flex;gap:11px;}
   .cn-bn-book{flex:1 1 0;min-width:0;max-width:100%;display:flex;flex-direction:column;align-items:center;gap:8px;}
   .cn-bn-book-img{position:relative;width:100%;display:block;cursor:pointer;}
-  .cn-bn-book-img img{width:100%;aspect-ratio:2/3;object-fit:contain;border-radius:8px;box-shadow:3px 7px 16px rgba(0,0,0,.22);background:#fff;display:block;}
+  .cn-bn-book-img img{width:100%;aspect-ratio:732/957;object-fit:contain;border-radius:8px;box-shadow:3px 7px 16px rgba(0,0,0,.22);background:#fff;display:block;}
   .cn-bn-cart{position:absolute;right:6px;bottom:6px;width:36px;height:36px;background:#262626;border:0;border-radius:999px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 3px 8px rgba(0,0,0,.3);z-index:2;}
   .cn-bn-cart svg{width:18px;height:18px;display:block;}
   .cn-bn-book .nm{font-size:11px;color:#555;line-height:1.3;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:100%;}
@@ -797,16 +797,15 @@
     document.addEventListener('keydown',function(e){ if(e.key==='Escape') close(); });
   })();
 
-  /* ---------- PC: 교재상세·장바구니·주문결제(바로구매) 랜딩은 새 창으로 ---------- */
+  /* ---------- 세부 페이지 접근 차단: 메인/GNB만 노출 (하위 .html 이동 막기, PC·MO 공통) ---------- */
   (function(){
-    var pages=['교재상세.html','장바구니.html','주문결제.html','이벤트상세.html','세미나상세.html','신간개정상세.html'];
-    function isLanding(h){ return pages.some(function(p){ return h.indexOf(p)>=0; }); }
     document.addEventListener('click',function(e){
-      if(!window.matchMedia('(min-width:1024px)').matches) return;   /* PC에서만 새 창 */
+      if(e.target.closest('button')) return;                            /* 담기 등 버튼 동작은 유지 */
       var a=e.target.closest('a[href]'); if(!a) return;
-      if(a.classList.contains('cart') && a.closest('.st-cta')) return; /* '세트 담기'는 담기+알림 동작 유지 */
+      if(a.classList.contains('cart') && a.closest('.st-cta')) return;   /* '세트 담기'(담기+알림) 유지 */
       var h=a.getAttribute('href')||'';
-      if(isLanding(h)){ e.preventDefault(); window.open(a.href,'_blank','noopener'); }
+      if(!h || h.charAt(0)==='#' || /^(javascript:|mailto:|tel:|http)/i.test(h)) return;
+      if(/\.html(\?|#|$)/i.test(h) && h.indexOf('index.html')<0){ e.preventDefault(); }  /* 세부 .html 이동 차단 */
     },true);
   })();
 
@@ -850,7 +849,7 @@
       e.preventDefault();
       var li=b.closest('li'); var nmEl=li&&li.querySelector('.st-nm');
       var nm=nmEl?nmEl.textContent.trim():'교재';
-      if(b.classList.contains('view')){ var u='교재상세.html?name='+encodeURIComponent(nm); if(window.matchMedia('(min-width:1024px)').matches){ window.open(u,'_blank','noopener'); } else { location.href=u; } return; }
+      if(b.classList.contains('view')){ return; }   /* 세부 페이지 접근 차단 중 → 이동 안 함 */
       if(b.classList.contains('cart')){
         if(window.NECart){ NECart.add({id:'set|'+nm, name:nm, img:'assets/best_1.png', orig:15000, unit:13500, rate:'10%', cat:'교재'}, 1); }
         alert('장바구니에 담겼습니다.\n· '+nm);
