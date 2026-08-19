@@ -3944,7 +3944,8 @@ body.bsheet-lock{overflow:hidden;}
   .sr-book{top:30px;bottom:30px;}
   /* 정보 영역이 카드 높이를 채우고 컨트롤은 하단 정렬 → 교과서구매처럼 버튼만 있는 카드도 위치가 맞음 */
   .sr-info{flex:1 1 auto;width:auto;max-width:100%;margin:0;padding:16px 16px 0;gap:12px;align-items:flex-start;}
-  .sr-title{font-size:13px;line-height:18px;min-height:0;display:block;-webkit-line-clamp:none;white-space:nowrap;text-overflow:ellipsis;max-width:100%;}
+  /* 교재명: 최대 2줄, 넘치면 말줄임 */
+  .sr-title{font-size:13px;line-height:18px;min-height:36px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;white-space:normal;overflow:hidden;max-width:100%;}
   .sr-price b{font-size:15px;}
   .sr-controls{flex-wrap:wrap;gap:8px;margin-top:auto;width:100%;}
   .sr-step{display:flex;flex:1 0 0;min-width:0;justify-content:center;}
