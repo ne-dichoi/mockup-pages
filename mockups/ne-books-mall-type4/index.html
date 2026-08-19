@@ -236,7 +236,7 @@ button{font-family:inherit;cursor:pointer;border:0;background:none;}
 .n-store-list button.on{border-color:#111;box-shadow:0 2px 10px rgba(0,0,0,.06);}
 .n-store-list button.on .arw{margin-left:auto;}
 .n-store-right{display:flex;flex-direction:column;}
-.n-store-prod{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;flex:1;}
+.n-store-prod{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;flex:1;}
 .n-store-home{margin-top:16px;height:52px;border:1px solid var(--line);border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;color:#333;}
 
 /* ===== responsive visibility utils (ne-books-mall-type3 동일) ===== */
@@ -544,10 +544,7 @@ button{font-family:inherit;cursor:pointer;border:0;background:none;}
 <section class="n-sec lined">
   <div class="wrap">
     <div class="n-sec-head">
-      <div class="ttl-inline">
-        <h2>초/중등</h2>
-        <span class="sub-inline">초등 기초부터 중등 내신까지 탄탄한 실력을 키워주는 NE능률의 초·중등 학습 교재</span>
-      </div>
+      <div><h2>초/중등</h2></div>
       <a class="more" href="#">전체보기 ›</a>
     </div>
     <div class="n-tabs" id="recoTabs"></div>
@@ -559,10 +556,7 @@ button{font-family:inherit;cursor:pointer;border:0;background:none;}
 <section class="n-sec lined">
   <div class="wrap">
     <div class="n-sec-head">
-      <div class="ttl-inline">
-        <h2>고등</h2>
-        <span class="sub-inline">내신부터 수능까지 완성도 높은 학습을 이끄는 NE능률의 고등 학습 교재</span>
-      </div>
+      <div><h2>고등</h2></div>
       <a class="more" href="#">전체보기 ›</a>
     </div>
     <div class="n-tabs" id="hsTabs"></div>
@@ -926,7 +920,14 @@ document.getElementById('hsTabs').innerHTML=HS_TABS.map(function(t,i){
   return '<button class="'+(i===0?'on':'')+'">'+t+'</button>';
 }).join('');
 /* store products (4) */
-renderGrid('storeProd',PRODUCTS.slice(0,4));
+var STORE_PRODUCTS=[
+  {t:'Subject Link 1', img:'assets/store_subjectlink1.png', was:'16,000원', rate:'10%', now:'14,400원'},
+  {t:'Subject Link 2', img:'assets/store_subjectlink2.png', was:'16,000원', rate:'10%', now:'14,400원'},
+  {t:'Subject Link 3', img:'assets/store_subjectlink3.png', was:'16,000원', rate:'10%', now:'14,400원'},
+  {t:'Subject Link 4', img:'assets/store_subjectlink4.png', was:'16,000원', rate:'10%', now:'14,400원'},
+  {t:'Subject Link 5', img:'assets/store_subjectlink5.png', was:'16,000원', rate:'10%', now:'14,400원'}
+];
+renderGrid('storeProd',STORE_PRODUCTS);
 
 /* ===== HERO carousel ===== */
 (function(){
