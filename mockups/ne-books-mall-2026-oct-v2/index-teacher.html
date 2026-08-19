@@ -568,9 +568,12 @@
   .cn-mat-btns{display:flex;gap:8px;width:100%;}
   .cn-mat-btn{flex:1;text-align:center;padding:11px 0;border-radius:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.28);color:#fff;font-size:13px;font-weight:700;}
   .cn-mat-btn:hover{background:rgba(255,255,255,.2);}
+  /* '선생님 혜택' 탭: PC 숨김 → 모바일에서만 노출(아래 미디어쿼리) */
+  .cn-cat--benefit{display:none;}
   @media (max-width:1023px){
     .cn-banner.cn-gold{grid-template-columns:minmax(0,1fr);gap:16px;padding:20px;height:auto;min-height:0;}
     .cn-gold-ttl{font-size:22px;}
+    .cn-cat--benefit{display:flex;}
   }
 
   /* ===== 선생님 페이지 전용: 김능률 선생님을 위한 추천 교재 (reco-v3) ===== */
@@ -1019,6 +1022,12 @@
       listEl.appendChild(b);
     });
     var btns=[].slice.call(listEl.querySelectorAll('.cn-cat'));
+    /* 모바일 전용 탭: 맨 앞에 '선생님 혜택' → GOLD 환영 배너 (PC는 CSS로 숨김) */
+    var benefitBtn=document.createElement('button');
+    benefitBtn.type='button'; benefitBtn.className='cn-cat cn-cat--benefit';
+    benefitBtn.innerHTML='<span>선생님 혜택</span><span class="arw">&#8250;</span>';
+    benefitBtn.addEventListener('click',function(){ goldVer=0; renderGold(); });
+    listEl.insertBefore(benefitBtn, listEl.firstChild);
     var CART_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>';
     /* 교재 장바구니 담기 (위임) → NECart 저장 + 알림 */
     bnEl.addEventListener('click',function(e){
@@ -1097,6 +1106,7 @@
     }
     function renderGold(){
       btns.forEach(function(b){ b.classList.remove('on'); });
+      if(benefitBtn) benefitBtn.classList.add('on');
       bnEl.className='cn-banner cn-gold';
       bnEl.style.background='';
       bnEl.innerHTML=goldTabsHTML(goldVer)+GOLD_VERS[GOLD_ORDER[goldVer]];
@@ -1111,6 +1121,7 @@
     }
     function select(i){
       current=i;
+      if(benefitBtn) benefitBtn.classList.remove('on');
       btns.forEach(function(b,idx){ b.classList.toggle('on',idx===i); });
       var c=CATS[i];
       bnEl.style.background=c.bg;
