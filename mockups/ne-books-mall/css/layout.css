@@ -3907,7 +3907,8 @@ body.bsheet-lock{overflow:hidden;}
 .sr-controls{display:flex;align-items:center;gap:8px;margin-top:8px;flex-wrap:wrap;}
 .sr-controls.end{justify-content:flex-end;}
 .sr-cartbox{display:flex;align-items:center;}
-.sr-cart{width:28px;height:28px;padding:0;border:0;cursor:pointer;background:transparent url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'><path d='M7 8V6.5a5 5 0 0 1 10 0V8m-11 0h12l-.9 11.2a1.8 1.8 0 0 1-1.8 1.6H8.7a1.8 1.8 0 0 1-1.8-1.6L6 8Z' stroke='%231d1717' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/21px no-repeat;}
+.sr-cart{width:28px;height:28px;padding:0;border:0;background:transparent;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;}
+.sr-cart img{width:24px;height:24px;display:block;}
 .sr-cartbox.off .sr-cart{opacity:.4;cursor:default;}
 .sr-cnt{min-width:20px;text-align:center;font-size:14px;font-weight:500;color:var(--ink);}
 .sr-cartbox.off .sr-cnt{color:var(--weak);}

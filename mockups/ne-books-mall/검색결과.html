@@ -8,9 +8,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260815as">
-<script src="js/layout.js?v=20260815as" defer></script>
-<script src="js/search.js?v=20260815as" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260815at">
+<script src="js/layout.js?v=20260815at" defer></script>
+<script src="js/search.js?v=20260815at" defer></script>
 </head>
 <body class="page-search">
 
@@ -69,13 +69,13 @@
       if(p.state==='textbook')
         return '<div class="sr-controls end"><a class="sr-buy" href="https://textbook.example.com" target="_blank" rel="noopener">교과서 구매</a></div>';
       if(p.state==='off')
-        return '<div class="sr-controls"><div class="sr-cartbox off"><span class="sr-cart"></span><span class="sr-cnt">0</span></div>'
+        return '<div class="sr-controls"><div class="sr-cartbox off"><span class="sr-cart"><img src="assets/ic_bag.svg" alt=""></span><span class="sr-cnt">0</span></div>'
              +'<div class="sr-step off"><button type="button" class="sr-dec" disabled>&#8722;</button><button type="button" class="sr-inc" disabled>&#43;</button></div>'
              +'<span class="sr-buy off">절판</span></div>';
       var buy = (p.state==='soldout')
         ? '<span class="sr-buy off">일시품절</span>'
         : '<a class="sr-buy" href="주문결제.html">바로구매</a>';
-      return '<div class="sr-controls"><div class="sr-cartbox"><button type="button" class="sr-cart" aria-label="장바구니 담기"></button><span class="sr-cnt">1</span></div>'
+      return '<div class="sr-controls"><div class="sr-cartbox"><button type="button" class="sr-cart" aria-label="장바구니 담기"><img src="assets/ic_bag.svg" alt=""></button><span class="sr-cnt">1</span></div>'
            +'<div class="sr-step"><button type="button" class="sr-dec" aria-label="수량 감소">&#8722;</button><button type="button" class="sr-inc" aria-label="수량 증가">&#43;</button></div>'
            +buy+'</div>';
     }
