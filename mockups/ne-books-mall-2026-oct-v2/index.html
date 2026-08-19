@@ -296,7 +296,7 @@
   .cn-mo-promo{display:none;}
   @media (max-width:1023px){.cn-banner{grid-template-columns:1fr;gap:16px;padding:20px;}.cn-bn-ttl{white-space:normal;}
     /* 교재 표지: 폭 무관 '고정 크기' → 모든 시리즈/화면폭에서 동일한 교재 크기 (넘치면 가로 스와이프). 약 3.7개 노출 */
-    .cn-bn-books{overflow-x:auto;scrollbar-width:none;gap:8px;scroll-snap-type:x proximity;touch-action:pan-x;-webkit-overflow-scrolling:touch;}
+    .cn-bn-books{overflow-x:auto;scrollbar-width:none;gap:8px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;min-width:0;max-width:100%;}
     .cn-bn-books::-webkit-scrollbar{display:none;}
     .cn-bn-book{flex:0 0 104px;min-width:0;scroll-snap-align:start;}
     .cn-cat--promo{display:none;}
@@ -407,7 +407,7 @@
     .cn-list{background:none;border-radius:0;overflow:visible;}
     .cn-list-title{display:none;}
     .cn-cats{flex-direction:row;gap:0;padding:0;background:#fff;border-top:1px solid #ededed;border-bottom:1px solid #ededed;overflow:visible;}
-    .cn-cat{flex:1;justify-content:center;white-space:nowrap;min-height:44px;border-radius:0;font-size:15.5px;font-weight:500;color:#8c8c8c;position:relative;}
+    .cn-cat{flex:1;justify-content:center;white-space:nowrap;min-height:40px;border-radius:0;font-size:15.5px;font-weight:500;color:#8c8c8c;position:relative;}
     .cn-cat .arw{display:none;}
     .cn-cat:hover{background:none;color:#191919;}
     .cn-cat.on{background:none;color:#191919;font-weight:500;}
@@ -416,18 +416,18 @@
     .cn-bn-cta{display:none;}
     .cn-mo-cta{display:none;}
     /* 시리즈 탭: 줄바꿈 대신 가로 스와이프 */
-    .cn-bn-series{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;touch-action:pan-x;}
+    .cn-bn-series{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;min-width:0;max-width:100%;}
     .cn-bn-series::-webkit-scrollbar{display:none;}
     .cn-bn-series a{flex:none;white-space:nowrap;}
-    /* 설명 ↔ 시리즈 탭 간격 (아주 조금만) */
-    .cn-banner{gap:13px;}
+    /* 서브카피 ↔ 시리즈 탭 간격은 넉넉히 (제목↔서브카피는 줄임) */
+    .cn-banner{gap:22px;}
     .cn-bn-desc{margin-bottom:0;}
   }
   @media (max-width:767px){
     .v3-head .tt{font-size:24px;}
     .cn-banner{padding:24px;min-height:0;}
-    /* 제목은 모든 탭 공통 한 줄 → 탭마다 높이 동일(빈 공간 없음), 넘치면 … */
-    .cn-bn-ttl{font-size:26px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-height:0;}
+    /* 제목: 한 줄 고정 + 살짝 축소, 서브카피와의 간격은 축소 */
+    .cn-bn-ttl{font-size:24px;margin-bottom:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-height:0;}
     /* 교재 표지는 위 1023 규칙에서 고정 크기(90px)로 통일 — 가격만 폭에 맞춰 축소 */
     .cn-bn-price .now{font-size:10px;}
     .cn-bn-price .was{font-size:8.5px;}
@@ -467,9 +467,10 @@
   @media (max-width:767px){
     /* 이벤트·신간·세미나: 카드가 1개만 덜렁 나오지 않게 1.2개 정도 노출 + 터치 스와이프 */
     .evlist-card{width:83% !important;}
-    .evlist-row{touch-action:pan-x;-webkit-overflow-scrolling:touch;}
-    /* 맞춤 교재 세트: 교재명 목록에 세로 스크롤바 보이게 */
+    .evlist-row{-webkit-overflow-scrolling:touch;}
+    /* 맞춤 교재 세트: 교재명 목록에 세로 스크롤바 보이게 + 아이콘이 스크롤바와 안 겹치게 우측 여백 */
     .t2set-card .st-list{scrollbar-width:thin;scrollbar-color:#c7c7c7 transparent;}
+    .t2set-card .st-list li{padding-right:12px;}
     .t2set-card .st-list::-webkit-scrollbar{width:5px;-webkit-appearance:none;}
     .t2set-card .st-list::-webkit-scrollbar-thumb{background:#c7c7c7;border-radius:5px;}
     .t2set-card .st-list::-webkit-scrollbar-track{background:transparent;}
@@ -797,7 +798,7 @@
 
   /* ---------- PC: 교재상세·장바구니·주문결제(바로구매) 랜딩은 새 창으로 ---------- */
   (function(){
-    var pages=['교재상세.html','장바구니.html','주문결제.html'];
+    var pages=['교재상세.html','장바구니.html','주문결제.html','이벤트상세.html','세미나상세.html','신간개정상세.html'];
     function isLanding(h){ return pages.some(function(p){ return h.indexOf(p)>=0; }); }
     document.addEventListener('click',function(e){
       if(!window.matchMedia('(min-width:1024px)').matches) return;   /* PC에서만 새 창 */
