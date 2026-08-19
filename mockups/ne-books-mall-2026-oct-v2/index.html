@@ -736,7 +736,7 @@
     CATS.forEach(function(c,i){
       var b=document.createElement('button'); b.type='button'; b.className='cn-cat'+(c.type==='promo'?' cn-cat--promo':'')+(i===0?' on':''); b.setAttribute('data-i',i);
       b.innerHTML='<span>'+c.name+'</span><span class="arw">&#8250;</span>';
-      b.addEventListener('mouseenter',function(){ select(i); });
+      b.addEventListener('mouseenter',function(){ if(!isMobile()) select(i); });
       b.addEventListener('click',function(){ if(isMobile()){ select(i); } else { location.href='리스트_교재구매.html'; } });
       listEl.appendChild(b);
     });
@@ -779,7 +779,7 @@
           booksEl.innerHTML=booksHTML(c.series[si].books);
         };
         tabs.forEach(function(tab,si){
-          tab.addEventListener('mouseenter',function(){ activateSeries(si); });
+          tab.addEventListener('mouseenter',function(){ if(!isMobile()) activateSeries(si); });
           tab.addEventListener('click',function(e){ if(isMobile()){ e.preventDefault(); activateSeries(si); } });
         });
       }
