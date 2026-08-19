@@ -291,8 +291,8 @@
   .cn-bn-cart{position:absolute;right:6px;bottom:6px;width:36px;height:36px;background:#262626;border:0;border-radius:999px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 3px 8px rgba(0,0,0,.3);z-index:2;}
   .cn-bn-cart svg{width:18px;height:18px;display:block;}
   .cn-bn-book .nm{font-size:11px;color:#555;line-height:1.3;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:100%;}
-  /* 교재 할인가/정가 (제목 밑, 한 줄) */
-  .cn-bn-price{margin-top:4px;display:flex;flex-flow:row wrap;justify-content:center;align-items:baseline;gap:1px 4px;width:100%;}
+  /* 교재 할인가/정가 (제목 밑, 항상 한 줄 → 카드 높이 균일: 시리즈 무관 동일 크기) */
+  .cn-bn-price{margin-top:4px;display:flex;flex-flow:row nowrap;justify-content:center;align-items:baseline;gap:4px;width:100%;white-space:nowrap;}
   .cn-bn-price .now{font-size:11px;font-weight:800;color:#191919;}
   .cn-bn-price .was{font-size:9px;color:#bbb;text-decoration:line-through;}
   /* promo 타입 배너 (혼강 세미나 / 예비 중등) — 콘텐츠 그래픽 우측 배치 */
@@ -347,15 +347,27 @@
   .t2set-card .st-goal.c{background:#ff8a1e;}
   .t2set-card .st-name{font-size:19px;font-weight:800;letter-spacing:-.5px;margin:0 0 4px;color:#191919;}
   .t2set-card .st-desc{font-size:12.5px;color:#7a8a7a;margin:0;}
-  .t2set-card .st-covers{display:flex;margin-top:16px;padding-left:2px;overflow:hidden;}
-  .t2set-card .st-covers .cv{flex:none;width:58px;height:78px;border-radius:6px;overflow:hidden;box-shadow:0 4px 10px rgba(0,0,0,.16);background:#fff;margin-left:-32px;display:flex;align-items:center;justify-content:center;border:1px solid #f0f0f0;}
+  /* 표지: 기본은 살짝만 겹침 / 많을 때(dense)는 카드 폭 안에서 더 겹치도록 */
+  .t2set-card .st-covers{display:flex;margin-top:16px;padding-left:2px;overflow:hidden;max-width:100%;}
+  .t2set-card .st-covers .cv{flex:none;width:58px;height:78px;border-radius:6px;overflow:hidden;box-shadow:0 4px 10px rgba(0,0,0,.16);background:#fff;margin-left:-14px;display:flex;align-items:center;justify-content:center;border:1px solid #f0f0f0;}
+  .t2set-card .st-covers.dense .cv{margin-left:-34px;}
   .t2set-card .st-covers .cv:first-child{margin-left:0;}
   .t2set-card .st-covers .cv img{width:100%;height:100%;object-fit:cover;}
   .t2set-card .st-body{padding:16px 20px 20px;display:flex;flex-direction:column;flex:1;}
-  .t2set-card .st-list{list-style:none;margin:0 0 14px;padding:12px 0 0;border-top:1px dashed #ececec;max-height:95px;overflow-y:auto;scrollbar-width:thin;}
-  .t2set-card .st-list li{font-size:12.5px;color:#666;line-height:1.9;display:flex;justify-content:space-between;padding-right:6px;}
+  /* 교재 목록: 3.5줄까지 보이고 세로 스크롤 */
+  .t2set-card .st-list{list-style:none;margin:0 0 14px;padding:12px 0 0;border-top:1px dashed #ececec;max-height:126px;overflow-y:auto;scrollbar-width:thin;}
+  .t2set-card .st-list li{font-size:12.5px;color:#666;min-height:32px;display:flex;align-items:center;justify-content:space-between;gap:8px;}
+  .t2set-card .st-list li .st-nm{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
   .t2set-card .st-list li .q{color:#aaa;}
+  /* 교재별 아이콘(상세보기 · 장바구니) — 기존 아웃라인 아이콘 스타일 참고 */
+  .t2set-card .st-acts{flex:none;display:flex;gap:6px;}
+  .t2set-card .st-ic{width:28px;height:28px;border:1px solid #e2e2e2;border-radius:8px;background:#fff;color:#555;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;transition:.15s;}
+  .t2set-card .st-ic:hover{border-color:#191919;color:#191919;background:#f7f8fa;}
+  .t2set-card .st-ic svg{width:15px;height:15px;display:block;}
+  .t2set-card .st-ic.cart:hover{border-color:#e83828;color:#e83828;background:#fff5f4;}
+  /* 정가 → 절약 순, 한 줄 */
   .t2set-card .st-pricebar{margin-top:auto;display:flex;align-items:flex-end;justify-content:space-between;}
+  .t2set-card .st-priceinfo{display:flex;align-items:baseline;gap:6px;white-space:nowrap;}
   .t2set-card .st-save{font-size:12px;color:#e83828;font-weight:700;}
   .t2set-card .st-was{font-size:12px;color:#aaa;text-decoration:line-through;}
   .t2set-card .st-now{font-size:22px;font-weight:800;color:#191919;}
@@ -434,12 +446,17 @@
     .cn-bn-books{overflow-x:auto;scrollbar-width:none;gap:8px;scroll-snap-type:x proximity;}
     .cn-bn-books::-webkit-scrollbar{display:none;}
     .cn-bn-book{flex:0 0 calc((100% - 26.4px)/4.3);scroll-snap-align:start;}
-    /* 메인 아이콘: 4.5개 노출되도록 축소 (전역 인라인 100px !important를 이김) */
-    .mainicons .row{gap:10px !important;}
-    .mainicons .pill{width:62px !important;height:62px !important;}
-    .mainicons .pill .ico{width:27px !important;height:27px !important;}
-    .mainicons .pill .ico img{width:25px !important;height:25px !important;}
-    .mainicons .pill span{font-size:10.5px !important;}
+    /* 메인 아이콘: 한 줄에 3.5개 노출 (폭 기준 계산 → 디자인 폭 무관 정확히 3.5개, 전역 100px !important 이김) */
+    .mainicons .row{gap:12px !important;justify-content:flex-start !important;}
+    .mainicons .pill{flex:0 0 calc((100% - 30px)/3.5) !important;width:auto !important;height:auto !important;aspect-ratio:1/1 !important;}
+    .mainicons .pill .ico{width:40px !important;height:40px !important;}
+    .mainicons .pill .ico img{width:36px !important;height:36px !important;}
+    .mainicons .pill span{font-size:13px !important;}
+    /* NE Tutor: '선생님을 위한 티칭 플랫폼 [로고]'를 한 줄 타이틀로 */
+    .netutor .nt-center .cap{white-space:nowrap;display:flex;align-items:center;gap:6px;}
+    .netutor .nt-center .cap .cap-sub{display:inline;font-size:22px;line-height:1.3;font-weight:700;color:#191919;}
+    .netutor .nt-center .cap .cap-main{font-size:22px;line-height:1.3;font-weight:700;}
+    .netutor .nt-center .cap .cap-logo{margin-left:2px;width:96px;height:22px;flex:none;}
   }
 
   /* ===== [10월반영] 목적별 추천 코스 제목 프리셋 선택 ===== */
@@ -498,30 +515,30 @@
           <div class="st-top"><span class="st-goal">방학 완성</span><p class="st-name">중등 방학 3주 완성 세트</p><p class="st-desc">어휘 + 문법 + 독해를 한 번에</p>
             <div class="st-covers"><span class="cv"><img src="assets/best_5.png" alt=""></span><span class="cv"><img src="assets/best_4.png" alt=""></span><span class="cv"><img src="assets/best_2.png" alt=""></span><span class="cv"><img src="assets/best_1.png" alt=""></span><span class="cv"><img src="assets/best_3.png" alt=""></span></div></div>
           <div class="st-body"><ul class="st-list">
-            <li><span>능률 VOCA 어원편</span><span class="q">1권</span></li>
-            <li><span>그래머 인사이드 Lv1</span><span class="q">1권</span></li>
-            <li><span>주니어 리딩튜터</span><span class="q">1권</span></li>
-            <li><span>능률VOCA 중등 스타트</span><span class="q">1권</span></li>
-            <li><span>1316 Reading Lv1</span><span class="q">1권</span></li>
+            <li><span class="st-nm">능률 VOCA 어원편</span><span class="st-acts"><button class="st-ic view" aria-label="상세보기"></button><button class="st-ic cart" aria-label="장바구니"></button></span></li>
+            <li><span class="st-nm">그래머 인사이드 Lv1</span><span class="st-acts"><button class="st-ic view" aria-label="상세보기"></button><button class="st-ic cart" aria-label="장바구니"></button></span></li>
+            <li><span class="st-nm">주니어 리딩튜터</span><span class="st-acts"><button class="st-ic view" aria-label="상세보기"></button><button class="st-ic cart" aria-label="장바구니"></button></span></li>
+            <li><span class="st-nm">능률VOCA 중등 스타트</span><span class="st-acts"><button class="st-ic view" aria-label="상세보기"></button><button class="st-ic cart" aria-label="장바구니"></button></span></li>
+            <li><span class="st-nm">1316 Reading Lv1</span><span class="st-acts"><button class="st-ic view" aria-label="상세보기"></button><button class="st-ic cart" aria-label="장바구니"></button></span></li>
           </ul>
-            <div class="st-pricebar"><div><div class="st-save">11,500원 절약</div><div class="st-was">41,000원</div></div><div class="st-now"><span class="pct">28%</span>29,500원</div></div>
+            <div class="st-pricebar"><div class="st-priceinfo"><span class="st-was">41,000원</span><span class="st-save">11,500원 절약</span></div><div class="st-now"><span class="pct">28%</span>29,500원</div></div>
             <div class="st-cta"><a class="cart" href="장바구니.html">세트 담기</a><a class="buy" href="주문결제.html">바로구매</a></div>
           </div>
         </div>
         <div class="t2set-card">
           <div class="st-top"><span class="st-goal b">파닉스 마스터</span><p class="st-name">초등 파닉스 마스터 세트</p><p class="st-desc">스스로 읽는 힘, 기초부터 완성</p>
-            <div class="st-covers"><span class="cv"><img src="assets/best_1.png" alt=""></span><span class="cv"><img src="assets/best_2.png" alt=""></span><span class="cv"><img src="assets/best_3.png" alt=""></span><span class="cv"><img src="assets/best_1.png" alt=""></span><span class="cv"><img src="assets/best_2.png" alt=""></span><span class="cv"><img src="assets/best_3.png" alt=""></span><span class="cv"><img src="assets/best_4.png" alt=""></span><span class="cv"><img src="assets/best_5.png" alt=""></span></div></div>
+            <div class="st-covers dense"><span class="cv"><img src="assets/best_1.png" alt=""></span><span class="cv"><img src="assets/best_2.png" alt=""></span><span class="cv"><img src="assets/best_3.png" alt=""></span><span class="cv"><img src="assets/best_1.png" alt=""></span><span class="cv"><img src="assets/best_2.png" alt=""></span><span class="cv"><img src="assets/best_3.png" alt=""></span><span class="cv"><img src="assets/best_4.png" alt=""></span><span class="cv"><img src="assets/best_5.png" alt=""></span></div></div>
           <div class="st-body"><ul class="st-list">
-            <li><span>Phonics Code 1 SB</span><span class="q">1권</span></li>
-            <li><span>Phonics Code 2 SB</span><span class="q">1권</span></li>
-            <li><span>Phonics Code 3 SB</span><span class="q">1권</span></li>
-            <li><span>Phonics Code 4 SB</span><span class="q">1권</span></li>
-            <li><span>Phonics 워크북 1~2</span><span class="q">2권</span></li>
-            <li><span>세이펜 스티커</span><span class="q">1권</span></li>
-            <li><span>그림 영단어</span><span class="q">1권</span></li>
-            <li><span>정답·MP3 자료</span><span class="q">무료</span></li>
+            <li><span class="st-nm">Phonics Code 1 SB</span><span class="st-acts"><button class="st-ic view" aria-label="상세보기"></button><button class="st-ic cart" aria-label="장바구니"></button></span></li>
+            <li><span class="st-nm">Phonics Code 2 SB</span><span class="st-acts"><button class="st-ic view" aria-label="상세보기"></button><button class="st-ic cart" aria-label="장바구니"></button></span></li>
+            <li><span class="st-nm">Phonics Code 3 SB</span><span class="st-acts"><button class="st-ic view" aria-label="상세보기"></button><button class="st-ic cart" aria-label="장바구니"></button></span></li>
+            <li><span class="st-nm">Phonics Code 4 SB</span><span class="st-acts"><button class="st-ic view" aria-label="상세보기"></button><button class="st-ic cart" aria-label="장바구니"></button></span></li>
+            <li><span class="st-nm">Phonics 워크북 1~2</span><span class="st-acts"><button class="st-ic view" aria-label="상세보기"></button><button class="st-ic cart" aria-label="장바구니"></button></span></li>
+            <li><span class="st-nm">세이펜 스티커</span><span class="st-acts"><button class="st-ic view" aria-label="상세보기"></button><button class="st-ic cart" aria-label="장바구니"></button></span></li>
+            <li><span class="st-nm">그림 영단어</span><span class="st-acts"><button class="st-ic view" aria-label="상세보기"></button><button class="st-ic cart" aria-label="장바구니"></button></span></li>
+            <li><span class="st-nm">정답·MP3 자료</span><span class="st-acts"><button class="st-ic view" aria-label="상세보기"></button><button class="st-ic cart" aria-label="장바구니"></button></span></li>
           </ul>
-            <div class="st-pricebar"><div><div class="st-save">21,000원 절약</div><div class="st-was">60,000원</div></div><div class="st-now"><span class="pct">35%</span>39,000원</div></div>
+            <div class="st-pricebar"><div class="st-priceinfo"><span class="st-was">60,000원</span><span class="st-save">21,000원 절약</span></div><div class="st-now"><span class="pct">35%</span>39,000원</div></div>
             <div class="st-cta"><a class="cart" href="장바구니.html">세트 담기</a><a class="buy" href="주문결제.html">바로구매</a></div>
           </div>
         </div>
@@ -529,14 +546,14 @@
           <div class="st-top"><span class="st-goal c">수능 파이널</span><p class="st-name">고등 수능 파이널 세트</p><p class="st-desc">독해·듣기 실전 마무리 조합</p>
             <div class="st-covers"><span class="cv"><img src="assets/newbook_sample.png" alt=""></span><span class="cv"><img src="assets/best_4.png" alt=""></span><span class="cv"><img src="assets/best_5.png" alt=""></span><span class="cv"><img src="assets/best_1.png" alt=""></span><span class="cv"><img src="assets/best_2.png" alt=""></span><span class="cv"><img src="assets/best_3.png" alt=""></span></div></div>
           <div class="st-body"><ul class="st-list">
-            <li><span>수능만만 영어독해</span><span class="q">1권</span></li>
-            <li><span>수능만만 영어듣기</span><span class="q">1권</span></li>
-            <li><span>능률 VOCA 수능완성</span><span class="q">1권</span></li>
-            <li><span>빠바 유형편</span><span class="q">1권</span></li>
-            <li><span>리딩튜터 수능</span><span class="q">1권</span></li>
-            <li><span>수능특강 영어독해</span><span class="q">1권</span></li>
+            <li><span class="st-nm">수능만만 영어독해</span><span class="st-acts"><button class="st-ic view" aria-label="상세보기"></button><button class="st-ic cart" aria-label="장바구니"></button></span></li>
+            <li><span class="st-nm">수능만만 영어듣기</span><span class="st-acts"><button class="st-ic view" aria-label="상세보기"></button><button class="st-ic cart" aria-label="장바구니"></button></span></li>
+            <li><span class="st-nm">능률 VOCA 수능완성</span><span class="st-acts"><button class="st-ic view" aria-label="상세보기"></button><button class="st-ic cart" aria-label="장바구니"></button></span></li>
+            <li><span class="st-nm">빠바 유형편</span><span class="st-acts"><button class="st-ic view" aria-label="상세보기"></button><button class="st-ic cart" aria-label="장바구니"></button></span></li>
+            <li><span class="st-nm">리딩튜터 수능</span><span class="st-acts"><button class="st-ic view" aria-label="상세보기"></button><button class="st-ic cart" aria-label="장바구니"></button></span></li>
+            <li><span class="st-nm">수능특강 영어독해</span><span class="st-acts"><button class="st-ic view" aria-label="상세보기"></button><button class="st-ic cart" aria-label="장바구니"></button></span></li>
           </ul>
-            <div class="st-pricebar"><div><div class="st-save">13,500원 절약</div><div class="st-was">45,000원</div></div><div class="st-now"><span class="pct">30%</span>31,500원</div></div>
+            <div class="st-pricebar"><div class="st-priceinfo"><span class="st-was">45,000원</span><span class="st-save">13,500원 절약</span></div><div class="st-now"><span class="pct">30%</span>31,500원</div></div>
             <div class="st-cta"><a class="cart" href="장바구니.html">세트 담기</a><a class="buy" href="주문결제.html">바로구매</a></div>
           </div>
         </div>
@@ -727,6 +744,26 @@
     // NOTE: no wheel handler — mouse wheel scrolls the page normally; move the list by dragging.
   }
   enableDragScroll(document.getElementById('evlistRow'));
+
+  /* ---------- 맞춤 교재 세트: 교재별 상세보기·장바구니 아이콘 ---------- */
+  (function(){
+    var sec=document.querySelector('.t2set-sec'); if(!sec) return;
+    var SEARCH='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>';
+    var CART='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>';
+    [].forEach.call(sec.querySelectorAll('.st-ic.view'),function(b){ b.innerHTML=SEARCH; });
+    [].forEach.call(sec.querySelectorAll('.st-ic.cart'),function(b){ b.innerHTML=CART; });
+    sec.addEventListener('click',function(e){
+      var b=e.target.closest('.st-ic'); if(!b) return;
+      e.preventDefault();
+      var li=b.closest('li'); var nmEl=li&&li.querySelector('.st-nm');
+      var nm=nmEl?nmEl.textContent.trim():'교재';
+      if(b.classList.contains('view')){ location.href='교재상세.html?name='+encodeURIComponent(nm); return; }
+      if(b.classList.contains('cart')){
+        if(window.NECart){ NECart.add({id:'set|'+nm, name:nm, img:'assets/best_1.png', orig:15000, unit:13500, rate:'10%', cat:'교재'}, 1); }
+        alert('장바구니에 담겼습니다.\n· '+nm);
+      }
+    });
+  })();
 
   /* ---------- 카테고리로 빠르게 ---------- */
   (function(){
