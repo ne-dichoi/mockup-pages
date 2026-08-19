@@ -8,9 +8,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260815ax">
-<script src="js/layout.js?v=20260815ax" defer></script>
-<script src="js/search.js?v=20260815ax" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260815ay">
+<script src="js/layout.js?v=20260815ay" defer></script>
+<script src="js/search.js?v=20260815ay" defer></script>
 </head>
 <body class="page-search">
 
@@ -75,7 +75,7 @@
       var buy = (p.state==='soldout')
         ? '<span class="sr-buy off">일시품절</span>'
         : '<a class="sr-buy" href="주문결제.html">바로구매</a>';
-      return '<div class="sr-controls"><div class="sr-cartbox"><button type="button" class="sr-cart" aria-label="장바구니 담기"><img src="assets/ic_bag.svg" alt=""></button><span class="sr-cnt">1</span></div>'
+      return '<div class="sr-controls"><div class="sr-cartbox"><span class="sr-cart"><img src="assets/ic_bag.svg" alt=""></span><span class="sr-cnt">0</span></div>'
            +'<div class="sr-step"><button type="button" class="sr-dec" aria-label="수량 감소">&#8722;</button><button type="button" class="sr-inc" aria-label="수량 증가">&#43;</button></div>'
            +buy+'</div>';
     }
@@ -99,36 +99,53 @@
 
     GRID.innerHTML=BOOKS.map(card).join('');
 
-    /* 수량 스테퍼 */
+    function itemOf(card){
+      return {title:card.getAttribute('data-title'), now:card.getAttribute('data-price'), img:card.getAttribute('data-img')};
+    }
+
     GRID.addEventListener('click',function(e){
-      var dec=e.target.closest('.sr-dec'), inc=e.target.closest('.sr-inc');
-      if(dec||inc){
-        var cnt=e.target.closest('.sr-controls').querySelector('.sr-cnt');
-        var n=parseInt(cnt.textContent,10)||1;
-        n=inc?n+1:Math.max(1,n-1);
-        cnt.textContent=n; return;
-      }
-      /* 장바구니 담기 → 담기 + 뱃지 갱신 + 알럿 */
-      var cart=e.target.closest('.sr-cart');
-      if(cart){
-        var card=cart.closest('.sr-card');
-        var cnt2=card.querySelector('.sr-cnt');
-        var qty=parseInt(cnt2?cnt2.textContent:'1',10)||1;
-        if(window.neCartAdd){
-          neCartAdd({title:card.getAttribute('data-title'), now:card.getAttribute('data-price'), img:card.getAttribute('data-img'), qty:qty});
-          if(qty>1 && window.neCartSetCount && window.neCartCount) neCartSetCount(neCartCount()+(qty-1));
-        }
-        alert('장바구니에 상품을 담았습니다.');
+      var card=e.target.closest('.sr-card'); if(!card) return;
+      var cntEl=card.querySelector('.sr-cnt');
+
+      /* + : 장바구니에 담기(수량 +1) + 알럿 */
+      if(e.target.closest('.sr-inc')){
+        var n=(parseInt(cntEl.textContent,10)||0)+1; cntEl.textContent=n;
+        if(window.neCartAdd) neCartAdd(itemOf(card));
+        alert('장바구니에 담겼습니다.');
         return;
       }
-      /* 찜 토글 */
+      /* − : 장바구니에서 빼기(수량 −1) + 알럿. 0이면 동작 없음 */
+      if(e.target.closest('.sr-dec')){
+        var cur=parseInt(cntEl.textContent,10)||0;
+        if(cur<=0) return;
+        cntEl.textContent=cur-1;
+        var it=itemOf(card);
+        if(window.neCartAddedList && window.neCartSaveAdded){
+          var a=neCartAddedList();
+          for(var i=a.length-1;i>=0;i--){ if(a[i] && a[i].title===it.title){ a.splice(i,1); break; } }
+          neCartSaveAdded(a);
+        }
+        if(window.neCartSetCount && window.neCartCount) neCartSetCount(Math.max(0, neCartCount()-1));
+        alert('장바구니에서 빠졌습니다.');
+        return;
+      }
+      /* 바로구매: 옆에 표시된 수량으로 즉시 구매 (품절/절판 제외, 교과서 외부링크는 기본동작 유지) */
+      var buy=e.target.closest('.sr-buy');
+      if(buy){
+        if(buy.classList.contains('off')) return;                 /* 일시품절/절판: 비활성 */
+        if(buy.getAttribute('target')==='_blank') return;          /* 교과서 구매: 외부링크 그대로 */
+        e.preventDefault();
+        var q=Math.max(1, parseInt(cntEl?cntEl.textContent:'1',10)||1);
+        location.href='주문결제.html?qty='+q;
+        return;
+      }
+      /* 찜: 마이페이지 찜 목록에 추가 */
       var wish=e.target.closest('.sr-wish');
       if(wish){
-        var c=wish.closest('.sr-card');
-        var id=c.getAttribute('data-title');
+        var id=card.getAttribute('data-title');
         var on=wish.classList.toggle('on');
         wish.querySelector('img').src= on ? 'assets/ic_heart_fill.svg' : 'assets/ic_heart.svg';
-        if(on && window.neWishAdd){ neWishAdd({id:id, title:id, img:c.getAttribute('data-img'), badge:c.getAttribute('data-cat'), now:c.getAttribute('data-price'), was:c.getAttribute('data-was')}); }
+        if(on && window.neWishAdd){ neWishAdd({id:id, title:id, img:card.getAttribute('data-img'), badge:card.getAttribute('data-cat'), now:card.getAttribute('data-price'), was:card.getAttribute('data-was')}); alert('마이페이지 찜 목록에 추가되었습니다.'); }
         else if(!on && window.neWishRemove){ neWishRemove(id); }
         return;
       }
