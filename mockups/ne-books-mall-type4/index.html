@@ -160,7 +160,6 @@ button{font-family:inherit;cursor:pointer;border:0;background:none;}
 .n-hero-track{display:flex;gap:16px;transition:transform .6s cubic-bezier(.22,1,.36,1);}
 .n-hero-card{flex:0 0 calc(50% - 8px);height:280px;border-radius:16px;overflow:hidden;display:flex;align-items:flex-start;padding:0 44px;position:relative;}
 .n-hero-card .htxt{position:relative;z-index:2;max-width:48%;padding-top:40px;}
-.n-hero-card .htxt.tight{padding-top:14px;}
 .n-hero-card .htxt .flag{display:inline-block;background:rgba(255,255,255,.7);color:#444;font-size:12px;font-weight:700;border-radius:20px;padding:4px 12px;margin-bottom:12px;}
 .n-hero-card.dark .htxt .flag{background:rgba(255,255,255,.2);color:#fff;}
 .n-hero-card .htxt h3{font-family:var(--display);font-size:29px;font-weight:800;line-height:1.25;letter-spacing:-1px;}
@@ -411,14 +410,20 @@ button{font-family:inherit;cursor:pointer;border:0;background:none;}
 </head>
 <body>
 
-<!-- ===================== HEADER (ne-books-mall-2026-oct-v2 TOP & GNB 동일 적용) ===================== -->
+<!-- ===================== HEADER (ne-books-mall-type3 TOP & GNB 동일 적용) ===================== -->
 <header class="lheader">
   <div class="container">
     <div class="header-top">
       <a class="logo" href="#"><img src="assets/header_logo_dark.png" alt="NE_Books"></a>
-      <div class="search">
-        <input type="text" class="search-input" placeholder="검색어를 입력해 주세요." autocomplete="off">
-        <button type="button" class="search-ic ico" aria-label="검색"><img src="assets/ds_ic_search.svg" alt=""></button>
+      <div class="search-wrap">
+        <div class="search">
+          <input type="text" class="search-input" placeholder="필요한 교재, 3초 안에 찾기!" autocomplete="off">
+          <button type="button" class="search-ic ico" aria-label="검색"><img src="assets/ds_ic_search_red.svg" alt=""></button>
+        </div>
+        <div class="search-extra only-pc">
+          <a class="se-btn" href="#">맞춤교재찾기</a>
+          <a class="se-btn" href="#">추천커리큘럼</a>
+        </div>
       </div>
       <div class="head-icons">
         <a class="head-ic" href="#"><span class="ico"><img src="assets/ic_login_d.svg" alt=""></span><span>로그인</span></a>
@@ -939,7 +944,7 @@ renderGrid('storeProd',STORE_PRODUCTS);
   var SLIDES=[
     {flag:'스토리로 배우는 독해', h:'Read It! 120으로<br>재미있게 시작하는 독해', p:'흥미로운 논픽션 지문으로 독해 자신감 UP', bg:'linear-gradient(120deg,#fff0ec,#ffe0d6)', covers:[0,1]},
     {flag:'단계별 독해 훈련', h:'기초부터 유형까지<br>Read It! 40·60·80', p:'우리 아이 레벨에 딱 맞는 독해 코스', bg:'linear-gradient(120deg,#eaf1ff,#d9e6ff)', covers:[3,6]},
-    {flag:'빈틈 없이 이어지는 로드맵', h:'READ IT 60·80으로<br>읽을수록 넓어지는 어휘', p:'Reading의 기초와 기본을 탄탄하게! 단계별 필수 학습 요소를 쉽고 재미있게!', bg:'radial-gradient(120% 100% at 28% 0,#3a2e5c,#141021)', covers:[9,7], dark:true, tight:true},
+    {flag:'빈틈 없이 이어지는 로드맵', h:'READ IT 60·80으로<br>읽을수록 넓어지는 어휘', p:'Reading의 기초와 기본을 탄탄하게! 단계별 필수 학습 요소를 쉽고 재미있게!', bg:'radial-gradient(120% 100% at 28% 0,#3a2e5c,#141021)', covers:[9,7], dark:true},
     {flag:'Oxford 원서 리더스', h:'Dolphin Readers로<br>영어책 읽기 습관', p:'레벨별 스토리북으로 자연스러운 영어 노출', bg:'linear-gradient(120deg,#e7fbf2,#d3f4e4)', covers:[10,4]},
     {flag:'YouTube Live', h:'2학기가 달라지는 여름,<br>8월의 혼강 세미나', p:'혼강 세미나 8월엔 더 다채롭게 만납니다. 고등부터 중등까지, 한 번에 채우는 2학기 준비!', bg:'linear-gradient(120deg,#ff9d47,#ff7a1a)', img:'assets/hero_c1.png', dark:true},
     {flag:'내신 영어 기초 쌓기', h:'내신을 결정짓는<br>예비 중등 추천 교재', p:'슬슬 시작해야 할 때가 가장 빠르고 확실할 때! 본격 중학 레이스에 미리 대비해보세요.', bg:'linear-gradient(120deg,#fdf6ea,#f7ecd8)', img:'assets/hero_c2.png'}
@@ -955,7 +960,7 @@ renderGrid('storeProd',STORE_PRODUCTS);
       }).join('')+'</div>';
     }
     return '<div class="n-hero-card'+(s.dark?' dark':'')+'" style="background:'+s.bg+'">'
-      +'<div class="htxt'+(s.tight?' tight':'')+'"><span class="flag">'+s.flag+'</span><h3>'+s.h+'</h3><p>'+s.p+'</p></div>'+media+'</div>';
+      +'<div class="htxt"><span class="flag">'+s.flag+'</span><h3>'+s.h+'</h3><p>'+s.p+'</p></div>'+media+'</div>';
   }).join('');
   var N=track.children.length, timer;
   var idxEl=document.getElementById('heroIdx'), totEl=document.getElementById('heroTot');
