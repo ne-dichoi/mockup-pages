@@ -153,6 +153,14 @@
   var h=document.getElementById('site-header'); if(h) h.innerHTML=HEADER;
   var f=document.getElementById('site-footer'); if(f) f.innerHTML=FOOTER;
 
+  /* 선생님 화면 ↔ 일반 몰 교차 전환 버튼: 현재 페이지에 맞춰 라벨/링크 반전 */
+  (function(){
+    var sw=document.querySelector('.teacher-switch'); if(!sw) return;
+    var onTeacher=/index-teacher\.html/i.test(location.pathname);
+    if(onTeacher){ sw.textContent='일반 몰 보기'; sw.setAttribute('href','index.html'); }
+    else { sw.textContent='선생님 화면 보기'; sw.setAttribute('href','index-teacher.html'); }
+  })();
+
   /* [10월반영] 공용 장바구니 저장소 (localStorage) + 헤더 뱃지 동기화 — 검색결과↔장바구니 연동 */
   window.NECart = (function(){
     var KEY='ne_cart';
