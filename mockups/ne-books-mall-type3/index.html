@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>NE Books 내부설문 시안1</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Google Fonts fallback (required) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Pretendard (design font) via CDN, with Noto Sans KR fallback -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="css/layout.css?v=20260815aq">
+<script src="js/layout.js?v=20260815aq" defer></script>
+<script src="js/search.js?v=20260815aq" defer></script>
+</head>
+<body class="page-index">
+
+  <!-- ===== HEADER (white) ===== -->
+  <div id="site-header"></div>
+
+  <!-- ===== HERO carousel (full-bleed banner cards) ===== -->
+  <section class="hero2" id="hero2">
+    <div class="hero2-stage">
+      <div class="hero2-track" id="hero2Track">
+        <div class="hero2-card"><img src="assets/img1.png" alt="배너1"></div>
+        <div class="hero2-card"><img src="assets/img2.png" alt="배너2"></div>
+        <div class="hero2-card"><img src="assets/img3.png" alt="배너3"></div>
+        <div class="hero2-card"><img src="assets/img4.png" alt="배너4"></div>
+        <div class="hero2-card"><img src="assets/img5.png" alt="배너5"></div>
+      </div>
+    </div>
+    <div class="hero2-ind only-mo" aria-hidden="true"><b id="hero2Idx2">1</b><span>/</span><span id="hero2Total2">6</span></div>
+    <div class="hero2-nav">
+      <div class="bar"><i id="hero2Bar"></i></div>
+      <div class="grp">
+        <button class="arrow" id="hero2Prev" aria-label="이전">&#8249;</button>
+        <span class="pg"><span id="hero2Idx">1</span> <b>/ <span id="hero2Total">6</span></b></span>
+        <button class="arrow" id="hero2Next" aria-label="다음">&#8250;</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MAIN ICONS ===== -->
+  <section class="mainicons">
+    <div class="container">
+      <div class="row">
+        <a class="pill"><span class="ico"><img src="assets/ic_main_buy.svg" alt=""></span><span>교재 구매</span></a>
+        <a class="pill"><span class="ico"><img src="assets/ic_main_level.svg" alt=""></span><span>레벨차트</span></a>
+        <a class="pill"><span class="ico"><img src="assets/ic_main_lib.svg" alt=""></span><span><span class="only-pc">학습자료실</span><span class="only-mo">학습자료</span></span></a>
+        <a class="pill"><span class="ico"><img src="assets/ic_main_mp3down.svg" alt=""></span><span><span class="only-pc">정답·MP3 다운</span><span class="only-mo">정답·MP3</span></span></a>
+        <a class="pill"><span class="ico"><img src="assets/ic_main_mp3listen.svg" alt=""></span><span><span class="only-pc">MP3 듣기</span><span class="only-mo">음원듣기</span></span></a>
+        <a class="pill"><span class="ico"><img src="assets/ic_main_engteacher.svg" alt=""></span><span>영어 선생님</span></a>
+        <a class="pill"><span class="ico"><img src="assets/ic_main_mathteacher.svg" alt=""></span><span>수학 선생님</span></a>
+        <a class="pill only-mo mo-reco"><span class="ico"><img src="assets/ic_float_recommend.svg" alt=""></span><span>교재추천</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BESTSELLER ===== -->
+  <section class="bestseller">
+    <div class="container">
+      <div class="bs-wrap">
+        <div class="bs-head">
+          <div class="sec-title">베스트셀러</div>
+          <div class="bs-tabs">
+            <span class="tab active">중등 어휘암기 추천 코스</span>
+            <span class="tab">쉬운 암기 필수 VOCA</span>
+            <span class="tab">스스로 읽는 파닉스</span>
+            <span class="tab">패턴미학 조통문법서</span>
+            <span class="tab">고등 독해 완성</span>
+          </div>
+        </div>
+        <div class="bs-row">
+          <div class="bs-promo">
+            <span class="label">중등 어휘암기 추천 코스</span>
+            <div class="ttl">성적이 달라지는<br>방학 특강 조합</div>
+            <div class="desc">문법 개념 정리 + 리스닝 훈련으로 방학 대비 끝!<br>지금 기획전에서 만나보세요.</div>
+            <a class="btn" href="#">장바구니 담기</a>
+          </div>
+          <div class="bs-list" id="bsList"></div>
+          <div class="bs-mo-list only-mo" id="bsMoList"></div>
+          <a class="bs-mo-btn only-mo" href="장바구니.html">장바구니 담기</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== NETUTOR ===== -->
+  <section class="netutor" id="sec-netutor">
+    <div class="nt-viewport">
+      <div class="nt-wrap" id="ntWrap">
+        <div class="nt-arc">
+          <img class="circle" src="assets/netutor_arc.svg" alt="">
+          <img class="dot" src="assets/netutor_dot.svg" alt="">
+        </div>
+        <div class="nt-hot" id="ntHot" title="스크롤하여 배너 이동"></div>
+        <div class="nt-center">
+          <div class="cap"><span class="cap-sub">선생님을 위한</span> <span class="cap-main">티칭 플랫폼</span><span class="cap-logo only-mo"><img src="assets/netutor_logo.svg" alt="NE_Tutor"></span></div>
+          <div class="logo only-pc"><img src="assets/netutor_logo.svg" alt="NE_Tutor" style="width:100%;height:100%;object-fit:contain;"></div>
+        </div>
+        <div class="nt-cards" id="ntCards">
+          <div class="nt-card">
+            <div class="body"><span class="sub">지도서/수업자료</span><span class="tt">E-Book・자료</span></div>
+            <span class="ic ico"><img src="assets/ic_tutor_ebook.svg" data-n="assets/ic_tutor_ebook.svg" data-w="assets/ic_tutor_ebook_w.svg" alt=""></span>
+          </div>
+          <div class="nt-card">
+            <div class="body"><span class="sub">시험지 자동 생성</span><span class="tt">어휘 문제 마법사</span></div>
+            <span class="ic ico"><img src="assets/ic_tutor_vocab.svg" data-n="assets/ic_tutor_vocab.svg" data-w="assets/ic_tutor_vocab_w.svg" alt=""></span>
+          </div>
+          <div class="nt-card">
+            <div class="body"><span class="sub">문제 무제한 출제</span><span class="tt">문법 문제뱅크</span></div>
+            <span class="ic ico"><img src="assets/ic_tutor_grammar.svg" data-n="assets/ic_tutor_grammar.svg" data-w="assets/ic_tutor_grammar_w.svg" alt=""></span>
+          </div>
+          <div class="nt-card">
+            <div class="body"><span class="sub">iBT 영어 레벨테스트</span><span class="tt">NELT</span></div>
+            <span class="ic ico"><img src="assets/ic_tutor_nelt.svg" data-n="assets/ic_tutor_nelt.svg" data-w="assets/ic_tutor_nelt_w.svg" alt=""></span>
+          </div>
+          <div class="nt-card">
+            <div class="body"><span class="sub">평가/오답 자동화</span><span class="tt">성취TEST</span></div>
+            <span class="ic ico"><img src="assets/ic_tutor_test.svg" data-n="assets/ic_tutor_test.svg" data-w="assets/ic_tutor_test_w.svg" alt=""></span>
+          </div>
+          <div class="nt-card">
+            <div class="body"><span class="sub">예문검색 1분컷</span><span class="tt">문법 예문 검색</span></div>
+            <span class="ic ico"><img src="assets/ic_tutor_search.svg" data-n="assets/ic_tutor_search.svg" data-w="assets/ic_tutor_search_w.svg" alt=""></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== NOTICES / CUSTOMER CENTER ===== -->
+  <section class="notices">
+    <div class="container">
+      <div class="nt-inner">
+        <div class="notice-col">
+          <div class="sec-title">공지사항</div>
+          <div class="notice-list">
+            <div class="item"><span class="t">[필독] NE능률 개인정보 처리방침 개정 안내 (6/23 시행)</span><span class="d">2026. 07. 13</span></div>
+            <div class="item"><span class="t">[중요] NE능률-클래스카드 콘텐츠 제휴 지속 안내</span><span class="d">2026. 07. 13</span></div>
+            <div class="item"><span class="t">[안내] 절판(예정포함) 국어교재 (6/9 기준)</span><span class="d">2026. 07. 13</span></div>
+            <div class="item"><span class="t">[안내] 절판(예정포함) 국어교재 (6/9 기준)</span><span class="d">2026. 07. 13</span></div>
+          </div>
+        </div>
+        <div class="cs-col">
+          <div class="sec-title">고객센터</div>
+          <div class="cs-cards">
+            <div class="cs-card">
+              <div class="left"><span class="tel">1833-8368</span><span class="info">NE능률 고객센터<br><span class="info-sep">l</span>평일 9~16시 · 점심 12~13시</span></div>
+              <div class="cs-icons">
+                <div class="cs-box"><span class="ico"><img src="assets/ic_chat.svg" alt=""></span><span>채팅상담</span></div>
+                <div class="cs-box"><span class="ico"><img src="assets/ic_11.svg" alt=""></span><span>1:1문의</span></div>
+                <div class="cs-box"><span class="ico"><img src="assets/ic_faq.svg" alt=""></span><span>FAQ</span></div>
+                <div class="cs-box"><span class="ico"><img src="assets/ic_sms.svg" alt=""></span><span>문자상담</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="sec-title only-mo sns-title">SNS</div>
+          <div class="sns">
+            <div class="card"><div class="in"><div class="lbl"><span class="sns-brand">NE능률<br></span>Lounge 카페</div><div class="logo"><img src="assets/sns_lounge.png" alt=""></div></div></div>
+            <div class="card"><div class="in"><div class="lbl"><span class="sns-brand">NE능률<br></span>인스타그램</div><div class="logo"><img src="assets/sns_instagram.png" alt=""></div></div></div>
+            <div class="card"><div class="in"><div class="lbl"><span class="sns-brand">NE능률<br></span>유튜브</div><div class="logo"><img src="assets/sns_youtube.svg" alt=""></div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <div id="site-footer"></div>
+
+  <!-- ===== FLOATING MENU ===== -->
+  <div class="floating">
+    <div class="float-card"><span class="ico"><img src="assets/ic_float_recommend.svg" alt=""></span><span>맞춤형 교재추천</span></div>
+    <div class="float-card"><span class="ico"><img src="assets/ic_float_level.svg" alt=""></span><span>교재 레벨 차트</span></div>
+    <div class="float-card"><span class="ico"><img src="assets/ic_float_guide.svg" alt=""></span><span>교재 가이드 다운</span></div>
+    <div class="float-card"><span class="ico"><img src="assets/ic_float_math.svg" alt=""></span><span>수학 교재 안내</span></div>
+  </div>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ---------- Bestseller product cards (6 identical, per design) ---------- */
+  (function(){
+    var list=document.getElementById('bsList'); if(!list) return;
+    var covers=['best_1.png','best_2.png','best_3.png','best_4.png','best_5.png'];
+    var html='';
+    for(var i=0;i<6;i++){
+      html+='<div class="bs-card">'
+        +'<div class="img">'
+          +'<img class="book" src="assets/'+covers[i%covers.length]+'" alt="">'
+          +'<input type="checkbox" class="chk" aria-label="선택">'
+          +'<div class="cart"><span class="ico"><img src="assets/ic_cart_black.svg" alt="장바구니"></span></div>'
+        +'</div>'
+        +'<div class="bs-meta">'
+          +'<div class="ph">Phonics</div>'
+          +'<div class="name">Bricks Reading 150 · L1</div>'
+          +'<div class="price"><span class="now">13,500원</span><span class="was">15,000원</span></div>'
+        +'</div>'
+      +'</div>';
+    }
+    list.innerHTML=html;
+
+    /* mobile-only: bestseller as a vertical list of rows */
+    var mo=document.getElementById('bsMoList');
+    if(mo){
+      var mh='';
+      for(var j=0;j<6;j++){
+        mh+='<div class="bs-mo-row">'
+          +'<input type="checkbox" class="chk" aria-label="선택">'
+          +'<span class="thumb"><img src="assets/'+covers[j%covers.length]+'" alt=""></span>'
+          +'<span class="meta">'
+            +'<span class="name">Phonics Code 1 : Student Book</span>'
+            +'<span class="price"><span class="now">13,500원</span><span class="was">15,000원</span></span>'
+          +'</span>'
+        +'</div>';
+      }
+      mo.innerHTML=mh;
+    }
+  })();
+
+  /* ---------- Click-and-drag to move a horizontal track (mouse only, no wheel hijack) ---------- */
+  function enableDragScroll(el){
+    if(!el) return;
+    var down=false,startX=0,startLeft=0,moved=false;
+    el.addEventListener('pointerdown',function(e){
+      if(e.pointerType==='mouse' && e.button!==0) return;
+      down=true;moved=false;startX=e.clientX;startLeft=el.scrollLeft;
+    });
+    el.addEventListener('pointermove',function(e){
+      if(!down) return;
+      var dx=e.clientX-startX;
+      if(!moved && Math.abs(dx)>4){ moved=true; el.classList.add('dragging'); el.setPointerCapture&&el.setPointerCapture(e.pointerId); } /* 4px 이동 후에만 캡처 → 단순 클릭은 캡처되지 않아 체크박스·카트 클릭 정상 작동 */
+      if(moved) el.scrollLeft=startLeft-dx;
+    });
+    function end(){ if(!down) return; down=false; el.classList.remove('dragging'); }
+    el.addEventListener('pointerup',end); el.addEventListener('pointercancel',end);
+    el.addEventListener('click',function(e){ if(moved){ e.preventDefault(); e.stopPropagation(); } },true);
+    // NOTE: no wheel handler — mouse wheel scrolls the page normally; move the list by dragging.
+  }
+  enableDragScroll(document.getElementById('bsList'));
+
+  /* 베스트셀러 카드의 장바구니 아이콘 → 장바구니 페이지 */
+  (function(){
+    var list=document.getElementById('bsList'); if(!list) return;
+    list.addEventListener('click',function(e){ if(e.target.closest('.cart')){ location.href='장바구니.html'; } });
+  })();
+
+  /* ---------- HERO 2: full-width center-mode banner carousel, infinite auto-roll ---------- */
+  (function(){
+    var track=document.getElementById('hero2Track'); if(!track) return;
+    var stage=track.parentElement;
+    var idxEl=document.getElementById('hero2Idx'),totalEl=document.getElementById('hero2Total'),
+        prev=document.getElementById('hero2Prev'),next=document.getElementById('hero2Next'),bar=document.getElementById('hero2Bar');
+    var reals=[].slice.call(track.children), N=reals.length;
+    if(totalEl) totalEl.textContent=N;
+    var head=document.createDocumentFragment(), tail=document.createDocumentFragment();
+    reals.forEach(function(c){ head.appendChild(c.cloneNode(true)); });
+    reals.forEach(function(c){ tail.appendChild(c.cloneNode(true)); });
+    track.insertBefore(head, track.firstChild); track.appendChild(tail);
+    var cards=[].slice.call(track.children); // 3N
+    var active=N, timer, normTimer, baseX=0, curW=405, curG=24;
+    /* uniform G → every inter-card gap is identical; active card is actually wider/taller */
+    function vw(){ return document.documentElement.clientWidth || window.innerWidth; }
+    function sizes(){ var w=vw(); if(w<=600){ var A=Math.min(350,w-40), r=A/350; return {W:Math.round(304*r),H:Math.round(345*r),A:A,AH:Math.round(397*r),G:8}; } if(w<=1000) return {W:320,H:365,A:370,AH:420,G:20}; if(w<=1139) return {W:344,H:390,A:396,AH:448,G:20}; return {W:405,H:460,A:467,AH:530,G:24}; }
+    function apply(anim){
+      var s=sizes(); curW=s.W; curG=s.G;
+      stage.style.height=s.AH+'px'; track.style.height=s.AH+'px';
+      track.style.transition=anim?'':'none';
+      track.style.gap=s.G+'px';
+      cards.forEach(function(c,i){ var on=i===active; c.style.transition=anim?'':'none';
+        c.style.width=(on?s.A:s.W)+'px'; c.style.height=(on?s.AH:s.H)+'px'; c.classList.toggle('active',on); });
+      // cards before the active one are all width W → active centre is exact
+      baseX=Math.round(stage.clientWidth/2-(active*(s.W+s.G)+s.A/2));
+      track.style.transform='translateX('+baseX+'px)';
+      if(!anim){ void track.offsetWidth; track.style.transition=''; cards.forEach(function(c){ c.style.transition=''; }); }
+      var real=((active-N)%N+N)%N;
+      if(idxEl) idxEl.textContent=real+1;
+      var idx2=document.getElementById('hero2Idx2'); if(idx2) idx2.textContent=real+1;
+      var tot2=document.getElementById('hero2Total2'); if(tot2) tot2.textContent=N;
+      if(bar){ var bw=bar.parentElement.clientWidth,frac=N>1?real/(N-1):0; bar.style.left=Math.round(frac*(bw-bar.offsetWidth))+'px'; }
+    }
+    function normalize(){ var a=active; while(a<N)a+=N; while(a>=2*N)a-=N; if(a!==active){ active=a; apply(false); } }
+    function go(dir){ active+=dir; apply(true); clearTimeout(normTimer); normTimer=setTimeout(normalize,650); }
+    if(prev) prev.addEventListener('click',function(){ go(-1); restart(); });
+    if(next) next.addEventListener('click',function(){ go(1); restart(); });
+    function restart(){ clearInterval(timer); timer=setInterval(function(){ go(1); },5000); }
+
+    /* click-and-drag to move sideways (mouse + touch); snaps to nearest card on release */
+    var down=false,startX=0,startBase=0,moved=false;
+    track.addEventListener('pointerdown',function(e){
+      if(e.pointerType==='mouse' && e.button!==0) return;
+      down=true;moved=false;startX=e.clientX;startBase=baseX;
+      track.classList.add('dragging'); track.setPointerCapture&&track.setPointerCapture(e.pointerId);
+      clearInterval(timer);
+    });
+    track.addEventListener('pointermove',function(e){
+      if(!down) return;
+      var dx=e.clientX-startX; if(Math.abs(dx)>4) moved=true;
+      track.style.transform='translateX('+(startBase+dx)+'px)';
+    });
+    function endDrag(e){
+      if(!down) return; down=false; track.classList.remove('dragging');
+      var dx=(e&&typeof e.clientX==='number'?e.clientX:startX)-startX;
+      var steps=Math.round(-dx/(curW+curG));
+      if(steps!==0){ active+=steps; }
+      apply(true); clearTimeout(normTimer); normTimer=setTimeout(normalize,650); restart();
+    }
+    track.addEventListener('pointerup',endDrag);
+    track.addEventListener('pointercancel',endDrag);
+    // clicking a non-centre card centres it; suppress the click if the user was dragging
+    cards.forEach(function(c,i){ c.addEventListener('click',function(e){ if(moved){ e.preventDefault(); return; } if(i!==active){ go(i-active); restart(); } }); });
+
+    var sec=document.getElementById('hero2');
+    sec.addEventListener('mouseenter',function(){ clearInterval(timer); });
+    sec.addEventListener('mouseleave',function(){ if(!down) restart(); });
+    var lastVW=vw();
+    window.addEventListener('resize',function(){ var w=vw(); if(w===lastVW) return; /* 세로 스크롤(URL바 접힘=높이만 변경)은 무시 */ lastVW=w; apply(false); });
+    window.addEventListener('load',function(){ lastVW=vw(); apply(false); });
+    apply(false); restart();
+  })();
+
+  /* ---------- NETUTOR: scale arc to fit + wheel/click rotate with center red focus ---------- */
+  (function(){
+    var wrap=document.getElementById('ntWrap'),cardsWrap=document.getElementById('ntCards');
+    if(!wrap||!cardsWrap) return;
+    var cards=[].slice.call(cardsWrap.querySelectorAll('.nt-card'));
+    var M=cards.length; // 6
+    // 6 stops: 5 visible arc slots + 1 hidden. Stop 2 = centre (red). Hidden sits at the right-low spot (opacity 0).
+    var stops=[{l:32,t:260},{l:407,t:130},{l:782,t:0},{l:1157,t:130},{l:1532,t:260},{l:1600,t:440,hidden:true}];
+    var CENTER=2, HIDDEN=5, offset=0; // default: E-Book·어휘·문법문제뱅크(center)·NELT·성취 shown, 문법예문검색 hidden
+    function isArc(){ return window.innerWidth>1023; }
+    function stopOf(c){ return ((c+offset)%M+M)%M; }
+    function render(){
+      if(!isArc()){ cards.forEach(function(c){ c.classList.remove('red'); c._stop=undefined; c.style.opacity=''; c.style.pointerEvents=''; var im=c.querySelector('.ic img'); if(im){ var n=im.getAttribute('data-n'); if(n) im.src=n; } }); return; }
+      cards.forEach(function(card,c){
+        var s=stopOf(c), prev=card._stop, st=stops[s];
+        var entering=(prev===HIDDEN) && !st.hidden; /* 초기 로드(prev undefined)에는 애니메이션 없이 바로 최종 위치에 배치 → 카드가 stop 위치에 정확히 정착 */
+        var targetOp=st.hidden?'0':'1';
+        if(entering){                       // rise up from the lower-outer corner into place
+          var side=st.l<782?-1:1;          // left half enters from lower-left, right half from lower-right
+          card.style.transition='none';
+          card.style.left=(st.l+side*90)+'px'; card.style.top=(st.t+150)+'px'; card.style.opacity='0';
+          void card.offsetWidth;
+          card.style.transition='';
+          card.style.left=st.l+'px'; card.style.top=st.t+'px'; card.style.opacity=targetOp;
+        } else {
+          card.style.transition='';
+          card.style.left=st.l+'px'; card.style.top=st.t+'px';
+          card.style.opacity=targetOp;
+        }
+        card.style.pointerEvents=st.hidden?'none':'auto';
+        card.classList.toggle('red', s===CENTER);
+        var img=card.querySelector('.ic img');
+        if(img){ var w=img.getAttribute('data-w'), n=img.getAttribute('data-n'); if(n){ img.src=(s===CENTER&&w)?w:n; } }
+        card._stop=s;
+      });
+    }
+    function scale(){
+      if(isArc()){
+        /* 100%에서 약간만 축소(90%). 단, PC 좁은 폭(1024~1139)에선 조금 더 축소해 카드가 덜 잘리게 */
+        var s=(window.innerWidth>=1024 && window.innerWidth<=1139) ? 0.78 : 0.9;
+        wrap.style.transform='scale('+s+')';
+        wrap.parentElement.style.height=(542*s)+'px';
+      } else {
+        wrap.style.transform=''; wrap.parentElement.style.height='';
+        cards.forEach(function(card){ card.style.left=''; card.style.top=''; card.style.opacity=''; card.style.pointerEvents=''; });
+      }
+    }
+    // Wheel rotates the banners ONLY when the cursor is over the centre zone (text/logo);
+    // there it captures the wheel so the page does not scroll. Elsewhere the page scrolls normally.
+    var acc=0,lastT=0;
+    function onWheel(e){
+      if(!isArc()) return;
+      // only capture the wheel over the INNER area (left-mid ~ right-mid). The two end boxes
+      // and the empty sides let the page scroll normally, so you can reach 공지사항 easily.
+      var c1,c3; cards.forEach(function(c){ if(c._stop===1)c1=c; if(c._stop===3)c3=c; });
+      if(c1&&c3){ var L=c1.getBoundingClientRect().left, R=c3.getBoundingClientRect().right;
+        if(e.clientX<L || e.clientX>R) return; }
+      e.preventDefault();
+      var now=Date.now(); if(now-lastT>400) acc=0; lastT=now; acc+=e.deltaY;
+      if(acc>=90){ offset++; acc=0; render(); } else if(acc<=-90){ offset--; acc=0; render(); }
+    }
+    // wheel over the INNER NETutor boxes rotates the banners (end boxes excluded — see onWheel)
+    wrap.addEventListener('wheel',onWheel,{passive:false});
+    cards.forEach(function(card,c){ card.addEventListener('click',function(){ if(!isArc()) return; var s=stopOf(c); if(s===HIDDEN) return; offset+=(CENTER-s); render(); }); });
+    window.addEventListener('resize',function(){ scale(); render(); });
+    window.addEventListener('load',function(){ scale(); render(); });
+    scale(); render();
+  })();
+
+  /* ---------- Floating menu: parked level with the icon row, then pins 40px above the viewport bottom ---------- */
+  (function(){
+    var el=document.querySelector('.floating');
+    var anchorEl=document.querySelector('.mainicons .row')||document.querySelector('.mainicons');
+    if(!el||!anchorEl) return;
+    var GAP=40;
+    function home(){ return Math.round(anchorEl.getBoundingClientRect().top+window.scrollY); }
+    function onScroll(){
+      if(window.innerWidth<=767){ el.classList.remove('is-fixed'); el.style.top=''; el.style.bottom=''; return; }
+      var fh=el.offsetHeight;
+      var switchAt=home()-(window.innerHeight-fh-GAP);   // scroll point where the parked menu reaches bottom-40
+      if(window.scrollY>=switchAt){ el.classList.add('is-fixed'); el.style.top='auto'; el.style.bottom=GAP+'px'; }
+      else { el.classList.remove('is-fixed'); el.style.bottom=''; el.style.top=home()+'px'; }
+    }
+    window.addEventListener('scroll',onScroll,{passive:true});
+    window.addEventListener('resize',onScroll);
+    window.addEventListener('load',onScroll);
+    document.addEventListener('DOMContentLoaded',onScroll);
+    [].forEach.call(document.querySelectorAll('.hero img,.mainicons img'),function(im){ im.addEventListener('load',onScroll); });
+    setTimeout(onScroll,300); setTimeout(onScroll,1000);
+    onScroll();
+  })();
+
+  /* ---------- GNB mega-dropdown: hover / click a menu to open its panel ---------- */
+  (function(){
+    var gnb=document.querySelector('.gnb'); if(!gnb) return;
+    var drop=document.getElementById('gnbDrop'); if(!drop) return;
+    var cats=drop.querySelector('.gd-cats');
+    var items=[].slice.call(gnb.querySelectorAll('nav a'));
+    var MENU={
+      'ELT':['Coursebook','Phonics','Readers','Reading','Listening','Speaking','Writing','Grammar','Vocabulary'],
+      '초/중등':['중학내신','고등선행','어휘','Phonics','쓰기','독해','듣기','문법/구문','TOEFL/TEPS/NELT'],
+      '고등':['어휘','독해','듣기','문법/구문','수능대비','고교내신','단기특강','TOEFL/TEPS/NELT'],
+      '교과서/자습서':['중학영어 교과서','고등영어 교과서','수학 교과서','중국어/일본어'],
+      '수험/일반':['TOEIC','TOEIC Speaking/Writing','TOEFL/OPIC/TEPS','FLEX','일반영어'],
+      '수학/국어':['유아','초등','중등','고등'],
+      '학습자료실':['서브메인','ELT자료','초/중등교재 자료','고등교재 자료','교과서/자습서 자료','수험/일반 자료','수학/국어 자료'],
+      '도서몰':['ELT','초/중등','고등영어 교과서','교과서/자습서','수험/일반','교구/부가상품','세트/패키지','온라인 서비스/이용권']
+    };
+    var closeT;
+    function openFor(a){
+      var name=a.textContent.trim();
+      var mega=(name==='학습자료실'||name==='도서몰');
+      var BR='<div class="gd-brands"><a class="gd-btn blue" href="#">Come on Series <span>&#8250;</span></a><a class="gd-btn navy" href="#">Oxford <span>&#8250;</span></a></div>';
+      if(mega){
+        var COLS=[['ELT','Coursebook','Phonics','Reading','Readers','Listening','Speaking','Grammar','Writing','Vocabulary'],['초등/중등','중학 내신','고등 선행','파닉스','어휘','쓰기','독해','듣기','문법/구분','TOEFL/TEPS/NELT'],['고등','어휘','독해','듣기','문법/구분','수능 대비','고교 내신','단기 특강','TOEFL/TEPS/NELT'],['교과서/자습서','중학영어 교과서','고등영어 교과서','수학 교과서','중국어/일본어'],['수험/일반','TOEIC','TOEIC SPEAKING|/WRITING','TOEFL/OPIC/TEPS','FLEX','일반영어'],['수학/국어','유아','초등','중등','고등']];
+        drop.innerHTML=COLS.map(function(c){ return '<div class="gd-col"><p class="gd-col-t">'+c[0]+'</p><div class="items">'+c.slice(1).map(function(i){ return '<a href="리스트_교재구매.html">'+i.replace('|','<br>')+'</a>'; }).join('')+'</div></div>'; }).join('')+BR;
+        drop.classList.add('mega');
+      } else {
+        var list=MENU[name]; if(!list){ hide(); return; }
+        drop.innerHTML='<div class="gd-cats">'+list.map(function(t){ return '<a href="리스트_교재구매.html">'+t+'</a>'; }).join('')+'</div>'+BR;
+        drop.classList.remove('mega');
+      }
+      items.forEach(function(x){ x.classList.toggle('on',x===a); });
+      drop.classList.add('open');
+      if(mega){ var gw=gnb.getBoundingClientRect().width; var ml=Math.round((gw-drop.offsetWidth)/2); drop.style.left=(ml>0?ml:0)+'px'; }
+      else{
+        var gr=gnb.getBoundingClientRect(), ir=a.getBoundingClientRect();
+        var left=Math.round(ir.left-gr.left-24);
+        var maxLeft=Math.round(gr.width-drop.offsetWidth);
+        if(left>maxLeft) left=maxLeft; if(left<0) left=0;
+        drop.style.left=left+'px';
+      }
+    }
+    function hide(){ drop.classList.remove('open'); items.forEach(function(x){ x.classList.remove('on'); }); }
+    items.forEach(function(a){
+      a.addEventListener('mouseenter',function(){ clearTimeout(closeT); openFor(a); });
+      a.addEventListener('focus',function(){ openFor(a); });
+      a.addEventListener('click',function(e){ if(MENU[a.textContent.trim()]){ e.preventDefault(); openFor(a); } });
+    });
+    gnb.addEventListener('mouseleave',function(){ closeT=setTimeout(hide,160); });
+    gnb.addEventListener('mouseenter',function(){ clearTimeout(closeT); });
+    document.addEventListener('click',function(e){ if(!gnb.contains(e.target)) hide(); });
+    document.addEventListener('keydown',function(e){ if(e.key==='Escape') hide(); });
+  })();
+
+  /* ---------- 가로 스와이프/드래그 스크롤 (주요아이콘 · 베스트셀러 탭) ---------- */
+  (function(){
+    function dragScroll(el){
+      if(!el) return;
+      var down=false,startX=0,startScroll=0,moved=false;
+      el.addEventListener('pointerdown',function(e){
+        if(e.pointerType!=='mouse') return;        /* 터치·펜은 네이티브 스크롤 사용 */
+        if(e.button!==0) return;
+        down=true;moved=false;startX=e.clientX;startScroll=el.scrollLeft;
+        el.style.cursor='grabbing';
+        try{ el.setPointerCapture(e.pointerId); }catch(_){}
+      });
+      el.addEventListener('pointermove',function(e){
+        if(!down) return;
+        var dx=e.clientX-startX;
+        if(Math.abs(dx)>3) moved=true;
+        el.scrollLeft=startScroll-dx;
+      });
+      function end(){ if(!down) return; down=false; el.style.cursor=''; }
+      el.addEventListener('pointerup',end);
+      el.addEventListener('pointercancel',end);
+      el.addEventListener('pointerleave',end);
+      el.addEventListener('click',function(e){ if(moved){ e.preventDefault(); e.stopPropagation(); } },true);
+    }
+    dragScroll(document.querySelector('.mainicons .row'));
+    dragScroll(document.querySelector('.bs-tabs'));
+  })();
+
+})();
+</script>
+</body>
+</html>
