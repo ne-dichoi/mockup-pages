@@ -479,6 +479,25 @@
   .bs-title-menu[hidden]{display:none;}
   .bs-title-menu li{padding:12px 16px;border-radius:8px;font-size:15px;font-weight:600;color:#333;cursor:pointer;white-space:nowrap;text-align:left;}
   .bs-title-menu li:hover,.bs-title-menu li.on{background:#f5f6f8;color:#e83828;}
+
+  /* ===== 모바일 퀵 상담 (FAB) — 모바일 전용 ===== */
+  .mquick{display:none;}
+  @media (max-width:767px){
+    .mquick{display:block;}
+    .mquick-dim{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:900;opacity:0;visibility:hidden;transition:opacity .2s;}
+    .mquick.open .mquick-dim{opacity:1;visibility:visible;}
+    .mquick-fab{position:fixed;right:16px;bottom:18px;width:56px;height:56px;border-radius:50%;background:#fe6b01;border:0;box-shadow:0 6px 18px rgba(0,0,0,.28);display:flex;align-items:center;justify-content:center;z-index:920;cursor:pointer;padding:0;transition:background .2s;}
+    .mquick-fab .mq-chat{width:26px;height:26px;filter:brightness(0) invert(1);}
+    .mquick-fab .mq-x{display:none;color:#fff;font-size:22px;line-height:1;}
+    .mquick.open .mquick-fab{background:#e05f00;}
+    .mquick.open .mquick-fab .mq-chat{display:none;}
+    .mquick.open .mquick-fab .mq-x{display:block;}
+    .mquick-menu{position:fixed;right:16px;bottom:86px;display:flex;flex-direction:column;align-items:flex-end;gap:12px;z-index:920;opacity:0;visibility:hidden;transform:translateY(12px);transition:.2s;pointer-events:none;}
+    .mquick.open .mquick-menu{opacity:1;visibility:visible;transform:none;pointer-events:auto;}
+    .mquick-item{display:flex;align-items:center;gap:12px;background:#fff;border-radius:999px;padding:9px 10px 9px 20px;box-shadow:0 4px 14px rgba(0,0,0,.2);text-decoration:none;color:#191919;font-size:14.5px;font-weight:600;white-space:nowrap;}
+    .mquick-item .mq-ic{width:32px;height:32px;border-radius:50%;background:#fe6b01;display:flex;align-items:center;justify-content:center;flex:none;}
+    .mquick-item .mq-ic img{width:17px;height:17px;filter:brightness(0) invert(1);}
+  }
 </style>
 </head>
 <body class="page-index">
@@ -729,6 +748,20 @@
     <div class="float-card"><span class="ico"><img src="assets/ic_float_math.svg" alt=""></span><span>수학 교재 안내</span></div>
   </div>
 
+  <!-- ===== 모바일 퀵 상담 (FAB) ===== -->
+  <div class="mquick" id="mQuick">
+    <div class="mquick-dim" id="mQuickDim"></div>
+    <div class="mquick-menu">
+      <a class="mquick-item" href="고객센터.html"><span>채팅상담</span><span class="mq-ic"><img src="assets/ic_chat.svg" alt=""></span></a>
+      <a class="mquick-item" href="비회원문의.html"><span>1:1 문의</span><span class="mq-ic"><img src="assets/ic_11.svg" alt=""></span></a>
+      <a class="mquick-item" href="고객센터.html"><span>자주묻는질문</span><span class="mq-ic"><img src="assets/ic_faq.svg" alt=""></span></a>
+    </div>
+    <button class="mquick-fab" id="mQuickFab" type="button" aria-label="빠른 상담 열기">
+      <img class="mq-chat" src="assets/ic_chat.svg" alt="">
+      <span class="mq-x">&#10005;</span>
+    </button>
+  </div>
+
 <script>
 (function(){
   'use strict';
@@ -755,6 +788,17 @@
     // NOTE: no wheel handler — mouse wheel scrolls the page normally; move the list by dragging.
   }
   enableDragScroll(document.getElementById('evlistRow'));
+
+  /* ---------- 모바일 퀵 상담 FAB ---------- */
+  (function(){
+    var q=document.getElementById('mQuick'); if(!q) return;
+    var fab=document.getElementById('mQuickFab'), dim=document.getElementById('mQuickDim');
+    function open(){ q.classList.add('open'); fab.setAttribute('aria-label','빠른 상담 닫기'); }
+    function close(){ q.classList.remove('open'); fab.setAttribute('aria-label','빠른 상담 열기'); }
+    fab.addEventListener('click',function(){ q.classList.contains('open')?close():open(); });
+    dim.addEventListener('click',close);
+    document.addEventListener('keydown',function(e){ if(e.key==='Escape') close(); });
+  })();
 
   /* ---------- 맞춤 교재 세트: 교재별 상세보기·장바구니 아이콘 ---------- */
   (function(){
