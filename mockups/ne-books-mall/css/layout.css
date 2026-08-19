@@ -1156,21 +1156,22 @@ a{color:inherit;text-decoration:none;}
 .wl-count .n{color:var(--ink);}
 .wl-clear{height:44px;box-sizing:border-box;border:1px solid var(--btn);border-radius:8px;padding:0 24px;background:#fff;font-family:var(--sans);font-size:14px;font-weight:500;color:var(--ink);cursor:pointer;}
 .wl-clear:hover{background:var(--gray-bg);}
-/* 찜 페이지: 다른 페이지와 동일한 최대폭(1600) 안에서 한 줄 6개(넓은 화면 기준). 카드가 좁아져 금액이 줄바꿈되기 전에 열이 줄어 카드가 아래 줄로. max()로 6열 상한 유지 */
-.wl-grid{margin-top:16px;gap:24px;grid-template-columns:repeat(auto-fill,minmax(max(210px, (100% - 5 * 24px) / 6), 1fr));}
+/* 찜 페이지: 기존 컨테이너(최대폭 1600) 유지, 풀페이지 아님. 검색결과와 동일한 카드 디자인(회색 정사각 박스). 한 줄 5개(넓은 화면), 화면 작아지면 열 감소 */
+.wl-grid{margin-top:16px;gap:24px;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));}
 @media (min-width:1024px){
-  /* 삭제(×)는 카드 기준 오른쪽 16px, 커버는 교재(책) 폭에 맞춰 감싸(좌우 40px 여백) + 높이도 책에 비례(위아래 여백 축소). 장바구니는 책 오른쪽 끝에 걸침. 이미지 비율 유지(잘림 방지) */
-  #tab-wish .wl-grid .mb-card{position:relative;}
-  #tab-wish .wl-grid .mb-cover{width:188px;max-width:calc(100% - 80px);align-self:center;padding:0;box-sizing:border-box;aspect-ratio:188 / 350;height:auto;}
-  #tab-wish .wl-grid .mb-cover img{width:100%;max-width:100%;height:auto;aspect-ratio:188 / 246;object-fit:cover;}
-  #tab-wish .wl-grid .mb-cart{right:-8px;bottom:12%;}
-  /* 제목 영역 2줄 고정(최대 2줄) → 제목 길이 달라도 카드 높이·금액 아래 여백 동일 */
+  /* 카드: 테두리 없음, 회색 정사각 박스(+정보) 세로 배치(간격 24). ×삭제 우상단, 검정 장바구니 버튼은 교재 오른쪽 아래 */
+  #tab-wish .wl-grid .mb-card{position:relative;border:0;border-radius:0;background:transparent;overflow:visible;gap:24px;}
+  /* 회색 박스: 정사각형, 교재는 위아래 45 여백 + 가로 중앙정렬(높이 기준 비율 축소) */
+  #tab-wish .wl-grid .mb-cover{width:100%;height:auto;aspect-ratio:1 / 1;background:#f3f3f3;border-radius:9px;padding:0;box-sizing:border-box;overflow:hidden;display:block;}
+  #tab-wish .wl-grid .mb-cover img{position:absolute;top:45px;left:50%;transform:translateX(-50%);height:calc(100% - 90px);width:auto;max-width:none;aspect-ratio:171 / 223;object-fit:cover;box-shadow:3px 6px 12px rgba(0,0,0,.18);}
+  #tab-wish .wl-grid .mb-cart{left:auto;right:19%;bottom:12%;}
+  /* 제목 영역 2줄 고정 */
   #tab-wish .wl-grid .mb-title{min-height:44px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
   /* 금액 숫자가 중간에 끊기지 않게(1줄), 부득이하면 정가만 아래로 */
   #tab-wish .wl-grid .mb-price{flex-wrap:wrap;}
   #tab-wish .wl-grid .mb-price b,#tab-wish .wl-grid .mb-price s{white-space:nowrap;}
   #tab-wish .wl-grid .mb-price b{font-size:16px;}
-  #tab-wish .wl-grid .mb-info{padding:0 32px 40px 32px;}
+  #tab-wish .wl-grid .mb-info{padding:0 24px 40px 24px;}
   /* 교재 이미지·상품명은 클릭 시 상세로 이동 → 커서 안내 */
   #tab-wish .wl-grid .mb-cover img,#tab-wish .wl-grid .mb-title{cursor:pointer;}
 }
