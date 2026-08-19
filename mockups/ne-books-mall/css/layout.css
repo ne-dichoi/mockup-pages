@@ -1169,6 +1169,8 @@ a{color:inherit;text-decoration:none;}
   /* 금액 숫자가 중간에 끊기지 않게(1줄), 부득이하면 정가만 아래로 */
   #tab-wish .wl-grid .mb-price{flex-wrap:wrap;}
   #tab-wish .wl-grid .mb-price b,#tab-wish .wl-grid .mb-price s{white-space:nowrap;}
+  #tab-wish .wl-grid .mb-price b{font-size:16px;}
+  #tab-wish .wl-grid .mb-info{padding:0 32px 40px 32px;}
 }
 /* 홈 찜/최근본 미리보기: 한 줄만 노출(다음 줄로 안 넘기고 폭에 맞는 개수만: 3개 fit→3개, 4개 fit→4개).
    auto-fill로 폭에 맞는 열 수 계산 + 첫 줄만(grid-auto-rows:0 + overflow:hidden) 표시. (≥600, 그리드 모드에서만) */
