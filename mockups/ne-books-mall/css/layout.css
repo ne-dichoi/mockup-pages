@@ -2935,7 +2935,7 @@ body.bsheet-lock{overflow:hidden;}
   /* 가로 스크롤 mb-grid 오버라이드 → 반응형 그리드(화면 넓어지면 열 증가 → 아래 카드 위로 채워짐) */
   .page-my #tab-wish .wl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:40px 12px;overflow:visible;margin-top:0;}
   /* 검색결과 카드 디자인: 회색 정사각 박스 + 교재 축소, ×삭제(우상단)·검정 장바구니(교재 위) */
-  .page-my #tab-wish .wl-grid .mb-card{position:relative;flex:none;width:auto;border:0;background:transparent;overflow:visible;gap:12px;}
+  .page-my #tab-wish .wl-grid .mb-card{position:relative;flex:none;width:auto;border:0;background:transparent;overflow:visible;gap:16px;}
   .page-my #tab-wish .wl-grid .mb-cover{width:100%;height:auto;aspect-ratio:1 / 1;background:#f3f3f3;border-radius:8px;overflow:hidden;padding:0;position:relative;display:block;}
   .page-my #tab-wish .wl-grid .mb-cover img{position:absolute;top:30px;left:50%;transform:translateX(-50%);height:calc(100% - 60px);width:auto;max-width:none;aspect-ratio:171 / 223;object-fit:cover;box-shadow:1.6px 2.9px 6.5px rgba(0,0,0,.18);}
   .page-my #tab-wish .wl-grid .mb-cart{width:36px;height:36px;left:auto;right:12%;bottom:10%;background-size:16px;z-index:2;}
