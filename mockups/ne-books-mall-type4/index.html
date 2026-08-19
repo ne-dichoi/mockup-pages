@@ -231,7 +231,8 @@ button{font-family:inherit;cursor:pointer;border:0;background:none;}
 .n-store{display:grid;grid-template-columns:280px 1fr;gap:24px;}
 .n-store-list{display:flex;flex-direction:column;gap:4px;}
 .n-store-list button{display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:12px;text-align:left;font-size:15px;font-weight:700;color:#333;border:1px solid transparent;}
-.n-store-list button .logo{width:38px;height:38px;border-radius:50%;background:var(--bg-gray);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--purple);overflow:hidden;}
+.n-store-list button .logo{width:38px;height:38px;border-radius:50%;background:var(--bg-gray);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--purple);overflow:hidden;flex:none;}
+.n-store-list button .logo img{width:100%;height:100%;object-fit:cover;object-position:top center;}
 .n-store-list button .tag{font-size:12px;color:var(--sub);font-weight:500;margin-left:auto;}
 .n-store-list button.on{border-color:#111;box-shadow:0 2px 10px rgba(0,0,0,.06);}
 .n-store-list button.on .arw{margin-left:auto;}
@@ -983,15 +984,15 @@ renderGrid('storeProd',STORE_PRODUCTS);
 /* ===== interest series store ===== */
 (function(){
   var SERIES=[
-    {n:'Subject Link', tag:'#리딩스킬'},
-    {n:'중학 영문법 Link', tag:'#중학영문법'},
-    {n:'능률 VOCA 중등', tag:'#중등어휘'},
-    {n:'능률 중학영어 듣기', tag:'#듣기모의고사'},
-    {n:'능률 VOCA 고등', tag:'#고등어휘'}
+    {n:'Subject Link', tag:'#리딩스킬', img:'assets/tab_subjectlink.png'},
+    {n:'중학 영문법 Link', tag:'#중학영문법', img:'assets/tab_jhgrammarlink.jpg'},
+    {n:'능률 VOCA 중등', tag:'#중등어휘', img:'assets/tab_voca_mid.jpg'},
+    {n:'능률 중학영어 듣기', tag:'#듣기모의고사', img:'assets/tab_listening_mid.jpg'},
+    {n:'능률 VOCA 고등', tag:'#고등어휘', img:'assets/tab_voca_high.jpg'}
   ];
   var list=document.getElementById('storeList');
   list.innerHTML=SERIES.map(function(s,i){
-    return '<button class="'+(i===0?'on':'')+'"><span class="logo">'+s.n.slice(0,2)+'</span><span>'+s.n+'</span><span class="tag">'+(i===0?'›':s.tag)+'</span></button>';
+    return '<button class="'+(i===0?'on':'')+'"><span class="logo"><img src="'+s.img+'" alt=""></span><span>'+s.n+'</span><span class="tag">'+(i===0?'›':s.tag)+'</span></button>';
   }).join('');
   [].forEach.call(list.children,function(b){ b.addEventListener('click',function(){ [].forEach.call(list.children,function(x){x.classList.remove('on');}); b.classList.add('on'); }); });
 })();

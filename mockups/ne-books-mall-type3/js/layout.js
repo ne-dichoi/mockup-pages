@@ -7,10 +7,16 @@
       <div class="header-top">
         <a class="logo" href="index.html"><img src="assets/header_logo_dark.png" alt="NE_Books"></a>
         <div class="m-loc"><a class="m-loc-home" href="index.html" aria-label="홈"><img src="assets/ic_home_sub.svg" alt="홈"></a><button class="m-loc-btn" type="button" aria-expanded="false"><span class="m-loc-name"></span><span class="m-loc-caret"></span></button></div>
-        <div class="search">
-          <input type="text" class="search-input" placeholder="검색어를 입력해 주세요." autocomplete="off">
-          <button type="button" class="search-ic ico" aria-label="검색"><img src="assets/ds_ic_search.svg" alt=""></button>
-          <div class="search-pop" hidden></div>
+        <div class="search-wrap">
+          <div class="search">
+            <input type="text" class="search-input" placeholder="필요한 교재, 3초 안에 찾기!" autocomplete="off">
+            <button type="button" class="search-ic ico" aria-label="검색"><img src="assets/ds_ic_search_red.svg" alt=""></button>
+            <div class="search-pop" hidden></div>
+          </div>
+          <div class="search-extra only-pc">
+            <a class="se-btn" href="https://nebooks.co.kr/nepick/index.asp" target="_blank" rel="noopener">맞춤교재찾기</a>
+            <a class="se-btn" href="index.html#courseSec">추천커리큘럼</a>
+          </div>
         </div>
         <div class="head-icons">
           <a class="head-ic" href="index.html"><span class="ico"><img src="assets/ic_login_d.svg" alt=""></span><span>로그인</span></a>
