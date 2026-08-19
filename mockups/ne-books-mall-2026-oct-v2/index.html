@@ -269,25 +269,25 @@
   .cn-bn-series a{padding:6px 14px;border-radius:9999px;background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.08);font-size:13px;color:#191919;box-shadow:0 1px 3px rgba(0,0,0,.05);cursor:pointer;transition:background .15s,color .15s,border-color .15s;}
   .cn-bn-series a.on{background:#191919;color:#fff;border-color:#191919;font-weight:700;}
   .cn-bn-books{display:flex;gap:11px;}
-  .cn-bn-book{flex:1 1 0;min-width:0;max-width:100%;display:flex;flex-direction:column;align-items:center;gap:8px;}
+  .cn-bn-book{flex:1 1 0;min-width:0;max-width:100%;display:flex;flex-direction:column;align-items:flex-start;gap:8px;}
   .cn-bn-book-img{position:relative;width:100%;display:block;cursor:pointer;}
   .cn-bn-book-img img{width:100%;aspect-ratio:732/957;object-fit:cover;border-radius:8px;box-shadow:3px 7px 16px rgba(0,0,0,.22);background:#fff;display:block;}
   .cn-bn-cart{position:absolute;right:6px;bottom:6px;width:36px;height:36px;background:#262626;border:0;border-radius:999px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 3px 8px rgba(0,0,0,.3);z-index:2;}
   .cn-bn-cart svg{width:18px;height:18px;display:block;}
-  .cn-bn-book .nm{font-size:11px;color:#555;line-height:1.3;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:100%;}
-  /* 교재 할인가/정가 (제목 밑, 항상 한 줄 → 카드 높이 균일: 시리즈 무관 동일 크기). 카드 폭 넘으면 … 처리 */
-  .cn-bn-price{margin-top:4px;display:flex;flex-flow:row nowrap;justify-content:center;align-items:baseline;gap:4px;width:100%;white-space:nowrap;overflow:hidden;}
-  .cn-bn-price .now{font-size:10.5px;font-weight:800;color:#191919;flex:none;}
-  .cn-bn-price .was{font-size:9px;color:#bbb;text-decoration:line-through;flex:none;overflow:hidden;text-overflow:ellipsis;}
+  /* 교재명: 좌측 정렬 · 최대 2줄 (공통 → PC/모바일 동일 스타일) */
+  .cn-bn-book .nm{font-size:11px;color:#191919;line-height:1.35;text-align:left;white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:calc(1.35em * 2);width:100%;}
+  /* 가격: 정가(취소선) 위 / 할인율(빨강)+할인가 아래, 좌측 정렬 (공통) */
+  .cn-bn-price{margin-top:2px;display:flex;flex-flow:column-reverse;justify-content:flex-start;align-items:flex-start;gap:1px;width:100%;}
+  .cn-bn-price .now{font-size:12px;font-weight:800;color:#191919;}
+  .cn-bn-price .was{font-size:10px;color:#bbb;text-decoration:line-through;}
   .cn-bn-price .now .rate{color:#e83828;font-weight:800;margin-right:4px;font-style:normal;}
-  /* PC 전용: 상단 교재 확대 + 교재명(2줄)·가격(정가 취소선 위 / 할인율·할인가 아래) 레이아웃 */
+  /* PC 전용: 상단 교재 확대 + 교재명·가격 글자 크기 키움 */
   @media (min-width:1024px){
     .cn-bn-books{gap:16px;}
-    .cn-bn-book{align-items:flex-start;gap:10px;}
-    .cn-bn-book .nm{font-size:13px;color:#191919;line-height:1.4;text-align:left;white-space:normal;text-overflow:clip;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:calc(1.4em * 2);}
-    .cn-bn-price{margin-top:2px;flex-flow:column-reverse;justify-content:flex-start;align-items:flex-start;gap:1px;white-space:normal;overflow:visible;}
-    .cn-bn-price .was{font-size:12.5px;}
+    .cn-bn-book{gap:10px;}
+    .cn-bn-book .nm{font-size:13px;line-height:1.4;min-height:calc(1.4em * 2);}
     .cn-bn-price .now{font-size:16px;}
+    .cn-bn-price .was{font-size:12.5px;}
     .cn-bn-cart{width:38px;height:38px;}
     .cn-bn-cart svg{width:19px;height:19px;}
   }
@@ -302,9 +302,17 @@
   .cn-bn-right--promo img{width:60%;height:auto;max-height:100%;object-fit:contain;display:block;}
   /* PC 전용: 프로모션 배너 이미지 65% + 왼쪽으로 더 들여오기, 교재 영역도 좌측 이동 (배너 세로값은 유지) */
   @media (min-width:1024px){
+    /* 혼강 세미나(기본): 65% + 왼쪽으로 들여오기 */
     .cn-bn-right--promo{justify-content:flex-start;margin-left:-60px;}
     .cn-bn-right--promo img{width:65%;}
     .cn-bn-right--promo .bluedot{margin-left:0;margin-right:auto;width:300px;height:300px;}
+    /* OUP 코스북 신간: 이미지 오른쪽으로 */
+    .cn-b--oup .cn-bn-right--promo{justify-content:flex-end;margin-left:0;}
+    .cn-b--oup .cn-bn-right--promo .bluedot{margin-left:auto;margin-right:0;}
+    /* 예비 중등 추천: 이미지 조금 더 크게 + 왼쪽 배치 */
+    .cn-b--yebi .cn-bn-right--promo{margin-left:-85px;}
+    .cn-b--yebi .cn-bn-right--promo img{width:73%;}
+    /* 교재 영역: 왼쪽으로 이동 */
     .cn-bn-right:not(.cn-bn-right--promo){margin-left:-40px;}
   }
   /* Blue Dot (OUP 코스북) 로고 재구성 */
@@ -319,7 +327,7 @@
     /* 교재 표지: 폭 무관 '고정 크기' → 모든 시리즈/화면폭에서 동일한 교재 크기 (넘치면 가로 스와이프). 약 3.7개 노출 */
     .cn-bn-books{overflow-x:auto;scrollbar-width:none;gap:8px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;min-width:0;max-width:100%;}
     .cn-bn-books::-webkit-scrollbar{display:none;}
-    .cn-bn-book{flex:0 0 104px;min-width:0;scroll-snap-align:start;}
+    .cn-bn-book{flex:0 0 118px;min-width:0;scroll-snap-align:start;}
     .cn-cat--promo{display:none;}
     .cn-cat-divider{display:none;}
     .cn-mo-promo{display:block;margin-top:14px;}
@@ -444,17 +452,15 @@
     /* 서브카피 ↔ 시리즈 탭 간격은 넉넉히 (제목↔서브카피는 줄임) */
     .cn-banner{gap:22px;}
     .cn-bn-desc{margin-bottom:0;}
-    /* 가격 할인율(빨강)은 PC 전용 → 모바일에서는 숨겨 기존 표기 유지 */
-    .cn-bn-price .now .rate{display:none;}
   }
   @media (max-width:767px){
     .v3-head .tt{font-size:24px;}
     .cn-banner{padding:24px;min-height:0;}
     /* 제목: 한 줄 고정 + 살짝 축소, 서브카피와의 간격은 축소 */
     .cn-bn-ttl{font-size:24px;margin-bottom:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-height:0;}
-    /* 교재 표지는 위 1023 규칙에서 고정 크기(90px)로 통일 — 가격만 폭에 맞춰 축소 */
-    .cn-bn-price .now{font-size:10px;}
-    .cn-bn-price .was{font-size:8.5px;}
+    /* 가격: 스택 레이아웃에 맞춘 크기 (할인율 빨강 + 할인가 / 정가 취소선) */
+    .cn-bn-price .now{font-size:11px;}
+    .cn-bn-price .was{font-size:9.5px;}
     /* 메인 아이콘: 한 줄에 3.5개 노출 + 첫 아이콘 시작 위치를 앞(왼쪽)으로 당겨 오른쪽 peek를 더 깊게 */
     .mainicons .container{padding-inline:10px !important;}
     .mainicons .row{gap:12px !important;justify-content:flex-start !important;}
@@ -895,15 +901,15 @@
         ttl:'수능 어휘, 지금부터', desc:'유형별 독해·구문·어휘 수능 전략서',
         tabs:['능률 VOCA','내신백신','수능만만'],
         books:[{c:'assets/pk_high1.jpg',n:'능률VOCA 어원편 고등 (2025 개정)'},{c:'assets/pk_high2.jpg',n:'능률VOCA 고등 기본 (2025 개정)'},{c:'assets/pk_high3.jpg',n:'능률VOCA 수능 필수 (2025 개정)'},{c:'assets/pk_high4.jpg',n:'능률VOCA 어원편 (2021 개정)'},{c:'assets/pk_high5.jpg',n:'능률VOCA 수능 고난도 (2025 개정)'}]},
-      {name:'예비 중등 추천', type:'promo', bg:'#fff8ea', flag:'내신 영어 기초 쌓기',
+      {name:'예비 중등 추천', type:'promo', key:'yebi', bg:'#fff8ea', flag:'내신 영어 기초 쌓기',
         ttl:'내신을 결정짓는<br>예비 중등 추천 교재',
         desc:'본격 중학 전, 지금이 가장 빠른 시작',
         img:'assets/hero_c2.png'},
-      {name:'혼강 세미나', type:'promo', dark:true, bg:'#fe6b01', flag:'YouTube Live',
+      {name:'혼강 세미나', type:'promo', key:'hongang', dark:true, bg:'#fe6b01', flag:'YouTube Live',
         ttl:'2학기가 달라지는 여름,<br>8월의 혼강 세미나',
         desc:'고등·중등을 한 번에 채우는 8월 세미나',
         img:'assets/hero_c1.png'},
-      {name:'OUP 코스북 신간', type:'promo', bg:'#e4f6ee', flag:'🔔 OUP 코스북 신간',
+      {name:'OUP 코스북 신간', type:'promo', key:'oup', bg:'#e4f6ee', flag:'🔔 OUP 코스북 신간',
         ttl:'세상을 배우고<br>행동하는 힘, Blue Dot',
         desc:'글로벌 테마로 배우는 새로운 영어 수업',
         rightHTML:'<div class="bluedot"><span class="bd-rays"></span><span class="bd-globe"><b class="bd-word">Blue<br>Dot</b></span></div>'}
@@ -938,7 +944,7 @@
     function priceFor(n){
       var h=0; for(var i=0;i<n.length;i++){ h=(h*31+n.charCodeAt(i))>>>0; }
       var orig=(11+(h%10))*1000;                    // 11,000 ~ 20,000
-      var rate=[10,15,20,25][h%4];
+      var rate=10;                                   // 할인율 10% 고정 (PC/MO 공통)
       var unit=Math.round(orig*(100-rate)/100/100)*100; // 100원 단위 반올림
       return {orig:orig, unit:unit, rate:rate};
     }
@@ -958,7 +964,7 @@
       btns.forEach(function(b,idx){ b.classList.toggle('on',idx===i); });
       var c=CATS[i];
       bnEl.style.background=c.bg;
-      bnEl.className='cn-banner'+(c.type==='promo'?' cn-banner--promo':'')+(c.dark?' cn-banner--dark':'');
+      bnEl.className='cn-banner'+(c.type==='promo'?' cn-banner--promo':'')+(c.dark?' cn-banner--dark':'')+(c.key?' cn-b--'+c.key:'');
       var right;
       if(c.type==='promo'){
         right='<div class="cn-bn-right cn-bn-right--promo">'+(c.rightHTML?c.rightHTML:'<img src="'+c.img+'" alt="'+c.name+'">')+'</div>';
