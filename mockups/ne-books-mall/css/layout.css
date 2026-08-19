@@ -3895,7 +3895,8 @@ body.bsheet-lock{overflow:hidden;}
 .sr-wish{position:absolute;right:16px;top:16px;width:22px;height:22px;padding:0;border:0;background:transparent;cursor:pointer;line-height:0;}
 .sr-wish img{width:22px;height:22px;display:block;}
 
-.sr-info{display:flex;flex-direction:column;gap:8px;padding-bottom:40px;min-width:0;}
+/* 정보 컨테이너: 카드(회색박스) 기준 가로 중앙정렬, 내부 컨텐츠는 좌측정렬. 폭은 컨트롤 행(장바구니+스테퍼+바로구매) 기준 */
+.sr-info{display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding-bottom:40px;width:230px;max-width:100%;margin-left:auto;margin-right:auto;box-sizing:border-box;}
 .sr-cat{align-self:flex-start;border:1px solid var(--red);color:var(--red);border-radius:999px;font-size:12px;font-weight:500;padding:4px 12px;white-space:nowrap;}
 /* 교재명: 최대 2줄까지 */
 .sr-title{font-size:16px;font-weight:500;line-height:22px;color:var(--ink);text-decoration:none;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:44px;}
