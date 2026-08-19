@@ -256,6 +256,7 @@
   .cn-cat:hover{background:#f7f8fa;color:#191919;}
   .cn-cat.on{background:#e83828;color:#fff;font-weight:700;}
   .cn-cat.on .arw{opacity:1;}
+  .cn-cat-divider{height:1px;background:#ededed;margin:9px 8px;}
   .cn-banner{position:relative;border-radius:14px;overflow:hidden;padding:40px 40px;min-height:390px;display:grid;grid-template-columns:1fr 520px;gap:44px;align-items:center;transition:background .35s ease;}
   .cn-bn-left{display:flex;flex-direction:column;align-items:flex-start;}
   .cn-bn-flag{font-size:15px;font-weight:700;color:#e83828;margin-bottom:18px;}
@@ -301,6 +302,7 @@
     .cn-bn-books::-webkit-scrollbar{display:none;}
     .cn-bn-book{flex:0 0 104px;min-width:0;scroll-snap-align:start;}
     .cn-cat--promo{display:none;}
+    .cn-cat-divider{display:none;}
     .cn-mo-promo{display:block;margin-top:14px;}
     .cn-mo-track{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;cursor:grab;}
     .cn-mo-track::-webkit-scrollbar{display:none;}
@@ -888,7 +890,9 @@
     var listEl=document.getElementById('cnList'), bnEl=document.getElementById('cnBanner');
     if(!listEl||!bnEl) return;
     var current=0, rollTimer, seriesSel={};   /* 카테고리별 마지막으로 고른 시리즈(재렌더/롤링에도 유지) */
+    var dividerAdded=false;
     CATS.forEach(function(c,i){
+      if(c.type==='promo' && !dividerAdded){ var dv=document.createElement('div'); dv.className='cn-cat-divider'; listEl.appendChild(dv); dividerAdded=true; }
       var b=document.createElement('button'); b.type='button'; b.className='cn-cat'+(c.type==='promo'?' cn-cat--promo':'')+(i===0?' on':''); b.setAttribute('data-i',i);
       b.innerHTML='<span>'+c.name+'</span><span class="arw">&#8250;</span>';
       b.addEventListener('mouseenter',function(){ if(!isMobile()) select(i); });
