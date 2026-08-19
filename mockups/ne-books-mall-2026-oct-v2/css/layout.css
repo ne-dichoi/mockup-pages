@@ -51,7 +51,14 @@ a{color:inherit;text-decoration:none;}
 .logo-wrap{justify-self:start;display:flex;align-items:center;gap:12px;}
 .teacher-switch{flex:none;display:inline-flex;align-items:center;gap:5px;padding:7px 15px;border:1px solid #c9d6ea;border-radius:999px;background:#fff;color:#5b6b85;font-size:13px;font-weight:600;white-space:nowrap;text-decoration:none;transition:border-color .15s,color .15s,background .15s;}
 .teacher-switch:hover{border-color:#2272dd;color:#2272dd;background:#f2f7ff;}
-@media (max-width:1023px){ .logo-wrap{display:contents;} .teacher-switch{display:none;} }
+/* 모바일: 로고+버튼을 한 묶음으로 좌측 배치, 나머지(검색·장바구니·햄버거)는 우측으로 밀기 */
+@media (max-width:1023px){
+  .logo-wrap{display:flex;order:1;margin-right:auto;align-items:center;gap:8px;min-width:0;}
+  .logo-wrap .logo{margin-right:0;order:0;}
+  .teacher-switch{display:inline-flex;padding:5px 10px;font-size:11px;gap:3px;border-radius:999px;}
+  /* 서브페이지(로케이션형 헤더)에서는 전환 버튼 숨김 → 메인에서만 노출 */
+  .lheader.has-loc .header-top .logo-wrap{display:none;}
+}
 .header .search{justify-self:center;width:449px;max-width:100%;height:46px;border:1px solid var(--ink);border-radius:9999px; display:flex;align-items:center;justify-content:flex-end;padding:0 20px;}
 .lheader .search{justify-self:center;width:449px;max-width:100%;height:46px;border:2px solid var(--red);border-radius:9999px; display:flex;align-items:center;justify-content:flex-end;padding:0 20px;background:#fff;transition:box-shadow .15s,border-color .15s;}
 .lheader .search:focus-within{border-color:var(--red);box-shadow:0 0 0 3px rgba(232,56,40,.14);}

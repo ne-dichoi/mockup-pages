@@ -528,7 +528,7 @@
 
   /* ===== 선생님 페이지 전용: GOLD 학원회원 환영 배너 (from phase2 index-teacher) ===== */
   .teacher-switch:hover{background:#dbeafe;}
-  .cn-banner.cn-gold{background:#eef2fb;grid-template-columns:1fr 400px;}
+  .cn-banner.cn-gold{background:#eef2fb;grid-template-columns:1fr 400px;height:400px;min-height:400px;}
   .cn-gold-badges{display:flex;align-items:center;gap:8px;margin-bottom:14px;}
   .cn-gold-grade{background:#1a1f2e;color:#f5cf78;font-size:12px;font-weight:800;padding:5px 12px;border-radius:999px;}
   .cn-gold-hot{color:#e8641c;font-size:12px;font-weight:700;}
@@ -540,8 +540,9 @@
   .cn-gold-msg{font-size:13px;color:#666;margin-bottom:14px;}
   .cn-gold-msg b{color:#333;font-weight:700;}
   .cn-gold-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
-  .cn-gold-btn{background:#1a1f2e;color:#fff;font-weight:700;font-size:15px;padding:14px 22px;border-radius:10px;}
-  .cn-gold-btn:hover{background:#2a3350;}
+  /* CTA: 버튼 → 텍스트 링크 (밑줄 화살표) */
+  .cn-gold-btn{background:none;color:#2272dd;font-weight:700;font-size:15px;padding:0;border-radius:0;}
+  .cn-gold-btn:hover{background:none;color:#17509c;text-decoration:underline;}
   .cn-gold-perks{align-self:stretch;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(160deg,#2b3350,#1a2038);border-radius:16px;padding:22px 20px;}
   .cn-gold-perks-h{align-self:center;background:linear-gradient(90deg,#f6d67e,#e7b64a);color:#3a2c10;font-weight:800;font-size:13px;padding:7px 18px;border-radius:999px;margin-bottom:16px;}
   .cn-gold-perks ul{display:flex;flex-direction:column;gap:10px;list-style:none;margin:0;padding:0;}
@@ -557,14 +558,15 @@
   .cn-gold-tabs button{width:26px;height:26px;border-radius:999px;border:1px solid rgba(0,0,0,.15);background:#fff;color:#666;font-size:12px;font-weight:700;cursor:pointer;line-height:1;padding:0;}
   .cn-gold-tabs button.on{background:#1a1f2e;color:#fff;border-color:#1a1f2e;}
   .cn-gold-mat{align-items:center;text-align:center;}
-  .cn-mat-book{display:flex;flex-direction:column;align-items:center;gap:8px;margin:14px 0 16px;}
-  .cn-mat-book img{width:92px;aspect-ratio:2/3;object-fit:cover;border-radius:6px;box-shadow:0 4px 14px rgba(0,0,0,.45);}
-  .cn-mat-name{font-size:12px;color:#dfe4f0;line-height:1.4;max-width:220px;}
+  .cn-gold-mat .cn-gold-perks-h{margin-bottom:8px;}
+  .cn-mat-book{display:flex;flex-direction:column;align-items:center;gap:8px;margin:0 0 12px;}
+  .cn-mat-book img{width:74px;aspect-ratio:2/3;object-fit:cover;border-radius:6px;box-shadow:0 4px 14px rgba(0,0,0,.45);}
+  .cn-mat-name{font-size:14px;color:#eef2fb;line-height:1.45;max-width:240px;font-weight:600;}
   .cn-mat-btns{display:flex;gap:8px;width:100%;}
   .cn-mat-btn{flex:1;text-align:center;padding:11px 0;border-radius:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.28);color:#fff;font-size:13px;font-weight:700;}
   .cn-mat-btn:hover{background:rgba(255,255,255,.2);}
   @media (max-width:1023px){
-    .cn-banner.cn-gold{grid-template-columns:minmax(0,1fr);gap:16px;padding:20px;}
+    .cn-banner.cn-gold{grid-template-columns:minmax(0,1fr);gap:16px;padding:20px;height:auto;min-height:0;}
     .cn-gold-ttl{font-size:22px;}
   }
 
