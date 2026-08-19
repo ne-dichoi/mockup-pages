@@ -312,6 +312,10 @@
   /* 모바일 하단 프로모션 배너 캐러셀 (기본 숨김 → 1023 이하에서 노출) */
   .cn-mo-promo{display:none;}
   @media (max-width:1023px){.cn-banner{grid-template-columns:1fr;gap:16px;padding:20px;}.cn-bn-ttl{white-space:normal;}
+    /* 교재 표지: 폭 무관 '고정 크기' → 모든 시리즈/화면폭에서 동일한 교재 크기 (넘치면 가로 스크롤) */
+    .cn-bn-books{overflow-x:auto;scrollbar-width:none;gap:8px;scroll-snap-type:x proximity;}
+    .cn-bn-books::-webkit-scrollbar{display:none;}
+    .cn-bn-book{flex:0 0 90px;min-width:0;scroll-snap-align:start;}
     .cn-cat--promo{display:none;}
     .cn-mo-promo{display:block;margin-top:14px;}
     .cn-mo-track{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;cursor:grab;}
@@ -441,11 +445,7 @@
     .cn-banner{padding:24px;min-height:0;}
     /* 제목은 모든 탭 공통 한 줄 → 탭마다 높이 동일(빈 공간 없음), 넘치면 … */
     .cn-bn-ttl{font-size:26px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-height:0;}
-    /* 교재: 표지=카드폭(공백 없이 밀착), 4.3개 노출로 크기 축소, 첫 표지 시작점=시리즈 탭과 동일(좌측 정렬), 가로 스와이프 */
-    .cn-bn-books{overflow-x:auto;scrollbar-width:none;gap:8px;scroll-snap-type:x proximity;}
-    .cn-bn-books::-webkit-scrollbar{display:none;}
-    .cn-bn-book{flex:0 0 calc((100% - 26.4px)/4.3);scroll-snap-align:start;min-width:0;}
-    /* 가격을 카드 폭 안에 확실히 넣어 옆 교재로 안 삐져나오게 → 모든 시리즈 교재 크기 동일하게 보임 */
+    /* 교재 표지는 위 1023 규칙에서 고정 크기(90px)로 통일 — 가격만 폭에 맞춰 축소 */
     .cn-bn-price .now{font-size:10px;}
     .cn-bn-price .was{font-size:8.5px;}
     /* 메인 아이콘: 한 줄에 3.5개 노출 (폭 기준 계산 → 디자인 폭 무관 정확히 3.5개, 전역 100px !important 이김) */
