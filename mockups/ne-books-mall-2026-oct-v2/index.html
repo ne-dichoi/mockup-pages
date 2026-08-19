@@ -400,15 +400,18 @@
     .cn-bn-series{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
     .cn-bn-series::-webkit-scrollbar{display:none;}
     .cn-bn-series a{flex:none;white-space:nowrap;}
+    /* 설명 ↔ 시리즈 탭 간격 축소 */
+    .cn-banner{gap:10px;}
+    .cn-bn-desc{margin-bottom:0;}
   }
   @media (max-width:767px){
     .v3-head .tt{font-size:24px;}
     .cn-banner{padding:24px;min-height:0;}
     .cn-bn-ttl{font-size:22px;}
-    /* 교재: 3.5개 노출 + 가로 스와이프 (gap 10px 기준, 2.5칸분 25px 제외) */
-    .cn-bn-books{overflow-x:auto;scrollbar-width:none;gap:10px;scroll-snap-type:x proximity;}
+    /* 교재: 4.3개 노출 + 가로 스와이프 (gap 8px 기준, 3.3칸분 26.4px 제외) */
+    .cn-bn-books{overflow-x:auto;scrollbar-width:none;gap:8px;scroll-snap-type:x proximity;}
     .cn-bn-books::-webkit-scrollbar{display:none;}
-    .cn-bn-book{flex:0 0 calc((100% - 25px)/3.5);scroll-snap-align:start;}
+    .cn-bn-book{flex:0 0 calc((100% - 26.4px)/4.3);scroll-snap-align:start;}
   }
 
   /* ===== [10월반영] 목적별 추천 코스 제목 프리셋 선택 ===== */
