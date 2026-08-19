@@ -21,28 +21,28 @@
         <div class="head-icons">
           <a class="head-ic" href="index.html"><span class="ico"><img src="assets/ic_login_d.svg" alt=""></span><span>로그인</span></a>
           <div class="head-ic-wrap">
-            <a class="head-ic" href="마이페이지.html"><span class="ico"><img src="assets/ic_my_d.svg" alt=""></span><span>MY</span></a>
+            <a class="head-ic" href="#"><span class="ico"><img src="assets/ic_my_d.svg" alt=""></span><span>MY</span></a>
             <div class="my-drop" role="menu">
-              <a href="마이페이지.html#home">홈</a>
-              <a href="마이페이지.html#orders">주문내역</a>
-              <a href="마이페이지.html#points">포인트</a>
-              <a href="마이페이지.html#wish">찜</a>
-              <a href="마이페이지.html#qna">문의/답변</a>
-              <a href="마이페이지.html#review">후기</a>
-              <a href="마이페이지.html#event">이벤트/세미나</a>
+              <a href="#">홈</a>
+              <a href="#">주문내역</a>
+              <a href="#">포인트</a>
+              <a href="#">찜</a>
+              <a href="#">문의/답변</a>
+              <a href="#">후기</a>
+              <a href="#">이벤트/세미나</a>
               <a href="index.html" class="logout">로그아웃</a>
             </div>
           </div>
-          <a class="head-ic" href="장바구니.html"><span class="ico"><img src="assets/ic_bag.svg" alt=""><span class="cart-badge" data-count="0" hidden>0</span></span><span>장바구니</span></a>
+          <a class="head-ic" href="#"><span class="ico"><img src="assets/ic_bag.svg" alt=""><span class="cart-badge" data-count="0" hidden>0</span></span><span>장바구니</span></a>
           <div class="head-ic-wrap">
-            <a class="head-ic" href="고객센터.html"><span class="ico"><img src="assets/ic_customer_d.svg" alt=""></span><span>고객센터</span></a>
+            <a class="head-ic" href="#"><span class="ico"><img src="assets/ic_customer_d.svg" alt=""></span><span>고객센터</span></a>
             <div class="my-drop cs-drop" role="menu">
-              <a href="고객센터.html#notice">공지사항</a>
-              <a href="고객센터.html#faq">FAQ</a>
-              <a href="고객센터.html#event">이벤트/신간·개정/세미나</a>
-              <a href="고객센터.html#errata">교재 오류정정</a>
-              <a href="고객센터.html#qna">1:1문의</a>
-              <a href="고객센터.html#branch">지사안내</a>
+              <a href="#">공지사항</a>
+              <a href="#">FAQ</a>
+              <a href="#">이벤트/신간·개정/세미나</a>
+              <a href="#">교재 오류정정</a>
+              <a href="#">1:1문의</a>
+              <a href="#">지사안내</a>
             </div>
           </div>
         </div>
@@ -53,7 +53,7 @@
         <div class="gnb-in">
           <span class="ico menu"><img src="assets/ds_ic_menu.svg" alt="전체메뉴"></span>
           <nav>
-            <a href="리스트_교재구매.html">ELT</a>
+            <a href="#">ELT</a>
             <a href="#">초/중등</a>
             <a href="#">고등</a>
             <a href="#">교과서/자습서</a>
@@ -72,15 +72,15 @@
     <div class="mcat" id="mCat" aria-hidden="true">
       <div class="mcat-dim"></div>
       <nav class="mcat-panel" aria-label="카테고리 목록">
-        <a class="mcat-item" href="리스트_교재구매.html">Coursebook</a>
-        <a class="mcat-item" href="리스트_교재구매.html">Phonics</a>
-        <a class="mcat-item" href="리스트_교재구매.html">Readers</a>
-        <a class="mcat-item" href="리스트_교재구매.html">Reading</a>
-        <a class="mcat-item" href="리스트_교재구매.html">Listening</a>
-        <a class="mcat-item" href="리스트_교재구매.html">Speaking</a>
-        <a class="mcat-item" href="리스트_교재구매.html">Writing</a>
-        <a class="mcat-item" href="리스트_교재구매.html">Grammar</a>
-        <a class="mcat-item" href="리스트_교재구매.html">Vocabulary</a>
+        <a class="mcat-item" href="#">Coursebook</a>
+        <a class="mcat-item" href="#">Phonics</a>
+        <a class="mcat-item" href="#">Readers</a>
+        <a class="mcat-item" href="#">Reading</a>
+        <a class="mcat-item" href="#">Listening</a>
+        <a class="mcat-item" href="#">Speaking</a>
+        <a class="mcat-item" href="#">Writing</a>
+        <a class="mcat-item" href="#">Grammar</a>
+        <a class="mcat-item" href="#">Vocabulary</a>
       </nav>
     </div>
   </header>
@@ -89,18 +89,18 @@
     <div class="md-panel">
     <div class="md-top">
       <a class="md-home" href="index.html" aria-label="홈"><img src="assets/ic_home_sub.svg" alt=""></a>
-      <span class="md-auth"><a href="index.html">로그인</a></span>
+      <span class="md-auth"><a href="#">로그인</a></span>
       <div class="md-top-ic">
         <button class="md-search" type="button" aria-label="검색"><img src="assets/ds_ic_search.svg" alt=""></button>
-        <a class="md-cart" href="장바구니.html" aria-label="장바구니"><img src="assets/ic_bag.svg" alt=""></a>
+        <a class="md-cart" href="#" aria-label="장바구니"><img src="assets/ic_bag.svg" alt=""></a>
         <button class="md-x" type="button" aria-label="닫기"></button>
       </div>
     </div>
     <div class="md-quick">
-      <a class="md-q" href="리스트_교재구매.html"><span class="md-q-ic"><img src="assets/ic_float_recommend.svg" alt=""></span><span class="md-q-t">교재 추천</span></a>
-      <a class="md-q" href="마이페이지.html#wish"><span class="md-q-ic"><img src="assets/ic_heart.svg" alt=""></span><span class="md-q-t">찜</span></a>
-      <a class="md-q" href="마이페이지.html#orders"><span class="md-q-ic"><img src="assets/ic_res_doc.svg" alt=""></span><span class="md-q-t">주문내역</span></a>
-      <a class="md-q" href="고객센터.html#qna"><span class="md-q-ic"><img src="assets/ic_11.svg" alt=""></span><span class="md-q-t">1:1문의</span></a>
+      <a class="md-q" href="#"><span class="md-q-ic"><img src="assets/ic_float_recommend.svg" alt=""></span><span class="md-q-t">교재 추천</span></a>
+      <a class="md-q" href="#"><span class="md-q-ic"><img src="assets/ic_heart.svg" alt=""></span><span class="md-q-t">찜</span></a>
+      <a class="md-q" href="#"><span class="md-q-ic"><img src="assets/ic_res_doc.svg" alt=""></span><span class="md-q-t">주문내역</span></a>
+      <a class="md-q" href="#"><span class="md-q-ic"><img src="assets/ic_11.svg" alt=""></span><span class="md-q-t">1:1문의</span></a>
     </div>
     <div class="md-body">
       <div class="md-cats" id="mdCats"></div>
@@ -119,16 +119,16 @@
     <div class="msearch-hot">
       <div class="msearch-hot-head"><h3>인기 검색어</h3><span class="msearch-hot-note">* 최근 10일간 인기 검색어 입니다.</span></div>
       <ol class="msearch-hot-list">
-        <li><span class="rk">1</span><a href="리스트_교재구매.html">능률VOCA</a></li>
-        <li><span class="rk">2</span><a href="리스트_교재구매.html">Course book</a></li>
-        <li><span class="rk">3</span><a href="리스트_교재구매.html">E-book</a></li>
-        <li><span class="rk">4</span><a href="리스트_교재구매.html">단어장</a></li>
-        <li><span class="rk">5</span><a href="리스트_교재구매.html">영어문법</a></li>
-        <li><span class="rk">6</span><a href="리스트_교재구매.html">중등문법</a></li>
-        <li><span class="rk">7</span><a href="리스트_교재구매.html">리딩튜터</a></li>
-        <li><span class="rk">8</span><a href="리스트_교재구매.html">중등독해</a></li>
-        <li><span class="rk">9</span><a href="리스트_교재구매.html">주니어 리딩튜터</a></li>
-        <li><span class="rk">10</span><a href="리스트_교재구매.html">grammar</a></li>
+        <li><span class="rk">1</span><a href="#">능률VOCA</a></li>
+        <li><span class="rk">2</span><a href="#">Course book</a></li>
+        <li><span class="rk">3</span><a href="#">E-book</a></li>
+        <li><span class="rk">4</span><a href="#">단어장</a></li>
+        <li><span class="rk">5</span><a href="#">영어문법</a></li>
+        <li><span class="rk">6</span><a href="#">중등문법</a></li>
+        <li><span class="rk">7</span><a href="#">리딩튜터</a></li>
+        <li><span class="rk">8</span><a href="#">중등독해</a></li>
+        <li><span class="rk">9</span><a href="#">주니어 리딩튜터</a></li>
+        <li><span class="rk">10</span><a href="#">grammar</a></li>
       </ol>
     </div>
     <ul class="msearch-results" hidden></ul>
@@ -303,7 +303,7 @@
       if(hot) hot.hidden=true; if(!results) return; results.hidden=false;
       var list=BOOKS.filter(function(b){return b.toLowerCase().indexOf(q.toLowerCase())>=0;});
       if(!list.length){ results.innerHTML='<li class="msearch-empty">\''+esc(q)+'\'에 대한 검색 결과가 없습니다.</li>'; return; }
-      results.innerHTML=list.map(function(b){ return '<li><a href="리스트_교재구매.html">'+esc(b)+'</a></li>'; }).join('');
+      results.innerHTML=list.map(function(b){ return '<li><a href="#">'+esc(b)+'</a></li>'; }).join('');
     }
     if(input) input.addEventListener('input',function(){ renderResults(input.value.trim()); });
     function open(){ ms.hidden=false; ms.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; if(input) input.value=''; renderResults(''); requestAnimationFrame(function(){ ms.classList.add('open'); }); setTimeout(function(){ try{ input.focus(); }catch(e){} },300); }
@@ -315,8 +315,8 @@
     var drawerBtn=document.querySelector('.md-search');
     if(drawerBtn){ drawerBtn.addEventListener('click',function(e){ e.preventDefault(); var x=document.querySelector('.md-x'); if(x) x.click(); open(); }); }
     var cancel=ms.querySelector('.msearch-cancel'); if(cancel) cancel.addEventListener('click',close);
-    var go=ms.querySelector('.msearch-go'); if(go) go.addEventListener('click',function(){ if(input&&input.value.trim()) location.href='리스트_교재구매.html'; else if(input) input.focus(); });
-    if(input){ input.addEventListener('keydown',function(e){ if(e.key==='Enter'){ e.preventDefault(); location.href='리스트_교재구매.html'; } else if(e.key==='Escape'){ close(); } }); }
+    var go=ms.querySelector('.msearch-go'); if(go) go.addEventListener('click',function(){ if(!(input&&input.value.trim())) input.focus(); });
+    if(input){ input.addEventListener('keydown',function(e){ if(e.key==='Escape'){ close(); } }); }
     window.addEventListener('resize',function(){ if(!isMobile() && ms.classList.contains('open')) close(); });
   })();
 
@@ -331,8 +331,8 @@
       {name:'수험/일반', subs:['TOEIC','TOEIC SPEAKING/WRITING','TOEFL/OPIC/TEPS','FLEX','일반영어']},
       {name:'수학/국어', subs:['유아','초등','중등','고등']}
     ];
-    var CS_LINKS=['고객센터.html#notice','고객센터.html#faq','고객센터.html#event','고객센터.html#errata','고객센터.html#qna','고객센터.html#branch'];
-    var MY_LINKS=['마이페이지.html','마이페이지.html#orders','마이페이지.html#points','마이페이지.html#wish','마이페이지.html#qna','마이페이지.html#review','마이페이지.html#event'];
+    var CS_LINKS=['#','#','#','#','#','#'];
+    var MY_LINKS=['#','#','#','#','#','#','#'];
     var MENU=BOOKCATS.concat([
       {name:'학습자료실', accordion:true},
       {name:'교재몰', accordion:true},
@@ -353,11 +353,11 @@
         /* 학습자료실·도서몰: ELT~수학/국어 전체를 아코디언(기본 펼침, 접기 가능) */
         subsEl.innerHTML=BOOKCATS.map(function(c){
           return '<div class="md-acc open"><button type="button" class="md-acc-h">'+c.name+'<span class="md-acc-ic" aria-hidden="true"></span></button>'
-            +'<div class="md-acc-body">'+c.subs.map(function(s){ return '<a class="md-sub" href="리스트_교재구매.html">'+s+'</a>'; }).join('')+'</div></div>';
+            +'<div class="md-acc-body">'+c.subs.map(function(s){ return '<a class="md-sub" href="#">'+s+'</a>'; }).join('')+'</div></div>';
         }).join('');
       } else {
         var links=m.links;
-        subsEl.innerHTML=m.subs.map(function(s,i){ return '<a class="md-sub" href="'+(links?links[i]:'리스트_교재구매.html')+'">'+s+'</a>'; }).join('');
+        subsEl.innerHTML=m.subs.map(function(s,i){ return '<a class="md-sub" href="'+(links?links[i]:'#')+'">'+s+'</a>'; }).join('');
       }
     }
     catsEl.addEventListener('click',function(e){ var b=e.target.closest('.md-cat'); if(!b)return; active=+b.dataset.i; render(); subsEl.scrollTop=0; });
@@ -461,8 +461,8 @@
     var crumb='<a class="home ico" href="index.html"><img src="assets/ic_home.svg" alt="홈"></a>';
     var left;
     if(p.type==='cat'){
-      var opts=(CATEGORIES[p.d1]||[]).map(function(o){ return '<a href="리스트_교재구매.html">'+o+'</a>'; }).join('');
-      crumb+='<span class="sep">·</span><a href="리스트_교재구매.html">'+p.d1+'</a>'
+      var opts=(CATEGORIES[p.d1]||[]).map(function(o){ return '<a href="#">'+o+'</a>'; }).join('');
+      crumb+='<span class="sep">·</span><a href="#">'+p.d1+'</a>'
         +'<span class="sep">·</span><span class="cur-wrap" id="bcCat"><button type="button" class="cur">'+p.d2+' <span class="caret">&#9662;</span></button><div class="cur-menu">'+opts+'</div></span>';
       left='<h1 class="ph-title">'+p.d2+'</h1>'+(p.tag?'<span class="ph-tag">'+p.tag+'</span>':'');
     } else {
@@ -566,10 +566,10 @@
       '고등':['고등 각','수능 기출 각','스코어','HIGH-END (내신)','HIGH-END (수능)','수능엔유형','시험직전R','해설의 역습','EBS 수능특강 변형문제']
     }
   };
-  var GPROMO='<a class="gd-promo" href="이벤트상세.html"><span class="img" style="background-image:url(\'assets/banner_books.png\'),linear-gradient(160deg,#1f9d63,#137a45)"></span><span class="tit">신간 출시, 지금 만나보세요</span><span class="desc">새롭게 출간된 교재를 가장 먼저 확인하세요 &#8250;</span></a>';
+  var GPROMO='<a class="gd-promo" href="#"><span class="img" style="background-image:url(\'assets/banner_books.png\'),linear-gradient(160deg,#1f9d63,#137a45)"></span><span class="tit">신간 출시, 지금 만나보세요</span><span class="desc">새롭게 출간된 교재를 가장 먼저 확인하세요 &#8250;</span></a>';
   var closeT;
   function open3Depth(a,name){
-    var LL='리스트_교재구매.html';
+    var LL='#';
     var two=T2DEPTH[name]||MENU[name]||[];
     var d3map=T3DEPTH[name]||{};
     var cols='<div class="gd-col"><p class="gd-col-t">'+name+'</p><div class="items">'
@@ -593,7 +593,7 @@
     var name=a.getAttribute('data-cat')||a.textContent.trim();
     var mega=(name==='학습자료실'||name==='교재몰');
     if(!mega && T3DEPTH[name]){ open3Depth(a,name); return; }
-    var LL='리스트_교재구매.html';
+    var LL='#';
     var BR='';
     if(mega){
       var COLS=[['ELT','Coursebook','Phonics','Reading','Readers','Listening','Speaking','Grammar','Writing','Vocabulary'],['초등/중등','중학 내신','고등 선행','파닉스','어휘','쓰기','독해','듣기','문법/구분','TOEFL/TEPS/NELT'],['고등','어휘','독해','듣기','문법/구분','수능 대비','고교 내신','단기 특강','TOEFL/TEPS/NELT'],['교과서/자습서','중학영어 교과서','고등영어 교과서','수학 교과서','중국어/일본어'],['수험/일반','TOEIC','TOEIC SPEAKING|/WRITING','TOEFL/OPIC/TEPS','FLEX','일반영어'],['수학/국어','유아','초등','중등','고등']];
