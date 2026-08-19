@@ -2934,15 +2934,15 @@ body.bsheet-lock{overflow:hidden;}
   .page-my #tab-wish .wl-clear{height:28px;min-height:0;box-sizing:border-box;padding:5px 13px;font-size:12px;font-weight:500;border:1px solid var(--ink);border-radius:8px;color:var(--ink);}
   /* 가로 스크롤 mb-grid 오버라이드 → 반응형 그리드(화면 넓어지면 열 증가 → 아래 카드 위로 채워짐) */
   .page-my #tab-wish .wl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;overflow:visible;margin-top:0;}
-  .page-my #tab-wish .wl-grid .mb-card{flex:none;width:auto;}
-  .page-my #tab-wish .wl-grid .mb-cover{height:auto;padding:24px 16px 0;}
-  .page-my #tab-wish .wl-grid .mb-cover img{width:80px;height:105px;}
-  /* 장바구니 버튼: 책(중앙 80px) 기준 배치 → 카드 폭이 늘어도 책 우하단에 걸침 */
-  .page-my #tab-wish .wl-grid .mb-cart{width:36px;height:36px;left:calc(50% + 24px);right:auto;bottom:-4px;background-size:16px;}
-  .page-my #tab-wish .wl-grid .mb-x{top:12px;right:12px;width:20px;height:20px;}
+  /* 검색결과 카드 디자인: 회색 정사각 박스 + 교재 축소, ×삭제(우상단)·검정 장바구니(교재 위) */
+  .page-my #tab-wish .wl-grid .mb-card{position:relative;flex:none;width:auto;border:0;background:transparent;overflow:visible;gap:12px;}
+  .page-my #tab-wish .wl-grid .mb-cover{width:100%;height:auto;aspect-ratio:1 / 1;background:#f3f3f3;border-radius:8px;overflow:hidden;padding:0;position:relative;display:block;}
+  .page-my #tab-wish .wl-grid .mb-cover img{position:absolute;top:30px;left:50%;transform:translateX(-50%);height:calc(100% - 60px);width:auto;max-width:none;aspect-ratio:171 / 223;object-fit:cover;box-shadow:1.6px 2.9px 6.5px rgba(0,0,0,.18);}
+  .page-my #tab-wish .wl-grid .mb-cart{width:36px;height:36px;left:auto;right:12%;bottom:10%;background-size:16px;z-index:2;}
+  .page-my #tab-wish .wl-grid .mb-x{top:12px;right:12px;width:20px;height:20px;z-index:3;}
   .page-my #tab-wish .wl-grid .mb-x svg{width:20px;height:20px;}
-  /* info: 내용은 왼쪽정렬, 라벨·교재명·금액 묶음(블록)을 통째로 가운데 정렬(좁으면 꽉참, 넓어지면 중앙) */
-  .page-my #tab-wish .wl-grid .mb-info{padding:24px 16px 24px;gap:8px;align-items:flex-start;box-sizing:border-box;width:fit-content;max-width:100%;margin:0 auto;min-width:0;}
+  /* info: 왼쪽정렬 */
+  .page-my #tab-wish .wl-grid .mb-info{padding:0;gap:6px;align-items:flex-start;box-sizing:border-box;width:auto;max-width:100%;margin:0;min-width:0;}
   .page-my #tab-wish .wl-grid .mb-head{gap:8px;min-width:0;max-width:100%;}
   .page-my #tab-wish .wl-grid .mb-title{min-width:0;}
   .page-my #tab-wish .wl-grid .mb-badge{align-self:flex-start;padding:4px 8px;font-size:10px;line-height:14px;}
