@@ -596,6 +596,11 @@
   .rc-price .now{font-size:16px;font-weight:800;color:#191919;}
   .rc-price .was{font-size:12px;color:#bbb;text-decoration:line-through;}
   @media (max-width:600px){ .rc-top{flex-direction:column;align-items:stretch;} .rc-seg{align-self:flex-start;} }
+  /* PC: 추천 교재 카드를 가로로 꽉 차게 균등 분배 (스크롤 제거 → 뒤쪽 공백 없앰) */
+  @media (min-width:1024px){
+    .rc-scroll{overflow-x:visible;}
+    .rc-card{flex:1 1 0;width:auto;min-width:0;}
+  }
 </style>
 </head>
 <body class="page-index page-teacher">
