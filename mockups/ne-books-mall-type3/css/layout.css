@@ -149,29 +149,30 @@ a{color:inherit;text-decoration:none;}
 .hero2-nav .pg{font-size:12px;font-weight:700;color:var(--ink);letter-spacing:.5px;}
 .hero2-nav .pg b{color:#a9a9a9;font-weight:700;}
 .hero2-nav .arrow{color:var(--ink);font-size:16px;padding:0 6px;background:none;border:0;cursor:pointer;line-height:1;}
-.mainicons{background:#fff;padding:40px 0 80px;}
-.mainicons .row{display:flex;gap:16px;align-items:center;justify-content:safe center;flex-wrap:nowrap;overflow-x:auto;cursor:grab;scrollbar-width:none;-ms-overflow-style:none;}
-.mainicons .row::-webkit-scrollbar{display:none;}
-.mainicons .row .pill{flex:none;}
-.pill{width:140px;height:140px;border:1px solid var(--line);border-radius:999px;background:#fff; display:flex;flex-direction:column;gap:4px;align-items:center;justify-content:center;}
-.pill .ico{width:45px;height:45px;}
-.pill span{font-weight:700;font-size:13px;color:var(--ink);text-align:center;}
+.svcband{background:#fff;}
+.svcband .container{padding-top:24px;padding-bottom:24px;}
+.svcicons{display:flex;flex-wrap:nowrap;justify-content:space-between;gap:30px;}
+.svcicon{flex:1 1 0;min-width:80px;display:flex;flex-direction:column;align-items:center;gap:10px;}
+.svcicon .cc{width:66px;height:66px;border-radius:50%;background:#fff;border:1.5px solid #e3e3e3;display:flex;align-items:center;justify-content:center;transition:.15s;}
+.svcicon .cc img{width:34px;height:34px;}
+.svcicon:hover .cc{border-color:var(--ink);transform:translateY(-3px);}
+.svcicon span{font-size:13px;color:#444;font-weight:600;text-align:center;}
 .sec-title{font-family:var(--display);font-weight:800;font-size:32px;line-height:40px;text-align:center;}
-.bestseller{background:var(--gray-bg);padding:56px 0 64px;}
-.bs-wrap{display:flex;flex-direction:column;gap:40px;align-items:center;}
-.bs-head{display:flex;flex-direction:column;gap:16px;align-items:center;width:100%;}
-.bs-tabs{display:flex;gap:40px;align-items:center;flex-wrap:nowrap;overflow-x:auto;justify-content:safe center;cursor:grab;scrollbar-width:none;-ms-overflow-style:none;}
-.bs-tabs::-webkit-scrollbar{display:none;}
-.bs-tabs .tab{flex:none;}
-.bs-tabs .tab{font-size:16px;font-weight:400;color:var(--muted);white-space:nowrap;cursor:pointer;padding:8px 24px;border-radius:9999px;transition:background .15s,color .15s;}
-.bs-tabs .tab:hover,.bs-tabs .tab.active{background:var(--ink);color:#fff;font-weight:700;}
-.bs-row{display:flex;gap:40px;align-items:center;width:100%;}
-.bs-promo{flex:none;width:280px;display:flex;flex-direction:column;gap:16px;}
-.bs-promo .label{align-self:flex-start;border:1px solid var(--red);color:var(--red); font-weight:700;font-size:14px;padding:4px 12px;border-radius:9999px;white-space:nowrap;}
-.bs-promo .ttl{font-family:var(--display);font-weight:800;font-size:32px;line-height:42px;color:var(--red);}
-.bs-promo .desc{font-size:14px;line-height:22px;color:rgba(0,0,0,.7);}
-.bs-promo .btn{margin-top:8px;width:180px;padding:16px 24px;background:var(--red);color:#fff;border-radius:8px; display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:500;}
-.bs-list{display:flex;gap:16px;flex:1 1 0;min-width:0;overflow-x:auto;overflow-y:hidden; scrollbar-width:none;-ms-overflow-style:none;scroll-behavior:smooth;cursor:grab;}
+.readit{padding:64px 0 24px;}
+.ri-banner{border-radius:24px 24px 0 0;background:linear-gradient(100deg,#ff7a63,var(--red));color:#fff;height:104px;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 24px;}
+.ri-banner .ttl{font-family:var(--display);font-weight:800;font-size:28px;letter-spacing:2px;}
+.ri-banner .sub{margin-top:6px;font-size:13px;line-height:1.5;color:rgba(255,255,255,.85);word-break:keep-all;}
+.ri-card{background:#fff;border:1px solid var(--line);border-top:0;border-radius:0 0 24px 24px;box-shadow:0 6px 24px rgba(0,0,0,.06);padding:24px 40px 32px;}
+.rcs-more{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;height:100%;border:1.5px dashed #d8d8d8;border-radius:10px;background:var(--gray-bg);color:#555;text-align:center;padding:12px;}
+.rcs-more .plus{width:38px;height:38px;border-radius:50%;background:#fff;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:400;color:#333;}
+.rcs-more span:last-child{font-size:13px;font-weight:700;line-height:1.4;}
+.rcs-more:hover{border-color:var(--ink);}
+.ri-chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;cursor:grab;scrollbar-width:none;-ms-overflow-style:none;}
+.ri-chips::-webkit-scrollbar{display:none;}
+.ri-chips .chip{flex:none;border:1px solid var(--line);border-radius:9999px;padding:8px 18px;font-size:14px;font-weight:700;color:var(--ink);white-space:nowrap;cursor:pointer;transition:background .15s,color .15s;}
+.ri-chips .chip.on,.ri-chips .chip:hover{background:var(--ink);color:#fff;border-color:var(--ink);}
+.ri-row-gap{margin-top:24px;}
+.bs-list{display:flex;gap:16px;min-width:0;overflow-x:auto;overflow-y:hidden; scrollbar-width:none;-ms-overflow-style:none;scroll-behavior:smooth;cursor:grab;}
 .bs-list::-webkit-scrollbar{display:none;}
 .bs-list.dragging{cursor:grabbing;scroll-behavior:auto;scroll-snap-type:none;}
 .bs-card{width:280px;height:428px;background:#fff;border:1px solid var(--line);border-radius:12px; display:flex;flex-direction:column;align-items:center;overflow:hidden;flex:none;}
@@ -189,6 +190,36 @@ a{color:inherit;text-decoration:none;}
 .bs-meta .price{display:flex;gap:8px;align-items:flex-end;}
 .bs-meta .price .now{font-family:var(--display);font-weight:700;font-size:22px;color:var(--ink);}
 .bs-meta .price .was{font-size:14px;color:#a9a9a9;text-decoration:line-through;}
+
+/* ---------- 초/중등 · 고등: colored banner + floating card + chips ---------- */
+.rcs-sec{padding:64px 0 24px;}
+.rcs-banner{border-radius:24px 24px 0 0;background:var(--rcs-bg);color:#fff;height:104px;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
+.rcs-banner .ttl{font-family:var(--display);font-weight:800;font-size:28px;letter-spacing:2px;}
+.rcs-banner .sub{margin-top:8px;font-size:13px;line-height:1.5;color:rgba(255,255,255,.85);word-break:keep-all;padding:0 24px;}
+.rcs-card{background:#fff;border-radius:0 0 24px 24px;box-shadow:0 6px 24px rgba(0,0,0,.06);position:relative;padding:32px 40px 40px;}
+.rcs-chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;cursor:grab;scrollbar-width:none;-ms-overflow-style:none;}
+.rcs-chips::-webkit-scrollbar{display:none;}
+.rcs-chips .chip{flex:none;border:1px solid var(--line);border-radius:9999px;padding:8px 18px;font-size:14px;font-weight:700;color:var(--ink);white-space:nowrap;cursor:pointer;transition:background .15s,color .15s;}
+.rcs-chips .chip.on,.rcs-chips .chip:hover{background:var(--ink);color:#fff;border-color:var(--ink);}
+.rcs-row{display:grid;grid-template-columns:repeat(8,1fr);gap:16px;}
+.rcs-item{display:block;}
+.rcs-item .thumb{position:relative;border-radius:10px;overflow:hidden;background:var(--gray-bg);aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;}
+.rcs-item .thumb img{width:100%;height:100%;object-fit:cover;}
+.rcs-item .bdg{position:absolute;top:8px;left:8px;font-size:11px;font-weight:700;color:#fff;padding:3px 7px;border-radius:5px;}
+.rcs-item .bdg.red{background:#f5444a;} .rcs-item .bdg.purple{background:#7b5cff;} .rcs-item .bdg.blue{background:#2f6bff;} .rcs-item .bdg.green{background:#03c75a;}
+.rcs-item .heart{position:absolute;right:8px;bottom:54px;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.85);display:flex;align-items:center;justify-content:center;border:0;padding:0;cursor:pointer;}
+.rcs-item .heart svg{width:21px;height:21px;stroke:#999;fill:none;}
+.rcs-item .heart.on svg{fill:#f5444a;stroke:#f5444a;}
+.rcs-item .cart{position:absolute;right:8px;bottom:8px;width:38px;height:38px;border-radius:50%;background:#191919;display:flex;align-items:center;justify-content:center;border:0;padding:0;cursor:pointer;}
+.rcs-item .cart svg{width:21px;height:21px;stroke:#fff;fill:none;}
+.rcs-item .cart:hover{background:#f5444a;}
+.rcs-item .tit{font-size:13.5px;line-height:1.4;color:#333;margin:10px 0 6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:38px;}
+.rcs-item .was{font-size:12px;color:#bbb;text-decoration:line-through;}
+.rcs-item .now{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 5px;margin-top:2px;}
+.rcs-item .now .rate{color:#f5444a;font-weight:800;font-size:16px;white-space:nowrap;}
+.rcs-item .now .price{font-weight:800;font-size:16px;color:#191919;white-space:nowrap;}
+.rcs-item .point{font-size:12px;color:#6f52ff;font-weight:600;margin-top:3px;}
+
 .curation{background:var(--ink);padding:90px 0;overflow:hidden;}
 .curation .sec-title{color:#fff;text-align:center;margin-bottom:40px;}
 .cur-stage{width:100%;overflow:hidden;}
@@ -268,21 +299,22 @@ a{color:inherit;text-decoration:none;}
   .hero2-track{gap:20px;}
   .hero2-card{width:344px;height:390px;}
   /* 주요 아이콘 */
-  .mainicons{padding:32px 0 56px;}
-  .mainicons .row{gap:12px;}
-  .pill{width:118px;height:118px;}
-  .pill .ico{width:38px;height:38px;}
-  .pill span{font-size:12px;}
-  /* 베스트셀러: 알약 탭 + 교재 카드 축소(교재가 더 보이게) */
-  .bestseller{padding:44px 0 52px;}
-  .bs-wrap{gap:32px;}
-  .bs-tabs{gap:24px;}
-  .bs-tabs .tab{font-size:14px;padding:7px 18px;}
-  .bs-row{gap:28px;}
-  .bs-promo{width:236px;}
-  .bs-promo .ttl{font-size:27px;line-height:36px;}
+  .svcicons{gap:20px;}
+  .svcicon .cc{width:58px;height:58px;}
+  .svcicon .cc img{width:30px;height:30px;}
+  /* READ IT: 칩 + 교재 카드 축소(교재가 더 보이게) */
+  .readit{padding:48px 0 20px;}
+  .ri-card{padding:20px 32px 28px;}
+  .ri-chips{gap:6px;}
+  .ri-chips .chip{font-size:14px;padding:7px 16px;}
   .bs-list{gap:14px;}
   .bs-card{zoom:.84;}
+  /* 초/중등 · 고등 시리즈 블록 */
+  .rcs-sec{padding:48px 0 20px;}
+  .rcs-card{padding:28px 32px 32px;}
+  .rcs-chips{gap:6px;}
+  .rcs-chips .chip{font-size:14px;padding:7px 16px;}
+  .rcs-row{grid-template-columns:repeat(6,1fr);gap:14px;}
 }
 .sns .card{border:1px solid #dbdbdb;border-radius:16px;height:88px;flex:1 1 0;min-width:0;position:relative;}
 .sns .card .in{position:absolute;left:20px;right:20px;top:50%;transform:translateY(-50%);display:flex;align-items:center;justify-content:space-between;gap:8px;}
@@ -2140,7 +2172,7 @@ body.bsheet-lock{overflow:hidden;}
   .container{padding-inline:20px;}
   /* visibility utilities restored on mobile */
   .only-mo{display:block;}
-  .pill.only-mo,.hero2-ind.only-mo,.bs-mo-btn.only-mo,.bs-mo-list.only-mo{display:flex;}
+  .hero2-ind.only-mo,.bs-mo-btn.only-mo,.bs-mo-list.only-mo{display:flex;}
   .only-pc{display:none !important;}
   /* --- 모바일 GNB 자동 숨김/표시 (스크롤 방향 감지) ---
      헤더를 fixed(문서 흐름 밖) + body 상단 여백 = 헤더 높이로 두어야
@@ -2214,14 +2246,12 @@ body.bsheet-lock{overflow:hidden;}
   .hero-tabs{gap:16px;bottom:12px;}
   .hero-tabs .htab{font-size:13px;}
   .sec-title{font-size:24px;line-height:32px;}
-  .mainicons{padding:32px 0 48px;}
-  .bs-row{flex-direction:column;gap:24px;}
-  .bs-promo{width:100%;height:auto;min-height:auto;margin-left:0;padding-left:0;border-radius:16px;}
   .promo-in{position:static;width:auto;height:auto;display:flex;flex-direction:column; align-items:flex-start;gap:16px;padding:32px 24px;right:auto;top:auto;}
   .promo-in>*{position:static;left:auto;top:auto;}
   .promo-in .ttl{font-size:32px;line-height:42px;}
   .promo-in .desc{width:auto;}
   .promo-in .btn{width:100%;max-width:257px;}
+  .ri-card{padding:24px 20px 28px;}
   .bs-list{width:100%;overflow-x:auto;overflow-y:hidden;padding-bottom:12px;margin-right:0;padding-right:0;}
   .curation{padding:60px 0;}
   .netutor{padding:60px 0;}
@@ -2249,41 +2279,35 @@ body.bsheet-lock{overflow:hidden;}
   .hero2-ind b{color:#fff;font-weight:700;}
   .hero2-ind span{color:rgba(255,255,255,.6);}
 
-  /* --- MAIN ICONS: circular icons in a horizontal scroll --- */
-  .mainicons{padding:24px 0 0;}
-  .mainicons .row{flex-wrap:nowrap;justify-content:safe center;align-items:center;gap:16px;cursor:grab;
-    padding:0 20px 4px;
+  /* --- 서비스 바로가기: circular icons in a horizontal scroll --- */
+  .svcband .container{padding-top:16px;padding-bottom:16px;}
+  .svcicons{flex-wrap:nowrap;justify-content:flex-start;gap:20px;cursor:grab;
+    padding:0 20px 2px;margin:0 -20px;
     overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
-  .mainicons .row::-webkit-scrollbar{display:none;}
-  .mainicons .pill{flex:none;width:79px;height:79px;border:1px solid var(--line);border-radius:999px;
-    background:#fff;gap:4px;padding:0 6px;box-sizing:border-box;align-items:center;justify-content:center;}
-  .mainicons .pill .ico{width:35px;height:35px;border:0;border-radius:0;background:none;flex:none;
-    display:flex;align-items:center;justify-content:center;}
-  .mainicons .pill .ico img{width:32px;height:32px;}
-  .mainicons .pill span{font-size:11px;line-height:1.15;text-align:center;white-space:normal;word-break:keep-all;}
-  .mainicons .pill:nth-child(1){order:1;}
-  .mainicons .pill:nth-child(3){order:2;}
-  .mainicons .pill:nth-child(5){order:3;}
-  .mainicons .pill:nth-child(6){order:4;}
-  .mainicons .pill:nth-child(4){order:5;}
-  .mainicons .pill:nth-child(7){order:6;}
-  .mainicons .pill:nth-child(2){display:none;}
-  .mainicons .pill.mo-reco{order:8;}
+  .svcicons::-webkit-scrollbar{display:none;}
+  .svcicon{flex:none;min-width:64px;}
+  .svcicon .cc{width:56px;height:56px;}
+  .svcicon .cc img{width:28px;height:28px;}
+  .svcicon span{font-size:12px;}
 
-  /* --- BESTSELLER: white section, gray promo card, list rows, full-width button --- */
-  .bestseller{background:#fff;padding:40px 0 0;}
-  .bs-wrap{gap:24px;align-items:stretch;}
-  .bs-head{align-items:stretch;gap:20px;}
-  .bs-tabs{flex-wrap:nowrap;justify-content:flex-start;gap:8px;overflow-x:auto;overflow-y:hidden;
-    -webkit-overflow-scrolling:touch;scrollbar-width:none;margin:0 -20px;padding:0 20px;}
-  .bs-tabs::-webkit-scrollbar{display:none;}
-  .bs-tabs .tab{flex:none;font-size:14px;padding:8px 18px;}
-  .bs-row{flex-direction:column;gap:20px;align-items:stretch;}
-  .bs-promo{width:100%;gap:8px;background:var(--gray-bg);border-radius:16px;padding:28px 24px;}
-  .bs-promo .label,.bs-promo .btn{display:none;}
-  .bs-promo .ttl{color:var(--blue);font-size:28px;line-height:34px;font-weight:600;}
-  .bs-promo .desc{color:#666;font-size:14px;line-height:22px;}
-  .bestseller .bs-list{display:none;}
+  /* --- READ IT: shorter banner, scrollable chips, list rows, full-width button --- */
+  .readit{background:#fff;padding:36px 0 0;}
+  .ri-banner{height:92px;border-radius:20px 20px 0 0;}
+  .ri-banner .ttl{font-size:22px;letter-spacing:1px;}
+  .ri-banner .sub{font-size:12px;}
+  .ri-card{border-radius:0 0 20px 20px;}
+  .ri-chips{margin:0 -20px;padding:0 20px 6px;}
+  .ri-chips .chip{font-size:13px;padding:7px 14px;}
+  .ri-row-gap{margin-top:20px;}
+  /* --- 초/중등 · 고등 시리즈 블록: 태블릿 3열 --- */
+  .rcs-sec{background:#fff;padding:36px 0 0;}
+  .rcs-banner{height:92px;border-radius:20px 20px 0 0;}
+  .rcs-banner .ttl{font-size:22px;letter-spacing:1px;}
+  .rcs-banner .sub{font-size:12px;}
+  .rcs-card{border-radius:0 0 20px 20px;padding:24px 20px 28px;}
+  .rcs-chips{margin:0 -20px;padding:0 20px 6px;}
+  .rcs-chips .chip{font-size:13px;padding:7px 14px;}
+  .rcs-row{grid-template-columns:repeat(4,1fr);gap:12px;}
   .bs-mo-list{flex-direction:column;gap:8px;width:100%;}
   .bs-mo-row{display:flex;align-items:center;gap:16px;padding:0;border-bottom:0;}
   .bs-mo-row .chk{width:20px;height:20px;flex:none;appearance:none;-webkit-appearance:none;
@@ -3853,12 +3877,16 @@ body.bsheet-lock{overflow:hidden;}
   .page-detail #s-review .rev-meta{flex-direction:row;align-items:center;gap:6px;}
 }
 
-/* ===== 태블릿(768~1023): 주요 아이콘 키우기 (모바일 79 → 태블릿 110, 롤링배너처럼 커짐) ===== */
+/* ===== 태블릿(768~1023): 서비스 바로가기 아이콘 키우기 ===== */
 @media (min-width:768px) and (max-width:1023px){
-  .mainicons .pill{width:110px;height:110px;gap:8px;}
-  .mainicons .pill .ico{width:44px;height:44px;}
-  .mainicons .pill .ico img{width:40px;height:40px;}
-  .mainicons .pill span{font-size:13px;}
+  .svcicon .cc{width:64px;height:64px;}
+  .svcicon .cc img{width:32px;height:32px;}
+  .svcicon span{font-size:13px;}
+}
+
+/* ===== 좁은 폰(~767): Bricks Reading/Phonics Code 교재 그리드 2열 ===== */
+@media (max-width:767px){
+  .rcs-row{grid-template-columns:repeat(2,1fr);}
 }
 
 /* ===== PC 고정 헤더 아래로 sticky 서브탭 top 보정 (파일 끝: 후순위 우선 보장) ===== */
