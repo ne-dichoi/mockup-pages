@@ -3876,7 +3876,7 @@ body.bsheet-lock{overflow:hidden;}
    검색 결과 페이지 (풀화면, 로케이션 없음) — .page-search
    ============================================================ */
 .page-search .sr-wrap{width:100%;box-sizing:border-box;padding:0 40px 80px;flex:1 0 auto;}
-.sr-hero{text-align:center;padding:40px 0 24px;}
+.sr-hero{text-align:center;padding:80px 0 64px;}
 .sr-hero h2{font-family:var(--display);font-weight:700;font-size:28px;color:var(--ink);letter-spacing:-0.02em;}
 .sr-hero h2 .cnt{color:var(--red);}
 
@@ -3884,9 +3884,9 @@ body.bsheet-lock{overflow:hidden;}
 .sr-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(272px,1fr));gap:24px 24px;padding-top:16px;align-items:start;}
 .sr-card{display:flex;flex-direction:column;gap:24px;min-width:0;}
 
-/* 회색 박스: 위아래 여백 50, 교재는 박스폭 비율(60%)로 항상 축소 */
-.sr-cover{position:relative;background:#f3f3f3;border-radius:10px;padding:50px 0;display:flex;align-items:center;justify-content:center;}
-.sr-book{display:block;width:60%;aspect-ratio:171 / 223;}
+/* 회색 박스: 정사각형(1:1). 교재는 위아래 40px 여백 + 가로 중앙정렬, 박스가 줄면 교재도 비율로 축소 */
+.sr-cover{position:relative;background:#f3f3f3;border-radius:10px;aspect-ratio:1 / 1;box-sizing:border-box;overflow:hidden;}
+.sr-book{position:absolute;top:40px;bottom:40px;left:50%;transform:translateX(-50%);width:auto;height:auto;aspect-ratio:171 / 223;}
 .sr-book img{width:100%;height:100%;object-fit:cover;display:block;border-radius:2px;box-shadow:4px 8px 17px rgba(0,0,0,.18);}
 .sr-cover.is-dim .sr-book{opacity:.4;}
 .sr-corner{position:absolute;left:16px;top:16px;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700;line-height:1.6;color:#fff;background:var(--red);}
@@ -3928,8 +3928,8 @@ body.bsheet-lock{overflow:hidden;}
   .sr-hero h2{font-size:20px;}
   .sr-grid{grid-template-columns:repeat(2,1fr);gap:20px 16px;}
   .sr-card{gap:12px;}
-  .sr-cover{padding:30px 0;border-radius:8px;}
-  .sr-book{width:64%;}
+  .sr-cover{border-radius:8px;}
+  .sr-book{top:28px;bottom:28px;}
   .sr-info{padding-bottom:8px;gap:6px;}
   .sr-title{font-size:14px;line-height:20px;min-height:40px;}
   .sr-controls{gap:6px;}
