@@ -24,6 +24,8 @@
     {title:"워드마스터 중등 베이직", img:"assets/best_4.png", url:"교재상세.html"}
   ];
   var POPULAR=["능률VOCA","Course book","E-book","단어장","영어문법","중등문법","리딩튜터","중등독해","주니어 리딩튜터","grammar"];
+  var SR_PAGE='검색결과.html';
+  var DETAIL_PAGE='교재상세.html';
 
   function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
 
@@ -38,9 +40,10 @@
       pop.classList.remove('wide');
       var html='<p class="sp-head">인기 검색어</p><ol class="sp-pop">';
       POPULAR.forEach(function(k,idx){
-        html+='<li><a href="리스트_교재구매.html"><span class="rk">'+(idx+1)+'</span>'+esc(k)+'</a></li>';
+        html+='<li><a href="'+SR_PAGE+'?q='+encodeURIComponent(k)+'"><span class="rk">'+(idx+1)+'</span>'+esc(k)+'</a></li>';
       });
       html+='</ol><p class="sp-note">* 최근 10일간 인기 검색어 입니다.</p>';
+      html+='<a class="sp-event" href="이벤트상세.html"><img src="assets/search_event_banner.png" alt="NE Books 이벤트 리스트"></a>';
       pop.innerHTML=html;
     }
 
@@ -53,17 +56,19 @@
       }
       pop.classList.add('wide');
       var list=matches.map(function(b,i){
-        return '<li class="it'+(i===0?' on':'')+'" data-i="'+i+'"><a href="'+b.url+'">'+esc(b.title)+'</a></li>';
+        return '<li class="it'+(i===0?' on':'')+'" data-i="'+i+'"><a href="'+DETAIL_PAGE+'">'+esc(b.title)+'</a></li>';
       }).join('');
       var first=matches[0];
       pop.innerHTML='<div class="sa-wrap">'
         +'<ul class="sa-list">'+list+'</ul>'
-        +'<div class="sa-preview"><div class="sa-pv-card"><img src="'+first.img+'" alt=""></div>'
+        +'<div class="sa-preview"><div class="sa-pv-card pcover"><img src="'+first.img+'" alt="">'
+        +'<button type="button" class="pcover-cart" aria-label="장바구니 담기"><img src="assets/ic_cart_black.svg" alt=""></button></div>'
         +'<p class="sa-pv-name">'+esc(first.title)+'</p></div>'
         +'</div>';
       var items=[].slice.call(pop.querySelectorAll('.sa-list .it'));
-      var pvImg=pop.querySelector('.sa-pv-card img');
+      var pvImg=pop.querySelector('.sa-pv-card > img');
       var pvName=pop.querySelector('.sa-pv-name');
+      var pvCart=pop.querySelector('.pcover-cart');
       var curBook=first;
       items.forEach(function(li){
         li.addEventListener('mouseenter',function(){
@@ -79,6 +84,13 @@
       if(opts.onSelect){
         var pv=pop.querySelector('.sa-preview'); pv.style.cursor='pointer';
         pv.addEventListener('click',function(){ opts.onSelect(curBook); });
+      }
+      /* 검색 미리보기 썸네일 우하단 장바구니 아이콘 → 담기 확인 얼럿(리스트/미리보기 이동 클릭과 분리) */
+      if(pvCart){
+        pvCart.addEventListener('click',function(e){
+          e.preventDefault(); e.stopPropagation();
+          if(confirm('장바구니에 담겼습니다. 이동하시겠습니까?')){ location.href='장바구니.html'; }
+        });
       }
     }
 
@@ -96,7 +108,7 @@
       if(opts.onSelect) return; // 폼 내 교재명 검색은 이동하지 않음
       var q=input.value.trim();
       if(!q){ input.focus(); return; }
-      location.href='리스트_교재구매.html?q='+encodeURIComponent(q);
+      location.href=SR_PAGE+'?q='+encodeURIComponent(q);
     }
     input.addEventListener('focus',openPop);
     input.addEventListener('click',openPop);

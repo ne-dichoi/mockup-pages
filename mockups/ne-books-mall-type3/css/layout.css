@@ -47,10 +47,17 @@ a{color:inherit;text-decoration:none;}
 .header-top::after{content:"";position:absolute;left:calc(50% - 50vw);right:calc(50% - 50vw);bottom:0;border-top:1px solid #e5e5e5;}
 .logo{width:150px;height:28px;justify-self:start;}
 .logo img{width:100%;height:100%;object-fit:contain;}
-.header .search{justify-self:center;width:449px;max-width:100%;height:46px;border:1px solid var(--ink);border-radius:9999px; display:flex;align-items:center;justify-content:flex-end;padding:0 20px;}
-.lheader .search{justify-self:center;width:449px;max-width:100%;height:46px;border:1px solid var(--line);border-radius:9999px; display:flex;align-items:center;justify-content:flex-end;padding:0 20px;background:#fff;}
+.header .search{width:449px;max-width:100%;height:46px;border:1px solid var(--red);border-radius:9999px; display:flex;align-items:center;justify-content:flex-end;padding:0 20px;}
+.lheader .search{width:449px;max-width:100%;height:46px;border:1px solid var(--red);border-radius:9999px; display:flex;align-items:center;justify-content:flex-end;padding:0 20px;background:#fff;}
 .search .ico{width:24px;height:24px;}
 /* ===== GNB 검색 레이어 팝업 ===== */
+.search-wrap{justify-self:center;display:flex;align-items:center;gap:10px;}
+.search-extra{display:flex;align-items:center;gap:8px;flex:none;}
+.se-btn{display:inline-flex;align-items:center;height:38px;padding:0 16px;border-radius:9999px;border:1px solid var(--red);color:var(--red);font-size:13px;font-weight:700;white-space:nowrap;}
+.se-btn:hover{background:var(--red);color:#fff;}
+.sp-event{display:block;margin-top:20px;border-radius:12px;overflow:hidden;line-height:0;}
+.sp-event img{width:100%;height:auto;display:block;transition:transform .2s;}
+.sp-event:hover img{transform:scale(1.02);}
 .search{position:relative;gap:8px;}
 .search-input{flex:1;min-width:0;border:0;outline:none;background:transparent;font-family:var(--sans);font-size:14px;color:var(--ink);padding:0;}
 .search-input::placeholder{color:var(--weak);}
@@ -2204,7 +2211,8 @@ body.bsheet-lock{overflow:hidden;}
   .logo{justify-self:auto;order:1;margin-right:auto;width:auto;}
   .logo img{height:22px;width:auto;}
   .gnb{display:none;}
-  /* 검색: 인풋 숨기고 아이콘만 */
+  /* 검색: 인풋 숨기고 아이콘만 (통합검색영역 우측 버튼·강조라인은 모바일 미노출) */
+  .search-wrap{order:2;justify-self:auto;border-bottom:0;padding-bottom:0;gap:0;}
   .header .search, .lheader .search{order:2;justify-self:auto;flex:none;width:auto;max-width:none;height:auto;border:0;background:none;padding:0;border-radius:0;}
   .search .search-input, .search .search-pop{display:none;}
   .search .search-ic{width:24px;height:24px;}
