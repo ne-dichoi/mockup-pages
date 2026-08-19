@@ -295,8 +295,8 @@
   /* 모바일 하단 프로모션 배너 캐러셀 (기본 숨김 → 1023 이하에서 노출) */
   .cn-mo-promo{display:none;}
   @media (max-width:1023px){.cn-banner{grid-template-columns:1fr;gap:16px;padding:20px;}.cn-bn-ttl{white-space:normal;}
-    /* 교재 표지: 폭 무관 '고정 크기' → 모든 시리즈/화면폭에서 동일한 교재 크기 (넘치면 가로 스크롤). 약 3.7개 노출 */
-    .cn-bn-books{overflow-x:auto;scrollbar-width:none;gap:8px;scroll-snap-type:x proximity;}
+    /* 교재 표지: 폭 무관 '고정 크기' → 모든 시리즈/화면폭에서 동일한 교재 크기 (넘치면 가로 스와이프). 약 3.7개 노출 */
+    .cn-bn-books{overflow-x:auto;scrollbar-width:none;gap:8px;scroll-snap-type:x proximity;touch-action:pan-x;-webkit-overflow-scrolling:touch;}
     .cn-bn-books::-webkit-scrollbar{display:none;}
     .cn-bn-book{flex:0 0 104px;min-width:0;scroll-snap-align:start;}
     .cn-cat--promo{display:none;}
@@ -406,8 +406,8 @@
     /* ne-main 방식: 상단 카테고리를 균등폭 탭(하단 밑줄)으로 */
     .cn-list{background:none;border-radius:0;overflow:visible;}
     .cn-list-title{display:none;}
-    .cn-cats{flex-direction:row;gap:0;padding:0;background:#fff;border-bottom:1px solid #ededed;overflow:visible;}
-    .cn-cat{flex:1;justify-content:center;white-space:nowrap;min-height:50px;border-radius:0;font-size:15.5px;font-weight:500;color:#8c8c8c;position:relative;}
+    .cn-cats{flex-direction:row;gap:0;padding:0;background:#fff;border-top:1px solid #ededed;border-bottom:1px solid #ededed;overflow:visible;}
+    .cn-cat{flex:1;justify-content:center;white-space:nowrap;min-height:44px;border-radius:0;font-size:15.5px;font-weight:500;color:#8c8c8c;position:relative;}
     .cn-cat .arw{display:none;}
     .cn-cat:hover{background:none;color:#191919;}
     .cn-cat.on{background:none;color:#191919;font-weight:500;}
@@ -416,7 +416,7 @@
     .cn-bn-cta{display:none;}
     .cn-mo-cta{display:none;}
     /* 시리즈 탭: 줄바꿈 대신 가로 스와이프 */
-    .cn-bn-series{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
+    .cn-bn-series{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;touch-action:pan-x;}
     .cn-bn-series::-webkit-scrollbar{display:none;}
     .cn-bn-series a{flex:none;white-space:nowrap;}
     /* 설명 ↔ 시리즈 탭 간격 (아주 조금만) */
@@ -463,6 +463,17 @@
   .bs-title-menu[hidden]{display:none;}
   .bs-title-menu li{padding:12px 16px;border-radius:8px;font-size:15px;font-weight:600;color:#333;cursor:pointer;white-space:nowrap;text-align:left;}
   .bs-title-menu li:hover,.bs-title-menu li.on{background:#f5f6f8;color:#e83828;}
+
+  @media (max-width:767px){
+    /* 이벤트·신간·세미나: 카드가 1개만 덜렁 나오지 않게 1.2개 정도 노출 + 터치 스와이프 */
+    .evlist-card{width:83% !important;}
+    .evlist-row{touch-action:pan-x;-webkit-overflow-scrolling:touch;}
+    /* 맞춤 교재 세트: 교재명 목록에 세로 스크롤바 보이게 */
+    .t2set-card .st-list{scrollbar-width:thin;scrollbar-color:#c7c7c7 transparent;}
+    .t2set-card .st-list::-webkit-scrollbar{width:5px;-webkit-appearance:none;}
+    .t2set-card .st-list::-webkit-scrollbar-thumb{background:#c7c7c7;border-radius:5px;}
+    .t2set-card .st-list::-webkit-scrollbar-track{background:transparent;}
+  }
 
   /* ===== 퀵 상담 (FAB) — PC 플로팅 메뉴가 사라지는 ≤1023px에서 대체 노출 ===== */
   .mquick{display:none;}
@@ -784,6 +795,19 @@
     document.addEventListener('keydown',function(e){ if(e.key==='Escape') close(); });
   })();
 
+  /* ---------- PC: 교재상세·장바구니·주문결제(바로구매) 랜딩은 새 창으로 ---------- */
+  (function(){
+    var pages=['교재상세.html','장바구니.html','주문결제.html'];
+    function isLanding(h){ return pages.some(function(p){ return h.indexOf(p)>=0; }); }
+    document.addEventListener('click',function(e){
+      if(!window.matchMedia('(min-width:1024px)').matches) return;   /* PC에서만 새 창 */
+      var a=e.target.closest('a[href]'); if(!a) return;
+      if(a.classList.contains('cart') && a.closest('.st-cta')) return; /* '세트 담기'는 담기+알림 동작 유지 */
+      var h=a.getAttribute('href')||'';
+      if(isLanding(h)){ e.preventDefault(); window.open(a.href,'_blank','noopener'); }
+    },true);
+  })();
+
   /* ---------- 맞춤 교재 세트: 교재별 상세보기·장바구니 아이콘 ---------- */
   (function(){
     var sec=document.querySelector('.t2set-sec'); if(!sec) return;
@@ -824,7 +848,7 @@
       e.preventDefault();
       var li=b.closest('li'); var nmEl=li&&li.querySelector('.st-nm');
       var nm=nmEl?nmEl.textContent.trim():'교재';
-      if(b.classList.contains('view')){ location.href='교재상세.html?name='+encodeURIComponent(nm); return; }
+      if(b.classList.contains('view')){ var u='교재상세.html?name='+encodeURIComponent(nm); if(window.matchMedia('(min-width:1024px)').matches){ window.open(u,'_blank','noopener'); } else { location.href=u; } return; }
       if(b.classList.contains('cart')){
         if(window.NECart){ NECart.add({id:'set|'+nm, name:nm, img:'assets/best_1.png', orig:15000, unit:13500, rate:'10%', cat:'교재'}, 1); }
         alert('장바구니에 담겼습니다.\n· '+nm);
