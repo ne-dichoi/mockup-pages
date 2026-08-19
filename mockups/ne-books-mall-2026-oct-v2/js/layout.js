@@ -5,8 +5,10 @@
   var HEADER = `<header class="lheader">
     <div class="container">
       <div class="header-top">
-        <a class="logo" href="index.html"><img src="assets/header_logo_dark.png" alt="NE_Books"></a>
-        <a class="teacher-switch" href="index-teacher.html" style="margin-left:12px;flex:none;display:inline-flex;align-items:center;gap:5px;padding:8px 14px;border:1px solid #2272dd;border-radius:999px;background:#eaf2fe;color:#2272dd;font-size:13px;font-weight:700;white-space:nowrap;text-decoration:none;">&#128218; 선생님 화면</a>
+        <div class="logo-wrap">
+          <a class="logo" href="index.html"><img src="assets/header_logo_dark.png" alt="NE_Books"></a>
+          <a class="teacher-switch" href="index-teacher.html">선생님 화면 보기</a>
+        </div>
         <div class="m-loc"><a class="m-loc-home" href="index.html" aria-label="홈"><img src="assets/ic_home_sub.svg" alt="홈"></a><button class="m-loc-btn" type="button" aria-expanded="false"><span class="m-loc-name"></span><span class="m-loc-caret"></span></button></div>
         <div class="search">
           <input type="text" class="search-input" placeholder="검색어를 입력해 주세요." autocomplete="off">
