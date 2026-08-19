@@ -53,16 +53,12 @@
             <a href="#">교과서/자습서</a>
             <a href="#">수험/일반</a>
             <a href="#">수학/국어</a>
-            <a href="#">학습자료실</a>
-            <a href="#">도서몰</a>
+            <a class="c-blue" href="#">학습자료실</a>
+            <a class="c-red gnb-mall" href="#" data-cat="교재몰" aria-label="교재몰"><span class="gnb-roll"><span class="gr-track"><span class="gr-i">교재몰</span><span class="gr-i sub">지금 바로구매</span></span></span></a>
           </nav>
         </div>
         <div class="gnb-drop" id="gnbDrop">
           <div class="gd-cats"></div>
-          <div class="gd-brands">
-            <a class="gd-btn blue" href="#">Come on Series <span>&#8250;</span></a>
-            <a class="gd-btn navy" href="oxford.html">Oxford <span>&#8250;</span></a>
-          </div>
         </div>
       </div>
     </div>
@@ -320,7 +316,7 @@
 
   /* ===== 모바일 전체메뉴 드로어 (햄버거 → 좌 카테고리 / 우 하위목록) ===== */
   (function(){
-    /* 교재 카테고리(ELT~수학/국어) — 학습자료실·도서몰은 이 전체를 아코디언으로 노출 */
+    /* 교재 카테고리(ELT~수학/국어) — 학습자료실·교재몰은 이 전체를 아코디언으로 노출 */
     var BOOKCATS=[
       {name:'ELT', subs:['Coursebook','Phonics','Reading','Readers','Listening','Speaking','Grammar','Writing','Vocabulary']},
       {name:'초등/중등', subs:['중학내신','고등선행','어휘','Phonics','쓰기','독해','듣기','문법/구문','TOEFL/TEPS/NELT']},
@@ -333,7 +329,7 @@
     var MY_LINKS=['마이페이지.html','마이페이지.html#orders','마이페이지.html#points','마이페이지.html#wish','마이페이지.html#qna','마이페이지.html#review','마이페이지.html#event'];
     var MENU=BOOKCATS.concat([
       {name:'학습자료실', accordion:true},
-      {name:'도서몰', accordion:true},
+      {name:'교재몰', accordion:true},
       {name:'고객센터', subs:['공지사항','FAQ','이벤트/신간·개정/세미나','교재 오류정정','1:1문의','지사안내'], links:CS_LINKS},
       {name:'마이페이지', subs:['홈','주문내역','포인트','찜','문의/답변','후기','이벤트/세미나'], links:MY_LINKS}
     ]);
@@ -499,44 +495,39 @@
     '수험/일반':['TOEIC','TOEIC Speaking/Writing','TOEFL/OPIC/TEPS','FLEX','일반영어'],
     '수학/국어':['유아','초등','중등','고등'],
     '학습자료실':['서브메인','ELT자료','초/중등교재 자료','고등교재 자료','교과서/자습서 자료','수험/일반 자료','수학/국어 자료'],
-    '도서몰':['ELT','초/중등','고등영어 교과서','교과서/자습서','수험/일반','교구/부가상품','세트/패키지','온라인 서비스/이용권']
+    '교재몰':['ELT','초/중등','고등영어 교과서','교과서/자습서','수험/일반','교구/부가상품','세트/패키지','온라인 서비스/이용권']
   };
   var closeT;
   function openFor(a){
-    var name=a.textContent.trim();
-    var mega=(name==='학습자료실'||name==='도서몰');
-    var BR='<div class="gd-brands"><a class="gd-btn blue" href="#">Come on Series <span>&#8250;</span></a><a class="gd-btn navy" href="oxford.html">Oxford <span>&#8250;</span></a></div>';
+    var name=a.getAttribute('data-cat')||a.textContent.trim();
+    var mega=(name==='학습자료실'||name==='교재몰');
+    var LL='리스트_교재구매.html';
+    var BR='';
+    var GPROMO='<a class="gd-promo" href="이벤트상세.html"><span class="img" style="background-image:url(\'assets/banner_books.png\'),linear-gradient(160deg,#1f9d63,#137a45)"></span><span class="tit">신간 출시, 지금 만나보세요</span><span class="desc">새롭게 출간된 교재를 가장 먼저 확인하세요 &#8250;</span></a>';
     if(mega){
       var COLS=[['ELT','Coursebook','Phonics','Reading','Readers','Listening','Speaking','Grammar','Writing','Vocabulary'],['초등/중등','중학 내신','고등 선행','파닉스','어휘','쓰기','독해','듣기','문법/구분','TOEFL/TEPS/NELT'],['고등','어휘','독해','듣기','문법/구분','수능 대비','고교 내신','단기 특강','TOEFL/TEPS/NELT'],['교과서/자습서','중학영어 교과서','고등영어 교과서','수학 교과서','중국어/일본어'],['수험/일반','TOEIC','TOEIC SPEAKING|/WRITING','TOEFL/OPIC/TEPS','FLEX','일반영어'],['수학/국어','유아','초등','중등','고등']];
-      drop.innerHTML=COLS.map(function(c){ return '<div class="gd-col"><p class="gd-col-t">'+c[0]+'</p><div class="items">'+c.slice(1).map(function(i){ return '<a href="리스트_교재구매.html">'+i.replace('|','<br>')+'</a>'; }).join('')+'</div></div>'; }).join('')+BR;
+      drop.innerHTML=COLS.map(function(c){ return '<div class="gd-col"><p class="gd-col-t">'+c[0]+'</p><div class="items">'+c.slice(1).map(function(i){ return '<a href="'+LL+'">'+i.replace('|','<br>')+'</a>'; }).join('')+'</div></div>'; }).join('')+BR+GPROMO;
       drop.classList.add('mega');
     } else {
       var list=MENU[name]; if(!list){ hideGnb(); return; }
-      drop.innerHTML='<div class="gd-cats">'+list.map(function(t){ return '<a href="리스트_교재구매.html">'+t+'</a>'; }).join('')+'</div>'+BR;
+      drop.innerHTML='<div class="gd-cats">'+list.map(function(t){ return '<a href="'+LL+'">'+t+'</a>'; }).join('')+'</div>'+BR+GPROMO;
       drop.classList.remove('mega');
     }
     items.forEach(function(x){ x.classList.toggle('on',x===a); });
     drop.classList.add('open');
-    var vw=window.innerWidth, M=16; /* 좌우 최소 여백 */
-    if(mega){
-      /* 메가: 내비(.gnb-in) 폭에 맞춰 화면을 채우고 컬럼은 flex로 넓게 분배 */
-      var grm=gnb.getBoundingClientRect(), inEl=gnb.querySelector('.gnb-in'), inm=inEl.getBoundingClientRect();
-      drop.style.width=Math.round(inm.width)+'px';
-      drop.style.left=Math.round(inm.left-grm.left)+'px';
-    }
+    if(mega){ var gw=gnb.getBoundingClientRect().width; var ml=Math.round((gw-drop.offsetWidth)/2); drop.style.left=(ml>0?ml:0)+'px'; }
     else{
-      drop.style.width='';
       var gr=gnb.getBoundingClientRect(), ir=a.getBoundingClientRect();
       var left=Math.round(ir.left-gr.left-24);
-      var maxLeft=Math.round(vw-drop.offsetWidth-M); /* 우측 여백 확보(뷰포트 기준) */
-      if(left>maxLeft) left=maxLeft; if(left<M) left=M;
+      var maxLeft=Math.round(gr.width-drop.offsetWidth);
+      if(left>maxLeft) left=maxLeft; if(left<0) left=0;
       drop.style.left=left+'px';
     }
   }
   function hideGnb(){ drop.classList.remove('open'); items.forEach(function(x){ x.classList.remove('on'); }); }
   items.forEach(function(a){
     a.addEventListener('mouseenter',function(){ clearTimeout(closeT); openFor(a); });
-    a.addEventListener('click',function(e){ if(MENU[a.textContent.trim()]){ e.preventDefault(); openFor(a); } });
+    a.addEventListener('click',function(e){ if(MENU[a.getAttribute('data-cat')||a.textContent.trim()]){ e.preventDefault(); openFor(a); } });
   });
   gnb.addEventListener('mouseleave',function(){ closeT=setTimeout(hideGnb,160); });
   gnb.addEventListener('mouseenter',function(){ clearTimeout(closeT); });
