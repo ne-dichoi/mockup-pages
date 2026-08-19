@@ -2933,7 +2933,7 @@ body.bsheet-lock{overflow:hidden;}
   /* 전체삭제: 모바일 장바구니 삭제버튼(#delSel)과 동일 규격 */
   .page-my #tab-wish .wl-clear{height:28px;min-height:0;box-sizing:border-box;padding:5px 13px;font-size:12px;font-weight:500;border:1px solid var(--ink);border-radius:8px;color:var(--ink);}
   /* 가로 스크롤 mb-grid 오버라이드 → 반응형 그리드(화면 넓어지면 열 증가 → 아래 카드 위로 채워짐) */
-  .page-my #tab-wish .wl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;overflow:visible;margin-top:0;}
+  .page-my #tab-wish .wl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:40px 12px;overflow:visible;margin-top:0;}
   /* 검색결과 카드 디자인: 회색 정사각 박스 + 교재 축소, ×삭제(우상단)·검정 장바구니(교재 위) */
   .page-my #tab-wish .wl-grid .mb-card{position:relative;flex:none;width:auto;border:0;background:transparent;overflow:visible;gap:12px;}
   .page-my #tab-wish .wl-grid .mb-cover{width:100%;height:auto;aspect-ratio:1 / 1;background:#f3f3f3;border-radius:8px;overflow:hidden;padding:0;position:relative;display:block;}
