@@ -525,9 +525,75 @@
     .mquick-item .mq-ic{width:32px;height:32px;border-radius:50%;background:#e83828;display:flex;align-items:center;justify-content:center;flex:none;}
     .mquick-item .mq-ic img{width:17px;height:17px;filter:brightness(0) invert(1);}
   }
+
+  /* ===== 선생님 페이지 전용: GOLD 학원회원 환영 배너 (from phase2 index-teacher) ===== */
+  .teacher-switch:hover{background:#dbeafe;}
+  .cn-banner.cn-gold{background:#eef2fb;grid-template-columns:1fr 400px;}
+  .cn-gold-badges{display:flex;align-items:center;gap:8px;margin-bottom:14px;}
+  .cn-gold-grade{background:#1a1f2e;color:#f5cf78;font-size:12px;font-weight:800;padding:5px 12px;border-radius:999px;}
+  .cn-gold-hot{color:#e8641c;font-size:12px;font-weight:700;}
+  .cn-gold-ttl{font-size:28px;font-weight:800;color:#191919;line-height:1.25;margin-bottom:12px;}
+  .cn-gold-lead{font-size:15px;color:#2272dd;font-weight:600;line-height:1.5;margin-bottom:8px;}
+  .cn-gold-lead b{color:#e83828;}
+  .cn-gold-lead2{color:#191919;font-weight:400;}
+  .cn-gold-lead2 b{color:#2272dd;font-weight:800;}
+  .cn-gold-msg{font-size:13px;color:#666;margin-bottom:14px;}
+  .cn-gold-msg b{color:#333;font-weight:700;}
+  .cn-gold-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+  .cn-gold-btn{background:#1a1f2e;color:#fff;font-weight:700;font-size:15px;padding:14px 22px;border-radius:10px;}
+  .cn-gold-btn:hover{background:#2a3350;}
+  .cn-gold-perks{align-self:stretch;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(160deg,#2b3350,#1a2038);border-radius:16px;padding:22px 20px;}
+  .cn-gold-perks-h{align-self:center;background:linear-gradient(90deg,#f6d67e,#e7b64a);color:#3a2c10;font-weight:800;font-size:13px;padding:7px 18px;border-radius:999px;margin-bottom:16px;}
+  .cn-gold-perks ul{display:flex;flex-direction:column;gap:10px;list-style:none;margin:0;padding:0;}
+  .cn-gold-perks li{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:12px 14px;color:#dfe4f0;font-size:13px;display:flex;align-items:center;gap:9px;}
+  .cn-gold-perks li::before{content:'✓';display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;background:#2ec16a;color:#fff;border-radius:999px;font-size:12px;font-weight:800;flex:none;}
+  .cn-gold-perks li b{color:#fff;font-weight:800;}
+  .cn-gold-svc li{gap:9px;cursor:pointer;}
+  .cn-gold-svc li:hover{background:rgba(255,255,255,.12);}
+  .cn-gold-svc .svc-x{flex:1;min-width:0;}
+  .cn-gold-svc .svc-x b{color:#fff;font-weight:800;}
+  .cn-gold-svc .svc-ar{color:#fff;font-size:17px;line-height:1;flex:none;}
+  .cn-gold-tabs{position:absolute;top:16px;right:18px;display:flex;gap:6px;z-index:3;}
+  .cn-gold-tabs button{width:26px;height:26px;border-radius:999px;border:1px solid rgba(0,0,0,.15);background:#fff;color:#666;font-size:12px;font-weight:700;cursor:pointer;line-height:1;padding:0;}
+  .cn-gold-tabs button.on{background:#1a1f2e;color:#fff;border-color:#1a1f2e;}
+  .cn-gold-mat{align-items:center;text-align:center;}
+  .cn-mat-book{display:flex;flex-direction:column;align-items:center;gap:8px;margin:14px 0 16px;}
+  .cn-mat-book img{width:92px;aspect-ratio:2/3;object-fit:cover;border-radius:6px;box-shadow:0 4px 14px rgba(0,0,0,.45);}
+  .cn-mat-name{font-size:12px;color:#dfe4f0;line-height:1.4;max-width:220px;}
+  .cn-mat-btns{display:flex;gap:8px;width:100%;}
+  .cn-mat-btn{flex:1;text-align:center;padding:11px 0;border-radius:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.28);color:#fff;font-size:13px;font-weight:700;}
+  .cn-mat-btn:hover{background:rgba(255,255,255,.2);}
+  @media (max-width:1023px){
+    .cn-banner.cn-gold{grid-template-columns:minmax(0,1fr);gap:16px;padding:20px;}
+    .cn-gold-ttl{font-size:22px;}
+  }
+
+  /* ===== 선생님 페이지 전용: 김능률 선생님을 위한 추천 교재 (reco-v3) ===== */
+  .reco-v3{background:transparent;padding:44px 0;border-top:1px solid #ededed;}
+  .rc-top{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:24px;}
+  .reco-v3 .v3-head .tt{font-weight:800;font-size:24px;line-height:1.3;color:#191919;letter-spacing:-.5px;}
+  .rc-seg{display:inline-flex;gap:4px;background:#fff;border:1px solid #ededed;border-radius:9999px;padding:4px;}
+  .rc-seg button{padding:8px 20px;border:0;background:none;border-radius:9999px;font-size:14px;color:#8c8c8c;cursor:pointer;}
+  .rc-seg button.on{background:#191919;color:#fff;font-weight:700;}
+  .rc-scroll{display:flex;gap:16px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none;}
+  .rc-scroll::-webkit-scrollbar{display:none;}
+  .rc-card{width:200px;flex:none;background:#fff;border:1px solid #ededed;border-radius:12px;overflow:hidden;transition:box-shadow .15s,transform .15s;}
+  .rc-card:hover{box-shadow:0 8px 20px rgba(0,0,0,.08);transform:translateY(-2px);}
+  .rc-thumb{position:relative;background:#f7f8fa;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .rc-thumb img{width:130px;aspect-ratio:2/3;object-fit:cover;object-position:top center;border-radius:4px;box-shadow:3px 6px 14px rgba(0,0,0,.2);}
+  .rc-cart{position:absolute;right:10px;bottom:10px;width:38px;height:38px;background:#262626;border:0;border-radius:999px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 3px 8px rgba(0,0,0,.3);}
+  .rc-cart svg{width:19px;height:19px;display:block;}
+  .rc-meta{padding:12px 14px 16px;}
+  .rc-card .tag{font-size:12px;color:#e83828;font-weight:700;}
+  .rc-card .nm{margin-top:5px;font-size:13.5px;color:#191919;line-height:1.4;height:2.8em;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;}
+  .rc-price{margin-top:10px;display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;}
+  .rc-price .rate{font-size:16px;font-weight:800;color:#e83828;}
+  .rc-price .now{font-size:16px;font-weight:800;color:#191919;}
+  .rc-price .was{font-size:12px;color:#bbb;text-decoration:line-through;}
+  @media (max-width:600px){ .rc-top{flex-direction:column;align-items:stretch;} .rc-seg{align-self:flex-start;} }
 </style>
 </head>
-<body class="page-index">
+<body class="page-index page-teacher">
 
   <!-- ===== HEADER (white) ===== -->
   <div id="site-header"></div>
@@ -537,13 +603,27 @@
     <div class="container">
       <div class="cn-grid">
         <div class="cn-list">
-          <div class="cn-list-title">카테고리로 빠르게 확인!</div>
+          <div class="cn-list-title">선생님, 환영합니다!</div>
           <div class="cn-cats" id="cnList"></div>
         </div>
         <div class="cn-banner" id="cnBanner"></div>
       </div>
       <!-- 모바일 전용: 프로모션 배너 하단 분리 (ne-main 구조) -->
       <div class="cn-mo-promo" id="cnMoPromo"></div>
+    </div>
+  </section>
+
+  <!-- ===== [from ne-books-mall-2] 김능률 선생님을 위한 추천 교재 ===== -->
+  <section class="reco-v3">
+    <div class="container">
+      <div class="rc-top">
+        <div class="v3-head"><div class="tt"><span style="color:#2272dd">김능률 선생님</span>을 위한 추천 교재</div></div>
+        <div class="rc-seg" id="rcSeg" role="tablist" aria-label="추천 탭">
+          <button type="button" data-seg="reco" class="on">선생님을 위한 교재</button>
+          <button type="button" data-seg="wish">내가 찜한 교재</button>
+        </div>
+      </div>
+      <div class="rc-body" id="rcBody"></div>
     </div>
   </section>
 
@@ -961,6 +1041,61 @@
         +'</div>';
       }).join('');
     }
+    /* ---------- GOLD 학원회원 환영 배너 (선생님 전용 · 3종, 1/2/3 탭 전환) ---------- */
+    var LIST='리스트_교재구매.html';
+    var GOLD_VERS=[
+      '<div class="cn-bn-left">'
+        +'<div class="cn-gold-badges"><span class="cn-gold-grade">GOLD 학원회원</span><span class="cn-gold-hot">🔥 이번 주 한정</span></div>'
+        +'<h3 class="cn-gold-ttl">김능률 선생님, 다시 오셨네요!</h3>'
+        +'<p class="cn-gold-lead">선생님께만 드리는 <b>추가 할인 · 10% 적립</b>, 이번 주까지 지금 바로 챙기세요.</p>'
+        +'<p class="cn-gold-msg">관심 있던 <b>\'그래머 인사이드\'</b> 새 학기 교재가 입고됐어요.</p>'
+        +'<div class="cn-gold-actions" style="margin-top:22px"><a class="cn-gold-btn" href="'+LIST+'">바로 확인하기 &#8250;</a></div>'
+      +'</div>'
+      +'<aside class="cn-gold-perks">'
+        +'<span class="cn-gold-perks-h">&#128081; GOLD 회원 등급 혜택</span>'
+        +'<ul><li>추가 할인 <b>10%</b> · 추가 적립 <b>10%</b></li><li>대량구매 전담 상담 · 신간 우선 안내</li><li>무료배송 <b>2회</b> · 9월 우대 쿠폰 <b>2건</b> 제공</li></ul>'
+      +'</aside>',
+      '<div class="cn-bn-left">'
+        +'<div class="cn-gold-badges"><span class="cn-gold-grade">GOLD 학원회원</span><span class="cn-gold-hot">🔥 이번 주 한정</span></div>'
+        +'<h3 class="cn-gold-ttl">김능률 선생님, 교재를 구매하셨네요!</h3>'
+        +'<p class="cn-gold-lead cn-gold-lead2">구매하신 <b>능률VOCA 어원편 중등 (2025 개정)</b>과 함께 사용하면<br>좋은 어휘 문제 마법사를 무료로 사용해보세요!</p>'
+        +'<div class="cn-gold-actions" style="margin-top:22px"><a class="cn-gold-btn" href="'+LIST+'">무료 체험해보기 &#8250;</a></div>'
+      +'</div>'
+      +'<aside class="cn-gold-perks cn-gold-mat">'
+        +'<span class="cn-gold-perks-h">&#128218; 선생님만을 위한 자료</span>'
+        +'<div class="cn-mat-book"><img src="assets/pk_high1.jpg" alt=""><span class="cn-mat-name">능률VOCA 어원편 고등 (2025 개정)</span></div>'
+        +'<div class="cn-mat-btns"><a class="cn-mat-btn" href="#">E-book/자료</a><a class="cn-mat-btn" href="#">어휘 문제 마법사</a></div>'
+      +'</aside>',
+      '<div class="cn-bn-left">'
+        +'<div class="cn-gold-badges"><span class="cn-gold-grade">GOLD 학원회원</span><span class="cn-gold-hot">🔥 이번 주 한정</span></div>'
+        +'<h3 class="cn-gold-ttl">김능률 선생님, 문법교재를 자주 구매하시네요!</h3>'
+        +'<p class="cn-gold-lead cn-gold-lead2">구매하신 <b>초등 Grammar Inside 1</b>과 함께 사용하면<br>좋은 문법 문제 뱅크를 무료로 사용해보세요!</p>'
+        +'<div class="cn-gold-actions" style="margin-top:22px"><a class="cn-gold-btn" href="'+LIST+'">무료 체험하기 &#8250;</a></div>'
+      +'</div>'
+      +'<aside class="cn-gold-perks cn-gold-svc">'
+        +'<span class="cn-gold-perks-h">&#129513; 문법 관련 서비스 추천</span>'
+        +'<ul>'
+          +'<li><span class="svc-x"><b>문법 문제 뱅크</b> : 문제 무제한 출제</span><span class="svc-ar">&#8250;</span></li>'
+          +'<li><span class="svc-x"><b>문법 예문 검색</b> : 필요한 예문 찾기 1분컷</span><span class="svc-ar">&#8250;</span></li>'
+          +'<li><span class="svc-x"><b>NELT</b> : iBT 영어 레벨테스트</span><span class="svc-ar">&#8250;</span></li>'
+        +'</ul>'
+      +'</aside>'
+    ];
+    var goldVer=0;
+    function goldTabsHTML(active){
+      return '<div class="cn-gold-tabs">'+[0,1,2].map(function(i){ return '<button type="button" data-gv="'+i+'" class="'+(i===active?'on':'')+'">'+(i+1)+'</button>'; }).join('')+'</div>';
+    }
+    function renderGold(){
+      btns.forEach(function(b){ b.classList.remove('on'); });
+      bnEl.className='cn-banner cn-gold';
+      bnEl.style.background='';
+      bnEl.innerHTML=goldTabsHTML(goldVer)+GOLD_VERS[goldVer];
+      [].slice.call(bnEl.querySelectorAll('.cn-gold-tabs button')).forEach(function(t){
+        function pick(){ var v=parseInt(t.getAttribute('data-gv'),10); if(v!==goldVer){ goldVer=v; renderGold(); } }
+        t.addEventListener('mouseenter',pick);
+        t.addEventListener('click',pick);
+      });
+    }
     function select(i){
       current=i;
       btns.forEach(function(b,idx){ b.classList.toggle('on',idx===i); });
@@ -1026,17 +1161,15 @@
         select((current+1)%CATS.length);
       }
     }
-    function startRoll(){ clearInterval(rollTimer); rollTimer=setInterval(rollTick,4500); }
+    /* 선생님 페이지: 자동 롤링 없음 — 기본은 GOLD 환영 배너, 카테고리 호버 시 교재 노출 */
+    function startRoll(){ clearInterval(rollTimer); }
     function pause(){ clearInterval(rollTimer); }
-    /* PC: 호버 시 멈춤/재개 */
-    listEl.addEventListener('mouseenter',function(){ if(!isMobile()) pause(); });
-    listEl.addEventListener('mouseleave',function(){ if(!isMobile()) startRoll(); });
-    bnEl.addEventListener('mouseenter',function(){ if(!isMobile()) pause(); });
-    bnEl.addEventListener('mouseleave',function(){ if(!isMobile()) startRoll(); });
-    /* 모바일: 구경(터치) 중 멈춤 → 손 뗀 뒤 잠시 후 상·하단 동기화된 상태로 재개 */
-    function mobilePauseResume(){ if(!isMobile()) return; pause(); clearTimeout(resumeT); resumeT=setTimeout(startRoll,4500); }
+    function mobilePauseResume(){ if(!isMobile()) return; pause(); }
     listEl.addEventListener('pointerdown',mobilePauseResume);
     bnEl.addEventListener('pointerdown',mobilePauseResume);
+    /* PC: 상단 카테고리 영역을 벗어나면 GOLD 환영 배너로 복귀 */
+    var cnWrap=document.querySelector('.catnav-v3');
+    if(cnWrap){ cnWrap.addEventListener('mouseleave',function(){ if(!isMobile()) renderGold(); }); }
 
     renderMoPromo();
 
@@ -1049,7 +1182,44 @@
       }
     });
 
-    select(0); startRoll();
+    renderGold();
+  })();
+
+  /* ---------- 김능률 선생님을 위한 추천 교재 (탭 전환 · 1행 스크롤) ---------- */
+  (function(){
+    var RC_CART='<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>';
+    var reco=[
+      {n:'능률 VOCA 중등 필수 (2025 개정)', tag:'어휘', rate:'10%', now:'12,600원', was:'14,000원', c:'assets/pk_mid1.jpg'},
+      {n:'리딩튜터 주니어 1 (2024 개정)', tag:'독해', rate:'10%', now:'12,600원', was:'14,000원', c:'assets/pk_mid5.jpg'},
+      {n:'능률VOCA 어원편 고등 (2025 개정)', tag:'어휘', rate:'10%', now:'13,500원', was:'15,000원', c:'assets/pk_high1.jpg'},
+      {n:'Subject Link 1 (2nd Edition)', tag:'Reading', rate:'10%', now:'13,500원', was:'15,000원', c:'assets/pk_elt1.png'},
+      {n:'Insight Link 1', tag:'독해', rate:'10%', now:'12,600원', was:'14,000원', c:'assets/pk_elt5.jpg'},
+      {n:'능률 중학영어 듣기 모의고사 22회 Level 1', tag:'듣기', rate:'10%', now:'13,500원', was:'15,000원', c:'assets/pk_mid3.jpg'}
+    ];
+    var wish=[
+      {n:'능률 VOCA 중등 기본 (2025 개정)', tag:'어휘', rate:'10%', now:'13,050원', was:'14,500원', c:'assets/pk_mid2.jpg'},
+      {n:'Subject Link 4 (2nd Edition)', tag:'Reading', rate:'10%', now:'12,150원', was:'13,500원', c:'assets/pk_elt2.png'},
+      {n:'능률VOCA 수능 필수 (2025 개정)', tag:'어휘', rate:'10%', now:'15,300원', was:'17,000원', c:'assets/pk_high3.jpg'},
+      {n:'능률VOCA 고등 기본 (2025 개정)', tag:'어휘', rate:'10%', now:'10,800원', was:'12,000원', c:'assets/pk_high2.jpg'},
+      {n:'Subject Link 7', tag:'Reading', rate:'10%', now:'12,600원', was:'14,000원', c:'assets/pk_elt4.jpg'}
+    ];
+    function cards(arr){
+      return '<div class="rc-scroll">'+arr.map(function(b){
+        return '<div class="rc-card">'
+          +'<div class="rc-thumb"><a href="교재상세.html"><img src="'+b.c+'" alt=""></a>'
+            +'<button type="button" class="rc-cart" aria-label="장바구니">'+RC_CART+'</button></div>'
+          +'<div class="rc-meta"><div class="tag">'+b.tag+'</div><div class="nm">'+b.n+'</div>'
+          +'<div class="rc-price"><span class="rate">'+b.rate+'</span><span class="now">'+b.now+'</span><span class="was">'+b.was+'</span></div></div>'
+        +'</div>';
+      }).join('')+'</div>';
+    }
+    var PANELS={reco:cards(reco), wish:cards(wish)};
+    var body=document.getElementById('rcBody'), seg=document.getElementById('rcSeg');
+    if(!body||!seg) return;
+    function show(k){ body.innerHTML=PANELS[k]||''; }
+    show('reco');
+    seg.addEventListener('click',function(e){ var b=e.target.closest('button'); if(!b) return; [].slice.call(seg.children).forEach(function(x){ x.classList.toggle('on',x===b); }); show(b.getAttribute('data-seg')); });
+    body.addEventListener('click',function(e){ var btn=e.target.closest('.rc-cart'); if(!btn) return; e.preventDefault(); var card=btn.closest('.rc-card'); var nm=card&&card.querySelector('.nm')?card.querySelector('.nm').textContent:'교재'; alert('장바구니에 담겼습니다.\n· '+nm); });
   })();
 
   /* ---------- NETUTOR: scale arc to fit + wheel/click rotate with center red focus ---------- */
