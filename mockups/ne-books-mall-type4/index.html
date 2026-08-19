@@ -29,6 +29,8 @@ body{font-family:var(--sans);color:var(--ink);background:#fff;-webkit-font-smoot
 img{display:block;max-width:100%;}
 a{color:inherit;text-decoration:none;}
 button{font-family:inherit;cursor:pointer;border:0;background:none;}
+.ico{display:inline-block;flex:none;}
+.ico img{width:100%;height:100%;object-fit:contain;}
 .wrap{max-width:1440px;margin:0 auto;padding:0 40px;}
 .hl{color:var(--purple);}
 
@@ -38,8 +40,6 @@ button{font-family:inherit;cursor:pointer;border:0;background:none;}
 .lheader .header-top{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px;padding-block:20px;border-bottom:1px solid #e5e5e5;position:relative;margin-inline:calc(50% - 50vw);padding-inline:calc(50vw - 50%);}
 .lheader .logo{width:150px;height:28px;justify-self:start;}
 .lheader .logo img{width:100%;height:100%;object-fit:contain;}
-.lheader .ico{display:inline-block;flex:none;}
-.lheader .ico img{width:100%;height:100%;object-fit:contain;}
 .lheader .search{position:relative;gap:8px;justify-self:center;width:449px;max-width:100%;height:46px;border:2px solid #e83828;border-radius:9999px;display:flex;align-items:center;justify-content:flex-end;padding:0 20px;background:#fff;transition:box-shadow .15s,border-color .15s;}
 .lheader .search:focus-within{box-shadow:0 0 0 3px rgba(232,56,40,.14);}
 .lheader .search-input{flex:1;min-width:0;border:0;outline:none;background:transparent;font-family:var(--sans);font-size:14px;color:#1d1717;padding:0;}
@@ -237,9 +237,154 @@ button{font-family:inherit;cursor:pointer;border:0;background:none;}
 .n-store-prod{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;flex:1;}
 .n-store-home{margin-top:16px;height:52px;border:1px solid var(--line);border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;color:#333;}
 
-/* footer */
-.n-foot{border-top:1px solid var(--line);padding:30px 0;color:#999;font-size:13px;text-align:center;line-height:1.9;}
-.n-foot b{color:#555;}
+/* ===== responsive visibility utils (ne-books-mall-type3 동일) ===== */
+.only-mo{display:none;}
+@media (max-width:1023px){
+  .only-mo{display:block;}
+  .only-pc{display:none !important;}
+}
+
+/* ===== NETUTOR (선생님을 위한 티칭 플랫폼) — ne-books-mall-type3 동일 적용 ===== */
+.netutor{background:#fff;padding:90px 0;overflow:hidden;}
+.nt-viewport{width:100%;display:flex;justify-content:center;}
+.nt-wrap{position:relative;width:1920px;height:542px;flex:none;transform-origin:top center;}
+.nt-arc{position:absolute;left:50%;transform:translateX(-50%);top:226px;width:864px;height:316px;overflow:hidden;pointer-events:none;}
+.nt-arc .circle{width:864px;height:864px;position:absolute;top:5px;left:0;}
+.nt-arc .dot{position:absolute;left:426px;top:0;width:11px;height:11px;}
+.nt-hot{display:none;}
+.nt-center{position:absolute;left:50%;transform:translateX(-50%);top:430px;width:360px;z-index:3;display:flex;flex-direction:column;gap:16px;align-items:center;}
+.nt-center .cap{font-family:var(--display);font-weight:800;font-size:32px;line-height:40px;color:var(--ink);white-space:nowrap;}
+.nt-center .cap .cap-sub{color:var(--sub);}
+.nt-center .logo{width:190px;height:39px;}
+.nt-cards{position:absolute;left:0;top:0;width:100%;height:438px;}
+.nt-card{position:absolute;width:351px;height:178px;background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;cursor:pointer;transition:left .55s cubic-bezier(.4,0,.2,1),top .55s cubic-bezier(.4,0,.2,1),opacity .45s ease,background .3s,border-color .3s;}
+.nt-card.red{background:var(--red);border-color:var(--red);}
+.nt-card .body{position:absolute;left:39px;top:39px;right:70px;display:flex;flex-direction:column;gap:8px;}
+.nt-card .body .sub{font-size:14px;color:var(--sub);}
+.nt-card .body .tt{font-family:var(--display);font-weight:800;font-size:24px;color:var(--ink);}
+.nt-card.red .body .sub,.nt-card.red .body .tt{color:#fff;}
+.nt-card .ic{position:absolute;right:30px;bottom:30px;width:56px;height:56px;}
+@media (max-width:1023px){
+  .netutor{padding:40px 0 0;overflow:visible;}
+  .nt-viewport{padding-inline:20px;}
+  .nt-wrap{width:100%;height:auto;transform:none !important;display:flex;flex-direction:column;align-items:center;gap:24px;}
+  .nt-arc{display:none;}
+  .nt-hot{display:none;}
+  .nt-center{position:static;transform:none;width:100%;text-align:left;align-items:flex-start;gap:8px;}
+  .nt-center .cap{font-size:24px;line-height:36px;font-weight:700;white-space:normal;}
+  .nt-center .cap .cap-sub{display:block;font-size:14px;line-height:22px;font-weight:400;}
+  .nt-center .cap .cap-main{font-size:24px;line-height:36px;font-weight:700;}
+  .nt-center .cap .cap-logo{display:inline-block;width:102px;height:22px;vertical-align:middle;margin-left:16px;}
+  .nt-center .cap .cap-logo img{width:100%;height:100%;object-fit:contain;display:block;}
+  .nt-cards{position:static;width:100%;height:auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 24px;}
+  .nt-card{position:relative;left:auto;top:auto;width:auto;max-width:none;height:auto;min-height:150px;padding:20px 16px;}
+  .nt-card .body{position:static;left:auto;top:auto;right:auto;padding-right:8px;gap:4px;}
+  .nt-card .body .tt{order:-1;font-size:18px;line-height:24px;word-break:keep-all;}
+  .nt-card .body .sub{font-size:13px;line-height:18px;}
+  .nt-card .ic{right:14px;bottom:14px;width:40px;height:40px;}
+}
+
+/* ===== NOTICES / CUSTOMER CENTER (ne-books-mall-type3 동일 적용) ===== */
+.notices{background:var(--bg-gray);padding:80px 0;}
+.nt-inner{display:flex;gap:31px;align-items:flex-start;flex-wrap:wrap;}
+.notice-col{flex:689 1 0;min-width:340px;display:flex;flex-direction:column;gap:16px;}
+.notice-col .sec-title{text-align:left;}
+.sec-title{font-family:var(--display);font-weight:800;font-size:32px;line-height:40px;}
+.notice-list{display:flex;flex-direction:column;}
+.notice-list .item{min-height:60px;padding:12px 0;border-bottom:1px solid #dbdbdb;display:flex;align-items:center;justify-content:space-between;gap:12px;}
+.notice-list .item .t{font-weight:500;font-size:14px;color:var(--ink);}
+.notice-list .item .d{font-size:13px;color:#a9a9a9;text-align:right;white-space:nowrap;flex:none;}
+.cs-col{flex:640 1 0;min-width:320px;display:flex;flex-direction:column;}
+.cs-col .cs-cards{margin-top:16px;}
+.cs-col .sec-title{text-align:left;}
+.cs-cards{display:flex;flex-direction:column;gap:8px;}
+.cs-card{border:1px solid #dbdbdb;border-radius:16px;min-height:145px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:24px 24px 24px 32px;flex-wrap:wrap;}
+.cs-card .left{flex:0 1 auto;display:flex;flex-direction:column;gap:8px;}
+.cs-card .left .tel{font-family:var(--display);font-weight:400;font-size:20px;letter-spacing:.5px;color:var(--ink);}
+.cs-card .left .info .info-sep{display:none;}
+.cs-card .left .info{font-weight:500;font-size:13px;color:var(--sub);line-height:20px;}
+.cs-icons{display:flex;align-items:center;gap:40px;}
+.cs-box{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;position:relative;}
+.cs-box:not(:last-child)::after{content:"";position:absolute;right:-20px;top:0;bottom:0;width:1px;background:var(--line);}
+.cs-box .ico{width:45px;height:45px;}
+.cs-box span{font-weight:600;font-size:12px;color:var(--sub);line-height:18px;white-space:nowrap;}
+.sns{display:flex;gap:8px;}
+.cs-col .sns{margin-top:8px;}
+.sns .card{border:1px solid #dbdbdb;border-radius:16px;height:88px;flex:1 1 0;min-width:0;position:relative;}
+.sns .card .in{position:absolute;left:20px;right:20px;top:50%;transform:translateY(-50%);display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.sns .card .in .lbl{font-size:13px;color:var(--sub);line-height:18px;}
+.sns .card .logo{width:36px;height:36px;border-radius:10px;overflow:hidden;flex:none;}
+.sns .card .logo img{width:100%;height:100%;object-fit:cover;}
+@media (max-width:1023px){
+  .notices{padding:40px 0;background:#fff;}
+  .nt-inner{flex-direction:column;gap:40px;}
+  .notice-col,.cs-col{min-width:0;width:100%;}
+  .notice-list .item{flex-direction:column;align-items:flex-start;gap:6px;min-height:0;padding:14px 0;}
+  .notice-list .item .d{text-align:left;font-size:12px;}
+  .notice-list .item:nth-child(4){display:none;}
+  .cs-card{flex-direction:column;align-items:stretch;gap:16px;border:0;border-radius:0;padding:0;min-height:0;}
+  .cs-card .left{flex:none;gap:6px;}
+  .cs-card .left .tel{font-size:24px;line-height:30px;}
+  .cs-card .left .info{font-size:13px;line-height:20px;white-space:nowrap;}
+  .cs-card .left .info br{display:none;}
+  .cs-card .left .info .info-sep{display:inline;color:#c4c4c4;margin:0 4px;}
+  .cs-icons{border:1px solid var(--line);border-radius:16px;padding:16px 0;gap:0;justify-content:space-around;}
+  .cs-box{flex:1 1 0;}
+  .cs-box:not(:last-child)::after{right:0;top:50%;bottom:auto;transform:translateY(-50%);width:1px;height:56px;}
+  .sns-title{margin-top:40px;text-align:left;}
+  .cs-col .sns{margin-top:16px;gap:8px;justify-content:space-between;flex-wrap:nowrap;}
+  .cs-col .sns .card{flex:none;}
+  .sns .card{border:0;height:auto;}
+  .sns .card .in{position:static;transform:none;left:auto;right:auto;top:auto;justify-content:flex-start;gap:12px;}
+  .sns .card .in .lbl{font-size:12px;line-height:18px;white-space:nowrap;}
+  .sns .card .in .lbl .sns-brand{display:none;}
+  .sns .card .logo{width:40px;height:40px;border-radius:11px;}
+}
+@media (max-width:560px){
+  .cs-card{padding:20px 24px;}
+  .cs-icons{gap:20px;}
+  .cs-box:not(:last-child)::after{right:-10px;}
+  .cs-box .ico{width:45px;height:45px;}
+}
+
+/* ===== FOOTER (ne-books-mall-type3 동일 적용) ===== */
+.footer{background:#0d0d0d;}
+.footer .container{width:100%;padding-inline:40px;box-sizing:border-box;}
+.foot-top{min-height:60px;border-bottom:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:8px 0;}
+.foot-nav{display:flex;align-items:center;flex-wrap:wrap;}
+.foot-nav a{color:#9a9a9a;font-size:13px;text-decoration:none;padding:0 16px;position:relative;}
+.foot-nav a:first-child{padding-left:0;}
+.foot-nav a:not(:last-child)::after{content:"";position:absolute;right:0;top:50%;transform:translateY(-50%);width:1px;height:10px;background:rgba(255,255,255,.18);}
+.foot-right{display:flex;gap:18px;align-items:center;flex-wrap:wrap;}
+.foot-right .ch{color:#c4c4c4;font-weight:700;font-size:13px;}
+.foot-right .yt{width:22px;height:22px;}
+.foot-right .fam{display:flex;gap:10px;align-items:center;color:#c4c4c4;font-size:13px;padding-left:8px;}
+.foot-right .fam .ic{width:13px;height:13px;}
+.foot-main{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;padding:24px 0 32px;}
+.foot-info p{font-size:13px;line-height:18.85px;color:#7e7e7e;}
+.foot-info p:nth-child(3){padding-top:4px;}
+.foot-info p:nth-child(4){padding-top:12px;}
+.foot-info .sep{color:rgba(255,255,255,.18);}
+.foot-info .lk{color:#9a9a9a;}
+.foot-logo{width:80px;height:24px;flex:none;}
+.foot-logo img{width:100%;height:100%;object-fit:contain;}
+@media (max-width:1023px){
+  .footer .container{padding:0;}
+  .foot-mo.only-mo{display:flex;flex-direction:column;gap:40px;padding:40px 20px;box-sizing:border-box;}
+  .foot-mo .fm-top{display:flex;align-items:center;justify-content:space-between;gap:16px;}
+  .foot-mo .fm-logo{width:80px;height:24px;flex:none;}
+  .foot-mo .fm-logo img{width:100%;height:100%;object-fit:contain;}
+  .foot-mo .fm-fam{display:inline-flex;align-items:center;gap:8px;color:#c4c4c4;font-size:13px;white-space:nowrap;}
+  .foot-mo .fm-fam .ic{width:13px;height:13px;}
+  .foot-mo .fm-nav{display:flex;flex-wrap:wrap;align-items:center;gap:6px 0;}
+  .foot-mo .fm-nav a{color:#7e7e7e;font-size:12px;line-height:1;text-decoration:none;padding:0 9px;}
+  .foot-mo .fm-nav a:first-child{padding-left:0;}
+  .foot-mo .fm-nav a:not(:last-child){border-right:1px solid rgba(169,169,169,.3);}
+  .foot-mo .fm-info{display:flex;flex-direction:column;gap:4px;}
+  .foot-mo .fm-info p{font-size:13px;line-height:18px;color:#7e7e7e;}
+  .foot-mo .fm-info .lk{color:#9a9a9a;text-decoration:underline;margin-left:8px;}
+  .foot-mo .fm-copy{font-size:13px;line-height:19px;color:#7e7e7e;}
+}
 
 /* responsive */
 @media (max-width:1080px){
@@ -442,11 +587,130 @@ button{font-family:inherit;cursor:pointer;border:0;background:none;}
   </div>
 </section>
 
-<!-- ===================== FOOTER ===================== -->
-<footer class="n-foot">
+<!-- ===================== NETUTOR (선생님을 위한 티칭 플랫폼) ===================== -->
+<section class="netutor" id="sec-netutor">
+  <div class="nt-viewport">
+    <div class="nt-wrap" id="ntWrap">
+      <div class="nt-arc">
+        <img class="circle" src="assets/netutor_arc.svg" alt="">
+        <img class="dot" src="assets/netutor_dot.svg" alt="">
+      </div>
+      <div class="nt-hot" id="ntHot" title="스크롤하여 배너 이동"></div>
+      <div class="nt-center">
+        <div class="cap"><span class="cap-sub">선생님을 위한</span> <span class="cap-main">티칭 플랫폼</span><span class="cap-logo only-mo"><img src="assets/netutor_logo.svg" alt="NE_Tutor"></span></div>
+        <div class="logo only-pc"><img src="assets/netutor_logo.svg" alt="NE_Tutor" style="width:100%;height:100%;object-fit:contain;"></div>
+      </div>
+      <div class="nt-cards" id="ntCards">
+        <div class="nt-card">
+          <div class="body"><span class="sub">지도서/수업자료</span><span class="tt">E-Book・자료</span></div>
+          <span class="ic ico"><img src="assets/ic_tutor_ebook.svg" data-n="assets/ic_tutor_ebook.svg" data-w="assets/ic_tutor_ebook_w.svg" alt=""></span>
+        </div>
+        <div class="nt-card">
+          <div class="body"><span class="sub">시험지 자동 생성</span><span class="tt">어휘 문제 마법사</span></div>
+          <span class="ic ico"><img src="assets/ic_tutor_vocab.svg" data-n="assets/ic_tutor_vocab.svg" data-w="assets/ic_tutor_vocab_w.svg" alt=""></span>
+        </div>
+        <div class="nt-card">
+          <div class="body"><span class="sub">문제 무제한 출제</span><span class="tt">문법 문제뱅크</span></div>
+          <span class="ic ico"><img src="assets/ic_tutor_grammar.svg" data-n="assets/ic_tutor_grammar.svg" data-w="assets/ic_tutor_grammar_w.svg" alt=""></span>
+        </div>
+        <div class="nt-card">
+          <div class="body"><span class="sub">iBT 영어 레벨테스트</span><span class="tt">NELT</span></div>
+          <span class="ic ico"><img src="assets/ic_tutor_nelt.svg" data-n="assets/ic_tutor_nelt.svg" data-w="assets/ic_tutor_nelt_w.svg" alt=""></span>
+        </div>
+        <div class="nt-card">
+          <div class="body"><span class="sub">평가/오답 자동화</span><span class="tt">성취TEST</span></div>
+          <span class="ic ico"><img src="assets/ic_tutor_test.svg" data-n="assets/ic_tutor_test.svg" data-w="assets/ic_tutor_test_w.svg" alt=""></span>
+        </div>
+        <div class="nt-card">
+          <div class="body"><span class="sub">예문검색 1분컷</span><span class="tt">문법 예문 검색</span></div>
+          <span class="ic ico"><img src="assets/ic_tutor_search.svg" data-n="assets/ic_tutor_search.svg" data-w="assets/ic_tutor_search_w.svg" alt=""></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== NOTICES / CUSTOMER CENTER ===================== -->
+<section class="notices">
   <div class="wrap">
-    <b>(주)NE능률</b> · 서울특별시 마포구 월드컵북로 396 · 대표 000-0000-0000<br>
-    본 페이지는 네이버 쇼핑 스타일을 참고한 <b>목업</b>이며, 모든 상품/가격 정보는 예시입니다.
+    <div class="nt-inner">
+      <div class="notice-col">
+        <div class="sec-title">공지사항</div>
+        <div class="notice-list">
+          <div class="item"><span class="t">[필독] NE능률 개인정보 처리방침 개정 안내 (6/23 시행)</span><span class="d">2026. 07. 13</span></div>
+          <div class="item"><span class="t">[중요] NE능률-클래스카드 콘텐츠 제휴 지속 안내</span><span class="d">2026. 07. 13</span></div>
+          <div class="item"><span class="t">[안내] 절판(예정포함) 국어교재 (6/9 기준)</span><span class="d">2026. 07. 13</span></div>
+          <div class="item"><span class="t">[안내] 절판(예정포함) 국어교재 (6/9 기준)</span><span class="d">2026. 07. 13</span></div>
+        </div>
+      </div>
+      <div class="cs-col">
+        <div class="sec-title">고객센터</div>
+        <div class="cs-cards">
+          <div class="cs-card">
+            <div class="left"><span class="tel">1833-8368</span><span class="info">NE능률 고객센터<br><span class="info-sep">l</span>평일 9~16시 · 점심 12~13시</span></div>
+            <div class="cs-icons">
+              <div class="cs-box"><span class="ico"><img src="assets/ic_chat.svg" alt=""></span><span>채팅상담</span></div>
+              <div class="cs-box"><span class="ico"><img src="assets/ic_11.svg" alt=""></span><span>1:1문의</span></div>
+              <div class="cs-box"><span class="ico"><img src="assets/ic_faq.svg" alt=""></span><span>FAQ</span></div>
+              <div class="cs-box"><span class="ico"><img src="assets/ic_sms.svg" alt=""></span><span>문자상담</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="sec-title only-mo sns-title">SNS</div>
+        <div class="sns">
+          <div class="card"><div class="in"><div class="lbl"><span class="sns-brand">NE능률<br></span>Lounge 카페</div><div class="logo"><img src="assets/sns_lounge.png" alt=""></div></div></div>
+          <div class="card"><div class="in"><div class="lbl"><span class="sns-brand">NE능률<br></span>인스타그램</div><div class="logo"><img src="assets/sns_instagram.png" alt=""></div></div></div>
+          <div class="card"><div class="in"><div class="lbl"><span class="sns-brand">NE능률<br></span>유튜브</div><div class="logo"><img src="assets/sns_youtube.svg" alt=""></div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+  <div class="container">
+    <div class="foot-pc only-pc">
+      <div class="foot-top">
+        <div class="foot-nav">
+          <a href="#">개인정보처리방침</a><a href="#">이용약관</a><a href="#">이메일무단수집거부</a><a href="#">지사안내</a>
+        </div>
+        <div class="foot-right">
+          <span class="ch">Ch</span>
+          <span class="yt ico"><img src="assets/footer_youtube.svg" alt="유튜브"></span>
+          <span class="fam">FAMILY SITE <span class="ic ico"><img src="assets/footer_familysite.svg" alt=""></span></span>
+        </div>
+      </div>
+      <div class="foot-main">
+        <div class="foot-info">
+          <p>㈜NE능률 (03925) 서울특별시 마포구 월드컵북로 396(상암동) 누리꿈스퀘어 비즈니스타워 10층 <span class="sep">|</span> 대표이사 : 이정진 <span class="sep">|</span> 대표번호 : 02-2014-7114 <span class="lk">사업별 고객센터 안내</span></p>
+          <p>팩스 : 02-337-4956 <span class="sep">|</span> 고객센터 : 1833-8368 <span class="sep">|</span> 사업자등록번호 : 105-81-65267 <span class="sep">|</span> 통신판매신고번호 : 제2004-02120호 <span class="lk">정보조회</span></p>
+          <p>개인정보 보호책임자(CPO) : 선민재(necpo@neungyule.com)</p>
+          <p>Copyright ⓒ NE Neungyule, Inc. All Rights Reserved</p>
+        </div>
+        <div class="foot-logo"><img src="assets/footer_logo.png" alt="NE능률"></div>
+      </div>
+    </div>
+    <div class="foot-mo only-mo">
+      <div class="fm-top">
+        <div class="fm-logo"><img src="assets/footer_logo.png" alt="NE능률"></div>
+        <span class="fm-fam">FAMILY SITE <span class="ic ico"><img src="assets/footer_familysite.svg" alt=""></span></span>
+      </div>
+      <div class="fm-nav">
+        <a href="#">개인정보처리방침</a><a href="#">이용약관</a><a href="#">이메일무단수집거부</a><a href="#">지사안내</a>
+      </div>
+      <div class="fm-info">
+        <p>㈜NE능률 (03925) 서울특별시 마포구 월드컵북로 396(상암동) 누리꿈스퀘어 비즈니스타워 10층</p>
+        <p>대표이사 : 이정진</p>
+        <p>대표번호 : 02-2014-7114 <a class="lk" href="#">사업별 고객센터 안내</a></p>
+        <p>팩스 : 02-337-4956</p>
+        <p>고객센터 : 1833-8368</p>
+        <p>사업자등록번호 : 105-81-65267</p>
+        <p>통신판매신고번호 : 제2004-02120호 <a class="lk" href="#">정보조회</a></p>
+        <p>개인정보 보호책임자(CPO) : 선민재(necpo@neungyule.com)</p>
+      </div>
+      <div class="fm-copy">Copyright ⓒ NE Neungyule, Inc. All Rights Reserved</div>
+    </div>
   </div>
 </footer>
 
@@ -694,17 +958,79 @@ renderGrid('storeProd',PRODUCTS.slice(0,4));
 /* ===== interest series store ===== */
 (function(){
   var SERIES=[
-    {n:'Read It! 120', tag:'#스토리독해'},
-    {n:'Read It! 80', tag:'#유형독해'},
-    {n:'Read It! 60', tag:'#문장독해'},
-    {n:'Read It! 40', tag:'#기초독해'},
-    {n:'Dolphin Readers', tag:'#원서리더스'}
+    {n:'Subject Link', tag:'#리딩스킬'},
+    {n:'중학 영문법 Link', tag:'#중학영문법'},
+    {n:'능률 VOCA 중등', tag:'#중등어휘'},
+    {n:'능률 중학영어 듣기', tag:'#듣기모의고사'},
+    {n:'능률 VOCA 고등', tag:'#고등어휘'}
   ];
   var list=document.getElementById('storeList');
   list.innerHTML=SERIES.map(function(s,i){
     return '<button class="'+(i===0?'on':'')+'"><span class="logo">'+s.n.slice(0,2)+'</span><span>'+s.n+'</span><span class="tag">'+(i===0?'›':s.tag)+'</span></button>';
   }).join('');
   [].forEach.call(list.children,function(b){ b.addEventListener('click',function(){ [].forEach.call(list.children,function(x){x.classList.remove('on');}); b.classList.add('on'); }); });
+})();
+
+/* ===== NETUTOR: arc(부채꼴) 회전 캐러셀 (ne-books-mall-type3 동일 로직) ===== */
+(function(){
+  var wrap=document.getElementById('ntWrap'),cardsWrap=document.getElementById('ntCards');
+  if(!wrap||!cardsWrap) return;
+  var cards=[].slice.call(cardsWrap.querySelectorAll('.nt-card'));
+  var M=cards.length;
+  var stops=[{l:32,t:260},{l:407,t:130},{l:782,t:0},{l:1157,t:130},{l:1532,t:260},{l:1600,t:440,hidden:true}];
+  var CENTER=2, HIDDEN=5, offset=0;
+  function isArc(){ return window.innerWidth>1023; }
+  function stopOf(c){ return ((c+offset)%M+M)%M; }
+  function render(){
+    if(!isArc()){ cards.forEach(function(c){ c.classList.remove('red'); c._stop=undefined; c.style.opacity=''; c.style.pointerEvents=''; var im=c.querySelector('.ic img'); if(im){ var n=im.getAttribute('data-n'); if(n) im.src=n; } }); return; }
+    cards.forEach(function(card,c){
+      var s=stopOf(c), prev=card._stop, st=stops[s];
+      var entering=(prev===HIDDEN) && !st.hidden;
+      var targetOp=st.hidden?'0':'1';
+      if(entering){
+        var side=st.l<782?-1:1;
+        card.style.transition='none';
+        card.style.left=(st.l+side*90)+'px'; card.style.top=(st.t+150)+'px'; card.style.opacity='0';
+        void card.offsetWidth;
+        card.style.transition='';
+        card.style.left=st.l+'px'; card.style.top=st.t+'px'; card.style.opacity=targetOp;
+      } else {
+        card.style.transition='';
+        card.style.left=st.l+'px'; card.style.top=st.t+'px';
+        card.style.opacity=targetOp;
+      }
+      card.style.pointerEvents=st.hidden?'none':'auto';
+      card.classList.toggle('red', s===CENTER);
+      var img=card.querySelector('.ic img');
+      if(img){ var w=img.getAttribute('data-w'), n=img.getAttribute('data-n'); if(n){ img.src=(s===CENTER&&w)?w:n; } }
+      card._stop=s;
+    });
+  }
+  function scale(){
+    if(isArc()){
+      var s=(window.innerWidth>=1024 && window.innerWidth<=1139) ? 0.78 : 0.9;
+      wrap.style.transform='scale('+s+')';
+      wrap.parentElement.style.height=(542*s)+'px';
+    } else {
+      wrap.style.transform=''; wrap.parentElement.style.height='';
+      cards.forEach(function(card){ card.style.left=''; card.style.top=''; card.style.opacity=''; card.style.pointerEvents=''; });
+    }
+  }
+  var acc=0,lastT=0;
+  function onWheel(e){
+    if(!isArc()) return;
+    var c1,c3; cards.forEach(function(c){ if(c._stop===1)c1=c; if(c._stop===3)c3=c; });
+    if(c1&&c3){ var L=c1.getBoundingClientRect().left, R=c3.getBoundingClientRect().right;
+      if(e.clientX<L || e.clientX>R) return; }
+    e.preventDefault();
+    var now=Date.now(); if(now-lastT>400) acc=0; lastT=now; acc+=e.deltaY;
+    if(acc>=90){ offset++; acc=0; render(); } else if(acc<=-90){ offset--; acc=0; render(); }
+  }
+  wrap.addEventListener('wheel',onWheel,{passive:false});
+  cards.forEach(function(card,c){ card.addEventListener('click',function(){ if(!isArc()) return; var s=stopOf(c); if(s===HIDDEN) return; offset+=(CENTER-s); render(); }); });
+  window.addEventListener('resize',function(){ scale(); render(); });
+  window.addEventListener('load',function(){ scale(); render(); });
+  scale(); render();
 })();
 
 /* ===== heart toggle (global) ===== */
