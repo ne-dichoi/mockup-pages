@@ -296,7 +296,8 @@
     .cn-mo-track{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;cursor:grab;}
     .cn-mo-track::-webkit-scrollbar{display:none;}
     .cn-mo-track.dragging{cursor:grabbing;}
-    .cn-mo-card{flex:0 0 100%;scroll-snap-align:start;box-sizing:border-box;position:relative;overflow:hidden;border-radius:14px;padding:22px 20px;min-height:186px;display:flex;flex-direction:column;align-items:flex-start;text-decoration:none;}
+    .cn-mo-card{flex:0 0 100%;scroll-snap-align:start;box-sizing:border-box;position:relative;overflow:hidden;border-radius:14px;border:1px solid rgba(0,0,0,.06);padding:22px 20px;min-height:186px;display:flex;flex-direction:column;align-items:flex-start;text-decoration:none;}
+    .cn-mo-card--dark{border-color:transparent;}
     .cn-mo-flag{font-size:13px;font-weight:700;color:#e83828;margin-bottom:10px;position:relative;z-index:2;}
     .cn-mo-ttl{font-size:20px;font-weight:800;line-height:1.32;color:#191919;margin-bottom:9px;position:relative;z-index:2;}
     .cn-mo-desc{font-size:12.5px;line-height:1.5;color:#555;margin-bottom:14px;position:relative;z-index:2;max-width:66%;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
@@ -380,7 +381,9 @@
   .mainicons .pill .ico img{width:32px !important;height:32px !important;}
   .mainicons .pill span{font-size:12px !important;}
   @media (max-width:1023px){
-    .cn-grid{grid-template-columns:1fr;}
+    /* 모바일: 회색 바탕 제거 → 탭/배너가 흰 배경에 밀착 (ne-main 방식, '둥둥 뜬' 느낌 제거) */
+    .catnav-v3{background:#fff;padding:0 0 20px;}
+    .cn-grid{grid-template-columns:1fr;gap:14px;}
     /* ne-main 방식: 상단 카테고리를 균등폭 탭(하단 밑줄)으로 */
     .cn-list{background:none;border-radius:0;overflow:visible;}
     .cn-list-title{display:none;}
