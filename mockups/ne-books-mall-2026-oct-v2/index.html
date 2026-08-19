@@ -779,6 +779,17 @@
     window.addEventListener('resize',fitCovers);
     window.addEventListener('load',fitCovers);
     sec.addEventListener('click',function(e){
+      /* '세트 담기' → 세트 포함 상품 전체를 장바구니에 담고 알림 (장바구니로 이동하지 않음) */
+      var setBtn=e.target.closest('.st-cta .cart');
+      if(setBtn){
+        e.preventDefault();
+        var card=setBtn.closest('.t2set-card');
+        var names=[].map.call(card.querySelectorAll('.st-nm'),function(n){ return n.textContent.trim(); });
+        if(window.NECart){ names.forEach(function(nm){ NECart.add({id:'set|'+nm, name:nm, img:'assets/best_1.png', orig:15000, unit:13500, rate:'10%', cat:'교재'}, 1); }); }
+        var setName=(card.querySelector('.st-name')||{}).textContent||'세트';
+        alert('['+setName.trim()+']\n세트에 포함된 '+names.length+'개 상품이 모두 장바구니에 담겼습니다.');
+        return;
+      }
       var b=e.target.closest('.st-ic'); if(!b) return;
       e.preventDefault();
       var li=b.closest('li'); var nmEl=li&&li.querySelector('.st-nm');
