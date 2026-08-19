@@ -562,6 +562,9 @@
   .cn-mat-book{display:flex;flex-direction:column;align-items:center;gap:8px;margin:0 0 12px;}
   .cn-mat-book img{width:74px;aspect-ratio:2/3;object-fit:cover;border-radius:6px;box-shadow:0 4px 14px rgba(0,0,0,.45);}
   .cn-mat-name{font-size:14px;color:#eef2fb;line-height:1.45;max-width:240px;font-weight:600;}
+  .cn-mat-thumb{position:relative;display:inline-block;line-height:0;}
+  .cn-mat-cart{position:absolute;right:-8px;bottom:-6px;width:32px;height:32px;background:#262626;border:0;border-radius:999px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 3px 8px rgba(0,0,0,.35);}
+  .cn-mat-cart svg{width:16px;height:16px;display:block;}
   .cn-mat-btns{display:flex;gap:8px;width:100%;}
   .cn-mat-btn{flex:1;text-align:center;padding:11px 0;border-radius:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.28);color:#fff;font-size:13px;font-weight:700;}
   .cn-mat-btn:hover{background:rgba(255,255,255,.2);}
@@ -1064,7 +1067,7 @@
       +'</div>'
       +'<aside class="cn-gold-perks cn-gold-mat">'
         +'<span class="cn-gold-perks-h">&#128218; 선생님만을 위한 자료</span>'
-        +'<div class="cn-mat-book"><img src="assets/pk_high1.jpg" alt=""><span class="cn-mat-name">능률VOCA 어원편 고등 (2025 개정)</span></div>'
+        +'<div class="cn-mat-book"><span class="cn-mat-thumb"><img src="assets/pk_high1.jpg" alt=""><button type="button" class="cn-mat-cart" aria-label="장바구니">'+CART_SVG+'</button></span><span class="cn-mat-name">능률VOCA 어원편 고등 (2025 개정)</span></div>'
         +'<div class="cn-mat-btns"><a class="cn-mat-btn" href="#">E-book/자료</a><a class="cn-mat-btn" href="#">어휘 문제 마법사</a></div>'
       +'</aside>',
       '<div class="cn-bn-left">'
@@ -1083,6 +1086,7 @@
       +'</aside>'
     ];
     var goldVer=0;
+    var GOLD_ORDER=[1,2,0];   /* 표시 순서: 2번 → 3번 → 1번(맨 뒤) */
     function goldTabsHTML(active){
       return '<div class="cn-gold-tabs">'+[0,1,2].map(function(i){ return '<button type="button" data-gv="'+i+'" class="'+(i===active?'on':'')+'">'+(i+1)+'</button>'; }).join('')+'</div>';
     }
@@ -1090,11 +1094,14 @@
       btns.forEach(function(b){ b.classList.remove('on'); });
       bnEl.className='cn-banner cn-gold';
       bnEl.style.background='';
-      bnEl.innerHTML=goldTabsHTML(goldVer)+GOLD_VERS[goldVer];
+      bnEl.innerHTML=goldTabsHTML(goldVer)+GOLD_VERS[GOLD_ORDER[goldVer]];
       [].slice.call(bnEl.querySelectorAll('.cn-gold-tabs button')).forEach(function(t){
         function pick(){ var v=parseInt(t.getAttribute('data-gv'),10); if(v!==goldVer){ goldVer=v; renderGold(); } }
         t.addEventListener('mouseenter',pick);
         t.addEventListener('click',pick);
+      });
+      [].slice.call(bnEl.querySelectorAll('.cn-mat-cart')).forEach(function(mc){
+        mc.addEventListener('click',function(e){ e.preventDefault(); var wrap=mc.closest('.cn-mat-book'); var nmEl=wrap&&wrap.querySelector('.cn-mat-name'); alert('장바구니에 담겼습니다.\n· '+(nmEl?nmEl.textContent:'교재')); });
       });
     }
     function select(i){
