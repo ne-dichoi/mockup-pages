@@ -8,9 +8,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260815aq">
-<script src="js/layout.js?v=20260815aq" defer></script>
-<script src="js/search.js?v=20260815aq" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260815ar">
+<script src="js/layout.js?v=20260815ar" defer></script>
+<script src="js/search.js?v=20260815ar" defer></script>
 </head>
 <body class="page-my">
 
@@ -988,7 +988,10 @@
     panel.addEventListener('click',function(e){
       var x=e.target.closest('.mb-x');
       if(x){ var c=x.closest('.mb-card'); if(c){ if(c.dataset.wishId && window.neWishRemove) window.neWishRemove(c.dataset.wishId); c.remove(); refresh(); } return; }
-      if(e.target.closest('.wl-clear')){ [].slice.call(grid.querySelectorAll('.mb-card')).forEach(function(c){ if(c.dataset.wishId && window.neWishRemove) window.neWishRemove(c.dataset.wishId); c.remove(); }); refresh(); }
+      if(e.target.closest('.wl-clear')){ [].slice.call(grid.querySelectorAll('.mb-card')).forEach(function(c){ if(c.dataset.wishId && window.neWishRemove) window.neWishRemove(c.dataset.wishId); c.remove(); }); refresh(); return; }
+      if(e.target.closest('.mb-cart')) return; /* 장바구니 버튼은 담기 동작 유지 */
+      /* 교재 이미지·상품명 클릭 → 교재상세 이동 */
+      if(e.target.closest('.mb-card') && (e.target.closest('.mb-cover') || e.target.closest('.mb-title'))){ location.href='교재상세.html'; }
     });
   })();
 
