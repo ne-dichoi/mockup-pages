@@ -4,23 +4,6 @@
 <meta charset="utf-8">
 <title>NE Books 커머스 방향 검토 반영·10월 반영 v2(0818)</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script>
-/* 모바일: 500px 고정 디자인을 기기 폭에 맞춰 '비율 그대로' 축소 (한 줄 노출·글자크기 유지, 잘림 없음).
-   데스크톱(모니터 폭 ≥500)은 일반 반응형 유지 → 크롬 창 줄인 화면과 폰이 동일하게 보임. */
-(function(){
-  var DESIGN=500, vp=document.querySelector('meta[name="viewport"]');
-  function apply(){
-    var dw=(window.screen&&screen.width)?screen.width:window.innerWidth;
-    if(dw&&dw<DESIGN){ var s=dw/DESIGN;
-      vp.setAttribute('content','width='+DESIGN+',initial-scale='+s+',minimum-scale='+s+',maximum-scale='+s);
-    } else {
-      vp.setAttribute('content','width=device-width,initial-scale=1');
-    }
-  }
-  apply();
-  window.addEventListener('orientationchange',apply);
-})();
-</script>
 <!-- Google Fonts fallback (required) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -424,10 +407,10 @@
     .cn-list{background:none;border-radius:0;overflow:visible;}
     .cn-list-title{display:none;}
     .cn-cats{flex-direction:row;gap:0;padding:0;background:#fff;border-bottom:1px solid #ededed;overflow:visible;}
-    .cn-cat{flex:1;justify-content:center;white-space:nowrap;min-height:50px;border-radius:0;font-size:14.5px;font-weight:700;color:#8c8c8c;position:relative;}
+    .cn-cat{flex:1;justify-content:center;white-space:nowrap;min-height:50px;border-radius:0;font-size:15.5px;font-weight:500;color:#8c8c8c;position:relative;}
     .cn-cat .arw{display:none;}
     .cn-cat:hover{background:none;color:#191919;}
-    .cn-cat.on{background:none;color:#191919;font-weight:700;}
+    .cn-cat.on{background:none;color:#191919;font-weight:500;}
     .cn-cat.on::after{content:"";position:absolute;left:16%;right:16%;bottom:-1px;height:3px;background:#e83828;border-radius:2px 2px 0 0;}
     /* 모바일: 상단 배너의 '전체 보기' CTA + 하단 프로모션 '바로가기' CTA 숨김 */
     .cn-bn-cta{display:none;}

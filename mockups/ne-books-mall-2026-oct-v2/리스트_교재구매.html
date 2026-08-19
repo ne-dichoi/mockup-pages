@@ -4,22 +4,6 @@
 <meta charset="utf-8">
 <title>NE_Books ELT Coursebook</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script>
-/* 모바일: 500px 고정 디자인을 기기 폭에 맞춰 비율 축소 (index와 동일하게 상단 util/헤더 크기 일치) */
-(function(){
-  var DESIGN=500, vp=document.querySelector('meta[name="viewport"]');
-  function apply(){
-    var dw=(window.screen&&screen.width)?screen.width:window.innerWidth;
-    if(dw&&dw<DESIGN){ var s=dw/DESIGN;
-      vp.setAttribute('content','width='+DESIGN+',initial-scale='+s+',minimum-scale='+s+',maximum-scale='+s);
-    } else {
-      vp.setAttribute('content','width=device-width,initial-scale=1');
-    }
-  }
-  apply();
-  window.addEventListener('orientationchange',apply);
-})();
-</script>
 <!-- Google Fonts fallback (required) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
