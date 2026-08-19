@@ -3934,16 +3934,18 @@ body.bsheet-lock{overflow:hidden;}
 /* 모바일: 2단, 회색박스/교재 축소 */
 @media (max-width:1023px){
   .page-search .sr-wrap{padding:0 20px 60px;}
-  .sr-hero{padding:24px 0 16px;}
-  .sr-hero h2{font-size:20px;}
-  .sr-grid{grid-template-columns:repeat(2,1fr);gap:20px 16px;}
-  .sr-card{gap:12px;}
+  .sr-hero{padding:32px 0 24px;}
+  .sr-hero h2{font-size:22px;}
+  /* 2열, 회색 정사각 박스(교재 위아래 30 여백). 정보는 전폭·좌측정렬(PC와 동일). 컨트롤은 [담기+수량+스테퍼]행 + [바로구매 전폭]행으로 스택 */
+  .sr-grid{grid-template-columns:repeat(2,1fr);gap:8px;}
+  .sr-card{gap:0;}
   .sr-cover{border-radius:8px;}
-  .sr-book{top:28px;bottom:28px;}
-  .sr-info{padding-bottom:8px;gap:6px;}
-  .sr-title{font-size:14px;line-height:20px;min-height:40px;}
-  .sr-controls{gap:6px;}
-  .sr-step{display:none;}      /* 모바일: 수량 스테퍼 숨김 */
-  .sr-buy{flex:1;padding:0 12px;}
+  .sr-book{top:30px;bottom:30px;}
+  .sr-info{width:auto;max-width:100%;margin:0;padding:16px 16px 24px;gap:12px;align-items:flex-start;}
+  .sr-title{font-size:13px;line-height:18px;min-height:0;display:block;-webkit-line-clamp:none;white-space:nowrap;text-overflow:ellipsis;max-width:100%;}
+  .sr-price b{font-size:15px;}
+  .sr-controls{flex-wrap:wrap;gap:8px;margin-top:4px;width:100%;}
+  .sr-step{display:flex;flex:1 0 0;min-width:0;justify-content:center;}
+  .sr-buy{flex:1 0 100%;padding:0;}
   .sr-pager{margin-top:24px;}
 }
