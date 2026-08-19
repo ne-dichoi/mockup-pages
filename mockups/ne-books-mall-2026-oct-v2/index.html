@@ -381,10 +381,15 @@
   .mainicons .pill span{font-size:12px !important;}
   @media (max-width:1023px){
     .cn-grid{grid-template-columns:1fr;}
-    .cn-cats{flex-direction:row;gap:8px;overflow-x:auto;scrollbar-width:none;}
-    .cn-cats::-webkit-scrollbar{display:none;}
-    .cn-cat{flex:none;white-space:nowrap;}
+    /* ne-main 방식: 상단 카테고리를 균등폭 탭(하단 밑줄)으로 */
+    .cn-list{background:none;border-radius:0;overflow:visible;}
+    .cn-list-title{display:none;}
+    .cn-cats{flex-direction:row;gap:0;padding:0;background:#fff;border-bottom:1px solid #ededed;overflow:visible;}
+    .cn-cat{flex:1;justify-content:center;white-space:nowrap;min-height:50px;border-radius:0;font-size:14.5px;font-weight:700;color:#8c8c8c;position:relative;}
     .cn-cat .arw{display:none;}
+    .cn-cat:hover{background:none;color:#191919;}
+    .cn-cat.on{background:none;color:#191919;font-weight:800;}
+    .cn-cat.on::after{content:"";position:absolute;left:16%;right:16%;bottom:-1px;height:3px;background:#e83828;border-radius:2px 2px 0 0;}
   }
   @media (max-width:767px){
     .v3-head .tt{font-size:24px;}
@@ -717,7 +722,7 @@
       var b=document.createElement('button'); b.type='button'; b.className='cn-cat'+(c.type==='promo'?' cn-cat--promo':'')+(i===0?' on':''); b.setAttribute('data-i',i);
       b.innerHTML='<span>'+c.name+'</span><span class="arw">&#8250;</span>';
       b.addEventListener('mouseenter',function(){ select(i); });
-      b.addEventListener('click',function(){ location.href='리스트_교재구매.html'; });
+      b.addEventListener('click',function(){ if(isMobile()){ select(i); } else { location.href='리스트_교재구매.html'; } });
       listEl.appendChild(b);
     });
     var btns=[].slice.call(listEl.querySelectorAll('.cn-cat'));
@@ -763,17 +768,10 @@
       }
     }
     function isMobile(){ return window.matchMedia('(max-width:1023px)').matches; }
-    function nextIdx(){
-      if(isMobile()){                       /* 모바일: 배너는 도서 카테고리만 순환 (프로모션은 하단 배너로 분리) */
-        var order=[]; CATS.forEach(function(c,i){ if(c.type!=='promo') order.push(i); });
-        var p=order.indexOf(current); if(p<0) return order[0];
-        return order[(p+1)%order.length];
-      }
-      return (current+1)%CATS.length;
-    }
     function startRoll(){
       clearInterval(rollTimer);
-      rollTimer=setInterval(function(){ select(nextIdx()); },4500);
+      /* 모바일: 상단 배너는 탭으로 직접 선택 → 자동 롤링 안 함. 하단 프로모션 배너만 롤링. */
+      rollTimer=setInterval(function(){ if(isMobile()) return; select((current+1)%CATS.length); },4500);
     }
     function pause(){ clearInterval(rollTimer); }
     listEl.addEventListener('mouseenter',pause);
