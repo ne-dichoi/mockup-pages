@@ -312,10 +312,10 @@
   /* 모바일 하단 프로모션 배너 캐러셀 (기본 숨김 → 1023 이하에서 노출) */
   .cn-mo-promo{display:none;}
   @media (max-width:1023px){.cn-banner{grid-template-columns:1fr;gap:16px;padding:20px;}.cn-bn-ttl{white-space:normal;}
-    /* 교재 표지: 폭 무관 '고정 크기' → 모든 시리즈/화면폭에서 동일한 교재 크기 (넘치면 가로 스크롤) */
+    /* 교재 표지: 폭 무관 '고정 크기' → 모든 시리즈/화면폭에서 동일한 교재 크기 (넘치면 가로 스크롤). 약 4.1개 노출 */
     .cn-bn-books{overflow-x:auto;scrollbar-width:none;gap:8px;scroll-snap-type:x proximity;}
     .cn-bn-books::-webkit-scrollbar{display:none;}
-    .cn-bn-book{flex:0 0 90px;min-width:0;scroll-snap-align:start;}
+    .cn-bn-book{flex:0 0 94px;min-width:0;scroll-snap-align:start;}
     .cn-cat--promo{display:none;}
     .cn-mo-promo{display:block;margin-top:14px;}
     .cn-mo-track{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;cursor:grab;}
