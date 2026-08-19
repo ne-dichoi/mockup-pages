@@ -257,7 +257,7 @@
   .cn-cat.on{background:#e83828;color:#fff;font-weight:700;}
   .cn-cat.on .arw{opacity:1;}
   .cn-cat-divider{height:1px;background:#ededed;margin:9px 8px;}
-  .cn-banner{position:relative;border-radius:14px;overflow:hidden;padding:40px 40px;min-height:390px;display:grid;grid-template-columns:1fr 520px;gap:44px;align-items:center;transition:background .35s ease;}
+  .cn-banner{position:relative;border-radius:14px;overflow:hidden;padding:40px 40px;min-height:390px;display:grid;grid-template-columns:1fr 620px;gap:40px;align-items:center;transition:background .35s ease;}
   .cn-bn-left{display:flex;flex-direction:column;align-items:flex-start;}
   .cn-bn-flag{font-size:15px;font-weight:700;color:#e83828;margin-bottom:18px;}
   .cn-bn-ttl{font-weight:800;font-size:31px;line-height:1.3;color:#191919;margin-bottom:18px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;}
@@ -279,8 +279,20 @@
   .cn-bn-price{margin-top:4px;display:flex;flex-flow:row nowrap;justify-content:center;align-items:baseline;gap:4px;width:100%;white-space:nowrap;overflow:hidden;}
   .cn-bn-price .now{font-size:10.5px;font-weight:800;color:#191919;flex:none;}
   .cn-bn-price .was{font-size:9px;color:#bbb;text-decoration:line-through;flex:none;overflow:hidden;text-overflow:ellipsis;}
+  .cn-bn-price .now .rate{color:#e83828;font-weight:800;margin-right:4px;font-style:normal;}
+  /* PC 전용: 상단 교재 확대 + 교재명(2줄)·가격(정가 취소선 위 / 할인율·할인가 아래) 레이아웃 */
+  @media (min-width:1024px){
+    .cn-bn-books{gap:16px;}
+    .cn-bn-book{align-items:flex-start;gap:10px;}
+    .cn-bn-book .nm{font-size:13px;color:#191919;line-height:1.4;text-align:left;white-space:normal;text-overflow:clip;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:calc(1.4em * 2);}
+    .cn-bn-price{margin-top:2px;flex-flow:column-reverse;justify-content:flex-start;align-items:flex-start;gap:1px;white-space:normal;overflow:visible;}
+    .cn-bn-price .was{font-size:12.5px;}
+    .cn-bn-price .now{font-size:16px;}
+    .cn-bn-cart{width:38px;height:38px;}
+    .cn-bn-cart svg{width:19px;height:19px;}
+  }
   /* promo 타입 배너 (혼강 세미나 / 예비 중등) — 콘텐츠 그래픽 우측 배치 */
-  .cn-banner--promo{overflow:hidden;}
+  .cn-banner--promo{overflow:hidden;grid-template-columns:1fr 520px;gap:44px;}
   .cn-banner--promo .cn-bn-ttl{white-space:normal;font-size:32px;line-height:1.28;}
   .cn-banner--dark .cn-bn-flag{color:#fff;background:none;padding:0;border-radius:0;}
   .cn-banner--dark .cn-bn-ttl{color:#fff;}
@@ -425,6 +437,8 @@
     /* 서브카피 ↔ 시리즈 탭 간격은 넉넉히 (제목↔서브카피는 줄임) */
     .cn-banner{gap:22px;}
     .cn-bn-desc{margin-bottom:0;}
+    /* 가격 할인율(빨강)은 PC 전용 → 모바일에서는 숨겨 기존 표기 유지 */
+    .cn-bn-price .now .rate{display:none;}
   }
   @media (max-width:767px){
     .v3-head .tt{font-size:24px;}
@@ -928,7 +942,7 @@
         return '<div class="cn-bn-book"><a class="cn-bn-book-img" href="교재상세.html?name='+encodeURIComponent(b.n)+'"><img src="'+b.c+'" alt="'+b.n+'">'
           +'<button class="cn-bn-cart" aria-label="장바구니 담기" data-nm="'+b.n+'" data-img="'+b.c+'" data-orig="'+p.orig+'" data-unit="'+p.unit+'" data-rate="'+p.rate+'">'+CART_SVG+'</button></a>'
           +'<span class="nm">'+b.n+'</span>'
-          +'<div class="cn-bn-price"><span class="now">'+won(p.unit)+'</span><span class="was">'+won(p.orig)+'</span></div>'
+          +'<div class="cn-bn-price"><span class="now"><i class="rate">'+p.rate+'%</i>'+won(p.unit)+'</span><span class="was">'+won(p.orig)+'</span></div>'
         +'</div>';
       }).join('');
     }
