@@ -347,10 +347,9 @@
   .t2set-card .st-goal.c{background:#ff8a1e;}
   .t2set-card .st-name{font-size:19px;font-weight:800;letter-spacing:-.5px;margin:0 0 4px;color:#191919;}
   .t2set-card .st-desc{font-size:12.5px;color:#7a8a7a;margin:0;}
-  /* 표지: 기본은 살짝만 겹침 / 많을 때(dense)는 카드 폭 안에서 더 겹치도록 */
+  /* 표지: 기본은 살짝만 겹침(5권=8권 동일). 가로가 가득 차면 JS가 겹침을 더 늘려 폭 안에 맞춤 */
   .t2set-card .st-covers{display:flex;margin-top:16px;padding-left:2px;overflow:hidden;max-width:100%;}
   .t2set-card .st-covers .cv{flex:none;width:58px;height:78px;border-radius:6px;overflow:hidden;box-shadow:0 4px 10px rgba(0,0,0,.16);background:#fff;margin-left:-14px;display:flex;align-items:center;justify-content:center;border:1px solid #f0f0f0;}
-  .t2set-card .st-covers.dense .cv{margin-left:-34px;}
   .t2set-card .st-covers .cv:first-child{margin-left:0;}
   .t2set-card .st-covers .cv img{width:100%;height:100%;object-fit:cover;}
   .t2set-card .st-body{padding:16px 20px 20px;display:flex;flex-direction:column;flex:1;}
@@ -445,7 +444,10 @@
     /* 교재: 표지=카드폭(공백 없이 밀착), 4.3개 노출로 크기 축소, 첫 표지 시작점=시리즈 탭과 동일(좌측 정렬), 가로 스와이프 */
     .cn-bn-books{overflow-x:auto;scrollbar-width:none;gap:8px;scroll-snap-type:x proximity;}
     .cn-bn-books::-webkit-scrollbar{display:none;}
-    .cn-bn-book{flex:0 0 calc((100% - 26.4px)/4.3);scroll-snap-align:start;}
+    .cn-bn-book{flex:0 0 calc((100% - 26.4px)/4.3);scroll-snap-align:start;min-width:0;}
+    /* 가격을 카드 폭 안에 확실히 넣어 옆 교재로 안 삐져나오게 → 모든 시리즈 교재 크기 동일하게 보임 */
+    .cn-bn-price .now{font-size:10px;}
+    .cn-bn-price .was{font-size:8.5px;}
     /* 메인 아이콘: 한 줄에 3.5개 노출 (폭 기준 계산 → 디자인 폭 무관 정확히 3.5개, 전역 100px !important 이김) */
     .mainicons .row{gap:12px !important;justify-content:flex-start !important;}
     .mainicons .pill{flex:0 0 calc((100% - 30px)/3.5) !important;width:auto !important;height:auto !important;aspect-ratio:1/1 !important;}
@@ -527,7 +529,7 @@
         </div>
         <div class="t2set-card">
           <div class="st-top"><span class="st-goal b">파닉스 마스터</span><p class="st-name">초등 파닉스 마스터 세트</p><p class="st-desc">스스로 읽는 힘, 기초부터 완성</p>
-            <div class="st-covers dense"><span class="cv"><img src="assets/best_1.png" alt=""></span><span class="cv"><img src="assets/best_2.png" alt=""></span><span class="cv"><img src="assets/best_3.png" alt=""></span><span class="cv"><img src="assets/best_1.png" alt=""></span><span class="cv"><img src="assets/best_2.png" alt=""></span><span class="cv"><img src="assets/best_3.png" alt=""></span><span class="cv"><img src="assets/best_4.png" alt=""></span><span class="cv"><img src="assets/best_5.png" alt=""></span></div></div>
+            <div class="st-covers"><span class="cv"><img src="assets/best_1.png" alt=""></span><span class="cv"><img src="assets/best_2.png" alt=""></span><span class="cv"><img src="assets/best_3.png" alt=""></span><span class="cv"><img src="assets/best_1.png" alt=""></span><span class="cv"><img src="assets/best_2.png" alt=""></span><span class="cv"><img src="assets/best_3.png" alt=""></span><span class="cv"><img src="assets/best_4.png" alt=""></span><span class="cv"><img src="assets/best_5.png" alt=""></span></div></div>
           <div class="st-body"><ul class="st-list">
             <li><span class="st-nm">Phonics Code 1 SB</span><span class="st-acts"><button class="st-ic view" aria-label="상세보기"></button><button class="st-ic cart" aria-label="장바구니"></button></span></li>
             <li><span class="st-nm">Phonics Code 2 SB</span><span class="st-acts"><button class="st-ic view" aria-label="상세보기"></button><button class="st-ic cart" aria-label="장바구니"></button></span></li>
@@ -752,6 +754,23 @@
     var CART='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>';
     [].forEach.call(sec.querySelectorAll('.st-ic.view'),function(b){ b.innerHTML=SEARCH; });
     [].forEach.call(sec.querySelectorAll('.st-ic.cart'),function(b){ b.innerHTML=CART; });
+
+    /* 표지 겹침: 기본은 살짝(-14). 기본 겹침으로 가로가 넘치면(가득 차면) 폭에 맞게 더 겹치게 */
+    var DEFAULT_OVERLAP=14;
+    function fitCovers(){
+      [].forEach.call(sec.querySelectorAll('.st-covers'),function(row){
+        var cvs=row.querySelectorAll('.cv'); var n=cvs.length; if(n<2) return;
+        var cw=cvs[0].offsetWidth||58;
+        var avail=row.clientWidth;                       // 카드 안 표지 영역 폭
+        var overlap=DEFAULT_OVERLAP;
+        var totalDefault=cw+(n-1)*(cw-DEFAULT_OVERLAP);
+        if(totalDefault>avail){ overlap=cw-((avail-cw)/(n-1)); }   // 가득 차면 더 겹침
+        for(var i=1;i<cvs.length;i++){ cvs[i].style.marginLeft=(-overlap)+'px'; }
+      });
+    }
+    fitCovers();
+    window.addEventListener('resize',fitCovers);
+    window.addEventListener('load',fitCovers);
     sec.addEventListener('click',function(e){
       var b=e.target.closest('.st-ic'); if(!b) return;
       e.preventDefault();
