@@ -283,7 +283,34 @@
   .cn-banner--dark .cn-bn-cta{color:#fff;}
   .cn-bn-right--promo{align-self:center;display:flex;align-items:center;justify-content:flex-end;margin:0;}
   .cn-bn-right--promo img{width:60%;height:auto;max-height:100%;object-fit:contain;display:block;}
-  @media (max-width:1023px){.cn-banner{grid-template-columns:1fr;gap:16px;padding:20px;}.cn-bn-ttl{white-space:normal;}}
+  /* Blue Dot (OUP 코스북) 로고 재구성 */
+  .bluedot{position:relative;width:300px;height:300px;display:flex;align-items:center;justify-content:center;margin-left:auto;flex:none;}
+  .bd-rays{position:absolute;inset:-8%;border-radius:50%;background:conic-gradient(from 0deg,#ff5f6d,#ffc371,#4be585,#4facfe,#a06bff,#ff5f6d);filter:blur(13px);opacity:.5;}
+  .bd-globe{position:relative;width:70%;height:70%;border-radius:50%;background:radial-gradient(circle at 35% 30%,#6fd0ff,#1f7fe0 45%,#0a3d8f 100%);box-shadow:inset -12px -14px 30px rgba(0,0,0,.35),0 12px 28px rgba(10,60,140,.4);display:flex;align-items:center;justify-content:center;}
+  .bd-word{font-family:Arial,Helvetica,sans-serif;font-weight:900;font-style:italic;font-size:44px;line-height:.9;color:#eef5ff;text-align:center;letter-spacing:-1px;text-shadow:0 2px 0 #a9c8ff,0 5px 10px rgba(0,0,0,.45);}
+  /* 모바일 하단 프로모션 배너 캐러셀 (기본 숨김 → 1023 이하에서 노출) */
+  .cn-mo-promo{display:none;}
+  @media (max-width:1023px){.cn-banner{grid-template-columns:1fr;gap:16px;padding:20px;}.cn-bn-ttl{white-space:normal;}
+    .cn-cat--promo{display:none;}
+    .cn-mo-promo{display:block;margin-top:14px;}
+    .cn-mo-track{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;cursor:grab;}
+    .cn-mo-track::-webkit-scrollbar{display:none;}
+    .cn-mo-track.dragging{cursor:grabbing;}
+    .cn-mo-card{flex:0 0 100%;scroll-snap-align:start;box-sizing:border-box;position:relative;overflow:hidden;border-radius:14px;padding:22px 20px;min-height:186px;display:flex;flex-direction:column;align-items:flex-start;text-decoration:none;}
+    .cn-mo-flag{font-size:13px;font-weight:700;color:#e83828;margin-bottom:10px;position:relative;z-index:2;}
+    .cn-mo-ttl{font-size:20px;font-weight:800;line-height:1.32;color:#191919;margin-bottom:9px;position:relative;z-index:2;}
+    .cn-mo-desc{font-size:12.5px;line-height:1.5;color:#555;margin-bottom:14px;position:relative;z-index:2;max-width:66%;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+    .cn-mo-cta{font-size:13px;font-weight:700;color:#191919;position:relative;z-index:2;margin-top:auto;}
+    .cn-mo-card--dark .cn-mo-flag,.cn-mo-card--dark .cn-mo-ttl,.cn-mo-card--dark .cn-mo-desc,.cn-mo-card--dark .cn-mo-cta{color:#fff;}
+    .cn-mo-card--dark .cn-mo-desc{color:rgba(255,255,255,.9);}
+    .cn-mo-visual{position:absolute;right:8px;bottom:0;width:42%;max-width:172px;display:flex;align-items:flex-end;justify-content:flex-end;z-index:1;pointer-events:none;}
+    .cn-mo-visual img{width:100%;height:auto;object-fit:contain;display:block;}
+    .cn-mo-visual .bluedot{width:150px;height:150px;margin:0 0 8px;}
+    .cn-mo-visual .bd-word{font-size:23px;}
+    .cn-mo-dots{display:flex;justify-content:center;gap:6px;margin-top:12px;}
+    .cn-mo-dots i{width:6px;height:6px;border-radius:999px;background:#d2d6dd;transition:.2s;}
+    .cn-mo-dots i.on{width:18px;background:#e83828;}
+  }
   /* ===== 맞춤 교재 세트 (from phase2) ===== */
   .t2set-sec{padding:24px 0 44px;background:#fff;border-top:1px solid #ededed;}
   .t2-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:20px;}
@@ -393,6 +420,8 @@
         </div>
         <div class="cn-banner" id="cnBanner"></div>
       </div>
+      <!-- 모바일 전용: 프로모션 배너 하단 분리 (ne-main 구조) -->
+      <div class="cn-mo-promo" id="cnMoPromo"></div>
     </div>
   </section>
 
@@ -668,30 +697,6 @@
           {t:'Grammar Zone', books:[{c:'assets/best_2.png',n:'Grammar Zone 기본 1'},{c:'assets/best_1.png',n:'Grammar Zone 기본 2'},{c:'assets/best_3.png',n:'Grammar Zone 종합'},{c:'assets/best_4.png',n:'Grammar Zone 워크북'},{c:'assets/best_5.png',n:'Grammar Zone 수능'}]},
           {t:'능률VOCA 수능', books:[{c:'assets/best_3.png',n:'능률VOCA 수능완성'},{c:'assets/best_1.png',n:'능률VOCA 어원편'},{c:'assets/best_2.png',n:'능률VOCA 숙어편'},{c:'assets/best_4.png',n:'능률VOCA 고교필수'},{c:'assets/best_5.png',n:'능률VOCA 빈출'}]}
         ]},
-      {name:'교과서/자습서', bg:'#FFF7E8', flag:'교과서 · 자습서',
-        ttl:'우리 학교 교과서, 딱 맞게', desc:'중·고 영어 교과서와 자습서, 수학 교과서까지.<br>출판사·학년으로 바로 찾으세요.',
-        series:[
-          {t:'중학영어 교과서', books:[{c:'assets/best_1.png',n:'중학영어 1'},{c:'assets/best_2.png',n:'중학영어 2'},{c:'assets/best_3.png',n:'중학영어 3'},{c:'assets/best_4.png',n:'중학영어 지도서'},{c:'assets/best_5.png',n:'중학영어 워크북'}]},
-          {t:'고등영어 교과서', books:[{c:'assets/best_2.png',n:'고등영어'},{c:'assets/best_1.png',n:'고등영어 1'},{c:'assets/best_3.png',n:'고등영어 2'},{c:'assets/best_4.png',n:'고등 영어독해'},{c:'assets/best_5.png',n:'고등 영어회화'}]},
-          {t:'수학 교과서', books:[{c:'assets/best_5.png',n:'중학수학 1'},{c:'assets/best_4.png',n:'중학수학 2'},{c:'assets/best_3.png',n:'중학수학 3'},{c:'assets/best_1.png',n:'고등수학 (상)'},{c:'assets/best_2.png',n:'고등수학 (하)'}]},
-          {t:'자습서', books:[{c:'assets/best_1.png',n:'중등 영어 자습서'},{c:'assets/best_2.png',n:'고등 영어 자습서'},{c:'assets/best_3.png',n:'중등 수학 자습서'},{c:'assets/best_4.png',n:'고등 수학 자습서'},{c:'assets/best_5.png',n:'국어 자습서'}]}
-        ]},
-      {name:'수험/일반', bg:'#F3F0FA', flag:'수험 · 일반영어',
-        ttl:'시험 목표에 맞춘 실전서', desc:'TOEIC·TOEFL·TEPS·일반영어까지.<br>목표 점수대별 교재를 확인하세요.',
-        series:[
-          {t:'능률 TOEIC', books:[{c:'assets/best_3.png',n:'능률 TOEIC 실전'},{c:'assets/best_1.png',n:'능률 TOEIC 기본'},{c:'assets/best_2.png',n:'능률 TOEIC LC'},{c:'assets/best_4.png',n:'능률 TOEIC RC'},{c:'assets/best_5.png',n:'능률 TOEIC 보카'}]},
-          {t:'TOEFL 실전', books:[{c:'assets/best_4.png',n:'TOEFL Reading'},{c:'assets/best_3.png',n:'TOEFL Listening'},{c:'assets/best_2.png',n:'TOEFL Speaking'},{c:'assets/best_1.png',n:'TOEFL Writing'},{c:'assets/best_5.png',n:'TOEFL Voca'}]},
-          {t:'TEPS', books:[{c:'assets/best_2.png',n:'TEPS 기본'},{c:'assets/best_1.png',n:'TEPS 실전'},{c:'assets/best_3.png',n:'TEPS 청해'},{c:'assets/best_4.png',n:'TEPS 독해'},{c:'assets/best_5.png',n:'TEPS 문법'}]},
-          {t:'일반영어', books:[{c:'assets/best_5.png',n:'일반영어 에센스'},{c:'assets/best_4.png',n:'생활영어 회화'},{c:'assets/best_3.png',n:'영어 작문'},{c:'assets/best_1.png',n:'영어 독해'},{c:'assets/best_2.png',n:'영어 문법'}]}
-        ]},
-      {name:'수학/국어', bg:'#E8F4FF', flag:'수학 · 국어',
-        ttl:'영어 너머, 전 과목으로', desc:'유아부터 고등까지 수학·국어 라인업.<br>학년으로 바로 도달하세요.',
-        series:[
-          {t:'세 마리 토끼 독서논술', books:[{c:'assets/best_1.png',n:'세 마리 토끼 A'},{c:'assets/best_2.png',n:'세 마리 토끼 B'},{c:'assets/best_3.png',n:'세 마리 토끼 C'},{c:'assets/best_4.png',n:'세 마리 토끼 D'},{c:'assets/best_5.png',n:'세 마리 토끼 세트'}]},
-          {t:'초등 수학', books:[{c:'assets/best_5.png',n:'초등 수학 1학년'},{c:'assets/best_4.png',n:'초등 수학 2학년'},{c:'assets/best_3.png',n:'초등 수학 3학년'},{c:'assets/best_2.png',n:'초등 수학 4학년'},{c:'assets/best_1.png',n:'초등 수학 개념'}]},
-          {t:'중등 수학', books:[{c:'assets/best_5.png',n:'중등 수학 1'},{c:'assets/best_4.png',n:'중등 수학 2'},{c:'assets/best_3.png',n:'중등 수학 3'},{c:'assets/best_1.png',n:'중등 수학 개념'},{c:'assets/best_2.png',n:'중등 수학 유형'}]},
-          {t:'고등 수학', books:[{c:'assets/best_4.png',n:'고등 수학 (상)'},{c:'assets/best_5.png',n:'고등 수학 (하)'},{c:'assets/best_3.png',n:'수학 Ⅰ'},{c:'assets/best_1.png',n:'수학 Ⅱ'},{c:'assets/best_2.png',n:'확률과 통계'}]}
-        ]},
       {name:'혼강 세미나', type:'promo', dark:true, bg:'#fe6b01', flag:'YouTube Live',
         ttl:'2학기가 달라지는 여름,<br>8월의 혼강 세미나',
         desc:'혼강 세미나 8월엔 더 다채롭게 만납니다.<br>고등부터 중등까지, 한 번에 채우는 2학기 준비!',
@@ -699,13 +704,17 @@
       {name:'예비 중등 추천', type:'promo', bg:'#fff8ea', flag:'내신 영어 기초 쌓기',
         ttl:'내신을 결정짓는<br>예비 중등 추천 교재',
         desc:'슬슬 시작해야 할 때가 가장 빠르고 확실할 때!<br>본격 중학 레이스에 미리 대비해보세요.',
-        img:'assets/hero_c2.png'}
+        img:'assets/hero_c2.png'},
+      {name:'OUP 코스북 신간', type:'promo', bg:'#e4f6ee', flag:'🔔 OUP 코스북 신간',
+        ttl:'세상을 배우고 행동하는 힘<br>Blue Dot에서 시작됩니다.',
+        desc:'지속 가능한 미래를 배우는 글로벌 컨셉 기반 코스<br>글로벌 테마로 배우는 새로운 영어 수업을 직접 경험해보세요!',
+        rightHTML:'<div class="bluedot"><span class="bd-rays"></span><span class="bd-globe"><b class="bd-word">Blue<br>Dot</b></span></div>'}
     ];
     var listEl=document.getElementById('cnList'), bnEl=document.getElementById('cnBanner');
     if(!listEl||!bnEl) return;
     var current=0, rollTimer;
     CATS.forEach(function(c,i){
-      var b=document.createElement('button'); b.type='button'; b.className='cn-cat'+(i===0?' on':''); b.setAttribute('data-i',i);
+      var b=document.createElement('button'); b.type='button'; b.className='cn-cat'+(c.type==='promo'?' cn-cat--promo':'')+(i===0?' on':''); b.setAttribute('data-i',i);
       b.innerHTML='<span>'+c.name+'</span><span class="arw">&#8250;</span>';
       b.addEventListener('mouseenter',function(){ select(i); });
       b.addEventListener('click',function(){ location.href='리스트_교재구매.html'; });
@@ -726,7 +735,7 @@
       bnEl.className='cn-banner'+(c.type==='promo'?' cn-banner--promo':'')+(c.dark?' cn-banner--dark':'');
       var right;
       if(c.type==='promo'){
-        right='<div class="cn-bn-right cn-bn-right--promo"><img src="'+c.img+'" alt="'+c.name+'"></div>';
+        right='<div class="cn-bn-right cn-bn-right--promo">'+(c.rightHTML?c.rightHTML:'<img src="'+c.img+'" alt="'+c.name+'">')+'</div>';
       } else {
         right='<div class="cn-bn-right">'
           +'<div class="cn-bn-series">'+c.series.map(function(s,si){ return '<a class="cn-bn-series-tab'+(si===0?' on':'')+'" data-si="'+si+'" href="리스트_교재구매.html">'+s.t+'</a>'; }).join('')+'</div>'
@@ -753,15 +762,68 @@
         });
       }
     }
+    function isMobile(){ return window.matchMedia('(max-width:1023px)').matches; }
+    function nextIdx(){
+      if(isMobile()){                       /* 모바일: 배너는 도서 카테고리만 순환 (프로모션은 하단 배너로 분리) */
+        var order=[]; CATS.forEach(function(c,i){ if(c.type!=='promo') order.push(i); });
+        var p=order.indexOf(current); if(p<0) return order[0];
+        return order[(p+1)%order.length];
+      }
+      return (current+1)%CATS.length;
+    }
     function startRoll(){
       clearInterval(rollTimer);
-      rollTimer=setInterval(function(){ select((current+1)%CATS.length); },4500);
+      rollTimer=setInterval(function(){ select(nextIdx()); },4500);
     }
     function pause(){ clearInterval(rollTimer); }
     listEl.addEventListener('mouseenter',pause);
     listEl.addEventListener('mouseleave',startRoll);
     bnEl.addEventListener('mouseenter',pause);
     bnEl.addEventListener('mouseleave',startRoll);
+
+    /* ---------- 모바일: 프로모션 배너를 하단으로 분리 (ne-main 구조) ---------- */
+    var moPromoEl=document.getElementById('cnMoPromo'), moTrack, moIdx=0, moAuto=true;
+    function renderMoPromo(){
+      if(!moPromoEl) return;
+      var promos=CATS.filter(function(c){ return c.type==='promo'; });
+      var cards=promos.map(function(c){
+        var vis=c.rightHTML?c.rightHTML:'<img src="'+c.img+'" alt="'+c.name+'">';
+        return '<a class="cn-mo-card'+(c.dark?' cn-mo-card--dark':'')+'" href="리스트_교재구매.html" style="background:'+c.bg+'">'
+          +'<span class="cn-mo-flag">'+c.flag+'</span>'
+          +'<span class="cn-mo-ttl">'+c.ttl+'</span>'
+          +'<span class="cn-mo-desc">'+c.desc+'</span>'
+          +'<span class="cn-mo-cta">바로가기 &#8250;</span>'
+          +'<span class="cn-mo-visual">'+vis+'</span>'
+        +'</a>';
+      }).join('');
+      moPromoEl.innerHTML='<div class="cn-mo-track" id="cnMoTrack">'+cards+'</div>'
+        +'<div class="cn-mo-dots" id="cnMoDots">'+promos.map(function(_,i){ return '<i'+(i?'':' class="on"')+'></i>'; }).join('')+'</div>';
+      moTrack=document.getElementById('cnMoTrack');
+      var dotEls=[].slice.call(document.querySelectorAll('#cnMoDots i'));
+      moTrack.addEventListener('scroll',function(){
+        var i=Math.round(moTrack.scrollLeft/moTrack.clientWidth); moIdx=i;
+        dotEls.forEach(function(d,n){ d.classList.toggle('on',n===i); });
+      },{passive:true});
+      ['pointerdown','touchstart','wheel'].forEach(function(ev){ moTrack.addEventListener(ev,function(){ moAuto=false; },{passive:true}); });
+      enableDragScroll(moTrack);
+    }
+    renderMoPromo();
+    setInterval(function(){
+      if(!moAuto||!isMobile()||!moTrack) return;
+      if(moTrack.scrollWidth<=moTrack.clientWidth+4) return;
+      moIdx=(moIdx+1)%moTrack.children.length;
+      moTrack.scrollTo({left:moIdx*moTrack.clientWidth,behavior:'smooth'});
+    },4500);
+
+    /* 브레이크포인트 전환 시: 모바일이 되면 배너가 프로모션이면 첫 도서 카테고리로 복귀 */
+    var mqCat=window.matchMedia('(max-width:1023px)');
+    (mqCat.addEventListener?mqCat.addEventListener.bind(mqCat,'change'):mqCat.addListener.bind(mqCat))(function(){
+      if(mqCat.matches && CATS[current] && CATS[current].type==='promo'){
+        var first=0; for(var k=0;k<CATS.length;k++){ if(CATS[k].type!=='promo'){ first=k; break; } }
+        select(first);
+      }
+    });
+
     select(0); startRoll();
   })();
 
