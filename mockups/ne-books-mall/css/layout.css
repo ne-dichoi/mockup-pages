@@ -1164,6 +1164,8 @@ a{color:inherit;text-decoration:none;}
   #tab-wish .wl-grid .mb-cover{width:188px;max-width:calc(100% - 80px);align-self:center;padding:0;box-sizing:border-box;aspect-ratio:188 / 350;height:auto;}
   #tab-wish .wl-grid .mb-cover img{width:100%;max-width:100%;height:auto;aspect-ratio:188 / 246;object-fit:cover;}
   #tab-wish .wl-grid .mb-cart{right:-8px;bottom:12%;}
+  /* 제목 영역 2줄 고정(최대 2줄) → 제목 길이 달라도 카드 높이·금액 아래 여백 동일 */
+  #tab-wish .wl-grid .mb-title{min-height:44px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
 }
 /* 홈 찜/최근본 미리보기: 한 줄만 노출(다음 줄로 안 넘기고 폭에 맞는 개수만: 3개 fit→3개, 4개 fit→4개).
    auto-fill로 폭에 맞는 열 수 계산 + 첫 줄만(grid-auto-rows:0 + overflow:hidden) 표시. (≥600, 그리드 모드에서만) */
