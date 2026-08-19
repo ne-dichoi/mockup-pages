@@ -3890,10 +3890,10 @@ body.bsheet-lock{overflow:hidden;}
 .sr-book{position:absolute;top:45px;bottom:45px;left:50%;transform:translateX(-50%);width:auto;height:auto;aspect-ratio:171 / 223;}
 .sr-book img{width:100%;height:100%;object-fit:cover;display:block;border-radius:2px;box-shadow:4px 8px 17px rgba(0,0,0,.18);}
 .sr-cover.is-dim .sr-book{opacity:.5;}
-.sr-corner{position:absolute;left:16px;top:16px;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700;line-height:1.6;color:#fff;background:var(--red);}
+.sr-corner{position:absolute;left:16px;top:16px;z-index:2;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700;line-height:1.6;color:#fff;background:var(--red);}
 .sr-corner.new{background:#2f74d1;}
 .sr-corner.gray{background:#999;}
-.sr-wish{position:absolute;right:16px;top:16px;width:22px;height:22px;padding:0;border:0;background:transparent;cursor:pointer;line-height:0;}
+.sr-wish{position:absolute;right:16px;top:16px;z-index:2;width:22px;height:22px;padding:0;border:0;background:transparent;cursor:pointer;line-height:0;}
 .sr-wish img{width:22px;height:22px;display:block;}
 
 /* 정보 컨테이너: 카드(회색박스) 기준 가로 중앙정렬, 내부 컨텐츠는 좌측정렬. 폭은 컨트롤 행(장바구니+스테퍼+바로구매) 기준 */
