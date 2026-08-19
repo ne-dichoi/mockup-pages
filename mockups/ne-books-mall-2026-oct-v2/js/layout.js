@@ -59,11 +59,6 @@
         </div>
         <div class="gnb-drop" id="gnbDrop">
           <div class="gd-cats"></div>
-          <div class="gd-promo">
-            <a href="#"><span class="gd-promo-img" style="background-image:url('assets/banner_books.png'),linear-gradient(160deg,#1f9d63,#137a45)"></span></a>
-            <div class="gd-promo-tit">신간 출시, 지금 만나보세요</div>
-            <div class="gd-promo-desc">새롭게 출간된 교재를 가장 먼저 확인하세요 &#8250;</div>
-          </div>
         </div>
       </div>
     </div>
@@ -370,7 +365,7 @@
   function openFor(a){
     var name=a.classList.contains('gnb-mall')?'교재몰':a.textContent.trim();
     var mega=(name==='학습자료실'||name==='교재몰');
-    var BR='<div class="gd-promo"><a href="#"><span class="gd-promo-img" style="background-image:url(\'assets/banner_books.png\'),linear-gradient(160deg,#1f9d63,#137a45)"></span></a><div class="gd-promo-tit">신간 출시, 지금 만나보세요</div><div class="gd-promo-desc">새롭게 출간된 교재를 가장 먼저 확인하세요 &#8250;</div></div>';
+    var BR='';   /* GNB 드롭다운 '신간 출시' 프로모션 배너 제거 */
     if(mega){
       var COLS=[['ELT','Coursebook','Phonics','Reading','Readers','Listening','Speaking','Grammar','Writing','Vocabulary'],['초등/중등','중학 내신','고등 선행','파닉스','어휘','쓰기','독해','듣기','문법/구분','TOEFL/TEPS/NELT'],['고등','어휘','독해','듣기','문법/구분','수능 대비','고교 내신','단기 특강','TOEFL/TEPS/NELT'],['교과서/자습서','중학영어 교과서','고등영어 교과서','수학 교과서','중국어/일본어'],['수험/일반','TOEIC','TOEIC SPEAKING|/WRITING','TOEFL/OPIC/TEPS','FLEX','일반영어'],['수학/국어','유아','초등','중등','고등']];
       drop.innerHTML=COLS.map(function(c){ return '<div class="gd-col"><p class="gd-col-t">'+c[0]+'</p><div class="items">'+c.slice(1).map(function(i){ return '<a href="리스트_교재구매.html">'+i.replace('|','<br>')+'</a>'; }).join('')+'</div></div>'; }).join('')+BR;
