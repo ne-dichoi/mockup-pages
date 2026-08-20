@@ -3283,9 +3283,9 @@ body.bsheet-lock{overflow:hidden;}
   .page-my #tab-event .pager{display:none;}
 }
 
-/* ===== 마이페이지 홈 찜/최근본: 찜 페이지처럼 반응형 그리드(폰 2열, 넓어지면 열 증가) ===== */
+/* ===== 마이페이지 홈 찜/최근본: 찜 페이지처럼 반응형 그리드(폰 2개, 넓어지면 열 증가) — 단 한 줄만 노출(다음 줄로 안 넘김) ===== */
 @media (max-width:1023px){
-  .page-my .mb-grid:not(.wl-grid){display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:40px 12px;overflow:visible;}
+  .page-my .mb-grid:not(.wl-grid){display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));grid-template-rows:auto;grid-auto-rows:0;row-gap:0;column-gap:12px;overflow:hidden;}
   .page-my .mb-grid:not(.wl-grid) .mb-card{width:auto;flex:none;}
 }
 
