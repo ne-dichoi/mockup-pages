@@ -2934,18 +2934,19 @@ body.bsheet-lock{overflow:hidden;}
   .page-my #tab-wish .wl-clear{height:28px;min-height:0;box-sizing:border-box;padding:5px 13px;font-size:12px;font-weight:500;border:1px solid var(--ink);border-radius:8px;color:var(--ink);}
   /* 가로 스크롤 mb-grid 오버라이드 → 반응형 그리드(화면 넓어지면 열 증가 → 아래 카드 위로 채워짐) */
   .page-my #tab-wish .wl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:40px 12px;overflow:visible;margin-top:0;}
-  /* 검색결과 카드 디자인: 회색 정사각 박스 + 교재 축소, ×삭제(우상단)·검정 장바구니(교재 위) */
-  .page-my #tab-wish .wl-grid .mb-card{position:relative;flex:none;width:auto;border:0;background:transparent;overflow:visible;gap:16px;}
-  .page-my #tab-wish .wl-grid .mb-cover{width:100%;height:auto;aspect-ratio:1 / 1;background:#f3f3f3;border-radius:8px;overflow:hidden;padding:0;position:relative;display:block;}
-  .page-my #tab-wish .wl-grid .mb-cover img{position:absolute;top:30px;left:50%;transform:translateX(-50%);height:calc(100% - 60px);width:auto;max-width:none;aspect-ratio:171 / 223;object-fit:cover;box-shadow:1.6px 2.9px 6.5px rgba(0,0,0,.18);}
-  .page-my #tab-wish .wl-grid .mb-cart{width:36px;height:36px;left:auto;right:12%;bottom:10%;background-size:16px;z-index:2;}
+  /* 검색결과 카드 디자인(회색 정사각 박스 + 교재 축소, 검정 장바구니). 찜 + 홈(찜한상품·최근본상품) 공통. 홈은 ×삭제 없음 */
+  .page-my :is(#tab-wish .wl-grid,#tab-home .mb-grid) .mb-card{position:relative;border:0;background:transparent;overflow:visible;gap:16px;}
+  .page-my #tab-wish .wl-grid .mb-card{flex:none;width:auto;}
+  .page-my :is(#tab-wish .wl-grid,#tab-home .mb-grid) .mb-cover{width:100%;height:auto;aspect-ratio:1 / 1;background:#f3f3f3;border-radius:8px;overflow:hidden;padding:0;position:relative;display:block;}
+  .page-my :is(#tab-wish .wl-grid,#tab-home .mb-grid) .mb-cover img{position:absolute;top:30px;left:50%;transform:translateX(-50%);height:calc(100% - 60px);width:auto;max-width:none;aspect-ratio:171 / 223;object-fit:cover;box-shadow:1.6px 2.9px 6.5px rgba(0,0,0,.18);}
+  .page-my :is(#tab-wish .wl-grid,#tab-home .mb-grid) .mb-cart{width:36px;height:36px;left:auto;right:12%;bottom:10%;background-size:16px;z-index:2;}
   .page-my #tab-wish .wl-grid .mb-x{top:12px;right:12px;width:20px;height:20px;z-index:3;}
   .page-my #tab-wish .wl-grid .mb-x svg{width:20px;height:20px;}
   /* info: 왼쪽정렬 */
-  .page-my #tab-wish .wl-grid .mb-info{padding:0;gap:6px;align-items:flex-start;box-sizing:border-box;width:auto;max-width:100%;margin:0;min-width:0;}
-  .page-my #tab-wish .wl-grid .mb-head{gap:8px;min-width:0;max-width:100%;}
-  .page-my #tab-wish .wl-grid .mb-title{min-width:0;}
-  .page-my #tab-wish .wl-grid .mb-badge{align-self:flex-start;padding:4px 8px;font-size:10px;line-height:14px;}
+  .page-my :is(#tab-wish .wl-grid,#tab-home .mb-grid) .mb-info{padding:0;gap:6px;align-items:flex-start;box-sizing:border-box;width:auto;max-width:100%;margin:0;min-width:0;}
+  .page-my :is(#tab-wish .wl-grid,#tab-home .mb-grid) .mb-head{gap:8px;min-width:0;max-width:100%;}
+  .page-my :is(#tab-wish .wl-grid,#tab-home .mb-grid) .mb-title{min-width:0;}
+  .page-my :is(#tab-wish .wl-grid,#tab-home .mb-grid) .mb-badge{align-self:flex-start;padding:4px 8px;font-size:10px;line-height:14px;}
 }
 
 /* ===== 마이페이지 주문내역 (모바일) — Figma 2243-17430 ===== */
