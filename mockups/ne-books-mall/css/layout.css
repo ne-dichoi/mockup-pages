@@ -436,7 +436,8 @@ a{color:inherit;text-decoration:none;}
 .badge-lexile .ico{width:13px;height:13px;}
 .ptitle{font-family:var(--display);font-size:28px;font-weight:700;color:var(--ink);margin:24px 0 0;line-height:1.2;}
 .pdesc{font-size:14px;color:var(--muted);margin-top:8px;}
-.ptags{display:flex;column-gap:12px;row-gap:5px;flex-wrap:wrap;margin-top:auto;padding-top:18px;font-size:13px;color:#a9a9a9;}
+/* 태그: 아랫줄부터 채우고 남는 태그가 윗줄로(여분이 위) → flex-wrap:wrap-reverse */
+.ptags{display:flex;column-gap:12px;row-gap:5px;flex-wrap:wrap-reverse;justify-content:flex-start;margin-top:auto;padding-top:18px;font-size:13px;color:#a9a9a9;}
 .page-buy .pinfo{padding-right:132px;box-sizing:border-box;}  /* 상단 우측 가격 컬럼(~114px)만 회피 — 라벨/제목/설명이 넓게 쓰이도록 */
 .page-buy .ptags{padding-right:186px;}  /* 태그(하단)만 추가로 버튼행(~297px) 회피 → 라벨/제목은 안 좁아지고 태그만 버튼과 안 겹침 */
 .page-buy .pactions{position:absolute;right:0;top:40px;bottom:40px;display:flex;flex-direction:column;align-items:flex-end;gap:14px;width:auto;pointer-events:none;}  /* 빈 영역이 좁은 폭에서 렉사일 배지 클릭을 가로채지 않도록 */
