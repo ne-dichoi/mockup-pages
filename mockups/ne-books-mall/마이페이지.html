@@ -8,9 +8,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260815bt">
-<script src="js/layout.js?v=20260815bt" defer></script>
-<script src="js/search.js?v=20260815bt" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260815bu">
+<script src="js/layout.js?v=20260815bu" defer></script>
+<script src="js/search.js?v=20260815bu" defer></script>
 </head>
 <body class="page-my">
 
@@ -845,7 +845,7 @@
       var gnbName=(label==='홈')?'마이페이지':locName;
       var title=document.querySelector('.ph-title'), cur=document.querySelector('.crumb .cur');
       if(title) title.textContent=gnbName;
-      if(cur) cur.textContent=locName;
+      if(cur){ var _cr=cur.querySelector('.caret'); cur.textContent=locName+' '; if(_cr) cur.appendChild(_cr); } /* 라벨만 갱신, 펼침 캐럿(▾) 보존 */
       var mloc=document.querySelector('.m-loc-name'); if(mloc) mloc.textContent=gnbName; /* 모바일 서브GNB 명칭 */
       var mcat=document.getElementById('mCat');
       if(mcat){ mcat.setAttribute('data-active', label); /* 펼침메뉴 포커스=현재 탭(GNB명과 별개) */

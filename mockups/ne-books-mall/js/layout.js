@@ -415,7 +415,14 @@
 
   /* ===== 로케이션 (페이지별 depth 이름을 여기서 수정) ===== */
   var CATEGORIES={
-    'ELT':['Coursebook','Phonics','Readers','Reading','Listening','Speaking','Writing','Grammar','Vocabulary']
+    'ELT':['Coursebook','Phonics','Readers','Reading','Listening','Speaking','Writing','Grammar','Vocabulary'],
+    '초/중등':['중학내신','고등선행','어휘','Phonics','쓰기','독해','듣기','문법/구문','TOEFL/TEPS/NELT'],
+    '고등':['어휘','독해','듣기','문법/구문','수능대비','고교내신','단기특강','TOEFL/TEPS/NELT'],
+    '교과서/자습서':['중학영어 교과서','고등영어 교과서','수학 교과서','중국어/일본어'],
+    '수험/일반':['TOEIC','TOEIC Speaking/Writing','TOEFL/OPIC/TEPS','FLEX','일반영어'],
+    '수학/국어':['유아','초등','중등','고등'],
+    '학습자료실':['서브메인','ELT자료','초/중등교재 자료','고등교재 자료','교과서/자습서 자료','수험/일반 자료','수학/국어 자료'],
+    '도서몰':['ELT','초/중등','고등영어 교과서','교과서/자습서','수험/일반','교구/부가상품','세트/패키지','온라인 서비스/이용권']
   };
   /* 마이페이지 계열 모바일 펼침메뉴(캐럿 드롭다운) 항목 */
   var MY_MENU=[['홈','마이페이지.html'],['주문내역','마이페이지.html#orders'],['포인트','마이페이지.html#points'],['찜','마이페이지.html#wish'],['문의/답변','마이페이지.html#qna'],['후기','마이페이지.html#review'],['이벤트/세미나','마이페이지.html#event']];
@@ -457,23 +464,41 @@
       return;
     }
     var crumb='<a class="home ico" href="index.html"><img src="assets/ic_home.svg" alt="홈"></a>';
-    var left;
+    var left; var curName=''; var curD1='';
     if(p.type==='cat'){
-      var opts=(CATEGORIES[p.d1]||[]).map(function(o){ return '<a href="리스트_교재구매.html">'+o+'</a>'; }).join('');
-      crumb+='<span class="sep">·</span><a href="리스트_교재구매.html">'+p.d1+'</a>'
-        +'<span class="sep">·</span><span class="cur-wrap" id="bcCat"><button type="button" class="cur">'+p.d2+' <span class="caret">&#9662;</span></button><div class="cur-menu">'+opts+'</div></span>';
-      left='<h1 class="ph-title">'+p.d2+'</h1>'+(p.tag?'<span class="ph-tag">'+p.tag+'</span>':'');
+      /* GNB에서 넘어온 카테고리(?d1=&d2=)를 반영. 없으면 기본값(ELT/Coursebook) */
+      var qs=new URLSearchParams(location.search);
+      var d1=qs.get('d1')||p.d1;
+      var d2=qs.get('d2')||(qs.get('d1')?((CATEGORIES[d1]||[p.d2])[0]):p.d2);
+      curName=d2; curD1=d1;
+      var opts=(CATEGORIES[d1]||[]).map(function(o){ return '<a href="리스트_교재구매.html?d1='+encodeURIComponent(d1)+'&d2='+encodeURIComponent(o)+'">'+o+'</a>'; }).join('');
+      crumb+='<span class="sep">·</span><a href="리스트_교재구매.html?d1='+encodeURIComponent(d1)+'">'+d1+'</a>'
+        +'<span class="sep">·</span><span class="cur-wrap" id="bcCat"><button type="button" class="cur">'+d2+' <span class="caret">&#9662;</span></button><div class="cur-menu">'+opts+'</div></span>';
+      left='<h1 class="ph-title">'+d2+'</h1>'+(p.tag?'<span class="ph-tag">'+p.tag+'</span>':'');
     } else {
-      crumb+=p.crumb.map(function(c,i){ return '<span class="sep">·</span>'+((i===p.crumb.length-1)?'<span class="cur">'+c+'</span>':'<a href="#">'+c+'</a>'); }).join('');
+      curName=p.title;
+      crumb+=p.crumb.map(function(c,i){
+        if(i<p.crumb.length-1) return '<span class="sep">·</span><a href="#">'+c+'</a>';
+        /* 마지막 크럼: 페이지에 menu가 있으면 ELT처럼 펼침 드롭다운(형제 섹션 이동) */
+        if(p.menu){
+          var opts2=p.menu.map(function(m){ return '<a href="'+m[1]+'">'+m[0]+'</a>'; }).join('');
+          return '<span class="sep">·</span><span class="cur-wrap" id="bcCat"><button type="button" class="cur">'+c+' <span class="caret">&#9662;</span></button><div class="cur-menu">'+opts2+'</div></span>';
+        }
+        return '<span class="sep">·</span><span class="cur">'+c+'</span>';
+      }).join('');
       left='<h1 class="ph-title">'+p.title+'</h1>';
     }
     el.innerHTML='<section class="pagehead"><div class="container cart-head-row"><div class="ph-left">'+left+'</div><div class="crumb">'+crumb+'</div></div></section>';
     /* 모바일 서브 헤더(로케이션형): 홈 + 카테고리명 */
     var lh=document.querySelector('.lheader')||document.querySelector('.header');
     var mname=lh&&lh.querySelector('.m-loc-name');
-    if(mname){ mname.textContent=(p.type==='cat'?p.d2:p.title); lh.classList.add('has-loc');
+    if(mname){ mname.textContent=curName; lh.classList.add('has-loc');
       if(p.noMenu) lh.classList.add('loc-nomenu'); /* 결제 플로우(장바구니·주문결제·주문완료): 화살표·펼침메뉴 제거 */ }
-    /* 모바일 펼침메뉴(#mCat) 내용: 페이지별 메뉴 지정 시 교체(마이페이지 계열=마이페이지 탭 목록) */
+    /* 모바일 펼침메뉴(#mCat) 내용: cat 페이지는 진입 카테고리(d1)의 형제, simple 페이지는 지정 menu로 교체 */
+    var mcatPanel2=document.querySelector('#mCat .mcat-panel');
+    if(mcatPanel2 && p.type==='cat'){
+      mcatPanel2.innerHTML=(CATEGORIES[curD1]||[]).map(function(o){ return '<a class="mcat-item" href="리스트_교재구매.html?d1='+encodeURIComponent(curD1)+'&d2='+encodeURIComponent(o)+'">'+o+'</a>'; }).join('');
+    }
     if(p.menu){
       var mcatPanel=document.querySelector('#mCat .mcat-panel');
       if(mcatPanel) mcatPanel.innerHTML=p.menu.map(function(m){ return '<a class="mcat-item" href="'+m[1]+'">'+m[0]+'</a>'; }).join('');
@@ -508,11 +533,11 @@
     var BR='<div class="gd-brands"><a class="gd-btn blue" href="#">Come on Series <span>&#8250;</span></a><a class="gd-btn navy" href="oxford.html">Oxford <span>&#8250;</span></a></div>';
     if(mega){
       var COLS=[['ELT','Coursebook','Phonics','Reading','Readers','Listening','Speaking','Grammar','Writing','Vocabulary'],['초등/중등','중학 내신','고등 선행','파닉스','어휘','쓰기','독해','듣기','문법/구분','TOEFL/TEPS/NELT'],['고등','어휘','독해','듣기','문법/구분','수능 대비','고교 내신','단기 특강','TOEFL/TEPS/NELT'],['교과서/자습서','중학영어 교과서','고등영어 교과서','수학 교과서','중국어/일본어'],['수험/일반','TOEIC','TOEIC SPEAKING|/WRITING','TOEFL/OPIC/TEPS','FLEX','일반영어'],['수학/국어','유아','초등','중등','고등']];
-      drop.innerHTML=COLS.map(function(c){ return '<div class="gd-col"><p class="gd-col-t">'+c[0]+'</p><div class="items">'+c.slice(1).map(function(i){ return '<a href="리스트_교재구매.html">'+i.replace('|','<br>')+'</a>'; }).join('')+'</div></div>'; }).join('')+BR;
+      drop.innerHTML=COLS.map(function(c){ return '<div class="gd-col"><p class="gd-col-t">'+c[0]+'</p><div class="items">'+c.slice(1).map(function(i){ var t=i.replace('|',''); return '<a href="리스트_교재구매.html?d1='+encodeURIComponent(name)+'&d2='+encodeURIComponent(t)+'">'+i.replace('|','<br>')+'</a>'; }).join('')+'</div></div>'; }).join('')+BR;
       drop.classList.add('mega');
     } else {
       var list=MENU[name]; if(!list){ hideGnb(); return; }
-      drop.innerHTML='<div class="gd-cats">'+list.map(function(t){ return '<a href="리스트_교재구매.html">'+t+'</a>'; }).join('')+'</div>'+BR;
+      drop.innerHTML='<div class="gd-cats">'+list.map(function(t){ return '<a href="리스트_교재구매.html?d1='+encodeURIComponent(name)+'&d2='+encodeURIComponent(t)+'">'+t+'</a>'; }).join('')+'</div>'+BR;
       drop.classList.remove('mega');
     }
     items.forEach(function(x){ x.classList.toggle('on',x===a); });
