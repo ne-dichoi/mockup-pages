@@ -139,15 +139,13 @@
             <a href="#">개인정보처리방침</a><a href="#">이용약관</a><a href="#">이메일무단수집거부</a><a href="#">지사안내</a>
           </div>
           <div class="foot-right">
-            <span class="ch">Ch</span>
-            <span class="yt ico"><img src="assets/footer_youtube.svg" alt="유튜브"></span>
             <span class="fam">FAMILY SITE <span class="ic ico"><img src="assets/footer_familysite.svg" alt=""></span></span>
           </div>
         </div>
         <div class="foot-main">
           <div class="foot-info">
-            <p>㈜NE능률 (03925) 서울특별시 마포구 월드컵북로 396(상암동) 누리꿈스퀘어 비즈니스타워 10층 <span class="sep">|</span> 대표이사 : 이정진 <span class="sep">|</span> 대표번호 : 02-2014-7114 <span class="lk">사업별 고객센터 안내</span></p>
-            <p>팩스 : 02-337-4956 <span class="sep">|</span> 고객센터 : 1833-8368 <span class="sep">|</span> 사업자등록번호 : 105-81-65267 <span class="sep">|</span> 통신판매신고번호 : 제2004-02120호 <span class="lk">정보조회</span></p>
+            <p>㈜NE능률 (03925) 서울특별시 마포구 월드컵북로 396(상암동) 누리꿈스퀘어 비즈니스타워 10층<span class="sep">|</span>대표이사 : 이정진<span class="sep">|</span>대표번호 : 02-2014-7114<span class="lk">사업별 고객센터 안내</span></p>
+            <p>팩스 : 02-337-4956<span class="sep">|</span>고객센터 : 1833-8368<span class="sep">|</span>사업자등록번호 : 105-81-65267<span class="sep">|</span>통신판매신고번호 : 제2004-02120호<span class="lk">정보조회</span></p>
             <p>개인정보 보호책임자(CPO) : 선민재(necpo@neungyule.com)</p>
             <p>Copyright ⓒ NE Neungyule, Inc. All Rights Reserved</p>
           </div>
