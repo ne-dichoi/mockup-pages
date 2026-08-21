@@ -381,7 +381,7 @@ a{color:inherit;text-decoration:none;}
 /* 인기교재 NE차트 배너: 비율 고정 박스 → 사이드바 폭에 맞춰 책 아이콘·글씨가 함께 스케일(작아지면 작게, 커지면 크게) */
 .nechart{margin-top:22px;width:100%;aspect-ratio:220 / 60;background:#47320e;border-radius:16px;position:relative;display:flex;align-items:center;justify-content:center;gap:6px;overflow:hidden;container-type:inline-size;}
 .nechart img{position:static;transform:none;width:auto;height:72%;aspect-ratio:1 / 1;object-fit:contain;flex:none;}
-.nechart span{font-family:var(--display);font-weight:700;font-size:clamp(11px,9cqw,16px);color:#fff;padding:0;white-space:nowrap;}
+.nechart span{font-family:var(--display);font-weight:700;font-size:clamp(12px,9cqw,16px);color:#fff;padding:0;white-space:nowrap;}
 .toolbar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap; min-height:54px;border-bottom:1px solid var(--line);}
 .tb-left{display:flex;align-items:center;gap:20px;font-size:14px;color:var(--muted);}
 .tb-left .count b{color:var(--ink);font-weight:700;}
@@ -3954,7 +3954,7 @@ body.bsheet-lock{overflow:hidden;}
   .sr-info{flex:1 1 auto;width:auto;max-width:100%;margin:0;padding:16px 16px 0;gap:12px;align-items:flex-start;}
   /* 교재명: 최대 2줄, 넘치면 말줄임 */
   .sr-title{font-size:13px;line-height:18px;min-height:36px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;white-space:normal;overflow:hidden;max-width:100%;}
-  .sr-price b{font-size:15px;}
+  .sr-price b{font-size:16px;}
   .sr-controls{flex-wrap:wrap;gap:8px;margin-top:auto;width:100%;}
   .sr-step{display:flex;flex:1 0 0;min-width:0;justify-content:center;}
   .sr-buy{flex:1 0 100%;padding:0;}
