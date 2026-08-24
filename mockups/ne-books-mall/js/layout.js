@@ -588,10 +588,10 @@
   var closeT;
   function openFor(a){
     var name=a.textContent.trim();
-    /* 학습자료실·교재몰(gnb-blue): 펼침메뉴·hover효과 없이 일반 링크로 */
-    if(a.classList.contains('gnb-blue')){ hideGnb(); return; }
-    var mega=(name==='학습자료실'||name==='도서몰');
-    var tmega=!!MEGA3D[name];
+    if(a.classList.contains('gnb-mall')) name='교재몰';   /* 롤링 텍스트라 이름 정리 */
+    var isBlue=a.classList.contains('gnb-blue');
+    var mega=isBlue||name==='학습자료실'||name==='도서몰';   /* 학습자료실·교재몰은 멀티컬럼 메가 */
+    var tmega=!!MEGA3D[name];   /* 카테고리(ELT 등) = 3뎁스 tmega */
     var BR='<div class="gd-brands"><a class="gd-btn blue" href="#">Come on Series <span>&#8250;</span></a><a class="gd-btn navy" href="oxford.html">Oxford <span>&#8250;</span></a></div>';
     if(tmega){
       var t2s=Object.keys(MEGA3D[name]);
