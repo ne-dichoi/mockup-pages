@@ -588,6 +588,8 @@
   var closeT;
   function openFor(a){
     var name=a.textContent.trim();
+    /* 학습자료실·교재몰(gnb-blue): 펼침메뉴·hover효과 없이 일반 링크로 */
+    if(a.classList.contains('gnb-blue')){ hideGnb(); return; }
     var mega=(name==='학습자료실'||name==='도서몰');
     var tmega=!!MEGA3D[name];
     var BR='<div class="gd-brands"><a class="gd-btn blue" href="#">Come on Series <span>&#8250;</span></a><a class="gd-btn navy" href="oxford.html">Oxford <span>&#8250;</span></a></div>';
@@ -646,8 +648,15 @@
   function hideGnb(){ drop.classList.remove('open'); items.forEach(function(x){ x.classList.remove('on'); }); }
   items.forEach(function(a){
     a.addEventListener('mouseenter',function(){ clearTimeout(closeT); openFor(a); });
-    a.addEventListener('click',function(e){ if(MENU[a.textContent.trim()]){ e.preventDefault(); openFor(a); } });
+    a.addEventListener('click',function(e){ if(MENU[a.textContent.trim()] && !a.classList.contains('gnb-blue')){ e.preventDefault(); openFor(a); } });
   });
+  /* 현재 카테고리 페이지면 해당 GNB 메뉴에 선택(빨강 밑줄) 상태 유지 */
+  (function(){
+    var f=decodeURIComponent((location.pathname.split('/').pop()||''));
+    var activeCat=new URLSearchParams(location.search).get('d1');
+    if(!activeCat && /(리스트_교재구매|리스트_학습자료|교재상세)/.test(f)) activeCat='ELT';
+    if(activeCat){ items.forEach(function(a){ if(!a.classList.contains('gnb-blue') && a.textContent.trim()===activeCat) a.classList.add('active'); }); }
+  })();
   gnb.addEventListener('mouseleave',function(){ closeT=setTimeout(hideGnb,160); });
   gnb.addEventListener('mouseenter',function(){ clearTimeout(closeT); });
   document.addEventListener('click',function(e){ if(!gnb.contains(e.target)) hideGnb(); });
