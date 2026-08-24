@@ -18,26 +18,25 @@
 /* 맞춤교재 세트 애니 아이콘 */
 .m2-set-ico{display:inline-flex;align-items:center;justify-content:center;}
 .m2-set-ico svg{width:30px;height:30px;overflow:visible;}
-.m2-set-ico .m2b{transform-box:fill-box;transform-origin:center;animation:m2bob 1.8s ease-in-out infinite;}
-.m2-set-ico .m2b1{animation-delay:0s;}
-.m2-set-ico .m2b2{animation-delay:.18s;}
-.m2-set-ico .m2b3{animation-delay:.36s;}
-.m2-set-ico .m2spark{transform-box:fill-box;transform-origin:center;animation:m2spark 1.8s ease-in-out infinite;}
-@keyframes m2bob{0%,100%{transform:translateY(0)}30%{transform:translateY(-2.4px)}}
-@keyframes m2spark{0%,100%{transform:scale(.5);opacity:.2}45%{transform:scale(1);opacity:1}}
+.m2-set-ico .m2b{transform-box:fill-box;transform-origin:center;animation:m2bob 1.5s ease-in-out infinite;}
+.m2-set-ico .m2b1{animation:m2bobtop 1.5s ease-in-out infinite;animation-delay:.3s;}
+.m2-set-ico .m2b2{animation-delay:.15s;}
+.m2-set-ico .m2b3{animation-delay:0s;}
+@keyframes m2bob{0%,100%{transform:translateY(0)}40%{transform:translateY(-4px)}}
+@keyframes m2bobtop{0%,100%{transform:translateY(0) rotate(0)}40%{transform:translateY(-6px) rotate(-6deg)}}
 @media (prefers-reduced-motion:reduce){.m2-set-ico .m2b,.m2-set-ico .m2spark{animation:none;}}
 
 /* 주요 아이콘: 작은 회색 원(아이콘만) + 원 밖 아래 텍스트 */
-.page-main2 .mainicons{padding:8px 0 56px;}
+.page-main2 .mainicons{padding:56px 0 56px;}
 .page-main2 .mainicons .row{gap:28px;justify-content:safe center;}
 .page-main2 .mainicons .pill{width:auto;height:auto;border:0;background:none;border-radius:0;gap:12px;padding:0;}
 .page-main2 .mainicons .pill .ico{width:64px;height:64px;border-radius:999px;background:#f3f3f3;display:inline-flex;align-items:center;justify-content:center;}
 .page-main2 .mainicons .pill .ico img{width:30px;height:30px;object-fit:contain;}
-.page-main2 .mainicons .pill .m2-set-ico svg{width:34px;height:34px;}
+.page-main2 .mainicons .pill .m2-set-ico svg{width:30px;height:30px;}
 .page-main2 .mainicons .pill span{font-size:14px;font-weight:500;color:var(--ink);}
 
 /* 히어로: 가로형 디자인 배너 캐러셀 */
-.m2-hero{position:relative;padding:40px 0 12px;}
+.m2-hero{position:relative;padding:40px 0 0;}
 .m2-hero-track{display:flex;gap:24px;overflow-x:auto;scroll-behavior:smooth;scroll-snap-type:x mandatory;padding:0 max(20px,calc((100vw - 1520px)/2));scrollbar-width:none;-ms-overflow-style:none;cursor:grab;}
 .m2-hero-track::-webkit-scrollbar{display:none;}
 .m2-bn{flex:0 0 748px;max-width:88vw;height:232px;border-radius:16px;box-sizing:border-box;padding:36px 44px;display:flex;align-items:center;justify-content:space-between;gap:16px;scroll-snap-align:center;overflow:hidden;position:relative;}
@@ -99,9 +98,9 @@
 .m2-card .box{position:relative;width:100%;aspect-ratio:1/1;background:#f3f3f3;border-radius:12px;overflow:hidden;}
 .m2-card .box>img{position:absolute;top:45px;left:50%;transform:translateX(-50%);height:calc(100% - 90px);width:auto;max-width:none;aspect-ratio:171/223;object-fit:cover;border-radius:2px;box-shadow:4px 8px 17px rgba(0,0,0,.18);}
 .m2-card .cart{position:absolute;left:auto;right:19%;bottom:12%;width:48px;height:48px;border:0;border-radius:999px;cursor:pointer;background:var(--ink) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'><path d='M6 7h13l-1.5 8H8L6 4H4' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/><circle cx='9' cy='19' r='1.4' fill='white'/><circle cx='17' cy='19' r='1.4' fill='white'/></svg>") center/20px no-repeat;z-index:2;}
-.m2-card .name{font-size:16px;font-weight:500;color:var(--ink);line-height:22px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 16px;}
+.m2-card .name{font-size:16px;font-weight:500;color:var(--ink);line-height:22px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 16px;margin-top:8px;}
 .m2-card:hover .name{text-decoration:underline;}
-.m2-card .price{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;padding:0 16px;}
+.m2-card .price{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;padding:0 16px;margin-top:-2px;}
 .m2-card .price .dc{color:var(--red);font-weight:700;font-size:16px;}
 .m2-card .price .now{font-family:var(--display);font-weight:700;font-size:16px;color:var(--ink);}
 .m2-card .price .was{color:#a9a9a9;font-size:13px;text-decoration:line-through;}
@@ -125,7 +124,7 @@
 .m2-set-collage img{width:106px;height:138px;object-fit:cover;border-radius:3px;box-shadow:-5px 6px 14px rgba(0,0,0,.22);}
 .m2-set-collage img:not(:first-child){margin-left:-30px;}
 /* 교재명 리스트: 구분선 없음, 간격 16, 좌우 16 여백, 3.5줄(4줄째 반만) 노출, 스크롤바 숨김 */
-.m2-set-books{display:flex;flex-direction:column;gap:16px;margin-top:20px;max-height:132px;overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none;}
+.m2-set-books{display:flex;flex-direction:column;gap:16px;margin-top:40px;max-height:132px;overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none;}
 .m2-set-books::-webkit-scrollbar{display:none;}
 .m2-set-book{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 16px;}
 .m2-set-book .nm{color:#4d4e4d;font-size:14px;text-decoration:none;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer;}
@@ -137,7 +136,7 @@
 .m2-set-price .r{display:flex;align-items:baseline;gap:8px;}
 .m2-set-price .r .pc{color:var(--red);font-weight:700;font-size:20px;}
 .m2-set-price .r .now{color:var(--ink);font-family:var(--display);font-weight:700;font-size:22px;}
-.m2-set-btns{display:flex;gap:8px;margin-top:16px;}
+.m2-set-btns{display:flex;gap:8px;margin-top:16px;padding:0 16px;}
 .m2-set-btns a{flex:1;height:48px;display:flex;align-items:center;justify-content:center;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;}
 .m2-set-btns .add{background:#fff;border:1px solid #4d4e4d;color:var(--ink);}
 .m2-set-btns .buy{background:#4d4e4d;color:#fff;}
@@ -184,11 +183,10 @@
       <div class="row">
         <a class="pill m2-set-pill" href="#sec-set" aria-label="맞춤교재 세트 바로가기">
           <span class="ico m2-set-ico" aria-hidden="true">
-            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <g class="m2b m2b3"><rect x="8" y="20" width="24" height="7" rx="1.6" fill="#2f74d1"/><rect x="8" y="20" width="4.5" height="7" fill="#255fb0"/></g>
-              <g class="m2b m2b2"><rect x="10" y="13.5" width="20" height="7" rx="1.6" fill="#1d1717"/><rect x="10" y="13.5" width="4.5" height="7" fill="#000"/></g>
-              <g class="m2b m2b1"><rect x="12" y="7" width="16" height="7" rx="1.6" fill="#e83828"/><rect x="12" y="7" width="4" height="7" fill="#c22f22"/></g>
-              <g class="m2spark"><path d="M31 6 l1 2.4 2.4 1 -2.4 1 -1 2.4 -1-2.4 -2.4-1 2.4-1z" fill="#ffb020"/></g>
+            <svg viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g class="m2b m2b3"><rect x="9.5" y="27" width="26" height="7.5" rx="2" stroke="#1D1717" stroke-width="2"/><line x1="14" y1="27" x2="14" y2="34.5" stroke="#1D1717" stroke-width="2"/></g>
+              <g class="m2b m2b2"><rect x="11.5" y="19" width="22" height="7.5" rx="2" stroke="#1D1717" stroke-width="2"/><line x1="16" y1="19" x2="16" y2="26.5" stroke="#1D1717" stroke-width="2"/></g>
+              <g class="m2b m2b1"><rect x="13.5" y="11" width="18" height="7.5" rx="2" fill="#E83828"/><line x1="18" y1="11" x2="18" y2="18.5" stroke="#fff" stroke-width="2"/></g>
             </svg>
           </span>
           <span>맞춤교재 세트</span>
@@ -744,7 +742,7 @@
     pill.addEventListener('click',function(e){
       var target=document.getElementById('sec-set'); if(!target) return;
       e.preventDefault();
-      window.scrollTo({top:target.getBoundingClientRect().top+window.scrollY-20, behavior:'smooth'});
+      window.scrollTo({top:target.getBoundingClientRect().top+window.scrollY-24, behavior:'smooth'});
     });
   }
 })();
