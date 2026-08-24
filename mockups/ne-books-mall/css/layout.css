@@ -64,6 +64,7 @@ a{color:inherit;text-decoration:none;}
 .gnb .gnb-mall .gnb-roll{display:block;height:24px;line-height:24px;overflow:hidden;width:104px;text-align:left;}
 .gnb .gnb-mall .gr-track{display:block;animation:gnbRoll 3.4s cubic-bezier(.6,0,.2,1) infinite;}
 .gnb .gnb-mall .gr-i{display:block;height:24px;line-height:24px;white-space:nowrap;}
+.gnb .gnb-mall .gr-i.sub{color:var(--red);}
 @keyframes gnbRoll{0%,38%{transform:translateY(0)}50%,88%{transform:translateY(-24px)}96%,100%{transform:translateY(0)}}
 .gnb:hover .gnb-mall .gr-track{animation:none;transform:translateY(0);}
 @media (prefers-reduced-motion:reduce){.gnb .gnb-mall .gr-track{animation:none;}}
@@ -86,7 +87,10 @@ a{color:inherit;text-decoration:none;}
 .sa-list .it.on a,.sa-list .it a:hover{color:var(--ink);}
 .sa-preview{flex:none;display:flex;flex-direction:column;align-items:center;gap:16px;}
 .sa-pv-card{width:245px;height:245px;background:var(--gray-bg);border-radius:8px;display:flex;align-items:center;justify-content:center;}
-.sa-pv-card img{width:131px;height:171px;object-fit:cover;border-radius:2px;box-shadow:3.3px 5.9px 13.2px rgba(0,0,0,.18);}
+.sa-pv-card img{width:131px;height:171px;object-fit:cover;border-radius:2px;box-shadow:3.3px 5.9px 13.2px rgba(0,0,0,.18);display:block;}
+.sa-pv-book{position:relative;display:inline-block;line-height:0;}
+.sa-cart{position:absolute;right:-12px;bottom:-12px;width:36px;height:36px;border:0;border-radius:999px;cursor:pointer;background:var(--ink) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28' fill='none'><path d='M6 9h16l-1 14H7L6 9z' stroke='white' stroke-width='2' stroke-linejoin='round'/><path d='M10 9V7a4 4 0 0 1 8 0v2' stroke='white' stroke-width='2' stroke-linecap='round'/></svg>") center/18px no-repeat;box-shadow:0 3px 8px rgba(0,0,0,.25);}
+.sa-cart:hover{background-color:#000;}
 .sa-pv-name{width:160px;font-size:14px;color:var(--muted);text-align:center;line-height:22px;}
 .sp-empty{font-size:14px;color:var(--weak);padding:4px 0;}
 .head-icons{display:flex;gap:26px;align-items:flex-start;justify-self:end;}

@@ -58,7 +58,7 @@
       var first=matches[0];
       pop.innerHTML='<div class="sa-wrap">'
         +'<ul class="sa-list">'+list+'</ul>'
-        +'<div class="sa-preview"><div class="sa-pv-card"><img src="'+first.img+'" alt=""></div>'
+        +'<div class="sa-preview"><div class="sa-pv-card"><span class="sa-pv-book"><img src="'+first.img+'" alt=""><button type="button" class="sa-cart" aria-label="장바구니 담기"></button></span></div>'
         +'<p class="sa-pv-name">'+esc(first.title)+'</p></div>'
         +'</div>';
       var items=[].slice.call(pop.querySelectorAll('.sa-list .it'));
@@ -79,6 +79,15 @@
       if(opts.onSelect){
         var pv=pop.querySelector('.sa-preview'); pv.style.cursor='pointer';
         pv.addEventListener('click',function(){ opts.onSelect(curBook); });
+      }
+      /* 미리보기 책 이미지 우측하단 장바구니 버튼 → 담기(이동 안 함) */
+      var cartBtn=pop.querySelector('.sa-cart');
+      if(cartBtn){
+        cartBtn.addEventListener('click',function(e){
+          e.preventDefault(); e.stopPropagation();
+          if(window.neCartAdd) neCartAdd({title:curBook.title, now:'13,500원', img:curBook.img});
+          alert('장바구니에 상품을 담았습니다.');
+        });
       }
     }
 
