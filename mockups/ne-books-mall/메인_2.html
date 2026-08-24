@@ -85,9 +85,10 @@
 .m2-row.dragging{cursor:grabbing;scroll-behavior:auto;}
 .m2-row::-webkit-scrollbar{display:none;}
 .m2-card{width:280px;flex:none;display:flex;flex-direction:column;gap:16px;cursor:pointer;}
+/* 마이페이지 찜 카드와 동일: 회색 정사각 박스 + 교재 위아래 45 여백·중앙, 검정 장바구니 버튼은 교재 오른쪽 아래에 걸침 */
 .m2-card .box{position:relative;width:100%;aspect-ratio:1/1;background:#f3f3f3;border-radius:12px;overflow:hidden;}
-.m2-card .box>img{position:absolute;top:14%;left:50%;transform:translateX(-50%);height:72%;width:auto;aspect-ratio:171/223;object-fit:cover;border-radius:2px;box-shadow:4px 8px 17px rgba(0,0,0,.18);}
-.m2-card .cart{position:absolute;right:16px;bottom:16px;width:44px;height:44px;border:0;border-radius:999px;cursor:pointer;background:var(--ink) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'><path d='M6 7h13l-1.5 8H8L6 4H4' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/><circle cx='9' cy='19' r='1.4' fill='white'/><circle cx='17' cy='19' r='1.4' fill='white'/></svg>") center/20px no-repeat;z-index:2;}
+.m2-card .box>img{position:absolute;top:45px;left:50%;transform:translateX(-50%);height:calc(100% - 90px);width:auto;max-width:none;aspect-ratio:171/223;object-fit:cover;border-radius:2px;box-shadow:4px 8px 17px rgba(0,0,0,.18);}
+.m2-card .cart{position:absolute;left:auto;right:19%;bottom:12%;width:48px;height:48px;border:0;border-radius:999px;cursor:pointer;background:var(--ink) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'><path d='M6 7h13l-1.5 8H8L6 4H4' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/><circle cx='9' cy='19' r='1.4' fill='white'/><circle cx='17' cy='19' r='1.4' fill='white'/></svg>") center/20px no-repeat;z-index:2;}
 .m2-card .name{font-size:16px;font-weight:500;color:var(--ink);line-height:22px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .m2-card:hover .name{text-decoration:underline;}
 .m2-card .price{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;}
@@ -108,9 +109,14 @@
 .m2-set-top .lbl{display:inline-block;background:var(--red);color:#fff;font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;}
 .m2-set-top .st-t{color:var(--ink);font-size:20px;font-weight:700;margin-top:14px;}
 .m2-set-top .st-sub{color:#8a8a8a;font-size:14px;margin-top:6px;}
-.m2-set-collage{display:flex;gap:6px;justify-content:center;margin-top:20px;height:120px;}
-.m2-set-collage img{height:100%;width:auto;aspect-ratio:171/223;object-fit:cover;border-radius:2px;box-shadow:2px 4px 10px rgba(0,0,0,.18);}
-.m2-set-books{margin-top:20px;border-top:1px solid var(--line);}
+.m2-set-collage{display:flex;justify-content:center;align-items:flex-end;margin-top:24px;height:165px;overflow:hidden;}
+.m2-set-collage img{height:100%;width:auto;aspect-ratio:171/223;object-fit:cover;border-radius:3px;box-shadow:2px 6px 14px rgba(0,0,0,.18);}
+.m2-set-collage img:not(:first-child){margin-left:-26px;}
+/* 교재명 리스트: 많아지면 스크롤 */
+.m2-set-books{margin-top:20px;border-top:1px solid var(--line);max-height:160px;overflow-y:auto;}
+.m2-set-books::-webkit-scrollbar{width:6px;}
+.m2-set-books::-webkit-scrollbar-thumb{background:#d0d0d0;border-radius:3px;}
+.m2-set-books::-webkit-scrollbar-track{background:transparent;}
 .m2-set-book{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 0;border-bottom:1px solid var(--line);}
 .m2-set-book .nm{color:#4d4e4d;font-size:14px;text-decoration:none;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .m2-set-book .nm:hover{text-decoration:underline;color:var(--ink);cursor:pointer;}
@@ -699,9 +705,9 @@
 
   /* --- 2학기 개학 대비 맞춤 교재 세트 --- */
   var SETS=[
-    {lbl:'방학완성', t:'중등 방학 3주 완성 세트', sub:'어휘 + 문법 + 독해를 한 번에', imgs:['best_4.png','best_4.png','best_4.png'], books:['Grammar Zone 입문편(2017)','Grammar Zone 기초편(2017)','Grammar Zone 중등기본(2025 개정)','Grammar Zone 중등심화(2025 개정)'], save:'11,500원 할인', was:'41,000원', pc:'28%', now:'29,500원'},
-    {lbl:'파닉스 마스터', t:'초등 파닉스 4권 마스터 세트', sub:'스스로 읽는 힘, 기초부터 완성', imgs:['best_1.png','best_2.png','best_3.png'], books:['Phonics Code 1 SB','Phonics Code 2 SB','Phonics Code 3 SB','Phonics Code 4 SB'], save:'21,500원 할인', was:'41,000원', pc:'35%', now:'39,000원'},
-    {lbl:'수능 파이널', t:'고등 수능 파이널 세트', sub:'독해 + 듣기 실전 마무리 조합', imgs:['best_5.png','best_5.png','best_5.png'], books:['능률 VOCA 고등 기본(2025 개정)','능률 VOCA 수능 고난도(2025 개정)','능률 VOCA 수능 필수(2025 개정)'], save:'13,500원 할인', was:'41,000원', pc:'30%', now:'31,500원'}
+    {lbl:'방학완성', t:'중등 방학 3주 완성 세트', sub:'어휘 + 문법 + 독해를 한 번에', imgs:['best_1.png','best_2.png','best_3.png','best_4.png'], books:['Grammar Zone 입문편(2017)','Grammar Zone 기초편(2017)','Grammar Zone 중등기본(2025 개정)','Grammar Zone 중등심화(2025 개정)','능률VOCA 중등 스타트','1316 팬클럽 독해 1','주니어 리딩튜터 1'], save:'11,500원 할인', was:'41,000원', pc:'28%', now:'29,500원'},
+    {lbl:'파닉스 마스터', t:'초등 파닉스 4권 마스터 세트', sub:'스스로 읽는 힘, 기초부터 완성', imgs:['best_1.png','best_2.png','best_3.png','best_4.png','best_5.png'], books:['Phonics Code 1 SB','Phonics Code 2 SB','Phonics Code 3 SB','Phonics Code 4 SB','Phonics Code 5 SB','능률 사이트워드 1','능률 사이트워드 2'], save:'21,500원 할인', was:'41,000원', pc:'35%', now:'39,000원'},
+    {lbl:'수능 파이널', t:'고등 수능 파이널 세트', sub:'독해 + 듣기 실전 마무리 조합', imgs:['best_5.png','best_5.png','best_5.png'], books:['능률 VOCA 고등 기본(2025 개정)','능률 VOCA 수능 고난도(2025 개정)','능률 VOCA 수능 필수(2025 개정)','능률 수능독해 실전','능률 수능듣기 실전','리딩파워 유형편'], save:'13,500원 할인', was:'41,000원', pc:'30%', now:'31,500원'}
   ];
   var setsEl=document.getElementById('m2Sets');
   if(setsEl){
