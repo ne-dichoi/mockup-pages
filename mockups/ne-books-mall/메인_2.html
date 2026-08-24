@@ -57,7 +57,7 @@
 
 /* 히어로: 가로형 디자인 배너 캐러셀 */
 .m2-hero{position:relative;padding:40px 0 0;}
-.m2-hero-track{display:flex;gap:24px;overflow-x:auto;scroll-behavior:auto;padding:0 max(20px,calc((100vw - 1520px)/2));scrollbar-width:none;-ms-overflow-style:none;cursor:grab;}
+.m2-hero-track{display:flex;gap:24px;overflow-x:hidden;scroll-behavior:auto;padding:0 max(20px,calc((100vw - 1520px)/2));scrollbar-width:none;-ms-overflow-style:none;}
 .m2-hero-track::-webkit-scrollbar{display:none;}
 .m2-bn{flex:0 0 calc((100% - 24px)/2);height:232px;border-radius:16px;box-sizing:border-box;padding:36px 44px;display:flex;align-items:center;justify-content:space-between;gap:16px;overflow:hidden;position:relative;}
 .m2-bn .tx{min-width:0;position:relative;z-index:1;}
@@ -663,40 +663,50 @@
 /* ===== 히어로 가로형 배너 캐러셀 ===== */
 (function(){
   var track=document.getElementById('m2HeroTrack'); if(!track) return;
-  var cards=[].slice.call(track.querySelectorAll('.m2-bn')); var N=cards.length;
+  var reals=[].slice.call(track.querySelectorAll('.m2-bn')); var N=reals.length;
   var idxEl=document.getElementById('m2Idx'), totEl=document.getElementById('m2Tot'), bar=document.getElementById('m2Bar');
   var prev=document.getElementById('m2Prev'), next=document.getElementById('m2Next');
-  var i=0;
-  /* 한 번에 2개 노출 → 이동 가능한 '왼쪽 배너' 위치는 0 ~ N-2 (총 N-1 페이지) */
-  var PAGES=Math.max(1, N-1);
-  if(totEl) totEl.textContent=PAGES;
-  /* 배너 k를 콘텐츠 왼쪽에 정렬(그 옆 배너까지 2개가 꽉 차게 보임) */
-  function targetFor(k){ var c=cards[k]; if(!c) return 0; var t=Math.round(c.offsetLeft - cards[0].offsetLeft); return Math.max(0, Math.min(t, track.scrollWidth-track.clientWidth)); }
-  function render(){ if(idxEl) idxEl.textContent=i+1; if(bar){ bar.style.width=(100/PAGES)+'%'; bar.style.marginLeft=(i*100/PAGES)+'%'; } }
-  /* 브라우저 native smooth(scrollBy/scrollTo/CSS)가 이 환경에서 스크롤을 되돌리는 문제가 있어 rAF로 직접 부드럽게 이동 */
-  var raf=null;
-  function animTo(target){
+  var VIS=2; /* 항상 가운데 2개 노출 */
+  if(totEl) totEl.textContent=Math.max(1,N);
+  /* 배너가 노출개수 이하이면 스크롤 불필요 */
+  if(N<=VIS){ if(idxEl) idxEl.textContent=1; if(bar){ bar.style.width='100%'; bar.style.marginLeft='0'; } return; }
+  /* 무한 루프: 앞쪽 VIS개를 끝에 복제 → 클론 위치 도달 시 순간 리셋으로 seamless */
+  for(var c=0;c<VIS;c++){ var cl=reals[c].cloneNode(true); cl.setAttribute('aria-hidden','true'); track.appendChild(cl); }
+  var cards=[].slice.call(track.querySelectorAll('.m2-bn'));
+  var i=0, raf=null;
+  function targetFor(k){ var c=cards[k]; return c?Math.round(c.offsetLeft - cards[0].offsetLeft):0; }
+  function renderIdx(){ var r=((i%N)+N)%N; if(idxEl) idxEl.textContent=r+1; if(bar){ bar.style.width=(100/N)+'%'; bar.style.marginLeft=(r*100/N)+'%'; } }
+  function jump(x){ if(raf){cancelAnimationFrame(raf);raf=null;} track.scrollLeft=x; }
+  /* native smooth가 이 환경에서 스크롤을 되돌려서 rAF로 직접 애니메이션 */
+  function animTo(target,done){
     if(raf) cancelAnimationFrame(raf);
     var start=track.scrollLeft, dist=target-start;
-    if(Math.abs(dist)<1){ track.scrollLeft=target; return; }
-    var t0=null, dur=480;
-    function step(ts){ if(t0===null)t0=ts; var p=Math.min(1,(ts-t0)/dur); var e=p<0.5?2*p*p:1-Math.pow(-2*p+2,2)/2; track.scrollLeft=start+dist*e; if(p<1){ raf=requestAnimationFrame(step); } else { raf=null; } }
+    if(Math.abs(dist)<1){ track.scrollLeft=target; if(done)done(); return; }
+    var t0=null, dur=520;
+    function step(ts){ if(t0===null)t0=ts; var p=Math.min(1,(ts-t0)/dur); var e=p<0.5?2*p*p:1-Math.pow(-2*p+2,2)/2; track.scrollLeft=start+dist*e; if(p<1){ raf=requestAnimationFrame(step); } else { raf=null; if(done)done(); } }
     raf=requestAnimationFrame(step);
   }
-  function goTo(k){ i=((k%PAGES)+PAGES)%PAGES; animTo(targetFor(i)); render(); }
-  function go(d){ goTo(i+d); }
-  if(prev) prev.addEventListener('click',function(){ go(-1); restart(); });
-  if(next) next.addEventListener('click',function(){ go(1); restart(); });
-  /* 사용자가 직접 드래그/스크롤하면 현재 인덱스 동기화 */
-  var syncT=null;
-  track.addEventListener('scroll',function(){ clearTimeout(syncT); syncT=setTimeout(function(){ var best=0,bd=1e9; for(var k=0;k<PAGES;k++){ var d=Math.abs(track.scrollLeft-targetFor(k)); if(d<bd){bd=d;best=k;} } if(best!==i){ i=best; render(); } },120); });
-  /* 자동 롤(호버 정지) */
+  /* 항상 오른쪽→왼쪽(다음)으로만 진행, 클론까지 가면 순간 리셋 */
+  function goNext(){
+    i++;
+    animTo(targetFor(i), function(){ if(i>=N){ i=0; jump(targetFor(0)); renderIdx(); } });
+    renderIdx();
+  }
+  function goPrev(){
+    if(i<=0){ i=N; jump(targetFor(N)); }   /* 왼쪽 끝: 클론 위치로 순간 이동 후 역방향 애니메이션(seamless) */
+    i--;
+    animTo(targetFor(i));
+    renderIdx();
+  }
+  if(next) next.addEventListener('click',function(){ goNext(); restart(); });
+  if(prev) prev.addEventListener('click',function(){ goPrev(); restart(); });
   var timer=null;
-  function play(){ stop(); timer=setInterval(function(){ go(1); },4500); }
+  function play(){ stop(); timer=setInterval(goNext,4000); }
   function stop(){ if(timer){ clearInterval(timer); timer=null; } }
   function restart(){ play(); }
   track.addEventListener('pointerenter',stop); track.addEventListener('pointerleave',play);
-  render(); play();
+  window.addEventListener('resize',function(){ jump(targetFor(i>=N?0:i)); });
+  jump(targetFor(0)); renderIdx(); play();
 })();
 
 /* ===== 메인 시안 A: 카테고리 상품 행 + 맞춤교재 세트 + 인터랙션 ===== */
