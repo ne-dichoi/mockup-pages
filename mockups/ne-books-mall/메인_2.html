@@ -10,9 +10,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- Pretendard (design font) via CDN, with Noto Sans KR fallback -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260815cg">
-<script src="js/layout.js?v=20260815cg" defer></script>
-<script src="js/search.js?v=20260815cg" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260815ch">
+<script src="js/layout.js?v=20260815ch" defer></script>
+<script src="js/search.js?v=20260815ch" defer></script>
 <style>
 /* ===== 메인 시안 A (메인_2) 전용 ===== */
 /* 맞춤교재 세트 애니 아이콘 */
@@ -56,10 +56,11 @@
 .page-main2 .mainicons .pill span{font-size:14px;font-weight:500;color:var(--ink);}
 
 /* 히어로: 가로형 디자인 배너 캐러셀 */
-.m2-hero{position:relative;padding:40px 0 0;}
-.m2-hero-track{display:flex;gap:24px;overflow-x:hidden;scroll-behavior:auto;padding:0 max(20px,calc((100vw - 1520px)/2));scrollbar-width:none;-ms-overflow-style:none;}
+.m2-hero{position:relative;padding:40px 0 0;overflow:hidden;}
+.m2-hero-track{display:flex;gap:24px;overflow-x:hidden;scroll-behavior:auto;padding:0;scrollbar-width:none;-ms-overflow-style:none;}
 .m2-hero-track::-webkit-scrollbar{display:none;}
-.m2-bn{flex:0 0 calc((100% - 24px)/2);height:232px;border-radius:16px;box-sizing:border-box;padding:36px 44px;display:flex;align-items:center;justify-content:space-between;gap:16px;overflow:hidden;position:relative;}
+/* 가운데 2개(1520 기준)를 노출, 넓은 화면에선 좌우로 앞뒤 배너가 peek */
+.m2-bn{flex:0 0 calc((min(100vw, 1520px) - 24px)/2);height:232px;border-radius:16px;box-sizing:border-box;padding:36px 44px;display:flex;align-items:center;justify-content:space-between;gap:16px;overflow:hidden;position:relative;}
 .m2-bn .tx{min-width:0;position:relative;z-index:1;}
 .m2-bn .lb{display:block;width:fit-content;font-size:14px;font-weight:700;color:var(--ink);margin-bottom:16px;text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1.5px;}
 .m2-bn .lb.ln{color:#fff;text-decoration:underline;text-underline-offset:3px;}
@@ -670,11 +671,20 @@
   if(totEl) totEl.textContent=Math.max(1,N);
   /* 배너가 노출개수 이하이면 스크롤 불필요 */
   if(N<=VIS){ if(idxEl) idxEl.textContent=1; if(bar){ bar.style.width='100%'; bar.style.marginLeft='0'; } return; }
-  /* 무한 루프: 앞쪽 VIS개를 끝에 복제 → 클론 위치 도달 시 순간 리셋으로 seamless */
+  /* 무한 루프 + 좌우 peek: 앞쪽에 마지막 VIS개, 끝쪽에 첫 VIS개 복제 (양끝 클론) */
+  var GAP=24;
+  var head=document.createDocumentFragment();
+  for(var h=N-VIS;h<N;h++){ var ch=reals[h].cloneNode(true); ch.setAttribute('aria-hidden','true'); head.appendChild(ch); }
+  track.insertBefore(head, track.firstChild);
   for(var c=0;c<VIS;c++){ var cl=reals[c].cloneNode(true); cl.setAttribute('aria-hidden','true'); track.appendChild(cl); }
-  var cards=[].slice.call(track.querySelectorAll('.m2-bn'));
+  var cards=[].slice.call(track.querySelectorAll('.m2-bn'));   /* 길이 N+2*VIS */
   var i=0, raf=null;
-  function targetFor(k){ var c=cards[k]; return c?Math.round(c.offsetLeft - cards[0].offsetLeft):0; }
+  /* 실배너 i를 화면 가운데 pair로 정렬 (앞쪽 VIS 클론만큼 offset). 넓은 화면이면 앞/뒤 배너가 좌우로 peek */
+  function targetFor(k){
+    var el=cards[k+VIS]; if(!el) return 0;
+    var bw=el.offsetWidth, pairW=2*bw+GAP, vw=track.clientWidth;
+    return Math.round(el.offsetLeft - (vw-pairW)/2);
+  }
   function renderIdx(){ var r=((i%N)+N)%N; if(idxEl) idxEl.textContent=r+1; if(bar){ bar.style.width=(100/N)+'%'; bar.style.marginLeft=(r*100/N)+'%'; } }
   function jump(x){ if(raf){cancelAnimationFrame(raf);raf=null;} track.scrollLeft=x; }
   /* native smooth가 이 환경에서 스크롤을 되돌려서 rAF로 직접 애니메이션 */
@@ -686,18 +696,9 @@
     function step(ts){ if(t0===null)t0=ts; var p=Math.min(1,(ts-t0)/dur); var e=p<0.5?2*p*p:1-Math.pow(-2*p+2,2)/2; track.scrollLeft=start+dist*e; if(p<1){ raf=requestAnimationFrame(step); } else { raf=null; if(done)done(); } }
     raf=requestAnimationFrame(step);
   }
-  /* 항상 오른쪽→왼쪽(다음)으로만 진행, 클론까지 가면 순간 리셋 */
-  function goNext(){
-    i++;
-    animTo(targetFor(i), function(){ if(i>=N){ i=0; jump(targetFor(0)); renderIdx(); } });
-    renderIdx();
-  }
-  function goPrev(){
-    if(i<=0){ i=N; jump(targetFor(N)); }   /* 왼쪽 끝: 클론 위치로 순간 이동 후 역방향 애니메이션(seamless) */
-    i--;
-    animTo(targetFor(i));
-    renderIdx();
-  }
+  /* 항상 오른쪽→왼쪽(다음)으로 진행. 양끝 클론 도달 시 순간 리셋(seamless 무한루프) */
+  function goNext(){ i++; animTo(targetFor(i), function(){ if(i>=N){ i=0; jump(targetFor(0)); } }); renderIdx(); }
+  function goPrev(){ i--; animTo(targetFor(i), function(){ if(i<0){ i=N-1; jump(targetFor(N-1)); } }); renderIdx(); }
   if(next) next.addEventListener('click',function(){ goNext(); restart(); });
   if(prev) prev.addEventListener('click',function(){ goPrev(); restart(); });
   var timer=null;
@@ -705,7 +706,7 @@
   function stop(){ if(timer){ clearInterval(timer); timer=null; } }
   function restart(){ play(); }
   track.addEventListener('pointerenter',stop); track.addEventListener('pointerleave',play);
-  window.addEventListener('resize',function(){ jump(targetFor(i>=N?0:i)); });
+  window.addEventListener('resize',function(){ jump(targetFor(((i%N)+N)%N)); });
   jump(targetFor(0)); renderIdx(); play();
 })();
 
