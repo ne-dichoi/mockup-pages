@@ -18,21 +18,28 @@
 /* 맞춤교재 세트 애니 아이콘 */
 .m2-set-ico{display:inline-flex;align-items:center;justify-content:center;}
 .m2-set-ico svg{width:30px;height:30px;overflow:visible;}
-.m2-set-ico .m2b{transform-box:fill-box;transform-origin:center;animation:m2bob 1.5s ease-in-out infinite;}
-.m2-set-ico .m2b1{animation:m2bobtop 1.5s ease-in-out infinite;animation-delay:.3s;}
-.m2-set-ico .m2b2{animation-delay:.15s;}
-.m2-set-ico .m2b3{animation-delay:0s;}
+.m2-set-ico .m2b{transform-box:fill-box;transform-origin:center;animation:m2bob 1.9s ease-in-out infinite;}
+.m2-set-ico .m2b1{transform-origin:bottom center;animation:m2bobtop 1.9s cubic-bezier(.4,0,.3,1) infinite;}
+.m2-set-ico .m2b2{animation-delay:.12s;}
+.m2-set-ico .m2b3{animation-delay:.24s;}
 @keyframes m2bob{0%,100%{transform:translateY(0)}40%{transform:translateY(-4px)}}
-@keyframes m2bobtop{0%,100%{transform:translateY(0) rotate(0)}40%{transform:translateY(-6px) rotate(-6deg)}}
+@keyframes m2bobtop{
+  0%{transform:translateY(0) rotate(0)}
+  30%{transform:translateY(-9px) rotate(-18deg)}
+  48%{transform:translateY(-9px) rotate(-18deg)}
+  68%{transform:translateY(3px) rotate(5deg)}
+  82%{transform:translateY(0) rotate(-2deg)}
+  100%{transform:translateY(0) rotate(0)}
+}
 @media (prefers-reduced-motion:reduce){.m2-set-ico .m2b,.m2-set-ico .m2spark{animation:none;}}
 
 /* 주요 아이콘: 작은 회색 원(아이콘만) + 원 밖 아래 텍스트 */
 .page-main2 .mainicons{padding:56px 0 80px;}
 .page-main2 .mainicons .row{gap:28px;justify-content:safe center;}
 .page-main2 .mainicons .pill{width:auto;height:auto;border:0;background:none;border-radius:0;gap:12px;padding:0;}
-.page-main2 .mainicons .pill .ico{width:64px;height:64px;border-radius:999px;background:#f3f3f3;display:inline-flex;align-items:center;justify-content:center;}
-.page-main2 .mainicons .pill .ico img{width:30px;height:30px;object-fit:contain;}
-.page-main2 .mainicons .pill .m2-set-ico svg{width:30px;height:30px;}
+.page-main2 .mainicons .pill .ico{width:70px;height:70px;border-radius:999px;background:#f3f3f3;display:inline-flex;align-items:center;justify-content:center;}
+.page-main2 .mainicons .pill .ico img{width:33px;height:33px;object-fit:contain;}
+.page-main2 .mainicons .pill .m2-set-ico svg{width:33px;height:33px;}
 .page-main2 .mainicons .pill span{font-size:14px;font-weight:500;color:var(--ink);}
 
 /* 히어로: 가로형 디자인 배너 캐러셀 */
