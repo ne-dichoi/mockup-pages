@@ -1,0 +1,673 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>NE_Books · 메인 시안 A</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Google Fonts fallback (required) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Pretendard (design font) via CDN, with Noto Sans KR fallback -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="css/layout.css?v=20260815by">
+<script src="js/layout.js?v=20260815by" defer></script>
+<script src="js/search.js?v=20260815by" defer></script>
+<style>
+/* ===== 메인 시안 A (메인_2) 전용 ===== */
+/* 맞춤교재 세트 애니 아이콘 */
+.m2-set-ico{display:inline-flex;align-items:center;justify-content:center;}
+.m2-set-ico svg{width:30px;height:30px;overflow:visible;}
+.m2-set-ico .m2b{transform-box:fill-box;transform-origin:center;animation:m2bob 1.8s ease-in-out infinite;}
+.m2-set-ico .m2b1{animation-delay:0s;}
+.m2-set-ico .m2b2{animation-delay:.18s;}
+.m2-set-ico .m2b3{animation-delay:.36s;}
+.m2-set-ico .m2spark{transform-box:fill-box;transform-origin:center;animation:m2spark 1.8s ease-in-out infinite;}
+@keyframes m2bob{0%,100%{transform:translateY(0)}30%{transform:translateY(-2.4px)}}
+@keyframes m2spark{0%,100%{transform:scale(.5);opacity:.2}45%{transform:scale(1);opacity:1}}
+@media (prefers-reduced-motion:reduce){.m2-set-ico .m2b,.m2-set-ico .m2spark{animation:none;}}
+
+/* 카테고리 상품 행 */
+.m2-cats .container{padding-top:8px;padding-bottom:8px;}
+.m2-cat{position:relative;margin-bottom:56px;}
+.m2-cat:last-child{margin-bottom:0;}
+.m2-cat-head{display:flex;align-items:center;gap:24px;margin-bottom:16px;flex-wrap:wrap;}
+.m2-cat-head .m2-t{font-size:24px;font-weight:700;color:var(--ink);letter-spacing:-.02em;}
+.m2-cat-head .m2-tabs{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.m2-cat-head .m2-tab{font-size:14px;color:#a9a9a9;cursor:pointer;padding:6px 14px;border-radius:999px;white-space:nowrap;}
+.m2-cat-head .m2-tab.on{background:var(--ink);color:#fff;font-weight:700;}
+.m2-row-wrap{position:relative;}
+.m2-row{display:flex;gap:24px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;scroll-behavior:smooth;cursor:grab;padding-bottom:4px;}
+.m2-row.dragging{cursor:grabbing;scroll-behavior:auto;}
+.m2-row::-webkit-scrollbar{display:none;}
+.m2-card{width:280px;flex:none;display:flex;flex-direction:column;gap:16px;cursor:pointer;}
+.m2-card .box{position:relative;width:100%;aspect-ratio:1/1;background:#f3f3f3;border-radius:12px;overflow:hidden;}
+.m2-card .box>img{position:absolute;top:14%;left:50%;transform:translateX(-50%);height:72%;width:auto;aspect-ratio:171/223;object-fit:cover;border-radius:2px;box-shadow:4px 8px 17px rgba(0,0,0,.18);}
+.m2-card .cart{position:absolute;right:16px;bottom:16px;width:44px;height:44px;border:0;border-radius:999px;cursor:pointer;background:var(--ink) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'><path d='M6 7h13l-1.5 8H8L6 4H4' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/><circle cx='9' cy='19' r='1.4' fill='white'/><circle cx='17' cy='19' r='1.4' fill='white'/></svg>") center/20px no-repeat;z-index:2;}
+.m2-card .name{font-size:16px;font-weight:500;color:var(--ink);line-height:22px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.m2-card:hover .name{text-decoration:underline;}
+.m2-card .price{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;}
+.m2-card .price .dc{color:var(--red);font-weight:700;font-size:16px;}
+.m2-card .price .now{font-family:var(--display);font-weight:700;font-size:16px;color:var(--ink);}
+.m2-card .price .was{color:#a9a9a9;font-size:13px;text-decoration:line-through;}
+/* 요청1: 마우스 오버 시 우측 다음 화살표 */
+.m2-row-next{position:absolute;right:-16px;width:48px;height:48px;border-radius:999px;background:#fff;box-shadow:0 6px 20px rgba(0,0,0,.16);border:1px solid var(--line);cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .2s;z-index:6;transform:translateY(-50%);}
+.m2-row-next svg{width:18px;height:18px;}
+.m2-cat:hover .m2-row-next{opacity:1;visibility:visible;}
+
+/* 2학기 맞춤 교재 세트 (다크) */
+.m2-sets{background:var(--ink);padding:80px 0;}
+.m2-sets-t{color:#fff;font-size:24px;font-weight:700;letter-spacing:-.02em;margin-bottom:24px;}
+.m2-set-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.m2-set-card{display:flex;flex-direction:column;}
+.m2-set-top{background:#2b2b2b;border-radius:16px;padding:24px;}
+.m2-set-top .lbl{display:inline-block;background:var(--red);color:#fff;font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;}
+.m2-set-top .st-t{color:#fff;font-size:20px;font-weight:700;margin-top:14px;}
+.m2-set-top .st-sub{color:#a9a9a9;font-size:14px;margin-top:6px;}
+.m2-set-collage{display:flex;gap:6px;justify-content:center;margin-top:20px;height:120px;}
+.m2-set-collage img{height:100%;width:auto;aspect-ratio:171/223;object-fit:cover;border-radius:2px;box-shadow:2px 4px 10px rgba(0,0,0,.35);}
+.m2-set-books{margin-top:20px;border-top:1px solid rgba(255,255,255,.1);}
+.m2-set-book{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.08);}
+.m2-set-book .nm{color:#cfcfcf;font-size:14px;text-decoration:none;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.m2-set-book .nm:hover{text-decoration:underline;color:#fff;cursor:pointer;}
+.m2-set-book .bcart{flex:none;width:22px;height:22px;border:0;background:transparent url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'><path d='M6 7h13l-1.5 8H8L6 4H4' stroke='%23a9a9a9' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/><circle cx='9' cy='19' r='1.3' fill='%23a9a9a9'/><circle cx='17' cy='19' r='1.3' fill='%23a9a9a9'/></svg>") center/18px no-repeat;cursor:pointer;}
+.m2-set-price{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-top:16px;flex-wrap:wrap;}
+.m2-set-price .l{color:var(--red);font-size:13px;font-weight:700;}
+.m2-set-price .l s{color:#7e7e7e;font-weight:400;margin-left:4px;}
+.m2-set-price .r{display:flex;align-items:baseline;gap:8px;}
+.m2-set-price .r .pc{color:var(--red);font-weight:700;font-size:20px;}
+.m2-set-price .r .now{color:#fff;font-family:var(--display);font-weight:700;font-size:22px;}
+.m2-set-btns{display:flex;gap:8px;margin-top:16px;}
+.m2-set-btns a{flex:1;height:48px;display:flex;align-items:center;justify-content:center;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;}
+.m2-set-btns .add{background:transparent;border:1px solid rgba(255,255,255,.35);color:#fff;}
+.m2-set-btns .buy{background:#fff;color:var(--ink);}
+
+@media (max-width:1023px){
+  .m2-cat{margin-bottom:40px;}
+  .m2-cat-head .m2-t{font-size:20px;}
+  .m2-card{width:180px;gap:10px;}
+  .m2-card .name{font-size:14px;}
+  .m2-row-next{display:none;} /* 모바일: 스와이프로 스크롤 */
+  .m2-sets{padding:40px 0;}
+  .m2-sets-t{font-size:20px;}
+  .m2-set-grid{grid-template-columns:1fr;gap:16px;}
+}
+</style>
+</head>
+<body class="page-index page-main2">
+
+  <!-- ===== HEADER (white) ===== -->
+  <div id="site-header"></div>
+
+  <!-- ===== HERO carousel (full-bleed banner cards) ===== -->
+  <section class="hero2" id="hero2">
+    <div class="hero2-stage">
+      <div class="hero2-track" id="hero2Track">
+        <div class="hero2-card"><img src="assets/img1.png" alt="배너1"></div>
+        <div class="hero2-card"><img src="assets/img2.png" alt="배너2"></div>
+        <div class="hero2-card"><img src="assets/img3.png" alt="배너3"></div>
+        <div class="hero2-card"><img src="assets/img4.png" alt="배너4"></div>
+        <div class="hero2-card"><img src="assets/img5.png" alt="배너5"></div>
+      </div>
+    </div>
+    <div class="hero2-ind only-mo" aria-hidden="true"><b id="hero2Idx2">1</b><span>/</span><span id="hero2Total2">6</span></div>
+    <div class="hero2-nav">
+      <div class="bar"><i id="hero2Bar"></i></div>
+      <div class="grp">
+        <button class="arrow" id="hero2Prev" aria-label="이전">&#8249;</button>
+        <span class="pg"><span id="hero2Idx">1</span> <b>/ <span id="hero2Total">6</span></b></span>
+        <button class="arrow" id="hero2Next" aria-label="다음">&#8250;</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MAIN ICONS ===== -->
+  <section class="mainicons">
+    <div class="container">
+      <div class="row">
+        <a class="pill m2-set-pill" href="#sec-set" aria-label="맞춤교재 세트 바로가기">
+          <span class="ico m2-set-ico" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g class="m2b m2b3"><rect x="8" y="20" width="24" height="7" rx="1.6" fill="#2f74d1"/><rect x="8" y="20" width="4.5" height="7" fill="#255fb0"/></g>
+              <g class="m2b m2b2"><rect x="10" y="13.5" width="20" height="7" rx="1.6" fill="#1d1717"/><rect x="10" y="13.5" width="4.5" height="7" fill="#000"/></g>
+              <g class="m2b m2b1"><rect x="12" y="7" width="16" height="7" rx="1.6" fill="#e83828"/><rect x="12" y="7" width="4" height="7" fill="#c22f22"/></g>
+              <g class="m2spark"><path d="M31 6 l1 2.4 2.4 1 -2.4 1 -1 2.4 -1-2.4 -2.4-1 2.4-1z" fill="#ffb020"/></g>
+            </svg>
+          </span>
+          <span>맞춤교재 세트</span>
+        </a>
+        <a class="pill"><span class="ico"><img src="assets/ic_main_buy.svg" alt=""></span><span>교재 구매</span></a>
+        <a class="pill"><span class="ico"><img src="assets/ic_main_level.svg" alt=""></span><span>레벨차트</span></a>
+        <a class="pill"><span class="ico"><img src="assets/ic_main_lib.svg" alt=""></span><span><span class="only-pc">학습자료실</span><span class="only-mo">학습자료</span></span></a>
+        <a class="pill"><span class="ico"><img src="assets/ic_main_mp3down.svg" alt=""></span><span><span class="only-pc">정답·MP3 다운</span><span class="only-mo">정답·MP3</span></span></a>
+        <a class="pill"><span class="ico"><img src="assets/ic_main_mp3listen.svg" alt=""></span><span><span class="only-pc">MP3 듣기</span><span class="only-mo">음원듣기</span></span></a>
+        <a class="pill"><span class="ico"><img src="assets/ic_main_engteacher.svg" alt=""></span><span>영어 선생님</span></a>
+        <a class="pill"><span class="ico"><img src="assets/ic_main_mathteacher.svg" alt=""></span><span>수학 선생님</span></a>
+        <a class="pill only-mo mo-reco"><span class="ico"><img src="assets/ic_float_recommend.svg" alt=""></span><span>교재추천</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== A안: 카테고리별 상품 행 (ELT / 초·중등 영어 / 고등) ===== -->
+  <section class="m2-cats">
+    <div class="container" id="m2Cats"></div>
+  </section>
+
+  <!-- ===== 2학기 개학 대비 맞춤 교재 세트 ===== -->
+  <section class="m2-sets" id="sec-set">
+    <div class="container">
+      <h2 class="m2-sets-t">2학기 개학 대비 맞춤 교재 세트</h2>
+      <div class="m2-set-grid" id="m2Sets"></div>
+    </div>
+  </section>
+
+  <!-- ===== NETUTOR ===== -->
+  <section class="netutor" id="sec-netutor">
+    <div class="nt-viewport">
+      <div class="nt-wrap" id="ntWrap">
+        <div class="nt-arc">
+          <img class="circle" src="assets/netutor_arc.svg" alt="">
+          <img class="dot" src="assets/netutor_dot.svg" alt="">
+        </div>
+        <div class="nt-hot" id="ntHot" title="스크롤하여 배너 이동"></div>
+        <div class="nt-center">
+          <div class="cap"><span class="cap-sub">선생님을 위한</span> <span class="cap-main">티칭 플랫폼</span><span class="cap-logo only-mo"><img src="assets/netutor_logo.svg" alt="NE_Tutor"></span></div>
+          <div class="logo only-pc"><img src="assets/netutor_logo.svg" alt="NE_Tutor" style="width:100%;height:100%;object-fit:contain;"></div>
+        </div>
+        <div class="nt-cards" id="ntCards">
+          <div class="nt-card">
+            <div class="body"><span class="sub">지도서/수업자료</span><span class="tt">E-Book・자료</span></div>
+            <span class="ic ico"><img src="assets/ic_tutor_ebook.svg" data-n="assets/ic_tutor_ebook.svg" data-w="assets/ic_tutor_ebook_w.svg" alt=""></span>
+          </div>
+          <div class="nt-card">
+            <div class="body"><span class="sub">시험지 자동 생성</span><span class="tt">어휘 문제 마법사</span></div>
+            <span class="ic ico"><img src="assets/ic_tutor_vocab.svg" data-n="assets/ic_tutor_vocab.svg" data-w="assets/ic_tutor_vocab_w.svg" alt=""></span>
+          </div>
+          <div class="nt-card">
+            <div class="body"><span class="sub">문제 무제한 출제</span><span class="tt">문법 문제뱅크</span></div>
+            <span class="ic ico"><img src="assets/ic_tutor_grammar.svg" data-n="assets/ic_tutor_grammar.svg" data-w="assets/ic_tutor_grammar_w.svg" alt=""></span>
+          </div>
+          <div class="nt-card">
+            <div class="body"><span class="sub">iBT 영어 레벨테스트</span><span class="tt">NELT</span></div>
+            <span class="ic ico"><img src="assets/ic_tutor_nelt.svg" data-n="assets/ic_tutor_nelt.svg" data-w="assets/ic_tutor_nelt_w.svg" alt=""></span>
+          </div>
+          <div class="nt-card">
+            <div class="body"><span class="sub">평가/오답 자동화</span><span class="tt">성취TEST</span></div>
+            <span class="ic ico"><img src="assets/ic_tutor_test.svg" data-n="assets/ic_tutor_test.svg" data-w="assets/ic_tutor_test_w.svg" alt=""></span>
+          </div>
+          <div class="nt-card">
+            <div class="body"><span class="sub">예문검색 1분컷</span><span class="tt">문법 예문 검색</span></div>
+            <span class="ic ico"><img src="assets/ic_tutor_search.svg" data-n="assets/ic_tutor_search.svg" data-w="assets/ic_tutor_search_w.svg" alt=""></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== NOTICES / CUSTOMER CENTER ===== -->
+  <section class="notices">
+    <div class="container">
+      <div class="nt-inner">
+        <div class="notice-col">
+          <div class="sec-title">공지사항</div>
+          <div class="notice-list">
+            <div class="item"><span class="t">[필독] NE능률 개인정보 처리방침 개정 안내 (6/23 시행)</span><span class="d">2026. 07. 13</span></div>
+            <div class="item"><span class="t">[중요] NE능률-클래스카드 콘텐츠 제휴 지속 안내</span><span class="d">2026. 07. 13</span></div>
+            <div class="item"><span class="t">[안내] 절판(예정포함) 국어교재 (6/9 기준)</span><span class="d">2026. 07. 13</span></div>
+            <div class="item"><span class="t">[안내] 절판(예정포함) 국어교재 (6/9 기준)</span><span class="d">2026. 07. 13</span></div>
+          </div>
+        </div>
+        <div class="cs-col">
+          <div class="sec-title">고객센터</div>
+          <div class="cs-cards">
+            <div class="cs-card">
+              <div class="left"><span class="tel">1833-8368</span><span class="info">NE능률 고객센터<br><span class="info-sep">l</span>평일 9~16시 · 점심 12~13시</span></div>
+              <div class="cs-icons">
+                <div class="cs-box"><span class="ico"><img src="assets/ic_chat.svg" alt=""></span><span>채팅상담</span></div>
+                <div class="cs-box"><span class="ico"><img src="assets/ic_11.svg" alt=""></span><span>1:1문의</span></div>
+                <div class="cs-box"><span class="ico"><img src="assets/ic_faq.svg" alt=""></span><span>FAQ</span></div>
+                <div class="cs-box"><span class="ico"><img src="assets/ic_sms.svg" alt=""></span><span>문자상담</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="sec-title only-mo sns-title">SNS</div>
+          <div class="sns">
+            <div class="card"><div class="in"><div class="lbl"><span class="sns-brand">NE능률<br></span>Lounge 카페</div><div class="logo"><img src="assets/sns_lounge.png" alt=""></div></div></div>
+            <div class="card"><div class="in"><div class="lbl"><span class="sns-brand">NE능률<br></span>인스타그램</div><div class="logo"><img src="assets/sns_instagram.png" alt=""></div></div></div>
+            <div class="card"><div class="in"><div class="lbl"><span class="sns-brand">NE능률<br></span>유튜브</div><div class="logo"><img src="assets/sns_youtube.svg" alt=""></div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <div id="site-footer"></div>
+
+  <!-- ===== FLOATING MENU ===== -->
+  <div class="floating">
+    <div class="float-card"><span class="ico"><img src="assets/ic_float_recommend.svg" alt=""></span><span>맞춤형 교재추천</span></div>
+    <div class="float-card"><span class="ico"><img src="assets/ic_float_level.svg" alt=""></span><span>교재 레벨 차트</span></div>
+    <div class="float-card"><span class="ico"><img src="assets/ic_float_guide.svg" alt=""></span><span>교재 가이드 다운</span></div>
+    <div class="float-card"><span class="ico"><img src="assets/ic_float_math.svg" alt=""></span><span>수학 교재 안내</span></div>
+  </div>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ---------- Bestseller product cards (6 identical, per design) ---------- */
+  (function(){
+    var list=document.getElementById('bsList'); if(!list) return;
+    var covers=['best_1.png','best_2.png','best_3.png','best_4.png','best_5.png'];
+    var html='';
+    for(var i=0;i<6;i++){
+      html+='<div class="bs-card">'
+        +'<div class="img">'
+          +'<img class="book" src="assets/'+covers[i%covers.length]+'" alt="">'
+          +'<input type="checkbox" class="chk" aria-label="선택">'
+          +'<div class="cart"><span class="ico"><img src="assets/ic_cart_black.svg" alt="장바구니"></span></div>'
+        +'</div>'
+        +'<div class="bs-meta">'
+          +'<div class="ph">Phonics</div>'
+          +'<div class="name">Bricks Reading 150 · L1</div>'
+          +'<div class="price"><span class="now">13,500원</span><span class="was">15,000원</span></div>'
+        +'</div>'
+      +'</div>';
+    }
+    list.innerHTML=html;
+
+    /* mobile-only: bestseller as a vertical list of rows */
+    var mo=document.getElementById('bsMoList');
+    if(mo){
+      var mh='';
+      for(var j=0;j<6;j++){
+        mh+='<div class="bs-mo-row">'
+          +'<input type="checkbox" class="chk" aria-label="선택">'
+          +'<span class="thumb"><img src="assets/'+covers[j%covers.length]+'" alt=""></span>'
+          +'<span class="meta">'
+            +'<span class="name">Phonics Code 1 : Student Book</span>'
+            +'<span class="price"><span class="now">13,500원</span><span class="was">15,000원</span></span>'
+          +'</span>'
+        +'</div>';
+      }
+      mo.innerHTML=mh;
+    }
+  })();
+
+  /* ---------- Click-and-drag to move a horizontal track (mouse only, no wheel hijack) ---------- */
+  function enableDragScroll(el){
+    if(!el) return;
+    var down=false,startX=0,startLeft=0,moved=false;
+    el.addEventListener('pointerdown',function(e){
+      if(e.pointerType==='mouse' && e.button!==0) return;
+      down=true;moved=false;startX=e.clientX;startLeft=el.scrollLeft;
+    });
+    el.addEventListener('pointermove',function(e){
+      if(!down) return;
+      var dx=e.clientX-startX;
+      if(!moved && Math.abs(dx)>4){ moved=true; el.classList.add('dragging'); el.setPointerCapture&&el.setPointerCapture(e.pointerId); } /* 4px 이동 후에만 캡처 → 단순 클릭은 캡처되지 않아 체크박스·카트 클릭 정상 작동 */
+      if(moved) el.scrollLeft=startLeft-dx;
+    });
+    function end(){ if(!down) return; down=false; el.classList.remove('dragging'); }
+    el.addEventListener('pointerup',end); el.addEventListener('pointercancel',end);
+    el.addEventListener('click',function(e){ if(moved){ e.preventDefault(); e.stopPropagation(); } },true);
+    // NOTE: no wheel handler — mouse wheel scrolls the page normally; move the list by dragging.
+  }
+  enableDragScroll(document.getElementById('bsList'));
+
+  /* 베스트셀러 카드의 장바구니 아이콘 → 장바구니 페이지 */
+  (function(){
+    var list=document.getElementById('bsList'); if(!list) return;
+    list.addEventListener('click',function(e){ if(e.target.closest('.cart')){ location.href='장바구니.html'; } });
+  })();
+
+  /* ---------- HERO 2: full-width center-mode banner carousel, infinite auto-roll ---------- */
+  (function(){
+    var track=document.getElementById('hero2Track'); if(!track) return;
+    var stage=track.parentElement;
+    var idxEl=document.getElementById('hero2Idx'),totalEl=document.getElementById('hero2Total'),
+        prev=document.getElementById('hero2Prev'),next=document.getElementById('hero2Next'),bar=document.getElementById('hero2Bar');
+    var reals=[].slice.call(track.children), N=reals.length;
+    if(totalEl) totalEl.textContent=N;
+    var head=document.createDocumentFragment(), tail=document.createDocumentFragment();
+    reals.forEach(function(c){ head.appendChild(c.cloneNode(true)); });
+    reals.forEach(function(c){ tail.appendChild(c.cloneNode(true)); });
+    track.insertBefore(head, track.firstChild); track.appendChild(tail);
+    var cards=[].slice.call(track.children); // 3N
+    var active=N, timer, normTimer, baseX=0, curW=405, curG=24;
+    /* uniform G → every inter-card gap is identical; active card is actually wider/taller */
+    function vw(){ return document.documentElement.clientWidth || window.innerWidth; }
+    function sizes(){ var w=vw(); if(w<=600){ var A=Math.min(350,w-40), r=A/350; return {W:Math.round(304*r),H:Math.round(345*r),A:A,AH:Math.round(397*r),G:8}; } if(w<=1000) return {W:320,H:365,A:370,AH:420,G:20}; if(w<=1139) return {W:344,H:390,A:396,AH:448,G:20}; return {W:405,H:460,A:467,AH:530,G:24}; }
+    function apply(anim){
+      var s=sizes(); curW=s.W; curG=s.G;
+      stage.style.height=s.AH+'px'; track.style.height=s.AH+'px';
+      track.style.transition=anim?'':'none';
+      track.style.gap=s.G+'px';
+      cards.forEach(function(c,i){ var on=i===active; c.style.transition=anim?'':'none';
+        c.style.width=(on?s.A:s.W)+'px'; c.style.height=(on?s.AH:s.H)+'px'; c.classList.toggle('active',on); });
+      // cards before the active one are all width W → active centre is exact
+      baseX=Math.round(stage.clientWidth/2-(active*(s.W+s.G)+s.A/2));
+      track.style.transform='translateX('+baseX+'px)';
+      if(!anim){ void track.offsetWidth; track.style.transition=''; cards.forEach(function(c){ c.style.transition=''; }); }
+      var real=((active-N)%N+N)%N;
+      if(idxEl) idxEl.textContent=real+1;
+      var idx2=document.getElementById('hero2Idx2'); if(idx2) idx2.textContent=real+1;
+      var tot2=document.getElementById('hero2Total2'); if(tot2) tot2.textContent=N;
+      if(bar){ var bw=bar.parentElement.clientWidth,frac=N>1?real/(N-1):0; bar.style.left=Math.round(frac*(bw-bar.offsetWidth))+'px'; }
+    }
+    function normalize(){ var a=active; while(a<N)a+=N; while(a>=2*N)a-=N; if(a!==active){ active=a; apply(false); } }
+    function go(dir){ active+=dir; apply(true); clearTimeout(normTimer); normTimer=setTimeout(normalize,650); }
+    if(prev) prev.addEventListener('click',function(){ go(-1); restart(); });
+    if(next) next.addEventListener('click',function(){ go(1); restart(); });
+    function restart(){ clearInterval(timer); timer=setInterval(function(){ go(1); },5000); }
+
+    /* click-and-drag to move sideways (mouse + touch); snaps to nearest card on release */
+    var down=false,startX=0,startBase=0,moved=false;
+    track.addEventListener('pointerdown',function(e){
+      if(e.pointerType==='mouse' && e.button!==0) return;
+      down=true;moved=false;startX=e.clientX;startBase=baseX;
+      track.classList.add('dragging'); track.setPointerCapture&&track.setPointerCapture(e.pointerId);
+      clearInterval(timer);
+    });
+    track.addEventListener('pointermove',function(e){
+      if(!down) return;
+      var dx=e.clientX-startX; if(Math.abs(dx)>4) moved=true;
+      track.style.transform='translateX('+(startBase+dx)+'px)';
+    });
+    function endDrag(e){
+      if(!down) return; down=false; track.classList.remove('dragging');
+      var dx=(e&&typeof e.clientX==='number'?e.clientX:startX)-startX;
+      var steps=Math.round(-dx/(curW+curG));
+      if(steps!==0){ active+=steps; }
+      apply(true); clearTimeout(normTimer); normTimer=setTimeout(normalize,650); restart();
+    }
+    track.addEventListener('pointerup',endDrag);
+    track.addEventListener('pointercancel',endDrag);
+    // clicking a non-centre card centres it; suppress the click if the user was dragging
+    cards.forEach(function(c,i){ c.addEventListener('click',function(e){ if(moved){ e.preventDefault(); return; } if(i!==active){ go(i-active); restart(); } }); });
+
+    var sec=document.getElementById('hero2');
+    sec.addEventListener('mouseenter',function(){ clearInterval(timer); });
+    sec.addEventListener('mouseleave',function(){ if(!down) restart(); });
+    var lastVW=vw();
+    window.addEventListener('resize',function(){ var w=vw(); if(w===lastVW) return; /* 세로 스크롤(URL바 접힘=높이만 변경)은 무시 */ lastVW=w; apply(false); });
+    window.addEventListener('load',function(){ lastVW=vw(); apply(false); });
+    apply(false); restart();
+  })();
+
+  /* ---------- NETUTOR: scale arc to fit + wheel/click rotate with center red focus ---------- */
+  (function(){
+    var wrap=document.getElementById('ntWrap'),cardsWrap=document.getElementById('ntCards');
+    if(!wrap||!cardsWrap) return;
+    var cards=[].slice.call(cardsWrap.querySelectorAll('.nt-card'));
+    var M=cards.length; // 6
+    // 6 stops: 5 visible arc slots + 1 hidden. Stop 2 = centre (red). Hidden sits at the right-low spot (opacity 0).
+    var stops=[{l:32,t:260},{l:407,t:130},{l:782,t:0},{l:1157,t:130},{l:1532,t:260},{l:1600,t:440,hidden:true}];
+    var CENTER=2, HIDDEN=5, offset=0; // default: E-Book·어휘·문법문제뱅크(center)·NELT·성취 shown, 문법예문검색 hidden
+    function isArc(){ return window.innerWidth>1023; }
+    function stopOf(c){ return ((c+offset)%M+M)%M; }
+    function render(){
+      if(!isArc()){ cards.forEach(function(c){ c.classList.remove('red'); c._stop=undefined; c.style.opacity=''; c.style.pointerEvents=''; var im=c.querySelector('.ic img'); if(im){ var n=im.getAttribute('data-n'); if(n) im.src=n; } }); return; }
+      cards.forEach(function(card,c){
+        var s=stopOf(c), prev=card._stop, st=stops[s];
+        var entering=(prev===HIDDEN) && !st.hidden; /* 초기 로드(prev undefined)에는 애니메이션 없이 바로 최종 위치에 배치 → 카드가 stop 위치에 정확히 정착 */
+        var targetOp=st.hidden?'0':'1';
+        if(entering){                       // rise up from the lower-outer corner into place
+          var side=st.l<782?-1:1;          // left half enters from lower-left, right half from lower-right
+          card.style.transition='none';
+          card.style.left=(st.l+side*90)+'px'; card.style.top=(st.t+150)+'px'; card.style.opacity='0';
+          void card.offsetWidth;
+          card.style.transition='';
+          card.style.left=st.l+'px'; card.style.top=st.t+'px'; card.style.opacity=targetOp;
+        } else {
+          card.style.transition='';
+          card.style.left=st.l+'px'; card.style.top=st.t+'px';
+          card.style.opacity=targetOp;
+        }
+        card.style.pointerEvents=st.hidden?'none':'auto';
+        card.classList.toggle('red', s===CENTER);
+        var img=card.querySelector('.ic img');
+        if(img){ var w=img.getAttribute('data-w'), n=img.getAttribute('data-n'); if(n){ img.src=(s===CENTER&&w)?w:n; } }
+        card._stop=s;
+      });
+    }
+    function scale(){
+      if(isArc()){
+        /* 100%에서 약간만 축소(90%). 단, PC 좁은 폭(1024~1139)에선 조금 더 축소해 카드가 덜 잘리게 */
+        var s=(window.innerWidth>=1024 && window.innerWidth<=1139) ? 0.78 : 0.9;
+        wrap.style.transform='scale('+s+')';
+        wrap.parentElement.style.height=(542*s)+'px';
+      } else {
+        wrap.style.transform=''; wrap.parentElement.style.height='';
+        cards.forEach(function(card){ card.style.left=''; card.style.top=''; card.style.opacity=''; card.style.pointerEvents=''; });
+      }
+    }
+    // Wheel rotates the banners ONLY when the cursor is over the centre zone (text/logo);
+    // there it captures the wheel so the page does not scroll. Elsewhere the page scrolls normally.
+    var acc=0,lastT=0;
+    function onWheel(e){
+      if(!isArc()) return;
+      // only capture the wheel over the INNER area (left-mid ~ right-mid). The two end boxes
+      // and the empty sides let the page scroll normally, so you can reach 공지사항 easily.
+      var c1,c3; cards.forEach(function(c){ if(c._stop===1)c1=c; if(c._stop===3)c3=c; });
+      if(c1&&c3){ var L=c1.getBoundingClientRect().left, R=c3.getBoundingClientRect().right;
+        if(e.clientX<L || e.clientX>R) return; }
+      e.preventDefault();
+      var now=Date.now(); if(now-lastT>400) acc=0; lastT=now; acc+=e.deltaY;
+      if(acc>=90){ offset++; acc=0; render(); } else if(acc<=-90){ offset--; acc=0; render(); }
+    }
+    // wheel over the INNER NETutor boxes rotates the banners (end boxes excluded — see onWheel)
+    wrap.addEventListener('wheel',onWheel,{passive:false});
+    cards.forEach(function(card,c){ card.addEventListener('click',function(){ if(!isArc()) return; var s=stopOf(c); if(s===HIDDEN) return; offset+=(CENTER-s); render(); }); });
+    window.addEventListener('resize',function(){ scale(); render(); });
+    window.addEventListener('load',function(){ scale(); render(); });
+    scale(); render();
+  })();
+
+  /* ---------- Floating menu: parked level with the icon row, then pins 40px above the viewport bottom ---------- */
+  (function(){
+    var el=document.querySelector('.floating');
+    var anchorEl=document.querySelector('.mainicons .row')||document.querySelector('.mainicons');
+    if(!el||!anchorEl) return;
+    var GAP=40;
+    function home(){ return Math.round(anchorEl.getBoundingClientRect().top+window.scrollY); }
+    function onScroll(){
+      if(window.innerWidth<=767){ el.classList.remove('is-fixed'); el.style.top=''; el.style.bottom=''; return; }
+      var fh=el.offsetHeight;
+      var switchAt=home()-(window.innerHeight-fh-GAP);   // scroll point where the parked menu reaches bottom-40
+      if(window.scrollY>=switchAt){ el.classList.add('is-fixed'); el.style.top='auto'; el.style.bottom=GAP+'px'; }
+      else { el.classList.remove('is-fixed'); el.style.bottom=''; el.style.top=home()+'px'; }
+    }
+    window.addEventListener('scroll',onScroll,{passive:true});
+    window.addEventListener('resize',onScroll);
+    window.addEventListener('load',onScroll);
+    document.addEventListener('DOMContentLoaded',onScroll);
+    [].forEach.call(document.querySelectorAll('.hero img,.mainicons img'),function(im){ im.addEventListener('load',onScroll); });
+    setTimeout(onScroll,300); setTimeout(onScroll,1000);
+    onScroll();
+  })();
+
+  /* ---------- GNB mega-dropdown: hover / click a menu to open its panel ---------- */
+  (function(){
+    var gnb=document.querySelector('.gnb'); if(!gnb) return;
+    var drop=document.getElementById('gnbDrop'); if(!drop) return;
+    var cats=drop.querySelector('.gd-cats');
+    var items=[].slice.call(gnb.querySelectorAll('nav a'));
+    var MENU={
+      'ELT':['Coursebook','Phonics','Readers','Reading','Listening','Speaking','Writing','Grammar','Vocabulary'],
+      '초/중등':['중학내신','고등선행','어휘','Phonics','쓰기','독해','듣기','문법/구문','TOEFL/TEPS/NELT'],
+      '고등':['어휘','독해','듣기','문법/구문','수능대비','고교내신','단기특강','TOEFL/TEPS/NELT'],
+      '교과서/자습서':['중학영어 교과서','고등영어 교과서','수학 교과서','중국어/일본어'],
+      '수험/일반':['TOEIC','TOEIC Speaking/Writing','TOEFL/OPIC/TEPS','FLEX','일반영어'],
+      '수학/국어':['유아','초등','중등','고등'],
+      '학습자료실':['서브메인','ELT자료','초/중등교재 자료','고등교재 자료','교과서/자습서 자료','수험/일반 자료','수학/국어 자료'],
+      '도서몰':['ELT','초/중등','고등영어 교과서','교과서/자습서','수험/일반','교구/부가상품','세트/패키지','온라인 서비스/이용권']
+    };
+    var closeT;
+    function openFor(a){
+      var name=a.textContent.trim();
+      var mega=(name==='학습자료실'||name==='도서몰');
+      var BR='<div class="gd-brands"><a class="gd-btn blue" href="#">Come on Series <span>&#8250;</span></a><a class="gd-btn navy" href="#">Oxford <span>&#8250;</span></a></div>';
+      if(mega){
+        var COLS=[['ELT','Coursebook','Phonics','Reading','Readers','Listening','Speaking','Grammar','Writing','Vocabulary'],['초등/중등','중학 내신','고등 선행','파닉스','어휘','쓰기','독해','듣기','문법/구분','TOEFL/TEPS/NELT'],['고등','어휘','독해','듣기','문법/구분','수능 대비','고교 내신','단기 특강','TOEFL/TEPS/NELT'],['교과서/자습서','중학영어 교과서','고등영어 교과서','수학 교과서','중국어/일본어'],['수험/일반','TOEIC','TOEIC SPEAKING|/WRITING','TOEFL/OPIC/TEPS','FLEX','일반영어'],['수학/국어','유아','초등','중등','고등']];
+        drop.innerHTML=COLS.map(function(c){ return '<div class="gd-col"><p class="gd-col-t">'+c[0]+'</p><div class="items">'+c.slice(1).map(function(i){ return '<a href="리스트_교재구매.html">'+i.replace('|','<br>')+'</a>'; }).join('')+'</div></div>'; }).join('')+BR;
+        drop.classList.add('mega');
+      } else {
+        var list=MENU[name]; if(!list){ hide(); return; }
+        drop.innerHTML='<div class="gd-cats">'+list.map(function(t){ return '<a href="리스트_교재구매.html">'+t+'</a>'; }).join('')+'</div>'+BR;
+        drop.classList.remove('mega');
+      }
+      items.forEach(function(x){ x.classList.toggle('on',x===a); });
+      drop.classList.add('open');
+      if(mega){ var gw=gnb.getBoundingClientRect().width; var ml=Math.round((gw-drop.offsetWidth)/2); drop.style.left=(ml>0?ml:0)+'px'; }
+      else{
+        var gr=gnb.getBoundingClientRect(), ir=a.getBoundingClientRect();
+        var left=Math.round(ir.left-gr.left-24);
+        var maxLeft=Math.round(gr.width-drop.offsetWidth);
+        if(left>maxLeft) left=maxLeft; if(left<0) left=0;
+        drop.style.left=left+'px';
+      }
+    }
+    function hide(){ drop.classList.remove('open'); items.forEach(function(x){ x.classList.remove('on'); }); }
+    items.forEach(function(a){
+      a.addEventListener('mouseenter',function(){ clearTimeout(closeT); openFor(a); });
+      a.addEventListener('focus',function(){ openFor(a); });
+      a.addEventListener('click',function(e){ if(MENU[a.textContent.trim()]){ e.preventDefault(); openFor(a); } });
+    });
+    gnb.addEventListener('mouseleave',function(){ closeT=setTimeout(hide,160); });
+    gnb.addEventListener('mouseenter',function(){ clearTimeout(closeT); });
+    document.addEventListener('click',function(e){ if(!gnb.contains(e.target)) hide(); });
+    document.addEventListener('keydown',function(e){ if(e.key==='Escape') hide(); });
+  })();
+
+  /* ---------- 가로 스와이프/드래그 스크롤 (주요아이콘 · 베스트셀러 탭) ---------- */
+  (function(){
+    function dragScroll(el){
+      if(!el) return;
+      var down=false,startX=0,startScroll=0,moved=false;
+      el.addEventListener('pointerdown',function(e){
+        if(e.pointerType!=='mouse') return;        /* 터치·펜은 네이티브 스크롤 사용 */
+        if(e.button!==0) return;
+        down=true;moved=false;startX=e.clientX;startScroll=el.scrollLeft;
+        el.style.cursor='grabbing';
+        try{ el.setPointerCapture(e.pointerId); }catch(_){}
+      });
+      el.addEventListener('pointermove',function(e){
+        if(!down) return;
+        var dx=e.clientX-startX;
+        if(Math.abs(dx)>3) moved=true;
+        el.scrollLeft=startScroll-dx;
+      });
+      function end(){ if(!down) return; down=false; el.style.cursor=''; }
+      el.addEventListener('pointerup',end);
+      el.addEventListener('pointercancel',end);
+      el.addEventListener('pointerleave',end);
+      el.addEventListener('click',function(e){ if(moved){ e.preventDefault(); e.stopPropagation(); } },true);
+    }
+    dragScroll(document.querySelector('.mainicons .row'));
+    dragScroll(document.querySelector('.bs-tabs'));
+  })();
+
+})();
+</script>
+<script>
+/* ===== 메인 시안 A: 카테고리 상품 행 + 맞춤교재 세트 + 인터랙션 ===== */
+(function(){
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  var covers=['best_1.png','best_2.png','best_3.png','best_4.png','best_5.png'];
+
+  /* --- 카테고리별 상품 행 --- */
+  var ROWS=[
+    {cat:'ELT', tabs:['Phonics Code','Read it','Subject Link(2nd Edition)','주니어 리딩튜터','능률Voca초등'], title:'Phonics Code 1 : Student Book'},
+    {cat:'초/중등 영어', tabs:['Grammar Inside','능률 중학영어','1316팬클럽','원서독해','능률VOCA'], title:'Grammar Inside Level 1'},
+    {cat:'고등', tabs:['능률 VOCA','정확한 구문','리딩파워','능률 구문독해','수능특강 연계'], title:'능률VOCA 수능완성'}
+  ];
+  var catsEl=document.getElementById('m2Cats');
+  if(catsEl){
+    function bookCard(i,title){
+      return '<article class="m2-card">'
+        +'<div class="box"><img src="assets/'+covers[i%covers.length]+'" alt=""><button type="button" class="cart" aria-label="장바구니 담기"></button></div>'
+        +'<a class="name" href="교재상세.html">'+esc(title)+'</a>'
+        +'<div class="price"><span class="dc">10%</span><span class="now">13,500원</span><span class="was">15,000원</span></div>'
+        +'</article>';
+    }
+    catsEl.innerHTML=ROWS.map(function(r){
+      var tabs=r.tabs.map(function(t,ti){return '<span class="m2-tab'+(ti===0?' on':'')+'">'+esc(t)+'</span>';}).join('');
+      var cards=''; for(var i=0;i<8;i++) cards+=bookCard(i,r.title);
+      return '<div class="m2-cat">'
+        +'<div class="m2-cat-head"><span class="m2-t">'+esc(r.cat)+'</span><span class="m2-tabs">'+tabs+'</span></div>'
+        +'<div class="m2-row-wrap"><div class="m2-row">'+cards+'</div>'
+        +'<button type="button" class="m2-row-next" aria-label="다음"><svg viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="#1d1717" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>'
+        +'</div></div>';
+    }).join('');
+    /* 탭 토글 / 장바구니 담기 / 카드 클릭→상세 */
+    catsEl.addEventListener('click',function(e){
+      var tab=e.target.closest('.m2-tab');
+      if(tab){ tab.closest('.m2-tabs').querySelectorAll('.m2-tab').forEach(function(x){x.classList.remove('on');}); tab.classList.add('on'); return; }
+      var cart=e.target.closest('.cart');
+      if(cart){ e.preventDefault(); var c=cart.closest('.m2-card'); if(window.neCartAdd) neCartAdd({title:c.querySelector('.name').textContent, now:'13,500원', img:c.querySelector('.box img').getAttribute('src')}); alert('장바구니에 상품을 담았습니다.'); return; }
+      var card=e.target.closest('.m2-card');
+      if(card && !e.target.closest('a')){ location.href='교재상세.html'; }
+    });
+    /* 요청1: 마우스오버 시 우측 화살표 → 다음으로 스크롤 */
+    catsEl.querySelectorAll('.m2-row-next').forEach(function(btn){
+      btn.addEventListener('click',function(){ var row=btn.closest('.m2-row-wrap').querySelector('.m2-row'); row.scrollBy({left:Math.round(row.clientWidth*0.8),behavior:'smooth'}); });
+    });
+    function placeArrows(){
+      catsEl.querySelectorAll('.m2-cat').forEach(function(cat){
+        var box=cat.querySelector('.m2-card .box'), arrow=cat.querySelector('.m2-row-next');
+        if(box&&arrow) arrow.style.top=(box.offsetTop+box.offsetHeight/2)+'px';
+      });
+    }
+    /* 드래그 스크롤 */
+    catsEl.querySelectorAll('.m2-row').forEach(function(row){
+      var down=false,sx=0,sl=0,moved=false;
+      row.addEventListener('pointerdown',function(e){ if(e.pointerType==='mouse'&&e.button!==0)return; down=true;moved=false;sx=e.clientX;sl=row.scrollLeft;});
+      row.addEventListener('pointermove',function(e){ if(!down)return; var dx=e.clientX-sx; if(!moved&&Math.abs(dx)>4){moved=true;row.classList.add('dragging');row.setPointerCapture&&row.setPointerCapture(e.pointerId);} if(moved)row.scrollLeft=sl-dx;});
+      function end(){ if(!down)return; down=false; row.classList.remove('dragging'); }
+      row.addEventListener('pointerup',end); row.addEventListener('pointercancel',end);
+      row.addEventListener('click',function(e){ if(moved){e.preventDefault();e.stopPropagation();}},true);
+    });
+    placeArrows(); window.addEventListener('resize',placeArrows);
+    [].forEach.call(catsEl.querySelectorAll('.m2-card .box img'),function(im){ im.addEventListener('load',placeArrows); });
+  }
+
+  /* --- 2학기 개학 대비 맞춤 교재 세트 --- */
+  var SETS=[
+    {lbl:'방학완성', t:'중등 방학 3주 완성 세트', sub:'어휘 + 문법 + 독해를 한 번에', imgs:['best_4.png','best_4.png','best_4.png'], books:['Grammar Zone 입문편(2017)','Grammar Zone 기초편(2017)','Grammar Zone 중등기본(2025 개정)','Grammar Zone 중등심화(2025 개정)'], save:'11,500원 할인', was:'41,000원', pc:'28%', now:'29,500원'},
+    {lbl:'파닉스 마스터', t:'초등 파닉스 4권 마스터 세트', sub:'스스로 읽는 힘, 기초부터 완성', imgs:['best_1.png','best_2.png','best_3.png'], books:['Phonics Code 1 SB','Phonics Code 2 SB','Phonics Code 3 SB','Phonics Code 4 SB'], save:'21,500원 할인', was:'41,000원', pc:'35%', now:'39,000원'},
+    {lbl:'수능 파이널', t:'고등 수능 파이널 세트', sub:'독해 + 듣기 실전 마무리 조합', imgs:['best_5.png','best_5.png','best_5.png'], books:['능률 VOCA 고등 기본(2025 개정)','능률 VOCA 수능 고난도(2025 개정)','능률 VOCA 수능 필수(2025 개정)'], save:'13,500원 할인', was:'41,000원', pc:'30%', now:'31,500원'}
+  ];
+  var setsEl=document.getElementById('m2Sets');
+  if(setsEl){
+    setsEl.innerHTML=SETS.map(function(s){
+      var collage=s.imgs.map(function(im){return '<img src="assets/'+im+'" alt="">';}).join('');
+      var books=s.books.map(function(b){return '<div class="m2-set-book"><a class="nm" href="교재상세.html">'+esc(b)+'</a><button type="button" class="bcart" aria-label="장바구니 담기"></button></div>';}).join('');
+      return '<div class="m2-set-card">'
+        +'<div class="m2-set-top"><span class="lbl">'+esc(s.lbl)+'</span><div class="st-t">'+esc(s.t)+'</div><div class="st-sub">'+esc(s.sub)+'</div><div class="m2-set-collage">'+collage+'</div></div>'
+        +'<div class="m2-set-books">'+books+'</div>'
+        +'<div class="m2-set-price"><span class="l">'+esc(s.save)+' <s>'+esc(s.was)+'</s></span><span class="r"><span class="pc">'+esc(s.pc)+'</span><span class="now">'+esc(s.now)+'</span></span></div>'
+        +'<div class="m2-set-btns"><a class="add" href="장바구니.html">세트 담기</a><a class="buy" href="주문결제.html">바로구매</a></div>'
+        +'</div>';
+    }).join('');
+    /* 요청2: 교재명 텍스트는 클릭→상세(a href), 옆 장바구니 아이콘은 담기 */
+    setsEl.addEventListener('click',function(e){
+      var bc=e.target.closest('.bcart');
+      if(bc){ e.preventDefault(); var nm=bc.closest('.m2-set-book').querySelector('.nm').textContent; if(window.neCartAdd) neCartAdd({title:nm, now:'', img:'assets/best_1.png'}); alert('장바구니에 상품을 담았습니다.'); }
+    });
+  }
+
+  /* --- 요청3: 맞춤교재 세트 아이콘 클릭 → 세트 섹션으로 부드럽게 스크롤 --- */
+  var pill=document.querySelector('.m2-set-pill');
+  if(pill){
+    pill.addEventListener('click',function(e){
+      var target=document.getElementById('sec-set'); if(!target) return;
+      e.preventDefault();
+      window.scrollTo({top:target.getBoundingClientRect().top+window.scrollY-20, behavior:'smooth'});
+    });
+  }
+})();
+</script>
+</body>
+</html>
