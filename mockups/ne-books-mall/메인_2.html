@@ -25,10 +25,10 @@
 @keyframes m2bob{0%,100%{transform:translateY(0)}40%{transform:translateY(-4px)}}
 @keyframes m2bobtop{
   0%{transform:translateY(0) rotate(0)}
-  30%{transform:translateY(-9px) rotate(-18deg)}
-  48%{transform:translateY(-9px) rotate(-18deg)}
-  68%{transform:translateY(3px) rotate(5deg)}
-  82%{transform:translateY(0) rotate(-2deg)}
+  28%{transform:translateY(-9px) rotate(-16deg)}
+  46%{transform:translateY(-9px) rotate(-16deg)}
+  72%{transform:translateY(0) rotate(2deg)}
+  86%{transform:translateY(0) rotate(-1deg)}
   100%{transform:translateY(0) rotate(0)}
 }
 @media (prefers-reduced-motion:reduce){.m2-set-ico .m2b,.m2-set-ico .m2spark{animation:none;}}
@@ -112,9 +112,12 @@
 .m2-card .price .now{font-family:var(--display);font-weight:700;font-size:16px;color:var(--ink);}
 .m2-card .price .was{color:#a9a9a9;font-size:13px;text-decoration:line-through;}
 /* 요청1: 마우스 오버 시 우측 다음 화살표 */
-.m2-row-next{position:absolute;right:-16px;width:48px;height:48px;border-radius:999px;background:#fff;box-shadow:0 6px 20px rgba(0,0,0,.16);border:1px solid var(--line);cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .2s;z-index:6;transform:translateY(-50%);}
-.m2-row-next svg{width:18px;height:18px;}
-.m2-cat:hover .m2-row-next{opacity:1;visibility:visible;}
+.m2-row-next,.m2-row-prev{position:absolute;width:48px;height:48px;border-radius:999px;background:#fff;box-shadow:0 6px 20px rgba(0,0,0,.16);border:1px solid var(--line);cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .2s;z-index:6;transform:translateY(-50%);}
+.m2-row-next{right:-16px;}
+.m2-row-prev{left:-16px;}
+.m2-row-next svg,.m2-row-prev svg{width:18px;height:18px;}
+.m2-cat:hover .m2-row-wrap.can-next .m2-row-next{opacity:1;visibility:visible;}
+.m2-cat:hover .m2-row-wrap.can-prev .m2-row-prev{opacity:1;visibility:visible;}
 
 /* 2학기 맞춤 교재 세트 (라이트) */
 .m2-sets{background:#f7f7f7;padding:80px 0;}
@@ -153,7 +156,7 @@
   .m2-cat-head .m2-t{font-size:20px;}
   .m2-card{width:180px;gap:10px;}
   .m2-card .name{font-size:14px;}
-  .m2-row-next{display:none;} /* 모바일: 스와이프로 스크롤 */
+  .m2-row-next,.m2-row-prev{display:none;} /* 모바일: 스와이프로 스크롤 */
   .m2-sets{padding:40px 0;}
   .m2-sets-t{font-size:20px;}
   .m2-set-grid{grid-template-columns:1fr;gap:16px;}
@@ -683,6 +686,7 @@
       return '<div class="m2-cat">'
         +'<div class="m2-cat-head"><span class="m2-t">'+esc(r.cat)+'</span><span class="m2-tabs">'+tabs+'</span></div>'
         +'<div class="m2-row-wrap"><div class="m2-row">'+cards+'</div>'
+        +'<button type="button" class="m2-row-prev" aria-label="이전"><svg viewBox="0 0 24 24" fill="none"><path d="M15 5l-7 7 7 7" stroke="#1d1717" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>'
         +'<button type="button" class="m2-row-next" aria-label="다음"><svg viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="#1d1717" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>'
         +'</div></div>';
     }).join('');
@@ -695,15 +699,28 @@
       var card=e.target.closest('.m2-card');
       if(card && !e.target.closest('a')){ location.href='교재상세.html'; }
     });
-    /* 요청1: 마우스오버 시 우측 화살표 → 다음으로 스크롤 */
+    /* 요청1: 마우스오버 시 좌/우 화살표 → 이전·다음으로 스크롤 */
     catsEl.querySelectorAll('.m2-row-next').forEach(function(btn){
       btn.addEventListener('click',function(){ var row=btn.closest('.m2-row-wrap').querySelector('.m2-row'); row.scrollBy({left:Math.round(row.clientWidth*0.8),behavior:'smooth'}); });
     });
+    catsEl.querySelectorAll('.m2-row-prev').forEach(function(btn){
+      btn.addEventListener('click',function(){ var row=btn.closest('.m2-row-wrap').querySelector('.m2-row'); row.scrollBy({left:-Math.round(row.clientWidth*0.8),behavior:'smooth'}); });
+    });
+    /* 화살표를 교재 회색박스 세로 중앙에 정확히 맞추고, 스크롤 위치에 따라 좌/우 노출 */
     function placeArrows(){
       catsEl.querySelectorAll('.m2-cat').forEach(function(cat){
-        var box=cat.querySelector('.m2-card .box'), arrow=cat.querySelector('.m2-row-next');
-        if(box&&arrow) arrow.style.top=(box.offsetTop+box.offsetHeight/2)+'px';
+        var box=cat.querySelector('.m2-card .box'), wrap=cat.querySelector('.m2-row-wrap');
+        if(!box||!wrap) return;
+        var mid=(box.offsetTop+box.offsetHeight/2)+'px';
+        var nx=wrap.querySelector('.m2-row-next'), pv=wrap.querySelector('.m2-row-prev');
+        if(nx) nx.style.top=mid; if(pv) pv.style.top=mid;
       });
+    }
+    function updateArrows(row){
+      var wrap=row.closest('.m2-row-wrap'); if(!wrap) return;
+      var max=row.scrollWidth-row.clientWidth;
+      wrap.classList.toggle('can-prev', row.scrollLeft>1);
+      wrap.classList.toggle('can-next', row.scrollLeft < max-1);
     }
     /* 드래그 스크롤 */
     catsEl.querySelectorAll('.m2-row').forEach(function(row){
@@ -713,9 +730,12 @@
       function end(){ if(!down)return; down=false; row.classList.remove('dragging'); }
       row.addEventListener('pointerup',end); row.addEventListener('pointercancel',end);
       row.addEventListener('click',function(e){ if(moved){e.preventDefault();e.stopPropagation();}},true);
+      row.addEventListener('scroll',function(){ updateArrows(row); });
+      updateArrows(row);
     });
-    placeArrows(); window.addEventListener('resize',placeArrows);
-    [].forEach.call(catsEl.querySelectorAll('.m2-card .box img'),function(im){ im.addEventListener('load',placeArrows); });
+    placeArrows();
+    window.addEventListener('resize',function(){ placeArrows(); catsEl.querySelectorAll('.m2-row').forEach(updateArrows); });
+    [].forEach.call(catsEl.querySelectorAll('.m2-card .box img'),function(im){ im.addEventListener('load',function(){ placeArrows(); catsEl.querySelectorAll('.m2-row').forEach(updateArrows); }); });
   }
 
   /* --- 2학기 개학 대비 맞춤 교재 세트 --- */
