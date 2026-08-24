@@ -10,9 +10,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- Pretendard (design font) via CDN, with Noto Sans KR fallback -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260815bz">
-<script src="js/layout.js?v=20260815bz" defer></script>
-<script src="js/search.js?v=20260815bz" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260815ca">
+<script src="js/layout.js?v=20260815ca" defer></script>
+<script src="js/search.js?v=20260815ca" defer></script>
 <style>
 /* ===== 메인 시안 A (메인_2) 전용 ===== */
 /* 맞춤교재 세트 애니 아이콘 */
@@ -38,11 +38,11 @@
   100%{transform:translateY(0) rotate(0)}
 }
 @keyframes m2bobbot{
-  0%{transform:translateY(0) rotate(0)}
-  26%{transform:translateY(-3px) rotate(-4deg)}
-  44%{transform:translateY(-3px) rotate(-4deg)}
-  74%{transform:translateY(0) rotate(0)}
-  100%{transform:translateY(0) rotate(0)}
+  0%{transform:translateY(0)}
+  26%{transform:translateY(-3px)}
+  44%{transform:translateY(-3px)}
+  74%{transform:translateY(0)}
+  100%{transform:translateY(0)}
 }
 @media (prefers-reduced-motion:reduce){.m2-set-ico .m2b,.m2-set-ico .m2spark{animation:none;}}
 
@@ -623,19 +623,18 @@
   (function(){
     function dragScroll(el){
       if(!el) return;
-      var down=false,startX=0,startScroll=0,moved=false;
+      var down=false,startX=0,startScroll=0,moved=false,pid=null;
       el.addEventListener('pointerdown',function(e){
         if(e.pointerType!=='mouse') return;        /* 터치·펜은 네이티브 스크롤 사용 */
         if(e.button!==0) return;
-        down=true;moved=false;startX=e.clientX;startScroll=el.scrollLeft;
-        el.style.cursor='grabbing';
-        try{ el.setPointerCapture(e.pointerId); }catch(_){}
+        down=true;moved=false;startX=e.clientX;startScroll=el.scrollLeft;pid=e.pointerId;
       });
       el.addEventListener('pointermove',function(e){
         if(!down) return;
         var dx=e.clientX-startX;
-        if(Math.abs(dx)>3) moved=true;
-        el.scrollLeft=startScroll-dx;
+        /* 실제로 끌기 시작할 때만 포인터 캡처(정지 클릭은 링크/버튼으로 그대로 전달) */
+        if(!moved && Math.abs(dx)>3){ moved=true; el.style.cursor='grabbing'; try{ el.setPointerCapture(pid); }catch(_){} }
+        if(moved) el.scrollLeft=startScroll-dx;
       });
       function end(){ if(!down) return; down=false; el.style.cursor=''; }
       el.addEventListener('pointerup',end);
