@@ -581,9 +581,8 @@
   function gEsc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
   function build3d(cat,t2){
     var arr=(MEGA3D[cat]||{})[t2]||[];
-    var half=Math.ceil(arr.length/2);
-    function col(list){ return '<div class="gd-3col">'+list.map(function(s){ return '<a href="리스트_교재구매.html?d1='+encodeURIComponent(cat)+'&d2='+encodeURIComponent(t2)+'&series='+encodeURIComponent(s)+'">'+gEsc(s)+'</a>'; }).join('')+'</div>'; }
-    return col(arr.slice(0,half))+(arr.length>half?col(arr.slice(half)):'');
+    /* 행 우선(가로 한 줄 먼저 채우고 다음 줄) — grid row-flow가 처리 */
+    return arr.map(function(s){ return '<a href="리스트_교재구매.html?d1='+encodeURIComponent(cat)+'&d2='+encodeURIComponent(t2)+'&series='+encodeURIComponent(s)+'">'+gEsc(s)+'</a>'; }).join('');
   }
   var closeT;
   function openFor(a){
@@ -599,7 +598,7 @@
       drop.innerHTML='<div class="gd-2depth">'
         +t2s.map(function(t2,idx){ return '<a class="t2d'+(idx===0?' t2d-on':'')+'" data-t2="'+gEsc(t2)+'" href="리스트_교재구매.html?d1='+encodeURIComponent(name)+'&d2='+encodeURIComponent(t2)+'">'+gEsc(t2)+'</a>'; }).join('')
         +'</div>'
-        +'<div class="gd-3wrap" id="gnbMega3d">'+build3d(name,first)+'</div>';
+        +'<div class="gd-3grid" id="gnbMega3d">'+build3d(name,first)+'</div>';
       drop.classList.add('tmega'); drop.classList.remove('mega');
       drop.querySelectorAll('.t2d').forEach(function(t2a){
         t2a.addEventListener('mouseenter',function(){
