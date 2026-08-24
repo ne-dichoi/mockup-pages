@@ -10,9 +10,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- Pretendard (design font) via CDN, with Noto Sans KR fallback -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260815cj">
-<script src="js/layout.js?v=20260815cj" defer></script>
-<script src="js/search.js?v=20260815cj" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260815ck">
+<script src="js/layout.js?v=20260815ck" defer></script>
+<script src="js/search.js?v=20260815ck" defer></script>
 <style>
 /* ===== 메인 시안 A (메인_2) 전용 ===== */
 /* 맞춤교재 세트 애니 아이콘 */
@@ -53,6 +53,9 @@
 .page-main2 .mainicons .pill .ico{width:70px;height:70px;border-radius:999px;background:#f3f3f3;display:inline-flex;align-items:center;justify-content:center;}
 .page-main2 .mainicons .pill .ico img{width:33px;height:33px;object-fit:contain;}
 .page-main2 .mainicons .pill .m2-set-ico svg{width:33px;height:33px;}
+/* 강조안: 빨강 원 + 흰 아이콘 */
+.page-main2 .mainicons .pill .ico.m2-set-ico-red{background:var(--red);}
+.page-main2 .mainicons .pill.m2-set-pill-red span:last-child{color:var(--red);font-weight:700;}
 .page-main2 .mainicons .pill span{font-size:14px;font-weight:500;color:var(--ink);}
 
 /* 히어로: 가로형 디자인 배너 캐러셀 */
@@ -224,6 +227,16 @@
               <g class="m2b m2b3"><rect x="9.5" y="27" width="26" height="7.5" rx="2" stroke="#1D1717" stroke-width="2"/><line x1="14" y1="27" x2="14" y2="34.5" stroke="#1D1717" stroke-width="2"/></g>
               <g class="m2b m2b2"><rect x="11.5" y="19" width="22" height="7.5" rx="2" stroke="#1D1717" stroke-width="2"/><line x1="16" y1="19" x2="16" y2="26.5" stroke="#1D1717" stroke-width="2"/></g>
               <g class="m2b m2b1"><rect x="13.5" y="11" width="18" height="7.5" rx="2" fill="#E83828"/><line x1="18" y1="11" x2="18" y2="18.5" stroke="#fff" stroke-width="2"/></g>
+            </svg>
+          </span>
+          <span>맞춤교재 세트</span>
+        </a>
+        <a class="pill m2-set-pill m2-set-pill-red" href="#sec-set" aria-label="맞춤교재 세트 바로가기(강조안)">
+          <span class="ico m2-set-ico m2-set-ico-red" aria-hidden="true">
+            <svg viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g class="m2b m2b3"><rect x="9.5" y="27" width="26" height="7.5" rx="2" stroke="#fff" stroke-width="2"/><line x1="14" y1="27" x2="14" y2="34.5" stroke="#fff" stroke-width="2"/></g>
+              <g class="m2b m2b2"><rect x="11.5" y="19" width="22" height="7.5" rx="2" stroke="#fff" stroke-width="2"/><line x1="16" y1="19" x2="16" y2="26.5" stroke="#fff" stroke-width="2"/></g>
+              <g class="m2b m2b1"><rect x="13.5" y="11" width="18" height="7.5" rx="2" fill="#fff"/><line x1="18" y1="11" x2="18" y2="18.5" stroke="#E83828" stroke-width="2"/></g>
             </svg>
           </span>
           <span>맞춤교재 세트</span>
@@ -842,15 +855,14 @@
     });
   }
 
-  /* --- 요청3: 맞춤교재 세트 아이콘 클릭 → 세트 섹션으로 부드럽게 스크롤 --- */
-  var pill=document.querySelector('.m2-set-pill');
-  if(pill){
+  /* --- 요청3: 맞춤교재 세트 아이콘 클릭 → 세트 섹션으로 부드럽게 스크롤 (강조 시안 포함 전부) --- */
+  [].forEach.call(document.querySelectorAll('.m2-set-pill'),function(pill){
     pill.addEventListener('click',function(e){
       var target=document.getElementById('sec-set'); if(!target) return;
       e.preventDefault();
       window.scrollTo({top:target.getBoundingClientRect().top+window.scrollY-24, behavior:'smooth'});
     });
-  }
+  });
 })();
 </script>
 </body>
