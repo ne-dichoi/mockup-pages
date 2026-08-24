@@ -2,6 +2,7 @@
    각 페이지: <div id="site-header"></div> ... <div id="site-footer"></div> + <script src="js/layout.js" defer></script>
    (defer 라 DOM 파싱 후 실행되며, 기존 페이지의 인라인 GNB 스크립트는 헤더 주입 전 실행돼 자동 종료됨) */
 (function(){
+  var NE_MEGA3D=null;   /* GNB·햄버거 공용 3뎁스 데이터(아래 GNB 블록에서 채움) */
   var HEADER = `<header class="lheader">
     <div class="container">
       <div class="header-top">
@@ -318,22 +319,22 @@
 
   /* ===== 모바일 전체메뉴 드로어 (햄버거 → 좌 카테고리 / 우 하위목록) ===== */
   (function(){
-    /* 교재 카테고리(ELT~수학/국어) — 학습자료실·도서몰은 이 전체를 아코디언으로 노출 */
+    /* 교재 카테고리(ELT~수학/국어) — key=MEGA3D키, label=표시명. 3뎁스는 NE_MEGA3D 공용 데이터 사용 */
     var BOOKCATS=[
-      {name:'ELT', subs:['Coursebook','Phonics','Reading','Readers','Listening','Speaking','Grammar','Writing','Vocabulary']},
-      {name:'초등/중등', subs:['중학내신','고등선행','어휘','Phonics','쓰기','독해','듣기','문법/구문','TOEFL/TEPS/NELT']},
-      {name:'고등', subs:['어휘','독해','듣기','문법/구문','수능대비','고교내신','단기특강','TOEFL/TEPS/NELT']},
-      {name:'교과서/자습서', subs:['중학영어 교과서','고등영어 교과서','수학교과서','중국어/일본어']},
-      {name:'수험/일반', subs:['TOEIC','TOEIC SPEAKING/WRITING','TOEFL/OPIC/TEPS','FLEX','일반영어']},
-      {name:'수학/국어', subs:['유아','초등','중등','고등']}
+      {key:'ELT', label:'ELT'},
+      {key:'초/중등', label:'초등/중등'},
+      {key:'고등', label:'고등'},
+      {key:'교과서/자습서', label:'교과서/자습서'},
+      {key:'수험/일반', label:'수험/일반'},
+      {key:'수학/국어', label:'수학/국어'}
     ];
     var CS_LINKS=['고객센터.html#notice','고객센터.html#faq','고객센터.html#event','고객센터.html#errata','고객센터.html#qna','고객센터.html#branch'];
     var MY_LINKS=['마이페이지.html','마이페이지.html#orders','마이페이지.html#points','마이페이지.html#wish','마이페이지.html#qna','마이페이지.html#review','마이페이지.html#event'];
     var MENU=BOOKCATS.concat([
-      {name:'학습자료실', accordion:true},
-      {name:'도서몰', accordion:true},
-      {name:'고객센터', subs:['공지사항','FAQ','이벤트/신간·개정/세미나','교재 오류정정','1:1문의','지사안내'], links:CS_LINKS},
-      {name:'마이페이지', subs:['홈','주문내역','포인트','찜','문의/답변','후기','이벤트/세미나'], links:MY_LINKS}
+      {label:'학습자료실', all:true},
+      {label:'도서몰', all:true},
+      {label:'고객센터', subs:['공지사항','FAQ','이벤트/신간·개정/세미나','교재 오류정정','1:1문의','지사안내'], links:CS_LINKS},
+      {label:'마이페이지', subs:['홈','주문내역','포인트','찜','문의/답변','후기','이벤트/세미나'], links:MY_LINKS}
     ]);
     var drawer=document.getElementById('mDrawer'); if(!drawer) return;
     var catsEl=drawer.querySelector('#mdCats'), subsEl=drawer.querySelector('#mdSubs');
@@ -341,19 +342,29 @@
     var closeX=drawer.querySelector('.md-x');
     var siteHeader=document.getElementById('site-header');
     var active=0;
-    function esc(s){ return s; }
+    function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+    /* 2뎁스 아코디언(헤더=2뎁스, 본문=3뎁스 시리즈, 기본 펼침) */
+    function acc(catKey, sub){
+      var arr=((NE_MEGA3D||{})[catKey]||{})[sub]||[];
+      return '<div class="md-acc open"><button type="button" class="md-acc-h">'+esc(sub)+'<span class="md-acc-ic" aria-hidden="true"></span></button>'
+        +'<div class="md-acc-body">'+arr.map(function(s){ return '<a class="md-sub" href="리스트_교재구매.html?d1='+encodeURIComponent(catKey)+'&d2='+encodeURIComponent(sub)+'&series='+encodeURIComponent(s)+'">'+esc(s)+'</a>'; }).join('')+'</div></div>';
+    }
     function render(){
-      catsEl.innerHTML=MENU.map(function(m,i){ return '<button type="button" class="md-cat'+(i===active?' on':'')+'" data-i="'+i+'">'+m.name+'</button>'; }).join('');
+      catsEl.innerHTML=MENU.map(function(m,i){ return '<button type="button" class="md-cat'+(i===active?' on':'')+'" data-i="'+i+'">'+esc(m.label)+'</button>'; }).join('');
       var m=MENU[active];
-      if(m.accordion){
-        /* 학습자료실·도서몰: ELT~수학/국어 전체를 아코디언(기본 펼침, 접기 가능) */
+      if(m.key && NE_MEGA3D && NE_MEGA3D[m.key]){
+        /* 카테고리(ELT~수학/국어): 각 2뎁스를 아코디언으로, 3뎁스 시리즈 노출 */
+        subsEl.innerHTML=Object.keys(NE_MEGA3D[m.key]).map(function(sub){ return acc(m.key, sub); }).join('');
+      } else if(m.all){
+        /* 학습자료실·도서몰: ELT~수학/국어 전체를 카테고리별 아코디언(2뎁스만) */
         subsEl.innerHTML=BOOKCATS.map(function(c){
-          return '<div class="md-acc open"><button type="button" class="md-acc-h">'+c.name+'<span class="md-acc-ic" aria-hidden="true"></span></button>'
-            +'<div class="md-acc-body">'+c.subs.map(function(s){ return '<a class="md-sub" href="리스트_교재구매.html">'+s+'</a>'; }).join('')+'</div></div>';
+          var subs=Object.keys((NE_MEGA3D||{})[c.key]||{});
+          return '<div class="md-acc open"><button type="button" class="md-acc-h">'+esc(c.label)+'<span class="md-acc-ic" aria-hidden="true"></span></button>'
+            +'<div class="md-acc-body">'+subs.map(function(s){ return '<a class="md-sub" href="리스트_교재구매.html?d1='+encodeURIComponent(c.key)+'&d2='+encodeURIComponent(s)+'">'+esc(s)+'</a>'; }).join('')+'</div></div>';
         }).join('');
       } else {
         var links=m.links;
-        subsEl.innerHTML=m.subs.map(function(s,i){ return '<a class="md-sub" href="'+(links?links[i]:'리스트_교재구매.html')+'">'+s+'</a>'; }).join('');
+        subsEl.innerHTML=(m.subs||[]).map(function(s,i){ return '<a class="md-sub" href="'+(links?links[i]:'리스트_교재구매.html')+'">'+esc(s)+'</a>'; }).join('');
       }
     }
     catsEl.addEventListener('click',function(e){ var b=e.target.closest('.md-cat'); if(!b)return; active=+b.dataset.i; render(); subsEl.scrollTop=0; });
@@ -362,7 +373,7 @@
       var h=e.target.closest('.md-acc-h'); if(h){ h.parentElement.classList.toggle('open'); return; }
       if(e.target.closest('.md-sub')) close(); /* 링크 기본 이동은 그대로 진행 */
     });
-    function open(){ drawer.classList.add('open'); drawer.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
+    function open(){ render(); /* GNB 블록이 채운 NE_MEGA3D 반영 */ drawer.classList.add('open'); drawer.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
       if(siteHeader){ siteHeader.classList.remove('hdr-hidden'); siteHeader.classList.add('drawer-open'); } }
     function close(){ drawer.classList.remove('open'); drawer.setAttribute('aria-hidden','true'); document.body.style.overflow='';
       if(siteHeader) siteHeader.classList.remove('drawer-open'); }
@@ -524,8 +535,8 @@
     '학습자료실':['서브메인','ELT자료','초/중등교재 자료','고등교재 자료','교과서/자습서 자료','수험/일반 자료','수학/국어 자료'],
     '도서몰':['ELT','초/중등','고등영어 교과서','교과서/자습서','수험/일반','교구/부가상품','세트/패키지','온라인 서비스/이용권']
   };
-  /* GNB 3뎁스(카테고리→2뎁스→시리즈) : type4 콘텐츠 반영 */
-  var MEGA3D={
+  /* GNB 3뎁스(카테고리→2뎁스→시리즈) : type4 콘텐츠 반영. 햄버거 메뉴와 공용(NE_MEGA3D) */
+  var MEGA3D=NE_MEGA3D={
     'ELT':{
       'Coursebook':['Oxford Show&Tell','Oxford Discover','English Time','Magic Time','Oxford Pic, Dic.','Up & Away in Eng.','Starlight','Grammar For Schools','Shine On!','Learn English with Dora','Come On Everyone','Buzz','Beehive American','Shine On! Plus','Toy Team Plus','Blue Dot','Little Blue Dot'],
       'Phonics':['Phonics Show','Come On, Phonics','Phonics Code'],
