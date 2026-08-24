@@ -63,7 +63,7 @@ a{color:inherit;text-decoration:none;}
 .gnb .gnb-mall{display:inline-flex;align-items:center;}
 .gnb .gnb-mall .gnb-roll{display:block;height:24px;line-height:24px;overflow:hidden;width:104px;text-align:left;}
 .gnb .gnb-mall .gr-track{display:block;animation:gnbRoll 3.4s cubic-bezier(.6,0,.2,1) infinite;}
-.gnb .gnb-mall .gr-i{display:block;height:24px;line-height:24px;white-space:nowrap;}
+.gnb .gnb-mall .gr-i{display:block;height:24px;line-height:24px;white-space:nowrap;color:var(--red);}
 .gnb .gnb-mall .gr-i.sub{color:var(--red);}
 @keyframes gnbRoll{0%,38%{transform:translateY(0)}50%,88%{transform:translateY(-24px)}96%,100%{transform:translateY(0)}}
 .gnb:hover .gnb-mall .gr-track{animation:none;transform:translateY(0);}
