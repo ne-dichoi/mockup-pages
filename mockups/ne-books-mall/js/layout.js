@@ -10,7 +10,7 @@
         <div class="m-loc"><a class="m-loc-home" href="index.html" aria-label="홈"><img src="assets/ic_home_sub.svg" alt="홈"></a><button class="m-loc-btn" type="button" aria-expanded="false"><span class="m-loc-name"></span><span class="m-loc-caret"></span></button></div>
         <div class="search">
           <input type="text" class="search-input" placeholder="검색어를 입력해 주세요." autocomplete="off">
-          <button type="button" class="search-ic ico" aria-label="검색"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="#E83828" stroke-width="2"/><path d="M16.5 16.5l4.5 4.5" stroke="#E83828" stroke-width="2" stroke-linecap="round"/></svg></button>
+          <button type="button" class="search-ic ico" aria-label="검색"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="#1D1717" stroke-width="2"/><path d="M16.5 16.5l4.5 4.5" stroke="#1D1717" stroke-width="2" stroke-linecap="round"/></svg></button>
           <div class="search-pop" hidden></div>
         </div>
         <div class="head-icons">

@@ -47,8 +47,8 @@ a{color:inherit;text-decoration:none;}
 .header-top::after{content:"";position:absolute;left:calc(50% - 50vw);right:calc(50% - 50vw);bottom:0;border-top:1px solid #e5e5e5;}
 .logo{width:150px;height:28px;justify-self:start;}
 .logo img{width:100%;height:100%;object-fit:contain;}
-.header .search{justify-self:center;width:449px;max-width:100%;height:46px;border:1px solid var(--red);border-radius:9999px; display:flex;align-items:center;justify-content:flex-end;padding:0 20px;}
-.lheader .search{justify-self:center;width:449px;max-width:100%;height:46px;border:1px solid var(--red);border-radius:9999px; display:flex;align-items:center;justify-content:flex-end;padding:0 20px;background:#fff;}
+.header .search{justify-self:center;width:449px;max-width:100%;height:46px;border:1px solid var(--ink);border-radius:9999px; display:flex;align-items:center;justify-content:flex-end;padding:0 20px;}
+.lheader .search{justify-self:center;width:449px;max-width:100%;height:46px;border:1px solid var(--ink);border-radius:9999px; display:flex;align-items:center;justify-content:flex-end;padding:0 20px;background:#fff;}
 .search .ico{width:24px;height:24px;}
 /* ===== GNB 검색 레이어 팝업 ===== */
 .search{position:relative;gap:8px;}
@@ -89,7 +89,7 @@ a{color:inherit;text-decoration:none;}
 .sa-pv-card{width:245px;height:245px;background:var(--gray-bg);border-radius:8px;display:flex;align-items:center;justify-content:center;}
 .sa-pv-card img{width:131px;height:171px;object-fit:cover;border-radius:2px;box-shadow:3.3px 5.9px 13.2px rgba(0,0,0,.18);display:block;}
 .sa-pv-book{position:relative;display:inline-block;line-height:0;}
-.sa-cart{position:absolute;right:-12px;bottom:-12px;width:36px;height:36px;border:0;border-radius:999px;cursor:pointer;background:var(--ink) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28' fill='none'><path d='M6 9h16l-1 14H7L6 9z' stroke='white' stroke-width='2' stroke-linejoin='round'/><path d='M10 9V7a4 4 0 0 1 8 0v2' stroke='white' stroke-width='2' stroke-linecap='round'/></svg>") center/18px no-repeat;box-shadow:0 3px 8px rgba(0,0,0,.25);}
+.sa-cart{position:absolute;right:-12px;bottom:-12px;width:36px;height:36px;border:0;border-radius:999px;cursor:pointer;background:var(--ink) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'><path d='M6 7h13l-1.5 8H8L6 4H4' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/><circle cx='9' cy='19' r='1.4' fill='white'/><circle cx='17' cy='19' r='1.4' fill='white'/></svg>") center/19px no-repeat;box-shadow:0 3px 8px rgba(0,0,0,.25);}
 .sa-cart:hover{background-color:#000;}
 .sa-pv-name{width:160px;font-size:14px;color:var(--muted);text-align:center;line-height:22px;}
 .sp-empty{font-size:14px;color:var(--weak);padding:4px 0;}
