@@ -57,9 +57,9 @@
 
 /* 히어로: 가로형 디자인 배너 캐러셀 */
 .m2-hero{position:relative;padding:40px 0 0;}
-.m2-hero-track{display:flex;gap:24px;overflow-x:auto;scroll-behavior:smooth;padding:0 max(20px,calc((100vw - 1520px)/2));scrollbar-width:none;-ms-overflow-style:none;cursor:grab;}
+.m2-hero-track{display:flex;gap:24px;overflow-x:auto;scroll-behavior:auto;padding:0 max(20px,calc((100vw - 1520px)/2));scrollbar-width:none;-ms-overflow-style:none;cursor:grab;}
 .m2-hero-track::-webkit-scrollbar{display:none;}
-.m2-bn{flex:0 0 748px;max-width:88vw;height:232px;border-radius:16px;box-sizing:border-box;padding:36px 44px;display:flex;align-items:center;justify-content:space-between;gap:16px;scroll-snap-align:center;overflow:hidden;position:relative;}
+.m2-bn{flex:0 0 calc((100% - 24px)/2);height:232px;border-radius:16px;box-sizing:border-box;padding:36px 44px;display:flex;align-items:center;justify-content:space-between;gap:16px;overflow:hidden;position:relative;}
 .m2-bn .tx{min-width:0;position:relative;z-index:1;}
 .m2-bn .lb{display:block;width:fit-content;font-size:14px;font-weight:700;color:var(--ink);margin-bottom:16px;text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1.5px;}
 .m2-bn .lb.ln{color:#fff;text-decoration:underline;text-underline-offset:3px;}
@@ -666,19 +666,30 @@
   var cards=[].slice.call(track.querySelectorAll('.m2-bn')); var N=cards.length;
   var idxEl=document.getElementById('m2Idx'), totEl=document.getElementById('m2Tot'), bar=document.getElementById('m2Bar');
   var prev=document.getElementById('m2Prev'), next=document.getElementById('m2Next');
-  if(totEl) totEl.textContent=N;
   var i=0;
-  /* 각 배너를 화면 중앙에 오도록 하는 스크롤 위치(끝단은 자연스럽게 clamp) */
-  function targetFor(k){ var c=cards[k]; if(!c) return 0; var t=Math.round(c.offsetLeft + c.offsetWidth/2 - track.clientWidth/2); return Math.max(0, Math.min(t, track.scrollWidth-track.clientWidth)); }
-  function render(){ if(idxEl) idxEl.textContent=i+1; if(bar){ bar.style.width=(100/N)+'%'; bar.style.marginLeft=(i*100/N)+'%'; } }
-  /* scrollBy/scrollTo(behavior:smooth)는 일부 브라우저에서 스냅과 충돌해 되돌아가므로 scrollLeft 직접 대입(CSS scroll-behavior:smooth로 애니메이션) */
-  function goTo(k){ i=((k%N)+N)%N; track.scrollLeft=targetFor(i); render(); }
+  /* 한 번에 2개 노출 → 이동 가능한 '왼쪽 배너' 위치는 0 ~ N-2 (총 N-1 페이지) */
+  var PAGES=Math.max(1, N-1);
+  if(totEl) totEl.textContent=PAGES;
+  /* 배너 k를 콘텐츠 왼쪽에 정렬(그 옆 배너까지 2개가 꽉 차게 보임) */
+  function targetFor(k){ var c=cards[k]; if(!c) return 0; var t=Math.round(c.offsetLeft - cards[0].offsetLeft); return Math.max(0, Math.min(t, track.scrollWidth-track.clientWidth)); }
+  function render(){ if(idxEl) idxEl.textContent=i+1; if(bar){ bar.style.width=(100/PAGES)+'%'; bar.style.marginLeft=(i*100/PAGES)+'%'; } }
+  /* 브라우저 native smooth(scrollBy/scrollTo/CSS)가 이 환경에서 스크롤을 되돌리는 문제가 있어 rAF로 직접 부드럽게 이동 */
+  var raf=null;
+  function animTo(target){
+    if(raf) cancelAnimationFrame(raf);
+    var start=track.scrollLeft, dist=target-start;
+    if(Math.abs(dist)<1){ track.scrollLeft=target; return; }
+    var t0=null, dur=480;
+    function step(ts){ if(t0===null)t0=ts; var p=Math.min(1,(ts-t0)/dur); var e=p<0.5?2*p*p:1-Math.pow(-2*p+2,2)/2; track.scrollLeft=start+dist*e; if(p<1){ raf=requestAnimationFrame(step); } else { raf=null; } }
+    raf=requestAnimationFrame(step);
+  }
+  function goTo(k){ i=((k%PAGES)+PAGES)%PAGES; animTo(targetFor(i)); render(); }
   function go(d){ goTo(i+d); }
   if(prev) prev.addEventListener('click',function(){ go(-1); restart(); });
   if(next) next.addEventListener('click',function(){ go(1); restart(); });
   /* 사용자가 직접 드래그/스크롤하면 현재 인덱스 동기화 */
   var syncT=null;
-  track.addEventListener('scroll',function(){ clearTimeout(syncT); syncT=setTimeout(function(){ var best=0,bd=1e9; for(var k=0;k<N;k++){ var d=Math.abs(track.scrollLeft-targetFor(k)); if(d<bd){bd=d;best=k;} } if(best!==i){ i=best; render(); } },120); });
+  track.addEventListener('scroll',function(){ clearTimeout(syncT); syncT=setTimeout(function(){ var best=0,bd=1e9; for(var k=0;k<PAGES;k++){ var d=Math.abs(track.scrollLeft-targetFor(k)); if(d<bd){bd=d;best=k;} } if(best!==i){ i=best; render(); } },120); });
   /* 자동 롤(호버 정지) */
   var timer=null;
   function play(){ stop(); timer=setInterval(function(){ go(1); },4500); }
