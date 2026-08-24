@@ -115,14 +115,14 @@
 .m2-sets-t{font-family:var(--display);color:var(--ink);font-size:32px;font-weight:700;letter-spacing:-.02em;margin-bottom:24px;}
 .m2-set-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
 .m2-set-card{display:flex;flex-direction:column;}
-/* 테두리 박스(회색 채움 X), 좌우 56 / 위아래 40 여백 */
-.m2-set-top{background:#fff;border:1px solid var(--line);border-radius:16px;padding:40px 56px;}
+/* 테두리만(흰 채움 X), 좌우 56 / 위아래 40 여백 */
+.m2-set-top{background:transparent;border:1px solid var(--line);border-radius:16px;padding:40px 56px;}
 .m2-set-top .lbl{display:inline-block;background:var(--red);color:#fff;font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;}
 .m2-set-top .st-t{color:var(--ink);font-size:20px;font-weight:700;margin-top:14px;}
 .m2-set-top .st-sub{color:#8a8a8a;font-size:14px;margin-top:6px;}
 /* 교재 이미지 106x138, 왼쪽 정렬, 겹침 + 그림자 */
 .m2-set-collage{display:flex;justify-content:flex-start;align-items:flex-end;margin-top:24px;height:138px;}
-.m2-set-collage img{width:106px;height:138px;object-fit:cover;border-radius:3px;box-shadow:3px 5px 14px rgba(0,0,0,.22);}
+.m2-set-collage img{width:106px;height:138px;object-fit:cover;border-radius:3px;box-shadow:-5px 6px 14px rgba(0,0,0,.22);}
 .m2-set-collage img:not(:first-child){margin-left:-30px;}
 /* 교재명 리스트: 구분선 없음, 간격 16, 좌우 16 여백, 3.5줄(4줄째 반만) 노출, 스크롤바 숨김 */
 .m2-set-books{display:flex;flex-direction:column;gap:16px;margin-top:20px;max-height:132px;overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none;}
@@ -131,7 +131,7 @@
 .m2-set-book .nm{color:#4d4e4d;font-size:14px;text-decoration:none;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer;}
 .m2-set-book .nm:hover{text-decoration:underline;text-underline-offset:2px;color:var(--ink);}
 .m2-set-book .bcart{flex:none;width:24px;height:24px;border:0;cursor:pointer;background:transparent url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28' fill='none'><path d='M2 9H26L24.7475 23.1888C24.6798 23.9568 24.3359 24.6709 23.7833 25.191C23.2307 25.7112 22.5094 25.9997 21.761 26H6.239C5.49056 25.9997 4.76925 25.7112 4.2167 25.191C3.66414 24.6709 3.32023 23.9568 3.2525 23.1888L2 9Z' stroke='%238a8a8a' stroke-width='2' stroke-linejoin='round'/><path d='M8 12V7.71429C8 6.19876 8.63214 4.74531 9.75736 3.67368C10.8826 2.60204 12.4087 2 14 2C15.5913 2 17.1174 2.60204 18.2426 3.67368C19.3679 4.74531 20 6.19876 20 7.71429V12' stroke='%238a8a8a' stroke-width='2' stroke-linecap='round'/></svg>") center/19px no-repeat;}
-.m2-set-price{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-top:16px;flex-wrap:wrap;}
+.m2-set-price{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-top:24px;padding:0 16px;flex-wrap:wrap;}
 .m2-set-price .l{color:var(--red);font-size:13px;font-weight:700;}
 .m2-set-price .l s{color:#a9a9a9;font-weight:400;margin-left:4px;}
 .m2-set-price .r{display:flex;align-items:baseline;gap:8px;}
