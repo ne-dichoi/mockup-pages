@@ -10,9 +10,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- Pretendard (design font) via CDN, with Noto Sans KR fallback -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260815ci">
-<script src="js/layout.js?v=20260815ci" defer></script>
-<script src="js/search.js?v=20260815ci" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260815cj">
+<script src="js/layout.js?v=20260815cj" defer></script>
+<script src="js/search.js?v=20260815cj" defer></script>
 <style>
 /* ===== 메인 시안 A (메인_2) 전용 ===== */
 /* 맞춤교재 세트 애니 아이콘 */
@@ -57,7 +57,9 @@
 
 /* 히어로: 가로형 디자인 배너 캐러셀 */
 .m2-hero{position:relative;padding:40px 0 0;overflow:hidden;}
-.m2-hero-track{display:flex;gap:24px;overflow-x:hidden;scroll-behavior:auto;padding:0;scrollbar-width:none;-ms-overflow-style:none;}
+.m2-hero-track{display:flex;gap:24px;overflow-x:hidden;scroll-behavior:auto;padding:0;scrollbar-width:none;-ms-overflow-style:none;cursor:grab;}
+.m2-hero-track.dragging{cursor:grabbing;}
+.m2-hero-track.dragging *{cursor:grabbing;user-select:none;}
 .m2-hero-track::-webkit-scrollbar{display:none;}
 /* 가운데 2개(1520 기준)를 노출, 넓은 화면에선 좌우로 앞뒤 배너가 peek */
 .m2-bn{flex:0 0 calc((min(100vw, 1520px) - 24px)/2);height:232px;border-radius:16px;box-sizing:border-box;padding:36px 44px;display:flex;align-items:center;justify-content:space-between;gap:16px;overflow:hidden;position:relative;}
@@ -705,8 +707,35 @@
   function play(){ stop(); timer=setInterval(goNext,4000); }
   function stop(){ if(timer){ clearInterval(timer); timer=null; } }
   function restart(){ play(); }
-  track.addEventListener('pointerenter',stop); track.addEventListener('pointerleave',play);
-  window.addEventListener('resize',function(){ jump(targetFor(((i%N)+N)%N)); });
+  /* 마우스오버 시 정지(드래그 중 아님일 때) */
+  track.addEventListener('pointerenter',function(){ if(!down) stop(); });
+  track.addEventListener('pointerleave',function(){ if(!down) play(); });
+  /* 마우스로 잡고 옆으로 드래그 → 따라 이동, 놓으면 가까운 배너로 스냅(무한루프 유지) */
+  var down=false, sx=0, sl=0, moved=false, pid=null;
+  track.addEventListener('pointerdown',function(e){
+    if(e.pointerType==='mouse' && e.button!==0) return;
+    down=true; moved=false; sx=e.clientX; sl=track.scrollLeft; pid=e.pointerId;
+    if(raf){ cancelAnimationFrame(raf); raf=null; } stop(); track.classList.add('dragging');
+  });
+  window.addEventListener('pointermove',function(e){
+    if(!down) return;
+    var dx=e.clientX-sx;
+    if(!moved && Math.abs(dx)>4){ moved=true; try{ track.setPointerCapture(pid); }catch(_){} }
+    if(moved){ track.scrollLeft=sl-dx; }
+  });
+  function endDrag(){
+    if(!down) return; down=false; track.classList.remove('dragging');
+    if(moved){
+      var best=0, bd=1e9;
+      for(var k=-1;k<=N;k++){ var d=Math.abs(track.scrollLeft-targetFor(k)); if(d<bd){ bd=d; best=k; } }
+      i=best; renderIdx();
+      animTo(targetFor(i), function(){ if(i>=N){ i=0; jump(targetFor(0)); } else if(i<0){ i=N-1; jump(targetFor(N-1)); } });
+    }
+    play();
+  }
+  window.addEventListener('pointerup',endDrag);
+  window.addEventListener('pointercancel',endDrag);
+  window.addEventListener('resize',function(){ if(!down) jump(targetFor(((i%N)+N)%N)); });
   jump(targetFor(0)); renderIdx(); play();
 })();
 
