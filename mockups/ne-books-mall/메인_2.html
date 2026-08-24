@@ -10,25 +10,38 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- Pretendard (design font) via CDN, with Noto Sans KR fallback -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260815by">
-<script src="js/layout.js?v=20260815by" defer></script>
-<script src="js/search.js?v=20260815by" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260815bz">
+<script src="js/layout.js?v=20260815bz" defer></script>
+<script src="js/search.js?v=20260815bz" defer></script>
 <style>
 /* ===== 메인 시안 A (메인_2) 전용 ===== */
 /* 맞춤교재 세트 애니 아이콘 */
 .m2-set-ico{display:inline-flex;align-items:center;justify-content:center;}
 .m2-set-ico svg{width:30px;height:30px;overflow:visible;}
-.m2-set-ico .m2b{transform-box:fill-box;transform-origin:center;animation:m2bob 1.9s ease-in-out infinite;}
-.m2-set-ico .m2b1{transform-origin:bottom center;animation:m2bobtop 1.9s cubic-bezier(.4,0,.3,1) infinite;}
-.m2-set-ico .m2b2{animation-delay:.12s;}
-.m2-set-ico .m2b3{animation-delay:.24s;}
-@keyframes m2bob{0%,100%{transform:translateY(0)}40%{transform:translateY(-4px)}}
+.m2-set-ico .m2b{transform-box:fill-box;transform-origin:bottom center;animation-duration:2s;animation-timing-function:cubic-bezier(.4,0,.3,1);animation-iteration-count:infinite;}
+.m2-set-ico .m2b1{animation-name:m2bobtop;animation-delay:0s;}
+.m2-set-ico .m2b2{animation-name:m2bobmid;animation-delay:.16s;}
+.m2-set-ico .m2b3{animation-name:m2bobbot;animation-delay:.32s;}
 @keyframes m2bobtop{
   0%{transform:translateY(0) rotate(0)}
-  28%{transform:translateY(-9px) rotate(-16deg)}
-  46%{transform:translateY(-9px) rotate(-16deg)}
-  72%{transform:translateY(0) rotate(2deg)}
-  86%{transform:translateY(0) rotate(-1deg)}
+  26%{transform:translateY(-9px) rotate(-16deg)}
+  44%{transform:translateY(-9px) rotate(-16deg)}
+  70%{transform:translateY(0) rotate(2deg)}
+  84%{transform:translateY(0) rotate(-1deg)}
+  100%{transform:translateY(0) rotate(0)}
+}
+@keyframes m2bobmid{
+  0%{transform:translateY(0) rotate(0)}
+  26%{transform:translateY(-6px) rotate(-9deg)}
+  44%{transform:translateY(-6px) rotate(-9deg)}
+  72%{transform:translateY(0) rotate(1deg)}
+  100%{transform:translateY(0) rotate(0)}
+}
+@keyframes m2bobbot{
+  0%{transform:translateY(0) rotate(0)}
+  26%{transform:translateY(-3px) rotate(-4deg)}
+  44%{transform:translateY(-3px) rotate(-4deg)}
+  74%{transform:translateY(0) rotate(0)}
   100%{transform:translateY(0) rotate(0)}
 }
 @media (prefers-reduced-motion:reduce){.m2-set-ico .m2b,.m2-set-ico .m2spark{animation:none;}}
@@ -130,7 +143,7 @@
 .m2-set-top .st-t{color:var(--ink);font-size:20px;font-weight:700;margin-top:14px;}
 .m2-set-top .st-sub{color:#8a8a8a;font-size:14px;margin-top:6px;}
 /* 교재 이미지 106x138, 왼쪽 정렬, 겹침 + 그림자 */
-.m2-set-collage{display:flex;justify-content:flex-start;align-items:flex-end;margin-top:24px;height:138px;}
+.m2-set-collage{display:flex;justify-content:flex-start;align-items:flex-end;margin-top:40px;height:138px;}
 .m2-set-collage img{width:106px;height:138px;object-fit:cover;border-radius:3px;box-shadow:-5px 6px 14px rgba(0,0,0,.22);}
 .m2-set-collage img:not(:first-child){margin-left:-30px;}
 /* 교재명 리스트: 구분선 없음, 간격 16, 좌우 16 여백, 3.5줄(4줄째 반만) 노출, 스크롤바 숨김 */
@@ -147,7 +160,7 @@
 .m2-set-price .r .pc{color:var(--red);font-weight:700;font-size:24px;}
 .m2-set-price .r .now{color:var(--ink);font-family:var(--display);font-weight:700;font-size:24px;}
 .m2-set-btns{display:flex;gap:8px;margin-top:16px;padding:0 16px;}
-.m2-set-btns a{flex:1;height:48px;display:flex;align-items:center;justify-content:center;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;}
+.m2-set-btns a{flex:1;height:48px;display:flex;align-items:center;justify-content:center;border-radius:8px;font-size:14px;font-weight:400;text-decoration:none;}
 .m2-set-btns .add{background:#fff;border:1px solid #4d4e4d;color:var(--ink);}
 .m2-set-btns .buy{background:#4d4e4d;color:#fff;}
 

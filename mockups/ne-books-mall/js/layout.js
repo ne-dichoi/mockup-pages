@@ -9,7 +9,7 @@
         <div class="m-loc"><a class="m-loc-home" href="index.html" aria-label="홈"><img src="assets/ic_home_sub.svg" alt="홈"></a><button class="m-loc-btn" type="button" aria-expanded="false"><span class="m-loc-name"></span><span class="m-loc-caret"></span></button></div>
         <div class="search">
           <input type="text" class="search-input" placeholder="검색어를 입력해 주세요." autocomplete="off">
-          <button type="button" class="search-ic ico" aria-label="검색"><img src="assets/ds_ic_search.svg" alt=""></button>
+          <button type="button" class="search-ic ico" aria-label="검색"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="#E83828" stroke-width="2"/><path d="M16.5 16.5l4.5 4.5" stroke="#E83828" stroke-width="2" stroke-linecap="round"/></svg></button>
           <div class="search-pop" hidden></div>
         </div>
         <div class="head-icons">
@@ -53,8 +53,8 @@
             <a href="#">교과서/자습서</a>
             <a href="#">수험/일반</a>
             <a href="#">수학/국어</a>
-            <a href="#">학습자료실</a>
-            <a href="#">도서몰</a>
+            <a href="#" class="gnb-blue">학습자료실</a>
+            <a href="리스트_교재구매.html" class="gnb-blue gnb-mall" aria-label="교재몰"><span class="gnb-roll"><span class="gr-track"><span class="gr-i">교재몰</span><span class="gr-i sub">지금 바로구매</span></span></span></a>
           </nav>
         </div>
         <div class="gnb-drop" id="gnbDrop">
