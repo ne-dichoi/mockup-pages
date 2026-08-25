@@ -10,9 +10,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- Pretendard (design font) via CDN, with Noto Sans KR fallback -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260815dg">
-<script src="js/layout.js?v=20260815dg" defer></script>
-<script src="js/search.js?v=20260815dg" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260815dh">
+<script src="js/layout.js?v=20260815dh" defer></script>
+<script src="js/search.js?v=20260815dh" defer></script>
 <style>
 /* ===== 메인 시안 A (메인_2) 전용 ===== */
 /* 맞춤교재 세트 애니 아이콘 */
@@ -112,10 +112,10 @@
 @media (max-width:1023px){
   .m2-hero{padding:16px 0 8px;}
   .m2-hero-track{padding:0;gap:12px;}
-  .m2-bn{flex:0 0 86vw;aspect-ratio:335/180;border-radius:12px;}
+  .m2-bn{flex:0 0 86vw;aspect-ratio:335/150;border-radius:12px;}
   .m2-bn .tx{margin-left:24px;max-width:62%;}
   /* 이미지 높이를 배너보다 작게(82%) → 위아래 잘림 없이 여백 확보 */
-  .m2-bn.hero1,.m2-bn.hero2,.m2-bn.hero3,.m2-bn.hero4,.m2-bn.hero5{background-size:auto 82%;}
+  .m2-bn.hero1,.m2-bn.hero2,.m2-bn.hero3,.m2-bn.hero4,.m2-bn.hero5{background-size:auto 78%;} /* 이미지 높이 78%로 상하 여백 확보 → 크롭 느낌 제거 */
   .m2-bn h3{font-size:18px;line-height:1.3;}
   .m2-bn .lb{font-size:12px;margin-bottom:8px;}
   .m2-bn p{font-size:12px;margin-top:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;} /* 모바일 설명 한 줄 고정 */
@@ -246,7 +246,9 @@
   .m2-set-grid{gap:40px;} /* 세트 카드(버튼 하단) ↔ 다음 세트 회색박스 40px */
   .m2-set-top{background:#f3f3f3;border:0;padding:40px 24px;border-radius:16px;}
   .m2-set-top .st-t{font-size:22px;} /* 라벨 아래 타이틀 22px */
-  .m2-set-collage{margin-top:40px;height:120px;} /* 교재 위 여백 40px */
+  .m2-set-collage{margin-top:40px;height:auto;} /* 교재 위 여백 40px */
+  /* 교재 표지를 뷰포트 폭에 맞춰 축소 → 좁은 폰에서도 회색박스 밖으로 안 삐져나감 */
+  .m2-set-collage img{width:min(88px, 23vw);height:auto;aspect-ratio:92/120;}
   .m2-set-books{margin-top:24px;} /* 회색박스 ↔ 교재명 24px */
   .m2-set-price{margin-top:32px;} /* 할인/금액 줄 위 여백 32px */
   .m2-set-price .r .pc,.m2-set-price .r .now{font-size:18px;} /* 28% / 29,500원 18px */
