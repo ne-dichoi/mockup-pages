@@ -10,9 +10,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- Pretendard (design font) via CDN, with Noto Sans KR fallback -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260815eb">
-<script src="js/layout.js?v=20260815eb" defer></script>
-<script src="js/search.js?v=20260815eb" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260815ec">
+<script src="js/layout.js?v=20260815ec" defer></script>
+<script src="js/search.js?v=20260815ec" defer></script>
 <style>
 /* ===== 메인 시안 A (메인_2) 전용 ===== */
 /* 맞춤교재 세트 애니 아이콘 */
@@ -131,8 +131,9 @@
   .m2-hero-count{display:block;position:absolute;top:32px;right:calc(7vw + 12px);background:rgba(0,0,0,.42);color:rgba(255,255,255,.75);font-size:12px;font-weight:700;padding:5px 12px;border-radius:999px;z-index:3;letter-spacing:.5px;}
   .m2-hero-count b{color:#fff;}
 }
-/* 태블릿(768~1023)도 터치 스와이프 유지(배너 JS 캐러셀·아이콘 가로 스크롤) */
+/* 태블릿(768~1023): 가운데 와이드 배너 1개 + 양옆 살짝 peek(포커스 캐러셀). 폭은 720px로 제한해 너무 커지지 않게 */
 @media (min-width:768px) and (max-width:1023px){
+  .m2-bn{flex:0 0 min(86vw, 720px);}
   .m2-hero-track{touch-action:pan-y;}
   .page-main2 .mainicons .row{touch-action:pan-x;}
 }
@@ -790,7 +791,7 @@
   var cards=[].slice.call(track.querySelectorAll('.m2-bn'));   /* 길이 N+2*VIS */
   var i=0, raf=null;
   /* 노출 개수: 모바일=1(1-up), 그 외=2. 클론은 항상 VIS(2)개 */
-  function visCount(){ return window.innerWidth<=767 ? 1 : 2; }
+  function visCount(){ return window.innerWidth<=1023 ? 1 : 2; }
   /* 실배너 i를 화면 가운데(노출개수 기준)로 정렬. 넓은 화면은 앞/뒤 배너가 좌우로 peek */
   function targetFor(k){
     var el=cards[k+VIS]; if(!el) return 0;
