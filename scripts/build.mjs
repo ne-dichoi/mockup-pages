@@ -14,7 +14,8 @@ for (const entry of entries.filter((e) => e.isDirectory()).sort((a, b) => a.name
     continue;
   }
   const title = html.match(/<title>([\s\S]*?)<\/title>/i)?.[1].trim() || entry.name;
-  mockups.push({ dir: entry.name, title });
+  const entryFile = (await readFile(join(SRC, entry.name, '.entry'), 'utf8').catch(() => null))?.trim() || null;
+  mockups.push({ dir: entry.name, title, entryFile });
 }
 
 const escape = (s) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
@@ -46,7 +47,7 @@ const index = `<!doctype html>
   ${
     mockups.length
       ? `<ul>
-${mockups.map((m) => `    <li><a href="./mockups/${m.dir}/"><div class="title">${escape(m.title)}</div><div class="path">mockups/${m.dir}</div></a></li>`).join('\n')}
+${mockups.map((m) => `    <li><a href="./mockups/${m.dir}/${m.entryFile ?? ''}"><div class="title">${escape(m.title)}</div><div class="path">mockups/${m.dir}</div></a></li>`).join('\n')}
   </ul>`
       : '<p class="empty">아직 등록된 목업이 없습니다. mockups/ 아래에 폴더를 만들고 index.html을 넣어주세요.</p>'
   }
