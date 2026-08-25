@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>B테스트 후보 와이어프레임</title>
+<title>B테스트 후보 와이어프레임 (3종)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
@@ -153,18 +153,20 @@ ul{list-style:none;}
 <body>
 
 <header class="page-header">
-  <h1>NE Books 메인 개편 — B테스트 후보 5종 와이어프레임</h1>
-  <p>10월 오픈은 A안(<b>ne-books-mall-type4</b>) 단독으로 확정됨. 아래 5개 화면은 오픈 후 실 트래픽으로 검증할 개선 후보의 Before(현재 A안 구조)/After(개선안) 저충실도 와이어프레임입니다. 색은 신규·변경 요소에만 accent 1색을 사용했습니다.</p>
+  <h1>NE Books 메인 개편 — B테스트 후보 3종 와이어프레임</h1>
+  <p>10월 오픈은 A안(<b>ne-books-mall-type4</b>) 단독으로 확정됨. 아래 3개 화면은 오픈 후 실 트래픽으로 검증할 개선 후보의 Before(현재 A안 구조)/After(개선안) 저충실도 와이어프레임입니다. 색은 신규·변경 요소에만 accent 1색을 사용했습니다.</p>
   <a class="base-link" href="https://ne-dichoi.github.io/mockup-pages/mockups/ne-books-mall-type4/" target="_blank" rel="noopener">참고용 실제 A안 목업 열기 →</a>
   <div class="legend">
     <a href="#overview"><span class="num">◎</span> 전체 개요</a>
     <a href="#c1"><span class="num">1</span> 학년별 탭+스크롤</a>
-    <a href="#c2"><span class="num">2</span> 검색 자동완성</a>
-    <a href="#c3"><span class="num">3</span> 학습자료실 위젯</a>
-    <a href="#c4"><span class="num">4</span> 맞춤교재찾기 수준축</a>
-    <a href="#c5"><span class="num">5</span> 목적별 커리큘럼 SET</a>
+    <a href="#c2"><span class="num">2</span> 학습자료실 위젯</a>
+    <a href="#c3"><span class="num">3</span> 맞춤교재찾기 수준축</a>
   </div>
 </header>
+
+<div class="fidelity-note">
+  <div class="box"><b>제외 안내</b> — 브리프 원안에 있던 "검색 자동완성"과 "목적별 커리큘럼 SET"은 실제 A안(type4) 코드 확인 결과 검색 자동완성은 이미 완전히 구현되어 있고, 커리큘럼 SET은 헤더 링크만 있어 유효한 B테스트 후보가 아니라고 판단해 이번 덱에서 제외했습니다.</div>
+</div>
 
 <div class="fidelity-note">
   <div class="box"><b>와이어프레임 수준 안내</b> — 실제 폰트·색상·이미지를 재현한 목업이 아니라, 구조와 흐름을 보여주기 위한 저충실도 와이어프레임입니다. 점선 테두리 사각형은 실제 이미지/아이콘 자리를 뜻하는 placeholder이며, 실기기 상태바·키보드는 그리지 않았습니다.</div>
@@ -229,9 +231,7 @@ ul{list-style:none;}
           <div class="ph footer-ph">footer</div>
         </div>
 
-        <div class="pin" style="top:100px; left:8px;"><span class="dot">2</span><span class="note">검색 자동완성</span></div>
-        <div class="pin" style="top:230px; left:8px;"><span class="dot">5</span><span class="note">목적별 SET로 교체</span></div>
-        <div class="pin" style="top:320px; right:8px;"><span class="dot">3</span><span class="note">학습자료실 위젯화</span></div>
+        <div class="pin" style="top:320px; right:8px;"><span class="dot">2</span><span class="note">학습자료실 위젯화</span></div>
         <div class="pin" style="top:465px; left:8px;"><span class="dot">1</span><span class="note">탭+스크롤 개편</span></div>
       </div>
     </div>
@@ -239,10 +239,8 @@ ul{list-style:none;}
     <div class="frame-col" style="width:300px;max-width:82vw;">
       <ul class="overview-legend">
         <li><span class="dot">1</span><div><b>학년별 탭+스크롤 개편</b><br>학년 구간 세로 나열 → 탭 전환형. <a href="#c1">Before/After 보기 →</a></div></li>
-        <li><span class="dot">2</span><div><b>메인 검색 자동완성</b><br>입력만 되던 검색창에 추천 드롭다운 추가. <a href="#c2">Before/After 보기 →</a></div></li>
-        <li><span class="dot">3</span><div><b>학습자료실 검색 위젯</b><br>아이콘 메뉴 속 기능을 메인 위젯으로. <a href="#c3">Before/After 보기 →</a></div></li>
-        <li><span class="dot">4</span><div><b>맞춤교재찾기 수준축 추가</b><br>학년 축만 있던 하위 페이지에 수준 축 추가(별도 화면). <a href="#c4">Before/After 보기 →</a></div></li>
-        <li><span class="dot">5</span><div><b>목적별 커리큘럼 SET</b><br>낱권 신간·베스트 나열 → 목적 단위 SET 섹션. <a href="#c5">Before/After 보기 →</a></div></li>
+        <li><span class="dot">2</span><div><b>학습자료실 검색 위젯</b><br>아이콘 메뉴 속 기능을 메인 위젯으로. <a href="#c2">Before/After 보기 →</a></div></li>
+        <li><span class="dot">3</span><div><b>맞춤교재찾기 수준축 추가</b><br>학년 축만 있던 하위 페이지에 수준 축 추가(별도 화면). <a href="#c3">Before/After 보기 →</a></div></li>
       </ul>
     </div>
   </div>
@@ -293,49 +291,9 @@ ul{list-style:none;}
   </div>
 </section>
 
-<!-- ============ 2. 검색 자동완성 ============ -->
+<!-- ============ 2. 학습자료실 위젯 ============ -->
 <section class="section" id="c2">
-  <div class="section-head"><span class="badge">2</span><h2>메인 검색 자동완성</h2></div>
-  <div class="info-box">
-    <div class="row"><span class="k">가설</span><span class="v">첫 화면 검색 비중이 높다 — 자동완성으로 탐색 단계를 줄이면 검색 완료율·만족도가 오른다.</span></div>
-    <div class="row"><span class="k">근거</span><span class="v">일반 사용자 첫클릭 중 검색 <b>36~38%</b>(메뉴 다음). 학원장 후속설문에서는 <b>63.6~81.8%</b>가 검색으로 첫클릭.</span></div>
-    <div class="row"><span class="k">측정</span><span class="v">검색창 포커스율 · 자동완성 클릭 선택률 · 검색 후 상세진입률</span></div>
-  </div>
-  <div class="pair">
-    <div class="frame-col">
-      <div class="frame-label before"><span class="tag">BEFORE</span>입력만 되는 검색창</div>
-      <div class="frame">
-        <div class="fx-header"><div class="fx-logo"></div></div>
-        <div class="search-bar">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.6" y2="16.6"/></svg>
-          교재명, 시리즈명을 검색해보세요
-        </div>
-        <div class="ph" style="margin:60px 16px;height:120px;">자동완성 없음<br>커서만 표시</div>
-      </div>
-    </div>
-    <div class="frame-col">
-      <div class="frame-label after"><span class="tag">AFTER</span>입력 중 추천 드롭다운</div>
-      <div class="frame">
-        <div class="fx-header"><div class="fx-logo"></div></div>
-        <div class="search-bar accent">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.6" y2="16.6"/></svg>
-          그래머<span class="caret"></span>
-        </div>
-        <ul class="autocomplete">
-          <li><b>그래머</b> 비기너 1</li>
-          <li><b>그래머</b> 비기너 2</li>
-          <li><b>그래머</b> 인사이드 스타터</li>
-          <li><b>그래머</b> 캐치 업 중등</li>
-        </ul>
-        <div class="limit-note" style="margin-top:16px;">입력한 글자를 포함한 교재명·시리즈명이 즉시 드롭다운으로 노출</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 3. 학습자료실 위젯 ============ -->
-<section class="section" id="c3">
-  <div class="section-head"><span class="badge">3</span><h2>학습자료실 검색 위젯</h2></div>
+  <div class="section-head"><span class="badge">2</span><h2>학습자료실 검색 위젯</h2></div>
   <div class="info-box">
     <div class="row"><span class="k">가설</span><span class="v">학습자료실을 아이콘 메뉴 안에 숨기지 않고 메인에 검색형 위젯으로 노출하면 자료 접근까지의 단계가 줄어 활성도가 오른다.</span></div>
     <div class="row"><span class="k">근거</span><span class="v">담당자 개선 아이디어 — "메인 어디 영역에 자료검색 영역을 두어 교재명을 검색해 자동검색 기능으로 바로 보여줄 수 있다."</span></div>
@@ -385,9 +343,9 @@ ul{list-style:none;}
   </div>
 </section>
 
-<!-- ============ 4. 맞춤교재찾기 수준축 ============ -->
-<section class="section" id="c4">
-  <div class="section-head"><span class="badge">4</span><h2>맞춤교재찾기 — 수준(레벨) 축 추가</h2></div>
+<!-- ============ 3. 맞춤교재찾기 수준축 ============ -->
+<section class="section" id="c3">
+  <div class="section-head"><span class="badge">3</span><h2>맞춤교재찾기 — 수준(레벨) 축 추가</h2></div>
   <div class="info-box">
     <div class="row"><span class="k">가설</span><span class="v">학년만으로 교재를 좁히지 못하는 사용자가 있다 — 학년 옆에 수준 축을 더하면 이탈 없이 원하는 교재에 도달한다.</span></div>
     <div class="row"><span class="k">근거</span><span class="v">"학년별이 아닌 수준별 수업이어서", "영어과목은 개별진도라 학년이 의미 없다", "초등/중등 카테고리를 몰라 두세 번 찾게 된다."</span></div>
@@ -424,49 +382,6 @@ ul{list-style:none;}
           <div class="ph result-card">결과1</div><div class="ph result-card">결과2</div>
         </div>
         <div class="limit-note">학년+수준 두 축으로 결과를 좁혀 원하는 교재에 더 빠르게 도달</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 5. 목적별 커리큘럼 SET ============ -->
-<section class="section" id="c5">
-  <div class="section-head"><span class="badge">5</span><h2>목적별 커리큘럼 SET 노출</h2></div>
-  <div class="info-box">
-    <div class="row"><span class="k">가설</span><span class="v">교재를 낱권이 아니라 '목적' 단위로 묶어 먼저 보여주면 신규 검토 단계의 탐색 부담이 줄어 관심 전환이 늘어난다.</span></div>
-    <div class="row"><span class="k">근거</span><span class="v">1차 학원장·인플루언서 정성 인터뷰 9명 중 <b>6명</b>이 "신규 교재 검토 시 목적별로 묶인 세트를 가장 먼저 보고 싶다"고 응답.</span></div>
-    <div class="row"><span class="k">측정</span><span class="v">SET 카드 클릭률 · SET → 개별 교재 상세 전환율 · 신규 카테고리 체류시간</span></div>
-  </div>
-  <div class="pair">
-    <div class="frame-col">
-      <div class="frame-label before"><span class="tag">BEFORE</span>낱권 나열(신간/베스트)</div>
-      <div class="frame">
-        <div class="fx-header"><div class="fx-logo"></div></div>
-        <div class="search-bar">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.6" y2="16.6"/></svg>
-          교재명, 시리즈명을 검색해보세요
-        </div>
-        <div class="section-title-sm">신간</div>
-        <div class="plain-row"><div class="ph book-ph">교재1</div><div class="ph book-ph">교재2</div><div class="ph book-ph">교재3</div></div>
-        <div class="section-title-sm">베스트</div>
-        <div class="plain-row"><div class="ph book-ph">교재1</div><div class="ph book-ph">교재2</div><div class="ph book-ph">교재3</div></div>
-      </div>
-    </div>
-    <div class="frame-col">
-      <div class="frame-label after"><span class="tag">AFTER</span>목적 단위 SET 섹션</div>
-      <div class="frame">
-        <div class="fx-header"><div class="fx-logo"></div></div>
-        <div class="search-bar">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.6" y2="16.6"/></svg>
-          교재명, 시리즈명을 검색해보세요
-        </div>
-        <div class="section-title-sm"><span class="new">NEW</span>목적별 커리큘럼 SET</div>
-        <div class="set-row">
-          <div class="set-card"><span class="new">NEW</span>예비초등 파닉스 완성<span class="cnt">3권 SET</span></div>
-          <div class="set-card"><span class="new">NEW</span>중등 내신 대비<span class="cnt">4권 SET</span></div>
-          <div class="set-card"><span class="new">NEW</span>수능 영어 기초<span class="cnt">3권 SET</span></div>
-        </div>
-        <div class="limit-note">낱권 대신 목적 단위로 묶인 카드를 가로 스크롤로 우선 노출</div>
       </div>
     </div>
   </div>

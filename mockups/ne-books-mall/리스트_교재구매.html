@@ -438,9 +438,10 @@
       if(p.state==='off') return '<span class="mc-off">절판</span>';
       return '<a class="mc-study" href="교재상세.html#s-res">학습자료</a><a class="mc-cart" href="장바구니.html" aria-label="장바구니"><img src="assets/ic_bag.svg" alt=""></a>';
     }
+    function pct(v){ return parseFloat(v)>0; } /* 할인·적립: 0%·미입력 모두 비노출, 0 초과일 때만 노출 */
     function cardHTML(p){
       var badge=p.badge?'<span class="mc-badge '+p.bcls+'">'+p.badge+'</span>':'';
-      var disc=(p.hal||p.jeok)?'<div class="mc-disc">'+(p.hal?'<span class="mc-d"><span class="mc-dt hal">할</span><span class="mc-pct red">'+p.hal+'</span></span>':'')+(p.jeok?'<span class="mc-d"><span class="mc-dt jeok">적</span><span class="mc-pct">'+p.jeok+'</span></span>':'')+'</div>':'';
+      var disc=(pct(p.hal)||pct(p.jeok))?'<div class="mc-disc">'+(pct(p.hal)?'<span class="mc-d"><span class="mc-dt hal">할</span><span class="mc-pct red">'+p.hal+'</span></span>':'')+(pct(p.jeok)?'<span class="mc-d"><span class="mc-dt jeok">적</span><span class="mc-pct">'+p.jeok+'</span></span>':'')+'</div>':'';
       var price='<div class="mc-price">'+(p.was?'<span class="mc-was">'+p.was+'</span>':'')+'<span class="mc-now">'+p.now+'</span></div>';
       var tags=p.tags.map(function(t){ return '<span>'+t+'</span>'; }).join('');
       return '<article class="mcard">'
