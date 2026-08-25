@@ -2166,10 +2166,8 @@ body.bsheet-lock{overflow:hidden;}
 .md-acc + .md-acc{border-top:1px solid var(--ink);padding-top:16px;}
 .md-acc-h{display:flex;align-items:center;justify-content:space-between;width:100%;border:0;background:none;cursor:pointer;
   padding:0 0 16px;font-size:14px;font-weight:700;color:var(--ink);line-height:24px;font-family:var(--sans);text-align:left;}
-.md-acc-ic{width:18px;height:18px;flex:none;position:relative;}
-.md-acc-ic::before{content:"";position:absolute;left:3px;top:3px;width:11px;height:11px;
-  border-right:2px solid #1d1717;border-bottom:2px solid #1d1717;transform:rotate(45deg);transition:transform .2s;}
-.md-acc.open .md-acc-ic::before{top:8px;transform:rotate(-135deg);}
+.md-acc-ic{width:18px;height:18px;flex:none;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'><path d='M6 9l6 6 6-6' stroke='%231d1717' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/18px no-repeat;transition:transform .2s;}
+.md-acc.open .md-acc-ic{transform:scaleY(-1);}
 .md-acc-body{display:flex;flex-direction:column;gap:16px;padding:0 0 16px;}
 .md-acc-body .md-sub{padding:0;}
 .md-acc:not(.open) .md-acc-body{display:none;}
