@@ -3,1304 +3,474 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A/B테스트 B안</title>
+<title>B테스트 후보 와이어프레임</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <style>
-@font-face{font-family:'Paperlogy';font-weight:800;font-style:normal;font-display:swap;
-  src:url('https://fastly.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-8ExtraBold.woff2') format('woff2');}
-@font-face{font-family:'Paperlogy';font-weight:700;font-style:normal;font-display:swap;
-  src:url('https://fastly.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-7Bold.woff2') format('woff2');}
-@font-face{font-family:'Paperlogy';font-weight:500;font-style:normal;font-display:swap;
-  src:url('https://fastly.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-5Medium.woff2') format('woff2');}
-@font-face{font-family:'Paperlogy';font-weight:400;font-style:normal;font-display:swap;
-  src:url('https://fastly.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-4Regular.woff2') format('woff2');}
 :root{
-  --green:#03C75A; --purple:#6f52ff; --red:#f5444a;
-  --ink:#191919; --sub:#8c8c8c; --line:#ededed; --bg-gray:#f7f8fa;
-  --b-red:#f5444a; --b-blue:#2f6bff;
-  --sans:'Pretendard','Noto Sans KR',-apple-system,sans-serif;
-  --display:'Paperlogy','Pretendard','Noto Sans KR',sans-serif;
+  --accent:#ff6a2b;
+  --accent-bg:#fff1e8;
+  --ink:#1c1c1c;
+  --sub:#8a8a8a;
+  --line:#d9d9d9;
+  --line-strong:#333;
+  --ph-bg:#f4f4f4;
+  --ph-line:#aaaaaa;
+  --page-bg:#eef0f2;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:var(--sans);color:var(--ink);background:#fff;-webkit-font-smoothing:antialiased;}
-img{display:block;max-width:100%;}
+body{font-family:'Pretendard','Noto Sans KR',-apple-system,sans-serif;color:var(--ink);background:var(--page-bg);-webkit-font-smoothing:antialiased;}
 a{color:inherit;text-decoration:none;}
-button{font-family:inherit;cursor:pointer;border:0;background:none;}
-.ico{display:inline-block;flex:none;}
-.ico img{width:100%;height:100%;object-fit:contain;}
-.wrap{max-width:1600px;margin:0 auto;padding:0 40px;}
-.hl{color:var(--purple);}
+ul{list-style:none;}
 
-/* ===== HEADER (ne-books-mall-type3 TOP & GNB 동일 적용) ===== */
-.lheader{background:#fff;color:#1d1717;position:relative;z-index:20;}
-.lheader .container{width:100%;max-width:1600px;margin:0 auto;padding-inline:40px;box-sizing:border-box;}
-.lheader .header-top{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px;padding-block:20px;border-bottom:1px solid #e5e5e5;position:relative;margin-inline:calc(50% - 50vw);padding-inline:calc(50vw - 50%);}
-.lheader .logo{width:150px;height:28px;justify-self:start;}
-.lheader .logo img{width:100%;height:100%;object-fit:contain;}
-.lheader .search-wrap{justify-self:center;display:flex;align-items:center;gap:10px;}
-.lheader .search{position:relative;gap:8px;width:449px;max-width:100%;height:46px;border:1px solid #e83828;border-radius:9999px;display:flex;align-items:center;justify-content:flex-end;padding:0 20px;background:#fff;}
-.lheader .search-input{flex:1;min-width:0;border:0;outline:none;background:transparent;font-family:var(--sans);font-size:14px;color:#1d1717;padding:0;}
-.lheader .search-input::placeholder{color:#a9a9a9;}
-.lheader .search-ic{width:24px;height:24px;flex:none;border:0;background:none;padding:0;margin:0;cursor:pointer;}
-.lheader .search-extra{display:flex;align-items:center;gap:8px;flex:none;}
-.lheader .se-btn{display:inline-flex;align-items:center;height:38px;padding:0 16px;border-radius:9999px;border:1px solid #e83828;color:#e83828;font-size:13px;font-weight:700;white-space:nowrap;}
-.lheader .se-btn:hover{background:#e83828;color:#fff;}
-.lheader .search-pop{position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%);width:478px;max-width:calc(100vw - 40px);background:#fff;border:1px solid #ededed;border-radius:16px;box-shadow:0 14px 34px rgba(0,0,0,.12);z-index:60;padding:40px;max-height:70vh;overflow-y:auto;}
-.lheader .search-pop.wide{width:657px;}
-.lheader .search-pop[hidden]{display:none;}
-.lheader .sp-head{font-family:var(--display);font-weight:700;font-size:16px;color:#1d1717;margin-bottom:20px;}
-.lheader .sp-pop{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(5,auto);grid-auto-flow:column;gap:12px 40px;list-style:none;margin:0;padding:0;}
-.lheader .sp-pop li{list-style:none;}
-.lheader .sp-pop li a{display:flex;align-items:center;gap:12px;font-size:16px;color:#4d4e4d;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.lheader .sp-pop li a:hover{color:#1d1717;}
-.lheader .sp-pop .rk{width:28px;height:28px;flex:none;border-radius:9999px;background:#1d1717;color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;}
-.lheader .sp-note{margin-top:24px;font-size:12px;color:#a9a9a9;}
-.lheader .sp-event{display:block;margin-top:20px;border-radius:12px;overflow:hidden;line-height:0;}
-.lheader .sp-event img{width:100%;height:auto;display:block;transition:transform .2s;}
-.lheader .sp-event:hover img{transform:scale(1.02);}
-.lheader .sa-wrap{display:flex;gap:24px;align-items:flex-start;}
-.lheader .sa-list{width:308px;flex:none;height:327px;overflow-y:auto;border-right:1px solid #ededed;list-style:none;margin:0;padding:0;}
-.lheader .sa-list .it{list-style:none;}
-.lheader .sa-list .it a{display:block;height:40px;line-height:22px;padding-right:24px;box-sizing:border-box;font-size:14px;color:#666;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.lheader .sa-list .it.on a,.lheader .sa-list .it a:hover{color:#1d1717;}
-.lheader .sa-preview{flex:none;display:flex;flex-direction:column;align-items:center;gap:16px;position:relative;}
-.lheader .sa-pv-card{width:245px;height:245px;background:var(--bg-gray);border-radius:8px;display:flex;align-items:center;justify-content:center;position:relative;}
-.lheader .sa-pv-card img{width:131px;height:171px;object-fit:cover;border-radius:2px;box-shadow:3.3px 5.9px 13.2px rgba(0,0,0,.18);}
-.lheader .pcover-cart{position:absolute;right:40px;bottom:22px;width:48px;height:48px;background:#1d1717;border:0;border-radius:999px;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;z-index:3;}
-.lheader .pcover-cart img{width:20px;height:20px;flex:none;display:block;}
-.lheader .sa-pv-name{width:160px;font-size:14px;color:#666;text-align:center;line-height:22px;}
-.lheader .sp-empty{font-size:14px;color:#a9a9a9;padding:4px 0;}
-.lheader .head-icons{display:flex;gap:26px;align-items:flex-start;justify-self:end;}
-.lheader .head-ic{display:flex;flex-direction:column;gap:5px;align-items:center;width:42px;}
-.lheader .head-ic .ico{width:26px;height:26px;position:relative;}
-.lheader .head-ic span{font-size:12px;font-weight:500;color:#1d1717;text-align:center;}
-.lheader .head-ic-wrap{position:relative;}
-.lheader .my-drop{position:absolute;top:calc(100% + 6px);left:50%;transform:translateX(-50%);min-width:117px;box-sizing:border-box;background:#fff;border:1px solid #e5e5e5;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.10);padding:25px;display:none;flex-direction:column;gap:8px;z-index:200;}
-.lheader .my-drop::before{content:"";position:absolute;left:0;right:0;top:-10px;height:10px;}
-.lheader .head-ic-wrap:hover .my-drop{display:flex;}
-.lheader .my-drop.cs-drop{left:auto;right:0;transform:none;}
-.lheader .my-drop a{font-size:14px;color:#666;white-space:nowrap;line-height:22px;}
-.lheader .my-drop a:hover{color:#1d1717;}
-.lheader .cart-badge{position:absolute;top:-5px;right:-7px;min-width:16px;height:16px;box-sizing:border-box;padding:0 4px;border-radius:9999px;background:#e83828;color:#fff;font-size:11px;font-weight:700;line-height:16px;text-align:center;}
-.lheader .cart-badge[hidden]{display:none;}
-.lheader .m-menu{display:none;}
-.lheader .gnb{border-bottom:2px solid #1d1717;position:relative;margin-inline:calc(50% - 50vw);}
-.lheader .gnb-in{width:100%;max-width:1600px;margin:0 auto;padding-inline:40px;box-sizing:border-box;display:flex;align-items:center;justify-content:safe center;gap:40px;height:56px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;}
-.lheader .gnb-in::-webkit-scrollbar{display:none;}
-.lheader .gnb-in .menu{width:22px;height:22px;flex:none;cursor:pointer;}
-.lheader .gnb nav{display:flex;gap:40px;align-items:center;}
-.lheader .gnb nav a{color:#1d1717;font-size:16px;font-weight:700;position:relative;padding:6px 0;white-space:nowrap;}
-.lheader .gnb nav a.on,.lheader .gnb nav a:hover{color:#e83828;}
-.lheader .gnb nav a.on::after,.lheader .gnb nav a:hover::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;background:#e83828;}
-.lheader .gnb-drop{position:absolute;top:calc(100% + 2px);left:0;z-index:50;display:none;gap:40px;background:#fff;border-radius:0 0 16px 16px;box-shadow:0 22px 40px rgba(0,0,0,.10);padding:32px 40px;max-width:calc(100vw - 32px);box-sizing:border-box;}
-.lheader .gnb-drop.open{display:flex;}
-.lheader .gd-cats{display:flex;flex-direction:column;gap:16px;min-width:170px;}
-.lheader .gd-cats a{font-size:14px;color:#666;white-space:nowrap;}
-.lheader .gd-cats a:hover{color:#1d1717;font-weight:600;}
-.lheader .gnb-drop.mega{gap:24px;padding:40px;max-width:none;}
-.lheader .gd-col{display:flex;flex-direction:column;gap:16px;flex:none;box-sizing:border-box;width:140px;border-right:1px solid #e5e5e5;padding-right:40px;}
-.lheader .gnb-drop.mega .gd-col,.lheader .gnb-drop.mega .gd-col:nth-of-type(6){flex:1 1 0;min-width:0;width:auto;}
-.lheader .gnb-drop.mega .gd-col:nth-of-type(6){border-right:0;padding-right:0;}
-.lheader .gd-col-t{font-size:14px;font-weight:700;color:#1d1717;white-space:nowrap;}
-.lheader .gd-col .items{display:flex;flex-direction:column;gap:10px;}
-.lheader .gd-col .items a{font-size:14px;color:#666;line-height:22px;white-space:nowrap;cursor:pointer;}
-.lheader .gd-col .items a:hover{color:#1d1717;}
-.lheader .gd-promo{flex:0 0 240px;display:flex;flex-direction:column;text-decoration:none;color:inherit;align-self:flex-start;}
-.lheader .gd-promo .img{display:block;height:150px;border-radius:10px;background:#eef1f3 center/cover no-repeat;transition:transform .2s;}
-.lheader .gd-promo:hover .img{transform:scale(1.02);}
-.lheader .gd-promo .tit{font-size:15px;font-weight:800;color:#222;margin-top:14px;}
-.lheader .gd-promo .desc{font-size:13px;color:#e83828;font-weight:600;margin-top:6px;}
-.lheader .gnb nav a.c-blue{color:#2272dd;}
-.lheader .gnb nav a.c-red{color:#e83828;}
-.lheader .gnb-mall{display:inline-flex;align-items:center;}
-.lheader .gnb-mall .gnb-roll{display:block;height:24px;line-height:24px;overflow:hidden;width:102px;text-align:left;}
-.lheader .gnb-mall .gr-track{display:block;animation:gnbRoll 3.4s cubic-bezier(.6,0,.2,1) infinite;}
-.lheader .gnb-mall .gr-i{display:block;height:24px;line-height:24px;white-space:nowrap;}
-@keyframes gnbRoll{0%,38%{transform:translateY(0);}50%,88%{transform:translateY(-24px);}96%,100%{transform:translateY(0);}}
-.lheader .gnb:hover .gnb-mall .gr-track{animation:none;transform:translateY(0);}
-.lheader .gnb-drop.tmega{padding:0;gap:0;align-items:stretch;}
-.lheader .gnb-drop.tmega .tmega-cols{display:flex;gap:32px;padding:32px 36px;flex:0 0 auto;}
-.lheader .gnb-drop.tmega .gd-col{border-right:0;padding-right:0;width:auto;min-width:150px;}
-.lheader .gnb-drop.tmega .gd-col .items a.t2d-on{color:#e83828;font-weight:700;}
-.lheader .gnb-drop.tmega .gd-3depth{flex:none;width:520px;border-left:1px solid #e5e5e5;padding:32px 34px;column-width:150px;column-gap:26px;}
-.lheader .gnb-drop.tmega .gd-3depth h5{font-size:15px;font-weight:800;color:#e83828;margin:0 0 14px;column-span:all;}
-.lheader .gnb-drop.tmega .gd-3depth a{display:block;break-inside:avoid;font-size:13.5px;color:#666;line-height:2.15;white-space:nowrap;}
-.lheader .gnb-drop.tmega .gd-3depth a:hover{color:#1d1717;text-decoration:underline;}
-.lheader .gnb-drop.tmega .gd-promo{border-left:1px solid #e5e5e5;padding:28px;align-self:stretch;}
-/* mobile 전체메뉴 드로어 */
-.m-drawer{position:fixed;inset:0;z-index:2000;visibility:hidden;transition:visibility .3s;}
-.m-drawer.open{visibility:visible;}
-.md-dim{position:absolute;inset:0;background:rgba(0,0,0,.45);opacity:0;transition:opacity .3s;}
-.m-drawer.open .md-dim{opacity:1;}
-.md-panel{position:absolute;top:0;bottom:0;left:0;width:min(640px,92vw);display:flex;flex-direction:column;background:#fff;transform:translateX(-100%);transition:transform .3s cubic-bezier(.22,1,.36,1);box-shadow:8px 0 30px rgba(0,0,0,.15);}
-.m-drawer.open .md-panel{transform:none;}
-.md-top{display:flex;align-items:center;gap:8px;padding:24px 20px;flex:none;box-sizing:border-box;}
-.md-home{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;flex:none;}
-.md-home img{width:24px;height:24px;display:block;}
-.md-auth{margin-right:auto;font-size:16px;}
-.md-auth a{color:#1d1717;text-decoration:none;font-weight:600;}
-.md-top-ic{display:flex;align-items:center;gap:16px;flex:none;}
-.md-top-ic .md-search{border:0;background:none;padding:0;cursor:pointer;width:24px;height:24px;}
-.md-top-ic .md-cart{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;}
-.md-top-ic img{width:24px;height:24px;display:block;}
-.md-x{position:relative;width:24px;height:24px;flex:none;border:0;background:none;padding:0;cursor:pointer;}
-.md-x::before,.md-x::after{content:"";position:absolute;left:11px;top:2px;width:2px;height:20px;background:#1d1717;border-radius:2px;}
-.md-x::before{transform:rotate(45deg);}
-.md-x::after{transform:rotate(-45deg);}
-.md-quick{display:flex;gap:8px;align-items:center;justify-content:center;padding:24px 20px;flex:none;border-top:1px solid #e5e5e5;border-bottom:1px solid #e5e5e5;}
-.md-q{flex:1 1 0;min-width:0;max-width:79px;aspect-ratio:1/1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;border:1px solid #e5e5e5;border-radius:999px;background:#fff;text-decoration:none;}
-.md-q-ic{display:flex;align-items:center;justify-content:center;width:32px;height:32px;}
-.md-q-ic img{max-width:28px;max-height:28px;display:block;}
-.md-q-t{font-size:11px;font-weight:700;color:#1d1717;}
-.md-body{flex:1;display:flex;min-height:0;overflow:hidden;}
-.md-cats{flex:none;width:130px;max-width:150px;background:#f5f5f5;overflow:visible;}
-.md-cat{position:relative;display:block;width:100%;box-sizing:border-box;text-align:left;border:0;background:none;cursor:pointer;padding:16px 20px;font-size:14px;color:#a9a9a9;white-space:nowrap;}
-.md-cat.on{width:calc(100% + 14px);background:#e83828;color:#fff;font-weight:700;font-size:16px;border-radius:0 999px 999px 0;z-index:1;}
-.md-subs{flex:1;min-width:0;overflow-y:auto;padding:16px 24px 40px;}
-.md-sub{display:block;padding:8px 0;font-size:14px;font-weight:500;color:#666;text-decoration:none;line-height:24px;}
-.md-sub:hover{color:#1d1717;}
-.md-acc{border-bottom:1px solid #e5e5e5;}
-.md-acc:last-child{border-bottom:0;}
-.md-acc-h{display:flex;align-items:center;justify-content:space-between;width:100%;border:0;background:none;cursor:pointer;padding:16px 0;font-size:14px;font-weight:700;color:#1d1717;text-align:left;}
-.md-acc-ic{width:11px;height:11px;flex:none;position:relative;}
-.md-acc-ic::before{content:"";position:absolute;left:0;top:2px;width:9px;height:9px;border-right:2px solid #1d1717;border-bottom:2px solid #1d1717;transform:rotate(45deg);transition:transform .2s;}
-.md-acc.open .md-acc-ic::before{top:5px;transform:rotate(-135deg);}
-.md-acc-body{padding:0 0 12px;}
-.md-acc:not(.open) .md-acc-body{display:none;}
-@media (max-width:1023px){
-  .lheader .container{padding-inline:20px;}
-  .lheader .header-top{display:flex;flex-wrap:nowrap;justify-content:flex-start;align-items:center;gap:14px;padding:16px 0;min-height:74px;border-bottom:0;margin-inline:0;box-sizing:border-box;}
-  .lheader .logo{order:1;margin-right:auto;width:auto;}
-  .lheader .logo img{height:22px;width:auto;}
-  .lheader .gnb{display:none;}
-  .lheader .search-wrap{order:2;flex:none;}
-  .lheader .search{flex:none;width:auto;max-width:none;height:auto;border:0;background:none;padding:0;border-radius:0;}
-  .lheader .search-input{display:none;}
-  .lheader .search-ic{width:24px;height:24px;}
-  .lheader .search-ic img{width:24px;height:24px;display:block;}
-  .lheader .head-icons{order:3;gap:14px;align-items:center;}
-  .lheader .head-icons>.head-ic:not(.cart-ic),.lheader .head-icons>.head-ic-wrap{display:none;}
-  .lheader .head-icons .head-ic{width:auto;flex-direction:row;}
-  .lheader .head-icons .head-ic>span:not(.ico){display:none;}
-  .lheader .head-icons .head-ic .ico{width:24px;height:24px;}
-  .lheader .head-icons .head-ic .ico img{width:24px;height:24px;}
-  .lheader .m-menu{order:4;display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;background:none;border:0;padding:0;cursor:pointer;flex:none;}
-  .lheader .m-menu img{width:24px;height:24px;display:block;}
-}
-@media (min-width:1024px) and (max-width:1139px){
-  .lheader .gnb-drop.mega{gap:16px;padding:32px 24px;}
-  .lheader .gnb-drop.mega .gd-col{padding-right:16px;gap:12px;}
-  .lheader .gnb-drop.mega .gd-col-t{font-size:14px;white-space:normal;word-break:keep-all;line-height:1.4;}
-  .lheader .gnb-drop.mega .gd-col .items{gap:9px;}
-  .lheader .gnb-drop.mega .gd-col .items a{font-size:13px;line-height:1.55;white-space:normal;word-break:keep-all;overflow-wrap:break-word;}
-  .lheader .gnb-drop.mega .gd-brands{gap:8px;}
-  .lheader .gnb-drop.mega .gd-btn{width:auto;min-width:120px;padding:12px 16px;font-size:13px;}
-}
+/* ---------- page shell ---------- */
+.page-header{max-width:1000px;margin:0 auto;padding:48px 20px 24px;}
+.page-header h1{font-size:22px;font-weight:800;margin-bottom:8px;}
+.page-header p{font-size:13px;color:var(--sub);line-height:1.7;max-width:640px;}
+.page-header .base-link{display:inline-block;margin-top:10px;font-size:12px;color:var(--accent);border-bottom:1px solid var(--accent);}
 
-/* ===== HERO ===== */
-.n-hero{padding:22px 0 8px;overflow:hidden;}
-.n-hero-stage{position:relative;}
-.n-hero-track{display:flex;gap:16px;transition:transform .6s cubic-bezier(.22,1,.36,1);}
-.n-hero-card{flex:0 0 calc(50% - 8px);height:280px;border-radius:16px;overflow:hidden;display:flex;align-items:flex-start;padding:0 44px;position:relative;}
-.n-hero-card .htxt{position:relative;z-index:2;max-width:48%;padding-top:40px;}
-.n-hero-card .htxt .flag{display:inline-block;background:rgba(255,255,255,.7);color:#444;font-size:12px;font-weight:700;border-radius:20px;padding:4px 12px;margin-bottom:12px;}
-.n-hero-card.dark .htxt .flag{background:rgba(255,255,255,.2);color:#fff;}
-.n-hero-card .htxt h3{font-family:var(--display);font-size:29px;font-weight:800;line-height:1.25;letter-spacing:-1px;}
-.n-hero-card .htxt p{margin-top:10px;font-size:14.5px;color:rgba(0,0,0,.6);font-weight:500;}
-.n-hero-card.dark .htxt h3{color:#fff;} .n-hero-card.dark .htxt p{color:rgba(255,255,255,.8);}
-.n-hero-card .hcover{position:absolute;right:44px;bottom:0;display:flex;gap:10px;align-items:flex-end;height:100%;padding-bottom:28px;}
-.n-hero-card .hcover .hcov-item{position:relative;display:inline-flex;align-self:flex-end;}
-.n-hero-card .hcover img{max-height:96%;width:auto;}
-.n-hero-card .hcover.books img{max-height:150%;margin-bottom:-24px;filter:drop-shadow(0 14px 22px rgba(0,0,0,.22));}
-.n-hero-card .hcover.covers{gap:14px;align-items:flex-end;}
-.n-hero-card .hcover.covers img{height:146px;border-radius:8px;box-shadow:0 14px 30px rgba(0,0,0,.22);margin-bottom:0;}
-.n-hero-card .hcover.illust{bottom:0;align-items:flex-end;}
-.n-hero-card .hcover.illust img{height:220px;width:auto;max-height:96%;border-radius:12px;}
-.n-hero-card .hcart{position:absolute;right:-6px;bottom:6px;width:30px;height:30px;background:#fff;border:0;border-radius:999px;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;box-shadow:0 3px 8px rgba(0,0,0,.25);z-index:3;transition:background .15s;}
-.n-hero-card .hcart svg{width:15px;height:15px;stroke:var(--red);transition:stroke .15s;}
-.n-hero-card .hcart:hover{background:var(--red);}
-.n-hero-card .hcart:hover svg{stroke:#fff;}
-.n-hero-card.full{padding:0;}
-.n-hero-card.full .bgimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
-.n-hero-nav{display:flex;justify-content:center;align-items:center;gap:12px;margin-top:16px;}
-.n-hero-nav .pg{font-size:13px;font-weight:700;}
-.n-hero-nav .pg b{color:#bbb;}
-.n-hero-nav button{width:30px;height:30px;border:1px solid var(--line);border-radius:50%;font-size:15px;color:#333;display:flex;align-items:center;justify-content:center;}
-/* quick shortcuts */
-.n-quick{padding:22px 0 40px;}
-.n-quick .row{display:flex;gap:8px;justify-content:space-between;flex-wrap:wrap;}
-.n-quick a{flex:1 0 auto;display:flex;flex-direction:column;align-items:center;gap:9px;width:88px;}
-.n-quick .ic{width:58px;height:58px;border-radius:50%;background:#F3F3F3;display:flex;align-items:center;justify-content:center;transition:background .15s,transform .15s;}
-.n-quick .ic img{width:30px;height:30px;}
-.n-quick a:hover .ic{background:#e8e8e8;transform:translateY(-3px);}
-.n-quick span{font-size:13px;color:#333;font-weight:500;}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}
+.legend a{display:flex;align-items:center;gap:6px;font-size:12px;color:#555;background:#fff;border:1px solid var(--line);border-radius:20px;padding:6px 12px;}
+.legend .num{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:50%;background:var(--accent);color:#fff;font-size:10px;font-weight:700;}
 
-/* ===== SECTION ===== */
-.n-sec{padding:44px 0;}
-.n-sec.lined{border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
-.n-sec-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:20px;}
-.n-sec-head h2{font-family:var(--display);font-size:24px;font-weight:800;letter-spacing:-.5px;}
-.n-sec-head .sub{font-size:14px;color:var(--sub);margin-top:6px;font-weight:500;}
-.n-sec-head .more{font-size:14px;color:#555;font-weight:500;}
-.n-sec-head .ttl-inline{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;}
-.n-sec-head .ttl-inline .sub-inline{font-size:14px;color:var(--sub);font-weight:500;}
-.n-tabs{display:flex;gap:8px;margin-bottom:22px;flex-wrap:wrap;}
-.n-tabs button{border:1px solid var(--line);border-radius:22px;padding:9px 18px;font-size:14px;font-weight:700;color:#333;background:#fff;}
-.n-tabs button.on{background:#111;color:#fff;border-color:#111;}
+.fidelity-note{max-width:1000px;margin:0 auto 8px;padding:0 20px;}
+.fidelity-note .box{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 16px;font-size:12px;color:#666;line-height:1.7;}
+.fidelity-note b{color:var(--ink);}
 
-/* product grid + card */
-.n-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:16px 14px;}
-.n-more-card{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;height:100%;border:1.5px dashed #d8d8d8;border-radius:10px;background:var(--bg-gray);color:#555;text-align:center;padding:12px;}
-.n-more-card .plus{width:38px;height:38px;border-radius:50%;background:#fff;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:400;color:#333;}
-.n-more-card span{font-size:13px;font-weight:700;line-height:1.4;}
-.n-card .thumb{position:relative;border-radius:10px;overflow:hidden;background:var(--bg-gray);aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;}
-.n-card .thumb img{width:100%;height:100%;object-fit:cover;}
-.n-card .bdg{position:absolute;top:8px;left:8px;font-size:11px;font-weight:700;color:#fff;padding:3px 7px;border-radius:5px;}
-.bdg.red{background:var(--b-red);} .bdg.blue{background:var(--b-blue);}
-.n-card .heart{position:absolute;right:54px;bottom:8px;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.85);display:flex;align-items:center;justify-content:center;}
-.n-card .heart svg{width:22px;height:22px;stroke:#999;fill:none;}
-.n-card .heart.on svg{fill:var(--red);stroke:var(--red);}
-.n-card .cart-btn{position:absolute;right:8px;bottom:8px;width:40px;height:40px;border-radius:50%;background:#191919;display:flex;align-items:center;justify-content:center;transition:background .15s;}
-.n-card .cart-btn svg{width:21px;height:21px;stroke:#fff;fill:none;}
-.n-card .cart-btn:hover{background:var(--red);}
-.n-card .tit{font-size:13.5px;line-height:1.4;color:#333;margin:10px 0 6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:38px;}
-.n-card .was{font-size:12px;color:#bbb;text-decoration:line-through;}
-.n-card .now{display:flex;align-items:baseline;gap:5px;margin-top:2px;}
-.n-card .now .rate{color:var(--red);font-weight:800;font-size:16px;}
-.n-card .now .price{font-family:var(--display);font-weight:700;font-size:16px;}
-.n-card .point{font-size:12px;color:var(--purple);font-weight:600;margin-top:3px;}
-.n-pager{display:flex;justify-content:center;align-items:center;gap:16px;margin-top:26px;font-size:14px;font-weight:700;}
-.n-pager b{color:var(--ink);} .n-pager span{color:#bbb;}
-.n-pager button{width:34px;height:34px;border:1px solid var(--line);border-radius:8px;color:#555;}
+.section{max-width:1000px;margin:0 auto 64px;padding:0 20px;scroll-margin-top:20px;}
+.section-head{display:flex;align-items:baseline;gap:10px;margin-bottom:6px;}
+.section-head .badge{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;font-size:13px;font-weight:800;flex:none;}
+.section-head h2{font-size:17px;font-weight:800;}
+.section-sub{font-size:12px;color:var(--sub);margin-bottom:14px;}
 
-/* interest series store */
-.n-store{display:grid;grid-template-columns:280px 1fr;gap:24px;}
-.n-store-list{display:flex;flex-direction:column;gap:4px;}
-.n-store-list button{display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:12px;text-align:left;font-size:15px;font-weight:700;color:#333;border:1px solid transparent;}
-.n-store-list button .logo{width:38px;height:38px;border-radius:50%;background:var(--bg-gray);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--purple);overflow:hidden;flex:none;}
-.n-store-list button .logo img{width:100%;height:100%;object-fit:cover;object-position:top center;}
-.n-store-list button .tag{font-size:12px;color:var(--sub);font-weight:500;margin-left:auto;}
-.n-store-list button.on{border-color:#111;box-shadow:0 2px 10px rgba(0,0,0,.06);}
-.n-store-list button.on .arw{margin-left:auto;}
-.n-store-right{display:flex;flex-direction:column;}
-.n-store-prod{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;flex:1;}
-.n-store-home{margin-top:16px;height:52px;border:1px solid var(--line);border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;color:#333;}
+.info-box{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 18px;font-size:12.5px;color:#555;line-height:1.75;margin-bottom:20px;}
+.info-box .row{display:flex;gap:8px;margin-bottom:4px;}
+.info-box .row:last-child{margin-bottom:0;}
+.info-box .k{flex:none;width:56px;font-weight:700;color:var(--ink);}
+.info-box .v b{color:var(--accent);}
 
-/* ===== responsive visibility utils (ne-books-mall-type3 동일) ===== */
-.only-mo{display:none;}
-@media (max-width:1023px){
-  .only-mo{display:block;}
-  .only-pc{display:none !important;}
-}
+.pair{display:flex;gap:28px;flex-wrap:wrap;align-items:flex-start;}
+.frame-col{flex:none;}
+.frame-label{font-size:12px;font-weight:700;text-align:center;margin-bottom:10px;letter-spacing:.02em;}
+.frame-label.before{color:#999;}
+.frame-label.after{color:var(--accent);}
+.frame-label .tag{display:inline-block;font-size:10px;font-weight:800;border-radius:4px;padding:2px 6px;margin-right:6px;vertical-align:1px;}
+.frame-label.before .tag{background:#eee;color:#888;}
+.frame-label.after .tag{background:var(--accent);color:#fff;}
 
-/* ===== NETUTOR (선생님을 위한 티칭 플랫폼) — ne-books-mall-type3 동일 적용 ===== */
-.netutor{background:#fff;padding:90px 0;overflow:hidden;}
-.nt-viewport{width:100%;display:flex;justify-content:center;}
-.nt-wrap{position:relative;width:1920px;height:542px;flex:none;transform-origin:top center;}
-.nt-arc{position:absolute;left:50%;transform:translateX(-50%);top:226px;width:864px;height:316px;overflow:hidden;pointer-events:none;}
-.nt-arc .circle{width:864px;height:864px;position:absolute;top:5px;left:0;}
-.nt-arc .dot{position:absolute;left:426px;top:0;width:11px;height:11px;}
-.nt-hot{display:none;}
-.nt-center{position:absolute;left:50%;transform:translateX(-50%);top:430px;width:360px;z-index:3;display:flex;flex-direction:column;gap:16px;align-items:center;}
-.nt-center .cap{font-family:var(--display);font-weight:800;font-size:32px;line-height:40px;color:var(--ink);white-space:nowrap;}
-.nt-center .cap .cap-sub{color:var(--sub);}
-.nt-center .logo{width:190px;height:39px;}
-.nt-cards{position:absolute;left:0;top:0;width:100%;height:438px;}
-.nt-card{position:absolute;width:351px;height:178px;background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;cursor:pointer;transition:left .55s cubic-bezier(.4,0,.2,1),top .55s cubic-bezier(.4,0,.2,1),opacity .45s ease,background .3s,border-color .3s;}
-.nt-card.red{background:var(--red);border-color:var(--red);}
-.nt-card .body{position:absolute;left:39px;top:39px;right:70px;display:flex;flex-direction:column;gap:8px;}
-.nt-card .body .sub{font-size:14px;color:var(--sub);}
-.nt-card .body .tt{font-family:var(--display);font-weight:800;font-size:24px;color:var(--ink);}
-.nt-card.red .body .sub,.nt-card.red .body .tt{color:#fff;}
-.nt-card .ic{position:absolute;right:30px;bottom:30px;width:56px;height:56px;}
-@media (max-width:1023px){
-  .netutor{padding:40px 0 0;overflow:visible;}
-  .nt-viewport{padding-inline:20px;}
-  .nt-wrap{width:100%;height:auto;transform:none !important;display:flex;flex-direction:column;align-items:center;gap:24px;}
-  .nt-arc{display:none;}
-  .nt-hot{display:none;}
-  .nt-center{position:static;transform:none;width:100%;text-align:left;align-items:flex-start;gap:8px;}
-  .nt-center .cap{font-size:24px;line-height:36px;font-weight:700;white-space:normal;}
-  .nt-center .cap .cap-sub{display:block;font-size:14px;line-height:22px;font-weight:400;}
-  .nt-center .cap .cap-main{font-size:24px;line-height:36px;font-weight:700;}
-  .nt-center .cap .cap-logo{display:inline-block;width:102px;height:22px;vertical-align:middle;margin-left:16px;}
-  .nt-center .cap .cap-logo img{width:100%;height:100%;object-fit:contain;display:block;}
-  .nt-cards{position:static;width:100%;height:auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 24px;}
-  .nt-card{position:relative;left:auto;top:auto;width:auto;max-width:none;height:auto;min-height:150px;padding:20px 16px;}
-  .nt-card .body{position:static;left:auto;top:auto;right:auto;padding-right:8px;gap:4px;}
-  .nt-card .body .tt{order:-1;font-size:18px;line-height:24px;word-break:keep-all;}
-  .nt-card .body .sub{font-size:13px;line-height:18px;}
-  .nt-card .ic{right:14px;bottom:14px;width:40px;height:40px;}
-}
+/* ---------- phone frame ---------- */
+.frame{width:340px;max-width:82vw;border:2px solid var(--line-strong);border-radius:26px;background:#fff;overflow:hidden;}
+.frame.tall{height:auto;}
+.fx-header{display:flex;align-items:center;justify-content:space-between;padding:14px 16px 10px;border-bottom:1px solid #eee;}
+.fx-logo{width:56px;height:12px;background:#ddd;border-radius:3px;}
+.fx-icons{display:flex;gap:10px;}
+.fx-icons svg{stroke:#999;}
 
-/* ===== NOTICES / CUSTOMER CENTER (ne-books-mall-type3 동일 적용) ===== */
-.notices{background:var(--bg-gray);padding:80px 0;}
-.nt-inner{display:flex;gap:31px;align-items:flex-start;flex-wrap:wrap;}
-.notice-col{flex:689 1 0;min-width:340px;display:flex;flex-direction:column;gap:16px;}
-.notice-col .sec-title{text-align:left;}
-.sec-title{font-family:var(--display);font-weight:800;font-size:32px;line-height:40px;}
-.notice-list{display:flex;flex-direction:column;}
-.notice-list .item{min-height:60px;padding:12px 0;border-bottom:1px solid #dbdbdb;display:flex;align-items:center;justify-content:space-between;gap:12px;}
-.notice-list .item .t{font-weight:500;font-size:14px;color:var(--ink);}
-.notice-list .item .d{font-size:13px;color:#a9a9a9;text-align:right;white-space:nowrap;flex:none;}
-.cs-col{flex:640 1 0;min-width:320px;display:flex;flex-direction:column;}
-.cs-col .cs-cards{margin-top:16px;}
-.cs-col .sec-title{text-align:left;}
-.cs-cards{display:flex;flex-direction:column;gap:8px;}
-.cs-card{border:1px solid #dbdbdb;border-radius:16px;min-height:145px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:24px 24px 24px 32px;flex-wrap:wrap;}
-.cs-card .left{flex:0 1 auto;display:flex;flex-direction:column;gap:8px;}
-.cs-card .left .tel{font-family:var(--display);font-weight:400;font-size:20px;letter-spacing:.5px;color:var(--ink);}
-.cs-card .left .info .info-sep{display:none;}
-.cs-card .left .info{font-weight:500;font-size:13px;color:var(--sub);line-height:20px;}
-.cs-icons{display:flex;align-items:center;gap:40px;}
-.cs-box{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;position:relative;}
-.cs-box:not(:last-child)::after{content:"";position:absolute;right:-20px;top:0;bottom:0;width:1px;background:var(--line);}
-.cs-box .ico{width:45px;height:45px;}
-.cs-box span{font-weight:600;font-size:12px;color:var(--sub);line-height:18px;white-space:nowrap;}
-.sns{display:flex;gap:8px;}
-.cs-col .sns{margin-top:8px;}
-.sns .card{border:1px solid #dbdbdb;border-radius:16px;height:88px;flex:1 1 0;min-width:0;position:relative;}
-.sns .card .in{position:absolute;left:20px;right:20px;top:50%;transform:translateY(-50%);display:flex;align-items:center;justify-content:space-between;gap:8px;}
-.sns .card .in .lbl{font-size:13px;color:var(--sub);line-height:18px;}
-.sns .card .logo{width:36px;height:36px;border-radius:10px;overflow:hidden;flex:none;}
-.sns .card .logo img{width:100%;height:100%;object-fit:cover;}
-@media (max-width:1023px){
-  .notices{padding:40px 0;background:#fff;}
-  .nt-inner{flex-direction:column;gap:40px;}
-  .notice-col,.cs-col{min-width:0;width:100%;}
-  .notice-list .item{flex-direction:column;align-items:flex-start;gap:6px;min-height:0;padding:14px 0;}
-  .notice-list .item .d{text-align:left;font-size:12px;}
-  .notice-list .item:nth-child(4){display:none;}
-  .cs-card{flex-direction:column;align-items:stretch;gap:16px;border:0;border-radius:0;padding:0;min-height:0;}
-  .cs-card .left{flex:none;gap:6px;}
-  .cs-card .left .tel{font-size:24px;line-height:30px;}
-  .cs-card .left .info{font-size:13px;line-height:20px;white-space:nowrap;}
-  .cs-card .left .info br{display:none;}
-  .cs-card .left .info .info-sep{display:inline;color:#c4c4c4;margin:0 4px;}
-  .cs-icons{border:1px solid var(--line);border-radius:16px;padding:16px 0;gap:0;justify-content:space-around;}
-  .cs-box{flex:1 1 0;}
-  .cs-box:not(:last-child)::after{right:0;top:50%;bottom:auto;transform:translateY(-50%);width:1px;height:56px;}
-  .sns-title{margin-top:40px;text-align:left;}
-  .cs-col .sns{margin-top:16px;gap:8px;justify-content:space-between;flex-wrap:nowrap;}
-  .cs-col .sns .card{flex:none;}
-  .sns .card{border:0;height:auto;}
-  .sns .card .in{position:static;transform:none;left:auto;right:auto;top:auto;justify-content:flex-start;gap:12px;}
-  .sns .card .in .lbl{font-size:12px;line-height:18px;white-space:nowrap;}
-  .sns .card .in .lbl .sns-brand{display:none;}
-  .sns .card .logo{width:40px;height:40px;border-radius:11px;}
-}
-@media (max-width:560px){
-  .cs-card{padding:20px 24px;}
-  .cs-icons{gap:20px;}
-  .cs-box:not(:last-child)::after{right:-10px;}
-  .cs-box .ico{width:45px;height:45px;}
-}
+.search-bar{margin:12px 16px 0;border:1px solid var(--line);border-radius:8px;padding:10px 12px;display:flex;align-items:center;gap:8px;color:#aaa;font-size:12px;}
+.search-bar svg{flex:none;stroke:#aaa;}
+.search-bar.accent{border-color:var(--accent);color:#333;}
+.search-bar.accent svg{stroke:var(--accent);}
+.search-bar .hl{color:var(--accent);font-weight:700;}
+.search-bar .caret{display:inline-block;width:1px;height:13px;background:#999;margin-left:1px;}
 
-/* ===== FOOTER (ne-books-mall-type3 동일 적용) ===== */
-.footer{background:#0d0d0d;}
-.footer .container{width:100%;padding-inline:40px;box-sizing:border-box;}
-.foot-top{min-height:60px;border-bottom:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:8px 0;}
-.foot-nav{display:flex;align-items:center;flex-wrap:wrap;}
-.foot-nav a{color:#9a9a9a;font-size:13px;text-decoration:none;padding:0 16px;position:relative;}
-.foot-nav a:first-child{padding-left:0;}
-.foot-nav a:not(:last-child)::after{content:"";position:absolute;right:0;top:50%;transform:translateY(-50%);width:1px;height:10px;background:rgba(255,255,255,.18);}
-.foot-right{display:flex;gap:18px;align-items:center;flex-wrap:wrap;}
-.foot-right .ch{color:#c4c4c4;font-weight:700;font-size:13px;}
-.foot-right .yt{width:22px;height:22px;}
-.foot-right .fam{display:flex;gap:10px;align-items:center;color:#c4c4c4;font-size:13px;padding-left:8px;}
-.foot-right .fam .ic{width:13px;height:13px;}
-.foot-main{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;padding:24px 0 32px;}
-.foot-info p{font-size:13px;line-height:18.85px;color:#7e7e7e;}
-.foot-info p:nth-child(3){padding-top:4px;}
-.foot-info p:nth-child(4){padding-top:12px;}
-.foot-info .sep{color:rgba(255,255,255,.18);}
-.foot-info .lk{color:#9a9a9a;}
-.foot-logo{width:80px;height:24px;flex:none;}
-.foot-logo img{width:100%;height:100%;object-fit:contain;}
-@media (max-width:1023px){
-  .footer .container{padding:0;}
-  .foot-mo.only-mo{display:flex;flex-direction:column;gap:40px;padding:40px 20px;box-sizing:border-box;}
-  .foot-mo .fm-top{display:flex;align-items:center;justify-content:space-between;gap:16px;}
-  .foot-mo .fm-logo{width:80px;height:24px;flex:none;}
-  .foot-mo .fm-logo img{width:100%;height:100%;object-fit:contain;}
-  .foot-mo .fm-fam{display:inline-flex;align-items:center;gap:8px;color:#c4c4c4;font-size:13px;white-space:nowrap;}
-  .foot-mo .fm-fam .ic{width:13px;height:13px;}
-  .foot-mo .fm-nav{display:flex;flex-wrap:wrap;align-items:center;gap:6px 0;}
-  .foot-mo .fm-nav a{color:#7e7e7e;font-size:12px;line-height:1;text-decoration:none;padding:0 9px;}
-  .foot-mo .fm-nav a:first-child{padding-left:0;}
-  .foot-mo .fm-nav a:not(:last-child){border-right:1px solid rgba(169,169,169,.3);}
-  .foot-mo .fm-info{display:flex;flex-direction:column;gap:4px;}
-  .foot-mo .fm-info p{font-size:13px;line-height:18px;color:#7e7e7e;}
-  .foot-mo .fm-info .lk{color:#9a9a9a;text-decoration:underline;margin-left:8px;}
-  .foot-mo .fm-copy{font-size:13px;line-height:19px;color:#7e7e7e;}
-}
+.autocomplete{margin:2px 16px 0;border:1px solid var(--accent);border-top:none;border-radius:0 0 8px 8px;background:#fff;overflow:hidden;}
+.autocomplete li{padding:9px 12px;font-size:12px;color:#555;border-top:1px dashed #eee;}
+.autocomplete li b{color:var(--accent);}
 
-/* responsive */
-@media (max-width:1080px){
-  .n-grid{grid-template-columns:repeat(4,1fr);}
-  .n-store{grid-template-columns:1fr;} .n-store-prod{grid-template-columns:repeat(4,1fr);}
-}
-@media (max-width:720px){
-  .wrap{padding:0 16px;}
-  .n-hero-card{flex:0 0 100%;height:auto;min-height:220px;padding:22px 20px;}
-  .n-hero-card .htxt{max-width:60%;padding-top:0;}
-  .n-hero-card .htxt .flag{font-size:11px;padding:3px 10px;margin-bottom:8px;}
-  .n-hero-card .htxt h3{font-size:18px;line-height:1.32;}
-  .n-hero-card .htxt p{display:none;}
-  .n-hero-card .hcover{right:16px;padding-bottom:18px;}
-  .n-hero-card .hcover img{height:130px;max-height:92%;}
-  .n-hero-card .hcover.covers img{height:120px;}
-  .n-hero-card .hcover.illust img{height:138px;max-height:92%;}
-  .n-hero-card .hcart{width:26px;height:26px;} .n-hero-card .hcart svg{width:13px;height:13px;}
-  .n-grid,.n-store-prod{grid-template-columns:repeat(2,1fr);}
-  .n-sec-head h2{font-size:20px;}
+.ph{border:1px dashed var(--ph-line);background:var(--ph-bg);color:#999;display:flex;align-items:center;justify-content:center;font-size:11px;border-radius:6px;text-align:center;line-height:1.4;}
+
+.banner-ph{margin:12px 16px;height:64px;}
+
+.tabbar{display:flex;gap:8px;margin:14px 16px 0;}
+.tabbar .tab{flex:1;text-align:center;font-size:11.5px;padding:8px 0;border:1px solid var(--line);border-radius:7px;color:#999;}
+.tabbar .tab.active{border-color:var(--accent);color:var(--accent);font-weight:700;background:var(--accent-bg);}
+
+.section-title-sm{margin:16px 16px 8px;font-size:12.5px;font-weight:700;color:#444;display:flex;align-items:center;gap:6px;}
+.section-title-sm .new{font-size:9px;font-weight:800;color:#fff;background:var(--accent);border-radius:4px;padding:2px 5px;}
+
+.row-scroll{display:flex;gap:10px;margin:0 16px 14px;overflow-x:auto;}
+.book-ph{flex:none;width:58px;height:80px;font-size:10px;}
+.book-ph.sm{width:50px;height:70px;}
+
+.grade-row{margin:0 16px 12px;}
+.grade-row .grade-label{font-size:11px;color:#777;font-weight:700;margin-bottom:6px;}
+.grade-row .grade-label .fade-more{color:#bbb;font-weight:400;}
+
+.fade-bottom{position:relative;height:26px;margin-top:-26px;background:linear-gradient(to bottom, rgba(255,255,255,0), #fff);}
+.more-note{text-align:center;font-size:10.5px;color:#bbb;padding:8px 0 14px;}
+
+.icon-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px 6px;margin:16px 16px 18px;}
+.icon-cell{display:flex;flex-direction:column;align-items:center;gap:6px;}
+.icon-cell .ic{width:36px;height:36px;border:1px solid var(--line);border-radius:10px;display:flex;align-items:center;justify-content:center;}
+.icon-cell.accent .ic{border-color:var(--accent);}
+.icon-cell.accent .ic svg{stroke:var(--accent);}
+.icon-cell span{font-size:10px;color:#777;text-align:center;}
+.icon-cell.accent span{color:var(--accent);font-weight:700;}
+
+.widget-box{margin:12px 16px 16px;border:1.5px solid var(--accent);background:var(--accent-bg);border-radius:10px;padding:12px;}
+.widget-box .wt{font-size:11.5px;font-weight:800;color:var(--accent);margin-bottom:8px;display:flex;align-items:center;gap:5px;}
+.widget-box .wsearch{background:#fff;border:1px solid var(--accent);border-radius:7px;padding:8px 10px;font-size:11.5px;color:#999;display:flex;align-items:center;gap:6px;margin-bottom:10px;}
+.widget-box .wcards{display:flex;gap:8px;}
+.widget-box .wcard{flex:1;height:56px;font-size:10px;background:#fff;}
+
+.chip-row{display:flex;flex-wrap:wrap;gap:8px;margin:14px 16px 0;}
+.chip{font-size:11.5px;padding:7px 13px;border:1px solid var(--line);border-radius:20px;color:#888;}
+.chip.on{border-color:#333;color:#333;font-weight:700;background:#f4f4f4;}
+.chip.accent{border-color:var(--accent);color:var(--accent);font-weight:700;background:var(--accent-bg);}
+.chip-row-title{margin:16px 16px 0;font-size:11px;color:#999;display:flex;align-items:center;gap:6px;}
+
+.limit-note{margin:14px 16px;font-size:10.5px;color:#bbb;border-top:1px dashed #ddd;padding-top:10px;line-height:1.6;}
+
+.result-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 16px 18px;}
+.result-card{height:78px;font-size:10px;}
+
+.set-row{display:flex;gap:10px;margin:12px 16px 18px;overflow-x:auto;}
+.set-card{flex:none;width:150px;height:96px;border:1.5px solid var(--accent);background:var(--accent-bg);border-radius:10px;padding:10px;font-size:11px;color:#c1490f;display:flex;flex-direction:column;justify-content:space-between;}
+.set-card .cnt{font-size:9px;color:var(--accent);font-weight:700;}
+.set-card .new{align-self:flex-start;font-size:9px;font-weight:800;color:#fff;background:var(--accent);border-radius:4px;padding:2px 5px;}
+
+.plain-row{display:flex;gap:10px;margin:12px 16px 18px;overflow-x:auto;}
+
+.callout-wrap{position:relative;}
+.pin{position:absolute;display:flex;align-items:center;gap:5px;z-index:2;}
+.pin .dot{width:20px;height:20px;border-radius:50%;background:var(--accent);color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 3px #fff;}
+.pin .note{background:var(--ink);color:#fff;font-size:10px;padding:3px 8px;border-radius:5px;white-space:nowrap;}
+
+.overview-legend{margin-top:16px;}
+.overview-legend li{display:flex;gap:10px;align-items:flex-start;font-size:12px;color:#555;padding:9px 0;border-top:1px dashed var(--line);}
+.overview-legend li:first-child{border-top:none;}
+.overview-legend .dot{flex:none;width:20px;height:20px;border-radius:50%;background:var(--accent);color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:1px;}
+.overview-legend a{color:var(--accent);font-weight:700;}
+
+.footer-ph{margin:0 16px 18px;height:40px;}
+
+@media (max-width:760px){
+  .pair{gap:20px;}
 }
 </style>
 </head>
 <body>
 
-<!-- ===================== HEADER (ne-books-mall-type3 TOP & GNB 동일 적용) ===================== -->
-<header class="lheader">
-  <div class="container">
-    <div class="header-top">
-      <a class="logo" href="#"><img src="assets/header_logo_dark.png" alt="NE_Books"></a>
-      <div class="search-wrap">
-        <div class="search">
-          <input type="text" class="search-input" placeholder="필요한 교재, 3초 안에 찾기!" autocomplete="off">
-          <button type="button" class="search-ic ico" aria-label="검색"><img src="assets/ds_ic_search_red.svg" alt=""></button>
-          <div class="search-pop" hidden></div>
-        </div>
-        <div class="search-extra only-pc">
-          <a class="se-btn" href="#">맞춤교재찾기</a>
-          <a class="se-btn" href="#">추천커리큘럼</a>
-        </div>
-      </div>
-      <div class="head-icons">
-        <a class="head-ic" href="#"><span class="ico"><img src="assets/ic_login_d.svg" alt=""></span><span>로그인</span></a>
-        <div class="head-ic-wrap">
-          <a class="head-ic" href="#"><span class="ico"><img src="assets/ic_my_d.svg" alt=""></span><span>MY</span></a>
-          <div class="my-drop" role="menu">
-            <a href="#">홈</a>
-            <a href="#">주문내역</a>
-            <a href="#">포인트</a>
-            <a href="#">찜</a>
-            <a href="#">문의/답변</a>
-            <a href="#">후기</a>
-            <a href="#">이벤트/세미나</a>
-            <a href="#" class="logout">로그아웃</a>
-          </div>
-        </div>
-        <a class="head-ic cart-ic" href="#"><span class="ico"><img src="assets/ic_bag.svg" alt=""><span class="cart-badge" data-count="0" hidden>0</span></span><span>장바구니</span></a>
-        <div class="head-ic-wrap">
-          <a class="head-ic" href="#"><span class="ico"><img src="assets/ic_customer_d.svg" alt=""></span><span>고객센터</span></a>
-          <div class="my-drop cs-drop" role="menu">
-            <a href="#">공지사항</a>
-            <a href="#">FAQ</a>
-            <a href="#">이벤트/신간·개정/세미나</a>
-            <a href="#">교재 오류정정</a>
-            <a href="#">1:1문의</a>
-            <a href="#">지사안내</a>
-          </div>
-        </div>
-      </div>
-      <button class="m-menu" type="button" aria-label="전체메뉴"><img src="assets/ic_menu_line.svg" alt="전체메뉴"></button>
-    </div>
-    <div class="gnb">
-      <div class="gnb-in">
-        <span class="ico menu"><img src="assets/ds_ic_menu.svg" alt="전체메뉴"></span>
-        <nav>
-          <a href="#">ELT</a>
-          <a href="#">초/중등</a>
-          <a href="#">고등</a>
-          <a href="#">교과서/자습서</a>
-          <a href="#">수험/일반</a>
-          <a href="#">수학/국어</a>
-          <a class="c-blue" href="#">학습자료실</a>
-          <a class="c-red gnb-mall" href="#" data-cat="교재몰" aria-label="교재몰"><span class="gnb-roll"><span class="gr-track"><span class="gr-i">교재몰</span><span class="gr-i sub">지금 바로구매</span></span></span></a>
-        </nav>
-      </div>
-      <div class="gnb-drop" id="gnbDrop">
-        <div class="gd-cats"></div>
-      </div>
-    </div>
+<header class="page-header">
+  <h1>NE Books 메인 개편 — B테스트 후보 5종 와이어프레임</h1>
+  <p>10월 오픈은 A안(<b>ne-books-mall-type4</b>) 단독으로 확정됨. 아래 5개 화면은 오픈 후 실 트래픽으로 검증할 개선 후보의 Before(현재 A안 구조)/After(개선안) 저충실도 와이어프레임입니다. 색은 신규·변경 요소에만 accent 1색을 사용했습니다.</p>
+  <a class="base-link" href="https://ne-dichoi.github.io/mockup-pages/mockups/ne-books-mall-type4/" target="_blank" rel="noopener">참고용 실제 A안 목업 열기 →</a>
+  <div class="legend">
+    <a href="#overview"><span class="num">◎</span> 전체 개요</a>
+    <a href="#c1"><span class="num">1</span> 학년별 탭+스크롤</a>
+    <a href="#c2"><span class="num">2</span> 검색 자동완성</a>
+    <a href="#c3"><span class="num">3</span> 학습자료실 위젯</a>
+    <a href="#c4"><span class="num">4</span> 맞춤교재찾기 수준축</a>
+    <a href="#c5"><span class="num">5</span> 목적별 커리큘럼 SET</a>
   </div>
 </header>
 
-<!-- 모바일 전체메뉴 드로어 -->
-<div class="m-drawer" id="mDrawer" aria-hidden="true">
-  <div class="md-dim"></div>
-  <div class="md-panel">
-    <div class="md-top">
-      <a class="md-home" href="#" aria-label="홈"><img src="assets/ic_home_sub.svg" alt=""></a>
-      <span class="md-auth"><a href="#">로그인</a></span>
-      <div class="md-top-ic">
-        <button class="md-search" type="button" aria-label="검색"><img src="assets/ds_ic_search.svg" alt=""></button>
-        <a class="md-cart" href="#" aria-label="장바구니"><img src="assets/ic_bag.svg" alt=""></a>
-        <button class="md-x" type="button" aria-label="닫기"></button>
-      </div>
-    </div>
-    <div class="md-quick">
-      <a class="md-q" href="#"><span class="md-q-ic"><img src="assets/ic_float_recommend.svg" alt=""></span><span class="md-q-t">교재 추천</span></a>
-      <a class="md-q" href="#"><span class="md-q-ic"><img src="assets/ic_heart.svg" alt=""></span><span class="md-q-t">찜</span></a>
-      <a class="md-q" href="#"><span class="md-q-ic"><img src="assets/ic_res_doc.svg" alt=""></span><span class="md-q-t">주문내역</span></a>
-      <a class="md-q" href="#"><span class="md-q-ic"><img src="assets/ic_11.svg" alt=""></span><span class="md-q-t">1:1문의</span></a>
-    </div>
-    <div class="md-body">
-      <div class="md-cats" id="mdCats"></div>
-      <div class="md-subs" id="mdSubs"></div>
-    </div>
-  </div>
+<div class="fidelity-note">
+  <div class="box"><b>와이어프레임 수준 안내</b> — 실제 폰트·색상·이미지를 재현한 목업이 아니라, 구조와 흐름을 보여주기 위한 저충실도 와이어프레임입니다. 점선 테두리 사각형은 실제 이미지/아이콘 자리를 뜻하는 placeholder이며, 실기기 상태바·키보드는 그리지 않았습니다.</div>
 </div>
 
-<!-- ===================== HERO ===================== -->
-<section class="n-hero">
-  <div class="wrap">
-    <div class="n-hero-stage">
-      <div class="n-hero-track" id="heroTrack"></div>
-    </div>
-    <div class="n-hero-nav">
-      <button id="heroPrev">&#8249;</button>
-      <span class="pg"><span id="heroIdx">1</span> <b>/ <span id="heroTot">4</span></b></span>
-      <button id="heroNext">&#8250;</button>
-    </div>
-  </div>
-</section>
+<!-- ============ OVERVIEW ============ -->
+<section class="section" id="overview">
+  <div class="section-head"><span class="badge">◎</span><h2>전체 개요 — 현재 A안(type4) 메인 화면 지도</h2></div>
+  <p class="section-sub">아래 화면은 현재 A안 메인 구조이며, 번호는 이후 Before/After 후보가 위치하는 영역을 나타냅니다.</p>
 
-<!-- quick shortcuts -->
-<section class="n-quick">
-  <div class="wrap">
-    <div class="row">
-      <a href="#"><span class="ic"><img src="assets/ic_main_buy.svg" alt=""></span><span>교재구매</span></a>
-      <a href="#"><span class="ic"><img src="assets/ic_main_level.svg" alt=""></span><span>레벨차트</span></a>
-      <a href="#"><span class="ic"><img src="assets/ic_main_lib.svg" alt=""></span><span>학습자료</span></a>
-      <a href="#"><span class="ic"><img src="assets/ic_main_mp3down.svg" alt=""></span><span>정답·MP3</span></a>
-      <a href="#"><span class="ic"><img src="assets/ic_main_mp3listen.svg" alt=""></span><span>MP3듣기</span></a>
-      <a href="#"><span class="ic"><img src="assets/ic_main_engteacher.svg" alt=""></span><span>영어쌤</span></a>
-      <a href="#"><span class="ic"><img src="assets/ic_main_mathteacher.svg" alt=""></span><span>수학쌤</span></a>
-      <a href="#"><span class="ic"><img src="assets/ic_tutor_nelt.svg" alt=""></span><span>NELT</span></a>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== 큐레이션 ===================== -->
-<section class="n-sec lined">
-  <div class="wrap">
-    <div class="n-sec-head">
-      <div><h2>ELT</h2></div>
-      <a class="more" href="#">전체보기 ›</a>
-    </div>
-    <div class="n-tabs" id="curTabs"></div>
-    <div class="n-grid" id="curGrid"></div>
-  </div>
-</section>
-
-<!-- ===================== 추천 ===================== -->
-<section class="n-sec lined">
-  <div class="wrap">
-    <div class="n-sec-head">
-      <div><h2>초/중등</h2></div>
-      <a class="more" href="#">전체보기 ›</a>
-    </div>
-    <div class="n-tabs" id="recoTabs"></div>
-    <div class="n-grid" id="recoGrid"></div>
-  </div>
-</section>
-
-<!-- ===================== 손손이님을 위한 맞춤교재 (고등) ===================== -->
-<section class="n-sec lined">
-  <div class="wrap">
-    <div class="n-sec-head">
-      <div><h2>고등</h2></div>
-      <a class="more" href="#">전체보기 ›</a>
-    </div>
-    <div class="n-tabs" id="hsTabs"></div>
-    <div class="n-grid" id="hsGrid"></div>
-  </div>
-</section>
-
-<!-- ===================== 관심 시리즈 스토어 ===================== -->
-<section class="n-sec">
-  <div class="wrap">
-    <div class="n-sec-head">
-      <div>
-        <h2>가장 많이 찾는 인기 교재</h2>
-      </div>
-    </div>
-    <div class="n-store">
-      <div class="n-store-list" id="storeList"></div>
-      <div class="n-store-right">
-        <div class="n-store-prod" id="storeProd"></div>
-        <a class="n-store-home" href="#">시리즈홈 바로가기 ›</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== NETUTOR (선생님을 위한 티칭 플랫폼) ===================== -->
-<section class="netutor" id="sec-netutor">
-  <div class="nt-viewport">
-    <div class="nt-wrap" id="ntWrap">
-      <div class="nt-arc">
-        <img class="circle" src="assets/netutor_arc.svg" alt="">
-        <img class="dot" src="assets/netutor_dot.svg" alt="">
-      </div>
-      <div class="nt-hot" id="ntHot" title="스크롤하여 배너 이동"></div>
-      <div class="nt-center">
-        <div class="cap"><span class="cap-sub">선생님을 위한</span> <span class="cap-main">티칭 플랫폼</span><span class="cap-logo only-mo"><img src="assets/netutor_logo.svg" alt="NE_Tutor"></span></div>
-        <div class="logo only-pc"><img src="assets/netutor_logo.svg" alt="NE_Tutor" style="width:100%;height:100%;object-fit:contain;"></div>
-      </div>
-      <div class="nt-cards" id="ntCards">
-        <div class="nt-card">
-          <div class="body"><span class="sub">지도서/수업자료</span><span class="tt">E-Book・자료</span></div>
-          <span class="ic ico"><img src="assets/ic_tutor_ebook.svg" data-n="assets/ic_tutor_ebook.svg" data-w="assets/ic_tutor_ebook_w.svg" alt=""></span>
-        </div>
-        <div class="nt-card">
-          <div class="body"><span class="sub">시험지 자동 생성</span><span class="tt">어휘 문제 마법사</span></div>
-          <span class="ic ico"><img src="assets/ic_tutor_vocab.svg" data-n="assets/ic_tutor_vocab.svg" data-w="assets/ic_tutor_vocab_w.svg" alt=""></span>
-        </div>
-        <div class="nt-card">
-          <div class="body"><span class="sub">문제 무제한 출제</span><span class="tt">문법 문제뱅크</span></div>
-          <span class="ic ico"><img src="assets/ic_tutor_grammar.svg" data-n="assets/ic_tutor_grammar.svg" data-w="assets/ic_tutor_grammar_w.svg" alt=""></span>
-        </div>
-        <div class="nt-card">
-          <div class="body"><span class="sub">iBT 영어 레벨테스트</span><span class="tt">NELT</span></div>
-          <span class="ic ico"><img src="assets/ic_tutor_nelt.svg" data-n="assets/ic_tutor_nelt.svg" data-w="assets/ic_tutor_nelt_w.svg" alt=""></span>
-        </div>
-        <div class="nt-card">
-          <div class="body"><span class="sub">평가/오답 자동화</span><span class="tt">성취TEST</span></div>
-          <span class="ic ico"><img src="assets/ic_tutor_test.svg" data-n="assets/ic_tutor_test.svg" data-w="assets/ic_tutor_test_w.svg" alt=""></span>
-        </div>
-        <div class="nt-card">
-          <div class="body"><span class="sub">예문검색 1분컷</span><span class="tt">문법 예문 검색</span></div>
-          <span class="ic ico"><img src="assets/ic_tutor_search.svg" data-n="assets/ic_tutor_search.svg" data-w="assets/ic_tutor_search_w.svg" alt=""></span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== NOTICES / CUSTOMER CENTER ===================== -->
-<section class="notices">
-  <div class="wrap">
-    <div class="nt-inner">
-      <div class="notice-col">
-        <div class="sec-title">공지사항</div>
-        <div class="notice-list">
-          <div class="item"><span class="t">[필독] NE능률 개인정보 처리방침 개정 안내 (6/23 시행)</span><span class="d">2026. 07. 13</span></div>
-          <div class="item"><span class="t">[중요] NE능률-클래스카드 콘텐츠 제휴 지속 안내</span><span class="d">2026. 07. 13</span></div>
-          <div class="item"><span class="t">[안내] 절판(예정포함) 국어교재 (6/9 기준)</span><span class="d">2026. 07. 13</span></div>
-          <div class="item"><span class="t">[안내] 절판(예정포함) 국어교재 (6/9 기준)</span><span class="d">2026. 07. 13</span></div>
-        </div>
-      </div>
-      <div class="cs-col">
-        <div class="sec-title">고객센터</div>
-        <div class="cs-cards">
-          <div class="cs-card">
-            <div class="left"><span class="tel">1833-8368</span><span class="info">NE능률 고객센터<br><span class="info-sep">l</span>평일 9~16시 · 점심 12~13시</span></div>
-            <div class="cs-icons">
-              <div class="cs-box"><span class="ico"><img src="assets/ic_chat.svg" alt=""></span><span>채팅상담</span></div>
-              <div class="cs-box"><span class="ico"><img src="assets/ic_11.svg" alt=""></span><span>1:1문의</span></div>
-              <div class="cs-box"><span class="ico"><img src="assets/ic_faq.svg" alt=""></span><span>FAQ</span></div>
-              <div class="cs-box"><span class="ico"><img src="assets/ic_sms.svg" alt=""></span><span>문자상담</span></div>
+  <div class="pair">
+    <div class="frame-col">
+      <div class="callout-wrap">
+        <div class="frame tall">
+          <div class="fx-header">
+            <div class="fx-logo"></div>
+            <div class="fx-icons">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 2a6 6 0 0 0-6 6v4l-2 4h16l-2-4V8a6 6 0 0 0-6-6z"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
             </div>
           </div>
+
+          <div class="search-bar">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.6" y2="16.6"/></svg>
+            교재명, 시리즈명을 검색해보세요
+          </div>
+
+          <div class="ph banner-ph">배너</div>
+
+          <div class="section-title-sm">신간 · 베스트</div>
+          <div class="row-scroll">
+            <div class="ph book-ph">교재1</div>
+            <div class="ph book-ph">교재2</div>
+            <div class="ph book-ph">교재3</div>
+            <div class="ph book-ph">교재4</div>
+          </div>
+
+          <div class="icon-grid">
+            <div class="icon-cell"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/></svg></div><span>교재구매</span></div>
+            <div class="icon-cell"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/></svg></div><span>레벨차트</span></div>
+            <div class="icon-cell"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/></svg></div><span>학습자료</span></div>
+            <div class="icon-cell"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/></svg></div><span>정답·MP3</span></div>
+            <div class="icon-cell"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/></svg></div><span>MP3듣기</span></div>
+            <div class="icon-cell"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/></svg></div><span>영어쌤</span></div>
+            <div class="icon-cell"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/></svg></div><span>수학쌤</span></div>
+            <div class="icon-cell"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/></svg></div><span>NELT</span></div>
+          </div>
+
+          <div class="section-title-sm">학년별 바로가기</div>
+          <div class="grade-row">
+            <div class="grade-label">초1~2</div>
+            <div class="row-scroll" style="margin:0 0 10px;">
+              <div class="ph book-ph sm">교재</div><div class="ph book-ph sm">교재</div><div class="ph book-ph sm">교재</div>
+            </div>
+            <div class="grade-label">초3~4</div>
+            <div class="row-scroll" style="margin:0;">
+              <div class="ph book-ph sm">교재</div><div class="ph book-ph sm">교재</div><div class="ph book-ph sm">교재</div>
+            </div>
+          </div>
+          <div class="more-note">▾ 초5~6 / 중1~3 / 고1~3 계속 아래로 이어짐 ▾</div>
+
+          <div class="ph footer-ph">footer</div>
         </div>
-        <div class="sec-title only-mo sns-title">SNS</div>
-        <div class="sns">
-          <div class="card"><div class="in"><div class="lbl"><span class="sns-brand">NE능률<br></span>Lounge 카페</div><div class="logo"><img src="assets/sns_lounge.png" alt=""></div></div></div>
-          <div class="card"><div class="in"><div class="lbl"><span class="sns-brand">NE능률<br></span>인스타그램</div><div class="logo"><img src="assets/sns_instagram.png" alt=""></div></div></div>
-          <div class="card"><div class="in"><div class="lbl"><span class="sns-brand">NE능률<br></span>유튜브</div><div class="logo"><img src="assets/sns_youtube.svg" alt=""></div></div></div>
+
+        <div class="pin" style="top:100px; left:8px;"><span class="dot">2</span><span class="note">검색 자동완성</span></div>
+        <div class="pin" style="top:230px; left:8px;"><span class="dot">5</span><span class="note">목적별 SET로 교체</span></div>
+        <div class="pin" style="top:320px; right:8px;"><span class="dot">3</span><span class="note">학습자료실 위젯화</span></div>
+        <div class="pin" style="top:465px; left:8px;"><span class="dot">1</span><span class="note">탭+스크롤 개편</span></div>
+      </div>
+    </div>
+
+    <div class="frame-col" style="width:300px;max-width:82vw;">
+      <ul class="overview-legend">
+        <li><span class="dot">1</span><div><b>학년별 탭+스크롤 개편</b><br>학년 구간 세로 나열 → 탭 전환형. <a href="#c1">Before/After 보기 →</a></div></li>
+        <li><span class="dot">2</span><div><b>메인 검색 자동완성</b><br>입력만 되던 검색창에 추천 드롭다운 추가. <a href="#c2">Before/After 보기 →</a></div></li>
+        <li><span class="dot">3</span><div><b>학습자료실 검색 위젯</b><br>아이콘 메뉴 속 기능을 메인 위젯으로. <a href="#c3">Before/After 보기 →</a></div></li>
+        <li><span class="dot">4</span><div><b>맞춤교재찾기 수준축 추가</b><br>학년 축만 있던 하위 페이지에 수준 축 추가(별도 화면). <a href="#c4">Before/After 보기 →</a></div></li>
+        <li><span class="dot">5</span><div><b>목적별 커리큘럼 SET</b><br>낱권 신간·베스트 나열 → 목적 단위 SET 섹션. <a href="#c5">Before/After 보기 →</a></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 1. 학년별 탭+스크롤 ============ -->
+<section class="section" id="c1">
+  <div class="section-head"><span class="badge">1</span><h2>학년별 탭 + 스크롤 개편</h2></div>
+  <div class="info-box">
+    <div class="row"><span class="k">가설</span><span class="v">학년 구간을 세로 나열형에서 탭 전환형으로 바꾸면 스크롤 피로가 줄어 학년별 영역 재방문·클릭이 늘어난다.</span></div>
+    <div class="row"><span class="k">근거</span><span class="v">학년별 정보가 "도움된다" <b>73/80명(91.3%)</b>. 다만 학년 구간이 세로로 계속 이어져 하단 학년 도달에 스크롤 과다.</span></div>
+    <div class="row"><span class="k">측정</span><span class="v">학년 탭 클릭률 · 학년 영역 스크롤 도달률 · 탭 전환 후 이탈률</span></div>
+  </div>
+  <div class="pair">
+    <div class="frame-col">
+      <div class="frame-label before"><span class="tag">BEFORE</span>세로 나열, 계속 스크롤</div>
+      <div class="frame">
+        <div class="fx-header"><div class="fx-logo"></div></div>
+        <div class="section-title-sm" style="margin-top:14px;">학년별 바로가기</div>
+        <div class="grade-row">
+          <div class="grade-label">초1~2</div>
+          <div class="row-scroll" style="margin:0 0 10px;"><div class="ph book-ph sm">교재</div><div class="ph book-ph sm">교재</div><div class="ph book-ph sm">교재</div></div>
+          <div class="grade-label">초3~4</div>
+          <div class="row-scroll" style="margin:0 0 10px;"><div class="ph book-ph sm">교재</div><div class="ph book-ph sm">교재</div><div class="ph book-ph sm">교재</div></div>
+          <div class="grade-label">초5~6</div>
+          <div class="row-scroll" style="margin:0;"><div class="ph book-ph sm">교재</div><div class="ph book-ph sm">교재</div><div class="ph book-ph sm">교재</div></div>
         </div>
+        <div class="more-note">▾ 중1~3 / 고1~3 계속 아래로 이어짐 ▾</div>
+      </div>
+    </div>
+    <div class="frame-col">
+      <div class="frame-label after"><span class="tag">AFTER</span>탭 전환 + 가로 스크롤</div>
+      <div class="frame">
+        <div class="fx-header"><div class="fx-logo"></div></div>
+        <div class="tabbar">
+          <div class="tab active">초등저</div>
+          <div class="tab">초등고</div>
+          <div class="tab">중등</div>
+          <div class="tab">고등</div>
+        </div>
+        <div class="section-title-sm">초1~2 교재</div>
+        <div class="row-scroll">
+          <div class="ph book-ph">교재1</div><div class="ph book-ph">교재2</div><div class="ph book-ph">교재3</div><div class="ph book-ph">교재4</div>
+        </div>
+        <div class="limit-note">탭 선택 시 해당 구간 교재만 노출 — 세로 스크롤 없이 탭 전환만으로 학년 구간 이동</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===================== FOOTER ===================== -->
-<footer class="footer">
-  <div class="container">
-    <div class="foot-pc only-pc">
-      <div class="foot-top">
-        <div class="foot-nav">
-          <a href="#">개인정보처리방침</a><a href="#">이용약관</a><a href="#">이메일무단수집거부</a><a href="#">지사안내</a>
+<!-- ============ 2. 검색 자동완성 ============ -->
+<section class="section" id="c2">
+  <div class="section-head"><span class="badge">2</span><h2>메인 검색 자동완성</h2></div>
+  <div class="info-box">
+    <div class="row"><span class="k">가설</span><span class="v">첫 화면 검색 비중이 높다 — 자동완성으로 탐색 단계를 줄이면 검색 완료율·만족도가 오른다.</span></div>
+    <div class="row"><span class="k">근거</span><span class="v">일반 사용자 첫클릭 중 검색 <b>36~38%</b>(메뉴 다음). 학원장 후속설문에서는 <b>63.6~81.8%</b>가 검색으로 첫클릭.</span></div>
+    <div class="row"><span class="k">측정</span><span class="v">검색창 포커스율 · 자동완성 클릭 선택률 · 검색 후 상세진입률</span></div>
+  </div>
+  <div class="pair">
+    <div class="frame-col">
+      <div class="frame-label before"><span class="tag">BEFORE</span>입력만 되는 검색창</div>
+      <div class="frame">
+        <div class="fx-header"><div class="fx-logo"></div></div>
+        <div class="search-bar">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.6" y2="16.6"/></svg>
+          교재명, 시리즈명을 검색해보세요
         </div>
-        <div class="foot-right">
-          <span class="ch">Ch</span>
-          <span class="yt ico"><img src="assets/footer_youtube.svg" alt="유튜브"></span>
-          <span class="fam">FAMILY SITE <span class="ic ico"><img src="assets/footer_familysite.svg" alt=""></span></span>
-        </div>
-      </div>
-      <div class="foot-main">
-        <div class="foot-info">
-          <p>㈜NE능률 (03925) 서울특별시 마포구 월드컵북로 396(상암동) 누리꿈스퀘어 비즈니스타워 10층 <span class="sep">|</span> 대표이사 : 이정진 <span class="sep">|</span> 대표번호 : 02-2014-7114 <span class="lk">사업별 고객센터 안내</span></p>
-          <p>팩스 : 02-337-4956 <span class="sep">|</span> 고객센터 : 1833-8368 <span class="sep">|</span> 사업자등록번호 : 105-81-65267 <span class="sep">|</span> 통신판매신고번호 : 제2004-02120호 <span class="lk">정보조회</span></p>
-          <p>개인정보 보호책임자(CPO) : 선민재(necpo@neungyule.com)</p>
-          <p>Copyright ⓒ NE Neungyule, Inc. All Rights Reserved</p>
-        </div>
-        <div class="foot-logo"><img src="assets/footer_logo.png" alt="NE능률"></div>
+        <div class="ph" style="margin:60px 16px;height:120px;">자동완성 없음<br>커서만 표시</div>
       </div>
     </div>
-    <div class="foot-mo only-mo">
-      <div class="fm-top">
-        <div class="fm-logo"><img src="assets/footer_logo.png" alt="NE능률"></div>
-        <span class="fm-fam">FAMILY SITE <span class="ic ico"><img src="assets/footer_familysite.svg" alt=""></span></span>
+    <div class="frame-col">
+      <div class="frame-label after"><span class="tag">AFTER</span>입력 중 추천 드롭다운</div>
+      <div class="frame">
+        <div class="fx-header"><div class="fx-logo"></div></div>
+        <div class="search-bar accent">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.6" y2="16.6"/></svg>
+          그래머<span class="caret"></span>
+        </div>
+        <ul class="autocomplete">
+          <li><b>그래머</b> 비기너 1</li>
+          <li><b>그래머</b> 비기너 2</li>
+          <li><b>그래머</b> 인사이드 스타터</li>
+          <li><b>그래머</b> 캐치 업 중등</li>
+        </ul>
+        <div class="limit-note" style="margin-top:16px;">입력한 글자를 포함한 교재명·시리즈명이 즉시 드롭다운으로 노출</div>
       </div>
-      <div class="fm-nav">
-        <a href="#">개인정보처리방침</a><a href="#">이용약관</a><a href="#">이메일무단수집거부</a><a href="#">지사안내</a>
-      </div>
-      <div class="fm-info">
-        <p>㈜NE능률 (03925) 서울특별시 마포구 월드컵북로 396(상암동) 누리꿈스퀘어 비즈니스타워 10층</p>
-        <p>대표이사 : 이정진</p>
-        <p>대표번호 : 02-2014-7114 <a class="lk" href="#">사업별 고객센터 안내</a></p>
-        <p>팩스 : 02-337-4956</p>
-        <p>고객센터 : 1833-8368</p>
-        <p>사업자등록번호 : 105-81-65267</p>
-        <p>통신판매신고번호 : 제2004-02120호 <a class="lk" href="#">정보조회</a></p>
-        <p>개인정보 보호책임자(CPO) : 선민재(necpo@neungyule.com)</p>
-      </div>
-      <div class="fm-copy">Copyright ⓒ NE Neungyule, Inc. All Rights Reserved</div>
     </div>
   </div>
-</footer>
+</section>
 
-<script>
-/* ================= DATA ================= */
-function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+<!-- ============ 3. 학습자료실 위젯 ============ -->
+<section class="section" id="c3">
+  <div class="section-head"><span class="badge">3</span><h2>학습자료실 검색 위젯</h2></div>
+  <div class="info-box">
+    <div class="row"><span class="k">가설</span><span class="v">학습자료실을 아이콘 메뉴 안에 숨기지 않고 메인에 검색형 위젯으로 노출하면 자료 접근까지의 단계가 줄어 활성도가 오른다.</span></div>
+    <div class="row"><span class="k">근거</span><span class="v">담당자 개선 아이디어 — "메인 어디 영역에 자료검색 영역을 두어 교재명을 검색해 자동검색 기능으로 바로 보여줄 수 있다."</span></div>
+    <div class="row"><span class="k">측정</span><span class="v">위젯 검색 실행률 · 자료 다운로드 전환율 · 기존 메뉴 진입 대비 소요 클릭수</span></div>
+  </div>
+  <div class="pair">
+    <div class="frame-col">
+      <div class="frame-label before"><span class="tag">BEFORE</span>아이콘 메뉴 속에 존재</div>
+      <div class="frame">
+        <div class="fx-header"><div class="fx-logo"></div></div>
+        <div class="search-bar">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.6" y2="16.6"/></svg>
+          교재명, 시리즈명을 검색해보세요
+        </div>
+        <div class="icon-grid">
+          <div class="icon-cell"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/></svg></div><span>교재구매</span></div>
+          <div class="icon-cell"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/></svg></div><span>레벨차트</span></div>
+          <div class="icon-cell"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/></svg></div><span>학습자료</span></div>
+          <div class="icon-cell"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/></svg></div><span>정답·MP3</span></div>
+        </div>
+        <div class="limit-note">자료를 찾으려면 메뉴 진입 → 목록 탐색 → 교재 선택의 3단계</div>
+      </div>
+    </div>
+    <div class="frame-col">
+      <div class="frame-label after"><span class="tag">AFTER</span>메인 검색형 위젯 노출</div>
+      <div class="frame">
+        <div class="fx-header"><div class="fx-logo"></div></div>
+        <div class="search-bar">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.6" y2="16.6"/></svg>
+          교재명, 시리즈명을 검색해보세요
+        </div>
+        <div class="widget-box">
+          <div class="wt"><span class="new" style="background:var(--accent);">NEW</span>학습자료실 바로검색</div>
+          <div class="wsearch">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.6" y2="16.6"/></svg>
+            교재명을 입력하세요
+          </div>
+          <div class="wcards">
+            <div class="ph wcard">자료1</div>
+            <div class="ph wcard">자료2</div>
+            <div class="ph wcard">자료3</div>
+          </div>
+        </div>
+        <div class="limit-note">검색 즉시 해당 교재의 학습자료 카드가 바로 노출</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-/* ===== HEADER: GNB 메가메뉴 + 모바일 전체메뉴 드로어 (ne-books-mall-type3 동일 로직) ===== */
-(function(){
-  var gnb=document.querySelector('.gnb');
-  var drop=document.getElementById('gnbDrop');
-  if(gnb && drop){
-    var items=[].slice.call(gnb.querySelectorAll('nav a'));
-    var MENU={
-      'ELT':['Coursebook','Phonics','Readers','Reading','Listening','Speaking','Writing','Grammar','Vocabulary'],
-      '초/중등':['중학내신','고등선행','어휘','Phonics','쓰기','독해','듣기','문법/구문','TOEFL/TEPS/NELT'],
-      '고등':['어휘','독해','듣기','문법/구문','수능대비','고교내신','단기특강','TOEFL/TEPS/NELT'],
-      '교과서/자습서':['중학영어 교과서','고등영어 교과서','수학 교과서','중국어/일본어'],
-      '수험/일반':['TOEIC','TOEIC Speaking/Writing','TOEFL/OPIC/TEPS','FLEX','일반영어'],
-      '수학/국어':['유아','초등','중등','고등'],
-      '학습자료실':['서브메인','ELT자료','초/중등교재 자료','고등교재 자료','교과서/자습서 자료','수험/일반 자료','수학/국어 자료'],
-      '교재몰':['ELT','초/중등','고등영어 교과서','교과서/자습서','수험/일반','교구/부가상품','세트/패키지','온라인 서비스/이용권']
-    };
-    var T2DEPTH={
-      'ELT':['Coursebook','Phonics','Readers','Reading','Listening','Speaking','Writing','Grammar','Vocabulary'],
-      '초/중등':['중학내신','고등선행','어휘','Phonics','쓰기','독해','듣기','문법/구문','TOEFL/TEPS/NELT'],
-      '고등':['어휘','독해','듣기','문법/구문','수능대비','고교내신','단기특강','TOEFL/TEPS/NELT'],
-      '교과서/자습서':['중학영어 교과서','고등영어 교과서','수학 교과서','중국어/일본어'],
-      '수험/일반':['TOEIC','TOEIC SPEAKING/WRITING','TOEFL/OPIC/TEPS','FLEX','일반영어'],
-      '수학/국어':['유아','초등','중등','고등']
-    };
-    var T3DEPTH={
-      'ELT':{
-        'Coursebook':['Oxford Show&Tell','Oxford Discover','English Time','Magic Time','Oxford Pic, Dic.','Up & Away in Eng.','Starlight','Grammar For Schools','Shine On!','Learn English with Dora','Come On Everyone','Buzz','Beehive American','Shine On! Plus','Toy Team Plus','Blue Dot','Little Blue Dot'],
-        'Phonics':['Phonics Show','Come On, Phonics','Phonics Code'],
-        'Readers':['Dolphins Readers','Classic Tales','Dominoes','Reading Stars','Fly Frog','Show Time'],
-        'Reading':['Reading Comprehension','Reading Skills','Contents Area Reading','Curriculum Integration Reading','Reading Sketch','Reading Sense','Reading Source','Reading Sponge','Read Up','Reading Peak','Reading Clue','Read & Retell','The Basic Way','Read to Reach','The Best Way','Subject Link','Subject Link (2nd Edition)','Insight Link','Easy Link','Read It'],
-        'Listening':['Listening Season','Listening Planner','Listening Seed','Listening Stage','Listening Stage Plus'],
-        'Speaking':['Everyone, Speak!','Speaking Stage'],
-        'Writing':['Write Right','Write It!'],
-        'Grammar':['The Grammar Lab','Grammar For Schools','Grammar Space','Grammar in Focus','Grammar in Mind','Grammar Effect','Grammar Ten','Grammar Stage','요즘 초등 영문법'],
-        'Vocabulary':['요즘 초등 영단어','Word Up']
-      },
-      '초/중등':{
-        '중학내신':['1316 팬클럽','능률중학영어','능률 중학영어듣기','쓰기로 마스터하는 중학 서술형','자습서','평가문제집/내신백신'],
-        '고등선행':['첫 번째 수능 영어'],
-        '어휘':['능률VOCA 중등','능률VOCA 초등','능률VOCA 어원','초등영어 단어가 된다','초등영어 사이트 워드가 된다'],
-        'Phonics':['초등영어 파닉스가 된다','초등영어 사이트 워드가 된다'],
-        '쓰기':['달곰한 Sentence Writing','Writing Builder','쓰기로 마스터하는 중학서술형'],
-        '독해':['초등영어 리딩이 된다','열중 16강 독해+문법','주니어 리딩튜터','1316 Reading','정말 기특한 구문독해','Reading Forward','리딩튜터','Reading Expert','리딩버디','Reading Inside','Junior Reading Expert','RADIX READING for the TOEFL iBT','* 원서형 교재','첫 번째 수능 영어 (첫수)','주니어 리딩튜터 스타터','수능 딥독','달곰한 Literacy Reading'],
-        '듣기':['Junior Listening Expert','1316 Listening','주니어 리스닝튜터','능률 중학영어 듣기 모의고사','리스닝버디','초등영어 리스닝튜터','RADIX LISTENING for the TOEFL iBT','* 원서형 교재','능률 초등영어 듣기 모의고사'],
-        '문법/구문':['초등 Grammar Inside','초등영어 문법이 된다','Grammar zone','문마중(문제로 마스터하는 중학 영문법)','Grammar Inside','열중 16강 문법','그래머 버디','Grammar Bean','고득점 독해를 위한 중학 구문 마스터','원리를 더한 영문법','중학영문법 총정리 모의고사','1316 Grammar','능률중학영어','천문장','NELT 문법 실전 모의고사','중학영문법 Link','Grammar Ten','Grammar Effect'],
-        'TOEFL/TEPS/NELT':['RADIX (for the TOEFL iBT)','TEPS BY STEP','NELT']
-      },
-      '고등':{
-        '어휘':['능률VOCA 고등','다빈출코드','능률VOCA 어원','특급 수능·EBS 기출 VOCA'],
-        '독해':['Advanced Reading Expert','Reading Expert','리딩튜터','빠른독해 바른독해','능률 고급영문독해','기본을 강하게 잡아주는 고등영어 (독해)','다빈출코드 (독해)','The 상승 (독해)','수능유형 PICK (독해)','특급 독해','얇고 빠른 미니 모의고사','이명학의 리드미컬'],
-        '듣기':['리스닝튜터','Listening Expert','수능만만 (듣기)','특급 듣기','다빈출코드 (듣기)','수능유형 PICK (듣기)'],
-        '문법/구문':['기본을 강하게 잡아주는 고등영어 (문법)','The 상승','Grammar zone','문마고(문제로 마스터하는 고등 영문법)','필히 통하는 고등영문법','다빈출코드','올클 수능 어법','능률기본영어','필히 통하는 고등 서술형','수능 구문 빅데이터','천문장','특급 어법','NELT 문법 실전 모의고사'],
-        '수능대비':['얇고 빠른 미니 모의고사','수능만만','수능 1 Up','다빈출코드','능률기본영어','맞수','잡아라! 유형','The 상승','특별한 1등급 커리타기 특급','수능구문 빅데이터','EBS 수능특강 변형문제','섹션뽀개기','수능유형 PICK'],
-        '고교내신':['자습서','내신 100신 기출 예상 문제집','내신평정 평가문제집','내신 기출 예상문제집'],
-        '단기특강':['맞수'],
-        'TOEFL/TEPS/NELT':['NELT','TEPS BY STEP']
-      },
-      '교과서/자습서':{
-        '중학영어 교과서':['교과서','자습서','문제집','1학년','2학년','3학년'],
-        '고등영어 교과서':['2022 개정 교과서','2022 개정 자습서','2015 개정 교과서','2015 개정 자습서','문제집','심화영어','영어권문화/진로영어','고등영어(김)','고등영어1','고등영어2','기본영어','English Critical Reading','실용영어','고등영어(양)','영어 독해와작문','영어회화','수학'],
-        '수학 교과서':['교과서','자습서/문제집'],
-        '중국어/일본어':['자습서','교과서']
-      },
-      '수험/일반':{
-        'TOEIC':['토마토 TOEIC LC','토마토 TOEIC RC','토마토 TOEIC 실전','토마토 TOEIC Voca','TOEIC 입문','33토익 실전','33토익','토마토 토익','토마토 TOEIC DIRECT','토마토 COMPACT','토마토 TOEIC','토마토 BASIC','토마토 INTENSIVE','토마토 TOEIC FINISH 1000제','토마토 COMBO'],
-        'TOEIC SPEAKING/WRITING':['입문','중급/고급','토마토 TOEIC','토마토 WRITING FLOW','토마토 SPEAKING'],
-        'TOEFL/OPIC/TEPS':['토마토 TOEFL 입문','토마토 TOEFL 중급/고급','토마토 TOEFL 실전/Voca','토마토 TOEFL iBT'],
-        'FLEX':['FLEX 영어수험서'],
-        '일반영어':['TOMATALK','능률롱맨','사전에 길이 있다','능률 JUNIOR','능률한영사전','The Grammar Guide','토마토 GRAMMARing']
-      },
-      '수학/국어':{
-        '유아':['사고셈','세 마리 토끼 잡는 독서 논술','세 마리 토끼 잡는 초등 어휘','세 마리 토끼 잡는 급수 한자','세 마리 토끼 잡는 역사 탐험'],
-        '초등':['달곰한 계산력','사고셈','월등한 개념 수학','수능까지 이어지는 초등 고학년 수학','수학의 고수','세 마리 토끼 잡는 초등 어휘','세 마리 토끼 잡는 독서 논술','세 마리 토끼 잡는 초등 한국사','세 마리 토끼 잡는 급수 한자','세 마리 토끼 잡는 초등 독해력','세 마리 토끼 잡는 쓰기','달곰한 문해력 초등 독해','달곰한 문해력 초등 어휘','달곰한 문해력 기본서','달곰한 문해력 초등 문법'],
-        '중등':['중등 각','월등한 개념 수학','월등한 개념 수학 기본+','월등한 개념 수학 실력+','유형 더블','수학에 심장을 달다','수학의 고수','테크닉','한 번에 수능까지 완성하는 중학국어'],
-        '고등':['고등 각','수능 기출 각','스코어','HIGH-END (내신)','HIGH-END (수능)','수능엔유형','시험직전R','해설의 역습','EBS 수능특강 변형문제']
-      }
-    };
-    var GPROMO='<a class="gd-promo" href="#"><span class="img" style="background-image:url(\'assets/banner_books.png\'),linear-gradient(160deg,#1f9d63,#137a45)"></span><span class="tit">신간 출시, 지금 만나보세요</span><span class="desc">새롭게 출간된 교재를 가장 먼저 확인하세요 &#8250;</span></a>';
-    var closeT;
-    function open3Depth(a,name){
-      var two=T2DEPTH[name]||MENU[name]||[];
-      var d3map=T3DEPTH[name]||{};
-      var cols='<div class="gd-col"><p class="gd-col-t">'+name+'</p><div class="items">'
-        +two.map(function(t){ return '<a class="t2d" href="#">'+t+'</a>'; }).join('')+'</div></div>';
-      var threed='<div class="gd-3depth" id="tmega3d"></div>';
-      drop.innerHTML='<div class="tmega-cols">'+cols+'</div>'+threed+GPROMO;
-      drop.classList.remove('mega'); drop.classList.add('tmega');
-      items.forEach(function(x){ x.classList.toggle('on',x===a); });
-      drop.classList.add('open');
-      var box=drop.querySelector('#tmega3d'), links=[].slice.call(drop.querySelectorAll('.t2d'));
-      function show3(x){
-        var lbl=x.textContent.trim(), list=d3map[lbl]||[];
-        box.innerHTML='<h5>'+lbl+'</h5>'+list.map(function(s){ return '<a href="#">'+s+'</a>'; }).join('');
-        links.forEach(function(y){ y.classList.toggle('t2d-on',y===x); });
-      }
-      links.forEach(function(x){ x.addEventListener('mouseenter',function(){ show3(x); }); });
-      if(links.length) show3(links[0]);
-      var gw=gnb.getBoundingClientRect().width; var ml=Math.round((gw-drop.offsetWidth)/2); drop.style.left=(ml>0?ml:0)+'px';
-    }
-    function openFor(a){
-      var name=a.getAttribute('data-cat')||a.textContent.trim();
-      var mega=(name==='학습자료실'||name==='교재몰');
-      if(!mega && T3DEPTH[name]){ open3Depth(a,name); return; }
-      if(mega){
-        var COLS=[['ELT','Coursebook','Phonics','Reading','Readers','Listening','Speaking','Grammar','Writing','Vocabulary'],['초등/중등','중학 내신','고등 선행','파닉스','어휘','쓰기','독해','듣기','문법/구분','TOEFL/TEPS/NELT'],['고등','어휘','독해','듣기','문법/구분','수능 대비','고교 내신','단기 특강','TOEFL/TEPS/NELT'],['교과서/자습서','중학영어 교과서','고등영어 교과서','수학 교과서','중국어/일본어'],['수험/일반','TOEIC','TOEIC SPEAKING|/WRITING','TOEFL/OPIC/TEPS','FLEX','일반영어'],['수학/국어','유아','초등','중등','고등']];
-        drop.innerHTML=COLS.map(function(c){ return '<div class="gd-col"><p class="gd-col-t">'+c[0]+'</p><div class="items">'+c.slice(1).map(function(i){ return '<a href="#">'+i.replace('|','<br>')+'</a>'; }).join('')+'</div></div>'; }).join('')+GPROMO;
-        drop.classList.remove('tmega'); drop.classList.add('mega');
-      } else {
-        var list=MENU[name]; if(!list){ hideGnb(); return; }
-        drop.innerHTML='<div class="gd-cats">'+list.map(function(t){ return '<a href="#">'+t+'</a>'; }).join('')+'</div>'+GPROMO;
-        drop.classList.remove('mega'); drop.classList.remove('tmega');
-      }
-      items.forEach(function(x){ x.classList.toggle('on',x===a); });
-      drop.classList.add('open');
-      if(mega){ var gw=gnb.getBoundingClientRect().width; var ml=Math.round((gw-drop.offsetWidth)/2); drop.style.left=(ml>0?ml:0)+'px'; }
-      else{
-        var gr=gnb.getBoundingClientRect(), ir=a.getBoundingClientRect();
-        var left=Math.round(ir.left-gr.left-24);
-        var maxLeft=Math.round(gr.width-drop.offsetWidth);
-        if(left>maxLeft) left=maxLeft; if(left<0) left=0;
-        drop.style.left=left+'px';
-      }
-    }
-    function hideGnb(){ drop.classList.remove('open'); items.forEach(function(x){ x.classList.remove('on'); }); }
-    items.forEach(function(a){
-      a.addEventListener('mouseenter',function(){ clearTimeout(closeT); openFor(a); });
-      a.addEventListener('click',function(e){ if(MENU[a.getAttribute('data-cat')||a.textContent.trim()]){ e.preventDefault(); openFor(a); } });
-    });
-    gnb.addEventListener('mouseleave',function(){ closeT=setTimeout(hideGnb,160); });
-    gnb.addEventListener('mouseenter',function(){ clearTimeout(closeT); });
-    document.addEventListener('click',function(e){ if(!gnb.contains(e.target)) hideGnb(); });
-  }
+<!-- ============ 4. 맞춤교재찾기 수준축 ============ -->
+<section class="section" id="c4">
+  <div class="section-head"><span class="badge">4</span><h2>맞춤교재찾기 — 수준(레벨) 축 추가</h2></div>
+  <div class="info-box">
+    <div class="row"><span class="k">가설</span><span class="v">학년만으로 교재를 좁히지 못하는 사용자가 있다 — 학년 옆에 수준 축을 더하면 이탈 없이 원하는 교재에 도달한다.</span></div>
+    <div class="row"><span class="k">근거</span><span class="v">"학년별이 아닌 수준별 수업이어서", "영어과목은 개별진도라 학년이 의미 없다", "초등/중등 카테고리를 몰라 두세 번 찾게 된다."</span></div>
+    <div class="row"><span class="k">측정</span><span class="v">수준 필터 사용률 · 필터 적용 후 재탐색(뒤로가기) 감소율</span></div>
+  </div>
+  <div class="pair">
+    <div class="frame-col">
+      <div class="frame-label before"><span class="tag">BEFORE</span>학년 축만 존재</div>
+      <div class="frame">
+        <div class="fx-header"><div class="fx-logo"></div><span style="font-size:12px;color:#999;">맞춤교재찾기</span></div>
+        <div class="chip-row-title">학년 선택</div>
+        <div class="chip-row">
+          <div class="chip on">초1</div><div class="chip">초2</div><div class="chip">초3</div><div class="chip">초4</div><div class="chip">초5</div>
+        </div>
+        <div class="result-grid">
+          <div class="ph result-card">결과1</div><div class="ph result-card">결과2</div><div class="ph result-card">결과3</div>
+        </div>
+        <div class="limit-note">"학년만으로는 맞지 않을 수 있어요" — 한계를 텍스트로만 안내</div>
+      </div>
+    </div>
+    <div class="frame-col">
+      <div class="frame-label after"><span class="tag">AFTER</span>학년+수준 두 축</div>
+      <div class="frame">
+        <div class="fx-header"><div class="fx-logo"></div><span style="font-size:12px;color:#999;">맞춤교재찾기</span></div>
+        <div class="chip-row-title">학년 선택</div>
+        <div class="chip-row">
+          <div class="chip on">초1</div><div class="chip">초2</div><div class="chip">초3</div><div class="chip">초4</div><div class="chip">초5</div>
+        </div>
+        <div class="chip-row-title"><span class="new" style="background:var(--accent);color:#fff;font-size:9px;font-weight:800;border-radius:4px;padding:2px 5px;">NEW</span>수준 선택</div>
+        <div class="chip-row">
+          <div class="chip accent">입문</div><div class="chip">초급</div><div class="chip">중급</div><div class="chip">고급</div><div class="chip">심화</div>
+        </div>
+        <div class="result-grid">
+          <div class="ph result-card">결과1</div><div class="ph result-card">결과2</div>
+        </div>
+        <div class="limit-note">학년+수준 두 축으로 결과를 좁혀 원하는 교재에 더 빠르게 도달</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-  var BOOKCATS=[
-    {name:'ELT', subs:['Coursebook','Phonics','Reading','Readers','Listening','Speaking','Grammar','Writing','Vocabulary']},
-    {name:'초등/중등', subs:['중학내신','고등선행','어휘','Phonics','쓰기','독해','듣기','문법/구문','TOEFL/TEPS/NELT']},
-    {name:'고등', subs:['어휘','독해','듣기','문법/구문','수능대비','고교내신','단기특강','TOEFL/TEPS/NELT']},
-    {name:'교과서/자습서', subs:['중학영어 교과서','고등영어 교과서','수학교과서','중국어/일본어']},
-    {name:'수험/일반', subs:['TOEIC','TOEIC SPEAKING/WRITING','TOEFL/OPIC/TEPS','FLEX','일반영어']},
-    {name:'수학/국어', subs:['유아','초등','중등','고등']}
-  ];
-  var MENU2=BOOKCATS.concat([
-    {name:'학습자료실', accordion:true},
-    {name:'교재몰', accordion:true},
-    {name:'고객센터', subs:['공지사항','FAQ','이벤트/신간·개정/세미나','교재 오류정정','1:1문의','지사안내']},
-    {name:'마이페이지', subs:['홈','주문내역','포인트','찜','문의/답변','후기','이벤트/세미나']}
-  ]);
-  var drawer=document.getElementById('mDrawer');
-  if(drawer){
-    var catsEl=drawer.querySelector('#mdCats'), subsEl=drawer.querySelector('#mdSubs');
-    var menuBtn=document.querySelector('.m-menu');
-    var closeX=drawer.querySelector('.md-x');
-    var active=0;
-    function render(){
-      catsEl.innerHTML=MENU2.map(function(m,i){ return '<button type="button" class="md-cat'+(i===active?' on':'')+'" data-i="'+i+'">'+m.name+'</button>'; }).join('');
-      var m=MENU2[active];
-      if(m.accordion){
-        subsEl.innerHTML=BOOKCATS.map(function(c){
-          return '<div class="md-acc open"><button type="button" class="md-acc-h">'+c.name+'<span class="md-acc-ic" aria-hidden="true"></span></button>'
-            +'<div class="md-acc-body">'+c.subs.map(function(s){ return '<a class="md-sub" href="#">'+s+'</a>'; }).join('')+'</div></div>';
-        }).join('');
-      } else {
-        subsEl.innerHTML=m.subs.map(function(s){ return '<a class="md-sub" href="#">'+s+'</a>'; }).join('');
-      }
-    }
-    catsEl.addEventListener('click',function(e){ var b=e.target.closest('.md-cat'); if(!b)return; active=+b.dataset.i; render(); subsEl.scrollTop=0; });
-    subsEl.addEventListener('click',function(e){
-      var h=e.target.closest('.md-acc-h'); if(h){ h.parentElement.classList.toggle('open'); return; }
-      if(e.target.closest('.md-sub')) close();
-    });
-    function open(){ drawer.classList.add('open'); drawer.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
-    function close(){ drawer.classList.remove('open'); drawer.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
-    if(menuBtn) menuBtn.addEventListener('click',open);
-    var pcMenuBtn=document.querySelector('.gnb-in .ico.menu');
-    if(pcMenuBtn){ pcMenuBtn.style.cursor='pointer'; pcMenuBtn.addEventListener('click',open); }
-    if(closeX) closeX.addEventListener('click',close);
-    var dim=drawer.querySelector('.md-dim'); if(dim) dim.addEventListener('click',close);
-    document.addEventListener('keydown',function(e){ if(e.key==='Escape' && drawer.classList.contains('open')) close(); });
-    render();
-  }
-})();
+<!-- ============ 5. 목적별 커리큘럼 SET ============ -->
+<section class="section" id="c5">
+  <div class="section-head"><span class="badge">5</span><h2>목적별 커리큘럼 SET 노출</h2></div>
+  <div class="info-box">
+    <div class="row"><span class="k">가설</span><span class="v">교재를 낱권이 아니라 '목적' 단위로 묶어 먼저 보여주면 신규 검토 단계의 탐색 부담이 줄어 관심 전환이 늘어난다.</span></div>
+    <div class="row"><span class="k">근거</span><span class="v">1차 학원장·인플루언서 정성 인터뷰 9명 중 <b>6명</b>이 "신규 교재 검토 시 목적별로 묶인 세트를 가장 먼저 보고 싶다"고 응답.</span></div>
+    <div class="row"><span class="k">측정</span><span class="v">SET 카드 클릭률 · SET → 개별 교재 상세 전환율 · 신규 카테고리 체류시간</span></div>
+  </div>
+  <div class="pair">
+    <div class="frame-col">
+      <div class="frame-label before"><span class="tag">BEFORE</span>낱권 나열(신간/베스트)</div>
+      <div class="frame">
+        <div class="fx-header"><div class="fx-logo"></div></div>
+        <div class="search-bar">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.6" y2="16.6"/></svg>
+          교재명, 시리즈명을 검색해보세요
+        </div>
+        <div class="section-title-sm">신간</div>
+        <div class="plain-row"><div class="ph book-ph">교재1</div><div class="ph book-ph">교재2</div><div class="ph book-ph">교재3</div></div>
+        <div class="section-title-sm">베스트</div>
+        <div class="plain-row"><div class="ph book-ph">교재1</div><div class="ph book-ph">교재2</div><div class="ph book-ph">교재3</div></div>
+      </div>
+    </div>
+    <div class="frame-col">
+      <div class="frame-label after"><span class="tag">AFTER</span>목적 단위 SET 섹션</div>
+      <div class="frame">
+        <div class="fx-header"><div class="fx-logo"></div></div>
+        <div class="search-bar">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.6" y2="16.6"/></svg>
+          교재명, 시리즈명을 검색해보세요
+        </div>
+        <div class="section-title-sm"><span class="new">NEW</span>목적별 커리큘럼 SET</div>
+        <div class="set-row">
+          <div class="set-card"><span class="new">NEW</span>예비초등 파닉스 완성<span class="cnt">3권 SET</span></div>
+          <div class="set-card"><span class="new">NEW</span>중등 내신 대비<span class="cnt">4권 SET</span></div>
+          <div class="set-card"><span class="new">NEW</span>수능 영어 기초<span class="cnt">3권 SET</span></div>
+        </div>
+        <div class="limit-note">낱권 대신 목적 단위로 묶인 카드를 가로 스크롤로 우선 노출</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-/* ===== GNB 검색창 레이어 팝업 (ne-books-mall-type3 search.js 동일 로직) ===== */
-(function(){
-  var BOOKS=[
-    {title:"세 마리 토끼 잡는 초등 독서논술 A단계 세트", img:"assets/best_1.png"},
-    {title:"세 마리 토끼 잡는 초등 독서논술 A1", img:"assets/best_1.png"},
-    {title:"세 마리 토끼 잡는 초등 독서논술 A2", img:"assets/best_1.png"},
-    {title:"세 마리 토끼 잡는 초등 독서논술 A3", img:"assets/best_1.png"},
-    {title:"세 마리 토끼 잡는 초등 독서논술 A4", img:"assets/best_1.png"},
-    {title:"세 마리 토끼 잡는 초등 독서논술 A5", img:"assets/best_1.png"},
-    {title:"세 마리 토끼 잡는 초등 독서논술 B단계 세트", img:"assets/best_1.png"},
-    {title:"세 마리 토끼 잡는 초등 독서논술 B1", img:"assets/best_1.png"},
-    {title:"세 마리 토끼 잡는 초등 독서논술 B2", img:"assets/best_1.png"},
-    {title:"세 마리 토끼 잡는 초등 독서논술 B3", img:"assets/best_1.png"},
-    {title:"Phonics Code 1 : Student Book", img:"assets/best_1.png"},
-    {title:"능률 VOCA 어원편", img:"assets/best_2.png"},
-    {title:"Bricks Reading 150 Level 1", img:"assets/best_3.png"},
-    {title:"Grammar Zone 기본편 1", img:"assets/best_4.png"},
-    {title:"리딩튜터 입문", img:"assets/best_5.png"},
-    {title:"주니어 리딩튜터 1", img:"assets/best_2.png"},
-    {title:"중등 영어문법 3800제", img:"assets/best_3.png"},
-    {title:"워드마스터 중등 베이직", img:"assets/best_4.png"}
-  ];
-  var POPULAR=["능률VOCA","Course book","E-book","단어장","영어문법","중등문법","리딩튜터","중등독해","주니어 리딩튜터","grammar"];
-
-  function initSearch(box){
-    var input=box.querySelector('.search-input');
-    var pop=box.querySelector('.search-pop');
-    var icon=box.querySelector('.search-ic');
-    if(!input||!pop) return;
-
-    function renderPopular(){
-      pop.classList.remove('wide');
-      var html='<p class="sp-head">인기 검색어</p><ol class="sp-pop">';
-      POPULAR.forEach(function(k,idx){
-        html+='<li><a href="#"><span class="rk">'+(idx+1)+'</span>'+esc(k)+'</a></li>';
-      });
-      html+='</ol><p class="sp-note">* 최근 10일간 인기 검색어 입니다.</p>';
-      html+='<a class="sp-event" href="#"><img src="assets/search_event_banner.png" alt="NE Books 이벤트 리스트"></a>';
-      pop.innerHTML=html;
-    }
-
-    function renderAuto(q){
-      var matches=BOOKS.filter(function(b){return b.title.toLowerCase().indexOf(q.toLowerCase())>=0;});
-      if(!matches.length){
-        pop.classList.remove('wide');
-        pop.innerHTML='<p class="sp-empty">\''+esc(q)+'\'에 대한 검색 결과가 없습니다.</p>';
-        return;
-      }
-      pop.classList.add('wide');
-      var list=matches.map(function(b,i){
-        return '<li class="it'+(i===0?' on':'')+'" data-i="'+i+'"><a href="#">'+esc(b.title)+'</a></li>';
-      }).join('');
-      var first=matches[0];
-      pop.innerHTML='<div class="sa-wrap">'
-        +'<ul class="sa-list">'+list+'</ul>'
-        +'<div class="sa-preview"><div class="sa-pv-card pcover"><img src="'+first.img+'" alt="">'
-        +'<button type="button" class="pcover-cart" aria-label="장바구니 담기"><img src="assets/ic_cart_black.svg" alt=""></button></div>'
-        +'<p class="sa-pv-name">'+esc(first.title)+'</p></div>'
-        +'</div>';
-      var items=[].slice.call(pop.querySelectorAll('.sa-list .it'));
-      var pvImg=pop.querySelector('.sa-pv-card > img');
-      var pvName=pop.querySelector('.sa-pv-name');
-      var pvCart=pop.querySelector('.pcover-cart');
-      items.forEach(function(li){
-        li.addEventListener('mouseenter',function(){
-          items.forEach(function(x){ x.classList.remove('on'); });
-          li.classList.add('on');
-          var b=matches[+li.getAttribute('data-i')];
-          pvImg.src=b.img; pvName.textContent=b.title;
-        });
-        li.querySelector('a').addEventListener('click',function(e){ e.preventDefault(); });
-      });
-      if(pvCart){
-        pvCart.addEventListener('click',function(e){
-          e.preventDefault(); e.stopPropagation();
-          confirm('장바구니에 담겼습니다. 이동하시겠습니까?');
-        });
-      }
-    }
-
-    function refresh(){
-      var q=input.value.trim();
-      if(q){ renderAuto(q); pop.hidden=false; }
-      else { renderPopular(); pop.hidden=false; }
-    }
-    function openPop(){ refresh(); }
-    function closePop(){ pop.hidden=true; }
-
-    input.addEventListener('focus',openPop);
-    input.addEventListener('click',openPop);
-    input.addEventListener('input',openPop);
-    input.addEventListener('keydown',function(e){ if(e.key==='Escape'){ closePop(); input.blur(); } else if(e.key==='Enter'){ e.preventDefault(); } });
-    if(icon) icon.addEventListener('click',function(){ input.focus(); openPop(); });
-    document.addEventListener('click',function(e){ if(!box.contains(e.target)) closePop(); });
-  }
-  [].forEach.call(document.querySelectorAll('.search'),function(b){ initSearch(b); });
-})();
-
-/* 교재별 표지를 색·제목·레벨이 모두 다르게 SVG로 생성 (실제 표지 이미지가 없어 목업용으로 생성) */
-function makeCover(c){
-  var dark = c.ink==='dark';
-  var tcol = dark ? '#1a1a1a' : '#ffffff';
-  var sub  = dark ? 'rgba(0,0,0,.55)' : 'rgba(255,255,255,.82)';
-  var lines = c.big.split('|');
-  var tspans = lines.map(function(t,i){ return '<tspan x="26" dy="'+(i===0?0:34)+'">'+esc(t)+'</tspan>'; }).join('');
-  var svg =
-    '<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 320 320">'
-    +'<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="'+c.c1+'"/><stop offset="1" stop-color="'+c.c2+'"/></linearGradient></defs>'
-    +'<rect width="320" height="320" fill="url(#g)"/>'
-    +'<circle cx="288" cy="52" r="120" fill="rgba(255,255,255,.10)"/>'
-    +'<circle cx="40" cy="300" r="90" fill="rgba(0,0,0,.06)"/>'
-    +'<rect x="26" y="24" width="88" height="24" rx="12" fill="rgba(255,255,255,.92)"/>'
-    +'<text x="70" y="41" font-family="Pretendard,sans-serif" font-size="13" font-weight="800" fill="'+c.c2+'" text-anchor="middle">NE능률</text>'
-    +'<text x="26" y="150" font-family="Pretendard,sans-serif" font-size="30" font-weight="800" fill="'+tcol+'" letter-spacing="-1">'+tspans+'</text>'
-    +'<text x="26" y="'+(150+lines.length*34+8)+'" font-family="Pretendard,sans-serif" font-size="14" font-weight="600" fill="'+sub+'">'+esc(c.sub||'')+'</text>'
-    +'<circle cx="262" cy="262" r="34" fill="rgba(255,255,255,.94)"/>'
-    +'<text x="262" y="256" font-family="Pretendard,sans-serif" font-size="10" font-weight="800" fill="'+c.c2+'" text-anchor="middle">LEVEL</text>'
-    +'<text x="262" y="279" font-family="Pretendard,sans-serif" font-size="20" font-weight="800" fill="'+c.c2+'" text-anchor="middle">'+esc(c.lv||'1')+'</text>'
-    +'</svg>';
-  return 'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
-}
-
-/* 실제 NE Build&Grow 상품(상품명·표지 이미지·가격 일치) */
-var PRODUCTS=[
-  {t:'Read It! 120 - 1 (스토리 리딩)', img:'assets/bng_1.png', was:'16,000원', rate:'10%', now:'14,400원', bdg:'HOT', bt:'red', point:'최대 720원 적립'},
-  {t:'Read It! 120 - 2 (스토리 리딩)', img:'assets/bng_2.png', was:'16,000원', rate:'10%', now:'14,400원', bdg:'HOT', bt:'red', point:'최대 1,440원 적립'},
-  {t:'Read It! 120 - 3 (스토리 리딩)', img:'assets/bng_3.png', was:'16,000원', rate:'10%', now:'14,400원'},
-  {t:'Read It! 40 - 1 (기초 독해)', img:'assets/bng_4.png', was:'16,000원', rate:'10%', now:'14,400원', bdg:'NEW', bt:'blue'},
-  {t:'Read It! 40 - 2 (기초 독해)', img:'assets/bng_5.png', was:'16,000원', rate:'10%', now:'14,400원', bdg:'HOT', bt:'red'},
-  {t:'Read It! 40 - 3 (기초 독해)', img:'assets/bng_6.png', was:'16,000원', rate:'10%', now:'14,400원'},
-  {t:'Read It! 60 - 1 (문장 독해)', img:'assets/bng_7.png', was:'16,000원', rate:'10%', now:'14,400원', bdg:'HOT', bt:'red'},
-  {t:'Read It! 60 - 2 (문장 독해)', img:'assets/bng_8.png', was:'16,000원', rate:'10%', now:'14,400원', bdg:'HOT', bt:'red', point:'최대 1,440원 적립'},
-  {t:'Read It! 60 - 3 (문장 독해)', img:'assets/bng_9.png', was:'16,000원', rate:'10%', now:'14,400원'},
-  {t:'Read It! 80 - 1 (유형 독해)', img:'assets/bng_10.png', was:'16,000원', rate:'10%', now:'14,400원', bdg:'HOT', bt:'red', point:'최대 720원 적립'},
-  {t:'Dolphin Readers Teacher\'s Handbook', img:'assets/bng_11.jpg', was:'16,000원', rate:'10%', now:'14,400원'},
-  {t:'English Time 1 Picture Cards 2E', img:'assets/bng_12.jpg', was:'121,000원', rate:'10%', now:'108,900원', bdg:'HOT', bt:'red'}
-];
-
-function cardHTML(p){
-  var bdg=p.bdg?'<span class="bdg '+p.bt+'">'+p.bdg+'</span>':'';
-  return '<div class="n-card">'
-    +'<div class="thumb">'+bdg+'<img src="'+p.img+'" alt="">'
-      +'<button class="cart-btn" aria-label="장바구니 담기" onclick="event.preventDefault()"><svg viewBox="0 0 24 24" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></button>'
-      +'<button class="heart" aria-label="찜"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.3-9.2-8.2C1.2 8.9 2.6 6 5.5 6 7.4 6 8.7 7 12 9.5 15.3 7 16.6 6 18.5 6c2.9 0 4.3 2.9 2.7 5.8C19 15.7 12 20 12 20z" stroke-width="1.6"/></svg></button>'
-    +'</div>'
-    +'<p class="tit">'+p.t+'</p>'
-    +'<p class="was">'+p.was+'</p>'
-    +'<div class="now"><span class="rate">'+p.rate+'</span><span class="price">'+p.now+'</span></div>'
-    +(p.point?'<p class="point">'+p.point+'</p>':'')
-    +'</div>';
-}
-function renderGrid(id,list){ document.getElementById(id).innerHTML=list.map(cardHTML).join(''); }
-
-/* 실제 인기 교재(ELT/초중등/고등 영역별) — 표지/교재명만 실제 값, 가격은 목업용 임의값 */
-var ELT_PRODUCTS=[
-  {t:'Subject Link 1 (2nd Edition)', img:'assets/elt_subject_link1.png', was:'16,000원', rate:'10%', now:'14,400원'},
-  {t:'중학 영문법 Link Level 1', img:'assets/elt_jhgrammar_link1.jpg', was:'16,000원', rate:'10%', now:'14,400원'},
-  {t:'Insight Link 1', img:'assets/elt_insight_link1.jpg', was:'16,000원', rate:'10%', now:'14,400원'},
-  {t:'Subject Link 4 (2nd Edition)', img:'assets/elt_subject_link4.png', was:'16,000원', rate:'10%', now:'14,400원'},
-  {t:'Insight Link Starter 1', img:'assets/elt_insight_starter1.jpg', was:'16,000원', rate:'10%', now:'14,400원'},
-  {t:'Phonics Code 1: Student Book', img:'assets/elt_phonics_code1.jpg', was:'16,000원', rate:'10%', now:'14,400원'},
-  {t:'Subject Link 2 (2nd Edition)', img:'assets/elt_subject_link2.png', was:'16,000원', rate:'10%', now:'14,400원'}
-];
-var MID_PRODUCTS=[
-  {t:'능률 VOCA 중등 필수 (2025 개정)', img:'assets/mid_voca_essential.jpg', was:'16,000원', rate:'10%', now:'14,400원'},
-  {t:'능률 중학영어 듣기 모의고사 22회 Level 1 (2023 개정)', img:'assets/mid_listening_lv1.jpg', was:'16,000원', rate:'10%', now:'14,400원'},
-  {t:'능률 중학영어 듣기 모의고사 22회 Level 2 (2023 개정)', img:'assets/mid_listening_lv2.jpg', was:'16,000원', rate:'10%', now:'14,400원'},
-  {t:'리딩튜터 주니어 1 (2024 개정)', img:'assets/mid_readingtutor_jr1.jpg', was:'16,000원', rate:'10%', now:'14,400원'},
-  {t:'능률 VOCA 중등 기본 (2025 개정)', img:'assets/mid_voca_basic.jpg', was:'16,000원', rate:'10%', now:'14,400원'},
-  {t:'능률 중학영어 듣기 모의고사 22회 Level 3 (2023 개정)', img:'assets/mid_listening_lv3.jpg', was:'16,000원', rate:'10%', now:'14,400원'},
-  {t:'Grammar Inside Level 1 (2021 개정)', img:'assets/mid_grammarinside_lv1.jpg', was:'16,000원', rate:'10%', now:'14,400원'}
-];
-var HIGH_PRODUCTS=[
-  {t:'능률VOCA 어원편 고등 (2025 개정)', img:'assets/high_voca_root_high.jpg', was:'16,000원', rate:'10%', now:'14,400원'},
-  {t:'능률VOCA 고등 기본 (2025 개정)', img:'assets/high_voca_basic.jpg', was:'16,000원', rate:'10%', now:'14,400원'},
-  {t:'능률VOCA 수능 필수 (2025 개정)', img:'assets/high_voca_csat_essential.jpg', was:'16,000원', rate:'10%', now:'14,400원'},
-  {t:'능률VOCA 어원편 (2021 개정)', img:'assets/high_voca_root.jpg', was:'16,000원', rate:'10%', now:'14,400원'},
-  {t:'내신백신 기출문제집 EnglishⅠ(오선영)', img:'assets/high_naesinvaccine_english1.jpg', was:'16,000원', rate:'10%', now:'14,400원'},
-  {t:'수능만만 기본 영어듣기 20회 (2022 개정)', img:'assets/high_suneungmanman_listening.jpg', was:'16,000원', rate:'10%', now:'14,400원'},
-  {t:'능률VOCA 수능 고난도 (2025 개정)', img:'assets/high_voca_csat_advanced.jpg', was:'16,000원', rate:'10%', now:'14,400원'}
-];
-
-/* curation grid + tabs (1줄만 노출 + 더보기) */
-renderGrid('curGrid',ELT_PRODUCTS);
-document.getElementById('curGrid').insertAdjacentHTML('beforeend','<a class="n-more-card" href="#"><span class="plus">+</span><span>ELT 시리즈<br>더보기</span></a>');
-var CUR_TABS=['Subject Link','중학 영문법 Link','Insight Link','Insight Link Starter','Phonics Code'];
-document.getElementById('curTabs').innerHTML=CUR_TABS.map(function(t,i){
-  return '<button class="'+(i===0?'on':'')+'">'+t+'</button>';
-}).join('');
-/* reco grid + tabs (1줄만 노출 + 더보기) */
-renderGrid('recoGrid',MID_PRODUCTS);
-document.getElementById('recoGrid').insertAdjacentHTML('beforeend','<a class="n-more-card" href="#"><span class="plus">+</span><span>초/중등 시리즈<br>더보기</span></a>');
-var RECO_TABS=['능률 VOCA','능률 중학영어','리딩튜터','Grammar Inside'];
-document.getElementById('recoTabs').innerHTML=RECO_TABS.map(function(t,i){
-  return '<button class="'+(i===0?'on':'')+'">'+t+'</button>';
-}).join('');
-/* 고등 grid + tabs (1줄만 노출 + 더보기) */
-renderGrid('hsGrid',HIGH_PRODUCTS);
-document.getElementById('hsGrid').insertAdjacentHTML('beforeend','<a class="n-more-card" href="#"><span class="plus">+</span><span>고등 시리즈<br>더보기</span></a>');
-var HS_TABS=['능률 VOCA','내신백신','수능만만'];
-document.getElementById('hsTabs').innerHTML=HS_TABS.map(function(t,i){
-  return '<button class="'+(i===0?'on':'')+'">'+t+'</button>';
-}).join('');
-/* store products (4) */
-var STORE_PRODUCTS=[
-  {t:'Subject Link 1', img:'assets/store_subjectlink1.png', was:'16,000원', rate:'10%', now:'14,400원'},
-  {t:'Subject Link 2', img:'assets/store_subjectlink2.png', was:'16,000원', rate:'10%', now:'14,400원'},
-  {t:'Subject Link 3', img:'assets/store_subjectlink3.png', was:'16,000원', rate:'10%', now:'14,400원'},
-  {t:'Subject Link 4', img:'assets/store_subjectlink4.png', was:'16,000원', rate:'10%', now:'14,400원'},
-  {t:'Subject Link 5', img:'assets/store_subjectlink5.png', was:'16,000원', rate:'10%', now:'14,400원'},
-  {t:'Subject Link 6 (2nd Edition)', img:'assets/store_subjectlink6.png', was:'16,000원', rate:'10%', now:'14,400원'}
-];
-renderGrid('storeProd',STORE_PRODUCTS);
-
-/* ===== HERO carousel ===== */
-(function(){
-  var HERO_CART_SVG='<svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>';
-  var SLIDES=[
-    {flag:'스토리로 배우는 독해', h:'Read It! 120으로<br>재미있게 시작하는 독해', p:'흥미로운 논픽션 지문으로 독해 자신감 UP', bg:'linear-gradient(120deg,#fff0ec,#ffe0d6)', covers:[0,1]},
-    {flag:'단계별 독해 훈련', h:'기초부터 유형까지<br>Read It! 40·60·80', p:'우리 아이 레벨에 딱 맞는 독해 코스', bg:'linear-gradient(120deg,#eaf1ff,#d9e6ff)', covers:[3,6]},
-    {flag:'빈틈 없이 이어지는 로드맵', h:'READ IT 60·80으로<br>읽을수록 넓어지는 어휘', p:'Reading의 기초와 기본을 탄탄하게! 단계별 필수 학습 요소를 쉽고 재미있게!', bg:'radial-gradient(120% 100% at 28% 0,#3a2e5c,#141021)', covers:[9,7], dark:true},
-    {flag:'Oxford 원서 리더스', h:'Dolphin Readers로<br>영어책 읽기 습관', p:'레벨별 스토리북으로 자연스러운 영어 노출', bg:'linear-gradient(120deg,#e7fbf2,#d3f4e4)', covers:[10,4]},
-    {flag:'YouTube Live', h:'2학기가 달라지는 여름,<br>8월의 혼강 세미나', p:'혼강 세미나 8월엔 더 다채롭게 만납니다. 고등부터 중등까지, 한 번에 채우는 2학기 준비!', bg:'linear-gradient(120deg,#ff9d47,#ff7a1a)', img:'assets/hero_c1.png', dark:true},
-    {flag:'내신 영어 기초 쌓기', h:'내신을 결정짓는<br>예비 중등 추천 교재', p:'슬슬 시작해야 할 때가 가장 빠르고 확실할 때! 본격 중학 레이스에 미리 대비해보세요.', bg:'linear-gradient(120deg,#fdf6ea,#f7ecd8)', img:'assets/hero_c2.png'}
-  ];
-  var track=document.getElementById('heroTrack');
-  track.innerHTML=SLIDES.map(function(s){
-    var media;
-    if(s.img){
-      media='<div class="hcover illust"><img src="'+s.img+'" alt=""></div>';
-    } else {
-      media='<div class="hcover covers">'+s.covers.map(function(i){
-        return '<span class="hcov-item"><img src="'+PRODUCTS[i].img+'" alt=""><button class="hcart" aria-label="장바구니 담기" onclick="event.preventDefault()">'+HERO_CART_SVG+'</button></span>';
-      }).join('')+'</div>';
-    }
-    return '<div class="n-hero-card'+(s.dark?' dark':'')+'" style="background:'+s.bg+'">'
-      +'<div class="htxt"><span class="flag">'+s.flag+'</span><h3>'+s.h+'</h3><p>'+s.p+'</p></div>'+media+'</div>';
-  }).join('');
-  var N=track.children.length, timer;
-  var idxEl=document.getElementById('heroIdx'), totEl=document.getElementById('heroTot');
-  totEl.textContent=N;
-  /* 무한 루프: 맨 앞에 마지막 카드 복제, 맨 뒤에 첫 카드 복제 → 끝에서 다음으로 넘어가도 이어지게 */
-  track.appendChild(track.children[0].cloneNode(true));
-  track.insertBefore(track.children[N-1].cloneNode(true), track.children[0]);
-  var cards=[].slice.call(track.children), active=1;
-  function step(){ return cards[0].getBoundingClientRect().width+16; }
-  function setPos(noAnim){
-    if(noAnim) track.style.transition='none';
-    track.style.transform='translateX('+(-active*step())+'px)';
-    if(noAnim){ void track.offsetWidth; track.style.transition=''; }
-  }
-  function displayIdx(){ return ((active-1)+N)%N+1; }
-  function go(d){
-    active+=d; track.style.transition=''; track.style.transform='translateX('+(-active*step())+'px)'; idxEl.textContent=displayIdx();
-  }
-  track.addEventListener('transitionend',function(e){
-    if(e.propertyName!=='transform') return;
-    /* 클릭이 몇 번 겹치든(빠른 연속 클릭 포함) 최종적으로 항상 유효한 범위(1~N)로 보정 → 배너가 안 보이는 문제 방지, 클릭은 항상 즉시 반응 */
-    if(active<1 || active>N){ active=((active-1)%N+N)%N+1; setPos(true); }
-  });
-  document.getElementById('heroPrev').addEventListener('click',function(){go(-1);restart();});
-  document.getElementById('heroNext').addEventListener('click',function(){go(1);restart();});
-  function restart(){ clearInterval(timer); timer=setInterval(function(){go(1);},5000); }
-  window.addEventListener('resize',function(){ setPos(true); });
-  idxEl.textContent=displayIdx(); setPos(true); restart();
-})();
-
-/* ===== interest series store ===== */
-(function(){
-  var SERIES=[
-    {n:'Subject Link', tag:'#리딩스킬', img:'assets/tab_subjectlink.png'},
-    {n:'중학 영문법 Link', tag:'#중학영문법', img:'assets/tab_jhgrammarlink.jpg'},
-    {n:'능률 VOCA 중등', tag:'#중등어휘', img:'assets/tab_voca_mid.jpg'},
-    {n:'능률 중학영어 듣기', tag:'#듣기모의고사', img:'assets/tab_listening_mid.jpg'},
-    {n:'능률 VOCA 고등', tag:'#고등어휘', img:'assets/tab_voca_high.jpg'}
-  ];
-  var list=document.getElementById('storeList');
-  list.innerHTML=SERIES.map(function(s,i){
-    return '<button class="'+(i===0?'on':'')+'"><span class="logo"><img src="'+s.img+'" alt=""></span><span>'+s.n+'</span><span class="tag">'+(i===0?'›':s.tag)+'</span></button>';
-  }).join('');
-  [].forEach.call(list.children,function(b){ b.addEventListener('click',function(){ [].forEach.call(list.children,function(x){x.classList.remove('on');}); b.classList.add('on'); }); });
-})();
-
-/* ===== NETUTOR: arc(부채꼴) 회전 캐러셀 (ne-books-mall-type3 동일 로직) ===== */
-(function(){
-  var wrap=document.getElementById('ntWrap'),cardsWrap=document.getElementById('ntCards');
-  if(!wrap||!cardsWrap) return;
-  var cards=[].slice.call(cardsWrap.querySelectorAll('.nt-card'));
-  var M=cards.length;
-  var stops=[{l:32,t:260},{l:407,t:130},{l:782,t:0},{l:1157,t:130},{l:1532,t:260},{l:1600,t:440,hidden:true}];
-  var CENTER=2, HIDDEN=5, offset=0;
-  function isArc(){ return window.innerWidth>1023; }
-  function stopOf(c){ return ((c+offset)%M+M)%M; }
-  function render(){
-    if(!isArc()){ cards.forEach(function(c){ c.classList.remove('red'); c._stop=undefined; c.style.opacity=''; c.style.pointerEvents=''; var im=c.querySelector('.ic img'); if(im){ var n=im.getAttribute('data-n'); if(n) im.src=n; } }); return; }
-    cards.forEach(function(card,c){
-      var s=stopOf(c), prev=card._stop, st=stops[s];
-      var entering=(prev===HIDDEN) && !st.hidden;
-      var targetOp=st.hidden?'0':'1';
-      if(entering){
-        var side=st.l<782?-1:1;
-        card.style.transition='none';
-        card.style.left=(st.l+side*90)+'px'; card.style.top=(st.t+150)+'px'; card.style.opacity='0';
-        void card.offsetWidth;
-        card.style.transition='';
-        card.style.left=st.l+'px'; card.style.top=st.t+'px'; card.style.opacity=targetOp;
-      } else {
-        card.style.transition='';
-        card.style.left=st.l+'px'; card.style.top=st.t+'px';
-        card.style.opacity=targetOp;
-      }
-      card.style.pointerEvents=st.hidden?'none':'auto';
-      card.classList.toggle('red', s===CENTER);
-      var img=card.querySelector('.ic img');
-      if(img){ var w=img.getAttribute('data-w'), n=img.getAttribute('data-n'); if(n){ img.src=(s===CENTER&&w)?w:n; } }
-      card._stop=s;
-    });
-  }
-  function scale(){
-    if(isArc()){
-      var s=(window.innerWidth>=1024 && window.innerWidth<=1139) ? 0.78 : 0.9;
-      wrap.style.transform='scale('+s+')';
-      wrap.parentElement.style.height=(542*s)+'px';
-    } else {
-      wrap.style.transform=''; wrap.parentElement.style.height='';
-      cards.forEach(function(card){ card.style.left=''; card.style.top=''; card.style.opacity=''; card.style.pointerEvents=''; });
-    }
-  }
-  var acc=0,lastT=0;
-  function onWheel(e){
-    if(!isArc()) return;
-    var c1,c3; cards.forEach(function(c){ if(c._stop===1)c1=c; if(c._stop===3)c3=c; });
-    if(c1&&c3){ var L=c1.getBoundingClientRect().left, R=c3.getBoundingClientRect().right;
-      if(e.clientX<L || e.clientX>R) return; }
-    e.preventDefault();
-    var now=Date.now(); if(now-lastT>400) acc=0; lastT=now; acc+=e.deltaY;
-    if(acc>=90){ offset++; acc=0; render(); } else if(acc<=-90){ offset--; acc=0; render(); }
-  }
-  wrap.addEventListener('wheel',onWheel,{passive:false});
-  cards.forEach(function(card,c){ card.addEventListener('click',function(){ if(!isArc()) return; var s=stopOf(c); if(s===HIDDEN) return; offset+=(CENTER-s); render(); }); });
-  window.addEventListener('resize',function(){ scale(); render(); });
-  window.addEventListener('load',function(){ scale(); render(); });
-  scale(); render();
-})();
-
-/* ===== heart toggle (global) ===== */
-document.addEventListener('click',function(e){
-  var h=e.target.closest('.heart'); if(h){ e.preventDefault(); h.classList.toggle('on'); }
-});
-</script>
 </body>
 </html>
