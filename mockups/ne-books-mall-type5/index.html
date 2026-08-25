@@ -130,6 +130,14 @@ ul{list-style:none;}
 
 .wbtn{display:block;text-align:center;background:var(--accent);color:#fff;font-size:12px;font-weight:700;border-radius:8px;padding:11px 8px;}
 
+.pick-tabs{display:flex;gap:8px;margin:14px 16px 12px;}
+.pick-tabs span{flex:1;text-align:center;font-size:11.5px;padding:8px 0;border:1px solid var(--line);border-radius:7px;color:#999;}
+.pick-tabs span.on{border-color:#333;color:#333;font-weight:700;background:#f4f4f4;}
+.pick-row{display:flex;justify-content:space-between;align-items:center;margin:0 16px 8px;border:1px solid var(--line);border-radius:8px;padding:9px 12px;font-size:11px;color:#666;}
+.pick-row .v{color:#bbb;}
+.pick-count{margin:14px 16px 0;text-align:center;font-size:11px;color:#999;}
+.pick-btn{margin:8px 16px 16px;background:#ddd;color:#888;text-align:center;font-size:12px;font-weight:700;border-radius:8px;padding:11px;}
+
 .chip-row{display:flex;flex-wrap:wrap;gap:8px;margin:14px 16px 0;}
 .chip{font-size:11.5px;padding:7px 13px;border:1px solid var(--line);border-radius:20px;color:#888;}
 .chip.on{border-color:#333;color:#333;font-weight:700;background:#f4f4f4;}
@@ -151,8 +159,6 @@ ul{list-style:none;}
 .nc-box{flex:1;border:1px solid var(--line);border-radius:8px;padding:10px;font-size:10px;color:#999;}
 .nc-box b{display:block;font-size:11px;color:#555;margin-bottom:6px;}
 
-.missing-box{margin:16px;border:2px dashed #ccc;border-radius:10px;padding:34px 16px;text-align:center;color:#aaa;font-size:11.5px;line-height:1.8;}
-.missing-box .x{font-size:22px;color:#ccc;margin-bottom:8px;}
 
 .callout-wrap{position:relative;}
 .pin{position:absolute;display:flex;align-items:center;gap:5px;z-index:2;}
@@ -181,7 +187,7 @@ ul{list-style:none;}
   <div class="legend">
     <a href="#overview"><span class="num">◎</span> 전체 개요</a>
     <a href="#c1"><span class="num">1</span> 학습자료실 위젯</a>
-    <a href="#c2"><span class="num">2</span> 맞춤교재찾기 위젯(신규 제안)</a>
+    <a href="#c2"><span class="num">2</span> 맞춤교재찾기 위젯(NE PICK 간소화)</a>
   </div>
 </header>
 
@@ -437,7 +443,7 @@ ul{list-style:none;}
 
   <ul class="overview-legend" style="margin-top:24px;">
     <li><span class="dot">1</span><div><b>학습자료실 검색 위젯</b><br>평소엔 검색어 입력창만 노출, 검색 완료 시 그 자리에서 화면이 열리며 학습자료 아이콘이 나타남. <a href="#c1">Before/After 보기 →</a></div></li>
-    <li><span class="dot">2</span><div><b>맞춤교재찾기 위젯(신규 제안)</b><br>평소엔 "내 아이에게 딱 맞는 교재 찾기" 버튼만 노출, 터치 시 과목+학년+수준 필터와 스와이프 결과가 펼쳐짐. <a href="#c2">Before/After 보기 →</a></div></li>
+    <li><span class="dot">2</span><div><b>맞춤교재찾기 위젯(기존 NE PICK 간소화)</b><br>평소엔 "내 아이에게 딱 맞는 교재 찾기" 버튼만 노출, 터치 시 과목+학년+수준 필터와 스와이프 결과가 펼쳐짐(기존 NE PICK의 6단계 이상 조건 선택을 3단계로 축소). <a href="#c2">Before/After 보기 →</a></div></li>
   </ul>
 </section>
 
@@ -521,25 +527,31 @@ ul{list-style:none;}
 
 <!-- ============ 2. 맞춤교재찾기 (신규 제안, 메인 임베드 위젯) ============ -->
 <section class="section" id="c2">
-  <div class="section-head"><span class="badge">2</span><h2>맞춤교재찾기 — 과목+학년+수준 세 축 (메인 임베드 위젯, 신규 제안)</h2></div>
+  <div class="section-head"><span class="badge">2</span><h2>맞춤교재찾기 — 기존 NE PICK을 메인에 간소화 임베드</h2></div>
   <div class="info-box">
-    <div class="row"><span class="k">가설</span><span class="v">학년만으로 교재를 좁히지 못하는 사용자가 있다 — 별도 화면 대신 메인 안에 과목+학년+수준 세 축 필터 영역을 임베드하면, 이탈(페이지 이동) 없이 그 자리에서 원하는 교재에 도달한다.</span></div>
-    <div class="row"><span class="k">근거</span><span class="v">"학년별이 아닌 수준별 수업이어서", "영어과목은 개별진도라 학년이 의미 없다", "초등/중등 카테고리를 몰라 두세 번 찾게 된다." 과목(영어/수학/국어)별로 학년·수준 기준 자체가 다르므로 과목 선택이 먼저 필요.</span></div>
-    <div class="row"><span class="k">측정</span><span class="v">과목/학년/수준 선택률 · 스와이프 인터랙션 사용률 · 위젯 내 교재 클릭률</span></div>
+    <div class="row"><span class="k">가설</span><span class="v">맞춤교재찾기(NE PICK, nepick/index.asp)는 이미 있지만 메인에서 진입 경로가 잘 보이지 않고, 과목별로 여러 단계 조건을 하나씩 선택해야 결과를 볼 수 있어 완주율이 낮다 — 메인에 핵심 조건(과목·학년·수준)만 남긴 간소화 위젯을 임베드하면 이용률이 오른다.</span></div>
+    <div class="row"><span class="k">근거</span><span class="v">"학년별이 아닌 수준별 수업이어서", "영어과목은 개별진도라 학년이 의미 없다", "검색하는 게 불편하다"(2026-08-25 실사용 피드백). 과목별로 조건 항목 자체가 다름(예: 영어는 대상·영역·난이도·목적·페이지수·리딩지수 등 6개 이상).</span></div>
+    <div class="row"><span class="k">측정</span><span class="v">위젯 진입률(기존 NE PICK 대비) · 과목/학년/수준 선택 완료율 · 스와이프 클릭률</span></div>
   </div>
   <div class="pair">
     <div class="frame-col">
-      <div class="frame-label before"><span class="tag">BEFORE</span>해당 기능 없음</div>
+      <div class="frame-label before"><span class="tag">BEFORE</span>기존 NE PICK(별도 페이지)</div>
       <div class="frame">
-        <div class="fx-header"><div class="fx-logo"></div></div>
-        <div class="missing-box">
-          <div class="x">✕</div>
-          "맞춤교재찾기" 영역이 현재 A안에는 존재하지 않음.<br>과목·학년·수준으로 교재를 좁혀볼 수 있는 진입점이 없어, 사용자는 카테고리(ELT/초중등/고등) 내 시리즈 탭을 하나씩 훑어야 함.
-        </div>
+        <div class="fx-header"><div class="fx-logo"></div><span style="font-size:11px;color:#999;">NE PICK</span></div>
+        <div class="pick-tabs"><span class="on">영어</span><span>수학</span><span>국어</span></div>
+        <div class="pick-row">대상<span class="v">선택 ▾</span></div>
+        <div class="pick-row">영역<span class="v">선택 ▾</span></div>
+        <div class="pick-row">난이도<span class="v">선택 ▾</span></div>
+        <div class="pick-row">목적<span class="v">선택 ▾</span></div>
+        <div class="pick-row">페이지 수<span class="v">선택 ▾</span></div>
+        <div class="pick-row">리딩 지수<span class="v">선택 ▾</span></div>
+        <div class="pick-count">추천 교재 0권</div>
+        <div class="pick-btn">추천 교재 확인하기</div>
+        <div class="limit-note">과목별 조건 항목이 다르고 6단계 이상 하나씩 선택해야 결과 확인 가능 · 메인에서 진입 경로가 잘 안 보임(nepick/index.asp, 별도 페이지)</div>
       </div>
     </div>
     <div class="frame-col">
-      <div class="frame-label after"><span class="tag">AFTER</span>메인 안에 임베드된 위젯 영역</div>
+      <div class="frame-label after"><span class="tag">AFTER</span>메인 임베드 간소화 위젯</div>
       <div class="frame">
         <div class="fx-header"><div class="fx-logo"></div></div>
         <div class="widget-box">
