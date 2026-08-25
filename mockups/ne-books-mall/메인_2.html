@@ -10,9 +10,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- Pretendard (design font) via CDN, with Noto Sans KR fallback -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260815cv">
-<script src="js/layout.js?v=20260815cv" defer></script>
-<script src="js/search.js?v=20260815cv" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260815cw">
+<script src="js/layout.js?v=20260815cw" defer></script>
+<script src="js/search.js?v=20260815cw" defer></script>
 <style>
 /* ===== 메인 시안 A (메인_2) 전용 ===== */
 /* 맞춤교재 세트 애니 아이콘 */
@@ -65,11 +65,11 @@
 .m2-hero-track.dragging *{cursor:grabbing;user-select:none;}
 .m2-hero-track::-webkit-scrollbar{display:none;}
 /* 가운데 2개(1520 기준)를 노출, 넓은 화면에선 좌우로 앞뒤 배너가 peek */
-.m2-bn{flex:0 0 calc((min(1520px, 100vw - 140px) - 24px)/2);height:232px;border-radius:16px;box-sizing:border-box;padding:36px 44px;display:flex;align-items:center;justify-content:space-between;gap:16px;overflow:hidden;position:relative;container-type:inline-size;}
+.m2-bn{flex:0 0 calc((min(1520px, 100vw - 80px) - 24px)/2);height:232px;border-radius:16px;box-sizing:border-box;padding:36px 44px;display:flex;align-items:center;justify-content:space-between;gap:16px;overflow:hidden;position:relative;container-type:inline-size;}
 .m2-bn .tx{min-width:0;position:relative;z-index:1;}
 .m2-bn .lb{display:block;width:fit-content;font-size:14px;font-weight:700;color:var(--ink);margin-bottom:16px;text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1.5px;}
 .m2-bn .lb.ln{color:#fff;text-decoration:underline;text-underline-offset:3px;}
-.m2-bn h3{font-family:var(--display);font-size:clamp(18px, 4.85cqi, 32px);font-weight:700;line-height:1.28;color:var(--ink);letter-spacing:-.02em;word-break:keep-all;}
+.m2-bn h3{font-family:var(--display);font-size:clamp(24px, 5.5cqi, 32px);font-weight:700;line-height:1.28;color:var(--ink);letter-spacing:-.02em;word-break:keep-all;}
 .m2-bn h3.rd{color:var(--red);}
 .m2-bn h3.wh{color:#fff;}
 .m2-bn p{margin-top:16px;font-size:clamp(12px, 2.1cqi, 14px);color:#6b6b6b;word-break:keep-all;}
@@ -87,6 +87,10 @@
 .m2-bn.hero5{background:#1f9c74 url("assets/hero_5.png") right center/auto 100% no-repeat;}
 /* 배경 이미지도 배너 폭에 비례해 축소(너비 84% 기준, 높이는 비율 유지) → 폭 줄면 이미지도 함께 작아짐 */
 .m2-bn.hero1,.m2-bn.hero2,.m2-bn.hero3,.m2-bn.hero4,.m2-bn.hero5{background-size:84% auto;}
+/* 좁은 폭(태블릿~작은 데스크톱): 이미지가 너무 작아지지 않게 비율 boost */
+@media (min-width:768px) and (max-width:1400px){
+  .m2-bn.hero1,.m2-bn.hero2,.m2-bn.hero3,.m2-bn.hero4,.m2-bn.hero5{background-size:90% auto;}
+}
 .m2-bn .tx{max-width:56%;}
 .m2-bn.on-dark .lb{color:#fff;}
 .m2-bn.on-dark h3{color:#fff;}
