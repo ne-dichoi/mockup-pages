@@ -2147,8 +2147,8 @@ body.bsheet-lock{overflow:hidden;}
   border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
 .md-q{flex:1 1 0;min-width:0;max-width:79px;aspect-ratio:1/1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
   border:1px solid var(--line);border-radius:999px;background:#fff;text-decoration:none;}
-.md-q-ic{display:flex;align-items:center;justify-content:center;width:32px;height:32px;}
-.md-q-ic img{max-width:28px;max-height:28px;display:block;}
+.md-q-ic{display:flex;align-items:center;justify-content:center;width:35px;height:35px;}
+.md-q-ic img{max-width:32px;max-height:32px;display:block;}
 .md-q-t{font-size:11px;font-weight:700;color:var(--ink);font-family:var(--sans);}
 /* 본문: 좌 카테고리 / 우 하위목록 */
 .md-body{flex:1;display:flex;min-height:0;overflow:hidden;}
@@ -2159,19 +2159,19 @@ body.bsheet-lock{overflow:hidden;}
 /* 활성: 빨강 알약이 우측(흰색 섹션)으로 14px 돌출 + 오른쪽 라운드 */
 .md-cat.on{width:calc(100% + 14px);background:var(--red);color:#fff;font-weight:700;font-size:16px;border-radius:0 999px 999px 0;z-index:1;}
 .md-subs{flex:1;min-width:0;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:16px 24px 40px;}
-.md-sub{display:block;padding:8px 0;font-size:14px;font-weight:500;color:var(--muted);
-  text-decoration:none;font-family:var(--sans);line-height:24px;}
+.md-sub{display:block;padding:8px 0;font-size:14px;font-weight:400;color:var(--muted);
+  text-decoration:none;font-family:var(--sans);line-height:22px;}
 .md-sub:hover{color:var(--ink);}
-/* 학습자료실·도서몰: 아코디언 섹션 */
-.md-acc{border-bottom:1px solid var(--line);}
-.md-acc:last-child{border-bottom:0;}
+/* 아코디언 섹션(피그마 3864:68851): 헤더 14 bold, 화살표 18px, 구분선 검정, 시리즈 gap16 */
+.md-acc + .md-acc{border-top:1px solid var(--ink);padding-top:16px;}
 .md-acc-h{display:flex;align-items:center;justify-content:space-between;width:100%;border:0;background:none;cursor:pointer;
-  padding:16px 0;font-size:14px;font-weight:700;color:var(--ink);font-family:var(--sans);text-align:left;}
-.md-acc-ic{width:11px;height:11px;flex:none;position:relative;}
-.md-acc-ic::before{content:"";position:absolute;left:0;top:2px;width:9px;height:9px;
+  padding:0 0 16px;font-size:14px;font-weight:700;color:var(--ink);line-height:24px;font-family:var(--sans);text-align:left;}
+.md-acc-ic{width:18px;height:18px;flex:none;position:relative;}
+.md-acc-ic::before{content:"";position:absolute;left:3px;top:3px;width:11px;height:11px;
   border-right:2px solid #1d1717;border-bottom:2px solid #1d1717;transform:rotate(45deg);transition:transform .2s;}
-.md-acc.open .md-acc-ic::before{top:5px;transform:rotate(-135deg);}
-.md-acc-body{padding:0 0 12px;}
+.md-acc.open .md-acc-ic::before{top:8px;transform:rotate(-135deg);}
+.md-acc-body{display:flex;flex-direction:column;gap:16px;padding:0 0 16px;}
+.md-acc-body .md-sub{padding:0;}
 .md-acc:not(.open) .md-acc-body{display:none;}
 
 @media (max-width:1023px){
