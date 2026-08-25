@@ -10,9 +10,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- Pretendard (design font) via CDN, with Noto Sans KR fallback -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260815cz">
-<script src="js/layout.js?v=20260815cz" defer></script>
-<script src="js/search.js?v=20260815cz" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260815da">
+<script src="js/layout.js?v=20260815da" defer></script>
+<script src="js/search.js?v=20260815da" defer></script>
 <style>
 /* ===== 메인 시안 A (메인_2) 전용 ===== */
 /* 맞춤교재 세트 애니 아이콘 */
@@ -60,6 +60,7 @@
 
 /* 히어로: 가로형 디자인 배너 캐러셀 */
 .m2-hero{position:relative;padding:40px 0 0;overflow:hidden;}
+.m2-hero-count{display:none;}
 .m2-hero-track{display:flex;gap:24px;overflow-x:hidden;scroll-behavior:auto;padding:0;scrollbar-width:none;-ms-overflow-style:none;cursor:grab;}
 .m2-hero-track.dragging{cursor:grabbing;}
 .m2-hero-track.dragging *{cursor:grabbing;user-select:none;}
@@ -116,8 +117,11 @@
   .m2-bn .lb{font-size:12px;margin-bottom:8px;}
   .m2-bn p{font-size:12px;margin-top:8px;}
   .m2-bn .bks,.m2-bn .deco{display:none;}
-  .m2-hero-nav{padding:0 20px;}
-  .m2-bar{width:120px;}
+  /* 모바일: 하단 바/화살표 대신 배너 위 숫자 오버레이(1 / 6) */
+  .m2-hero-nav{display:none;}
+  .m2-hero{padding:16px 0 0;}
+  .m2-hero-count{display:block;position:absolute;top:32px;right:calc(7vw + 12px);background:rgba(0,0,0,.42);color:rgba(255,255,255,.75);font-size:12px;font-weight:700;padding:5px 12px;border-radius:999px;z-index:3;letter-spacing:.5px;}
+  .m2-hero-count b{color:#fff;}
 }
 
 /* 카테고리 상품 행 */
@@ -127,7 +131,7 @@
 .m2-cat:last-child{margin-bottom:0;}
 .m2-cat-head{display:flex;align-items:center;gap:24px;margin-bottom:16px;flex-wrap:wrap;}
 .m2-cat-head .m2-t{font-family:var(--display);font-size:32px;font-weight:700;color:var(--ink);letter-spacing:-.02em;}
-.m2-cat-head .m2-tabs{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.m2-cat-head .m2-tabs{display:flex;align-items:center;gap:4px;flex-wrap:wrap;}
 .m2-cat-head .m2-tab{font-size:14px;color:#a9a9a9;cursor:pointer;padding:6px 14px;border-radius:999px;white-space:nowrap;}
 .m2-cat-head .m2-tab.on{background:var(--ink);color:#fff;font-weight:700;}
 .m2-row-wrap{position:relative;}
@@ -203,22 +207,36 @@
   .page-main2 .mainicons .pill .ico{width:64px;height:64px;}
   .page-main2 .mainicons .pill .ico img{width:30px;height:30px;}
   .page-main2 .mainicons .pill span{font-size:12px;white-space:nowrap;}
-  /* layout.css 모바일이 index용으로 아이콘 순서 재배치·2번째 숨김 → 메인_2는 자연 순서로 복구 */
-  .page-main2 .mainicons .pill{order:0;}
-  .page-main2 .mainicons .pill.mo-reco{order:0;}
-  .page-main2 .mainicons .pill:nth-child(2){display:flex;}
-  .m2-row{display:grid;grid-auto-flow:column;grid-template-rows:auto auto;grid-auto-columns:42vw;gap:24px 12px;overflow-x:auto;scroll-snap-type:x proximity;}
-  .m2-card{width:auto;gap:8px;scroll-snap-align:start;}
+  /* 모바일 아이콘 순서: 교재구매·맞춤세트·학습자료·음원듣기·영어선생님·정답MP3·수학선생님·교재추천 (레벨차트 숨김) */
+  .page-main2 .mainicons .pill:nth-child(1){order:1;}
+  .page-main2 .mainicons .pill:nth-child(2){order:2;display:flex;}
+  .page-main2 .mainicons .pill:nth-child(3){display:none;}
+  .page-main2 .mainicons .pill:nth-child(4){order:3;}
+  .page-main2 .mainicons .pill:nth-child(6){order:4;}
+  .page-main2 .mainicons .pill:nth-child(7){order:5;}
+  .page-main2 .mainicons .pill:nth-child(5){order:6;}
+  .page-main2 .mainicons .pill:nth-child(8){order:7;}
+  .page-main2 .mainicons .pill.mo-reco{order:8;}
+  /* 섹션 여백/타이틀: 각 섹션 위 56px, 타이틀 24px, 타이틀 아래 16px */
+  .m2-cats{padding-top:0;padding-bottom:0;}
+  .m2-cat{margin-top:56px;margin-bottom:0;}
+  .m2-cat-head{gap:16px;margin-bottom:16px;}
+  .m2-cat-head .m2-t{font-size:24px;}
+  /* 상품 카드: 회색박스 153x153, 우측 bleed로 2개 반 노출 */
+  .m2-row-wrap{margin-right:-20px;}
+  .m2-row{display:grid;grid-auto-flow:column;grid-template-rows:auto auto;grid-auto-columns:153px;gap:24px 12px;overflow-x:auto;scroll-snap-type:x proximity;padding-right:20px;}
+  .m2-card{width:auto;gap:16px;scroll-snap-align:start;}
   .m2-card .box>img{top:24px;height:calc(100% - 48px);}
   .m2-card .cart{width:36px;height:36px;background-size:16px;right:6%;bottom:6%;}
-  .m2-card .name{font-size:14px;line-height:20px;padding:0 8px;margin-top:8px;}
-  .m2-card .price{padding:0 8px;}
+  .m2-card .name{font-size:14px;line-height:20px;padding:0 16px;margin-top:0;}
+  .m2-card .price{padding:0 16px;margin-top:0;}
   .m2-card .price .dc{display:none;} /* 모바일: 할인% 배지 숨김(금액만) */
   .m2-card .price .now{font-size:16px;}
   .m2-card .price .was{font-size:12px;}
-  /* 맞춤교재 세트: 1열 스택, 상단 회색 채움 박스(피그마 모바일) */
+  /* 맞춤교재 세트: 흰 배경 섹션 + 상단 회색박스(좌우24/위아래40), 1열 스택 */
+  .m2-sets{background:#fff;padding:56px 0 40px;}
   .m2-sets-t{font-size:24px;margin-bottom:16px;}
-  .m2-set-top{background:#f3f3f3;border:0;padding:24px;border-radius:16px;}
+  .m2-set-top{background:#f3f3f3;border:0;padding:40px 24px;border-radius:16px;}
   .m2-set-top .st-t{font-size:18px;}
   .m2-set-collage{margin-top:20px;height:120px;}
   .m2-set-books{margin-top:20px;}
@@ -241,6 +259,7 @@
       <article class="m2-bn hero4"><div class="tx"><span class="lb">체계적인 영문법</span><h3>성적이 달라지는<br>방학 특강 조합</h3><p>개념 학습 후에는 단계별로 심화되는 문제풀이</p></div></article>
       <article class="m2-bn hero5 on-dark"><div class="tx"><span class="lb">신간 출시</span><h3>스스로 읽는 힘을 키워주는<br>Phonics Code!</h3><p>모바일 학습으로 더 재미있게!</p></div></article>
     </div>
+    <div class="m2-hero-count" id="m2Count" aria-hidden="true"></div>
     <div class="m2-hero-nav">
       <div class="m2-bar"><i id="m2Bar"></i></div>
       <div class="m2-grp">
@@ -726,7 +745,8 @@
     var v=visCount(), bw=el.offsetWidth, pairW=v*bw+(v-1)*GAP, vw=track.clientWidth;
     return Math.round(el.offsetLeft - (vw-pairW)/2);
   }
-  function renderIdx(){ var r=((i%N)+N)%N; if(idxEl) idxEl.textContent=r+1; if(bar){ bar.style.width=(100/N)+'%'; bar.style.marginLeft=(r*100/N)+'%'; } }
+  var countEl=document.getElementById('m2Count');
+  function renderIdx(){ var r=((i%N)+N)%N; if(idxEl) idxEl.textContent=r+1; if(countEl) countEl.innerHTML='<b>'+(r+1)+'</b> / '+N; if(bar){ bar.style.width=(100/N)+'%'; bar.style.marginLeft=(r*100/N)+'%'; } }
   function jump(x){ if(raf){cancelAnimationFrame(raf);raf=null;} track.scrollLeft=x; }
   /* native smooth가 이 환경에서 스크롤을 되돌려서 rAF로 직접 애니메이션 */
   function animTo(target,done){
