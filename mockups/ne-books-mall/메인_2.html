@@ -10,9 +10,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- Pretendard (design font) via CDN, with Noto Sans KR fallback -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260815dt">
-<script src="js/layout.js?v=20260815dt" defer></script>
-<script src="js/search.js?v=20260815dt" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260815du">
+<script src="js/layout.js?v=20260815du" defer></script>
+<script src="js/search.js?v=20260815du" defer></script>
 <style>
 /* ===== 메인 시안 A (메인_2) 전용 ===== */
 /* 맞춤교재 세트 애니 아이콘 */
@@ -250,7 +250,7 @@
   .m2-set-collage{margin-top:24px;height:auto;} /* 설명↔교재이미지 24px */
   /* 교재 표지를 뷰포트 폭에 맞춰 축소 → 좁은 폰에서도 회색박스 밖으로 안 삐져나감 */
   .m2-set-collage img{width:min(88px, 23vw);height:auto;aspect-ratio:92/120;}
-  .m2-set-books{margin-top:24px;gap:8px;} /* 회색박스 ↔ 교재명 24px, 교재명 사이 8px */
+  .m2-set-books{margin-top:24px;gap:8px;max-height:108px;} /* 회색박스↔교재명 24px, 교재명 사이 8px, 4번째 교재명이 절반만 보이도록(스크롤 힌트) */
   .m2-set-price{margin-top:32px;} /* 할인/금액 줄 위 여백 32px */
   .m2-set-price .r .pc,.m2-set-price .r .now{font-size:18px;} /* 28% / 29,500원 18px */
   .m2-set-btns a{height:44px;}
