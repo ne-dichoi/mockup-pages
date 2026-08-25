@@ -119,11 +119,14 @@ ul{list-style:none;}
 
 .wsel{display:flex;align-items:center;justify-content:space-between;background:#fff;border:1px solid var(--line);border-radius:7px;padding:8px 10px;font-size:11px;color:#333;margin-bottom:8px;}
 .wsel .chg{font-size:10px;color:#999;text-decoration:underline;flex:none;}
-.wmat-label{font-size:10.5px;color:#c1490f;font-weight:700;margin-bottom:6px;}
-.wmat-row{display:flex;justify-content:space-between;align-items:center;background:#fff;border:1px solid var(--accent);border-radius:7px;padding:8px 10px;font-size:11px;color:#444;margin-bottom:6px;}
-.wmat-row:last-child{margin-bottom:0;}
-.wmat-row .dl{display:flex;align-items:center;gap:4px;font-size:10px;color:var(--accent);font-weight:700;white-space:nowrap;flex:none;}
-.wmat-row .dl svg{stroke:var(--accent);flex:none;}
+.wmat-label{font-size:10.5px;color:#c1490f;font-weight:700;margin-bottom:8px;}
+.wmat-icons{display:flex;gap:14px;overflow-x:auto;padding-bottom:2px;}
+.wmat-icon{display:flex;flex:none;width:52px;flex-direction:column;align-items:center;gap:6px;}
+.wmat-icon .ic{width:44px;height:44px;border:1.5px solid var(--accent);border-radius:12px;display:flex;align-items:center;justify-content:center;background:#fff;}
+.wmat-icon.on .ic{background:var(--accent);}
+.wmat-icon.on .ic svg{stroke:#fff;}
+.wmat-icon span{font-size:9.5px;color:#c1490f;text-align:center;font-weight:600;line-height:1.3;}
+.wmat-swipe-note{text-align:center;font-size:10px;color:#c98a63;margin-top:8px;}
 
 .chip-row{display:flex;flex-wrap:wrap;gap:8px;margin:14px 16px 0;}
 .chip{font-size:11.5px;padding:7px 13px;border:1px solid var(--line);border-radius:20px;color:#888;}
@@ -424,12 +427,16 @@ ul{list-style:none;}
         <div class="widget-box" style="margin-top:0;">
           <div class="wt"><span class="new" style="background:var(--accent);">NEW</span>학습자료실 바로검색</div>
           <div class="wsel">그래머 비기너 1 <span class="chg">변경</span></div>
-          <div class="wmat-label">학습자료 (3)</div>
-          <div class="wmat-row">정답지 PDF<span class="dl"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 19h14"/></svg>다운로드</span></div>
-          <div class="wmat-row">MP3 음원<span class="dl"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 19h14"/></svg>다운로드</span></div>
-          <div class="wmat-row">워크시트<span class="dl"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 19h14"/></svg>다운로드</span></div>
+          <div class="wmat-label">학습자료</div>
+          <div class="wmat-icons">
+            <div class="wmat-icon on"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg></div><span>전체</span></div>
+            <div class="wmat-icon"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="16.5" x2="15" y2="16.5"/></svg></div><span>정답지<br>PDF</span></div>
+            <div class="wmat-icon"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><circle cx="8" cy="17" r="3"/><path d="M11 17V5l9-2v12"/><circle cx="17" cy="15" r="3"/></svg></div><span>MP3<br>음원</span></div>
+            <div class="wmat-icon"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/><path d="M9 17l2-2 2 2 2-3"/></svg></div><span>워크<br>시트</span></div>
+          </div>
+          <div class="wmat-swipe-note">← 좌우로 스와이프 →</div>
         </div>
-        <div class="limit-note">교재 선택 시 위젯 검색창 바로 아래에 해당 교재의 학습자료 목록이 펼쳐지고, 각 항목을 바로 다운로드할 수 있음</div>
+        <div class="limit-note">교재 선택 시 위젯 검색창 바로 아래에 해당 교재의 학습자료가 아이콘으로 1행에 노출되고, 좌우 스와이프로 훑어보며 탭하면 바로 다운로드</div>
       </div>
     </div>
   </div>
