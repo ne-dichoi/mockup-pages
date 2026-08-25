@@ -10,9 +10,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- Pretendard (design font) via CDN, with Noto Sans KR fallback -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260815db">
-<script src="js/layout.js?v=20260815db" defer></script>
-<script src="js/search.js?v=20260815db" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260815dc">
+<script src="js/layout.js?v=20260815dc" defer></script>
+<script src="js/search.js?v=20260815dc" defer></script>
 <style>
 /* ===== 메인 시안 A (메인_2) 전용 ===== */
 /* 맞춤교재 세트 애니 아이콘 */
@@ -61,6 +61,7 @@
 /* 히어로: 가로형 디자인 배너 캐러셀 */
 .m2-hero{position:relative;padding:40px 0 0;overflow:hidden;}
 .m2-hero-count{display:none;}
+.m2-bn .bn-mo{display:none;} /* 배너 문구 PC/모바일 분리(관리자 입력 구조) */
 .m2-hero-track{display:flex;gap:24px;overflow-x:hidden;scroll-behavior:auto;padding:0;scrollbar-width:none;-ms-overflow-style:none;cursor:grab;}
 .m2-hero-track.dragging{cursor:grabbing;}
 .m2-hero-track.dragging *{cursor:grabbing;user-select:none;}
@@ -112,10 +113,13 @@
   .m2-hero{padding:16px 0 8px;}
   .m2-hero-track{padding:0;gap:12px;}
   .m2-bn{flex:0 0 86vw;aspect-ratio:335/150;border-radius:12px;}
-  .m2-bn .tx{margin-left:20px;max-width:52%;}
+  .m2-bn .tx{margin-left:20px;max-width:62%;}
+  .m2-bn.hero1,.m2-bn.hero2,.m2-bn.hero3,.m2-bn.hero4,.m2-bn.hero5{background-size:auto 88%;}
   .m2-bn h3{font-size:18px;line-height:1.3;}
   .m2-bn .lb{font-size:12px;margin-bottom:8px;}
-  .m2-bn p{font-size:12px;margin-top:8px;}
+  .m2-bn p{font-size:12px;margin-top:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;} /* 모바일 설명 한 줄 고정 */
+  .m2-bn .bn-pc{display:none;}
+  .m2-bn .bn-mo{display:inline;}
   .m2-bn .bks,.m2-bn .deco{display:none;}
   /* 모바일: 하단 바/화살표 대신 배너 위 숫자 오버레이(1 / 6) */
   .m2-hero-nav{display:none;}
@@ -255,10 +259,10 @@
   <!-- ===== HERO: 가로형 디자인 배너 캐러셀 (시안 A) ===== -->
   <section class="m2-hero" id="m2Hero">
     <div class="m2-hero-track" id="m2HeroTrack">
-      <article class="m2-bn hero1 on-dark"><div class="tx"><span class="lb">이벤트</span><h3>온라인 영어 레벨테스트<br>NELT 무료체험</h3><p>한국 교육과정 기준 영어 레벨테스트로 실력을 정확하게.</p></div></article>
+      <article class="m2-bn hero1 on-dark"><div class="tx"><span class="lb">이벤트</span><h3><span class="bn-pc">온라인 영어 레벨테스트<br>NELT 무료체험</span><span class="bn-mo">영어 레벨테스트<br>NELT 무료 체험</span></h3><p><span class="bn-pc">한국 교육과정 기준 영어 레벨테스트로 실력을 정확하게.</span><span class="bn-mo">아이 실력을 정확하게 테스트하세요.</span></p></div></article>
       <article class="m2-bn hero2 on-dark"><div class="tx"><span class="lb">세미나</span><h3>시작되는 2학기,<br>9월의 첫 수업을 함께</h3><p>개학 전 새학기 전략을 점검하세요.</p></div></article>
-      <article class="m2-bn hero3"><div class="tx"><span class="lb">신간 출시</span><h3 class="rd2">읽을수록 넓어지는 어휘,<br>알수록 깊어지는 독해</h3><p>30권 라인업으로 완성하는 초등 리딩 커리큘럼</p></div></article>
-      <article class="m2-bn hero4"><div class="tx"><span class="lb">체계적인 영문법</span><h3>성적이 달라지는<br>방학 특강 조합</h3><p>개념 학습 후에는 단계별로 심화되는 문제풀이</p></div></article>
+      <article class="m2-bn hero3"><div class="tx"><span class="lb">신간 출시</span><h3 class="rd2"><span class="bn-pc">읽을수록 넓어지는 어휘,<br>알수록 깊어지는 독해</span><span class="bn-mo">30종 라인업으로<br>완성하는 커리큘럼</span></h3><p><span class="bn-pc">30권 라인업으로 완성하는 초등 리딩 커리큘럼</span><span class="bn-mo">확장된 라인업으로 설계해보세요!</span></p></div></article>
+      <article class="m2-bn hero4"><div class="tx"><span class="lb">체계적인 영문법</span><h3>성적이 달라지는<br>방학 특강 조합</h3><p><span class="bn-pc">개념 학습 후에는 단계별로 심화되는 문제풀이</span><span class="bn-mo">개념학습 후 단계별로 심화되는 문제풀이</span></p></div></article>
       <article class="m2-bn hero5 on-dark"><div class="tx"><span class="lb">신간 출시</span><h3>스스로 읽는 힘을 키워주는<br>Phonics Code!</h3><p>모바일 학습으로 더 재미있게!</p></div></article>
     </div>
     <div class="m2-hero-count" id="m2Count" aria-hidden="true"></div>
