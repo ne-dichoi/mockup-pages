@@ -25,7 +25,7 @@ a{color:inherit;text-decoration:none;}
 ul{list-style:none;}
 
 /* ---------- page shell ---------- */
-.page-header{max-width:1000px;margin:0 auto;padding:48px 20px 24px;}
+.page-header{max-width:1180px;margin:0 auto;padding:48px 20px 24px;}
 .page-header h1{font-size:22px;font-weight:800;margin-bottom:8px;}
 .page-header p{font-size:13px;color:var(--sub);line-height:1.7;max-width:640px;}
 .page-header .base-link{display:inline-block;margin-top:10px;font-size:12px;color:var(--accent);border-bottom:1px solid var(--accent);}
@@ -34,11 +34,11 @@ ul{list-style:none;}
 .legend a{display:flex;align-items:center;gap:6px;font-size:12px;color:#555;background:#fff;border:1px solid var(--line);border-radius:20px;padding:6px 12px;}
 .legend .num{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:50%;background:var(--accent);color:#fff;font-size:10px;font-weight:700;}
 
-.fidelity-note{max-width:1000px;margin:0 auto 8px;padding:0 20px;}
+.fidelity-note{max-width:1180px;margin:0 auto 8px;padding:0 20px;}
 .fidelity-note .box{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 16px;font-size:12px;color:#666;line-height:1.7;}
 .fidelity-note b{color:var(--ink);}
 
-.section{max-width:1000px;margin:0 auto 64px;padding:0 20px;scroll-margin-top:20px;}
+.section{max-width:1180px;margin:0 auto 64px;padding:0 20px;scroll-margin-top:20px;}
 .section-head{display:flex;align-items:baseline;gap:10px;margin-bottom:6px;}
 .section-head .badge{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;font-size:13px;font-weight:800;flex:none;}
 .section-head h2{font-size:17px;font-weight:800;}
@@ -58,6 +58,7 @@ ul{list-style:none;}
 .frame-label .tag{display:inline-block;font-size:10px;font-weight:800;border-radius:4px;padding:2px 6px;margin-right:6px;vertical-align:1px;}
 .frame-label.before .tag{background:#eee;color:#888;}
 .frame-label.after .tag{background:var(--accent);color:#fff;}
+.frame-label .tag.step{background:#333;color:#fff;}
 
 /* ---------- phone frame ---------- */
 .frame{width:340px;max-width:82vw;border:2px solid var(--line-strong);border-radius:26px;background:#fff;overflow:hidden;}
@@ -108,8 +109,21 @@ ul{list-style:none;}
 .widget-box{margin:12px 16px 16px;border:1.5px solid var(--accent);background:var(--accent-bg);border-radius:10px;padding:12px;}
 .widget-box .wt{font-size:11.5px;font-weight:800;color:var(--accent);margin-bottom:8px;display:flex;align-items:center;gap:5px;}
 .widget-box .wsearch{background:#fff;border:1px solid var(--accent);border-radius:7px;padding:8px 10px;font-size:11.5px;color:#999;display:flex;align-items:center;gap:6px;margin-bottom:10px;}
+.widget-box .wsearch.typed{color:#333;}
 .widget-box .wcards{display:flex;gap:8px;}
 .widget-box .wcard{flex:1;height:56px;font-size:10px;background:#fff;}
+
+.w-autocomplete{margin:-4px 0 0;border:1px solid var(--accent);border-top:none;border-radius:0 0 7px 7px;background:#fff;overflow:hidden;}
+.w-autocomplete li{padding:8px 10px;font-size:11px;color:#555;border-top:1px dashed #eee;}
+.w-autocomplete li b{color:var(--accent);}
+
+.wsel{display:flex;align-items:center;justify-content:space-between;background:#fff;border:1px solid var(--line);border-radius:7px;padding:8px 10px;font-size:11px;color:#333;margin-bottom:8px;}
+.wsel .chg{font-size:10px;color:#999;text-decoration:underline;flex:none;}
+.wmat-label{font-size:10.5px;color:#c1490f;font-weight:700;margin-bottom:6px;}
+.wmat-row{display:flex;justify-content:space-between;align-items:center;background:#fff;border:1px solid var(--accent);border-radius:7px;padding:8px 10px;font-size:11px;color:#444;margin-bottom:6px;}
+.wmat-row:last-child{margin-bottom:0;}
+.wmat-row .dl{display:flex;align-items:center;gap:4px;font-size:10px;color:var(--accent);font-weight:700;white-space:nowrap;flex:none;}
+.wmat-row .dl svg{stroke:var(--accent);flex:none;}
 
 .chip-row{display:flex;flex-wrap:wrap;gap:8px;margin:14px 16px 0;}
 .chip{font-size:11.5px;padding:7px 13px;border:1px solid var(--line);border-radius:20px;color:#888;}
@@ -162,7 +176,7 @@ ul{list-style:none;}
   <div class="legend">
     <a href="#overview"><span class="num">◎</span> 전체 개요</a>
     <a href="#c1"><span class="num">1</span> 학습자료실 위젯</a>
-    <a href="#c2"><span class="num">2</span> 맞춤교재찾기(신규 제안)</a>
+    <a href="#c2"><span class="num">2</span> 맞춤교재찾기 위젯(신규 제안)</a>
   </div>
 </header>
 
@@ -177,7 +191,7 @@ ul{list-style:none;}
 <!-- ============ OVERVIEW ============ -->
 <section class="section" id="overview">
   <div class="section-head"><span class="badge">◎</span><h2>전체 개요 — 실제 A안(메인_2.html) 메인 화면 지도</h2></div>
-  <p class="section-sub">검색 → GNB → 배너 → 바로가기 → 학년별 교재(카테고리+시리즈탭) → 목적별 커리큘럼 SET → NE Tutor → 공지사항/고객센터 순서. Before는 핀으로 ① 학습자료실 위젯이 들어갈 위치를, After는 실제 적용된 모습을 보여줍니다. (② 맞춤교재찾기는 현재 존재하지 않는 신규 제안 화면이라 이 메인 지도에는 나타나지 않습니다)</p>
+  <p class="section-sub">검색 → GNB → 배너 → 바로가기 → 학년별 교재(카테고리+시리즈탭) → 목적별 커리큘럼 SET → NE Tutor → 공지사항/고객센터 순서. Before는 핀으로 ① 학습자료실 위젯, ② 맞춤교재찾기 위젯이 들어갈 위치를, After는 두 위젯이 모두 적용된 모습을 보여줍니다. 둘 다 별도 화면이 아니라 메인 안에 임베드된 위젯입니다.</p>
 
   <div class="pair">
     <div class="frame-col">
@@ -242,6 +256,7 @@ ul{list-style:none;}
         </div>
 
         <div class="pin" style="top:206px; left:8px;"><span class="dot">1</span><span class="note">학습자료실 위젯 삽입 위치(배너 아래)</span></div>
+        <div class="pin" style="top:340px; right:8px;"><span class="dot">2</span><span class="note">맞춤교재찾기 위젯 삽입 위치</span></div>
       </div>
     </div>
 
@@ -291,6 +306,26 @@ ul{list-style:none;}
           <div class="icon-cell"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/></svg></div><span>수학쌤</span></div>
         </div>
 
+        <div class="widget-box">
+          <div class="wt"><span class="new" style="background:var(--accent);">NEW</span>맞춤교재찾기</div>
+          <div class="chip-row-title" style="margin:0 0 6px;">과목 선택</div>
+          <div class="chip-row" style="margin:0 0 10px;">
+            <div class="chip on">영어</div><div class="chip">수학</div><div class="chip">국어</div>
+          </div>
+          <div class="chip-row-title" style="margin:0 0 6px;">학년 선택</div>
+          <div class="chip-row" style="margin:0 0 10px;">
+            <div class="chip on">초1</div><div class="chip">초2</div><div class="chip">초3</div><div class="chip">초4</div><div class="chip">초5</div>
+          </div>
+          <div class="chip-row-title" style="margin:0 0 6px;">수준 선택</div>
+          <div class="chip-row" style="margin:0 0 10px;">
+            <div class="chip accent">입문</div><div class="chip">초급</div><div class="chip">중급</div><div class="chip">고급</div><div class="chip">심화</div>
+          </div>
+          <div class="row-scroll" style="margin:0;">
+            <div class="ph book-ph sm">교재</div><div class="ph book-ph sm">교재</div><div class="ph book-ph sm">교재</div><div class="ph book-ph sm">교재</div>
+          </div>
+          <div style="text-align:center;font-size:10px;color:#c98a63;margin-top:8px;">← 좌우로 스와이프해서 더 보기 →</div>
+        </div>
+
         <div class="cat-block">
           <div class="cat-head"><span class="cat-name">ELT</span><span style="font-size:10px;color:#bbb;">전체보기 ›</span></div>
           <div class="cat-tabs"><span class="on">Phonics Code</span><span>Read it</span><span>Subject Link</span><span>주니어 리딩튜터</span></div>
@@ -322,7 +357,7 @@ ul{list-style:none;}
 
   <ul class="overview-legend" style="margin-top:24px;">
     <li><span class="dot">1</span><div><b>학습자료실 검색 위젯</b><br>바로가기 아이콘 속 기능을 검색창 아래 메인 위젯으로. <a href="#c1">Before/After 보기 →</a></div></li>
-    <li><span class="dot">2</span><div><b>맞춤교재찾기(신규 제안)</b><br>현재 없는 기능 — 학년+수준 두 축 필터 화면을 새로 제안. <a href="#c2">Before/After 보기 →</a></div></li>
+    <li><span class="dot">2</span><div><b>맞춤교재찾기 위젯(신규 제안)</b><br>현재 없는 기능 — 과목+학년+수준 세 축으로 좁힌 교재를 메인 안에서 좌우 스와이프로 노출. <a href="#c2">Before/After 보기 →</a></div></li>
   </ul>
 </section>
 
@@ -354,7 +389,7 @@ ul{list-style:none;}
       </div>
     </div>
     <div class="frame-col">
-      <div class="frame-label after"><span class="tag">AFTER</span>메인 검색형 위젯 노출</div>
+      <div class="frame-label after"><span class="tag">AFTER</span><span class="tag step">STEP 1</span>입력 중 자동검색</div>
       <div class="frame">
         <div class="fx-header"><div class="fx-logo"></div></div>
         <div class="search-bar">
@@ -364,29 +399,49 @@ ul{list-style:none;}
         <div class="ph banner-ph">배너</div>
         <div class="widget-box" style="margin-top:0;">
           <div class="wt"><span class="new" style="background:var(--accent);">NEW</span>학습자료실 바로검색</div>
-          <div class="wsearch">
+          <div class="wsearch typed">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.6" y2="16.6"/></svg>
-            교재명을 입력하세요
+            그래머<span class="caret"></span>
           </div>
-          <div class="wcards">
-            <div class="ph wcard">자료1</div>
-            <div class="ph wcard">자료2</div>
-            <div class="ph wcard">자료3</div>
-          </div>
+          <ul class="w-autocomplete">
+            <li><b>그래머</b> 비기너 1</li>
+            <li><b>그래머</b> 비기너 2</li>
+            <li><b>그래머</b> 인사이드 스타터</li>
+          </ul>
         </div>
-        <div class="limit-note">배너 아래 · 검색 즉시 해당 교재의 학습자료 카드가 바로 노출</div>
+        <div class="limit-note">배너 아래 · 교재명 입력 중 자동검색으로 일치하는 교재가 바로 드롭다운 노출</div>
+      </div>
+    </div>
+    <div class="frame-col">
+      <div class="frame-label after"><span class="tag">AFTER</span><span class="tag step">STEP 2</span>선택 후 자료 다운로드 노출</div>
+      <div class="frame">
+        <div class="fx-header"><div class="fx-logo"></div></div>
+        <div class="search-bar">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.6" y2="16.6"/></svg>
+          검색어를 입력해 주세요.
+        </div>
+        <div class="ph banner-ph">배너</div>
+        <div class="widget-box" style="margin-top:0;">
+          <div class="wt"><span class="new" style="background:var(--accent);">NEW</span>학습자료실 바로검색</div>
+          <div class="wsel">그래머 비기너 1 <span class="chg">변경</span></div>
+          <div class="wmat-label">학습자료 (3)</div>
+          <div class="wmat-row">정답지 PDF<span class="dl"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 19h14"/></svg>다운로드</span></div>
+          <div class="wmat-row">MP3 음원<span class="dl"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 19h14"/></svg>다운로드</span></div>
+          <div class="wmat-row">워크시트<span class="dl"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 19h14"/></svg>다운로드</span></div>
+        </div>
+        <div class="limit-note">교재 선택 시 위젯 검색창 바로 아래에 해당 교재의 학습자료 목록이 펼쳐지고, 각 항목을 바로 다운로드할 수 있음</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ 2. 맞춤교재찾기 (신규 제안) ============ -->
+<!-- ============ 2. 맞춤교재찾기 (신규 제안, 메인 임베드 위젯) ============ -->
 <section class="section" id="c2">
-  <div class="section-head"><span class="badge">2</span><h2>맞춤교재찾기 — 학년+수준 두 축 (신규 제안)</h2></div>
+  <div class="section-head"><span class="badge">2</span><h2>맞춤교재찾기 — 과목+학년+수준 세 축 (메인 임베드 위젯, 신규 제안)</h2></div>
   <div class="info-box">
-    <div class="row"><span class="k">가설</span><span class="v">학년만으로 교재를 좁히지 못하는 사용자가 있다 — 학년과 수준 두 축으로 좁힐 수 있는 화면을 새로 만들면 이탈 없이 원하는 교재에 도달한다.</span></div>
-    <div class="row"><span class="k">근거</span><span class="v">"학년별이 아닌 수준별 수업이어서", "영어과목은 개별진도라 학년이 의미 없다", "초등/중등 카테고리를 몰라 두세 번 찾게 된다."</span></div>
-    <div class="row"><span class="k">측정</span><span class="v">신규 화면 진입률 · 수준 필터 사용률 · 필터 적용 후 재탐색(뒤로가기) 감소율</span></div>
+    <div class="row"><span class="k">가설</span><span class="v">학년만으로 교재를 좁히지 못하는 사용자가 있다 — 별도 화면 대신 메인 안에 과목+학년+수준 세 축 필터 영역을 임베드하면, 이탈(페이지 이동) 없이 그 자리에서 원하는 교재에 도달한다.</span></div>
+    <div class="row"><span class="k">근거</span><span class="v">"학년별이 아닌 수준별 수업이어서", "영어과목은 개별진도라 학년이 의미 없다", "초등/중등 카테고리를 몰라 두세 번 찾게 된다." 과목(영어/수학/국어)별로 학년·수준 기준 자체가 다르므로 과목 선택이 먼저 필요.</span></div>
+    <div class="row"><span class="k">측정</span><span class="v">과목/학년/수준 선택률 · 스와이프 인터랙션 사용률 · 위젯 내 교재 클릭률</span></div>
   </div>
   <div class="pair">
     <div class="frame-col">
@@ -395,26 +450,34 @@ ul{list-style:none;}
         <div class="fx-header"><div class="fx-logo"></div></div>
         <div class="missing-box">
           <div class="x">✕</div>
-          "맞춤교재찾기" 화면이 현재 A안에는 존재하지 않음.<br>학년·수준으로 교재를 좁혀볼 수 있는 별도 진입점이 없어, 사용자는 카테고리(ELT/초중등/고등) 내 시리즈 탭을 하나씩 훑어야 함.
+          "맞춤교재찾기" 영역이 현재 A안에는 존재하지 않음.<br>과목·학년·수준으로 교재를 좁혀볼 수 있는 진입점이 없어, 사용자는 카테고리(ELT/초중등/고등) 내 시리즈 탭을 하나씩 훑어야 함.
         </div>
       </div>
     </div>
     <div class="frame-col">
-      <div class="frame-label after"><span class="tag">AFTER</span>신규 화면 제안</div>
+      <div class="frame-label after"><span class="tag">AFTER</span>메인 안에 임베드된 위젯 영역</div>
       <div class="frame">
-        <div class="fx-header"><div class="fx-logo"></div><span style="font-size:12px;color:var(--accent);font-weight:700;">맞춤교재찾기 <span class="new" style="font-size:9px;">NEW</span></span></div>
-        <div class="chip-row-title">학년 선택</div>
-        <div class="chip-row">
-          <div class="chip on">초1</div><div class="chip">초2</div><div class="chip">초3</div><div class="chip">초4</div><div class="chip">초5</div>
+        <div class="fx-header"><div class="fx-logo"></div></div>
+        <div class="widget-box">
+          <div class="wt"><span class="new" style="background:var(--accent);">NEW</span>맞춤교재찾기</div>
+          <div class="chip-row-title" style="margin:0 0 6px;">과목 선택</div>
+          <div class="chip-row" style="margin:0 0 10px;">
+            <div class="chip on">영어</div><div class="chip">수학</div><div class="chip">국어</div>
+          </div>
+          <div class="chip-row-title" style="margin:0 0 6px;">학년 선택</div>
+          <div class="chip-row" style="margin:0 0 10px;">
+            <div class="chip on">초1</div><div class="chip">초2</div><div class="chip">초3</div><div class="chip">초4</div><div class="chip">초5</div>
+          </div>
+          <div class="chip-row-title" style="margin:0 0 6px;">수준 선택</div>
+          <div class="chip-row" style="margin:0 0 10px;">
+            <div class="chip accent">입문</div><div class="chip">초급</div><div class="chip">중급</div><div class="chip">고급</div><div class="chip">심화</div>
+          </div>
+          <div class="row-scroll" style="margin:0;">
+            <div class="ph book-ph sm">교재</div><div class="ph book-ph sm">교재</div><div class="ph book-ph sm">교재</div><div class="ph book-ph sm">교재</div>
+          </div>
+          <div style="text-align:center;font-size:10px;color:#c98a63;margin-top:8px;">← 좌우로 스와이프해서 더 보기 →</div>
         </div>
-        <div class="chip-row-title"><span class="new" style="background:var(--accent);color:#fff;font-size:9px;font-weight:800;border-radius:4px;padding:2px 5px;">NEW</span>수준 선택</div>
-        <div class="chip-row">
-          <div class="chip accent">입문</div><div class="chip">초급</div><div class="chip">중급</div><div class="chip">고급</div><div class="chip">심화</div>
-        </div>
-        <div class="result-grid">
-          <div class="ph result-card">결과1</div><div class="ph result-card">결과2</div>
-        </div>
-        <div class="limit-note">학년+수준 두 축으로 결과를 좁혀 원하는 교재에 더 빠르게 도달하는 신규 화면 제안</div>
+        <div class="limit-note">과목·학년·수준 칩을 바꾸면 같은 자리에서 아래 교재 목록이 바로 갱신되고, 결과는 화면 이동 없이 좌우 스와이프로 훑어봄</div>
       </div>
     </div>
   </div>
