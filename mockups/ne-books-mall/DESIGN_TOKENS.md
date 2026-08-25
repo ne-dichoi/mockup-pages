@@ -782,4 +782,21 @@ body{ min-height:100vh; display:flex; flex-direction:column; }
 | NE Tutor `.netutor` | `--blue` 액센트, `.nt-card` 351×178(red variant), 아크 회전 ≥1024(§30) |
 | 공지/CS `.notices` | 2단(`.notice-list` + `.cs-cards`), 카드 `.cs-card` radius 16 |
 
+## 41. 회색 정사각 박스 카드 — 교재 표지 비율 (2026-08)
+
+검색결과·찜·홈(찜한/최근본)·연관교재·메인 ELT 등 **회색 정사각(`aspect-ratio:1/1`) 박스 안에 교재 표지**를 담는 카드 공통 규칙.
+
+| 항목 | 규칙 |
+|------|------|
+| 표지 높이 | **박스 높이의 `63%`** (`top:18.5%` · `bottom:18.5%`) — **비율(%) 고정** |
+| 표지 폭 | `width:auto` + `aspect-ratio:171/223` → 자동(≈박스폭의 **48%**) |
+| 정렬 | 가로 중앙(`left:50%; transform:translateX(-50%)`) |
+| 카트 버튼 | 박스 기준 **`%`로 배치**(표지 우하단 모서리에 반쯤 걸침) |
+
+> ⚠️ **고정 px 금지**: `top:45px / height:calc(100% - 90px)` 같은 고정값은 카드 폭이 반응형으로 줄면 회색박스 대비 표지가 **작아 보이는** 문제가 생김(90px 패딩이 작은 박스에서 큰 비중). **반드시 `%` 비율**로 지정해 카드 크기가 달라져도 표지가 항상 박스의 63%로 **일정**하게.
+>
+> 적용 셀렉터: `.sr-book`(검색결과) · `:is(#tab-wish .wl-grid,#tab-home .mb-grid) .mb-cover img`(찜·홈) · `.rel-card .img .book`(연관교재) · `.m2-card .box>img`(메인 ELT). 데스크탑·모바일 동일하게 63%.
+
+---
+
 > 문서 번호는 §11이 비어 있음(§10 → §12) — 과거 편집 흔적, 내용 누락 아님.
