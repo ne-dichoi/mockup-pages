@@ -10,9 +10,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- Pretendard (design font) via CDN, with Noto Sans KR fallback -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260815ea">
-<script src="js/layout.js?v=20260815ea" defer></script>
-<script src="js/search.js?v=20260815ea" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260815eb">
+<script src="js/layout.js?v=20260815eb" defer></script>
+<script src="js/search.js?v=20260815eb" defer></script>
 <style>
 /* ===== 메인 시안 A (메인_2) 전용 ===== */
 /* 맞춤교재 세트 애니 아이콘 */
@@ -108,7 +108,8 @@
 .m2-grp{display:flex;align-items:center;gap:12px;font-size:13px;color:#666;}
 .m2-grp .pg b{color:var(--ink);}
 .m2-grp .ar{width:26px;height:26px;border:0;background:none;cursor:pointer;font-size:16px;color:var(--ink);line-height:1;}
-@media (max-width:1023px){
+/* 배너: 폰(≤767)만 1단 86vw. 태블릿(768~1023)은 데스크탑처럼 2단 → 넓어질 때 86vw로 거대해지고 쪼개져 보이던 문제 해결 */
+@media (max-width:767px){
   .m2-hero{padding:16px 0 8px;}
   .m2-hero-track{padding:0;gap:12px;}
   .m2-bn{flex:0 0 86vw;aspect-ratio:335/150;border-radius:12px;}
@@ -129,6 +130,11 @@
   .page-main2 .mainicons .row{touch-action:pan-x;} /* 아이콘 가로 터치 스크롤 */
   .m2-hero-count{display:block;position:absolute;top:32px;right:calc(7vw + 12px);background:rgba(0,0,0,.42);color:rgba(255,255,255,.75);font-size:12px;font-weight:700;padding:5px 12px;border-radius:999px;z-index:3;letter-spacing:.5px;}
   .m2-hero-count b{color:#fff;}
+}
+/* 태블릿(768~1023)도 터치 스와이프 유지(배너 JS 캐러셀·아이콘 가로 스크롤) */
+@media (min-width:768px) and (max-width:1023px){
+  .m2-hero-track{touch-action:pan-y;}
+  .page-main2 .mainicons .row{touch-action:pan-x;}
 }
 
 /* 카테고리 상품 행 */
