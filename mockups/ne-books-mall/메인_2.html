@@ -10,9 +10,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- Pretendard (design font) via CDN, with Noto Sans KR fallback -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260815el">
-<script src="js/layout.js?v=20260815el" defer></script>
-<script src="js/search.js?v=20260815el" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260815em">
+<script src="js/layout.js?v=20260815em" defer></script>
+<script src="js/search.js?v=20260815em" defer></script>
 <style>
 /* ===== 메인 시안 A (메인_2) 전용 ===== */
 /* 맞춤교재 세트 애니 아이콘 */
@@ -180,6 +180,10 @@
 @media (hover:hover) and (pointer:fine){
   .m2-row, .m2-row.dragging{cursor:default;}
 }
+/* 터치 기기(폰·태블릿)에서는 좌우 화살표 숨김 → 스와이프로 이동. PC(마우스)는 화면 크기와 무관하게 화살표 노출(hover 시) */
+@media (hover:none) and (pointer:coarse){
+  .m2-row-next,.m2-row-prev{display:none !important;}
+}
 .m2-row::-webkit-scrollbar{display:none;}
 .m2-card{width:280px;flex:none;display:flex;flex-direction:column;gap:16px;cursor:pointer;}
 /* 마이페이지 찜 카드와 동일: 회색 정사각 박스 + 교재 위아래 45 여백·중앙, 검정 장바구니 버튼은 교재 오른쪽 아래에 걸침 */
@@ -235,7 +239,6 @@
 @media (max-width:1023px){
   .m2-cat{margin-bottom:40px;}
   .m2-cat-head .m2-t{font-size:20px;}
-  .m2-row-next,.m2-row-prev{display:none;} /* 모바일: 스와이프로 스크롤 */
   .m2-sets{padding:40px 0;}
   .m2-sets-t{font-size:20px;}
   .m2-set-grid{grid-template-columns:1fr;gap:16px;}
@@ -963,7 +966,7 @@
     /* 드래그 스크롤 */
     catsEl.querySelectorAll('.m2-row').forEach(function(row){
       var down=false,sx=0,sl=0,moved=false;
-      row.addEventListener('pointerdown',function(e){ if(e.pointerType==='mouse'&&e.button!==0)return; down=true;moved=false;sx=e.clientX;sl=row.scrollLeft;});
+      row.addEventListener('pointerdown',function(e){ if(e.pointerType==='mouse')return; /* PC(마우스)는 드래그 차단 → 좌우 화살표로만 이동 */ down=true;moved=false;sx=e.clientX;sl=row.scrollLeft;});
       row.addEventListener('pointermove',function(e){ if(!down)return; var dx=e.clientX-sx; if(!moved&&Math.abs(dx)>4){moved=true;row.classList.add('dragging');row.setPointerCapture&&row.setPointerCapture(e.pointerId);} if(moved)row.scrollLeft=sl-dx;});
       function end(){ if(!down)return; down=false; row.classList.remove('dragging'); }
       row.addEventListener('pointerup',end); row.addEventListener('pointercancel',end);
