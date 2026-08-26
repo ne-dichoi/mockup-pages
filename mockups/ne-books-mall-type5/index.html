@@ -611,7 +611,7 @@ ul{list-style:none;}
           <div class="wt"><span class="new" style="background:var(--accent);">NEW</span>학습자료실 바로검색</div>
           <div class="wsearch">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.6" y2="16.6"/></svg>
-            <input type="text" class="pv-searchbox" id="pvLibInput" placeholder="교재명을 입력하세요 (예: 그래머)" autocomplete="off">
+            <input type="text" class="pv-searchbox" id="pvLibInput" placeholder="교재명을 입력하세요 (예: VOCA)" autocomplete="off">
           </div>
           <ul class="w-autocomplete" id="pvLibDropdown" hidden></ul>
           <div id="pvLibResult" hidden>
@@ -676,7 +676,7 @@ ul{list-style:none;}
   function esc(s){ return s.replace(/[&<>]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c]; }); }
 
   /* ---- 학습자료실 바로검색 ---- */
-  var LIB_BOOKS = ["그래머 비기너 1","그래머 비기너 2","그래머 인사이드 스타터","그래머 캐치업 중등","리딩튜터 입문","주니어 리딩튜터 1","능률 VOCA 어원편","Grammar Zone 기본편 1","워드마스터 중등 베이직","Phonics Code 1"];
+  var LIB_BOOKS = ["능률VOCA 초등 1","능률VOCA 초등 2","능률VOCA 초등 3","능률VOCA 중등 스타트","능률VOCA 어원편","능률VOCA 숙어편","능률VOCA 고교기본","능률VOCA 고교필수","능률VOCA 수능완성","능률VOCA 빈출","워드마스터 중등 베이직","초등 필수 영단어","그림 영단어","TOEFL Voca","그래머 비기너 1","그래머 인사이드 스타터","리딩튜터 입문","주니어 리딩튜터 1","Phonics Code 1"];
   var toast1 = document.getElementById('pvToast1');
   var libInput = document.getElementById('pvLibInput');
   var libDropdown = document.getElementById('pvLibDropdown');
