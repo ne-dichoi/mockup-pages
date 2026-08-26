@@ -129,6 +129,7 @@ ul{list-style:none;}
 .wmat-swipe-note{text-align:center;font-size:10px;color:#c98a63;margin-top:8px;}
 
 .wbtn{display:block;text-align:center;background:var(--accent);color:#fff;font-size:12px;font-weight:700;border-radius:8px;padding:11px 8px;}
+.wbtn[hidden]{display:none;}
 
 .pick-tabs{display:flex;gap:8px;margin:14px 16px 12px;}
 .pick-tabs span{flex:1;text-align:center;font-size:11.5px;padding:8px 0;border:1px solid var(--line);border-radius:7px;color:#999;}
@@ -155,6 +156,14 @@ ul{list-style:none;}
 #preview .pv-toast{position:absolute;left:50%;bottom:14px;transform:translateX(-50%) translateY(8px);background:var(--ink);color:#fff;font-size:11px;padding:8px 14px;border-radius:20px;opacity:0;pointer-events:none;transition:all .22s;white-space:nowrap;z-index:5;}
 #preview .pv-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 #preview .try-tag{display:inline-block;font-size:10px;font-weight:800;color:#fff;background:var(--ink);border-radius:4px;padding:2px 6px;margin-right:6px;}
+#preview .pv-panel-head{display:flex;justify-content:flex-end;align-items:center;gap:12px;margin:-2px 0 6px;}
+#preview .pv-reset-btn{font-size:10.5px;color:#999;background:none;border:none;padding:0;cursor:pointer;font-family:inherit;}
+#preview .pv-reset-btn:hover{color:var(--accent);}
+#preview .pv-collapse{font-size:10.5px;color:#999;cursor:pointer;}
+#preview .pv-collapse:hover{color:var(--accent);}
+#preview .pv-hint{font-size:10.5px;color:#bbb;text-align:center;padding:16px 8px;border:1px dashed #e3c9b8;border-radius:8px;margin-top:2px;}
+#preview #pvPickResults{animation:pvFadeIn .25s ease;}
+@keyframes pvFadeIn{from{opacity:0;transform:translateY(-4px);}to{opacity:1;transform:translateY(0);}}
 
 .chip-row{display:flex;flex-wrap:wrap;gap:8px;margin:14px 16px 0;}
 .chip{font-size:11.5px;padding:7px 13px;border:1px solid var(--line);border-radius:20px;color:#888;}
@@ -637,25 +646,32 @@ ul{list-style:none;}
           <div class="wt"><span class="new" style="background:var(--accent);">NEW</span>맞춤교재찾기</div>
           <a class="wbtn" id="pvPickBtn">내 아이에게 딱 맞는 교재 찾기</a>
           <div id="pvPickPanel" hidden>
+            <div class="pv-panel-head">
+              <button type="button" class="pv-reset-btn" id="pvPickReset">초기화</button>
+              <span class="pv-collapse" id="pvPickCollapse">접기 ▲</span>
+            </div>
             <div class="chip-row-title" style="margin:0 0 6px;">과목 선택</div>
             <div class="chip-row pv-chiprow" style="margin:0 0 10px;">
-              <div class="chip on">영어</div><div class="chip">수학</div><div class="chip">국어</div>
+              <div class="chip">영어</div><div class="chip">수학</div><div class="chip">국어</div>
             </div>
             <div class="chip-row-title" style="margin:0 0 6px;">학년 선택</div>
             <div class="chip-row pv-chiprow" style="margin:0 0 10px;">
-              <div class="chip on">초1</div><div class="chip">초2</div><div class="chip">초3</div><div class="chip">초4</div><div class="chip">초5</div>
+              <div class="chip">초1</div><div class="chip">초2</div><div class="chip">초3</div><div class="chip">초4</div><div class="chip">초5</div>
             </div>
             <div class="chip-row-title" style="margin:0 0 6px;">수준 선택</div>
             <div class="chip-row pv-chiprow" style="margin:0 0 10px;">
-              <div class="chip accent on">입문</div><div class="chip">초급</div><div class="chip">중급</div><div class="chip">고급</div><div class="chip">심화</div>
+              <div class="chip">입문</div><div class="chip">초급</div><div class="chip">중급</div><div class="chip">고급</div><div class="chip">심화</div>
             </div>
-            <div class="pv-count" id="pvPickCount">조건에 맞는 교재 8권</div>
-            <div class="pv-swipe-wrap">
-              <div class="row-scroll" id="pvPickRow" style="margin:8px 0 0;scroll-behavior:smooth;">
-                <div class="ph book-ph sm pv-book">교재1</div><div class="ph book-ph sm pv-book">교재2</div><div class="ph book-ph sm pv-book">교재3</div><div class="ph book-ph sm pv-book">교재4</div><div class="ph book-ph sm pv-book">교재5</div><div class="ph book-ph sm pv-book">교재6</div>
+            <div class="pv-hint" id="pvPickHint">과목·학년·수준을 하나 이상 선택하면 아래에 교재가 나타나요</div>
+            <div id="pvPickResults" hidden>
+              <div class="pv-count" id="pvPickCount">조건에 맞는 교재 8권</div>
+              <div class="pv-swipe-wrap">
+                <div class="row-scroll" id="pvPickRow" style="margin:8px 0 0;scroll-behavior:smooth;">
+                  <div class="ph book-ph sm pv-book">교재1</div><div class="ph book-ph sm pv-book">교재2</div><div class="ph book-ph sm pv-book">교재3</div><div class="ph book-ph sm pv-book">교재4</div><div class="ph book-ph sm pv-book">교재5</div><div class="ph book-ph sm pv-book">교재6</div>
+                </div>
               </div>
+              <div style="text-align:center;font-size:10px;color:#c98a63;margin-top:8px;">← 좌우로 스와이프해서 더 보기 →</div>
             </div>
-            <div style="text-align:center;font-size:10px;color:#c98a63;margin-top:8px;">← 좌우로 스와이프해서 더 보기 →</div>
           </div>
         </div>
         <div class="pv-toast" id="pvToast2"></div>
@@ -730,24 +746,55 @@ ul{list-style:none;}
   var toast2 = document.getElementById('pvToast2');
   var pickBtn = document.getElementById('pvPickBtn');
   var pickPanel = document.getElementById('pvPickPanel');
+  var pickReset = document.getElementById('pvPickReset');
+  var pickCollapse = document.getElementById('pvPickCollapse');
+  var pickHint = document.getElementById('pvPickHint');
+  var pickResults = document.getElementById('pvPickResults');
   var pickCount = document.getElementById('pvPickCount');
   var pickRow = document.getElementById('pvPickRow');
+  var pickChiprows = document.querySelectorAll('#pvPickPanel .pv-chiprow');
+
+  function pickClearSelection(){
+    pickChiprows.forEach(function(row){
+      [].forEach.call(row.querySelectorAll('.chip'), function(c){ c.classList.remove('on','accent'); });
+    });
+    if(pickResults) pickResults.hidden = true;
+    if(pickHint) pickHint.hidden = false;
+  }
 
   if(pickBtn){
     pickBtn.addEventListener('click', function(){
       pickBtn.hidden = true;
       pickPanel.hidden = false;
-      showToast(toast2, '조건에 맞는 교재를 찾고 있어요');
+      pickClearSelection();
     });
   }
-  document.querySelectorAll('#pvPickPanel .pv-chiprow').forEach(function(row){
+  if(pickCollapse){
+    pickCollapse.addEventListener('click', function(){
+      pickPanel.hidden = true;
+      pickBtn.hidden = false;
+      pickClearSelection();
+    });
+  }
+  if(pickReset){
+    pickReset.addEventListener('click', function(){
+      pickClearSelection();
+      showToast(toast2, '선택 조건을 초기화했어요');
+    });
+  }
+  pickChiprows.forEach(function(row, rowIdx){
     row.addEventListener('click', function(e){
       var chip = e.target.closest('.chip');
       if(!chip) return;
       [].forEach.call(row.querySelectorAll('.chip'), function(c){ c.classList.remove('on','accent'); });
       chip.classList.add('on');
-      if(row === row.parentElement.querySelectorAll('.pv-chiprow')[2]) chip.classList.add('accent');
+      if(rowIdx === 2) chip.classList.add('accent');
       if(pickCount) pickCount.textContent = '조건에 맞는 교재 ' + (2 + Math.floor(Math.random()*22)) + '권';
+      if(pickResults && pickResults.hidden){
+        pickResults.hidden = false;
+        pickHint.hidden = true;
+        showToast(toast2, '조건에 맞는 교재를 찾았어요');
+      }
     });
   });
   if(pickRow){
