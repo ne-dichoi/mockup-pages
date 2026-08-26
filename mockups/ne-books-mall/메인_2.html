@@ -10,9 +10,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- Pretendard (design font) via CDN, with Noto Sans KR fallback -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260815eg">
-<script src="js/layout.js?v=20260815eg" defer></script>
-<script src="js/search.js?v=20260815eg" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260815eh">
+<script src="js/layout.js?v=20260815eh" defer></script>
+<script src="js/search.js?v=20260815eh" defer></script>
 <style>
 /* ===== 메인 시안 A (메인_2) 전용 ===== */
 /* 맞춤교재 세트 애니 아이콘 */
@@ -321,6 +321,17 @@
   .m2-bn .lb{font-size:10px;}   /* 라벨 10px */
   .m2-bn p{font-size:10px;}      /* 설명 10px */
 }
+/* 하단 플로팅 카테고리 바로가기 (모바일 전용) — 탭 터치 시 해당 카테고리로 스크롤 */
+.m2-jump{display:none;}
+@media (max-width:767px){
+  .m2-jump{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:900;height:69px;background:#fff;border-radius:12px 12px 0 0;box-shadow:0 -4px 10px rgba(0,0,0,.08);}
+  .m2-jump a{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;font-size:16px;font-weight:500;color:#a9a9a9;text-decoration:none;-webkit-tap-highlight-color:transparent;}
+  .m2-jump a::after{content:"";width:28px;height:2px;border-radius:2px;background:transparent;} /* 밑줄 자리 고정(정렬 일관) */
+  .m2-jump a.on{color:var(--red);font-weight:700;}
+  .m2-jump a.on::after{background:var(--red);}
+  body.page-main2{padding-bottom:69px;} /* 플로팅 바에 콘텐츠(푸터) 안 가리게 */
+  .m2-cat{scroll-margin-top:90px;} /* 바로가기 시 sticky GNB(74px) 아래로 오도록 */
+}
 </style>
 </head>
 <body class="page-index page-main2">
@@ -477,6 +488,13 @@
     <div class="float-card"><span class="ico"><img src="assets/ic_float_guide.svg" alt=""></span><span>교재 가이드 다운</span></div>
     <div class="float-card"><span class="ico"><img src="assets/ic_float_math.svg" alt=""></span><span>수학 교재 안내</span></div>
   </div>
+
+  <!-- ===== 모바일 하단 플로팅: 카테고리 바로가기 (ELT / 초·중등 / 고등) ===== -->
+  <nav class="m2-jump" aria-label="카테고리 바로가기">
+    <a href="#mcat-0" data-target="mcat-0" class="on">ELT</a>
+    <a href="#mcat-1" data-target="mcat-1">초/중등 영어</a>
+    <a href="#mcat-2" data-target="mcat-2">고등 영어</a>
+  </nav>
 
 <script>
 (function(){
@@ -896,10 +914,10 @@
         +'<div class="price"><span class="dc">10%</span><span class="now">13,500원</span><span class="was">15,000원</span></div>'
         +'</article>';
     }
-    catsEl.innerHTML=ROWS.map(function(r){
+    catsEl.innerHTML=ROWS.map(function(r,ri){
       var tabs=r.tabs.map(function(t,ti){return '<span class="m2-tab'+(ti===0?' on':'')+'">'+esc(t)+'</span>';}).join('');
       var cards=''; for(var i=0;i<8;i++) cards+=bookCard(i,r.title);
-      return '<div class="m2-cat">'
+      return '<div class="m2-cat" id="mcat-'+ri+'">'
         +'<div class="m2-cat-head"><span class="m2-t">'+esc(r.cat)+'</span><span class="m2-tabs">'+tabs+'</span></div>'
         +'<div class="m2-row-wrap"><div class="m2-row">'+cards+'</div>'
         +'<button type="button" class="m2-row-prev" aria-label="이전"><svg viewBox="0 0 24 24" fill="none"><path d="M15 5l-7 7 7 7" stroke="#1d1717" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>'
@@ -987,6 +1005,39 @@
       window.scrollTo({top:target.getBoundingClientRect().top+window.scrollY-24, behavior:'smooth'});
     });
   });
+
+  /* --- 하단 플로팅: 카테고리 바로가기(ELT/초·중등/고등) --- */
+  (function(){
+    var bar=document.querySelector('.m2-jump'); if(!bar) return;
+    var links=[].slice.call(bar.querySelectorAll('a'));
+    function setActive(id){ links.forEach(function(a){ a.classList.toggle('on', a.getAttribute('data-target')===id); }); }
+    var raf=null;
+    function smoothTo(y){ /* native smooth가 일부 환경에서 안 먹어 rAF 트윈으로 */
+      if(raf) cancelAnimationFrame(raf);
+      var start=window.scrollY, dist=y-start, t0=null, dur=420;
+      if(Math.abs(dist)<1){ window.scrollTo(0,y); return; }
+      function step(ts){ if(t0===null)t0=ts; var p=Math.min(1,(ts-t0)/dur); var e=p<0.5?2*p*p:1-Math.pow(-2*p+2,2)/2; window.scrollTo(0, start+dist*e); if(p<1){ raf=requestAnimationFrame(step); } else { raf=null; } }
+      raf=requestAnimationFrame(step);
+    }
+    links.forEach(function(a){
+      a.addEventListener('click',function(e){
+        e.preventDefault();
+        var t=document.getElementById(a.getAttribute('data-target'));
+        if(!t) return;
+        smoothTo(t.getBoundingClientRect().top+window.scrollY-90); /* sticky GNB(74px) 아래로 */
+        setActive(a.getAttribute('data-target'));
+      });
+    });
+    /* 스크롤 위치에 따라 현재 카테고리 탭 활성화(스크롤 스파이) */
+    var cats=links.map(function(a){return document.getElementById(a.getAttribute('data-target'));}).filter(Boolean);
+    function onScroll(){
+      var ref=110, cur=cats[0];
+      cats.forEach(function(c){ if(c.getBoundingClientRect().top<=ref) cur=c; });
+      if(cur) setActive(cur.id);
+    }
+    window.addEventListener('scroll',onScroll,{passive:true});
+    onScroll();
+  })();
 })();
 </script>
 </body>
