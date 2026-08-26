@@ -10,9 +10,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- Pretendard (design font) via CDN, with Noto Sans KR fallback -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260815ek">
-<script src="js/layout.js?v=20260815ek" defer></script>
-<script src="js/search.js?v=20260815ek" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260815el">
+<script src="js/layout.js?v=20260815el" defer></script>
+<script src="js/search.js?v=20260815el" defer></script>
 <style>
 /* ===== 메인 시안 A (메인_2) 전용 ===== */
 /* 맞춤교재 세트 애니 아이콘 */
@@ -176,6 +176,10 @@
 .m2-row-wrap{position:relative;}
 .m2-row{display:flex;gap:24px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;scroll-behavior:smooth;cursor:grab;padding-bottom:4px;}
 .m2-row.dragging{cursor:grabbing;scroll-behavior:auto;}
+/* PC(마우스=hover+fine)에서는 상품 행에 grab 커서(손 모양)를 숨김 → 드래그 스와이프 대신 큰 화면+좌우 화살표로 보게 유도. 폰·태블릿(터치)은 그대로 스와이프 */
+@media (hover:hover) and (pointer:fine){
+  .m2-row, .m2-row.dragging{cursor:default;}
+}
 .m2-row::-webkit-scrollbar{display:none;}
 .m2-card{width:280px;flex:none;display:flex;flex-direction:column;gap:16px;cursor:pointer;}
 /* 마이페이지 찜 카드와 동일: 회색 정사각 박스 + 교재 위아래 45 여백·중앙, 검정 장바구니 버튼은 교재 오른쪽 아래에 걸침 */
