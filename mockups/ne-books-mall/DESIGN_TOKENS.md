@@ -258,6 +258,37 @@ body{ min-height:100vh; display:flex; flex-direction:column; }
 - 적용 대상(표시용 라벨/뱃지): 구분 라벨(`.gubun` 전체/회원/선생님), 상태 뱃지(`.badge`·`.badge-course`·`.badge-level`·`.badge-lexile`), 품절(`.soldout-badge`), 기본 배송지(`.ai-badge`), 브레드크럼 현재 위치(`.crumb .cur`), 프로모 라벨(`.bs-promo .label`), 안내 태그(`.dh-notice .msg .tag`) 등.
 - **제외**(클릭 가능한 알약형 컨트롤): 탭 알약(`.bs-tabs .tab` 8/24, `.ship-tabs a` 6/20), 필터 칩(`.rfilter a`), 선택 드롭다운(`.cur-wrap .cur`), 페이지네이션 원형 셀(`.pager a`). 이들은 컨트롤이므로 별도 규격을 씁니다.
 
+### 7-1. 모바일·태블릿 컴팩트 배지 (≤1023px, Figma 2016-10632) ★2026-08
+
+**모바일·태블릿(≤1023px)에서는 데스크탑(12px)보다 작은 컴팩트 규격**을 씁니다. **좌우 패딩은 공통 8px**(상하 4px). PC(≥1024)는 위 §7 기본 규격(12px·좌우 12px) 유지.
+
+**① 교재 관련 라벨** — `border-radius:999px`, 패딩 `4px 8px`
+| 라벨 | 글자 | 색 |
+|------|------|------|
+| HOT | 9px Bold | 배경 `#E83828` · 흰 글자 |
+| NEW | 9px Bold | 배경 `#2F74D1` · 흰 글자 |
+| 절판 · 일시품절 | 9px Bold | 배경 `#999` · 흰 글자 |
+| Coursebook · Phonics | 9px SemiBold | 아웃라인·글자 `#E83828` |
+| 유치~초등(저) | 9px SemiBold | 배경 `#F3F3F3` · 글자 `#666` |
+| Lexile® 400L | **9.5px** Medium | 아웃라인·글자 `#2F74D1` |
+
+적용: `.pcorner`(HOT/NEW/절판/일시품절) · `.sr-corner`(검색결과) · `.badge-course`(Coursebook/Phonics) · `.badge-level`(유치~초등) · `.badge-lexile`.
+
+**② 구분 배지** — `border-radius:30px`(=완전 둥금), 패딩 `4px 8px`, **10px SemiBold(600)**
+| 그룹 | 예 | 색 |
+|------|------|------|
+| 빨강 | 공지·이벤트·신간·개정·세미나·신간·회원 | 아웃라인·글자 `#E83828` |
+| 회색 | 공통·초중고(영어)·교재/ELT·ELT·수험/일반·수학/국어·교과서 관련 | 아웃라인·글자 `#A9A9A9` |
+| 지역 | 서울·경기·인천·강원·제주·충청·경상·전라 | 배경 `#F3F3F3` · 글자 `#666` |
+| 검정 | 전체 | 아웃라인·글자 `#1D1717` |
+| 파랑 | 선생님 | 아웃라인·글자 `#2F74D1` |
+
+적용: `.gubun`(전체/회원/선생님) · `.badge` · `.ev-badge`(이벤트 유형) · `.rv-badge`(후기 분류).
+
+**신간 라벨**(`.mega-new`, GNB·햄버거 펼침메뉴 시리즈): 구분 배지 빨강 규격(10px SemiBold · 4px 8px · radius 30 · 아웃라인/글자 `#E83828` · 흰 배경) + **깜빡임**(`megaNewBlink` 1.1s, opacity 1↔0.25 반복). 신간 시리즈 목록은 `js/layout.js`의 `NE_MEGA_NEW`.
+
+> 구현: `css/layout.css` 하단 `@media (max-width:1023px)` 블록. 데스크탑(≥1024)은 §7 상단 12px 규격 유지.
+
 ---
 
 ## 8. 페이지네이션 (Pagination)
