@@ -3,6 +3,9 @@
    (defer 라 DOM 파싱 후 실행되며, 기존 페이지의 인라인 GNB 스크립트는 헤더 주입 전 실행돼 자동 종료됨) */
 (function(){
   var NE_MEGA3D=null;   /* GNB·햄버거 공용 3뎁스 데이터(아래 GNB 블록에서 채움) */
+  var NE_MEGA_NEW=null; /* 신간 라벨 표시할 시리즈 집합(아래 GNB 블록에서 채움) */
+  /* 시리즈명 뒤에 붙일 신간 라벨(깜빡이는 빨강 아웃라인 알약) */
+  function neNewLabel(s){ return (NE_MEGA_NEW && NE_MEGA_NEW[s]) ? '<span class="mega-new">신간</span>' : ''; }
   var HEADER = `<header class="lheader">
     <div class="container">
       <div class="header-top">
@@ -347,7 +350,7 @@
     function acc(catKey, sub){
       var arr=((NE_MEGA3D||{})[catKey]||{})[sub]||[];
       return '<div class="md-acc open"><button type="button" class="md-acc-h">'+esc(sub)+'<span class="md-acc-ic" aria-hidden="true"></span></button>'
-        +'<div class="md-acc-body">'+arr.map(function(s){ return '<a class="md-sub" href="리스트_교재구매.html?d1='+encodeURIComponent(catKey)+'&d2='+encodeURIComponent(sub)+'&series='+encodeURIComponent(s)+'">'+esc(s)+'</a>'; }).join('')+'</div></div>';
+        +'<div class="md-acc-body">'+arr.map(function(s){ return '<a class="md-sub" href="리스트_교재구매.html?d1='+encodeURIComponent(catKey)+'&d2='+encodeURIComponent(sub)+'&series='+encodeURIComponent(s)+'">'+esc(s)+neNewLabel(s)+'</a>'; }).join('')+'</div></div>';
     }
     function render(){
       catsEl.innerHTML=MENU.map(function(m,i){ return '<button type="button" class="md-cat'+(i===active?' on':'')+'" data-i="'+i+'">'+esc(m.label)+'</button>'; }).join('');
@@ -536,6 +539,8 @@
     '도서몰':['ELT','초/중등','고등영어 교과서','교과서/자습서','수험/일반','교구/부가상품','세트/패키지','온라인 서비스/이용권']
   };
   /* GNB 3뎁스(카테고리→2뎁스→시리즈) : type4 콘텐츠 반영. 햄버거 메뉴와 공용(NE_MEGA3D) */
+  /* 신간 출시된 시리즈(펼침메뉴에서 '신간' 라벨 표시) */
+  NE_MEGA_NEW={'Oxford Show&Tell':1,'Learn English with Dora':1};
   var MEGA3D=NE_MEGA3D={
     'ELT':{
       'Coursebook':['Oxford Show&Tell','Oxford Discover','English Time','Magic Time','Oxford Pic, Dic.','Up & Away in Eng.','Starlight','Grammar For Schools','Shine On!','Learn English with Dora','Come On Everyone','Buzz','Beehive American','Shine On! Plus','Toy Team Plus','Blue Dot','Little Blue Dot'],
@@ -593,7 +598,7 @@
   function build3d(cat,t2){
     var arr=(MEGA3D[cat]||{})[t2]||[];
     /* 행 우선(가로 한 줄 먼저 채우고 다음 줄) — grid row-flow가 처리 */
-    return arr.map(function(s){ return '<a href="리스트_교재구매.html?d1='+encodeURIComponent(cat)+'&d2='+encodeURIComponent(t2)+'&series='+encodeURIComponent(s)+'">'+gEsc(s)+'</a>'; }).join('');
+    return arr.map(function(s){ return '<a href="리스트_교재구매.html?d1='+encodeURIComponent(cat)+'&d2='+encodeURIComponent(t2)+'&series='+encodeURIComponent(s)+'">'+gEsc(s)+neNewLabel(s)+'</a>'; }).join('');
   }
   var closeT;
   function openFor(a){
