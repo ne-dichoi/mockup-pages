@@ -2044,6 +2044,7 @@ body.bsheet-lock{overflow:hidden;}
 .oh-badge.confirm{border-color:var(--ink);color:var(--ink);}
 .oh-badge.wait{border-color:#e83828;color:#eb5143;}
 .oh-badge.paid{border-color:#2f74d1;color:#2f74d1;}
+.oh-badge.ready{border-color:#f08c00;color:#f08c00;}
 .oh-btn{display:inline-flex;align-items:center;justify-content:center;height:36px;padding:0 21px;border-radius:8px;font-size:14px;font-weight:500;letter-spacing:-0.14px;white-space:nowrap;box-sizing:border-box;}
 .oh-btn.dark{border:1px solid var(--btn);color:var(--ink);background:#fff;}
 .oh-btn.gray{border:1px solid #a4a4a4;color:var(--muted);background:#fff;}
