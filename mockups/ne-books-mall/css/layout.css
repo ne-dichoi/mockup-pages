@@ -2123,7 +2123,7 @@ body.bsheet-lock{overflow:hidden;}
 /* ===== 전체메뉴 드로어 (모바일 햄버거 + PC GNB 햄버거 공용) =====
    컴포넌트 스타일은 폭 무관 공용. 위치/슬라이드만 반응형 분기:
    PC(기본)=좌측 패널 640 + dim, 왼쪽→오른쪽 슬라이드 / 모바일=전체폭 우측 슬라이드(아래 미디어쿼리) */
-.m-drawer{position:fixed;inset:0;z-index:2000;visibility:hidden;transition:visibility .3s;}
+.m-drawer{position:fixed;inset:0;z-index:2000;visibility:hidden;transition:visibility .3s;overscroll-behavior:contain;}
 .m-drawer.open{visibility:visible;}
 .md-dim{position:absolute;inset:0;background:rgba(0,0,0,.45);opacity:0;transition:opacity .3s;}
 .m-drawer.open .md-dim{opacity:1;}
@@ -2160,7 +2160,7 @@ body.bsheet-lock{overflow:hidden;}
   padding:16px 20px;font-size:14px;color:var(--weak);font-family:var(--sans);white-space:nowrap;}
 /* 활성: 빨강 알약이 우측(흰색 섹션)으로 14px 돌출 + 오른쪽 라운드 */
 .md-cat.on{width:calc(100% + 14px);background:var(--red);color:#fff;font-weight:700;font-size:16px;border-radius:0 999px 999px 0;z-index:1;}
-.md-subs{flex:1;min-width:0;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:16px 24px 40px;}
+.md-subs{flex:1;min-width:0;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:16px 24px 40px;overscroll-behavior:contain;}
 .md-sub{display:block;padding:8px 0;font-size:14px;font-weight:400;color:var(--muted);
   text-decoration:none;font-family:var(--sans);line-height:22px;}
 .md-sub:hover{color:var(--ink);}
