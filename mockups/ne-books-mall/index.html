@@ -10,9 +10,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- Pretendard (design font) via CDN, with Noto Sans KR fallback -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260815et">
-<script src="js/layout.js?v=20260815et" defer></script>
-<script src="js/search.js?v=20260815et" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260815eu">
+<script src="js/layout.js?v=20260815eu" defer></script>
+<script src="js/search.js?v=20260815eu" defer></script>
 <style>
 /* ===== 메인 시안 A (메인_2) 전용 ===== */
 /* 맞춤교재 세트 애니 아이콘 */
@@ -222,7 +222,7 @@
 .m2-set-books{display:flex;flex-direction:column;gap:16px;margin-top:40px;max-height:132px;overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none;}
 .m2-set-books::-webkit-scrollbar{display:none;}
 .m2-set-book{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 16px;}
-.m2-set-book .nm{color:#666;font-size:14px;text-decoration:none;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer;}
+.m2-set-book .nm{color:#666;font-size:14px;text-decoration:none;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;}/* 터치 시 텍스트 선택이 스크롤을 가로채지 않도록 */
 .m2-set-book .nm:hover{text-decoration:underline;text-underline-offset:2px;color:var(--ink);}
 .m2-set-book .bcart{flex:none;width:24px;height:24px;border:0;cursor:pointer;background:transparent url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28' fill='none'><path d='M2 9H26L24.7475 23.1888C24.6798 23.9568 24.3359 24.6709 23.7833 25.191C23.2307 25.7112 22.5094 25.9997 21.761 26H6.239C5.49056 25.9997 4.76925 25.7112 4.2167 25.191C3.66414 24.6709 3.32023 23.9568 3.2525 23.1888L2 9Z' stroke='%238a8a8a' stroke-width='2' stroke-linejoin='round'/><path d='M8 12V7.71429C8 6.19876 8.63214 4.74531 9.75736 3.67368C10.8826 2.60204 12.4087 2 14 2C15.5913 2 17.1174 2.60204 18.2426 3.67368C19.3679 4.74531 20 6.19876 20 7.71429V12' stroke='%238a8a8a' stroke-width='2' stroke-linecap='round'/></svg>") center/19px no-repeat;}
 .m2-set-price{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-top:24px;padding:0 16px;flex-wrap:wrap;}
@@ -270,7 +270,7 @@
   .m2-cat-head .m2-t{font-size:24px;}
   /* 상품 카드: 회색박스 153x153, 우측 bleed로 2개 반 노출 */
   .m2-row-wrap{margin-left:-20px;margin-right:-20px;}/* 좌우 모두 화면 끝까지 bleed → 왼쪽 peek이 20px 여백에 안 막힘 */
-  .m2-row{display:grid;grid-auto-flow:column;grid-template-rows:auto auto;grid-auto-columns:clamp(140px, 40vw, 200px);gap:24px 8px;overflow-x:auto;scroll-snap-type:x proximity;padding-left:20px;padding-right:20px;scroll-padding-left:60px;}/* 카드 폭을 뷰포트 비율로(40vw, 140~200px) → 화면 넓어지면 카드도 커짐. 첫 카드 20px 안쪽, 스냅 60px 안쪽(왼쪽 반쪽 peek) */
+  .m2-row{display:grid;grid-auto-flow:column;grid-template-rows:auto auto;grid-auto-columns:clamp(140px, 40vw, 200px);gap:24px 8px;overflow-x:auto;scroll-snap-type:x proximity;padding-left:20px;padding-right:20px;scroll-padding-left:60px;-webkit-overflow-scrolling:touch;touch-action:pan-x;overscroll-behavior-x:contain;}/* 카드 폭을 뷰포트 비율로(40vw, 140~200px) → 화면 넓어지면 카드도 커짐. 첫 카드 20px 안쪽, 스냅 60px 안쪽(왼쪽 반쪽 peek). touch-action:pan-x → 네이티브 가로 스와이프(관성) */
   .m2-card{width:auto;gap:0;scroll-snap-align:start;}
   .m2-card .box>img{top:30px;height:calc(100% - 60px);} /* 마이페이지 찜과 동일(위아래 30px 여백) */
   .m2-card .cart{width:36px;height:36px;background-size:16px;right:23px;bottom:16px;} /* 마이페이지 찜 카트(36×36·아이콘16)와 동일 크기, 교재 우측하단 모서리에 걸치도록 약간 아래로 */
@@ -289,7 +289,7 @@
   .m2-set-collage{margin-top:24px;height:auto;} /* 설명↔교재이미지 24px */
   /* 교재 표지를 뷰포트 폭에 맞춰 축소 → 좁은 폰에서도 회색박스 밖으로 안 삐져나감 */
   .m2-set-collage img{width:min(88px, 23vw);height:auto;aspect-ratio:92/120;}
-  .m2-set-books{margin-top:24px;gap:8px;max-height:108px;} /* 회색박스↔교재명 24px, 교재명 사이 8px, 4번째 교재명이 절반만 보이도록(스크롤 힌트) */
+  .m2-set-books{margin-top:24px;gap:8px;max-height:none;overflow:visible;} /* 모바일: 중첩 세로 스크롤러 제거(가로 세트 스와이프·페이지 스크롤과 터치 충돌 방지) → 교재명 전체 표시 */
   .m2-set-price{margin-top:32px;} /* 할인/금액 줄 위 여백 32px */
   .m2-set-price .r .pc,.m2-set-price .r .now{font-size:18px;} /* 28% / 29,500원 18px */
   .m2-set-btns a{height:44px;}
@@ -331,12 +331,12 @@
 /* 하단 플로팅 카테고리 바로가기 (모바일 전용) — 탭 터치 시 해당 카테고리로 스크롤 */
 .m2-jump{display:none;}
 @media (max-width:767px){
-  .m2-jump{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:900;height:60px;background:#fff;border-radius:16px 16px 0 0;box-shadow:0 -4px 10px rgba(0,0,0,.08);}
+  .m2-jump{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:900;height:60px;box-sizing:content-box;padding-bottom:env(safe-area-inset-bottom,0px);background:#fff;border-radius:16px 16px 0 0;box-shadow:0 -4px 10px rgba(0,0,0,.08);}
   .m2-jump a{flex:1;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:500;color:#a9a9a9;text-decoration:none;-webkit-tap-highlight-color:transparent;}
   .m2-jump a span{padding-bottom:0;border-bottom:2px solid transparent;} /* 활성 밑줄이 글씨 너비만큼 칠해지게 */
   .m2-jump a.on{color:var(--red);font-weight:700;}
   .m2-jump a.on span{border-bottom-color:var(--red);}
-  body.page-main2{padding-bottom:60px;} /* 플로팅 바에 콘텐츠(푸터) 안 가리게 */
+  body.page-main2{padding-bottom:calc(60px + env(safe-area-inset-bottom,0px));} /* 플로팅 바(+안전영역)에 콘텐츠(푸터) 안 가리게 */
   .m2-cat{scroll-margin-top:90px;} /* 바로가기 시 sticky GNB(74px) 아래로 오도록 */
 }
 /* ===== 모바일 오른쪽 퀵 플로팅 (맨위로 + 상담 메뉴) ===== */
@@ -344,7 +344,7 @@
 @media (max-width:767px){
   .m2-qdim{display:block;position:fixed;inset:0;background:rgba(13,13,13,.5);opacity:0;visibility:hidden;transition:opacity .25s;z-index:940;}
   .m2-qdim.on{opacity:1;visibility:visible;}
-  .m2-qfab{display:flex;flex-direction:column;align-items:flex-end;gap:12px;position:fixed;right:16px;bottom:76px;z-index:950;} /* 하단 점프바(60px) 위 */
+  .m2-qfab{display:flex;flex-direction:column;align-items:flex-end;gap:12px;position:fixed;right:16px;bottom:calc(76px + env(safe-area-inset-bottom,0px));z-index:950;} /* 하단 점프바(60px)+안전영역 위 */
   .m2-qmenu{display:flex;flex-direction:column;align-items:flex-end;gap:12px;opacity:0;visibility:hidden;transform:translateY(10px);transition:opacity .2s,transform .2s;pointer-events:none;}
   .m2-qfab.open .m2-qmenu{opacity:1;visibility:visible;transform:none;pointer-events:auto;}
   /* 펼침 알약: 흰 배경·#e5e5e5 테두리·radius999, 텍스트 SemiBold14, 아이콘(고객센터와 동일, 작게) */
@@ -524,7 +524,7 @@
   <nav class="m2-jump" aria-label="카테고리 바로가기">
     <a href="#mcat-0" data-target="mcat-0" class="on"><span>ELT</span></a>
     <a href="#mcat-1" data-target="mcat-1"><span>초/중등 영어</span></a>
-    <a href="#mcat-2" data-target="mcat-2"><span>고등</span></a>
+    <a href="#mcat-2" data-target="mcat-2"><span>고등 영어</span></a>
   </nav>
 
   <!-- ===== 모바일 오른쪽 퀵 플로팅: 맨위로 + 상담 메뉴(채팅상담/1:1문의/자주묻는 질문) ===== -->
@@ -949,7 +949,7 @@
   var ROWS=[
     {cat:'ELT', tabs:['Phonics Code','Read it','Subject Link(2nd Edition)','주니어 리딩튜터','능률Voca초등'], title:'Phonics Code 1 : Student Book'},
     {cat:'초/중등 영어', tabs:['Grammar Inside','능률 중학영어','1316팬클럽','원서독해','능률VOCA'], title:'Grammar Inside Level 1'},
-    {cat:'고등', tabs:['능률 VOCA','정확한 구문','리딩파워','능률 구문독해','수능특강 연계'], title:'능률VOCA 수능완성'}
+    {cat:'고등 영어', tabs:['능률 VOCA','정확한 구문','리딩파워','능률 구문독해','수능특강 연계'], title:'능률VOCA 수능완성'}
   ];
   var catsEl=document.getElementById('m2Cats');
   if(catsEl){
@@ -1003,14 +1003,9 @@
       wrap.classList.toggle('can-next', row.scrollLeft < max-1);
     }
     /* 드래그 스크롤 */
+    /* 터치는 네이티브 overflow-x 스크롤(관성)에 맡김 — 커스텀 포인터 드래그 제거(setPointerCapture가 터치 관성 스크롤을 가로채 뻑뻑하던 문제 해결). PC는 좌우 화살표로 이동 */
     catsEl.querySelectorAll('.m2-row').forEach(function(row){
-      var down=false,sx=0,sl=0,moved=false;
-      row.addEventListener('pointerdown',function(e){ if(e.pointerType==='mouse')return; /* PC(마우스)는 드래그 차단 → 좌우 화살표로만 이동 */ down=true;moved=false;sx=e.clientX;sl=row.scrollLeft;});
-      row.addEventListener('pointermove',function(e){ if(!down)return; var dx=e.clientX-sx; if(!moved&&Math.abs(dx)>4){moved=true;row.classList.add('dragging');row.setPointerCapture&&row.setPointerCapture(e.pointerId);} if(moved)row.scrollLeft=sl-dx;});
-      function end(){ if(!down)return; down=false; row.classList.remove('dragging'); }
-      row.addEventListener('pointerup',end); row.addEventListener('pointercancel',end);
-      row.addEventListener('click',function(e){ if(moved){e.preventDefault();e.stopPropagation();}},true);
-      row.addEventListener('scroll',function(){ updateArrows(row); });
+      row.addEventListener('scroll',function(){ updateArrows(row); },{passive:true});
       updateArrows(row);
     });
     placeArrows();

@@ -11,9 +11,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- Pretendard (design font) via CDN, with Noto Sans KR fallback -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260815et">
-<script src="js/layout.js?v=20260815et" defer></script>
-<script src="js/search.js?v=20260815et" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260815eu">
+<script src="js/layout.js?v=20260815eu" defer></script>
+<script src="js/search.js?v=20260815eu" defer></script>
 <style>
 /* ===== 메인 시안 A (메인_2) 전용 ===== */
 /* 맞춤교재 세트 애니 아이콘 */
@@ -436,15 +436,14 @@
 .mb-hero-peek.right{right:0;border-radius:16px 0 0 16px;}
 
 /* ===================== 시안 B 전용: 가장 많이 찾는 인기 교재 (A(index)의 ELT 카드 .m2-card 재사용 · 자동 흐름 마퀴) ===================== */
-.mb-pop{padding:56px 0 80px;} /* 하단 금액 아래 여백 80px */
+.mb-pop{padding:0 0 80px;} /* 하단 금액 아래 여백 80px */
 .mb-pop-t{font-family:var(--display);font-weight:800;font-size:32px;line-height:1.25;color:#1d1717;text-align:center;margin-bottom:24px;}
 .mb-pop-t span{color:var(--red);}
-.mb-pop-marquee{width:100%;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);}
-.mb-pop-track{display:flex;width:max-content;animation:mbFlow 48s linear infinite;will-change:transform;}
-.mb-pop-track .m2-card{width:280px;flex:none;margin-right:24px;}
-.mb-pop-marquee:hover .mb-pop-track{animation-play-state:paused;}
-@keyframes mbFlow{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-@media (prefers-reduced-motion:reduce){.mb-pop-track{animation:none;}.mb-pop-marquee{overflow-x:auto;}}
+/* 인기교재: 화살표 없이 화면 풀폭 가로 스크롤 — 첫 카드는 그리드 왼쪽 정렬, 오른쪽은 화면 끝까지 bleed(더 있음 peek) */
+.mb-pop-row{display:flex;gap:24px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;scroll-behavior:smooth;padding:0 20px 4px max(20px, calc(50% - 760px));cursor:grab;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;}
+.mb-pop-row::-webkit-scrollbar{display:none;}
+.mb-pop-row.dragging{cursor:grabbing;scroll-behavior:auto;}
+.mb-pop-row .m2-card{flex:0 0 280px;}
 
 /* 태블릿: 배너 표지 축소 */
 @media (max-width:1023px){
@@ -474,9 +473,10 @@
   .mb-bn-book:nth-child(n+5){display:flex;}
   .mb-pop{padding:32px 0 8px;}
   .mb-pop-t{font-size:22px;margin-bottom:16px;}
-  .mb-pop-track .m2-card{width:180px;margin-right:16px;}
-  .mb-pop-track .m2-card .cart{width:36px;height:36px;background-size:16px;right:23px;bottom:16px;}
-  .mb-pop-track .m2-card .name{font-size:14px;}
+  .mb-pop-row{gap:16px;padding-left:20px;padding-right:20px;}
+  .mb-pop-row .m2-card{flex:0 0 clamp(150px, 44vw, 200px);}/* 모바일: 2장+반쪽 peek */
+  .mb-pop-row .m2-card .cart{width:36px;height:36px;background-size:16px;right:23px;bottom:16px;}
+  .mb-pop-row .m2-card .name{font-size:14px;}
 }
 
 /* ===== [롤링 비교] 크게 도는 버전: 배너 박스 캐러셀(이전/현재/다음) + 카테고리 흰 박스 고정 오버레이 =====
@@ -513,7 +513,7 @@
           <div class="mb-cat-grp">
             <a class="mb-cat-item on" href="리스트_교재구매.html" data-cat="0"><span class="lb">ELT</span><span class="chev" aria-hidden="true"></span></a>
             <a class="mb-cat-item" href="리스트_교재구매.html" data-cat="1"><span class="lb">초/중등 영어</span><span class="chev" aria-hidden="true"></span></a>
-            <a class="mb-cat-item" href="리스트_교재구매.html" data-cat="2"><span class="lb">고등</span><span class="chev" aria-hidden="true"></span></a>
+            <a class="mb-cat-item" href="리스트_교재구매.html" data-cat="2"><span class="lb">고등 영어</span><span class="chev" aria-hidden="true"></span></a>
           </div>
           <div class="mb-cat-grp">
             <a class="mb-cat-item" href="세미나상세.html" data-cat="3"><span class="lb">혼강 세미나</span><span class="chev" aria-hidden="true"></span></a>
@@ -558,10 +558,10 @@
     </div>
   </section>
 
-  <!-- ===== B안: 가장 많이 찾는 인기 교재 (풀폭 자동 흐름 마퀴) ===== -->
+  <!-- ===== B안: 가장 많이 찾는 인기 교재 (스와이프: PC=화살표, 터치=스와이프) ===== -->
   <section class="mb-pop" id="sec-pop">
     <div class="container"><h2 class="mb-pop-t">가장 많이 찾는 <span>인기 교재</span></h2></div>
-    <div class="mb-pop-marquee" id="mbPopMarquee"><div class="mb-pop-track" id="mbPop"></div></div>
+    <div class="mb-pop-row" id="mbPop"></div>
   </section>
 
   <!-- ===== 2학기 개학 대비 맞춤 교재 세트 ===== -->
@@ -1302,7 +1302,7 @@
       /* left:50% = 레이아웃 중앙(스크롤바 제외, 아래 그리드와 동일 기준). translateX 오프셋만 부여 */
       function slotX(p){
         if(p<=-2) return '-3430px';                        /* 화면 밖 왼쪽 */
-        if(p===-1) return '-2135px';                       /* 이전: 오른쪽 끝(중앙-880)이 카테고리 왼쪽 120px에 노출 */
+        if(p===-1) return '-2055px';                       /* 이전: 오른쪽 끝(153)이 카테고리 박스 왼쪽에 딱 붙음(겹침0) → 둥근 모서리 온전히 노출, 텍스트까지 40px */
         if(p===0)  return '-495px';                        /* 현재: 오른쪽=중앙+760=그리드 오른쪽 */
         if(p===1)  return '800px';                         /* 다음: 현재 오른쪽 40px, 왼쪽 앞부분 노출 */
         return '2095px';                                    /* 화면 밖 오른쪽 */
@@ -1368,7 +1368,7 @@
     go(0); play();
   })();
 
-  /* ---------- 인기교재: A(index) ELT 카드(.m2-card) 그대로 · 풀폭 자동 흐름(마퀴) ---------- */
+  /* ---------- 인기교재: A(index) ELT 카드(.m2-card) 스와이프 (PC=화살표, 터치=스와이프) ---------- */
   (function(){
     var track=document.getElementById('mbPop'); if(!track) return;
     var TITLES=['Phonics Code 1: Student Book','Read it Starter 1','Subject Link 1: Student Book','주니어 리딩튜터 1','능률 VOCA 초등','Grammar Zone 입문편','Phonics Code 3: Student Book'];
@@ -1379,10 +1379,18 @@
         +'<div class="price"><span class="dc">10%</span><span class="now">13,500원</span><span class="was">15,000원</span></div>'
       +'</article>';
     }
-    var one=TITLES.map(function(t,i){return card(t,i);}).join('');
-    track.innerHTML=one+one; /* 2벌 이어붙여 이음새 없는 무한 흐름(translateX -50%에서 반복) */
-    /* 흐름 속도: 카드 수에 비례해 일정 속도 유지 */
-    track.style.animationDuration=(TITLES.length*7)+'s';
+    track.innerHTML=TITLES.map(function(t,i){return card(t,i);}).join('');
+    /* 데스크톱 마우스 드래그로 스크롤 — 터치는 네이티브 스크롤(관성) 유지 */
+    var down=false,sx=0,sl=0,moved=false;
+    track.addEventListener('pointerdown',function(e){ if(e.pointerType!=='mouse')return; if(e.button!==0)return; down=true;moved=false;sx=e.clientX;sl=track.scrollLeft;});
+    track.addEventListener('pointermove',function(e){ if(!down)return; var dx=e.clientX-sx; if(!moved&&Math.abs(dx)>4){moved=true;track.classList.add('dragging');track.setPointerCapture&&track.setPointerCapture(e.pointerId);} if(moved)track.scrollLeft=sl-dx;});
+    function endDrag(){ if(!down)return; down=false; track.classList.remove('dragging'); }
+    track.addEventListener('pointerup',endDrag); track.addEventListener('pointercancel',endDrag);
+    /* 카드 클릭 → 상세 (드래그 중이면 무시) */
+    track.addEventListener('click',function(e){ if(moved){e.preventDefault();e.stopPropagation();return;}
+      if(e.target.closest('.cart')){ e.preventDefault(); alert('장바구니에 상품을 담았습니다.'); return; }
+      var c=e.target.closest('.m2-card'); if(c && !e.target.closest('a')) location.href='교재상세.html';
+    },true);
   })();
 })();
 </script>
