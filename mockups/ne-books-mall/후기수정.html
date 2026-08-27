@@ -51,7 +51,6 @@
             <div class="iq-bk-selected">
               <span class="iq-bk-cover"><img src="assets/best_2.png" alt=""></span>
               <span class="iq-bk-title">Phonics Code 2: Student Book</span>
-              <button type="button" class="iq-bk-del">삭제</button>
             </div>
           </div>
         </div>
@@ -135,10 +134,6 @@
     });
     var wrap=document.getElementById('rwStars');
     if(wrap) wrap.addEventListener('mouseleave',function(){ paint(cur); });
-
-    /* 교재 삭제 → 검색 상태로 (와이어프레임: 안내만) */
-    var bkDel=document.querySelector('.iq-bk-del');
-    if(bkDel) bkDel.addEventListener('click',function(){ alert('선택한 교재를 삭제했습니다.'); });
 
     /* 파일첨부 → 파일명 표시 / 삭제 */
     var fileBtn=document.getElementById('rwFileBtn'), fileInp=document.getElementById('rwFile'), fileName=document.getElementById('rwFileName'), fileDel=document.getElementById('rwFileDel');
