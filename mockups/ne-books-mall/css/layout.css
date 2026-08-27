@@ -1340,6 +1340,10 @@ a:hover .mega-new{text-decoration:none;}
 .rv-chev{flex:none;width:18px;height:18px;display:flex;align-items:center;justify-content:center;transition:transform .2s;}
 .rv-chev svg{width:16px;height:16px;display:block;}
 .rv-item.open .rv-chev{transform:rotate(180deg);}
+/* 블라인드 후기: 안내 문구만·펼침 불가(별점/제목/내용/이미지 대체) */
+.rv-blind .rv-q{cursor:default;}
+.rv-blind .rv-q:hover{background:none;}
+.rv-blindmsg{font-size:14px;color:var(--muted);font-style:italic;letter-spacing:-0.14px;}
 .rv-a{border-top:1px solid var(--line);background:#fff;padding:40px 80px;display:flex;flex-direction:column;gap:24px;align-items:flex-start;}/* 텍스트/이미지 ↔ 수정·삭제 버튼 간격 24 */
 .rv-a[hidden]{display:none;}
 .rv-body{font-size:14px;color:var(--muted);line-height:26px;letter-spacing:-0.14px;max-width:985px;}
