@@ -735,3 +735,56 @@
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot);
   else boot();
 })();
+
+/* ===== 서브페이지 PC/태블릿 오른쪽 퀵 플로팅 =====
+   - 상단: 레벨차트/맞춤형/교재가이드 3개 패널(.floating 재사용, 수학교재안내 제외)
+   - 하단: 고객센터 FAB + 맨위로. FAB를 누르면 상담 알약(1:1문의/문자상담/채팅상담/FAQ)이 펼쳐지고
+           그동안 3개 패널은 숨겨짐. 다시 닫으면 패널 재노출.
+   메인(index/메인_*)은 이미 인라인 .floating이 있으므로 주입하지 않음. */
+(function(){
+  function boot(){
+    if(document.querySelector('.floating')) return;               // 메인 페이지엔 이미 존재 → 스킵
+    if(document.getElementById('subFloat')) return;
+    var wrap=document.createElement('div'); wrap.id='subFloat';
+    wrap.innerHTML=
+      '<div class="qcs-dim"></div>'+
+      '<div class="qfloat">'+
+        '<div class="floating">'+
+          '<a class="float-card" href="맞춤교재추천.html"><span class="ico"><img src="assets/ic_float_recommend.svg" alt=""></span><span>맞춤형 교재추천</span></a>'+
+          '<a class="float-card" href="교재레벨차트.html"><span class="ico"><img src="assets/ic_float_level.svg" alt=""></span><span>교재 레벨 차트</span></a>'+
+          '<a class="float-card" href="교재가이드.html"><span class="ico"><img src="assets/ic_float_guide.svg" alt=""></span><span>교재 가이드 다운</span></a>'+
+        '</div>'+
+        '<div class="qcs-menu">'+
+          '<a class="qcs-item" href="고객센터.html#qna"><span class="t">1:1문의</span><span class="ic"><img src="assets/ic_11.svg" alt=""></span></a>'+
+          '<a class="qcs-item" href="고객센터.html#qna"><span class="t">문자상담</span><span class="ic"><img src="assets/ic_sms.svg" alt=""></span></a>'+
+          '<a class="qcs-item" href="고객센터.html#qna"><span class="t">채팅상담</span><span class="ic"><img src="assets/ic_chat.svg" alt=""></span></a>'+
+          '<a class="qcs-item" href="고객센터.html#faq"><span class="t">FAQ</span><span class="ic"><img src="assets/ic_faq.svg" alt=""></span></a>'+
+        '</div>'+
+        '<button type="button" class="qcs-fab" aria-label="상담 메뉴" aria-expanded="false"><img class="ic-chat" src="assets/ic_qfab_chat.svg" alt="상담"><img class="ic-x" src="assets/ic_qfab_close.svg" alt="닫기"></button>'+
+        '<button type="button" class="qcs-top" aria-label="맨 위로"><svg viewBox="0 0 24 24" fill="none"><path d="M12 19V6M6 12l6-6 6 6" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>'+
+      '</div>';
+    document.body.appendChild(wrap);
+
+    var qfloat=wrap.querySelector('.qfloat');
+    var fab=wrap.querySelector('.qcs-fab');
+    var dim=wrap.querySelector('.qcs-dim');
+    var top=wrap.querySelector('.qcs-top');
+    function openCS(){ qfloat.classList.add('open'); dim.classList.add('on'); fab.setAttribute('aria-expanded','true'); }
+    function closeCS(){ qfloat.classList.remove('open'); dim.classList.remove('on'); fab.setAttribute('aria-expanded','false'); }
+    fab.addEventListener('click',function(){ qfloat.classList.contains('open')?closeCS():openCS(); });
+    dim.addEventListener('click',closeCS);
+    document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&qfloat.classList.contains('open')) closeCS(); });
+
+    /* 맨위로: 살짝 내렸을 때만 노출 + 부드럽게 상단 이동 */
+    function onScroll(){ if((window.pageYOffset||document.documentElement.scrollTop||0)>240) top.classList.add('show'); else top.classList.remove('show'); }
+    window.addEventListener('scroll',onScroll,{passive:true});
+    onScroll();
+    top.addEventListener('click',function(){
+      var start=window.pageYOffset||document.documentElement.scrollTop||0, t0=null;
+      function step(ts){ if(t0===null)t0=ts; var p=Math.min((ts-t0)/450,1); var e=1-Math.pow(1-p,3); window.scrollTo(0,Math.round(start*(1-e))); if(p<1) requestAnimationFrame(step); }
+      requestAnimationFrame(step);
+    });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot);
+  else boot();
+})();

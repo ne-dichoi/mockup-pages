@@ -4012,3 +4012,28 @@ body.bsheet-lock{overflow:hidden;}
   .ev-badge{height:auto;font-size:10px;font-weight:600;padding:4px 8px;line-height:1.4;}
   .rv-badge{height:auto;font-size:10px;padding:4px 8px;line-height:1.4;}
 }
+
+/* ===== 서브페이지 PC/태블릿 오른쪽 퀵 플로팅 (레벨/맞춤형/가이드 + 고객센터 FAB) =====
+   하나의 우하단 스택: [3개 패널] → [고객센터 FAB] → [맨위로]. FAB를 누르면 패널이 상담 알약으로 교체. */
+#subFloat .qfloat{position:fixed;right:16px;bottom:40px;z-index:81;display:flex;flex-direction:column;align-items:flex-end;gap:12px;}
+#subFloat .qfloat .floating{position:static;top:auto;right:auto;border-radius:16px;box-shadow:0 6px 16px rgba(0,0,0,.14);}
+#subFloat .qfloat .float-card{cursor:pointer;text-decoration:none;}
+#subFloat .qfloat.open .floating{display:none;}          /* 펼치면 3개 패널 숨김 */
+#subFloat .qcs-menu{display:none;flex-direction:column;align-items:flex-end;gap:8px;}
+#subFloat .qfloat.open .qcs-menu{display:flex;}
+#subFloat .qcs-item{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 12px 6px 20px;font-size:14px;font-weight:600;color:var(--ink);white-space:nowrap;text-decoration:none;box-shadow:0 4px 6px rgba(0,0,0,.15);}
+#subFloat .qcs-item .t{line-height:1;}
+#subFloat .qcs-item .ic{width:32px;height:32px;display:inline-flex;align-items:center;justify-content:center;flex:none;}
+#subFloat .qcs-item .ic img{width:100%;height:100%;object-fit:contain;}
+#subFloat .qcs-fab{width:48px;height:48px;border:0;background:none;padding:0;cursor:pointer;line-height:0;}
+#subFloat .qcs-fab img{width:48px;height:48px;display:block;}
+#subFloat .qcs-fab .ic-x{display:none;}
+#subFloat .qfloat.open .qcs-fab .ic-chat{display:none;}
+#subFloat .qfloat.open .qcs-fab .ic-x{display:block;}
+#subFloat .qcs-top{width:48px;height:48px;border-radius:999px;background:#fff;border:1px solid var(--line);box-shadow:0 4px 6px rgba(0,0,0,.15);cursor:pointer;display:none;align-items:center;justify-content:center;padding:0;}
+#subFloat .qcs-top.show{display:flex;}
+#subFloat .qfloat.open .qcs-top{display:none;}
+#subFloat .qcs-top svg{width:24px;height:24px;}
+#subFloat .qcs-dim{position:fixed;inset:0;background:rgba(13,13,13,.5);opacity:0;visibility:hidden;transition:opacity .2s;z-index:79;}
+#subFloat .qcs-dim.on{opacity:1;visibility:visible;}
+@media (max-width:767px){#subFloat{display:none !important;}}
