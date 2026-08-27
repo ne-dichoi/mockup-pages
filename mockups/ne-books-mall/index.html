@@ -10,9 +10,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- Pretendard (design font) via CDN, with Noto Sans KR fallback -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260815ev">
-<script src="js/layout.js?v=20260815ev" defer></script>
-<script src="js/search.js?v=20260815ev" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260815ew">
+<script src="js/layout.js?v=20260815ew" defer></script>
+<script src="js/search.js?v=20260815ew" defer></script>
 <style>
 /* ===== 메인 시안 A (메인_2) 전용 ===== */
 /* 맞춤교재 세트 애니 아이콘 */
@@ -270,7 +270,7 @@
   .m2-cat-head .m2-t{font-size:24px;}
   /* 상품 카드: 회색박스 153x153, 우측 bleed로 2개 반 노출 */
   .m2-row-wrap{margin-left:-20px;margin-right:-20px;}/* 좌우 모두 화면 끝까지 bleed → 왼쪽 peek이 20px 여백에 안 막힘 */
-  .m2-row{display:grid;grid-auto-flow:column;grid-template-rows:auto auto;grid-auto-columns:clamp(140px, 40vw, 200px);gap:24px 8px;overflow-x:auto;scroll-snap-type:x proximity;padding-left:20px;padding-right:20px;scroll-padding-left:60px;-webkit-overflow-scrolling:touch;touch-action:pan-x;overscroll-behavior-x:contain;}/* 카드 폭을 뷰포트 비율로(40vw, 140~200px) → 화면 넓어지면 카드도 커짐. 첫 카드 20px 안쪽, 스냅 60px 안쪽(왼쪽 반쪽 peek). touch-action:pan-x → 네이티브 가로 스와이프(관성) */
+  .m2-row{display:grid;grid-auto-flow:column;grid-template-rows:auto auto;grid-auto-columns:clamp(140px, 40vw, 200px);gap:24px 8px;overflow-x:auto;scroll-snap-type:x proximity;padding-left:20px;padding-right:20px;scroll-padding-left:60px;-webkit-overflow-scrolling:touch;touch-action:pan-x pan-y;overscroll-behavior-x:contain;}/* 카드 폭을 뷰포트 비율로(40vw, 140~200px) → 화면 넓어지면 카드도 커짐. 첫 카드 20px 안쪽, 스냅 60px 안쪽(왼쪽 반쪽 peek). touch-action:pan-x pan-y → 가로=리스트 스와이프, 세로=페이지 스크롤 둘 다 허용 */
   .m2-card{width:auto;gap:0;scroll-snap-align:start;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;}
   .m2-card, .m2-card *{-webkit-user-drag:none;} /* 2행 리스트: 교재명·금액 위에서 드래그해도 텍스트선택/링크드래그가 가로 스와이프를 가로채지 않게 */
   .m2-card .box>img{top:30px;height:calc(100% - 60px);} /* 마이페이지 찜과 동일(위아래 30px 여백) */
@@ -1079,6 +1079,32 @@
     }
     window.addEventListener('scroll',onScroll,{passive:true});
     onScroll();
+  })();
+
+  /* --- 하단 고정요소를 브라우저 자체 하단 툴바(삼성인터넷 등) 위로 올림 ---
+     삼성인터넷은 하단 툴바가 스크롤 방향에 따라 나타났다 사라지며 fixed;bottom:0 요소를 덮음.
+     VisualViewport로 실제 보이는 영역 하단과 레이아웃 하단의 차이(=툴바 높이)만큼 위로 이동.
+     iOS는 fixed가 이미 visual viewport 기준으로 정상 동작하므로 제외(중복 이동 방지). */
+  (function(){
+    var vv=window.visualViewport; if(!vv) return;
+    if(/iPhone|iPad|iPod/i.test(navigator.userAgent)) return;
+    var jump=document.querySelector('.m2-jump'), qfab=document.querySelector('.m2-qfab');
+    if(!jump && !qfab) return;
+    var raf=null;
+    function apply(){
+      raf=null;
+      if(window.innerWidth>767){ if(jump)jump.style.transform=''; if(qfab)qfab.style.transform=''; return; }
+      var gap=Math.max(0, Math.round(document.documentElement.clientHeight - vv.height - vv.offsetTop));
+      var ty=gap? 'translateY(-'+gap+'px)':'';
+      if(jump) jump.style.transform=ty;
+      if(qfab) qfab.style.transform=ty;
+    }
+    function schedule(){ if(raf) return; raf=requestAnimationFrame(apply); }
+    vv.addEventListener('resize',schedule);
+    vv.addEventListener('scroll',schedule);
+    window.addEventListener('resize',schedule);
+    window.addEventListener('orientationchange',schedule);
+    apply();
   })();
 
   /* --- 오른쪽 퀵 플로팅: 맨위로 + 상담 메뉴 --- */
