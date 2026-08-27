@@ -769,6 +769,10 @@
     var fab=wrap.querySelector('.qcs-fab');
     var dim=wrap.querySelector('.qcs-dim');
     var top=wrap.querySelector('.qcs-top');
+    /* 결제 플로우(장바구니·주문결제·주문완료): 맨위로 버튼만 노출, 나머지 퀵(패널·상담 FAB·채널·딤) 미노출 — PC·모바일 공통 */
+    if(/(장바구니|주문결제|주문완료)\.html([?#]|$)/.test(decodeURIComponent(location.pathname||''))){
+      ['.floating','.qcs-menu','.qcs-fab','.qcs-dim'].forEach(function(sel){ var el=wrap.querySelector(sel); if(el) el.style.display='none'; });
+    }
     function openCS(){ qfloat.classList.add('open'); dim.classList.add('on'); fab.setAttribute('aria-expanded','true'); }
     function closeCS(){ qfloat.classList.remove('open'); dim.classList.remove('on'); fab.setAttribute('aria-expanded','false'); }
     fab.addEventListener('click',function(){ qfloat.classList.contains('open')?closeCS():openCS(); });
