@@ -10,9 +10,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- Pretendard (design font) via CDN, with Noto Sans KR fallback -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260815ez">
-<script src="js/layout.js?v=20260815ez" defer></script>
-<script src="js/search.js?v=20260815ez" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260815fa">
+<script src="js/layout.js?v=20260815fa" defer></script>
+<script src="js/search.js?v=20260815fa" defer></script>
 <style>
 /* ===== 메인 시안 A (메인_2) 전용 ===== */
 /* 맞춤교재 세트 애니 아이콘 */
@@ -290,7 +290,7 @@
   .m2-set-collage{margin-top:24px;height:auto;} /* 설명↔교재이미지 24px */
   /* 교재 표지를 뷰포트 폭에 맞춰 축소 → 좁은 폰에서도 회색박스 밖으로 안 삐져나감 */
   .m2-set-collage img{width:min(88px, 23vw);height:auto;aspect-ratio:92/120;}
-  .m2-set-books{margin-top:24px;gap:8px;max-height:120px;overflow-y:auto;-webkit-overflow-scrolling:touch;touch-action:pan-y;overscroll-behavior:contain;} /* 모바일: 교재명 4.5줄 노출·세로 터치 스크롤. touch-action:pan-y → 세로=이 리스트 스크롤 / 가로=세트 스와이프(부모로 전달), 충돌 방지 */
+  .m2-set-books{margin-top:24px;gap:8px;max-height:108px;overflow-y:auto;-webkit-overflow-scrolling:touch;touch-action:pan-y;overscroll-behavior:contain;} /* 모바일: 교재명 3.5줄(4번째 반만 노출→더 있음 힌트)·세로 터치 스크롤. touch-action:pan-y → 세로=이 리스트 스크롤 / 가로=세트 스와이프(부모로 전달), 충돌 방지 */
   .m2-set-books, .m2-set-book, .m2-set-book .nm, .m2-set-book .bcart{touch-action:pan-y;} /* 교재명·장바구니버튼·여백 어디를 잡아도 세로 스크롤 → 터치 영역 확대 */
   .m2-set-price{margin-top:32px;} /* 할인/금액 줄 위 여백 32px */
   .m2-set-price .r .pc,.m2-set-price .r .now{font-size:18px;} /* 28% / 29,500원 18px */
@@ -346,7 +346,8 @@
 @media (max-width:767px){
   .m2-qdim{display:block;position:fixed;inset:0;background:rgba(13,13,13,.5);opacity:0;visibility:hidden;transition:opacity .25s;z-index:940;}
   .m2-qdim.on{opacity:1;visibility:visible;}
-  .m2-qfab{display:flex;flex-direction:column;align-items:flex-end;gap:12px;position:fixed;right:16px;bottom:calc(76px + env(safe-area-inset-bottom,0px));z-index:950;} /* 하단 점프바(60px)+안전영역 위 */
+  .m2-qfab{display:flex;flex-direction:column;align-items:flex-end;gap:12px;position:fixed;right:16px;bottom:calc(76px + env(safe-area-inset-bottom,0px));z-index:950;pointer-events:none;} /* 하단 점프바(60px)+안전영역 위. 컨테이너 빈 영역(숨은 메뉴 폭 포함)이 아래 콘텐츠 터치를 먹지 않도록 pointer-events 투과 */
+  .m2-qbtn,.m2-qtop{pointer-events:auto;} /* 실제 버튼만 터치 수신 */
   .m2-qmenu{display:flex;flex-direction:column;align-items:flex-end;gap:12px;opacity:0;visibility:hidden;transform:translateY(10px);transition:opacity .2s,transform .2s;pointer-events:none;}
   .m2-qfab.open .m2-qmenu{opacity:1;visibility:visible;transform:none;pointer-events:auto;}
   /* 펼침 알약: 흰 배경·#e5e5e5 테두리·radius999, 텍스트 SemiBold14, 아이콘(고객센터와 동일, 작게) */
