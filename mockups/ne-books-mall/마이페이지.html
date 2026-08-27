@@ -1053,6 +1053,18 @@
     btn.addEventListener('click',function(){ shown=Math.min(shown+PAGE, cards.length); render(); });
   })();
 
+  /* 마이페이지 참여내역 카드 클릭 → 상세 이동(이벤트→이벤트상세, 세미나→세미나상세) */
+  (function(){
+    var panel=document.getElementById('tab-event'); if(!panel) return;
+    [].forEach.call(panel.querySelectorAll('.ev-grid .ev-card'),function(card){
+      card.addEventListener('click',function(){
+        var ty=card.querySelector('.ev-badge.type');
+        var t=ty?ty.textContent.trim():'';
+        location.href=(t==='세미나')?'세미나상세.html':'이벤트상세.html';
+      });
+    });
+  })();
+
   /* 주문내역 바텀시트: 보기옵션 / 날짜선택 (모바일) */
   (function(){
     function MB(){ return window.matchMedia('(max-width:1023px)').matches; }
