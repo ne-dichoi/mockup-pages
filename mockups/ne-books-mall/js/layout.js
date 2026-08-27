@@ -326,7 +326,7 @@
     var BOOKCATS=[
       {key:'ELT', label:'ELT'},
       {key:'초/중등', label:'초등/중등'},
-      {key:'고등', label:'고등'},
+      {key:'고등', label:'고등 영어'},
       {key:'교과서/자습서', label:'교과서/자습서'},
       {key:'수험/일반', label:'수험/일반'},
       {key:'수학/국어', label:'수학/국어'}

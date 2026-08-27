@@ -3279,11 +3279,10 @@ body.bsheet-lock{overflow:hidden;}
   .page-my #tab-review .rv-count{margin:40px 20px 0;padding-bottom:16px;border-bottom:1px solid var(--ink);}
   .page-my #tab-review .rv-list{margin-top:0;border-top:0;padding:0 20px;}
 
-  /* 헤더: [분류 뱃지 + 교재명] 한 줄(맨 위, 교재명 말줄임) · ★평점+제목(좌) / 작성자+날짜(우) + chevron */
+  /* 헤더: ★평점+제목(좌) / 작성자+날짜(우) + chevron. 작성자·날짜↔화살표 간격 24 */
   .page-my #tab-review .rv-q{display:grid;grid-template-columns:1fr auto auto;
-    grid-template-areas:"prod prod chev" "rev author chev" "rev date chev";align-items:center;min-height:0;padding:24px 0;gap:4px 24px;text-align:left;}
-  .page-my #tab-review .rv-prod{grid-area:prod;display:flex;align-items:center;gap:8px;width:auto;min-width:0;margin-bottom:4px;}
-  .page-my #tab-review .rv-prod .rv-name{flex:1 1 auto;min-width:0;}
+    grid-template-areas:"rev author chev" "rev date chev";align-items:center;min-height:0;padding:24px 0;gap:4px 24px;text-align:left;}
+  .page-my #tab-review .rv-prod{display:none;}
   .page-my #tab-review .rv-rev{grid-area:rev;gap:8px;}
   .page-my #tab-review .rv-stars{font-size:16px;}
   .page-my #tab-review .rv-title{font-size:14px;white-space:normal;}
