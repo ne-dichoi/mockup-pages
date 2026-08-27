@@ -1546,9 +1546,9 @@ a:hover .mega-new{text-decoration:none;}
 .ev-my-head{margin-bottom:8px;}
 .ev-my-btn{height:44px;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;padding:0 24px;border:1px solid var(--border-2);border-radius:8px;background:#fff;font-size:14px;font-weight:500;color:var(--ink);cursor:pointer;white-space:nowrap;}
 .ev-my-btn:hover{background:var(--gray-bg);}
-/* 메인 롤링 배너(7:8, 437×499)를 공용 사용 — 카드는 상단 437×280만 노출(하단 잘림), 핵심 요소는 상단 */
-.ev-thumb{aspect-ratio:437/280;border-radius:16px;overflow:hidden;background:var(--gray-bg);}
-.ev-thumb img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;transition:transform .3s;}
+/* 메인 상단 배너(가로형 680×250)를 공용 사용 — 카드 437×280 영역에 우측 기준 노출(cover, 좌우 크롭), 핵심 요소는 우측. 투명(PNG)은 어드민 지정 배경색 위에 노출(데모 기본 흰색) */
+.ev-thumb{aspect-ratio:437/280;border-radius:16px;overflow:hidden;background:#fff;}
+.ev-thumb img{width:100%;height:100%;object-fit:cover;object-position:right;display:block;transition:transform .3s;}
 .ev-card:hover .ev-thumb img{transform:scale(1.03);}
 .ev-body{padding-top:24px;display:flex;flex-direction:column;gap:16px;}
 .ev-info{display:flex;flex-direction:column;gap:8px;}
@@ -3279,8 +3279,9 @@ body.bsheet-lock{overflow:hidden;}
 
   /* 헤더: ★평점+제목(좌) / 작성자+날짜(우) + chevron. 작성자·날짜↔화살표 간격 24 */
   .page-my #tab-review .rv-q{display:grid;grid-template-columns:1fr auto auto;
-    grid-template-areas:"rev author chev" "rev date chev";align-items:center;min-height:0;padding:24px 0;gap:4px 24px;text-align:left;}
-  .page-my #tab-review .rv-prod{display:none;}
+    grid-template-areas:"prod prod chev" "rev author chev" "rev date chev";align-items:center;min-height:0;padding:24px 0;gap:4px 24px;text-align:left;}
+  .page-my #tab-review .rv-prod{grid-area:prod;display:flex;align-items:center;gap:8px;width:auto;min-width:0;margin-bottom:4px;}
+  .page-my #tab-review .rv-prod .rv-name{flex:1 1 auto;min-width:0;}
   .page-my #tab-review .rv-rev{grid-area:rev;gap:8px;}
   .page-my #tab-review .rv-stars{font-size:16px;}
   .page-my #tab-review .rv-title{font-size:14px;white-space:normal;}
