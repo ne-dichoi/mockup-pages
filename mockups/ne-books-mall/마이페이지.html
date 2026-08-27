@@ -624,6 +624,16 @@
               </div>
             </div>
           </div>
+          <!-- 4 (블라인드 데모 — 성격 위반으로 블라인드 처리, 펼침 불가) -->
+          <div class="rv-item rv-blind">
+            <div class="rv-q">
+              <span class="rv-prod"><span class="rv-badge">고등</span><span class="rv-name">체크체크 수학 중3-1 (2022 개정)</span></span>
+              <span class="rv-rev"><span class="rv-blindmsg">해당 게시물 성격과 다른 게시물 등록으로 블라인드 처리되었습니다.</span></span>
+              <span class="rv-author">air*****</span>
+              <span class="rv-date">2024.03.21</span>
+              <span class="rv-chev" aria-hidden="true"></span>
+            </div>
+          </div>
         </div>
 
         <!-- 모바일 더보기(10건 초과 시 노출) -->
@@ -805,6 +815,7 @@
     panel.addEventListener('click',function(e){
       var q=e.target.closest('.rv-q'); if(!q) return;
       var item=q.closest('.rv-item'); if(!item) return;
+      if(item.classList.contains('rv-blind')) return; /* 블라인드 후기: 펼침 불가(안내 문구만) */
       var open=item.classList.toggle('open');
       var a=item.querySelector('.rv-a'); if(a) a.hidden=!open;
     });
