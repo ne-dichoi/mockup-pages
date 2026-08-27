@@ -8,9 +8,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260815ew">
-<script src="js/layout.js?v=20260815ew" defer></script>
-<script src="js/search.js?v=20260815ew" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260815ex">
+<script src="js/layout.js?v=20260815ex" defer></script>
+<script src="js/search.js?v=20260815ex" defer></script>
 </head>
 <body class="page-my">
 
@@ -1059,18 +1059,6 @@
     }
     render();
     btn.addEventListener('click',function(){ shown=Math.min(shown+PAGE, cards.length); render(); });
-  })();
-
-  /* 마이페이지 참여내역 카드 클릭 → 상세 이동(이벤트→이벤트상세, 세미나→세미나상세) */
-  (function(){
-    var panel=document.getElementById('tab-event'); if(!panel) return;
-    [].forEach.call(panel.querySelectorAll('.ev-grid .ev-card'),function(card){
-      card.addEventListener('click',function(){
-        var ty=card.querySelector('.ev-badge.type');
-        var t=ty?ty.textContent.trim():'';
-        location.href=(t==='세미나')?'세미나상세.html':'이벤트상세.html';
-      });
-    });
   })();
 
   /* 주문내역 바텀시트: 보기옵션 / 날짜선택 (모바일) */

@@ -1562,7 +1562,9 @@ a:hover .mega-new{text-decoration:none;}
 .ev-state{font-weight:600;color:var(--red);white-space:nowrap;}
 .ev-state.done{color:var(--muted);}
 .ev-date{color:var(--muted);}
-/* 마이페이지 이벤트/세미나 카드: 상세 이동(이벤트→이벤트상세, 세미나→세미나상세) — 공용 .ev-card 클릭/호버 사용 */
+/* 마이페이지 이벤트/세미나: 리스트 전용(상세 이동 없음) → 클릭 유도 제거 */
+.page-my #tab-event .ev-card{cursor:default;}
+.page-my #tab-event .ev-card:hover .ev-thumb img{transform:none;}
 
 /* ===== 이벤트 상세 ===== */
 .ev-d-row{display:flex;align-items:stretch;border-bottom:1px solid var(--line);}
@@ -2145,13 +2147,13 @@ body.bsheet-lock{overflow:hidden;}
 .md-x::before{transform:rotate(45deg);}
 .md-x::after{transform:rotate(-45deg);}
 /* 빠른 아이콘 4종(원형) */
-.md-quick{display:flex;gap:8px;align-items:center;justify-content:center;padding:24px 20px;flex:none;
+/* 퀵아이콘: index 주요 아이콘과 동일 스타일 — 회색 원(#f3f3f3) 안 아이콘 + 라벨은 원 아래(테두리·흰배경 없음) */
+.md-quick{display:flex;gap:8px;align-items:flex-start;justify-content:center;padding:24px 20px;flex:none;
   border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
-.md-q{flex:1 1 0;min-width:0;max-width:79px;aspect-ratio:1/1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
-  border:1px solid var(--line);border-radius:999px;background:#fff;text-decoration:none;}
-.md-q-ic{display:flex;align-items:center;justify-content:center;width:35px;height:35px;}
-.md-q-ic img{max-width:32px;max-height:32px;display:block;}
-.md-q-t{font-size:11px;font-weight:700;color:var(--ink);font-family:var(--sans);}
+.md-q{flex:1 1 0;min-width:0;max-width:80px;display:flex;flex-direction:column;align-items:center;gap:8px;text-decoration:none;}
+.md-q-ic{display:flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:999px;background:#f3f3f3;}
+.md-q-ic img{width:30px;height:30px;object-fit:contain;display:block;max-width:none;max-height:none;}
+.md-q-t{font-size:12px;font-weight:500;color:var(--ink);font-family:var(--sans);white-space:nowrap;}
 /* 본문: 좌 카테고리 / 우 하위목록 */
 .md-body{flex:1;display:flex;min-height:0;overflow:hidden;}
 /* 좌 컬럼: 활성 알약이 흰색 영역으로 튀어나오도록 가로 클리핑 해제(overflow:visible) */
