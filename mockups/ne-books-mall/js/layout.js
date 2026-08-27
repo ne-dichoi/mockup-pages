@@ -335,7 +335,7 @@
     var MY_LINKS=['마이페이지.html','마이페이지.html#orders','마이페이지.html#points','마이페이지.html#wish','마이페이지.html#qna','마이페이지.html#review','마이페이지.html#event','index.html'];
     var MENU=BOOKCATS.concat([
       {label:'학습자료실', all:true},
-      {label:'도서몰', all:true},
+      {label:'교재몰', all:true},
       {label:'고객센터', subs:['공지사항','FAQ','이벤트/신간·개정/세미나','교재 오류정정','1:1문의','지사안내'], links:CS_LINKS},
       {label:'마이페이지', subs:['홈','주문내역','포인트','찜','문의/답변','후기','이벤트/세미나','로그아웃'], links:MY_LINKS}
     ]);
