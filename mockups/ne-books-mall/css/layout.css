@@ -750,7 +750,7 @@ a:hover .mega-new{text-decoration:none;}
 /* 검색결과 카드 디자인: 회색 정사각 박스 + 교재 축소, 체크박스(좌상단)·검정 장바구니(교재 위) 유지 */
 .rel-card{width:280px;background:transparent;border:0;border-radius:0; display:flex;flex-direction:column;gap:24px;flex:none;cursor:pointer;}
 .rel-card .img{width:280px;height:auto;aspect-ratio:1 / 1;position:relative;background:#f3f3f3;border-radius:9px;overflow:hidden;}
-.rel-card .img .book{position:absolute;left:50%;top:18.5%;transform:translateX(-50%); height:63%;width:auto;aspect-ratio:171 / 223;object-fit:cover;box-shadow:4px 8px 17px rgba(0,0,0,.18);border-radius:0;display:block;}/* 교재표지 박스높이 63% 비율 고정 → 카드 크기 달라도 일정 */
+.rel-card .img .book{position:absolute;left:50%;top:16.5%;transform:translateX(-50%); height:70%;width:auto;aspect-ratio:171 / 223;object-fit:cover;box-shadow:4px 8px 17px rgba(0,0,0,.18);border-radius:0;display:block;}/* 교재표지 박스높이 63% 비율 고정 → 카드 크기 달라도 일정 */
 .rel-card .img .chk{position:absolute;left:16px;top:16px;width:18px;height:18px;background:#fff; border:1px solid #d9d9d9;border-radius:5px;appearance:none;-webkit-appearance:none;margin:0;cursor:pointer;z-index:2;}
 .rel-card .img .chk:hover{border-color:#b9b9b9;}
 .rel-card .img .chk:checked, .sel-actions .chk:checked{background:#d94a34;border-color:#d94a34; background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.4 6.2 4.9 8.6 9.6 3.5" stroke="white" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>'); background-repeat:no-repeat;background-position:center;}
@@ -1202,7 +1202,7 @@ a:hover .mega-new{text-decoration:none;}
   :is(#tab-wish .wl-grid,#tab-home .mb-grid) .mb-card{position:relative;border:0;border-radius:0;background:transparent;overflow:visible;gap:24px;}
   /* 회색 박스: 정사각형, 교재는 위아래 45 여백 + 가로 중앙정렬(높이 기준 비율 축소) */
   :is(#tab-wish .wl-grid,#tab-home .mb-grid) .mb-cover{width:100%;height:auto;aspect-ratio:1 / 1;background:#f3f3f3;border-radius:9px;padding:0;box-sizing:border-box;overflow:hidden;display:block;}
-  :is(#tab-wish .wl-grid,#tab-home .mb-grid) .mb-cover img{position:absolute;top:18.5%;left:50%;transform:translateX(-50%);height:63%;width:auto;max-width:none;aspect-ratio:171 / 223;object-fit:cover;box-shadow:3px 6px 12px rgba(0,0,0,.18);}/* 교재표지 박스높이 63% 비율 고정 */
+  :is(#tab-wish .wl-grid,#tab-home .mb-grid) .mb-cover img{position:absolute;top:16.5%;left:50%;transform:translateX(-50%);height:70%;width:auto;max-width:none;aspect-ratio:171 / 223;object-fit:cover;box-shadow:3px 6px 12px rgba(0,0,0,.18);}/* 교재표지 박스높이 63% 비율 고정 */
   :is(#tab-wish .wl-grid,#tab-home .mb-grid) .mb-cart{left:auto;right:19%;bottom:12%;}
   /* 제목 영역 2줄 고정 */
   :is(#tab-wish .wl-grid,#tab-home .mb-grid) .mb-title{min-height:44px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
@@ -2980,7 +2980,7 @@ body.bsheet-lock{overflow:hidden;}
   .page-my :is(#tab-wish .wl-grid,#tab-home .mb-grid) .mb-card{position:relative;border:0;background:transparent;overflow:visible;gap:16px;}
   .page-my #tab-wish .wl-grid .mb-card{flex:none;width:auto;}
   .page-my :is(#tab-wish .wl-grid,#tab-home .mb-grid) .mb-cover{width:100%;height:auto;aspect-ratio:1 / 1;background:#f3f3f3;border-radius:8px;overflow:hidden;padding:0;position:relative;display:block;}
-  .page-my :is(#tab-wish .wl-grid,#tab-home .mb-grid) .mb-cover img{position:absolute;top:18.5%;left:50%;transform:translateX(-50%);height:63%;width:auto;max-width:none;aspect-ratio:171 / 223;object-fit:cover;box-shadow:1.6px 2.9px 6.5px rgba(0,0,0,.18);}/* 모바일도 63% 비율 통일 */
+  .page-my :is(#tab-wish .wl-grid,#tab-home .mb-grid) .mb-cover img{position:absolute;top:16.5%;left:50%;transform:translateX(-50%);height:70%;width:auto;max-width:none;aspect-ratio:171 / 223;object-fit:cover;box-shadow:1.6px 2.9px 6.5px rgba(0,0,0,.18);}/* 모바일도 63% 비율 통일 */
   .page-my :is(#tab-wish .wl-grid,#tab-home .mb-grid) .mb-cart{width:36px;height:36px;left:auto;right:12%;bottom:10%;background-size:16px;z-index:2;}
   .page-my #tab-wish .wl-grid .mb-x{top:12px;right:12px;width:20px;height:20px;z-index:3;}
   .page-my #tab-wish .wl-grid .mb-x svg{width:20px;height:20px;}
@@ -3776,7 +3776,7 @@ body.bsheet-lock{overflow:hidden;}
   /* 연관교재/시리즈/다음단계 카드 = 검색결과 카드 디자인(회색 정사각 박스). 체크박스(좌상단)·검정 장바구니(교재 위) 유지 */
   .page-detail .rel-card{width:150px;gap:12px;border-radius:0;}
   .page-detail .rel-card .img{width:100%;height:auto;aspect-ratio:1 / 1;background:#f3f3f3;border-radius:8px;overflow:hidden;}
-  .page-detail .rel-card .img .book{top:18.5%;height:63%;width:auto;box-shadow:1.6px 2.9px 6.5px rgba(0,0,0,.18);}/* 모바일도 63% 비율 통일 */
+  .page-detail .rel-card .img .book{top:16.5%;height:70%;width:auto;box-shadow:1.6px 2.9px 6.5px rgba(0,0,0,.18);}/* 모바일도 63% 비율 통일 */
   .page-detail .rel-card .img .chk{left:12px;top:12px;width:18px;height:18px;}
   .page-detail .rel-card .img .cart{left:auto;right:12%;top:auto;bottom:10%;width:36px;height:36px;}
   .page-detail .rel-card .img .cart .ico{width:16px;height:16px;}
@@ -3932,7 +3932,7 @@ body.bsheet-lock{overflow:hidden;}
 
 /* 회색 박스: 정사각형(1:1). 교재는 위아래 40px 여백 + 가로 중앙정렬, 박스가 줄면 교재도 비율로 축소 */
 .sr-cover{position:relative;background:#f3f3f3;border-radius:10px;aspect-ratio:1 / 1;box-sizing:border-box;overflow:hidden;}
-.sr-book{position:absolute;top:18.5%;bottom:18.5%;left:50%;transform:translateX(-50%);width:auto;height:auto;aspect-ratio:171 / 223;}/* 교재표지 박스높이 63% 비율 고정 */
+.sr-book{position:absolute;top:16.5%;bottom:13.5%;left:50%;transform:translateX(-50%);width:auto;height:auto;aspect-ratio:171 / 223;}/* 교재표지 박스높이 63% 비율 고정 */
 .sr-book img{width:100%;height:100%;object-fit:cover;display:block;border-radius:2px;box-shadow:4px 8px 17px rgba(0,0,0,.18);}
 .sr-cover.is-dim .sr-book{opacity:.5;}
 .sr-corner{position:absolute;left:16px;top:16px;z-index:2;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700;line-height:1.6;color:#fff;background:var(--red);}
@@ -3986,7 +3986,7 @@ body.bsheet-lock{overflow:hidden;}
   .sr-grid{grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:40px 8px;align-items:stretch;}
   .sr-card{gap:0;}
   .sr-cover{flex:0 0 auto;border-radius:8px;}
-  .sr-book{top:18.5%;bottom:18.5%;}/* 모바일도 63% 비율 통일 */
+  .sr-book{top:16.5%;bottom:13.5%;}/* 모바일도 63% 비율 통일 */
   /* 정보 영역이 카드 높이를 채우고 컨트롤은 하단 정렬 → 교과서구매처럼 버튼만 있는 카드도 위치가 맞음 */
   .sr-info{flex:1 1 auto;width:auto;max-width:100%;margin:0;padding:16px 16px 0;gap:12px;align-items:flex-start;}
   /* 교재명: 최대 2줄, 넘치면 말줄임 */

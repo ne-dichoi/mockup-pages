@@ -11,9 +11,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- Pretendard (design font) via CDN, with Noto Sans KR fallback -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260815fd">
-<script src="js/layout.js?v=20260815fd" defer></script>
-<script src="js/search.js?v=20260815fd" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260815fe">
+<script src="js/layout.js?v=20260815fe" defer></script>
+<script src="js/search.js?v=20260815fe" defer></script>
 <style>
 /* ===== 메인 시안 A (메인_2) 전용 ===== */
 /* 맞춤교재 세트 애니 아이콘 */
@@ -189,7 +189,7 @@
 .m2-card{width:280px;flex:none;display:flex;flex-direction:column;gap:16px;cursor:pointer;}
 /* 마이페이지 찜 카드와 동일: 회색 정사각 박스 + 교재 위아래 45 여백·중앙, 검정 장바구니 버튼은 교재 오른쪽 아래에 걸침 */
 .m2-card .box{position:relative;width:100%;aspect-ratio:1/1;background:#f3f3f3;border-radius:12px;overflow:hidden;}
-.m2-card .box>img{position:absolute;top:18.5%;left:50%;transform:translateX(-50%);height:63%;width:auto;max-width:none;aspect-ratio:171/223;object-fit:cover;border-radius:2px;box-shadow:4px 8px 17px rgba(0,0,0,.18);}/* 교재 표지를 박스 높이의 63%로 고정(비율) → 카드가 작아져도 회색박스 대비 일정한 크기 */
+.m2-card .box>img{position:absolute;top:16.5%;left:50%;transform:translateX(-50%);height:70%;width:auto;max-width:none;aspect-ratio:171/223;object-fit:cover;border-radius:2px;box-shadow:4px 8px 17px rgba(0,0,0,.18);}/* 교재 표지를 박스 높이의 63%로 고정(비율) → 카드가 작아져도 회색박스 대비 일정한 크기 */
 .m2-card .cart{position:absolute;left:auto;right:19%;bottom:12%;width:48px;height:48px;border:0;border-radius:999px;cursor:pointer;background:var(--ink) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'><path d='M6 7h13l-1.5 8H8L6 4H4' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/><circle cx='9' cy='19' r='1.4' fill='white'/><circle cx='17' cy='19' r='1.4' fill='white'/></svg>") center/20px no-repeat;z-index:2;}
 .m2-card .name{font-size:16px;font-weight:500;color:var(--ink);line-height:22px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 16px;margin-top:8px;}
 .m2-card:hover .name{text-decoration:underline;}
@@ -275,7 +275,7 @@
   .m2-row-wrap{margin-left:-20px;margin-right:-20px;}/* 좌우 모두 화면 끝까지 bleed → 왼쪽 peek이 20px 여백에 안 막힘 */
   .m2-row{display:grid;grid-auto-flow:column;grid-template-rows:auto auto;grid-auto-columns:clamp(140px, 40vw, 200px);gap:24px 8px;overflow-x:auto;scroll-snap-type:x proximity;padding-left:20px;padding-right:20px;scroll-padding-left:60px;}/* 카드 폭을 뷰포트 비율로(40vw, 140~200px) → 화면 넓어지면 카드도 커짐. 첫 카드 20px 안쪽, 스냅 60px 안쪽(왼쪽 반쪽 peek) */
   .m2-card{width:auto;gap:0;scroll-snap-align:start;}
-  .m2-card .box>img{top:30px;height:calc(100% - 60px);} /* 마이페이지 찜과 동일(위아래 30px 여백) */
+  .m2-card .box>img{top:16.5%;height:70%;} /* 마이페이지 찜과 동일(교재 70% 비율) */
   .m2-card .cart{width:36px;height:36px;background-size:16px;right:23px;bottom:16px;} /* 마이페이지 찜 카트(36×36·아이콘16)와 동일 크기, 교재 우측하단 모서리에 걸치도록 약간 아래로 */
   .m2-card .name{font-size:14px;line-height:20px;padding:0 16px;margin-top:16px;} /* 박스↔교재명 16 */
   .m2-card .price{padding:0 16px;margin-top:4px;} /* 교재명↔금액 4 */
