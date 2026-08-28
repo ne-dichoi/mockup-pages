@@ -33,7 +33,7 @@
 /* ---------- Base ---------- */
 *{margin:0;padding:0;box-sizing:border-box;}
 html{overflow-x:hidden;overscroll-behavior-x:none;}/* hidden=스크롤 컨테이너 → overscroll-behavior 실제 적용(clip은 무시됨). 가로 흔들림/오버스크롤 방지 */
-body{font-family:var(--sans);color:var(--ink);background:#fff;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column;overflow-x:hidden;overscroll-behavior-x:none;max-width:100%;}
+body{font-family:var(--sans);color:var(--ink);background:#fff;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column;overscroll-behavior-x:none;max-width:100%;}/* overflow-x는 html에만 — body에 두면 스크롤 컨테이너가 되어 .co-side 등 position:sticky가 깨짐 */
 img{display:block;max-width:100%;height:auto;}
 a{color:inherit;text-decoration:none;}
 .ico{display:inline-block;flex:none;}
