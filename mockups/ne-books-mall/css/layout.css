@@ -4009,9 +4009,10 @@ body.bsheet-lock{overflow:hidden;}
    카테고리(Coursebook/Phonics/유치/Lexile)=12px, 상태(HOT/NEW/절판/일시품절)=10px. 공통: line-height1·radius999·여백 상하4·좌우12·가로auto. 테두리 1px 라벨은 상하 padding 3px 보정 → 무테두리와 높이 동일. DESIGN_TOKENS.md §7 */
 @media (min-width:1024px){
   .badge-course,.badge-level,.badge-lexile,.page-buy .badge-lexile,.page-study .badge-lexile,.sr-cat,.mb-badge,.badge.course,.badge.level,.badge.lexile,.page-detail .dh-badges .badge{
-    font-size:12px;font-weight:500;line-height:1;padding:4px 12px;border-radius:999px;box-sizing:border-box;display:inline-flex;align-items:center;width:auto;}
-  .pcorner,.sr-corner{font-size:10px;font-weight:700;line-height:1;padding:4px 12px;border-radius:999px;box-sizing:border-box;display:inline-flex;align-items:center;width:auto;}
-  .badge-course,.badge-lexile,.page-buy .badge-lexile,.page-study .badge-lexile,.sr-cat,.mb-badge,.badge.course,.badge.lexile,.page-detail .dh-badges .badge.course,.page-detail .dh-badges .badge.lexile{padding:3px 12px;}
+    font-size:12px;font-weight:500;line-height:1;padding:6px 12px;border-radius:999px;box-sizing:border-box;display:inline-flex;align-items:center;width:auto;}
+  .pcorner,.sr-corner{font-size:10px;font-weight:700;line-height:1;padding:6px 12px;border-radius:999px;box-sizing:border-box;display:inline-flex;align-items:center;width:auto;}
+  /* 아웃라인 라벨: border 대신 outline(레이아웃 높이 미영향)으로 → 여백 상하 4px 그대로 + 무테두리 라벨과 높이 정확히 동일. outline 색은 currentColor(=글자색)와 일치 */
+  .badge-course,.badge-lexile,.page-buy .badge-lexile,.page-study .badge-lexile,.sr-cat,.mb-badge,.badge.course,.badge.lexile,.page-detail .dh-badges .badge.course,.page-detail .dh-badges .badge.lexile{border:0;outline:1px solid;outline-offset:-1px;}
   .badge.lexile .ico,.badge-lexile .ico{width:12px;height:12px;}/* 아이콘이 12px 텍스트보다 커서 1px 높아지던 것 보정 */
 }
 
@@ -4023,7 +4024,7 @@ body.bsheet-lock{overflow:hidden;}
      테두리 있는 라벨(course/lexile/sr-cat/mb-badge)은 세로 padding 3px로 1px 테두리 보정. 전 페이지 공통(리스트/상세/찜/홈/검색/시리즈). DESIGN_TOKENS.md 참조 */
   .mc-tag,.mc-badge,.pcorner,.sr-corner,.sr-cat,.mb-badge,.badge-course,.badge-level,.badge-lexile,.page-buy .badge-lexile,.page-study .badge-lexile,.badge.course,.badge.level,.badge.lexile,.page-detail .dh-badges .badge{
     font-size:9px;font-weight:600;line-height:1;padding:4px 8px;border-radius:999px;box-sizing:border-box;display:inline-flex;align-items:center;width:auto;}
-  .mc-tag.course,.sr-cat,.mb-badge,.badge-course,.badge-lexile,.page-buy .badge-lexile,.page-study .badge-lexile,.badge.course,.badge.lexile,.page-detail .dh-badges .badge.course,.page-detail .dh-badges .badge.lexile{padding:3px 8px;}/* 테두리 1px 보정 → 무테두리 라벨과 높이 정확히 동일(17px) */
+  .mc-tag.course,.sr-cat,.mb-badge,.badge-course,.badge-lexile,.page-buy .badge-lexile,.page-study .badge-lexile,.badge.course,.badge.lexile,.page-detail .dh-badges .badge.course,.page-detail .dh-badges .badge.lexile{border:0;outline:1px solid;outline-offset:-1px;}/* border 대신 outline → 여백 상하 4px 그대로 + 무테두리 라벨과 높이 동일 */
   .gubun{font-size:10px;font-weight:600;padding:4px 8px;}
   .badge{font-size:10px;font-weight:600;padding:4px 8px;}
   .ev-badge{height:auto;font-size:10px;font-weight:600;padding:4px 8px;line-height:1.4;}

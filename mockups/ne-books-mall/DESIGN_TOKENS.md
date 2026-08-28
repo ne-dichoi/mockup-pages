@@ -272,7 +272,7 @@ body{ min-height:100vh; display:flex; flex-direction:column; }
 | 유치~초등(저) | 배경 `#F3F3F3` · 글자 `#666` | 없음 |
 | Lexile® 400L | 아웃라인·글자 `#2F74D1` | **1px** |
 
-> **테두리(1px) 있는 라벨은 세로 padding을 `3px`로** 줄여 테두리 2px를 보정 → 무테두리 라벨(상하 4px)과 **높이 정확히 동일(17px)**. (`box-sizing:border-box; display:inline-flex; align-items:center`)
+> **테두리 라벨(Coursebook·Phonics·Lexile·sr-cat·mb-badge)은 `border` 대신 `outline` 사용**(outline은 레이아웃 높이에 영향 없음) → **여백 상하 4px 그대로**이면서 무테두리 라벨과 **높이 정확히 동일(17px)**. `border:0; outline:1px solid; outline-offset:-1px`(outline 색 = `currentColor` = 글자색). (`box-sizing:border-box; display:inline-flex; align-items:center`)
 
 적용(전 페이지 공통 — 리스트·상세·찜·홈·검색·시리즈): `.pcorner`·`.sr-corner`·`.mc-badge`(상태) · `.mc-tag`(리스트 course/level) · `.sr-cat`(검색 카테고리) · `.mb-badge`(찜/홈) · `.badge-course/.badge-level/.badge-lexile` · `.badge.course/.badge.level/.badge.lexile`(상세) · `.page-detail .dh-badges .badge`. 구현: `css/layout.css` `@media (max-width:1023px)` 상단 "교재 라벨 디자인 토큰" 블록 하나로 통합.
 
@@ -293,7 +293,7 @@ body{ min-height:100vh; display:flex; flex-direction:column; }
 
 ### 7-2. PC 교재 라벨 (≥1024px) ★2026-08
 
-PC에서도 교재 라벨 통일. **여백 상하4·좌우12 · `radius:999` · `line-height:1` · 가로 auto · 색만 차이**. 테두리 1px 라벨은 상하 padding `3px`로 보정 → 무테두리와 높이 동일.
+PC에서도 교재 라벨 통일. **여백 상하6·좌우12 · `radius:999` · `line-height:1` · 가로 auto · 색만 차이**. 테두리 라벨은 `border` 대신 `outline`(높이 미영향, `outline-offset:-1px`) → 여백 그대로이면서 무테두리와 높이 동일.
 
 | 그룹 | 폰트 | 높이 | 대상 |
 |------|------|------|------|
