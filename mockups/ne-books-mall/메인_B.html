@@ -11,9 +11,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- Pretendard (design font) via CDN, with Noto Sans KR fallback -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260815fc">
-<script src="js/layout.js?v=20260815fc" defer></script>
-<script src="js/search.js?v=20260815fc" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260815fd">
+<script src="js/layout.js?v=20260815fd" defer></script>
+<script src="js/search.js?v=20260815fd" defer></script>
 <style>
 /* ===== 메인 시안 A (메인_2) 전용 ===== */
 /* 맞춤교재 세트 애니 아이콘 */
@@ -1233,7 +1233,7 @@
     var isIOS=/iPhone|iPad|iPod/i.test(navigator.userAgent);
     var jump=document.querySelector('.m2-jump'), qfab=document.querySelector('.m2-qfab');
     if(!jump && !qfab) return;
-    var hidden=false, lastY=window.scrollY||0, raf=null;
+    var hidden=false, lastY=window.scrollY||0, raf=null, navLock=false, navTO=null;
     function liftGap(){ if(!vv || isIOS || window.innerWidth>767) return 0; return Math.max(0, Math.round(document.documentElement.clientHeight - vv.height - vv.offsetTop)); }
     function apply(){
       raf=null; var mobile=window.innerWidth<=767, gap=liftGap();
@@ -1244,8 +1244,10 @@
     window.addEventListener('scroll',function(){
       var y=window.scrollY||0, dy=y-lastY;
       if(window.innerWidth>767){ if(hidden){hidden=false;schedule();} lastY=y; return; }
+      if(navLock){ lastY=y; return; } /* 점프바로 이동하는 중엔 자동숨김 억제(계속 표시) */
       if(Math.abs(dy)>=6){ var nh=(dy>0 && y>120); if(nh!==hidden){ hidden=nh; schedule(); } lastY=y; }
     },{passive:true});
+    if(jump) jump.addEventListener('click',function(e){ if(!e.target.closest('a')) return; if(hidden){ hidden=false; schedule(); } navLock=true; clearTimeout(navTO); navTO=setTimeout(function(){ navLock=false; lastY=window.scrollY||0; }, 900); });
     if(vv){ vv.addEventListener('resize',schedule); vv.addEventListener('scroll',schedule); }
     window.addEventListener('resize',schedule); window.addEventListener('orientationchange',schedule);
     apply();
