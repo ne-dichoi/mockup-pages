@@ -2160,7 +2160,8 @@ body.bsheet-lock{overflow:hidden;}
 /* 본문: 좌 카테고리 / 우 하위목록 */
 .md-body{flex:1;display:flex;min-height:0;overflow:hidden;}
 /* 좌 컬럼: 활성 알약이 흰색 영역으로 튀어나오도록 가로 클리핑 해제(overflow:visible) */
-.md-cats{flex:none;width:130px;max-width:150px;background:#f5f5f5;overflow-y:auto;overflow-x:clip;overflow-clip-margin:20px;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;scrollbar-width:none;-ms-overflow-style:none;}/* 작은 화면: 카테고리 세로 터치 스크롤. overflow-clip-margin으로 활성 알약 우측 14px 돌출 보존 */
+.md-cats{flex:none;width:130px;max-width:150px;background:#f5f5f5;overflow:visible;}/* 활성 알약 우측 14px 돌출을 흰 2뎁스 위로 노출(overflow:visible 필수). 세로 스크롤은 짧은 화면에서만(아래 max-height 미디어쿼리) */
+@media (max-height:640px){.md-cats{overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;scrollbar-width:none;-ms-overflow-style:none;}.md-cats::-webkit-scrollbar{display:none;}}/* 낮은 화면: 카테고리 세로 스크롤 허용(이때만 돌출 클립 감수) */
 .md-cats::-webkit-scrollbar{display:none;}
 .md-cat{position:relative;display:block;width:100%;box-sizing:border-box;text-align:left;border:0;background:none;cursor:pointer;
   padding:16px 20px;font-size:14px;color:var(--weak);font-family:var(--sans);white-space:nowrap;}
