@@ -10,9 +10,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- Pretendard (design font) via CDN, with Noto Sans KR fallback -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260815fo">
-<script src="js/layout.js?v=20260815fo" defer></script>
-<script src="js/search.js?v=20260815fo" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260815fp">
+<script src="js/layout.js?v=20260815fp" defer></script>
+<script src="js/search.js?v=20260815fp" defer></script>
 <style>
 /* ===== 메인 시안 A (메인_2) 전용 ===== */
 /* 맞춤교재 세트 애니 아이콘 */
@@ -313,6 +313,12 @@
 }
 @media (min-width:768px) and (max-width:900px){
   .m2-card{flex:0 0 calc((100% - 3 * 24px) / 3.5);} /* 3장 + 반쪽 peek */
+}
+@media (min-width:768px) and (max-width:1023px){
+  /* 테블릿도 모바일 메인처럼: 회색박스 세로 확대(153×195) + 교재 이미지 1.4배(77%) + 카트 교재 모서리 걸침 */
+  .m2-card .box{aspect-ratio:153/195;}
+  .m2-card .box>img{top:11.5%;height:77%;}
+  .m2-card .cart{right:16px;bottom:18px;}
 }
 /* 맞춤교재세트: 3열(414px↑ 필요)이 안 맞는 좁은 화면(768~1399)에서는 깨지지 않게
    가로 스와이프(2개 + 반쪽 peek)로. 콜라주 교재는 카드 폭에 맞춰 반응형 축소 → 오버플로우 없음 */
