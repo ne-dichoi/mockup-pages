@@ -486,7 +486,7 @@
       var opts=(CATEGORIES[d1]||[]).map(function(o){ return '<a href="리스트_교재구매.html?d1='+encodeURIComponent(d1)+'&d2='+encodeURIComponent(o)+'">'+o+'</a>'; }).join('');
       crumb+='<span class="sep">·</span><a href="리스트_교재구매.html?d1='+encodeURIComponent(d1)+'">'+d1+'</a>'
         +'<span class="sep">·</span><span class="cur-wrap" id="bcCat"><button type="button" class="cur">'+d2+' <span class="caret">&#9662;</span></button><div class="cur-menu">'+opts+'</div></span>';
-      left='<h1 class="ph-title">'+d2+'</h1>'+(p.tag?'<span class="ph-tag">'+p.tag+'</span>':'');
+      left='<h1 class="ph-title">'+d2+'</h1>'+(p.tag?'<a class="ph-tag" href="https://www.nebuildandgrow.com/pages/" target="_blank" rel="noopener">'+p.tag+'</a>':'');
     } else {
       curName=p.title;
       crumb+=p.crumb.map(function(c,i){
@@ -499,6 +499,12 @@
         return '<span class="sep">·</span><span class="cur">'+c+'</span>';
       }).join('');
       left='<h1 class="ph-title">'+p.title+'</h1>';
+    }
+    /* 인기교재 NE차트: ELT·초/중등·고등·수학/국어 하위 진입 시에만 노출(PRD) */
+    var nechart=document.querySelector('.nechart');
+    if(nechart){
+      var NECHART_D1=['ELT','초/중등','고등','수학/국어'];
+      nechart.style.display=(p.type==='cat' && NECHART_D1.indexOf(curD1)>=0) ? '' : 'none';
     }
     el.innerHTML='<section class="pagehead"><div class="container cart-head-row"><div class="ph-left">'+left+'</div><div class="crumb">'+crumb+'</div></div></section>';
     /* 모바일 서브 헤더(로케이션형): 홈 + 카테고리명 */
@@ -522,6 +528,19 @@
       document.addEventListener('click',function(e){ if(!wrap.contains(e.target)) wrap.classList.remove('open'); });
       document.addEventListener('keydown',function(e){ if(e.key==='Escape') wrap.classList.remove('open'); });
     }
+  })();
+
+  /* 인기교재 NE차트: 윈도우 팝업 형태 새창으로 오픈 */
+  (function(){
+    var nechart=document.querySelector('.nechart');
+    if(!nechart) return;
+    nechart.addEventListener('click',function(e){
+      e.preventDefault();
+      var url=nechart.getAttribute('href');
+      var w=900,h=800;
+      var left=Math.round((window.screen.width-w)/2), top=Math.round((window.screen.height-h)/2);
+      window.open(url,'ne_book_top10','width='+w+',height='+h+',left='+left+',top='+top+',scrollbars=yes,resizable=yes');
+    });
   })();
 
   /* GNB 메가메뉴 드롭다운 */

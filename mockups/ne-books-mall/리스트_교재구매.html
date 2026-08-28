@@ -68,7 +68,7 @@
             <label class="fopt brand-opt"><input type="checkbox" class="chk"><img src="assets/logo_buildgrow.svg" alt="NE_Build & Grow"></label>
             <label class="fopt brand-opt"><input type="checkbox" class="chk"><img class="brand-oxf" src="assets/logo_oxford.png" alt="OXFORD"></label>
           </div>
-          <a class="nechart"><img src="assets/ic_nechart.png" alt=""><span>인기교재 NE차트</span></a>
+          <a class="nechart" href="https://www.nebooks.co.kr/pages/book/book_top10/search.asp"><img src="assets/ic_nechart.png" alt=""><span>인기교재 NE차트</span></a>
         </aside>
 
         <!-- Right column -->
@@ -87,7 +87,7 @@
             <div class="msort">
               <div class="msort-l">
                 <label class="msort-chk"><input type="checkbox" class="chk">판매중만</label>
-                <select class="msort-nsel" aria-label="정렬"><option>인기순</option><option>최신순</option><option>과거순</option><option>별점순</option><option>가나다순</option><option>역 가나다순</option></select>
+                <select class="msort-nsel" aria-label="정렬"><option>인기순</option><option selected>최신순</option><option>과거순</option><option>별점순</option><option>가나다순</option><option>역 가나다순</option></select>
               </div>
               <a class="msort-r" href="리스트_학습자료.html">
                 <svg viewBox="0 0 18 18" width="16" height="16" fill="none" stroke="#666" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="2.5" width="11" height="13" rx="1.5"/><path d="M6.5 6.5h5M6.5 9.5h5M6.5 12.5h3"/></svg>
@@ -108,10 +108,10 @@
               <a class="tab" href="리스트_학습자료.html"><span class="ico"><img class="i-d" src="assets/ic_tab_study.svg" alt=""><img class="i-h" src="assets/ic_tab_study_red.svg" alt=""></span>학습자료</a>
               <span class="tb-divider"></span>
               <div class="sort-wrap">
-                <span class="sort" id="sortBtn"><span class="sort-label">인기순</span> <span class="ico"><img src="assets/ic_sort_new.svg" alt=""></span></span>
+                <span class="sort" id="sortBtn"><span class="sort-label">최신순</span> <span class="ico"><img src="assets/ic_sort_new.svg" alt=""></span></span>
                 <div class="sort-menu">
-                  <a class="sort-opt active">인기순</a>
-                  <a class="sort-opt">최신순</a>
+                  <a class="sort-opt">인기순</a>
+                  <a class="sort-opt active">최신순</a>
                   <a class="sort-opt">과거순</a>
                   <a class="sort-opt">별점순</a>
                   <a class="sort-opt">가나다순</a>
@@ -125,8 +125,7 @@
           <div class="no-result" id="noResult" hidden>
             <div class="nr-ic"><svg width="12" height="62" viewBox="0 0 12 62" fill="#d1d1d1" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="12" height="44" rx="6"/><circle cx="6" cy="56" r="6"/></svg></div>
             <div class="nr-txt">
-              <p class="nr-title">검색한 결과가 없습니다.</p>
-              <p class="nr-sub">상품을 다시 검색해 주세요.</p>
+              <p class="nr-title">일치하는 검색 결과가 없습니다.</p>
             </div>
           </div>
 
@@ -323,7 +322,83 @@
                   <span class="d"><span class="tag jeok">적</span><span class="pct">5%</span></span>
                 </div>
                 <div class="pprice"><div class="was">15,000원</div><div class="now">13,500<small>원</small></div></div>
-                <div class="pbtns"><a class="buy off">절판</a></div>
+                <div class="pbtns"><a class="study" href="교재상세.html#s-res">학습자료</a><a class="buy off">절판</a></div>
+              </div>
+            </article>
+
+            <!-- Product 6 - 신규입고 예정이었으나 일시품절 → 판매상태 배지 우선 노출(NEW 배지 미노출) 데모 -->
+            <article class="prow soldout">
+              <div class="pcover"><span class="pcorner soldout">일시품절</span><img src="assets/best_1.png" alt="Phonics Code 6"></div>
+              <div class="pinfo">
+                <div class="pbrand-row">
+                  <img class="pbrand" src="assets/logo_ne_small.svg" alt="NE능률">
+                  <span class="badge-course">Coursebook</span>
+                  <span class="badge-level">유치~초등(저)</span>
+                  <span class="badge-lexile" data-lv="UP - 300L">Lexile® UP - 300L<span class="ico"><img src="assets/ic_info.svg" alt="적립 안내"></span></span>
+                </div>
+                <h3 class="ptitle">Phonics Code 6 : Student Book</h3>
+                <p class="pdesc">파닉스 기초인 Blending과 Decoding에 충실한 학습 설계로 스스로 읽는 힘을 키우는 파닉스 교재</p>
+                <div class="ptags"><span>#사이트워드</span><span>#초등</span><span>#파닉스</span><span>#리딩</span><span>#세이펜</span><span>#기초영어</span><span>#리더스</span></div>
+              </div>
+              <div class="pactions">
+                <div class="picons">
+                  <div class="share-wrap">
+                    <button class="pic-btn share" type="button" aria-label="공유하기">
+                      <span class="ico"><img class="i-d" src="assets/ic_share.svg" alt=""><img class="i-h" src="assets/ic_share_red.svg" alt=""></span>
+                    </button>
+                    <div class="share-pop">
+                      <span class="sp-item"><span class="sp-ico"><img src="assets/ic_url.svg" alt=""></span>URL복사</span>
+                      <span class="sp-item"><span class="sp-ico"><img src="assets/ic_kakao.svg" alt=""></span>카카오톡</span>
+                    </div>
+                  </div>
+                  <button class="pic-btn like" type="button">
+                    <span class="ico"><img class="i-d" src="assets/ic_heart.svg" alt=""><img class="i-h" src="assets/ic_heart_fill.svg" alt=""></span>
+                    <span class="jjim">찜 128</span>
+                  </button>
+                </div>
+                <div class="pdiscount">
+                  <span class="d"><span class="tag hal">할</span><span class="pct red">10%</span></span>
+                  <span class="d"><span class="tag jeok">적</span><span class="pct">5%</span></span>
+                </div>
+                <div class="pprice"><div class="was">15,000원</div><div class="now">13,500<small>원</small></div></div>
+                <div class="pbtns"><a class="study" href="교재상세.html#s-res">학습자료</a><a class="cart" href="장바구니.html">장바구니</a><a class="buy soldout">일시품절</a></div>
+              </div>
+            </article>
+
+            <!-- Product 7 - 판매상품 미연결: 담기/바로구매 버튼 없이 정가만 노출 데모 -->
+            <article class="prow">
+              <div class="pcover"><img src="assets/best_2.png" alt="Phonics Code 7"></div>
+              <div class="pinfo">
+                <div class="pbrand-row">
+                  <img class="pbrand" src="assets/logo_ne_small.svg" alt="NE능률">
+                  <span class="badge-course">Coursebook</span>
+                  <span class="badge-level">유치~초등(저)</span>
+                  <span class="badge-lexile" data-lv="140L - 500L">Lexile® 140L - 500L<span class="ico"><img src="assets/ic_info.svg" alt="적립 안내"></span></span>
+                </div>
+                <h3 class="ptitle">Phonics Code 7 : Student Book</h3>
+                <p class="pdesc">파닉스 기초인 Blending과 Decoding에 충실한 학습 설계로 스스로 읽는 힘을 키우는 파닉스 교재</p>
+                <div class="ptags"><span>#사이트워드</span><span>#초등</span><span>#파닉스</span><span>#리딩</span><span>#세이펜</span><span>#기초영어</span><span>#리더스</span></div>
+              </div>
+              <div class="pactions">
+                <div class="picons">
+                  <div class="share-wrap">
+                    <button class="pic-btn share" type="button" aria-label="공유하기">
+                      <span class="ico"><img class="i-d" src="assets/ic_share.svg" alt=""><img class="i-h" src="assets/ic_share_red.svg" alt=""></span>
+                    </button>
+                    <div class="share-pop">
+                      <span class="sp-item"><span class="sp-ico"><img src="assets/ic_url.svg" alt=""></span>URL복사</span>
+                      <span class="sp-item"><span class="sp-ico"><img src="assets/ic_kakao.svg" alt=""></span>카카오톡</span>
+                    </div>
+                  </div>
+                  <button class="pic-btn like" type="button">
+                    <span class="ico"><img class="i-d" src="assets/ic_heart.svg" alt=""><img class="i-h" src="assets/ic_heart_fill.svg" alt=""></span>
+                    <span class="jjim">찜 128</span>
+                  </button>
+                </div>
+                <!-- 판매상품 미연결: 담기·바로구매 버튼 없음. 정가는 margin-top:auto로 하단 고정하고,
+                     버튼이 있었다면 차지했을 높이만큼 투명 placeholder를 둬서 정가가 "버튼이 있었을 자리" 바로 위에 오도록 유지 -->
+                <div class="pprice" style="margin-top:auto"><div class="now">15,000<small>원</small></div></div>
+                <div class="pbtns" aria-hidden="true" style="visibility:hidden;pointer-events:none"><a class="buy">바로구매</a></div>
               </div>
             </article>
 
@@ -358,22 +433,22 @@
         <div class="fs-wrap">
           <button class="fs-chip" type="button">전체</button>
           <button class="fs-chip" type="button">유아</button>
-          <button class="fs-chip on" type="button">초등(저)</button>
-          <button class="fs-chip" type="button">초등(고)</button>
+          <button class="fs-chip on" type="button">초등</button>
           <button class="fs-chip" type="button">중등</button>
           <button class="fs-chip" type="button">고등</button>
-          <button class="fs-chip" type="button">일반</button>
+          <button class="fs-chip" type="button">성인</button>
         </div>
       </div>
       <div class="fs-section">
         <div class="fs-stitle">제품유형</div>
         <div class="fs-wrap">
           <button class="fs-chip" type="button">전체</button>
-          <button class="fs-chip" type="button">메인 교재</button>
+          <button class="fs-chip" type="button">메인교재</button>
           <button class="fs-chip" type="button">Word Book</button>
-          <button class="fs-chip" type="button">Test&amp;Worksheet</button>
-          <button class="fs-chip" type="button">Test</button>
+          <button class="fs-chip" type="button">Test &amp; Worksheet</button>
+          <button class="fs-chip" type="button">Tests</button>
           <button class="fs-chip" type="button">Teacher&rsquo;s Guide</button>
+          <button class="fs-chip" type="button">Class Pack</button>
         </div>
       </div>
       <div class="fs-section">
@@ -383,7 +458,6 @@
           <button class="fs-chip" type="button">NE능률</button>
           <button class="fs-chip" type="button">NE Build&amp;Grow</button>
           <button class="fs-chip" type="button">Oxford</button>
-          <button class="fs-chip" type="button">ETC</button>
         </div>
       </div>
     </div>
@@ -423,20 +497,26 @@
   (function(){
     var mo=document.getElementById('plistMo'); if(!mo) return;
     var BASE=[
-      {img:'best_1.png', badge:'HOT', bcls:'hot', course:'Coursebook', level:'유치~초등(저)', title:'Phonics Code 1 : Student Book', hal:'10%', jeok:'5%', was:'15,000원', now:'13,500원', tags:['#사이트워드','#초등','#파닉스','#리딩','#세이펜','#기초영어','#리더스'], state:'buy'},
-      {img:'best_2.png', badge:'NEW', bcls:'new', course:'Coursebook', level:'유치~초등(저)', title:'Phonics Code 2 : Student Book', hal:'10%', jeok:'5%', was:'15,000원', now:'13,500원', tags:['#사이트워드','#초등','#파닉스','#리딩','#세이펜','#기초영어','#리더스'], state:'buy'},
-      {img:'best_3.png', badge:null, bcls:'', course:'Coursebook', level:'유치~초등(저)', title:'Phonics Code 3 : Student Book', hal:'', jeok:'', was:'', now:'15,000원', tags:['#사이트워드','#초등','#파닉스','#리딩','#세이펜','#기초영어','#리더스'], state:'textbook'},
-      {img:'best_4.png', badge:'일시품절', bcls:'soldout', course:'Coursebook', level:'유치~초등(저)', title:'Phonics Code 4 : Student Book', hal:'10%', jeok:'5%', was:'15,000원', now:'13,500원', tags:['#사이트워드','#초등','#파닉스','#리딩','#세이펜','#기초영어','#리더스'], state:'soldout'},
-      {img:'best_3.png', badge:'절판', bcls:'off', course:'Coursebook', level:'유치~초등(저)', title:'Phonics Code 5 : Student Book', hal:'', jeok:'', was:'', now:'15,000원', tags:['#사이트워드','#초등','#파닉스','#리딩','#세이펜','#기초영어','#리더스'], state:'off'}
+      {img:'best_1.png', badge:'HOT', bcls:'hot', course:'Coursebook', level:'유치~초등(저)', title:'Phonics Code 1 : Student Book', hal:'10%', jeok:'5%', was:'15,000원', now:'13,500원', tags:['#사이트워드','#초등','#파닉스','#리딩','#세이펜','#기초영어','#리더스'], state:'buy', mat:true},
+      {img:'best_2.png', badge:'NEW', bcls:'new', course:'Coursebook', level:'유치~초등(저)', title:'Phonics Code 2 : Student Book', hal:'10%', jeok:'5%', was:'15,000원', now:'13,500원', tags:['#사이트워드','#초등','#파닉스','#리딩','#세이펜','#기초영어','#리더스'], state:'buy', mat:true},
+      {img:'best_3.png', badge:null, bcls:'', course:'Coursebook', level:'유치~초등(저)', title:'Phonics Code 3 : Student Book', hal:'', jeok:'', was:'', now:'15,000원', tags:['#사이트워드','#초등','#파닉스','#리딩','#세이펜','#기초영어','#리더스'], state:'textbook', mat:false},
+      {img:'best_4.png', badge:'일시품절', bcls:'soldout', course:'Coursebook', level:'유치~초등(저)', title:'Phonics Code 4 : Student Book', hal:'10%', jeok:'5%', was:'15,000원', now:'13,500원', tags:['#사이트워드','#초등','#파닉스','#리딩','#세이펜','#기초영어','#리더스'], state:'soldout', mat:true},
+      {img:'best_3.png', badge:'절판', bcls:'off', course:'Coursebook', level:'유치~초등(저)', title:'Phonics Code 5 : Student Book', hal:'', jeok:'', was:'', now:'15,000원', tags:['#사이트워드','#초등','#파닉스','#리딩','#세이펜','#기초영어','#리더스'], state:'off', mat:true},
+      /* 신규입고 예정이었으나 일시품절 → 판매상태 배지 우선 노출(NEW 배지 미노출) 데모 */
+      {img:'best_1.png', badge:'일시품절', bcls:'soldout', course:'Coursebook', level:'유치~초등(저)', title:'Phonics Code 6 : Student Book', hal:'10%', jeok:'5%', was:'15,000원', now:'13,500원', tags:['#사이트워드','#초등','#파닉스','#리딩','#세이펜','#기초영어','#리더스'], state:'soldout', mat:true},
+      /* 판매상품 미연결: 담기/바로구매 버튼 없이 정가만 노출 데모 */
+      {img:'best_2.png', badge:null, bcls:'', course:'Coursebook', level:'유치~초등(저)', title:'Phonics Code 7 : Student Book', hal:'', jeok:'', was:'', now:'15,000원', tags:['#사이트워드','#초등','#파닉스','#리딩','#세이펜','#기초영어','#리더스'], state:'unlinked', mat:false}
     ];
     /* 데모용: 기본 5개를 반복해 40개 구성 (실제로는 서버 페이지네이션) */
     var DATA=[]; for(var k=0;k<8;k++){ for(var j=0;j<BASE.length;j++){ DATA.push(BASE[j]); } }
     var TOTAL=414, STEP=10, shown=STEP;
     function btns(p){
-      if(p.state==='textbook') return '<a class="mc-tb" href="https://textbook.example.com" target="_blank" rel="noopener">교과서 구매</a>';
-      if(p.state==='soldout') return '<a class="mc-study" href="교재상세.html#s-res">학습자료</a><span class="mc-cart soldout">일시품절</span>';
-      if(p.state==='off') return '<span class="mc-off">절판</span>';
-      return '<a class="mc-study" href="교재상세.html#s-res">학습자료</a><a class="mc-cart" href="장바구니.html" aria-label="장바구니"><img src="assets/ic_bag.svg" alt=""></a>';
+      var studyBtn=p.mat?'<a class="mc-study" href="교재상세.html#s-res">학습자료</a>':'';
+      if(p.state==='unlinked') return '';
+      if(p.state==='textbook') return studyBtn+'<a class="mc-tb" href="https://textbook.example.com" target="_blank" rel="noopener">교과서 구매</a>';
+      if(p.state==='soldout') return studyBtn+'<span class="mc-cart soldout">일시품절</span>';
+      if(p.state==='off') return studyBtn+'<span class="mc-off">절판</span>';
+      return studyBtn+'<a class="mc-cart" href="장바구니.html" aria-label="장바구니"><img src="assets/ic_bag.svg" alt=""></a>';
     }
     function cardHTML(p){
       var badge=p.badge?'<span class="mc-badge '+p.bcls+'">'+p.badge+'</span>':'';
@@ -490,7 +570,7 @@
         item={ id:title, title:title, img:im?im.getAttribute('src'):'assets/best_1.png', badge:bd?bd.textContent.trim():'' };
       }
       if(typeof window.neCartAdd==='function') window.neCartAdd(item);
-      alert('장바구니에 상품을 담았습니다.');
+      if(confirm('장바구니에 상품을 담았습니다. 장바구니로 이동하시겠습니까?')){ location.href='장바구니.html'; }
     });
   })();
 
@@ -500,7 +580,7 @@
       if(!el) return;
       var down=false,sx=0,ss=0,moved=false;
       el.addEventListener('pointerdown',function(e){ if(e.pointerType!=='mouse'||e.button!==0) return; down=true;moved=false;sx=e.clientX;ss=el.scrollLeft;el.style.cursor='grabbing'; });
-      el.addEventListener('pointermove',function(e){ if(!down)return; var dx=e.clientX-sx; if(Math.abs(dx)>3)moved=true; el.scrollLeft=ss-dx; });
+      el.addEventListener('pointermove',function(e){ if(!down)return; var dx=e.clientX-sx; if(Math.abs(dx)>8)moved=true; el.scrollLeft=ss-dx; });
       function end(){ if(!down)return; down=false; el.style.cursor=''; }
       el.addEventListener('pointerup',end); el.addEventListener('pointerleave',end); el.addEventListener('pointercancel',end);
       el.addEventListener('click',function(e){ if(moved){ e.preventDefault(); e.stopPropagation(); } },true);
@@ -519,7 +599,7 @@
     var badge=openBtn.querySelector('.mf-badge');
     var mfChips=[].slice.call(document.querySelectorAll('.mfilter .mf-chip'));
     var sections=[].slice.call(sheet.querySelectorAll('.fs-section'));
-    /* 상단 칩[i] ↔ 시트 섹션[i] (순서 매핑: 학습자료는 섹션명이 '레벨'이라 이름 매칭 불가) */
+    /* 상단 칩[i] ↔ 시트 섹션[i] (순서 매핑, PC 사이드바와 동일한 학습대상/제품유형/브랜드 3그룹) */
     function sectionFor(c){ var i=mfChips.indexOf(c); return i>=0?sections[i]:null; }
     function sync(){
       var total=0;
@@ -587,9 +667,18 @@
       document.querySelectorAll('.share-wrap.open').forEach(function(o){o.classList.remove('open');o.querySelector('.pic-btn.share').classList.remove('on');});
     });
 
-    /* Like (찜) toggle */
+    /* Like (찜) toggle: 클릭 시 옆 숫자도 +-1 갱신 */
     document.querySelectorAll('.pic-btn.like').forEach(function(b){
-      b.addEventListener('click',function(){ b.classList.toggle('on'); });
+      b.addEventListener('click',function(){
+        var wasOn=b.classList.contains('on');
+        b.classList.toggle('on');
+        var cnt=b.querySelector('.jjim');
+        if(cnt){
+          var n=parseInt(cnt.textContent.replace(/[^0-9]/g,''),10)||0;
+          n=wasOn?n-1:n+1;
+          cnt.textContent='찜 '+n;
+        }
+      });
     });
 
     /* Lexile tooltip on click (scrollable) */
