@@ -4054,4 +4054,13 @@ body.bsheet-lock{overflow:hidden;}
 #subFloat .qcs-top svg{width:24px;height:24px;}
 #subFloat .qcs-dim{position:fixed;inset:0;background:rgba(13,13,13,.5);opacity:0;visibility:hidden;transition:opacity .2s;z-index:79;}
 #subFloat .qcs-dim.on{opacity:1;visibility:visible;}
-@media (max-width:767px){#subFloat{display:none !important;}}
+/* ===== 서브페이지 모바일(≤767): 3패널 숨김 · 상담 챗 퀵 + 맨위로만 노출 ===== */
+@media (max-width:767px){
+  #subFloat .floating{display:none !important;}          /* 3개 패널(레벨차트/맞춤형/가이드) 모바일 숨김 */
+  #subFloat .qfloat{right:16px;bottom:calc(24px + env(safe-area-inset-bottom,0px));gap:12px;}
+  #subFloat .qcs-menu .qcs-sms{display:none !important;} /* 문자상담 채널만 모바일 숨김 → 채팅상담·1:1문의·FAQ 3채널 */
+  /* 고객센터·마이페이지(및 문의/주문상세 등 page-my 플로우): 상담 챗 퀵 미노출, 맨위로만 유지 */
+  body.page-my #subFloat .qcs-fab,
+  body.page-my #subFloat .qcs-menu,
+  body.page-my #subFloat .qcs-dim{display:none !important;}
+}
