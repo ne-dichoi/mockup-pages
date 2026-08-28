@@ -289,7 +289,18 @@ body{ min-height:100vh; display:flex; flex-direction:column; }
 
 **신간 라벨**(`.mega-new`, GNB·햄버거 펼침메뉴 시리즈): 구분 배지 빨강 규격(10px SemiBold · 4px 8px · radius 30 · 아웃라인/글자 `#E83828` · 흰 배경) + **깜빡임**(`megaNewBlink` 1.1s, opacity 1↔0.25 반복). 신간 시리즈 목록은 `js/layout.js`의 `NE_MEGA_NEW`.
 
-> 구현: `css/layout.css` 하단 `@media (max-width:1023px)` 블록. 데스크탑(≥1024)은 §7 상단 12px 규격 유지.
+> 구현: `css/layout.css`의 `@media (max-width:1023px)`(모바일) / `@media (min-width:1024px)`(PC) "교재 라벨 디자인 토큰" 블록.
+
+### 7-2. PC 교재 라벨 (≥1024px) ★2026-08
+
+PC에서도 교재 라벨 통일. **여백 상하4·좌우12 · `radius:999` · `line-height:1` · 가로 auto · 색만 차이**. 테두리 1px 라벨은 상하 padding `3px`로 보정 → 무테두리와 높이 동일.
+
+| 그룹 | 폰트 | 높이 | 대상 |
+|------|------|------|------|
+| **교재 카테고리** | **12px** SemiBold 아님(500) | 20px | Coursebook·Phonics·유치~초등(저)·Lexile — `.badge-course/.badge-level/.badge-lexile`·`.sr-cat`·`.mb-badge`·`.badge.course/.level/.lexile`·`.page-detail .dh-badges .badge` |
+| **상태** | **10px** Bold(700) | 18px | HOT·NEW·절판·일시품절 — `.pcorner`·`.sr-corner` |
+
+- Lexile ⓘ 아이콘은 `12px`(텍스트와 동일)로 맞춰 높이 어긋남 방지.
 
 ---
 

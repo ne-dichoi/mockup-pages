@@ -4005,8 +4005,18 @@ body.bsheet-lock{overflow:hidden;}
   .page-my #tab-wish .wl-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
 }
 
+/* ===== 교재 라벨 디자인 토큰 (PC ≥1024) ===== 색만 차이·높이 동일.
+   카테고리(Coursebook/Phonics/유치/Lexile)=12px, 상태(HOT/NEW/절판/일시품절)=10px. 공통: line-height1·radius999·여백 상하4·좌우12·가로auto. 테두리 1px 라벨은 상하 padding 3px 보정 → 무테두리와 높이 동일. DESIGN_TOKENS.md §7 */
+@media (min-width:1024px){
+  .badge-course,.badge-level,.badge-lexile,.page-buy .badge-lexile,.page-study .badge-lexile,.sr-cat,.mb-badge,.badge.course,.badge.level,.badge.lexile,.page-detail .dh-badges .badge{
+    font-size:12px;font-weight:500;line-height:1;padding:4px 12px;border-radius:999px;box-sizing:border-box;display:inline-flex;align-items:center;width:auto;}
+  .pcorner,.sr-corner{font-size:10px;font-weight:700;line-height:1;padding:4px 12px;border-radius:999px;box-sizing:border-box;display:inline-flex;align-items:center;width:auto;}
+  .badge-course,.badge-lexile,.page-buy .badge-lexile,.page-study .badge-lexile,.sr-cat,.mb-badge,.badge.course,.badge.lexile,.page-detail .dh-badges .badge.course,.page-detail .dh-badges .badge.lexile{padding:3px 12px;}
+  .badge.lexile .ico,.badge-lexile .ico{width:12px;height:12px;}/* 아이콘이 12px 텍스트보다 커서 1px 높아지던 것 보정 */
+}
+
 /* ===== 라벨/배지 컴포넌트: 모바일+태블릿(≤1023) 컴팩트 규격 (피그마 2016-10632) =====
-   교재관련 라벨 = 9px(Lexile 9.5px)·상하4/좌우8·radius999 / 구분 배지 = 10px SemiBold·상하4/좌우8 */
+   교재관련 라벨 = 9px·상하4/좌우8·radius999(색만 차이·높이 17px 동일) / 구분 배지 = 10px SemiBold·상하4/좌우8 */
 @media (max-width:1023px){
   /* ===== 교재 라벨 디자인 토큰 (모바일/태블릿) =====
      9px · SemiBold(600) · line-height:1 · radius 999 · 여백 상하4·좌우8 · 가로 auto · 색만 차이 → 전부 높이 17px 동일.
