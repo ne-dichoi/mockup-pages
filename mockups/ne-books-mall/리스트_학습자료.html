@@ -13,6 +13,12 @@
 <link rel="stylesheet" href="css/layout.css?v=20260815fu">
 <script src="js/layout.js?v=20260815fu" defer></script>
 <script src="js/search.js?v=20260815fu" defer></script>
+<style>
+/* 데모 전용 스타일(실제 화면 스펙 아님): 교강사 로그인 상태 토글 */
+.teacher-demo-toggle{display:inline-flex;align-items:center;gap:6px;margin-left:16px;font-size:13px;color:#6b6b6b;cursor:pointer;}
+.teacher-demo-toggle .chk{width:16px;height:16px;}
+body:not(.teacher-on) .pres-tutor,body:not(.teacher-on) .mc-res-tutor{display:none;}
+</style>
 </head>
 <body class="page-study">
 
@@ -65,7 +71,7 @@
             <label class="fopt brand-opt"><input type="checkbox" class="chk"><img src="assets/logo_buildgrow.svg" alt="NE_Build & Grow"></label>
             <label class="fopt brand-opt"><input type="checkbox" class="chk"><img class="brand-oxf" src="assets/logo_oxford.png" alt="OXFORD"></label>
           </div>
-          <a class="nechart"><img src="assets/ic_nechart.png" alt=""><span>인기교재 NE차트</span></a>
+          <a class="nechart" href="https://www.nebooks.co.kr/pages/book/book_top10/search.asp"><img src="assets/ic_nechart.png" alt=""><span>인기교재 NE차트</span></a>
         </aside>
 
         <!-- Right column -->
@@ -74,17 +80,17 @@
           <div class="mtools only-mo">
             <div class="mfilter">
               <button class="mf-filter" type="button">
-                <img class="mf-ic" src="assets/ic_filter.svg" alt="">필터<span class="mf-badge">1</span>
+                <img class="mf-ic" src="assets/ic_filter.svg" alt="">필터<span class="mf-badge">0</span>
               </button>
               <span class="mf-div"></span>
-              <button class="mf-chip on" type="button">학습대상<i class="mf-ind"></i></button>
-              <button class="mf-chip" type="button">제품유형<i class="mf-ind"></i></button>
+              <button class="mf-chip" type="button">학습자료<i class="mf-ind"></i></button>
               <button class="mf-chip" type="button">브랜드<i class="mf-ind"></i></button>
             </div>
             <div class="msort">
               <div class="msort-l">
                 <label class="msort-chk"><input type="checkbox" class="chk">판매중만</label>
-                <select class="msort-nsel" aria-label="정렬"><option>인기순</option><option>최신순</option><option>과거순</option><option>별점순</option><option>가나다순</option><option>역 가나다순</option></select>
+                <select class="msort-nsel" aria-label="정렬"><option>인기순</option><option selected>최신순</option><option>과거순</option><option>별점순</option><option>가나다순</option><option>역 가나다순</option></select>
+                <label class="msort-chk teacher-login-chk-wrap"><input type="checkbox" class="chk teacher-login-chk" id="teacherLoginToggleMobile">교강사(데모)</label>
               </div>
               <a class="msort-r" href="리스트_교재구매.html">
                 <img class="msort-r-ic" src="assets/ic_tab_buy_gray.svg" alt="">
@@ -98,17 +104,18 @@
           <div class="toolbar">
             <div class="tb-left">
               <span class="count">총 <b>128</b>개 상품</span>
-              <label><input type="checkbox" class="chk">판매중 교재만 보기</label>
+              <label><input type="checkbox" class="chk" id="onSaleOnlyChk">판매중 교재만 보기</label>
+              <label class="teacher-demo-toggle"><input type="checkbox" class="chk teacher-login-chk" id="teacherLoginToggle">교강사 로그인(데모)</label>
             </div>
             <div class="tb-right">
               <a class="tab" href="리스트_교재구매.html"><span class="ico"><img class="i-d" src="assets/ic_tab_buy_gray.svg" alt=""><img class="i-h" src="assets/ic_tab_buy.svg" alt=""></span>교재구매</a>
               <a class="tab active"><span class="ico"><img src="assets/ic_tab_study_red.svg" alt=""></span>학습자료</a>
               <span class="tb-divider"></span>
               <div class="sort-wrap">
-                <span class="sort" id="sortBtn"><span class="sort-label">인기순</span> <span class="ico"><img src="assets/ic_sort_new.svg" alt=""></span></span>
+                <span class="sort" id="sortBtn"><span class="sort-label">최신순</span> <span class="ico"><img src="assets/ic_sort_new.svg" alt=""></span></span>
                 <div class="sort-menu">
-                  <a class="sort-opt active">인기순</a>
-                  <a class="sort-opt">최신순</a>
+                  <a class="sort-opt">인기순</a>
+                  <a class="sort-opt active">최신순</a>
                   <a class="sort-opt">과거순</a>
                   <a class="sort-opt">별점순</a>
                   <a class="sort-opt">가나다순</a>
@@ -218,6 +225,7 @@
                 </div>
                 <h3 class="ptitle">Phonics Code 3 : Student Book</h3>
                 <p class="pdesc">파닉스 기초인 Blending과 Decoding에 충실한 학습 설계로 스스로 읽는 힘을 키우는 파닉스 교재</p>
+                <!-- 선생님 자료 없음(콘텐츠 0건) → pres-tutor 미포함: 로그인 여부와 무관하게 미노출 데모 -->
                 <div class="pres">
                   <div class="pres-scroll">
                     <a class="pres-item"><span class="pres-ic qr"><img src="assets/ic_res_qr.svg" alt=""></span><span class="pres-lb">모바일학습</span></a>
@@ -227,7 +235,6 @@
                     <a class="pres-item"><span class="pres-ic"><img src="assets/ic45_mp3.svg" alt=""></span><span class="pres-lb">MP3</span><span class="pres-ct">(5)</span></a>
                     <a class="pres-item"><span class="pres-ic"><img src="assets/ic45_wordlist.svg" alt=""></span><span class="pres-lb">WordBook</span><span class="pres-ct">(3)</span></a>
                   </div>
-                  <a class="pres-tutor"><span class="pt-logo"><b>NE</b>_Tutor</span><span class="pt-sub">선생님 자료<br>바로가기</span></a>
                 </div>
               </div>
               <div class="pactions">
@@ -292,6 +299,38 @@
               </div>
             </article>
 
+            <!-- Product 8 - 부가서비스/학습자료/선생님자료 전부 0건 → UC-INFO-02에 따라 카드 자체 미노출(JS가 data-allzero 카드 자동 숨김) -->
+            <article class="prow" data-allzero="1">
+              <div class="pcover"><img src="assets/best_2.png" alt="Phonics Code 8"></div>
+              <div class="pinfo">
+                <div class="pbrand-row">
+                  <img class="pbrand" src="assets/logo_ne_small.svg" alt="NE능률">
+                  <span class="badge-course">Coursebook</span>
+                  <span class="badge-level">유치~초등(저)</span>
+                </div>
+                <h3 class="ptitle">Phonics Code 8 : Student Book</h3>
+                <p class="pdesc">파닉스 기초인 Blending과 Decoding에 충실한 학습 설계로 스스로 읽는 힘을 키우는 파닉스 교재</p>
+                <div class="pres"><div class="pres-scroll"></div></div>
+              </div>
+              <div class="pactions">
+                <div class="picons">
+                  <div class="share-wrap">
+                    <button class="pic-btn share" type="button" aria-label="공유하기">
+                      <span class="ico"><img class="i-d" src="assets/ic_share.svg" alt=""><img class="i-h" src="assets/ic_share_red.svg" alt=""></span>
+                    </button>
+                    <div class="share-pop">
+                      <span class="sp-item"><span class="sp-ico"><img src="assets/ic_url.svg" alt=""></span>URL복사</span>
+                      <span class="sp-item"><span class="sp-ico"><img src="assets/ic_kakao.svg" alt=""></span>카카오톡</span>
+                    </div>
+                  </div>
+                  <button class="pic-btn like" type="button">
+                    <span class="ico"><img class="i-d" src="assets/ic_heart.svg" alt=""><img class="i-h" src="assets/ic_heart_fill.svg" alt=""></span>
+                    <span class="jjim">찜 128</span>
+                  </button>
+                </div>
+              </div>
+            </article>
+
           </div>
 
           <!-- Pagination (PC) -->
@@ -320,26 +359,20 @@
     </div>
     <div class="fs-sections">
       <div class="fs-section">
-        <div class="fs-stitle">레벨</div>
+        <div class="fs-stitle">학습자료</div>
         <div class="fs-wrap">
           <button class="fs-chip" type="button">전체</button>
-          <button class="fs-chip" type="button">유아</button>
-          <button class="fs-chip on" type="button">초등(저)</button>
-          <button class="fs-chip" type="button">초등(고)</button>
-          <button class="fs-chip" type="button">중등</button>
-          <button class="fs-chip" type="button">고등</button>
-          <button class="fs-chip" type="button">일반</button>
-        </div>
-      </div>
-      <div class="fs-section">
-        <div class="fs-stitle">제품유형</div>
-        <div class="fs-wrap">
-          <button class="fs-chip" type="button">전체</button>
-          <button class="fs-chip" type="button">메인 교재</button>
-          <button class="fs-chip" type="button">Word Book</button>
-          <button class="fs-chip" type="button">Test&amp;Worksheet</button>
-          <button class="fs-chip" type="button">Test</button>
-          <button class="fs-chip" type="button">Teacher&rsquo;s Guide</button>
+          <button class="fs-chip" type="button">Teaching Materials</button>
+          <button class="fs-chip" type="button">수업용 PPT</button>
+          <button class="fs-chip" type="button">Word Lists</button>
+          <button class="fs-chip" type="button">Answer Keys</button>
+          <button class="fs-chip" type="button">MP3</button>
+          <button class="fs-chip" type="button">Test Sheet</button>
+          <button class="fs-chip" type="button">Lesson Plans</button>
+          <button class="fs-chip" type="button">Oxford</button>
+          <button class="fs-chip" type="button">정답 및 해설</button>
+          <button class="fs-chip" type="button">부가문제</button>
+          <button class="fs-chip" type="button">기타</button>
         </div>
       </div>
       <div class="fs-section">
@@ -349,7 +382,6 @@
           <button class="fs-chip" type="button">NE능률</button>
           <button class="fs-chip" type="button">NE Build&amp;Grow</button>
           <button class="fs-chip" type="button">Oxford</button>
-          <button class="fs-chip" type="button">ETC</button>
         </div>
       </div>
     </div>
@@ -396,22 +428,32 @@
       {ic:'ic_res_word.svg', lb:'Word List', ct:'(3)'}
     ];
     var BASE=[
-      {img:'best_1.png', badge:'HOT', bcls:'hot', course:'Coursebook', level:'유치~초등(저)', title:'Phonics Code 1 : Student Book'},
-      {img:'best_2.png', badge:'NEW', bcls:'new', course:'Coursebook', level:'유치~초등(저)', title:'Phonics Code 2 : Student Book'},
-      {img:'best_3.png', badge:null, bcls:'', course:'Coursebook', level:'유치~초등(저)', title:'Phonics Code 3 : Student Book'},
-      {img:'best_4.png', badge:'일시품절', bcls:'soldout', course:'Coursebook', level:'유치~초등(저)', title:'Phonics Code 4 : Student Book'},
-      {img:'best_3.png', badge:'HOT', bcls:'hot', course:'Coursebook', level:'유치~초등(저)', title:'Phonics Code 5 : Student Book'}
+      {img:'best_1.png', badge:'HOT', bcls:'hot', course:'Coursebook', level:'유치~초등(저)', title:'Phonics Code 1 : Student Book', teacherMat:true},
+      {img:'best_2.png', badge:'NEW', bcls:'new', course:'Coursebook', level:'유치~초등(저)', title:'Phonics Code 2 : Student Book', teacherMat:true},
+      {img:'best_3.png', badge:null, bcls:'', course:'Coursebook', level:'유치~초등(저)', title:'Phonics Code 3 : Student Book', teacherMat:false},
+      {img:'best_4.png', badge:'일시품절', bcls:'soldout', course:'Coursebook', level:'유치~초등(저)', title:'Phonics Code 4 : Student Book', teacherMat:true},
+      {img:'best_3.png', badge:'HOT', bcls:'hot', course:'Coursebook', level:'유치~초등(저)', title:'Phonics Code 5 : Student Book', teacherMat:true},
+      /* 부가서비스/학습자료/선생님자료 전부 0건 → 카드 자체 미노출(항상 필터링됨) 데모 */
+      {img:'best_2.png', badge:null, bcls:'', course:'Coursebook', level:'유치~초등(저)', title:'Phonics Code 8 : Student Book', teacherMat:false, allZero:true}
     ];
-    /* 데모용: 기본 5개를 반복해 40개 구성 (실제로는 서버 페이지네이션) */
+    /* 데모용: 기본 6개를 반복해 구성 (실제로는 서버 페이지네이션) */
     var DATA=[]; for(var k=0;k<8;k++){ for(var j=0;j<BASE.length;j++){ DATA.push(BASE[j]); } }
-    var TOTAL=414, STEP=10, shown=STEP;
+    var TOTAL=414, STEP=10, shown=STEP, onlyOnSale=false;
     var resHtml=RES.map(function(r){
       return '<a class="mc-res-item'+(r.blue?' blue':'')+'" href="교재상세.html#s-res">'
         +'<span class="mc-res-ic"><img src="assets/'+r.ic+'" alt=""></span>'
         +'<span class="mc-res-lb">'+r.lb+(r.ct?'<b>'+r.ct+'</b>':'')+'</span></a>';
     }).join('');
+    function visibleData(){
+      return DATA.filter(function(p){
+        if(p.allZero) return false;
+        if(onlyOnSale && (p.bcls==='soldout'||p.bcls==='off')) return false;
+        return true;
+      });
+    }
     function cardHTML(p){
       var badge=p.badge?'<span class="mc-badge '+p.bcls+'">'+p.badge+'</span>':'';
+      var tutor=p.teacherMat?'<a class="mc-res-tutor" href="#"><span class="mc-tutor-logo"><img src="assets/logo_netutor_line.svg" alt="NE_Tutor"></span><span class="mc-tutor-sub">바로가기</span></a>':'';
       return '<article class="mcard mcard-study">'
         +'<div class="mc-top">'
           +'<div class="mc-cover">'+badge+'<img src="assets/'+p.img+'" alt="">'
@@ -423,20 +465,46 @@
         +'</div>'
         +'<div class="mc-res">'
           +'<div class="mc-res-scroll">'+resHtml+'</div>'
-          +'<a class="mc-res-tutor" href="#"><span class="mc-tutor-logo"><img src="assets/logo_netutor_line.svg" alt="NE_Tutor"></span><span class="mc-tutor-sub">바로가기</span></a>'
+          +tutor
         +'</div>'
       +'</article>';
     }
     var moreBtn=document.getElementById('moMore');
     function render(){
-      mo.innerHTML=DATA.slice(0,shown).map(cardHTML).join('');
+      var list=visibleData();
+      mo.innerHTML=list.slice(0,shown).map(cardHTML).join('');
       if(moreBtn){
-        if(shown>=DATA.length){ moreBtn.style.display='none'; }
+        if(shown>=list.length){ moreBtn.style.display='none'; }
         else { moreBtn.style.display=''; var t=moreBtn.querySelector('.mo-more-txt'); if(t) t.textContent='10개 더보기 ('+shown+'/'+TOTAL+')'; }
       }
     }
     render();
-    if(moreBtn) moreBtn.addEventListener('click',function(){ shown=Math.min(shown+STEP,DATA.length); render(); });
+    if(moreBtn) moreBtn.addEventListener('click',function(){ shown=Math.min(shown+STEP,visibleData().length); render(); });
+    var onSaleChkMobile=document.querySelector('.msort-chk .chk');
+    if(onSaleChkMobile) onSaleChkMobile.addEventListener('change',function(){ onlyOnSale=onSaleChkMobile.checked; shown=STEP; render(); });
+  })();
+
+  /* 교강사 로그인 상태 데모 토글(PC/모바일 공통): 켜면 선생님 자료 바로가기(pres-tutor/mc-res-tutor) 노출 */
+  (function(){
+    var boxes=document.querySelectorAll('.teacher-login-chk');
+    boxes.forEach(function(t){
+      t.addEventListener('change',function(){ document.body.classList.toggle('teacher-on', t.checked); });
+    });
+  })();
+
+  /* PC 판매중 교재만 보기: 체크 시 일시품절/절판 카드 숨김 (전부 0건 데모 카드는 항상 숨김 유지) */
+  (function(){
+    document.querySelectorAll('.plist .prow[data-allzero]').forEach(function(r){ r.style.display='none'; });
+    var chk=document.getElementById('onSaleOnlyChk');
+    if(!chk) return;
+    chk.addEventListener('change',function(){
+      var onlyOnSale=chk.checked;
+      document.querySelectorAll('.plist .prow').forEach(function(row){
+        if(row.hasAttribute('data-allzero')) return;
+        var off=row.classList.contains('soldout')||row.classList.contains('off');
+        row.style.display=(onlyOnSale && off)?'none':'';
+      });
+    });
   })();
 
   /* 모바일 카드(커버·제목) 클릭 → 교재상세 이동 */
@@ -454,7 +522,7 @@
       if(!el) return;
       var down=false,sx=0,ss=0,moved=false;
       el.addEventListener('pointerdown',function(e){ if(e.pointerType!=='mouse'||e.button!==0) return; down=true;moved=false;sx=e.clientX;ss=el.scrollLeft;el.style.cursor='grabbing'; });
-      el.addEventListener('pointermove',function(e){ if(!down)return; var dx=e.clientX-sx; if(Math.abs(dx)>3)moved=true; el.scrollLeft=ss-dx; });
+      el.addEventListener('pointermove',function(e){ if(!down)return; var dx=e.clientX-sx; if(Math.abs(dx)>8)moved=true; el.scrollLeft=ss-dx; });
       function end(){ if(!down)return; down=false; el.style.cursor=''; }
       el.addEventListener('pointerup',end); el.addEventListener('pointerleave',end); el.addEventListener('pointercancel',end);
       el.addEventListener('click',function(e){ if(moved){ e.preventDefault(); e.stopPropagation(); } },true);
@@ -473,7 +541,7 @@
     var badge=openBtn.querySelector('.mf-badge');
     var mfChips=[].slice.call(document.querySelectorAll('.mfilter .mf-chip'));
     var sections=[].slice.call(sheet.querySelectorAll('.fs-section'));
-    /* 상단 칩[i] ↔ 시트 섹션[i] (순서 매핑: 학습자료는 섹션명이 '레벨'이라 이름 매칭 불가) */
+    /* 상단 칩[i] ↔ 시트 섹션[i] (순서 매핑, PC 사이드바와 동일한 학습자료/브랜드 2그룹) */
     function sectionFor(c){ var i=mfChips.indexOf(c); return i>=0?sections[i]:null; }
     function sync(){
       var total=0;
@@ -518,9 +586,18 @@
       document.querySelectorAll('.share-wrap.open').forEach(function(o){o.classList.remove('open');o.querySelector('.pic-btn.share').classList.remove('on');});
     });
 
-    /* Like (찜) toggle */
+    /* Like (찜) toggle: 클릭 시 옆 숫자도 +-1 갱신 */
     document.querySelectorAll('.pic-btn.like').forEach(function(b){
-      b.addEventListener('click',function(){ b.classList.toggle('on'); });
+      b.addEventListener('click',function(){
+        var wasOn=b.classList.contains('on');
+        b.classList.toggle('on');
+        var cnt=b.querySelector('.jjim');
+        if(cnt){
+          var n=parseInt(cnt.textContent.replace(/[^0-9]/g,''),10)||0;
+          n=wasOn?n-1:n+1;
+          cnt.textContent='찜 '+n;
+        }
+      });
     });
 
     /* Lexile tooltip on click (scrollable) */
@@ -561,6 +638,11 @@
       });
       document.addEventListener('click',function(e){ if(!sortWrap.contains(e.target)) sortWrap.classList.remove('open'); });
     }
+
+    /* 시리즈 밴드: 클릭 시 다중선택 필터 토글 (선택=검은 테두리+검은 글씨) */
+    document.querySelectorAll('.catband .cat-card').forEach(function(c){
+      c.addEventListener('click',function(e){ e.preventDefault(); c.classList.toggle('on'); });
+    });
 
     /* Drag-to-scroll resource strips */
     document.querySelectorAll('.pres-scroll').forEach(function(el){

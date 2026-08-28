@@ -379,7 +379,7 @@ a:hover .mega-new{text-decoration:none;}
 .ph-left{display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
 .ph-title{font-family:var(--display);font-weight:700;font-size:32px;line-height:1.1;color:var(--ink);}
 .page-buy .ph-title, .page-study .ph-title{font-size:34px;}
-.ph-tag{border:1px solid #4d4e4d;border-radius:8px;padding:12px 20px;font-size:14px;font-weight:500;color:var(--ink);white-space:nowrap;letter-spacing:-0.14px;}
+.ph-tag{border:1px solid #4d4e4d;border-radius:8px;padding:12px 20px;font-size:14px;font-weight:500;color:var(--ink);white-space:nowrap;letter-spacing:-0.14px;text-decoration:none;display:inline-block;}
 .crumb{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--weak);}
 .crumb .home{width:15px;height:15px;}
 .crumb .sep{color:var(--weak);}
@@ -2452,6 +2452,8 @@ body.bsheet-lock{overflow:hidden;}
   .page-buy .catband .cat-card, .page-study .catband .cat-card{flex:none;width:80px;height:80px;min-width:0;padding:8px;box-sizing:border-box;
     background:#fff;border:0;border-radius:16px;display:flex;align-items:center;justify-content:center;
     font-family:var(--sans);font-weight:700;font-size:12px;line-height:16px;color:#1d2b5c;text-align:center;white-space:normal;word-break:keep-all;}
+  /* 시리즈 선택(다중 필터) 모바일: 위 규칙의 border:0이 .cat-card.on 테두리를 덮어써서 선택 표시가 안 보이던 문제 수정 */
+  .page-buy .catband .cat-card.on, .page-study .catband .cat-card.on{border:1px solid #1d1717;color:#1d1717;}
   /* 학습자료: 커버 위 장바구니 버튼 */
   .mc-cover-cart{position:absolute;right:12px;bottom:10px;width:32px;height:32px;border:0;border-radius:999px;
     background:var(--ink);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;z-index:3;
