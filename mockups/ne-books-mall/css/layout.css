@@ -2962,7 +2962,7 @@ body.bsheet-lock{overflow:hidden;}
   .page-my .mb-cart{width:36px;height:36px;right:22px;bottom:-14px;background-size:16px;}
   .page-my .mb-info{padding:24px 12px 24px;gap:8px;} /* 커버↔정보 24 · 금액↔하단 테두리 24 */
   .page-my .mb-head{gap:8px;}
-  .page-my .mb-badge{font-size:10px;line-height:14px;padding:4px 8px;}
+  .page-my .mb-badge{font-size:9px;font-weight:600;line-height:1;padding:3px 8px;box-sizing:border-box;display:inline-flex;align-items:center;}
   .page-my .mb-title{font-size:14px;line-height:20px;display:block;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;} /* 한 줄 말줄임 */
   .page-my .mb-price b{font-size:16px;}
   .page-my .mb-price s{font-size:12px;}
@@ -2988,7 +2988,7 @@ body.bsheet-lock{overflow:hidden;}
   .page-my :is(#tab-wish .wl-grid,#tab-home .mb-grid) .mb-info{padding:0;gap:6px;align-items:flex-start;box-sizing:border-box;width:auto;max-width:100%;margin:0;min-width:0;}
   .page-my :is(#tab-wish .wl-grid,#tab-home .mb-grid) .mb-head{gap:8px;min-width:0;max-width:100%;}
   .page-my :is(#tab-wish .wl-grid,#tab-home .mb-grid) .mb-title{min-width:0;}
-  .page-my :is(#tab-wish .wl-grid,#tab-home .mb-grid) .mb-badge{align-self:flex-start;padding:4px 8px;font-size:10px;line-height:14px;}
+  .page-my :is(#tab-wish .wl-grid,#tab-home .mb-grid) .mb-badge{align-self:flex-start;padding:3px 8px;font-size:9px;font-weight:600;line-height:1;box-sizing:border-box;display:inline-flex;align-items:center;}/* 테두리 보정 17px 통일 */
 }
 
 /* ===== 마이페이지 주문내역 (모바일) — Figma 2243-17430 ===== */
@@ -3680,8 +3680,9 @@ body.bsheet-lock{overflow:hidden;}
   .page-detail .dh-badges{flex-wrap:wrap;gap:4px;align-items:center;}
   .page-detail .dh-badges .dh-brand,
   .page-detail .dh-badges .picons{display:none;}
-  .page-detail .dh-badges .badge{font-size:10px;font-weight:500;padding:4px 8px;height:auto;line-height:14px;}
-  .page-detail .dh-badges .badge.lexile{color:#4056a1;border-color:#4056a1;font-size:9.5px;padding:5px 9px;}
+  .page-detail .dh-badges .badge{font-size:9px;font-weight:600;padding:4px 8px;height:auto;line-height:1;box-sizing:border-box;display:inline-flex;align-items:center;}
+  .page-detail .dh-badges .badge.course,.page-detail .dh-badges .badge.lexile{padding:3px 8px;}/* 테두리 1px 보정 → level(테두리 없음)과 높이 정확히 동일(17px) */
+  .page-detail .dh-badges .badge.lexile{color:#4056a1;border-color:#4056a1;font-size:9px;}
   .page-detail .dh-badges .badge.lexile .ico{display:none;}
   .page-detail .dh-title{font-family:var(--display);font-weight:700;font-size:18px;line-height:22px;margin-top:16px;}
   .page-detail .dh-sub{font-size:12px;color:#666;margin-top:8px;}
@@ -4007,10 +4008,12 @@ body.bsheet-lock{overflow:hidden;}
 /* ===== 라벨/배지 컴포넌트: 모바일+태블릿(≤1023) 컴팩트 규격 (피그마 2016-10632) =====
    교재관련 라벨 = 9px(Lexile 9.5px)·상하4/좌우8·radius999 / 구분 배지 = 10px SemiBold·상하4/좌우8 */
 @media (max-width:1023px){
-  /* 교재 라벨 통일: 색만 다르고 높이 동일 — 9px/semibold/radius999/좌우여백8·상하4, 가로는 텍스트에 맞게 auto */
-  .pcorner,.sr-corner,.badge-course,.badge-level,.page-buy .badge-lexile,.page-study .badge-lexile{
+  /* ===== 교재 라벨 디자인 토큰 (모바일/태블릿) =====
+     9px · SemiBold(600) · line-height:1 · radius 999 · 여백 상하4·좌우8 · 가로 auto · 색만 차이 → 전부 높이 17px 동일.
+     테두리 있는 라벨(course/lexile/sr-cat/mb-badge)은 세로 padding 3px로 1px 테두리 보정. 전 페이지 공통(리스트/상세/찜/홈/검색/시리즈). DESIGN_TOKENS.md 참조 */
+  .mc-tag,.mc-badge,.pcorner,.sr-corner,.sr-cat,.mb-badge,.badge-course,.badge-level,.badge-lexile,.page-buy .badge-lexile,.page-study .badge-lexile,.badge.course,.badge.level,.badge.lexile,.page-detail .dh-badges .badge{
     font-size:9px;font-weight:600;line-height:1;padding:4px 8px;border-radius:999px;box-sizing:border-box;display:inline-flex;align-items:center;width:auto;}
-  .badge-course,.page-buy .badge-lexile,.page-study .badge-lexile{padding:3px 8px;} /* 테두리 1px 보정 → 무테두리 라벨(pcorner·level)과 높이 정확히 동일 */
+  .mc-tag.course,.sr-cat,.mb-badge,.badge-course,.badge-lexile,.page-buy .badge-lexile,.page-study .badge-lexile,.badge.course,.badge.lexile,.page-detail .dh-badges .badge.course,.page-detail .dh-badges .badge.lexile{padding:3px 8px;}/* 테두리 1px 보정 → 무테두리 라벨과 높이 정확히 동일(17px) */
   .gubun{font-size:10px;font-weight:600;padding:4px 8px;}
   .badge{font-size:10px;font-weight:600;padding:4px 8px;}
   .ev-badge{height:auto;font-size:10px;font-weight:600;padding:4px 8px;line-height:1.4;}

@@ -262,17 +262,19 @@ body{ min-height:100vh; display:flex; flex-direction:column; }
 
 **모바일·태블릿(≤1023px)에서는 데스크탑(12px)보다 작은 컴팩트 규격**을 씁니다. **좌우 패딩은 공통 8px**(상하 4px). PC(≥1024)는 위 §7 기본 규격(12px·좌우 12px) 유지.
 
-**① 교재 관련 라벨** — `border-radius:999px`, 패딩 `4px 8px`
-| 라벨 | 글자 | 색 |
+**① 교재 관련 라벨 (통일 토큰)** — **9px · SemiBold(600) · `line-height:1` · `border-radius:999px` · 패딩 상하4·좌우8 · 가로 auto** → **색만 다르고 높이 전부 17px 동일**. (2026-08 통일)
+| 라벨 | 색 | 테두리 |
 |------|------|------|
-| HOT | 9px Bold | 배경 `#E83828` · 흰 글자 |
-| NEW | 9px Bold | 배경 `#2F74D1` · 흰 글자 |
-| 절판 · 일시품절 | 9px Bold | 배경 `#999` · 흰 글자 |
-| Coursebook · Phonics | 9px SemiBold | 아웃라인·글자 `#E83828` |
-| 유치~초등(저) | 9px SemiBold | 배경 `#F3F3F3` · 글자 `#666` |
-| Lexile® 400L | **9.5px** Medium | 아웃라인·글자 `#2F74D1` |
+| HOT | 배경 `#E83828` · 흰 글자 | 없음 |
+| NEW | 배경 `#2F74D1` · 흰 글자 | 없음 |
+| 절판 · 일시품절 | 배경 `#999` · 흰 글자 | 없음 |
+| Coursebook · Phonics | 아웃라인·글자 `#E83828` | **1px** |
+| 유치~초등(저) | 배경 `#F3F3F3` · 글자 `#666` | 없음 |
+| Lexile® 400L | 아웃라인·글자 `#2F74D1` | **1px** |
 
-적용: `.pcorner`(HOT/NEW/절판/일시품절) · `.sr-corner`(검색결과) · `.badge-course`(Coursebook/Phonics) · `.badge-level`(유치~초등) · `.badge-lexile`.
+> **테두리(1px) 있는 라벨은 세로 padding을 `3px`로** 줄여 테두리 2px를 보정 → 무테두리 라벨(상하 4px)과 **높이 정확히 동일(17px)**. (`box-sizing:border-box; display:inline-flex; align-items:center`)
+
+적용(전 페이지 공통 — 리스트·상세·찜·홈·검색·시리즈): `.pcorner`·`.sr-corner`·`.mc-badge`(상태) · `.mc-tag`(리스트 course/level) · `.sr-cat`(검색 카테고리) · `.mb-badge`(찜/홈) · `.badge-course/.badge-level/.badge-lexile` · `.badge.course/.badge.level/.badge.lexile`(상세) · `.page-detail .dh-badges .badge`. 구현: `css/layout.css` `@media (max-width:1023px)` 상단 "교재 라벨 디자인 토큰" 블록 하나로 통합.
 
 **② 구분 배지** — `border-radius:30px`(=완전 둥금), 패딩 `4px 8px`, **10px SemiBold(600)**
 | 그룹 | 예 | 색 |
