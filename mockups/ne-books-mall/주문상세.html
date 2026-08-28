@@ -157,6 +157,16 @@
     }
   })();
 
+  /* 구매확정 버튼 → confirm 다이얼로그 (데모) */
+  (function(){
+    document.addEventListener('click',function(e){
+      var b=e.target.closest('.oh-btn'); if(!b) return;
+      if(b.textContent.trim()!=='구매확정') return;
+      e.preventDefault();
+      if(confirm('구매확정하시겠습니까?')){ alert('구매확정되었습니다.'); }
+    });
+  })();
+
   /* 모바일: 섹션 헤더(∧) 클릭 시 접기/펼치기 */
   (function(){
     function MB(){ return window.matchMedia('(max-width:1023px)').matches; }
