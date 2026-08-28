@@ -302,6 +302,19 @@ PC에서도 교재 라벨 통일. **좌우 12 · `radius:999` · `line-height:1`
 
 - Lexile ⓘ 아이콘은 `12px`(텍스트와 동일)로 맞춰 높이 어긋남 방지.
 
+### 7-3. PC 주문내역 상태뱃지·버튼 (≥1024px) ★2026-08
+
+마이페이지/주문상세의 주문내역 상태뱃지(`.oh-badge`)와 액션 버튼(`.oh-btn`). **색만 다르고 크기·여백은 그룹 내 공통.**
+
+| 그룹 | 폰트 | 세로여백 | 좌우여백 | radius | 대상 |
+|------|------|------|------|------|------|
+| **상태뱃지** `.oh-badge` | **10px** (600) | **4px** | **8px** | 30 | 배송중·입금대기·결제완료·배송완료·입금취소·결제취소·구매확정·배송준비중·환불완료 (`.ship/.wait/.paid/.done/.cancel/.confirm/.ready`, `min-width:50` `border:1px solid` 색만 차이) |
+| **액션 버튼** `.oh-btn` | **14px** (500) | **12px** | **20px** | 8 | 입금취소·결제취소·반품/환불·배송조회·구매확정 (`.dark`=검정 아웃라인 / `.gray`=회색 아웃라인 / `.fill`=`--btn` 채움) |
+
+- 버튼은 고정 높이 대신 **`padding:12px 20px`** 로 높이 결정(콘텐츠 기준). `letter-spacing:-0.14px`.
+- 모바일/태블릿(≤1023px)은 별도 축소: 뱃지 `padding:4px 8px`/10px 유지, 버튼 `.page-my #tab-orders .oh-btn`=`padding:4px 12px`/12px.
+- 구현: `css/layout.css` `.oh-badge`(2040행 부근)·`.oh-btn`(2048행 부근).
+
 ---
 
 ## 8. 페이지네이션 (Pagination)
@@ -643,7 +656,7 @@ PC에서도 교재 라벨 통일. **좌우 12 · `radius:999` · `line-height:1`
 
 **목록 더보기 `.mo-more`**(모바일): 기본 10개 + `10개 더보기(N/414)` 버튼(전체폭·테두리 #4D4E4D·Pretendard Medium 14·radius12). PC는 페이징 유지.
 
-**주문상세 상태 버튼 `.od-status-btns`**: 상태 라벨 아래 목록과 동일한 `.oh-btn`(콘텐츠 폭·높이 36) 세로 배치.
+**주문상세 상태 버튼 `.od-status-btns`**: 상태 라벨 아래 목록과 동일한 `.oh-btn`(콘텐츠 폭·`padding:12px 20px`/14px, §7-3) 세로 배치.
 
 **주문결제 (모바일, `.page-order`)** — Figma 1856-3800 / 2170-14061
 - **아코디언 카드 스택**: PC 2단(`.co-main`+`.co-side`)을 모바일에서 `.co-main,.co-side{display:contents}` + `.co-grid{display:flex;align-items:stretch}` 로 평탄화하고 `order`로 Figma 순서 재배열(주문상품→주문자→배송지→할인→결제수단→주문금액→결제수단안내→이용규정). ⚠️ `.co-grid` 기본 `align-items:start`가 flex에선 섹션을 콘텐츠폭으로 만들어 우측 회색이 새므로 **`align-items:stretch` 필수**.
