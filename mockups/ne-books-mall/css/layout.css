@@ -4010,7 +4010,7 @@ body.bsheet-lock{overflow:hidden;}
 @media (min-width:1024px){
   .badge-course,.badge-level,.badge-lexile,.page-buy .badge-lexile,.page-study .badge-lexile,.sr-cat,.mb-badge,.badge.course,.badge.level,.badge.lexile,.page-detail .dh-badges .badge{
     font-size:12px;font-weight:500;line-height:1;padding:6px 12px;border-radius:999px;box-sizing:border-box;display:inline-flex;align-items:center;width:auto;}
-  .pcorner,.sr-corner{font-size:10px;font-weight:700;line-height:1;padding:6px 12px;border-radius:999px;box-sizing:border-box;display:inline-flex;align-items:center;width:auto;}
+  .pcorner,.sr-corner{font-size:10px;font-weight:700;line-height:1;padding:4px 12px;border-radius:999px;box-sizing:border-box;display:inline-flex;align-items:center;width:auto;}
   /* 아웃라인 라벨: border 대신 outline(레이아웃 높이 미영향)으로 → 여백 상하 4px 그대로 + 무테두리 라벨과 높이 정확히 동일. outline 색은 currentColor(=글자색)와 일치 */
   .badge-course,.badge-lexile,.page-buy .badge-lexile,.page-study .badge-lexile,.sr-cat,.mb-badge,.badge.course,.badge.lexile,.page-detail .dh-badges .badge.course,.page-detail .dh-badges .badge.lexile{border:0;outline:1px solid;outline-offset:-1px;}
   .badge.lexile .ico,.badge-lexile .ico{width:12px;height:12px;}/* 아이콘이 12px 텍스트보다 커서 1px 높아지던 것 보정 */

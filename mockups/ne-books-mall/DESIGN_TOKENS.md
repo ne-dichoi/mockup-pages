@@ -293,12 +293,12 @@ body{ min-height:100vh; display:flex; flex-direction:column; }
 
 ### 7-2. PC 교재 라벨 (≥1024px) ★2026-08
 
-PC에서도 교재 라벨 통일. **여백 상하6·좌우12 · `radius:999` · `line-height:1` · 가로 auto · 색만 차이**. 테두리 라벨은 `border` 대신 `outline`(높이 미영향, `outline-offset:-1px`) → 여백 그대로이면서 무테두리와 높이 동일.
+PC에서도 교재 라벨 통일. **좌우 12 · `radius:999` · `line-height:1` · 가로 auto · 색만 차이**. **세로 여백은 그룹별로: 카테고리 `6px` / 상태(HOT·NEW·절판·일시품절) `4px`.** 테두리 라벨은 `border` 대신 `outline`(높이 미영향, `outline-offset:-1px`) → 여백 그대로이면서 무테두리와 높이 동일.
 
-| 그룹 | 폰트 | 높이 | 대상 |
-|------|------|------|------|
-| **교재 카테고리** | **12px** SemiBold 아님(500) | 20px | Coursebook·Phonics·유치~초등(저)·Lexile — `.badge-course/.badge-level/.badge-lexile`·`.sr-cat`·`.mb-badge`·`.badge.course/.level/.lexile`·`.page-detail .dh-badges .badge` |
-| **상태** | **10px** Bold(700) | 18px | HOT·NEW·절판·일시품절 — `.pcorner`·`.sr-corner` |
+| 그룹 | 폰트 | 세로여백 | 높이 | 대상 |
+|------|------|------|------|------|
+| **교재 카테고리** | **12px** (500) | 6px | 24px | Coursebook·Phonics·유치~초등(저)·Lexile — `.badge-course/.badge-level/.badge-lexile`·`.sr-cat`·`.mb-badge`·`.badge.course/.level/.lexile`·`.page-detail .dh-badges .badge` |
+| **상태** | **10px** Bold(700) | 4px | 18px | HOT·NEW·절판·일시품절 — `.pcorner`·`.sr-corner` |
 
 - Lexile ⓘ 아이콘은 `12px`(텍스트와 동일)로 맞춰 높이 어긋남 방지.
 
