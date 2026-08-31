@@ -11,9 +11,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- Pretendard (design font) via CDN, with Noto Sans KR fallback -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260815gb">
-<script src="js/layout.js?v=20260815gb" defer></script>
-<script src="js/search.js?v=20260815gb" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260815gc">
+<script src="js/layout.js?v=20260815gc" defer></script>
+<script src="js/search.js?v=20260815gc" defer></script>
 <style>
 /* ===== 메인 시안 A (메인_2) 전용 ===== */
 /* 맞춤교재 세트 애니 아이콘 */
@@ -513,11 +513,11 @@
   .bm-s-more{display:inline-flex;align-items:center;gap:4px;margin-top:12px;font-size:10px;color:#fff;text-decoration:none;opacity:.8;} /* 10px · opacity 80% */
   .bm-s-more .t{text-decoration:underline;text-underline-offset:3px;}
   .bm-s-more::after{content:"›";font-size:12px;}
-  .bm-pills{display:flex;gap:6px;margin-top:40px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;} /* 알약 탭 위 40 */
+  .bm-pills{display:flex;gap:6px;margin:40px -20px 0;padding:0 20px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;} /* 알약 탭 위 40 · 풀폭 가로 스와이프(좌우 패딩 상쇄) */
   .bm-pills::-webkit-scrollbar{display:none;}
   .bm-pill{flex:none;padding:8px 18px;border-radius:999px;background:transparent;color:#fff;font-size:12px;font-weight:500;white-space:nowrap;cursor:pointer;border:0;font-family:inherit;opacity:.92;} /* 12px */
   .bm-pill.on{background:#1d1717;color:#fff;font-weight:700;opacity:1;}
-  .bm-books{display:flex;gap:12px;margin-top:16px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;padding-bottom:4px;-webkit-overflow-scrolling:touch;} /* 알약 탭 아래 16 */
+  .bm-books{display:flex;gap:12px;margin:16px -20px 0;padding:0 20px 4px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;} /* 알약 탭 아래 16 · 풀폭 가로 스와이프(좌우 패딩 상쇄) */
   .bm-books::-webkit-scrollbar{display:none;}
   .bm-book{flex:none;width:106px;text-align:center;} /* 교재 이미지 폭 기준·중앙 정렬 */
   .bm-book .cv{position:relative;width:106px;height:141px;} /* 106×141 */
