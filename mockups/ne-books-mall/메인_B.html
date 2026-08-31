@@ -11,9 +11,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- Pretendard (design font) via CDN, with Noto Sans KR fallback -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260815gf">
-<script src="js/layout.js?v=20260815gf" defer></script>
-<script src="js/search.js?v=20260815gf" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260815gg">
+<script src="js/layout.js?v=20260815gg" defer></script>
+<script src="js/search.js?v=20260815gg" defer></script>
 <style>
 /* ===== 메인 시안 A (메인_2) 전용 ===== */
 /* 맞춤교재 세트 애니 아이콘 */
@@ -538,13 +538,21 @@
   .bm-pbn .deco i:nth-child(1){width:52%;aspect-ratio:1;right:8%;top:16%;}
   .bm-pbn .deco i:nth-child(2){width:30%;aspect-ratio:1;right:50%;bottom:16%;border-radius:22%;background:rgba(255,255,255,.32);}
   .bm-pbn .deco i:nth-child(3){width:20%;aspect-ratio:1;right:6%;bottom:24%;background:rgba(255,255,255,.26);}
-  .bm-pbn-ind{position:absolute;right:14px;top:14px;background:rgba(0,0,0,.32);color:#fff;font-size:12px;font-weight:700;padding:4px 11px;border-radius:999px;letter-spacing:.5px;z-index:2;}
+  .bm-pbn-ind{display:none;position:absolute;right:14px;top:14px;background:rgba(0,0,0,.32);color:#fff;font-size:12px;font-weight:700;padding:4px 11px;border-radius:999px;letter-spacing:.5px;z-index:2;} /* 기본 숨김 */
+  .bm-pbn.is-center .bm-pbn-ind{display:block;} /* 가운데 배너에만 인디케이터 노출 */
 }
 
 /* ===== 프로모션(이벤트) 배너: index처럼 ≥600px부터 와이드(748/232). ≤599는 세로형(335/150) 유지 ===== */
 @media (min-width:600px) and (max-width:1439px){
   .bm-pbn{flex:0 0 min(86vw,720px);aspect-ratio:748/232;}
   .bm-promo-track{padding:0 max(7vw, calc((100vw - 720px)/2));}
+}
+/* ===== 맞춤 교재 세트: ≤1439(분리형 히어로 범위)에서 풀폭 가로 스와이프 ===== */
+@media (max-width:1439px){
+  .m2-set-grid{display:flex;grid-template-columns:none;overflow-x:auto;scroll-snap-type:x proximity;gap:16px;scrollbar-width:none;-ms-overflow-style:none;margin-right:calc(50% - 50vw);padding:0 20px 4px 0;} /* 오른쪽 화면 끝까지 블리드(왼쪽은 컨테이너 기준 = 타이틀 정렬) */
+  .m2-set-grid::-webkit-scrollbar{display:none;}
+  .m2-set-card{flex:0 0 min(420px, 84vw);min-width:0;scroll-snap-align:start;} /* 모바일 1장+peek · 태블릿 2장+ */
+  .m2-set-top{padding:32px 28px;container-type:inline-size;} /* 콜라주 교재가 카드 폭에 맞춰 축소 */
 }
 /* ===== 인기교재: index처럼 ≥768px부터 단일행 flex·280px·정사각 박스. ≤767은 2행 그리드 ===== */
 @media (min-width:768px) and (max-width:1023px){
@@ -1549,21 +1557,30 @@
       {color:'#f0821e',lb:'예비중 추천',t:'중학 대비,\n지금 시작하세요',href:'리스트_교재구매.html'}
     ];
     var track=document.getElementById('bmPromoTrack'), n=PROMOS.length;
-    track.innerHTML=PROMOS.map(function(p,i){
+    function pbnHTML(p,i){
       var bg=p.img?('background-image:url(assets/'+p.img+');background-color:'+p.color):('background-color:'+p.color);
       var deco=p.img?'':'<div class="deco" aria-hidden="true"><i></i><i></i><i></i></div>';
-      return '<a class="bm-pbn" href="'+p.href+'" style="'+bg+'"><div class="tx"><span class="lb">'+esc(p.lb)+'</span><span class="t">'+esc(p.t).replace(/\n/g,'<br>')+'</span></div>'+deco+'<span class="bm-pbn-ind">'+(i+1)+' / '+n+'</span></a>';
-    }).join('');
-    var cards=[].slice.call(track.children), cur=0, timer=null, paused=false, st=null, resumeT=null, autoScrolling=false, asT=null;
-    function goTo(i){ cur=((i%n)+n)%n; var c=cards[cur]; if(!c) return; autoScrolling=true; clearTimeout(asT); asT=setTimeout(function(){ autoScrolling=false; },800); track.scrollTo({left:c.offsetLeft-(track.clientWidth-c.clientWidth)/2, behavior:'smooth'}); }
-    function play(){ stop(); timer=setInterval(function(){ if(!paused) goTo(cur+1); },4500); }
+      return '<a class="bm-pbn" href="'+p.href+'" style="'+bg+'"><div class="tx"><span class="lb">'+esc(p.lb)+'</span><span class="t">'+esc(p.t).replace(/\n/g,'<br>')+'</span></div>'+deco+'<span class="bm-pbn-ind">'+((i%n)+1)+' / '+n+'</span></a>';
+    }
+    /* 무한 루프 + 양쪽 peek(index 상단 롤링과 동일): 3세트(클론) 렌더 후 '가운데 세트'에서 시작 →
+       항상 왼쪽=이전 배너, 오른쪽=다음 배너가 노출. 오른쪽→왼쪽으로 끊김 없이 순환(가장자리 도달 시 가운데로 순간 복귀). */
+    track.innerHTML=[].concat(PROMOS,PROMOS,PROMOS).map(pbnHTML).join('');
+    var cards=[].slice.call(track.children), cur=n, timer=null, paused=false, st=null, resumeT=null, autoScrolling=false, asT=null;
+    function centerOf(i){ var c=cards[i]; return c?c.offsetLeft-(track.clientWidth-c.clientWidth)/2:0; }
+    function markCenter(idx){ cards.forEach(function(c,i){ c.classList.toggle('is-center', i===idx); }); } /* 가운데 배너에만 인디케이터 */
+    function scrollToIdx(i, smooth){ autoScrolling=true; clearTimeout(asT); asT=setTimeout(function(){ autoScrolling=false; },900); markCenter(i); track.scrollTo({left:centerOf(i), behavior:smooth?'smooth':'auto'}); }
+    function normalize(){ /* 가운데 세트[n,2n-1] 범위로 순간 복귀 유지 → 항상 양쪽 이웃(peek) 존재 */
+      if(cur>=2*n){ cur-=n; scrollToIdx(cur,false); } else if(cur<n){ cur+=n; scrollToIdx(cur,false); }
+    }
+    function next(){ cur++; scrollToIdx(cur, true); if(cur>=2*n){ setTimeout(normalize, 650); } }
+    function play(){ stop(); timer=setInterval(function(){ if(!paused) next(); },4500); }
     function stop(){ if(timer){clearInterval(timer);timer=null;} }
-    /* 사용자 스와이프/터치 중에는 자동롤링 일시정지 → 3초 뒤 재개. pointercancel로도 확실히 재개(고착 방지) */
+    /* 사용자 스와이프/터치 중에는 일시정지 → 3초 뒤 재개. pointercancel 고착 방지 */
     function pauseAwhile(){ paused=true; clearTimeout(resumeT); resumeT=setTimeout(function(){ paused=false; },3000); }
-    track.addEventListener('scroll',function(){ if(st)clearTimeout(st); st=setTimeout(function(){ var mid=track.scrollLeft+track.clientWidth/2, best=0,bd=1e9; cards.forEach(function(el,i){ var ctr=el.offsetLeft+el.clientWidth/2, d=Math.abs(ctr-mid); if(d<bd){bd=d;best=i;} }); cur=best; },100); if(!autoScrolling) pauseAwhile(); },{passive:true});
+    track.addEventListener('scroll',function(){ if(st)clearTimeout(st); st=setTimeout(function(){ var mid=track.scrollLeft+track.clientWidth/2, best=0,bd=1e9; cards.forEach(function(el,i){ var ctr=el.offsetLeft+el.clientWidth/2, d=Math.abs(ctr-mid); if(d<bd){bd=d;best=i;} }); cur=best; markCenter(cur); if(!autoScrolling) normalize(); }, 120); if(!autoScrolling) pauseAwhile(); },{passive:true});
     track.addEventListener('pointerdown',pauseAwhile);
     track.addEventListener('touchstart',pauseAwhile,{passive:true});
-    if(window.matchMedia('(max-width:1439px)').matches) play();
+    if(window.matchMedia('(max-width:1439px)').matches){ scrollToIdx(n,false); play(); }
   })();
 })();
 </script>
