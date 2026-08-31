@@ -11,9 +11,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- Pretendard (design font) via CDN, with Noto Sans KR fallback -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260815fw">
-<script src="js/layout.js?v=20260815fw" defer></script>
-<script src="js/search.js?v=20260815fw" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260815fx">
+<script src="js/layout.js?v=20260815fx" defer></script>
+<script src="js/search.js?v=20260815fx" defer></script>
 <style>
 /* ===== 메인 시안 A (메인_2) 전용 ===== */
 /* 맞춤교재 세트 애니 아이콘 */
@@ -476,11 +476,69 @@
   .mb-bn-book .cart{width:32px;height:32px;background-size:14px;bottom:-12px;}
   .mb-bn-book:nth-child(n+5){display:flex;}
   .mb-pop{padding:32px 0 8px;}
-  .mb-pop-t{font-size:22px;margin-bottom:16px;}
-  .mb-pop-row{gap:16px;padding-left:20px;padding-right:20px;}
-  .mb-pop-row .m2-card{flex:0 0 clamp(150px, 44vw, 200px);}/* 모바일: 2장+반쪽 peek */
-  .mb-pop-row .m2-card .cart{width:36px;height:36px;background-size:16px;right:23px;bottom:16px;}
-  .mb-pop-row .m2-card .name{font-size:14px;}
+  .mb-pop-t{font-size:22px;margin-bottom:16px;text-align:left;} /* 모바일: 인기교재 타이틀 좌측정렬 */
+  .m2-sets-t{text-align:left;} /* 모바일: 맞춤 교재 세트 타이틀 좌측정렬 */
+  /* 인기교재 = index ELT 리스트와 동일(2행 그리드·2.5열 노출·가로 스와이프), 알약 탭만 없음 */
+  .mb-pop-row{display:grid;grid-auto-flow:column;grid-template-rows:auto auto;grid-auto-columns:clamp(140px,40vw,200px);gap:24px 8px;overflow-x:auto;scroll-snap-type:x proximity;padding:0 20px 4px;scroll-padding-left:60px;-webkit-overflow-scrolling:touch;touch-action:pan-x pan-y;overscroll-behavior-x:contain;}
+  .mb-pop-row .m2-card{width:auto;flex:none;gap:0;scroll-snap-align:start;}
+  .mb-pop-row .m2-card .box{aspect-ratio:153/195;} /* 메인 모바일: 세로 긴 회색박스 */
+  .mb-pop-row .m2-card .box>img{top:11.5%;height:77%;}
+  .mb-pop-row .m2-card .cart{width:36px;height:36px;background-size:16px;right:12px;bottom:14px;}
+  .mb-pop-row .m2-card .name{font-size:14px;line-height:20px;padding:0 16px;margin-top:16px;}
+  .mb-pop-row .m2-card .price{padding:0 16px;margin-top:4px;}
+  .mb-pop-row .m2-card .price .dc{display:none;}
+  .mb-pop-row .m2-card .price .now{font-size:14px;}
+  .mb-pop-row .m2-card .price .was{font-size:12px;}
+}
+
+/* ===== 모바일 전용 히어로(시안 B): 시리즈 배너 상단 / 프로모션 배너 하단 분리 ===== */
+.bm-hero{display:none;}
+@media (max-width:767px){
+  .mb-hero{display:none;}          /* 기존 모바일 히어로 숨김 → 분리형 히어로 사용 */
+  .bm-hero{display:block;}
+  /* 서브탭 (ELT/초중등/고등) — 시리즈 배너 전환 */
+  .bm-tabs{display:flex;gap:8px;background:#fff;padding:0 20px;border-bottom:1px solid var(--line);}
+  .bm-tab2{flex:none;padding:16px 4px;margin-right:20px;font-size:16px;font-weight:500;color:#a9a9a9;background:none;border:0;position:relative;cursor:pointer;font-family:inherit;}
+  .bm-tab2.on{color:var(--red);font-weight:700;}
+  .bm-tab2.on::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--red);}
+  /* 시리즈 배너 (테마별 색) */
+  .bm-series{background:#009f71;color:#fff;padding:28px 20px 32px;}
+  .bm-series.bm-g{background:#009f71;color:#fff;}
+  .bm-series.bm-b{background:#2f74d1;color:#fff;}
+  .bm-series.bm-y{background:#e1c300;color:#1d1717;}
+  .bm-series.bm-y .bm-s-more,.bm-series.bm-y .bm-pill,.bm-series.bm-y .bm-book .nm,.bm-series.bm-y .bm-book .pr{color:#1d1717;}
+  .bm-series.bm-y .bm-pill.on{background:#1d1717;color:#fff;}
+  .bm-series.bm-y .bm-book .cart{background-color:#1d1717;}
+  .bm-s-title{font-family:var(--display);font-weight:800;font-size:26px;line-height:1.32;letter-spacing:-.01em;word-break:keep-all;}
+  .bm-s-more{display:inline-flex;align-items:center;gap:4px;margin-top:14px;font-size:14px;color:#fff;text-decoration:none;}
+  .bm-s-more .t{text-decoration:underline;text-underline-offset:3px;}
+  .bm-s-more::after{content:"›";font-size:16px;}
+  .bm-pills{display:flex;gap:6px;margin-top:24px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}
+  .bm-pills::-webkit-scrollbar{display:none;}
+  .bm-pill{flex:none;padding:8px 18px;border-radius:999px;background:transparent;color:#fff;font-size:14px;font-weight:500;white-space:nowrap;cursor:pointer;border:0;font-family:inherit;opacity:.92;}
+  .bm-pill.on{background:#1d1717;color:#fff;font-weight:700;opacity:1;}
+  .bm-books{display:flex;gap:12px;margin-top:20px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;padding-bottom:4px;-webkit-overflow-scrolling:touch;}
+  .bm-books::-webkit-scrollbar{display:none;}
+  .bm-book{flex:none;width:130px;}
+  .bm-book .cv{position:relative;width:130px;height:173px;}
+  .bm-book .cv img{width:100%;height:100%;object-fit:cover;border-radius:8px;box-shadow:3px 6px 13px rgba(0,0,0,.18);display:block;}
+  .bm-book .cart{position:absolute;right:8px;bottom:8px;width:40px;height:40px;border:0;border-radius:999px;background:#1d1717 url("assets/ic_cart_white.svg") center/17px no-repeat;cursor:pointer;}
+  .bm-book .nm{font-size:13px;color:#fff;margin-top:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .bm-book .pr{display:flex;gap:6px;align-items:baseline;font-family:var(--display);font-weight:700;font-size:14px;margin-top:4px;color:#fff;}
+  /* 프로모션 배너 (하단, 둥근 카드 + 좌우 peek 스와이프 캐러셀) */
+  .bm-promo{padding:20px 0 4px;}
+  .bm-promo-track{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 20px;scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;}
+  .bm-promo-track::-webkit-scrollbar{display:none;}
+  .bm-pbn{flex:0 0 calc(100% - 56px);scroll-snap-align:center;box-sizing:border-box;min-height:154px;border-radius:16px;padding:22px;display:flex;align-items:center;position:relative;color:#fff;text-decoration:none;overflow:hidden;background-color:#3269a4;background-repeat:no-repeat;background-position:right center;background-size:cover;}
+  .bm-pbn .tx{display:flex;flex-direction:column;gap:8px;z-index:1;max-width:64%;}
+  .bm-pbn .lb{align-self:flex-start;font-size:13px;font-weight:700;text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1.5px;}
+  .bm-pbn .t{font-family:var(--display);font-weight:800;font-size:20px;line-height:1.32;word-break:keep-all;}
+  .bm-pbn .deco{position:absolute;right:0;top:0;bottom:0;width:38%;z-index:0;}
+  .bm-pbn .deco i{position:absolute;border-radius:50%;background:rgba(255,255,255,.2);}
+  .bm-pbn .deco i:nth-child(1){width:52%;aspect-ratio:1;right:8%;top:16%;}
+  .bm-pbn .deco i:nth-child(2){width:30%;aspect-ratio:1;right:50%;bottom:16%;border-radius:22%;background:rgba(255,255,255,.32);}
+  .bm-pbn .deco i:nth-child(3){width:20%;aspect-ratio:1;right:6%;bottom:24%;background:rgba(255,255,255,.26);}
+  .bm-pbn-ind{position:absolute;right:14px;top:14px;background:rgba(0,0,0,.32);color:#fff;font-size:12px;font-weight:700;padding:4px 11px;border-radius:999px;letter-spacing:.5px;z-index:2;}
 }
 
 /* ===== [롤링 비교] 크게 도는 버전: 배너 박스 캐러셀(이전/현재/다음) + 카테고리 흰 박스 고정 오버레이 =====
@@ -534,6 +592,15 @@
     <!-- 양쪽 끝 인접 배너 peek(옆에 더 있다는 인지) -->
     <span class="mb-hero-peek left" id="mbPeekL" aria-hidden="true"></span>
     <span class="mb-hero-peek right" id="mbPeekR" aria-hidden="true"></span>
+  </section>
+
+  <!-- ===== 모바일 전용 히어로(시안 B): 시리즈 배너(상단) / 프로모션 배너(하단) 분리 ===== -->
+  <section class="bm-hero" id="bmHero" aria-label="시리즈·프로모션 배너">
+    <nav class="bm-tabs" id="bmTabs" aria-label="교재 카테고리"></nav>
+    <div class="bm-series" id="bmSeries"></div>
+    <div class="bm-promo">
+      <div class="bm-promo-track" id="bmPromoTrack"></div>
+    </div>
   </section>
 
   <!-- ===== MAIN ICONS ===== -->
@@ -1401,7 +1468,7 @@
   /* ---------- 인기교재: A(index) ELT 카드(.m2-card) 스와이프 (PC=화살표, 터치=스와이프) ---------- */
   (function(){
     var track=document.getElementById('mbPop'); if(!track) return;
-    var TITLES=['Phonics Code 1: Student Book','Read it Starter 1','Subject Link 1: Student Book','주니어 리딩튜터 1','능률 VOCA 초등','Grammar Zone 입문편','Phonics Code 3: Student Book'];
+    var TITLES=['Phonics Code 1: Student Book','Read it Starter 1','Subject Link 1: Student Book','주니어 리딩튜터 1','능률 VOCA 초등','Grammar Zone 입문편','Phonics Code 3: Student Book','열중 중학영어 1'];
     function card(t,i){
       return '<article class="m2-card">'
         +'<div class="box"><img src="assets/'+COVERS[i%COVERS.length]+'" alt=""><button type="button" class="cart" aria-label="장바구니 담기"></button></div>'
@@ -1421,6 +1488,55 @@
       if(e.target.closest('.cart')){ e.preventDefault(); alert('장바구니에 상품을 담았습니다.'); return; }
       var c=e.target.closest('.m2-card'); if(c && !e.target.closest('a')) location.href='교재상세.html';
     },true);
+  })();
+
+  /* ---------- 모바일 전용 히어로: 시리즈 배너(pill 전환) + 프로모션 배너(peek 스와이프 자동롤링) ---------- */
+  (function(){
+    var host=document.getElementById('bmHero'); if(!host) return;
+    var COVERS=['pc_cover_1.png','pc_cover_2.png','pc_cover_3.png','pc_cover_4.png','pc_cover_5.png'];
+    function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+    /* 시리즈 배너: 서브탭(ELT/초중등/고등)으로 테마·시리즈 전환, pill로 표지 교체 */
+    var SERIES=[
+      {cat:'ELT',theme:'bm-g',title:'스스로 읽는 힘을 키워주는 Phonics Code',more:'ELT 전체보기',pills:['Phonics Code','Read it','Subject Link','주니어 리딩튜터','능률Voca초등']},
+      {cat:'초/중등 영어',theme:'bm-b',title:'내신부터 서술형까지, 중등 영어 완성',more:'초/중등 전체보기',pills:['중학영문법총정리','능률VOCA','리딩튜터','열중 중학영어','1316 GRAMMAR']},
+      {cat:'고등',theme:'bm-y',title:'수능 실전 감각을 키우는 고등 라인업',more:'고등 전체보기',pills:['올림포스','능률VOCA 수능','빠른독해 바른독해','수능만만','블랙라벨']}
+    ];
+    var sEl=document.getElementById('bmSeries'), tabsEl=document.getElementById('bmTabs'), curCat=0;
+    function books(nm){var o='';for(var i=0;i<5;i++){o+='<div class="bm-book"><div class="cv"><img src="assets/'+COVERS[i%5]+'" alt=""><button type="button" class="cart" aria-label="장바구니 담기"></button></div><p class="nm">'+esc(nm+' '+(i+1))+'</p><p class="pr"><span class="dc">10%</span><span class="now">13,500원</span></p></div>';}return o;}
+    function renderSeries(ci){ var S=SERIES[ci]; sEl.className='bm-series '+S.theme;
+      sEl.innerHTML='<h2 class="bm-s-title">'+esc(S.title)+'</h2>'
+        +'<a class="bm-s-more" href="리스트_교재구매.html"><span class="t">'+esc(S.more)+'</span></a>'
+        +'<div class="bm-pills">'+S.pills.map(function(p,i){return '<button type="button" class="bm-pill'+(i===0?' on':'')+'" data-s="'+i+'">'+esc(p)+'</button>';}).join('')+'</div>'
+        +'<div class="bm-books" id="bmBooks">'+books(S.pills[0])+'</div>';
+    }
+    tabsEl.innerHTML=SERIES.map(function(S,i){return '<button type="button" class="bm-tab2'+(i===0?' on':'')+'" data-c="'+i+'">'+esc(S.cat)+'</button>';}).join('');
+    renderSeries(0);
+    tabsEl.addEventListener('click',function(e){ var b=e.target.closest('.bm-tab2'); if(!b)return; curCat=+b.getAttribute('data-c'); tabsEl.querySelectorAll('.bm-tab2').forEach(function(x){x.classList.remove('on');}); b.classList.add('on'); renderSeries(curCat); });
+    sEl.addEventListener('click',function(e){
+      var p=e.target.closest('.bm-pill');
+      if(p){ sEl.querySelectorAll('.bm-pill').forEach(function(x){x.classList.remove('on');}); p.classList.add('on'); document.getElementById('bmBooks').innerHTML=books(SERIES[curCat].pills[+p.getAttribute('data-s')]); return; }
+      if(e.target.closest('.cart')){ e.preventDefault(); alert('장바구니에 상품을 담았습니다.'); }
+    });
+    /* 프로모션 배너 (하단): 둥근 카드 peek 캐러셀 */
+    var PROMOS=[
+      {img:'hero_1.png',color:'#3269a4',lb:'이벤트',t:'온라인 영어 레벨테스트\nNELT 무료체험',href:'#'},
+      {color:'#6c4bd1',lb:'세미나',t:'2학기, 함께 준비하는\n혼공 강의 세미나',href:'세미나상세.html'},
+      {color:'#f0821e',lb:'예비중 추천',t:'중학 대비,\n지금 시작하세요',href:'리스트_교재구매.html'}
+    ];
+    var track=document.getElementById('bmPromoTrack'), n=PROMOS.length;
+    track.innerHTML=PROMOS.map(function(p,i){
+      var bg=p.img?('background-image:url(assets/'+p.img+');background-color:'+p.color):('background-color:'+p.color);
+      var deco=p.img?'':'<div class="deco" aria-hidden="true"><i></i><i></i><i></i></div>';
+      return '<a class="bm-pbn" href="'+p.href+'" style="'+bg+'"><div class="tx"><span class="lb">'+esc(p.lb)+'</span><span class="t">'+esc(p.t).replace(/\n/g,'<br>')+'</span></div>'+deco+'<span class="bm-pbn-ind">'+(i+1)+' / '+n+'</span></a>';
+    }).join('');
+    var cards=[].slice.call(track.children), cur=0, timer=null, paused=false, st=null;
+    function goTo(i){ cur=(i+n)%n; var c=cards[cur]; if(c) track.scrollTo({left:c.offsetLeft-(track.clientWidth-c.clientWidth)/2, behavior:'smooth'}); }
+    function play(){ stop(); timer=setInterval(function(){ if(!paused) goTo(cur+1); },4500); }
+    function stop(){ if(timer){clearInterval(timer);timer=null;} }
+    track.addEventListener('scroll',function(){ if(st)clearTimeout(st); st=setTimeout(function(){ var mid=track.scrollLeft+track.clientWidth/2, best=0,bd=1e9; cards.forEach(function(el,i){ var ctr=el.offsetLeft+el.clientWidth/2, d=Math.abs(ctr-mid); if(d<bd){bd=d;best=i;} }); cur=best; },90); },{passive:true});
+    track.addEventListener('pointerdown',function(){ paused=true; });
+    window.addEventListener('pointerup',function(){ setTimeout(function(){ paused=false; },600); });
+    if(window.matchMedia('(max-width:767px)').matches) play();
   })();
 })();
 </script>
