@@ -1555,9 +1555,9 @@
     }
     tabsEl.innerHTML=SERIES.map(function(S,i){return '<button type="button" class="bm-tab2'+(i===0?' on':'')+'" data-c="'+i+'">'+esc(S.cat)+'</button>';}).join('');
     /* 서브탭(ELT/초중등/고등) 자동 롤링 — 활성 탭이 순환하며 시리즈 배너 전환. 사용자 클릭 시 타이머 리셋 */
-    var catTimer=null;
+    var catTimer=null, catHeld=false, catResumeT=null;
     function setCat(ci){ curCat=((ci%SERIES.length)+SERIES.length)%SERIES.length; tabsEl.querySelectorAll('.bm-tab2').forEach(function(x,i){x.classList.toggle('on',i===curCat);}); renderSeries(curCat); }
-    function playCat(){ stopCat(); if(window.matchMedia('(max-width:1023px)').matches) catTimer=setInterval(function(){ setCat(curCat+1); },4500); }
+    function playCat(){ stopCat(); if(window.matchMedia('(max-width:1023px)').matches) catTimer=setInterval(function(){ if(!catHeld) setCat(curCat+1); },4500); }
     function stopCat(){ if(catTimer){clearInterval(catTimer);catTimer=null;} }
     setCat(0);
     tabsEl.addEventListener('click',function(e){ var b=e.target.closest('.bm-tab2'); if(!b)return; setCat(+b.getAttribute('data-c')); playCat(); });
@@ -1566,6 +1566,15 @@
       if(p){ sEl.querySelectorAll('.bm-pill').forEach(function(x){x.classList.remove('on');}); p.classList.add('on'); document.getElementById('bmBooks').innerHTML=books(SERIES[curCat].pills[+p.getAttribute('data-s')]); playCat(); return; }
       if(e.target.closest('.cart')){ e.preventDefault(); alert('장바구니에 상품을 담았습니다.'); }
     });
+    /* 시리즈 배너 터치 중에는 서브탭 자동 롤링 정지 → 손 떼면 0.6초 뒤 재개 (스와이프 중 테마 전환 방지) */
+    function catHold(){ catHeld=true; clearTimeout(catResumeT); }
+    function catRelease(){ clearTimeout(catResumeT); catResumeT=setTimeout(function(){ catHeld=false; },600); }
+    sEl.addEventListener('touchstart',catHold,{passive:true});
+    sEl.addEventListener('touchend',catRelease,{passive:true});
+    sEl.addEventListener('touchcancel',catRelease,{passive:true});
+    sEl.addEventListener('pointerdown',catHold);
+    sEl.addEventListener('pointerup',catRelease);
+    sEl.addEventListener('pointercancel',catRelease);
     playCat();
     /* 프로모션 배너 (하단): 둥근 카드 peek 캐러셀 */
     var PROMOS=[
@@ -1582,7 +1591,7 @@
     /* 무한 루프 + 양쪽 peek(index 상단 롤링과 동일): 3세트(클론) 렌더 후 '가운데 세트'에서 시작 →
        항상 왼쪽=이전 배너, 오른쪽=다음 배너가 노출. 오른쪽→왼쪽으로 끊김 없이 순환(가장자리 도달 시 가운데로 순간 복귀). */
     track.innerHTML=[].concat(PROMOS,PROMOS,PROMOS).map(pbnHTML).join('');
-    var cards=[].slice.call(track.children), cur=n, timer=null, paused=false, st=null, resumeT=null, autoScrolling=false, asT=null;
+    var cards=[].slice.call(track.children), cur=n, timer=null, paused=false, st=null, resumeT=null, autoScrolling=false, asT=null, held=false, heldResumeT=null;
     function centerOf(i){ var c=cards[i]; return c?c.offsetLeft-(track.clientWidth-c.clientWidth)/2:0; }
     function markCenter(idx){ cards.forEach(function(c,i){ c.classList.toggle('is-center', i===idx); }); } /* 가운데 배너에만 인디케이터 */
     function scrollToIdx(i, smooth){ autoScrolling=true; clearTimeout(asT); asT=setTimeout(function(){ autoScrolling=false; },900); markCenter(i); track.scrollTo({left:centerOf(i), behavior:smooth?'smooth':'auto'}); }
@@ -1590,13 +1599,19 @@
       if(cur>=2*n){ cur-=n; scrollToIdx(cur,false); } else if(cur<n){ cur+=n; scrollToIdx(cur,false); }
     }
     function next(){ cur++; scrollToIdx(cur, true); if(cur>=2*n){ setTimeout(normalize, 650); } }
-    function play(){ stop(); timer=setInterval(function(){ if(!paused) next(); },4500); }
+    function play(){ stop(); timer=setInterval(function(){ if(!paused && !held) next(); },4500); }
     function stop(){ if(timer){clearInterval(timer);timer=null;} }
-    /* 사용자 스와이프/터치 중에는 일시정지 → 3초 뒤 재개. pointercancel 고착 방지 */
+    /* 손가락을 대고 있는 동안(held)엔 무조건 정지, 손 떼면 0.6초 뒤 재개. 스크롤 관성 구간은 pauseAwhile(3초)이 담당 */
     function pauseAwhile(){ paused=true; clearTimeout(resumeT); resumeT=setTimeout(function(){ paused=false; },3000); }
+    function pHold(){ held=true; clearTimeout(heldResumeT); }
+    function pRelease(){ clearTimeout(heldResumeT); heldResumeT=setTimeout(function(){ held=false; },600); }
     track.addEventListener('scroll',function(){ if(st)clearTimeout(st); st=setTimeout(function(){ var mid=track.scrollLeft+track.clientWidth/2, best=0,bd=1e9; cards.forEach(function(el,i){ var ctr=el.offsetLeft+el.clientWidth/2, d=Math.abs(ctr-mid); if(d<bd){bd=d;best=i;} }); cur=best; markCenter(cur); if(!autoScrolling) normalize(); }, 120); if(!autoScrolling) pauseAwhile(); },{passive:true});
-    track.addEventListener('pointerdown',pauseAwhile);
-    track.addEventListener('touchstart',pauseAwhile,{passive:true});
+    track.addEventListener('pointerdown',pHold);
+    track.addEventListener('touchstart',pHold,{passive:true});
+    track.addEventListener('pointerup',pRelease);
+    track.addEventListener('pointercancel',pRelease);
+    track.addEventListener('touchend',pRelease,{passive:true});
+    track.addEventListener('touchcancel',pRelease,{passive:true});
     if(window.matchMedia('(max-width:1023px)').matches){ scrollToIdx(n,false); play(); }
   })();
 })();
