@@ -11,9 +11,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- Pretendard (design font) via CDN, with Noto Sans KR fallback -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260815fy">
-<script src="js/layout.js?v=20260815fy" defer></script>
-<script src="js/search.js?v=20260815fy" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260815fz">
+<script src="js/layout.js?v=20260815fz" defer></script>
+<script src="js/search.js?v=20260815fz" defer></script>
 <style>
 /* ===== 메인 시안 A (메인_2) 전용 ===== */
 /* 맞춤교재 세트 애니 아이콘 */
@@ -475,7 +475,7 @@
   .mb-bn-book{flex:0 0 96px;}
   .mb-bn-book .cart{width:32px;height:32px;background-size:14px;bottom:-12px;}
   .mb-bn-book:nth-child(n+5){display:flex;}
-  .mb-pop{padding:32px 0 8px;}
+  .mb-pop{padding:56px 0 8px;} /* 주요 아이콘↔인기교재 타이틀 56px */
   .mb-pop-t{font-size:22px;margin-bottom:16px;text-align:left;} /* 모바일: 인기교재 타이틀 좌측정렬 */
   .m2-sets-t{text-align:left;} /* 모바일: 맞춤 교재 세트 타이틀 좌측정렬 */
   /* 인기교재 = index ELT 리스트와 동일(2행 그리드·2.5열 노출·가로 스와이프), 알약 탭만 없음 */
@@ -497,10 +497,10 @@
   .mb-hero{display:none;}          /* 기존 모바일 히어로 숨김 → 분리형 히어로 사용 */
   .bm-hero{display:block;}
   /* 서브탭 (ELT/초중등/고등) — 시리즈 배너 전환 */
-  .bm-tabs{display:flex;gap:8px;background:#fff;padding:0 20px;border-bottom:1px solid var(--line);}
-  .bm-tab2{flex:none;padding:16px 4px;margin-right:20px;font-size:16px;font-weight:500;color:#a9a9a9;background:none;border:0;position:relative;cursor:pointer;font-family:inherit;}
+  .bm-tabs{display:flex;justify-content:space-between;background:#fff;padding:14px 28px;} /* 탭 넓게 분산 */
+  .bm-tab2{flex:none;padding:6px 2px;font-size:14px;font-weight:500;color:#a9a9a9;background:none;border:0;position:relative;cursor:pointer;font-family:inherit;} /* 14px */
   .bm-tab2.on{color:var(--red);font-weight:700;}
-  .bm-tab2.on::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--red);}
+  .bm-tab2.on::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--red);} /* 빨간 라인이 글씨 바로 밑 */
   /* 시리즈 배너 (테마별 색) */
   .bm-series{background:#009f71;color:#fff;padding:56px 20px;} /* 위아래 56 */
   .bm-series.bm-g{background:#009f71;color:#fff;}
@@ -526,10 +526,10 @@
   .bm-book .nm{font-size:12px;color:#fff;opacity:.7;margin-top:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;} /* 12px · 위 16 · opacity 70% */
   .bm-book .pr{display:flex;gap:6px;align-items:baseline;justify-content:center;font-family:var(--display);font-weight:700;font-size:12px;margin-top:4px;color:#fff;} /* 12px · 위 4 · 중앙 */
   /* 프로모션 배너 (하단, 둥근 카드 + 좌우 peek 스와이프 캐러셀) */
-  .bm-promo{padding:20px 0 4px;}
-  .bm-promo-track{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 20px;scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;}
+  .bm-promo{padding:24px 0 0;} /* 시리즈↔프로모션 24px · 프로모션 아래 24px는 아이콘 상단 padding이 담당 */
+  .bm-promo-track{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 7vw;scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;} /* 프로모션 카드 사이 8px */
   .bm-promo-track::-webkit-scrollbar{display:none;}
-  .bm-pbn{flex:0 0 calc(100% - 56px);scroll-snap-align:center;box-sizing:border-box;min-height:154px;border-radius:16px;padding:22px;display:flex;align-items:center;position:relative;color:#fff;text-decoration:none;overflow:hidden;background-color:#3269a4;background-repeat:no-repeat;background-position:right center;background-size:cover;}
+  .bm-pbn{flex:0 0 86vw;aspect-ratio:335/150;scroll-snap-align:center;box-sizing:border-box;border-radius:12px;padding:22px;display:flex;align-items:center;position:relative;color:#fff;text-decoration:none;overflow:hidden;background-color:#3269a4;background-repeat:no-repeat;background-position:right center;background-size:cover;} /* index 배너와 동일: 86vw · 335/150 · radius12 · gap12 */
   .bm-pbn .tx{display:flex;flex-direction:column;gap:8px;z-index:1;max-width:64%;}
   .bm-pbn .lb{align-self:flex-start;font-size:13px;font-weight:700;text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1.5px;}
   .bm-pbn .t{font-family:var(--display);font-weight:800;font-size:20px;line-height:1.32;word-break:keep-all;}
@@ -1499,7 +1499,7 @@
     var SERIES=[
       {cat:'ELT',theme:'bm-g',title:'스스로 읽는 힘을 키워주는 Phonics Code',more:'ELT 전체보기',pills:['Phonics Code','Read it','Subject Link','주니어 리딩튜터','능률Voca초등']},
       {cat:'초/중등 영어',theme:'bm-b',title:'내신부터 서술형까지, 중등 영어 완성',more:'초/중등 전체보기',pills:['중학영문법총정리','능률VOCA','리딩튜터','열중 중학영어','1316 GRAMMAR']},
-      {cat:'고등',theme:'bm-y',title:'수능 실전 감각을 키우는 고등 라인업',more:'고등 전체보기',pills:['올림포스','능률VOCA 수능','빠른독해 바른독해','수능만만','블랙라벨']}
+      {cat:'고등 영어',theme:'bm-y',title:'수능 실전 감각을 키우는 고등 라인업',more:'고등 전체보기',pills:['올림포스','능률VOCA 수능','빠른독해 바른독해','수능만만','블랙라벨']}
     ];
     var sEl=document.getElementById('bmSeries'), tabsEl=document.getElementById('bmTabs'), curCat=0;
     function books(nm){var o='';for(var i=0;i<5;i++){o+='<div class="bm-book"><div class="cv"><img src="assets/'+COVERS[i%5]+'" alt=""><button type="button" class="cart" aria-label="장바구니 담기"></button></div><p class="nm">'+esc(nm+' '+(i+1))+'</p><p class="pr"><span class="dc">10%</span><span class="now">13,500원</span></p></div>';}return o;}
