@@ -812,65 +812,25 @@
   else boot();
 })();
 
-/* ===== 학습자료 다운로드 팝업 =====
+/* ===== 멀티다운로드 새창 팝업 =====
    오픈 위치: 리스트_학습자료 다운로드 아이콘(.pres-item[개수]) / 교재상세 상단 우측 아이콘(.res-chip) /
-   학습자료 선택·전체 다운로드 버튼(.rt-actions a). 가운데 테이블은 외부 솔루션 영역(목업은 정적 표 사용). */
+   학습자료 선택·전체 다운로드 버튼(.rt-actions a). window.open 새창으로 열림.
+   가운데 파일목록은 외부(타사) iframe 프레임, 껍데기(타이틀·다운로드 버튼)만 자사 디자인. */
 (function(){
-  var ROWS='<div class="rgrid-row"><span class="c-chk"><input type="checkbox" class="rchk"></span><span class="c-gu"><span class="gubun all">전체</span></span><span class="c-ty">정답지</span><span class="c-nm">L1 정답 및 해설</span><span class="c-dl"><img src="assets/ic_download.svg" alt="다운로드"></span></div>'
-    +'<div class="rgrid-row"><span class="c-chk"><input type="checkbox" class="rchk"></span><span class="c-gu"><span class="gubun member">회원</span></span><span class="c-ty">워크시트</span><span class="c-nm">Unit 1~5 워크시트</span><span class="c-dl"><img src="assets/ic_download.svg" alt="다운로드"></span></div>'
-    +'<div class="rgrid-row"><span class="c-chk"><input type="checkbox" class="rchk"></span><span class="c-gu"><span class="gubun member">회원</span></span><span class="c-ty">정답지</span><span class="c-nm">L1 정답 및 해설</span><span class="c-dl"><img src="assets/ic_download.svg" alt="다운로드"></span></div>';
-  var TEACHER='<div class="teacher-banner"><div class="tb-rows">'
-    +'<div class="tb-row"><span class="c-chk"><input type="checkbox" class="rchk" disabled aria-hidden="true" tabindex="-1"></span><span class="c-gu"><span class="gubun teacher">선생님</span></span><span class="c-ty">선생님자료</span><span class="c-nm">어휘리스트, MP3, 정답 &amp; 해설, 워크시트 등</span></div>'
-    +'<div class="tb-row"><span class="c-chk"><input type="checkbox" class="rchk" disabled aria-hidden="true" tabindex="-1"></span><span class="c-gu"><span class="gubun teacher">선생님</span></span><span class="c-ty">E-book</span><span class="c-nm">온라인 교재 서비스</span></div>'
-    +'<div class="tb-row"><span class="c-chk"><input type="checkbox" class="rchk" disabled aria-hidden="true" tabindex="-1"></span><span class="c-gu"><span class="gubun teacher">선생님</span></span><span class="c-ty">어휘출제마법사</span><span class="c-nm">어휘 문제 출제 서비스</span></div>'
-    +'<div class="tb-row"><span class="c-chk"><input type="checkbox" class="rchk" disabled aria-hidden="true" tabindex="-1"></span><span class="c-gu"><span class="gubun teacher">선생님</span></span><span class="c-ty">문법문제뱅크</span><span class="c-nm">문법 문제 출제 서비스</span></div>'
-    +'</div><div class="tb-cta"><span class="tb-cta-text">이 교재를 사용하는<br>선생님이라면</span><a class="tb-cta-btn" href="#">NE Tutor 바로가기</a></div></div>';
-  var TABS=['전체','Teaching Materials','수업용 PPT','Word Lists · 회원','정답지 · 전체','듣기 MP3 음원','어휘 리스트','단원별 평가지','수행평가 자료','본문 해석 PDF']
-    .map(function(t,i){ return '<a'+(i===0?' class="on"':'')+'>'+t+'</a>'; }).join('');
-  var HTML='<div class="dl-modal-dim" id="dlModalDim"></div>'
-    +'<div class="dl-modal" id="dlModal" role="dialog" aria-modal="true" aria-label="학습자료 다운로드">'
-    +'<div class="dl-modal-head"><h2 class="dl-modal-title">학습자료 다운로드</h2><button class="dl-modal-x" type="button" aria-label="닫기">&times;</button></div>'
-    +'<div class="dl-modal-body">'
-    +'<div class="s-res-head"><div class="s-res-head-l"><div class="rfilter">'+TABS+'</div></div>'
-    +'<div class="res-qr"><a class="res-qr-item"><span class="qbox"><img src="assets/ic_res_qr.svg" alt=""></span><span class="qlb">모바일학습</span></a>'
-    +'<a class="res-qr-item"><span class="qbox"><img src="assets/ic_res_qr.svg" alt=""></span><span class="qlb">MP3음원</span></a></div></div>'
-    +'<div class="rtwrap"><div class="rt-tablewrap"><div class="rgrid">'
-    +'<div class="rgrid-head"><span class="c-chk"><input type="checkbox" class="rchk"></span><span class="c-gu">구분</span><span class="c-ty">자료유형</span><span class="c-nm">자료명</span><span class="c-dl">다운로드</span></div>'
-    +ROWS+TEACHER
-    +'</div></div></div></div>'
-    +'<div class="dl-modal-foot"><div class="rt-actions"><a href="#" class="sel"><span class="ico"><img src="assets/ic_download.svg" alt=""></span>선택 다운로드</a>'
-    +'<a href="#"><span class="ico"><img src="assets/ic_download.svg" alt=""></span>전체 다운로드</a></div></div>'
-    +'</div>';
-
-  var dim, modal, injected=false;
-  function inject(){
-    if(injected) return;
-    var wrap=document.createElement('div'); wrap.innerHTML=HTML;
-    while(wrap.firstChild) document.body.appendChild(wrap.firstChild);
-    dim=document.getElementById('dlModalDim'); modal=document.getElementById('dlModal');
-    dim.addEventListener('click',close);
-    modal.querySelector('.dl-modal-x').addEventListener('click',close);
-    modal.querySelectorAll('.rfilter a').forEach(function(a){ a.addEventListener('click',function(){ modal.querySelectorAll('.rfilter a').forEach(function(x){x.classList.remove('on');}); a.classList.add('on'); }); });
-    modal.querySelectorAll('.dl-modal-foot .rt-actions a').forEach(function(a){ a.addEventListener('click',function(e){ e.preventDefault(); toast(a.classList.contains('sel')?'선택한 자료를 다운로드합니다.':'전체 자료를 다운로드합니다.'); }); });
-    injected=true;
+  function openWin(){
+    var w=760, h=680;
+    var bx=(typeof window.screenX==='number')?window.screenX:0;
+    var by=(typeof window.screenY==='number')?window.screenY:0;
+    var left=Math.round(bx+Math.max(0,((window.outerWidth||w)-w)/2));
+    var top=Math.round(by+Math.max(0,((window.outerHeight||h)-h)/3));
+    window.open('멀티다운로드.html','neMultiDown','width='+w+',height='+h+',left='+left+',top='+top+',scrollbars=no,resizable=yes');
   }
-  function open(){ inject(); dim.classList.add('open'); modal.classList.add('open'); document.body.style.overflow='hidden'; }
-  function close(){ if(!modal) return; dim.classList.remove('open'); modal.classList.remove('open'); document.body.style.overflow=''; }
-
-  var toastEl;
-  function toast(msg){
-    if(!toastEl){ toastEl=document.createElement('div'); toastEl.style.cssText='position:fixed;left:50%;bottom:40px;transform:translateX(-50%);background:rgba(29,23,23,.92);color:#fff;padding:12px 22px;border-radius:999px;font-size:14px;z-index:1300;opacity:0;transition:opacity .2s;pointer-events:none;'; document.body.appendChild(toastEl); }
-    toastEl.textContent=msg; toastEl.style.opacity='1';
-    clearTimeout(toastEl._t); toastEl._t=setTimeout(function(){ toastEl.style.opacity='0'; },1800);
-  }
-
-  document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&modal&&modal.classList.contains('open')) close(); });
   document.addEventListener('click',function(e){
     var chip=e.target.closest('.res-chip');
-    if(chip){ e.preventDefault(); open(); return; }
+    if(chip){ e.preventDefault(); openWin(); return; }
     var pres=e.target.closest('.pres-item');
-    if(pres && pres.querySelector('.pres-ct')){ e.preventDefault(); open(); return; }
+    if(pres && pres.querySelector('.pres-ct')){ e.preventDefault(); openWin(); return; }
     var act=e.target.closest('.rt-actions a');
-    if(act && !act.closest('.dl-modal')){ e.preventDefault(); open(); return; }
+    if(act){ e.preventDefault(); openWin(); return; }
   });
 })();

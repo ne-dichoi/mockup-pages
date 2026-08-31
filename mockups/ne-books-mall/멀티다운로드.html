@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>멀티다운로드</title>
+<style>
+  @font-face{font-family:'Paperlogy';font-weight:800;font-style:normal;font-display:swap;
+    src:url('https://fastly.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-8ExtraBold.woff2') format('woff2');}
+  @font-face{font-family:'Paperlogy';font-weight:700;font-style:normal;font-display:swap;
+    src:url('https://fastly.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-7Bold.woff2') format('woff2');}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  :root{--red:#E83828;--ink:#1D1717;--line:#e5e5e5;--display:'Paperlogy','Pretendard','Noto Sans KR',sans-serif;}
+  html,body{height:100%;}
+  body{font-family:'Pretendard','Apple SD Gothic Neo',sans-serif;color:var(--ink);background:#fff;
+    display:flex;flex-direction:column;padding:28px 28px 24px;}
+  /* 자사 디자인 = 타이틀 (페이퍼로지 22px) */
+  .md-title{font-family:var(--display);font-size:22px;font-weight:700;line-height:1.2;margin-bottom:18px;flex:none;}
+  /* 외부(타사) 프레임 영역 — 디자인 변경 불가, 여기 iframe이 들어옴 */
+  .md-frame{flex:1 1 auto;min-height:0;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fafafa;position:relative;}
+  .md-frame iframe{width:100%;height:100%;border:0;display:block;}
+  /* iframe 미표시(외부 서버 X-Frame 차단 등) 대비 안내 — 실제 서비스에선 타사 프레임이 렌더됨 */
+  .md-frame .frame-note{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;
+    color:#9a9a9a;font-size:14px;line-height:1.6;padding:24px;pointer-events:none;}
+  /* 자사 디자인 = 하단 다운로드 버튼 */
+  .md-foot{flex:none;display:flex;justify-content:flex-end;padding-top:20px;}
+  .md-dlbtn{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;border:0;border-radius:8px;
+    padding:14px 30px;font-size:15px;font-weight:600;cursor:pointer;}
+  .md-dlbtn:hover{filter:brightness(.95);}
+  .md-dlbtn svg{width:18px;height:18px;}
+</style>
+</head>
+<body>
+  <h1 class="md-title">멀티다운로드</h1>
+
+  <!-- 가운데 파일목록 표: 타사에서 제공하는 iframe 프레임 (디자인 변경 불가) -->
+  <div class="md-frame">
+    <div class="frame-note">파일 목록은 외부 다운로드 프레임(타사 제공)이<br>이 영역에 표시됩니다.</div>
+    <iframe src="https://upfile.neungyule.com/pages/neteacher_down_new/dx5/down_nebuildandclass_multi_v29.asp"
+      title="멀티다운로드 파일 목록" referrerpolicy="no-referrer"></iframe>
+  </div>
+
+  <!-- 자사 디자인 다운로드 버튼 -->
+  <div class="md-foot">
+    <button type="button" class="md-dlbtn" onclick="alert('선택한 파일을 다운로드합니다.');">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><polyline points="7 11 12 16 17 11"/><path d="M5 20h14"/></svg>
+      다운로드
+    </button>
+  </div>
+</body>
+</html>
