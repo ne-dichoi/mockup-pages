@@ -1566,15 +1566,17 @@
       if(p){ sEl.querySelectorAll('.bm-pill').forEach(function(x){x.classList.remove('on');}); p.classList.add('on'); document.getElementById('bmBooks').innerHTML=books(SERIES[curCat].pills[+p.getAttribute('data-s')]); playCat(); return; }
       if(e.target.closest('.cart')){ e.preventDefault(); alert('장바구니에 상품을 담았습니다.'); }
     });
-    /* 시리즈 배너 터치 중에는 서브탭 자동 롤링 정지 → 손 떼면 0.6초 뒤 재개 (스와이프 중 테마 전환 방지) */
-    function catHold(){ catHeld=true; clearTimeout(catResumeT); }
-    function catRelease(){ clearTimeout(catResumeT); catResumeT=setTimeout(function(){ catHeld=false; },600); }
-    sEl.addEventListener('touchstart',catHold,{passive:true});
-    sEl.addEventListener('touchend',catRelease,{passive:true});
-    sEl.addEventListener('touchcancel',catRelease,{passive:true});
-    sEl.addEventListener('pointerdown',catHold);
-    sEl.addEventListener('pointerup',catRelease);
-    sEl.addEventListener('pointercancel',catRelease);
+    /* 시리즈 배너를 터치/스와이프/스크롤하는 동안 서브탭 자동 롤링 정지.
+       교재이미지(.bm-books)·알약(.bm-pills)은 스크롤 컨테이너라 스와이프가 네이티브 스크롤로
+       전환되며 touchcancel이 날아옴 → touchend/cancel로 재개 판단하면 스와이프 도중 롤링됨.
+       그래서 '마지막 상호작용(터치·스크롤) 후 1.2초까지 정지' 방식으로 처리. 스크롤은 캡처로 내부 컨테이너까지 감지. */
+    function catBusy(){ catHeld=true; clearTimeout(catResumeT); catResumeT=setTimeout(function(){ catHeld=false; },1200); }
+    sEl.addEventListener('touchstart',catBusy,{passive:true});
+    sEl.addEventListener('touchmove',catBusy,{passive:true});
+    sEl.addEventListener('touchend',catBusy,{passive:true});
+    sEl.addEventListener('touchcancel',catBusy,{passive:true});
+    sEl.addEventListener('pointerdown',catBusy);
+    sEl.addEventListener('scroll',catBusy,true);
     playCat();
     /* 프로모션 배너 (하단): 둥근 카드 peek 캐러셀 */
     var PROMOS=[
