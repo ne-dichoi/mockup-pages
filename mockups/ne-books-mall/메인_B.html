@@ -386,26 +386,28 @@
 /* 우측 배너 뷰 */
 .mb-bn-view{flex:1 1 auto;min-width:0;position:relative;border-radius:16px;overflow:hidden;}
 .mb-bn-track{display:flex;transition:transform .5s cubic-bezier(.4,0,.2,1);}
-.mb-bn{position:relative;flex:0 0 100%;min-width:0;box-sizing:border-box;display:flex;align-items:center;justify-content:flex-start;gap:40px;padding:clamp(28px,3.6cqw,56px) clamp(20px,6cqw,80px);height:370px;container-type:inline-size;}
+.mb-bn{position:relative;flex:0 0 100%;min-width:0;box-sizing:border-box;display:flex;align-items:center;justify-content:flex-start;gap:clamp(16px,3cqw,40px);padding:clamp(28px,3.6cqw,56px) clamp(16px,4.5cqw,80px);height:370px;container-type:inline-size;}
 .mb-bn.g{background:#009f71;color:#fff;}
 .mb-bn.y{background:#e1c300;color:#1d1717;}
 .mb-bn.b{background:#2f74d1;color:#fff;}
 /* 시리즈 세로 탭 */
-.mb-bn-tabs{display:flex;flex-direction:column;gap:8px;flex:none;margin-left:-20px;}/* 좌측 여백 = padding 150 - 20 = 130 */
+.mb-bn-tabs{display:flex;flex-direction:column;gap:8px;flex:none;}/* 좌측 여백 = .mb-bn padding (좌우 동일) */
 .mb-tab{display:inline-flex;align-items:center;padding:8px 24px;border:0;background:none;border-radius:999px;font:inherit;font-size:14px;font-weight:400;color:inherit;cursor:pointer;white-space:nowrap;opacity:.9;}
 .mb-bn.y .mb-tab{color:#1d1717;}
 .mb-tab.on{font-weight:700;opacity:1;}
 .mb-bn.g .mb-tab.on,.mb-bn.b .mb-tab.on{background:#1d1717;color:#fff;}
 .mb-bn.y .mb-tab.on{background:#1d1717;color:#fff;}
 /* 배너 본문 */
-.mb-bn-main{flex:none;display:flex;flex-direction:column;gap:16px;margin-left:auto;margin-right:40px;}/* 콘텐츠=오른쪽 정렬. 우측 여백 = padding 150 + 40 = 190 */
+.mb-bn-main{flex:none;margin-left:auto;width:calc(5 * clamp(88px, 12cqw, 118px) + 32px);display:flex;flex-direction:column;gap:16px;}/* 폭=카드5장. 우측정렬 → 타이틀=카드 왼쪽, 전체보기=카드 오른쪽, 우측여백=좌측여백 */
 .mb-bn-head{display:flex;align-items:center;justify-content:space-between;gap:16px;}
 .mb-bn-head h3{font-family:var(--display);font-weight:700;font-size:24px;line-height:1.35;color:inherit;word-break:keep-all;}
 .mb-bn-more{display:inline-flex;align-items:center;gap:2px;font-size:14px;color:inherit;opacity:.8;text-decoration:none;white-space:nowrap;flex:none;}
 .mb-bn-more .t{text-decoration:underline;text-underline-offset:3px;}/* 텍스트만 밑줄, 화살표 밑엔 밑줄 없음 */
 .mb-bn-more::after{content:"›";font-size:16px;text-decoration:none;}
-.mb-bn-books{display:flex;gap:8px;}
-.mb-bn-book{position:relative;display:flex;flex-direction:column;gap:16px;align-items:center;flex:none;width:clamp(96px, 12cqw, 118px);} /* 좁은 배너에선 표지 축소(1024≈96) → 5카드 수용, 넓으면 118 복귀 */
+.mb-bn-books{display:flex;gap:8px;}/* main 폭=카드폭이라 자연히 카드가 채움. 타이틀은 위에서 카드 왼쪽에 정렬 */
+.mb-bn-book{position:relative;display:flex;flex-direction:column;gap:16px;align-items:center;flex:none;width:clamp(88px, 12cqw, 118px);} /* 좁은 배너에선 표지 축소(1024≈96) → 5카드 수용·가격 한 줄, 넓으면 118 복귀 */
+  .mb-bn-book .nm{max-width:100%;white-space:normal;} /* 교재명 카드폭 내 줄바꿈(겹침 방지) */
+  .mb-bn-book .pr{white-space:nowrap;} /* 가격은 한 줄 유지 */
 .mb-bn-book .cv{position:relative;width:100%;aspect-ratio:118/157;} /* 카드 폭에 맞춰 표지도 축소 → 겹침 방지 */
 .mb-bn-book .cv img{width:100%;height:100%;object-fit:cover;border-radius:2px;box-shadow:3px 6px 13px rgba(0,0,0,.15);display:block;}
 .mb-bn-book .cart{position:absolute;left:auto;right:6px;bottom:7px;width:40px;height:40px;border:0;border-radius:999px;background:#1d1717 url("assets/ic_cart_white.svg") center/17px no-repeat;cursor:pointer;}
