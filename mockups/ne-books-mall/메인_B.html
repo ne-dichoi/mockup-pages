@@ -11,9 +11,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- Pretendard (design font) via CDN, with Noto Sans KR fallback -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260815gc">
-<script src="js/layout.js?v=20260815gc" defer></script>
-<script src="js/search.js?v=20260815gc" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260815gd">
+<script src="js/layout.js?v=20260815gd" defer></script>
+<script src="js/search.js?v=20260815gd" defer></script>
 <style>
 /* ===== 메인 시안 A (메인_2) 전용 ===== */
 /* 맞춤교재 세트 애니 아이콘 */
@@ -1553,13 +1553,15 @@
       var deco=p.img?'':'<div class="deco" aria-hidden="true"><i></i><i></i><i></i></div>';
       return '<a class="bm-pbn" href="'+p.href+'" style="'+bg+'"><div class="tx"><span class="lb">'+esc(p.lb)+'</span><span class="t">'+esc(p.t).replace(/\n/g,'<br>')+'</span></div>'+deco+'<span class="bm-pbn-ind">'+(i+1)+' / '+n+'</span></a>';
     }).join('');
-    var cards=[].slice.call(track.children), cur=0, timer=null, paused=false, st=null;
-    function goTo(i){ cur=(i+n)%n; var c=cards[cur]; if(c) track.scrollTo({left:c.offsetLeft-(track.clientWidth-c.clientWidth)/2, behavior:'smooth'}); }
+    var cards=[].slice.call(track.children), cur=0, timer=null, paused=false, st=null, resumeT=null, autoScrolling=false, asT=null;
+    function goTo(i){ cur=((i%n)+n)%n; var c=cards[cur]; if(!c) return; autoScrolling=true; clearTimeout(asT); asT=setTimeout(function(){ autoScrolling=false; },800); track.scrollTo({left:c.offsetLeft-(track.clientWidth-c.clientWidth)/2, behavior:'smooth'}); }
     function play(){ stop(); timer=setInterval(function(){ if(!paused) goTo(cur+1); },4500); }
     function stop(){ if(timer){clearInterval(timer);timer=null;} }
-    track.addEventListener('scroll',function(){ if(st)clearTimeout(st); st=setTimeout(function(){ var mid=track.scrollLeft+track.clientWidth/2, best=0,bd=1e9; cards.forEach(function(el,i){ var ctr=el.offsetLeft+el.clientWidth/2, d=Math.abs(ctr-mid); if(d<bd){bd=d;best=i;} }); cur=best; },90); },{passive:true});
-    track.addEventListener('pointerdown',function(){ paused=true; });
-    window.addEventListener('pointerup',function(){ setTimeout(function(){ paused=false; },600); });
+    /* 사용자 스와이프/터치 중에는 자동롤링 일시정지 → 3초 뒤 재개. pointercancel로도 확실히 재개(고착 방지) */
+    function pauseAwhile(){ paused=true; clearTimeout(resumeT); resumeT=setTimeout(function(){ paused=false; },3000); }
+    track.addEventListener('scroll',function(){ if(st)clearTimeout(st); st=setTimeout(function(){ var mid=track.scrollLeft+track.clientWidth/2, best=0,bd=1e9; cards.forEach(function(el,i){ var ctr=el.offsetLeft+el.clientWidth/2, d=Math.abs(ctr-mid); if(d<bd){bd=d;best=i;} }); cur=best; },100); if(!autoScrolling) pauseAwhile(); },{passive:true});
+    track.addEventListener('pointerdown',pauseAwhile);
+    track.addEventListener('touchstart',pauseAwhile,{passive:true});
     if(window.matchMedia('(max-width:1023px)').matches) play();
   })();
 })();
