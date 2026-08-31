@@ -11,9 +11,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- Pretendard (design font) via CDN, with Noto Sans KR fallback -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260815ga">
-<script src="js/layout.js?v=20260815ga" defer></script>
-<script src="js/search.js?v=20260815ga" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260815gb">
+<script src="js/layout.js?v=20260815gb" defer></script>
+<script src="js/search.js?v=20260815gb" defer></script>
 <style>
 /* ===== 메인 시안 A (메인_2) 전용 ===== */
 /* 맞춤교재 세트 애니 아이콘 */
@@ -539,6 +539,24 @@
   .bm-pbn .deco i:nth-child(2){width:30%;aspect-ratio:1;right:50%;bottom:16%;border-radius:22%;background:rgba(255,255,255,.32);}
   .bm-pbn .deco i:nth-child(3){width:20%;aspect-ratio:1;right:6%;bottom:24%;background:rgba(255,255,255,.26);}
   .bm-pbn-ind{position:absolute;right:14px;top:14px;background:rgba(0,0,0,.32);color:#fff;font-size:12px;font-weight:700;padding:4px 11px;border-radius:999px;letter-spacing:.5px;z-index:2;}
+}
+
+/* ===== 태블릿(768~1023): 시리즈 배너는 모바일과 동일하되, 프로모션 배너·인기교재는 index 태블릿 비율로 ===== */
+@media (min-width:768px) and (max-width:1023px){
+  /* 프로모션 배너: index 태블릿과 동일(폭 min(86vw,720) · 비율 748/232 와이드) */
+  .bm-pbn{flex:0 0 min(86vw,720px);aspect-ratio:748/232;}
+  .bm-promo-track{padding:0 max(7vw, calc((100vw - 720px)/2));}
+  /* 인기교재: index 태블릿과 동일(단일행 flex · 280px · 정사각 박스) */
+  .mb-pop-row{display:flex;grid-auto-flow:row;grid-template-rows:none;gap:24px;scroll-snap-type:none;padding:0 20px 4px;}
+  .mb-pop-row .m2-card{flex:0 0 280px;width:280px;scroll-snap-align:none;}
+  .mb-pop-row .m2-card .box{aspect-ratio:1/1;}
+  .mb-pop-row .m2-card .box>img{top:16.5%;height:70%;}
+  .mb-pop-row .m2-card .cart{width:48px;height:48px;background-size:20px;right:19%;bottom:12%;}
+  .mb-pop-row .m2-card .name{font-size:16px;line-height:22px;margin-top:8px;}
+  .mb-pop-row .m2-card .price{margin-top:-2px;}
+  .mb-pop-row .m2-card .price .dc{display:inline;font-size:16px;}
+  .mb-pop-row .m2-card .price .now{font-size:16px;}
+  .mb-pop-row .m2-card .price .was{font-size:13px;}
 }
 
 /* ===== [롤링 비교] 크게 도는 버전: 배너 박스 캐러셀(이전/현재/다음) + 카테고리 흰 박스 고정 오버레이 =====
