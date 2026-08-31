@@ -11,9 +11,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- Pretendard (design font) via CDN, with Noto Sans KR fallback -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260815gg">
-<script src="js/layout.js?v=20260815gg" defer></script>
-<script src="js/search.js?v=20260815gg" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260815gh">
+<script src="js/layout.js?v=20260815gh" defer></script>
+<script src="js/search.js?v=20260815gh" defer></script>
 <style>
 /* ===== 메인 시안 A (메인_2) 전용 ===== */
 /* 맞춤교재 세트 애니 아이콘 */
@@ -1422,14 +1422,17 @@
       var N=CATS.length, TR='transform 1s cubic-bezier(0.4, 0, 0.2, 1)';
       var boxes=[].slice.call(track.children);
       track.style.transition='none'; track.style.transform='none'; track.style.width='100%'; track.style.height='370px'; track.style.position='relative';
-      boxes.forEach(function(b){ b.style.position='absolute'; b.style.top='0'; b.style.left='50%'; b.style.margin='0'; b.style.width='1255px'; });
-      /* left:50% = 레이아웃 중앙(스크롤바 제외, 아래 그리드와 동일 기준). translateX 오프셋만 부여 */
+      boxes.forEach(function(b){ b.style.position='absolute'; b.style.top='0'; b.style.left='50%'; b.style.margin='0'; });
+      /* 배너 박스 폭 반응형: 좁은 화면일수록 가운데 배너가 줄어들어 오른쪽 잘림 방지. 왼쪽 끝은 카테고리 우측(중앙-495)에 고정 */
+      var W=1255;
+      function applyW(){ var L=document.documentElement.clientWidth; W=Math.max(760, Math.min(1255, Math.floor(L/2)+470)); boxes.forEach(function(b){ b.style.width=W+'px'; }); }
+      /* left:50% = 레이아웃 중앙(스크롤바 제외). translateX 오프셋만 부여. slotX는 박스 폭 W의 함수 */
       function slotX(p){
         if(p<=-2) return '-3430px';                        /* 화면 밖 왼쪽 */
-        if(p===-1) return '-2055px';                       /* 이전: 오른쪽 끝(153)이 카테고리 박스 왼쪽에 딱 붙음(겹침0) → 둥근 모서리 온전히 노출, 텍스트까지 40px */
-        if(p===0)  return '-495px';                        /* 현재: 오른쪽=중앙+760=그리드 오른쪽 */
-        if(p===1)  return '800px';                         /* 다음: 현재 오른쪽 40px, 왼쪽 앞부분 노출 */
-        return '2095px';                                    /* 화면 밖 오른쪽 */
+        if(p===-1) return (-800 - W)+'px';                 /* 이전: 오른쪽 끝이 카테고리 박스 왼쪽(중앙-800)에 딱 붙음 */
+        if(p===0)  return '-495px';                        /* 현재: 왼쪽=카테고리 우측(중앙-495), 오른쪽=중앙-495+W */
+        if(p===1)  return (W - 455)+'px';                  /* 다음: 현재 오른쪽 40px 뒤 */
+        return (W + 840)+'px';                             /* 화면 밖 오른쪽 */
       }
       function wrapP(off){ off=((off%N)+N)%N; if(off>2) off-=N; return off; }
       function syncCatB(c){ catItems.forEach(function(a,ai){ a.classList.toggle('on', ai===((c%N)+N)%N); }); }
@@ -1454,7 +1457,8 @@
         if(focusTO) clearTimeout(focusTO);
         focusTO=setTimeout(function(){ if(curBox && !curBox.querySelector('.mb-tab.on')){ var t0=curBox.querySelector('.mb-tab'); if(t0) t0.classList.add('on'); } }, anim?1020:0);
       }
-      layout(false); syncCatB(0);
+      applyW(); layout(false); syncCatB(0);
+      window.addEventListener('resize', function(){ if(window.matchMedia('(min-width:1440px)').matches){ applyW(); layout(false); } }); /* 리사이즈 시 박스 폭 재계산 */
       function advanceB(){ cur=(cur+1)%N; syncCatB(cur); layout(true); } /* 인디케이터도 배너와 동시에 이동 */
       var timerB=setInterval(advanceB, 5500);
       var heroB=document.getElementById('mbHero');
