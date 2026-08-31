@@ -11,9 +11,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- Pretendard (design font) via CDN, with Noto Sans KR fallback -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260815gi">
-<script src="js/layout.js?v=20260815gi" defer></script>
-<script src="js/search.js?v=20260815gi" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260815gj">
+<script src="js/layout.js?v=20260815gj" defer></script>
+<script src="js/search.js?v=20260815gj" defer></script>
 <style>
 /* ===== 메인 시안 A (메인_2) 전용 ===== */
 /* 맞춤교재 세트 애니 아이콘 */
@@ -308,7 +308,7 @@
 @media (min-width:1280px){
   .m2-card{flex:0 0 calc((100% - 4 * 24px) / 5);} /* 가장 넓은 구간: 5장 꽉 참(반쪽 없음). 더 있음은 호버 화살표로 표시 */
 }
-@media (min-width:901px) and (max-width:1279px){
+@media (min-width:901px) and (max-width:1023px){
   .m2-card{flex:0 0 calc((100% - 4 * 24px) / 4.5);} /* 4장 + 반쪽 peek */
 }
 @media (min-width:768px) and (max-width:900px){
@@ -316,7 +316,7 @@
 }
 /* 맞춤교재세트: 3열(414px↑ 필요)이 안 맞는 좁은 화면(768~1399)에서는 깨지지 않게
    가로 스와이프(2개 + 반쪽 peek)로. 콜라주 교재는 카드 폭에 맞춰 반응형 축소 → 오버플로우 없음 */
-@media (min-width:768px) and (max-width:1399px){
+@media (min-width:768px) and (max-width:1023px){
   .m2-set-grid{display:flex;overflow-x:auto;scroll-snap-type:x proximity;gap:24px;scrollbar-width:none;-ms-overflow-style:none;padding-bottom:4px;}
   .m2-set-grid::-webkit-scrollbar{display:none;}
   .m2-set-card{flex:0 0 calc((100% - 2 * 24px) / 2.5);min-width:0;scroll-snap-align:start;} /* 2개 + 반쪽 peek */
@@ -386,7 +386,7 @@
 /* 우측 배너 뷰 */
 .mb-bn-view{flex:1 1 auto;min-width:0;position:relative;border-radius:16px;overflow:hidden;}
 .mb-bn-track{display:flex;transition:transform .5s cubic-bezier(.4,0,.2,1);}
-.mb-bn{position:relative;flex:0 0 100%;min-width:0;box-sizing:border-box;display:flex;align-items:center;justify-content:flex-start;gap:40px;padding:clamp(28px,3.6cqw,56px) clamp(24px,12cqw,150px);height:370px;container-type:inline-size;}
+.mb-bn{position:relative;flex:0 0 100%;min-width:0;box-sizing:border-box;display:flex;align-items:center;justify-content:flex-start;gap:40px;padding:clamp(28px,3.6cqw,56px) clamp(20px,6cqw,80px);height:370px;container-type:inline-size;}
 .mb-bn.g{background:#009f71;color:#fff;}
 .mb-bn.y{background:#e1c300;color:#1d1717;}
 .mb-bn.b{background:#2f74d1;color:#fff;}
@@ -405,8 +405,8 @@
 .mb-bn-more .t{text-decoration:underline;text-underline-offset:3px;}/* 텍스트만 밑줄, 화살표 밑엔 밑줄 없음 */
 .mb-bn-more::after{content:"›";font-size:16px;text-decoration:none;}
 .mb-bn-books{display:flex;gap:8px;}
-.mb-bn-book{position:relative;display:flex;flex-direction:column;gap:16px;align-items:center;flex:none;width:118px;}
-.mb-bn-book .cv{position:relative;width:118px;height:157px;}
+.mb-bn-book{position:relative;display:flex;flex-direction:column;gap:16px;align-items:center;flex:none;width:clamp(96px, 12cqw, 118px);} /* 좁은 배너에선 표지 축소(1024≈96) → 5카드 수용, 넓으면 118 복귀 */
+.mb-bn-book .cv{position:relative;width:100%;aspect-ratio:118/157;} /* 카드 폭에 맞춰 표지도 축소 → 겹침 방지 */
 .mb-bn-book .cv img{width:100%;height:100%;object-fit:cover;border-radius:2px;box-shadow:3px 6px 13px rgba(0,0,0,.15);display:block;}
 .mb-bn-book .cart{position:absolute;left:auto;right:6px;bottom:7px;width:40px;height:40px;border:0;border-radius:999px;background:#1d1717 url("assets/ic_cart_white.svg") center/17px no-repeat;cursor:pointer;}
 .mb-bn-book .nm{font-size:12px;opacity:.7;text-align:center;white-space:nowrap;}
@@ -493,7 +493,7 @@
 
 /* ===== 모바일 전용 히어로(시안 B): 시리즈 배너 상단 / 프로모션 배너 하단 분리 ===== */
 .bm-hero{display:none;}
-@media (max-width:1399px){ /* 태블릿·좁은 PC(≤1399)도 분리형 히어로 사용 (롤링 캐러셀은 ≥1400에서만) */
+@media (max-width:1023px){ /* 태블릿·좁은 PC(≤1399)도 분리형 히어로 사용 (롤링 캐러셀은 ≥1400에서만) */
   .mb-hero{display:none;}          /* 기존 롤링 히어로 숨김 → 분리형 히어로 사용 */
   .bm-hero{display:block;}
   /* 서브탭 (ELT/초중등/고등) — 시리즈 배너 전환 */
@@ -543,12 +543,12 @@
 }
 
 /* ===== 프로모션(이벤트) 배너: index처럼 ≥600px부터 와이드(748/232). ≤599는 세로형(335/150) 유지 ===== */
-@media (min-width:600px) and (max-width:1399px){
+@media (min-width:600px) and (max-width:1023px){
   .bm-pbn{flex:0 0 min(86vw,720px);aspect-ratio:748/232;}
   .bm-promo-track{padding:0 max(7vw, calc((100vw - 720px)/2));}
 }
 /* ===== 맞춤 교재 세트: ≤1399(분리형 히어로 범위)에서 풀폭 가로 스와이프 ===== */
-@media (max-width:1399px){
+@media (max-width:1023px){
   .m2-set-grid{display:flex;grid-template-columns:none;overflow-x:auto;scroll-snap-type:x proximity;gap:16px;scrollbar-width:none;-ms-overflow-style:none;margin-right:calc(50% - 50vw);padding:0 20px 4px 0;} /* 오른쪽 화면 끝까지 블리드(왼쪽은 컨테이너 기준 = 타이틀 정렬) */
   .m2-set-grid::-webkit-scrollbar{display:none;}
   .m2-set-card{flex:0 0 min(420px, 84vw);min-width:0;scroll-snap-align:start;} /* 모바일 1장+peek · 태블릿 2장+ */
@@ -571,7 +571,7 @@
 /* ===== [롤링 비교] 크게 도는 버전: 배너 박스 캐러셀(이전/현재/다음) + 카테고리 흰 박스 고정 오버레이 =====
    배너는 풀폭 아님. 박스들이 strip으로 슬라이드하며 왼쪽=이전 배너, 오른쪽=다음 배너가 내용째 peek.
    카테고리는 그냥 불투명 흰 박스로 위에 고정(그림자 없음) → 배너가 그 뒤로 지나감. 넓은 화면(~1700px↑) 최적. */
-@media (min-width:1400px){ /* 롤링 캐러셀은 넓은 화면에서만 (≤1399는 분리형 히어로) */
+@media (min-width:1024px){ /* 롤링 캐러셀 (≤1023는 분리형 히어로) */
   .mb-hero{overflow:hidden;}
   .mb-hero-in{display:block;position:relative;max-width:none;padding:0;}
   .mb-bn-view{width:100%;overflow:hidden;border-radius:0;}  /* 뷰 클리핑 라운드 제거 → 화면 끝 배너 각지게 */
@@ -582,8 +582,8 @@
   .mb-bn.is-prev{border-radius:0 16px 16px 0;}   /* 이전 배너: 보이는 오른쪽(안쪽) 둥글·왼쪽(화면밖) 각 */
   .mb-bn.is-next{border-radius:16px 0 0 16px;}   /* 다음 배너: 보이는 왼쪽(안쪽) 둥글·오른쪽(화면밖) 각 */
   /* 카테고리 = 넓은 불투명 흰 박스 고정(좌 여백 110·우 35 비대칭). 이전 배너는 왼쪽, 현재 배너는 오른쪽에 딱 붙고 배너는 이 뒤로 지나감 */
-  .mb-cat{position:absolute;left:max(0px, calc(50% - 800px));top:0;bottom:0;transform:none;z-index:5;width:305px;flex:none;background:#fff;box-shadow:none;border-radius:0;padding:0 40px 0 40px;display:flex;flex-direction:column;justify-content:center;}
-  .mb-cat-t{font-size:32px;font-weight:800;line-height:1.25;margin-bottom:12px;}  /* 인기교재 헤딩과 동일(32px·ExtraBold) */
+  .mb-cat{position:absolute;left:max(0px, calc(50% - 800px));top:0;bottom:0;transform:none;z-index:5;width:clamp(190px, 20vw, 305px);flex:none;background:#fff;box-shadow:none;border-radius:0;padding:0 clamp(20px, 2.4vw, 40px);display:flex;flex-direction:column;justify-content:center;} /* 좁은 화면일수록 축소 → 배너 공간 확보 */
+  .mb-cat-t{font-size:clamp(22px, 2.4vw, 32px);font-weight:800;line-height:1.25;margin-bottom:12px;word-break:keep-all;}
 }
 </style>
 </head>
@@ -1417,7 +1417,7 @@
     /* [big] 데스크톱: 독립 위치 캐러셀 (멈춤→슬라이드→멈춤, 리셋 없이 오른쪽→왼쪽).
        각 배너를 슬롯(-2..+2)에 절대 배치. 이전(-1)은 '끝(오른쪽)'만 카테고리 왼쪽에 보이고, 현재(0)는 카테고리 오른쪽, 다음(+1)은 '앞(왼쪽)'만 보임.
        현재→이전 이동 시 배너가 불투명 카테고리 뒤로 지나가 사라졌다 왼쪽에 끝이 나타남. */
-    if(window.matchMedia('(min-width:1400px)').matches){
+    if(window.matchMedia('(min-width:1024px)').matches){
       if(dotsEl) dotsEl.style.display='none';
       var N=CATS.length, TR='transform 1s cubic-bezier(0.4, 0, 0.2, 1)';
       var boxes=[].slice.call(track.children);
@@ -1427,8 +1427,10 @@
       var W=1015, offCur=-415, offPrev=-1775, offNext=640;
       function applyW(){
         var L=document.documentElement.clientWidth, center=L/2;
-        var catLeftX=Math.max(0, center-800), catRightX=catLeftX+305; /* 카테고리 카드 좌/우 x (좁은 화면이면 left:0 고정) */
-        var curLeftX=catRightX+40;                    /* 현재 배너 왼쪽 = 카테고리 우측 +40 → 왼쪽 둥근 모서리 노출 */
+        var catEl=document.querySelector('.mb-cat'), catW=catEl?catEl.getBoundingClientRect().width:305; /* 반응형 카테고리 실제 폭 측정 */
+        var catLeftX=Math.max(0, center-800), catRightX=catLeftX+catW; /* 카테고리 카드 좌/우 x */
+        var catGap=(L<1240)?16:40;                    /* 좁은 화면에선 카테고리↔배너 간격 축소 → 배너 공간 확보 */
+        var curLeftX=catRightX+catGap;                /* 현재 배너 왼쪽 = 카테고리 우측 + 간격 → 왼쪽 둥근 모서리 노출 */
         var curRightX=Math.min(center+660, L-32);     /* 현재 배너 오른쪽 = 카드 5개 여유 + 다음 배너 peek·오른쪽 모서리 여백 */
         W=Math.max(760, Math.round(curRightX-curLeftX));
         offCur=Math.round(curLeftX-center);
@@ -1467,7 +1469,7 @@
         focusTO=setTimeout(function(){ if(curBox && !curBox.querySelector('.mb-tab.on')){ var t0=curBox.querySelector('.mb-tab'); if(t0) t0.classList.add('on'); } }, anim?1020:0);
       }
       applyW(); layout(false); syncCatB(0);
-      window.addEventListener('resize', function(){ if(window.matchMedia('(min-width:1400px)').matches){ applyW(); layout(false); } }); /* 리사이즈 시 박스 폭 재계산 */
+      window.addEventListener('resize', function(){ if(window.matchMedia('(min-width:1024px)').matches){ applyW(); layout(false); } }); /* 리사이즈 시 박스 폭 재계산 */
       function advanceB(){ cur=(cur+1)%N; syncCatB(cur); layout(true); } /* 인디케이터도 배너와 동시에 이동 */
       var timerB=setInterval(advanceB, 5500);
       var heroB=document.getElementById('mbHero');
@@ -1553,7 +1555,7 @@
     /* 서브탭(ELT/초중등/고등) 자동 롤링 — 활성 탭이 순환하며 시리즈 배너 전환. 사용자 클릭 시 타이머 리셋 */
     var catTimer=null;
     function setCat(ci){ curCat=((ci%SERIES.length)+SERIES.length)%SERIES.length; tabsEl.querySelectorAll('.bm-tab2').forEach(function(x,i){x.classList.toggle('on',i===curCat);}); renderSeries(curCat); }
-    function playCat(){ stopCat(); if(window.matchMedia('(max-width:1399px)').matches) catTimer=setInterval(function(){ setCat(curCat+1); },4500); }
+    function playCat(){ stopCat(); if(window.matchMedia('(max-width:1023px)').matches) catTimer=setInterval(function(){ setCat(curCat+1); },4500); }
     function stopCat(){ if(catTimer){clearInterval(catTimer);catTimer=null;} }
     setCat(0);
     tabsEl.addEventListener('click',function(e){ var b=e.target.closest('.bm-tab2'); if(!b)return; setCat(+b.getAttribute('data-c')); playCat(); });
@@ -1593,7 +1595,7 @@
     track.addEventListener('scroll',function(){ if(st)clearTimeout(st); st=setTimeout(function(){ var mid=track.scrollLeft+track.clientWidth/2, best=0,bd=1e9; cards.forEach(function(el,i){ var ctr=el.offsetLeft+el.clientWidth/2, d=Math.abs(ctr-mid); if(d<bd){bd=d;best=i;} }); cur=best; markCenter(cur); if(!autoScrolling) normalize(); }, 120); if(!autoScrolling) pauseAwhile(); },{passive:true});
     track.addEventListener('pointerdown',pauseAwhile);
     track.addEventListener('touchstart',pauseAwhile,{passive:true});
-    if(window.matchMedia('(max-width:1399px)').matches){ scrollToIdx(n,false); play(); }
+    if(window.matchMedia('(max-width:1023px)').matches){ scrollToIdx(n,false); play(); }
   })();
 })();
 </script>
