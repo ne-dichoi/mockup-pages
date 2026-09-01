@@ -171,7 +171,8 @@ body{ min-height:100vh; display:flex; flex-direction:column; }
 | **쓰는 중(focus)** | 포커스 상태 | `#1D1717` (`--ink`) · 우측 지우기(X) | `#1D1717` (`--ink`) | `#FFFFFF` |
 | **쓰지 못할 때(disabled)** | `disabled` | `#F3F3F3` | `#A9A9A9` (`--weak`) | `#F3F3F3` (`--gray-bg`) |
 
-- 공통: `radius 12px`, `padding 16px 20px`, `font-size 14px`, `hover` 시 테두리 `#C9C9C9`
+- 공통: `radius 8px`, `padding 16px 20px`, `font-size 14px`, `hover` 시 테두리 `#C9C9C9`
+- **입력폼 라운딩은 8px 하나로 통일**(셀렉트 `.oh-sel-cur`와 동일, 2026-09) — `.field`·`.rv-input`·`.rv-textarea`·`.os-input`·`.iq-textarea`·`.oh-input`·`.cx-input`·수량 스테퍼 등. 예외: 알약형 검색(9999/86px), 자동등록방지 코드박스(display, 6px)
 - **textarea**: `.field.field-area`(또는 `textarea.field`) — `min-height 120px`, 세로 리사이즈
 - 지우기(X) 버튼은 `.field-wrap`으로 감싸면 **포커스 시** 우측에 노출됩니다.
 
