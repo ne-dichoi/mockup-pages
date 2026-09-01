@@ -399,7 +399,7 @@
 .mb-bn.y .mb-tab.on{background:#1d1717;color:#fff;}
 /* 배너 본문 */
 .mb-bn-main{flex:none;margin-left:auto;width:calc(5 * clamp(88px, 12cqw, 118px) + 32px);display:flex;flex-direction:column;gap:16px;}/* 폭=카드5장. 우측정렬 → 타이틀=카드 왼쪽, 전체보기=카드 오른쪽, 우측여백=좌측여백 */
-.mb-bn-head{display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.mb-bn-head{display:flex;flex-direction:column;align-items:flex-start;gap:8px;}/* 전체보기를 타이틀 아래 왼쪽 선상에 정렬 */
 .mb-bn-head h3{font-family:var(--display);font-weight:700;font-size:24px;line-height:1.35;color:inherit;word-break:keep-all;}
 .mb-bn-more{display:inline-flex;align-items:center;gap:2px;font-size:12px;color:inherit;opacity:.8;text-decoration:none;white-space:nowrap;flex:none;}
 .mb-bn-more .t{text-decoration:underline;text-underline-offset:3px;}/* 텍스트만 밑줄, 화살표 밑엔 밑줄 없음 */
