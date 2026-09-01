@@ -155,6 +155,10 @@ body{ min-height:100vh; display:flex; flex-direction:column; }
 .crumb .cur{ background:var(--gray-bg); border-radius:9999px; padding:4px 12px; color:var(--ink); }
 ```
 
+**현재 위치 pill = 카테고리 전환 드롭다운** (`.cur-wrap`): pill(`.cur`)에 caret(`.caret` 9px, 열림 시 180° 회전) + 클릭 시 `.cur-menu` 드롭다운.
+- `.cur-menu`: 흰 박스 · border `--line` · `radius 12` · shadow `0 12 28` · `padding 10 0` · `min-width 160` · **우측정렬**(`right:0`), `.cur-wrap.open` 시 표시
+- 항목 `.cur-menu a`: `padding 9 20` · 14 · `#666` · hover `--gray-bg`+`--ink` (예: Coursebook·Phonics·Readers·Reading·… 카테고리 전환)
+
 > 교재상세는 `.dt-head`(하단 정렬형)로 감싸지만 동일 여백(`56px 0 24px`)과 동일 `.ph-title`·`.crumb`를 씁니다.
 
 ---
@@ -940,6 +944,108 @@ PC에서도 교재 라벨 통일. **좌우 12 · `radius:999` · `line-height:1`
 | 각 책 `.m2b` | `transform-box:fill-box; transform-origin:bottom center` · `animation:2s cubic-bezier(.4,0,.3,1) infinite` |
 | 계단 딜레이 | `.m2b1` 0s(상단) · `.m2b2` .16s(중단) · `.m2b3` .32s(하단) → 위에서부터 순차 |
 | keyframes 정점 | 상단 `−9px/−16deg` · 중단 `−6px/−9deg` · 하단 `−3px`(회전 없음) · 26~44% 정점 유지 후 복귀 |
+
+## 44. 찜(하트) 아이콘 (`ic_heart`, 2026-09)
+
+교재 카드·검색결과·상세에서 찜(위시리스트) 토글. **빈 하트 ↔ 채운 하트** 두 상태.
+
+| 항목 | 규칙 |
+|------|------|
+| 에셋 | `assets/ic_heart.svg`(빈·기본) ↔ `assets/ic_heart_fill.svg`(채움·찜됨) |
+| 검색결과 `.sr-wish` | `aria-label="찜하기"` 버튼 + `<img>`, 토글 시 `img.src`를 fill로 교체(JS) |
+| 리스트/상세 버튼 | 두 이미지 겹쳐 두고(`.i-d` 빈 opacity1 / `.i-h` 채움 opacity0) **hover·`.on` 시 opacity 스왑** (`:hover .i-d,.on .i-d{opacity:0}` · `.i-h{opacity:1}`) |
+| 추가 토스트 | 흰 하트 SVG + "마이페이지 찜 목록에 추가되었습니다." |
+| 저장/삭제 | `window.neWishAdd/neWishRemove` · 마이페이지 찜 탭에서 카드 `×` 삭제·`.wl-clear` 전체삭제 |
+
+> 찜 **카드/그리드** 레이아웃은 §41(회색 정사각 박스)·§29(모바일 `.mb-grid` 가로 스크롤) 참고.
+
+## 45. 퀵 플로팅 (우측 고정 바로가기, 2026-09)
+
+**메인 `.floating`** (index 우측)
+
+| 항목 | 규칙 |
+|------|------|
+| 패널 | `position:absolute; right:0; top:0`(스크롤 시 `.is-fixed`→`fixed`) · `border-radius:16px 0 0 16px` · 그림자 `-6px 8px 24px rgba(0,0,0,.12)` · 흰 배경 |
+| 카드 `.float-card` | `120×100` · 아이콘 `.ico` **45×45** · 라벨 12/500 `#666` |
+| 항목 | 맞춤형 교재추천·교재 레벨 차트·교재 가이드 다운·수학 교재 안내 (`ic_float_recommend/level/guide/math.svg`) |
+
+**서브페이지 `#subFloat .qfloat`** (PC/태블릿 우측)
+
+| 항목 | 규칙 |
+|------|------|
+| 위치 | `position:fixed; right:16; bottom:40` · gap 12 · 우측 정렬 |
+| 구성 | 3패널(레벨/맞춤형/가이드, `.floating` static) + **고객센터 FAB** |
+| 펼침 | `.qfloat.open` → 3패널 숨기고 `.qcs-menu` 노출, 항목 `.qcs-item`=알약(999) `pad 6/12/6/20` 14/600 + 아이콘 32 |
+
+> **모바일(≤1023)**: 퀵 플로팅 전체 `display:none`.
+
+## 46. GNB — 헤더 아이콘 · 내비 바 · 메가 드롭다운 · 햄버거 (2026-09)
+
+### 헤더 아이콘 (BI 행)
+| 항목 | 규칙 |
+|------|------|
+| 로고 `.logo` | `150×28` (좌측) |
+| 검색 `.search-ic` | 돋보기 svg **24×24** |
+| 유틸 `.head-icons` | gap **26** · 우측 정렬. 각 `.head-ic`=세로(아이콘 **26** + 라벨 12/500 `--ink`) · width 42 |
+| 항목 | 로그인(`ic_login_d.svg`) · MY · 장바구니 · 고객센터 (드롭다운·뱃지 §19) |
+| 장바구니 뱃지 `.cart-badge` | 아이콘 우상단 빨강 원형 `min-w16·h16` · 흰 11/700 · radius 999 |
+| 햄버거 `.gnb-in .menu` | **22×22** |
+
+### GNB 내비 바
+| 항목 | 규칙 |
+|------|------|
+| 줄 `.gnb-in` | flex · `justify:safe center` · gap **40** · height **56** · 좁으면 `overflow-x:auto`(스크롤바 숨김) |
+| 링크 `.gnb nav a` | `--ink` **16/700** · padding `6 0` · 활성·호버(`.on`/`:hover`)=`--red` + 하단 밑줄 `::after` **2px** |
+| 특수 링크 | **학습자료실**=`.gnb-blue` `#2F74D1`(밑줄도 파랑) · **교재몰**=`.gnb-mall` 롤링 텍스트("교재몰"↔"지금 바로구매", `.gnb-roll/.gr-track/.gr-i`) |
+| 하단 라인 | GNB 하단 **2px `--ink`** full-bleed (§4) |
+
+### 메가 드롭다운 (PC 호버) `.gnb-drop`
+- 공통: 흰 박스 `radius 0 0 16 16` · 그림자 `0 22 40 rgba(0,0,0,.1)` · padding `32/40` · `.open` 시 flex
+- **`.mega`**(교재 카테고리): 컬럼 `.gd-col`(제목 `.gd-col-t` 14/700 + `.items a` 14 `#666`, hover `--ink`) + 우측 브랜드 `.gd-brands` + 버튼 `.gd-btn`(180 · radius 8, `.blue` `#4f74d6` / `.navy` `#0f2547`)
+- **`.tmega`**(교과서/자습서형): 2뎁스 `.gd-2depth`(활성 `.t2d-on` 뒤 `›`) + 3뎁스 `.gd-3grid`(세로 wrap · `max-height:326`)
+- **신간 라벨 `.mega-new`**: 빨강 아웃라인 알약 + 깜빡임(§7-1, `megaNewBlink` 1.1s)
+
+### 햄버거 메뉴 (모바일 전체 드로어) `.m-drawer`
+- 오버레이: `position:fixed; inset:0` · 딤 `.md-dim`(0.45) · 좌측 슬라이드 `.md-panel`(`width:min(640px,92vw)`), `.open` 시 노출
+- 상단 `.md-top`: 홈 + `로그인`(16 SemiBold) + 우측 `.md-search`(24)·`.md-cart`(24)·닫기(X)
+- 빠른 아이콘 `.md-quick` 4종: **교재 추천·찜·주문내역·1:1문의** (원형 79 · 테두리 `--line` · 아이콘 28 · 라벨 11 Bold), 행 상하 `border --line`
+- 본문 2단:
+  - 좌측 `.md-cats`(width 130 · 배경 `#f5f5f5`): 카테고리 목록. **활성 `.md-cat.on`=빨강 채움 + 우측 14px 돌출 알약**(`radius 0 999 999 0`, 2뎁스 위로 노출 위해 `overflow:visible`)
+  - 우측 `.md-subs`: 2뎁스 `.md-sub`(14 `#666`), 아코디언 `.md-acc`/`.md-acc-h`/화살표 `.md-acc-ic`(열림 시 `scaleY(-1)`)
+
+> **로케이션(브레드크럼)은 이미 §4에 문서화**돼 있습니다(홈 아이콘 15×15 · 현재위치 pill · 헤드 여백 56/24 등).
+
+## 47. 교재 리스트 툴바 — 정렬 셀렉트 · 유형 탭 · 공유/찜 (2026-09)
+
+리스트 상단 툴바 + 상품 행 우측 액션.
+
+**정렬 셀렉트 `.sort`** — 텍스트형(박스형 `.oh-sel` §13과 **다른 타입**)
+
+| 항목 | 규칙 |
+|------|------|
+| 버튼 `.sort` | 인라인 텍스트 14 `#a9a9a9` + `.ico` 14×14(열림 시 180° 회전) · 박스·테두리 없음 |
+| 메뉴 `.sort-menu` | 흰 박스 · border `#4d4e4d` · radius 8 · padding 24 · shadow · **우측정렬**(`right:0`), `.sort-wrap.open` 시 표시 |
+| 옵션 `.sort-opt` | 14 `#8a8a8a` · hover `#1d1717` · `.active` 700 |
+
+**유형 탭 `.tab`** — 교재구매 ↔ 학습자료
+
+| 항목 | 규칙 |
+|------|------|
+| 탭 `.tab` | `14/700` `#a9a9a9` · `.active`/`:hover`=`--red` · 아이콘 `.ico` 17×17 |
+| 아이콘 스왑 | `.i-d`(기본)/`.i-h`(호버 빨강) opacity 교체 — `ic_tab_buy.svg` · `ic_tab_study.svg`↔`ic_tab_study_red.svg` |
+
+> 베스트셀러 `.bs-tabs .tab`은 **다른 탭** — 알약(999) 채움 탭(hover/active `--ink` 배경, §33).
+
+**상품 행 액션 `.pactions`** — 공유 · 찜
+
+| 항목 | 규칙 |
+|------|------|
+| 컨테이너 `.pactions` | `position:absolute; right:0; top:40` · 세로 · `align-items:flex-end` · gap 14 |
+| 버튼 `.pic-btn` | 아이콘 + 텍스트 · 배경·테두리 없음 · `13/500` `#666` · 아이콘 스왑 `.i-d/.i-h` |
+| 공유 `.pic-btn.share` | `ic_share.svg`↔`ic_share_red.svg` + 공유 팝오버 `.share-pop` |
+| 찜 `.pic-btn.like` | 하트(§44 `ic_heart`↔`ic_heart_fill`) + "찜 128" 카운트 |
+
+**판매중 교재만 보기 체크박스 `.chk`**: `18×18` · radius 6 · 테두리 `#d9d9d9` · 체크 시 `#d94a34` 배경 + 흰 SVG 체크(장바구니·주문은 `--red` 배경). 공용 `::after` 보더체크는 제거하고 중앙 SVG 체크 사용.
 
 ---
 
