@@ -854,6 +854,91 @@ PC에서도 교재 라벨 통일. **좌우 12 · `radius:999` · `line-height:1`
 >
 > 적용 셀렉터: `.sr-book`(검색결과) · `:is(#tab-wish .wl-grid,#tab-home .mb-grid) .mb-cover img`(찜·홈) · `.rel-card .img .book`(연관교재) · `.m2-card .box>img`(메인 ELT). 데스크탑·모바일 동일하게 63%.
 
+## 42. 맞춤교재 세트 카드 — 회색 박스 + 교재 콜라주 + 교재 리스트 (`.m2-set-*`, 2026-09)
+
+메인의 **"2학기 개학 대비 맞춤 교재 세트"** 카드. 상단 회색 박스(라벨·타이틀·설명 + **겹쳐 놓인 교재 표지 콜라주**) + 하단 **교재명 스크롤 리스트** + 가격 + 버튼. index·메인_B 공통.
+
+**섹션·타이틀**
+
+| 항목 | PC(≥1024) | 모바일(≤767) |
+|------|------|------|
+| 섹션 `.m2-sets` | `background:#f7f7f7` · `padding:80px 0` | `background:#fff` · `padding:56px 0 40px` |
+| 타이틀 `.m2-sets-t` | Paperlogy **32**/700 · letter-spacing −.02em · 중앙 · 아래 24 | **24**/700 · 아래 16 |
+| 타이틀 강조 `.rd` | '맞춤 교재 세트'만 `--red` | 동일 |
+
+**회색 박스 상단 `.m2-set-top`**
+
+| 항목 | 규칙 |
+|------|------|
+| 박스 | PC `border:1px solid rgba(102,102,102,.3)`·투명 / **모바일 `background:#f3f3f3`·border 0** · radius **16** · padding PC `40 56`·모바일 `40 24`·태블릿 `32 28`(+`container-type:inline-size`) |
+| 라벨 `.lbl` | `--red` 채움 알약 · 흰글씨 **12**/700 · padding `4 10` · radius 999 |
+| 타이틀 `.st-t` | `--ink` **20**/700 · 위 14 (모바일 **22**·위 8) · 태블릿 `min-height:2.5em`(카드 간 정렬) |
+| 설명 `.st-sub` | `#8a8a8a` **14** · 위 6 (모바일 위 4) |
+
+**교재 표지 콜라주 `.m2-set-collage`** — 표지 여러 장을 **왼쪽으로 겹쳐** 나열
+
+| 항목 | 규칙 |
+|------|------|
+| 컨테이너 | `display:flex; align-items:flex-end; margin-top:40px` (모바일 위 24) |
+| 표지 img | `92×120` · `object-fit:cover` · radius 3 · `box-shadow:-5px 6px 14px rgba(0,0,0,.22)` |
+| 겹침 | `img:not(:first-child){margin-left:-22px}` — **−22px** 좌측 겹침 |
+| 반응형 폭 | 모바일 `width:min(88px,23vw)` · 태블릿 `min(92px,25cqi)` · `height:auto` + `aspect-ratio:92/120`(박스 밖 오버플로우 방지) |
+
+**교재명 리스트 타입 `.m2-set-books`** — 세로 스크롤 목록(넘치면 스크롤로 "더 있음" 힌트)
+
+| 항목 | 규칙 |
+|------|------|
+| 리스트 | `display:flex; flex-direction:column; gap:16` · 위 40 · `max-height:132` · `overflow-y:auto`(스크롤바 숨김) |
+| 모바일 | gap **8** · 위 24 · `max-height:108`(교재명 **3.5줄** 노출 → 4번째 반만 보여 더 있음 암시) |
+| 행 `.m2-set-book` | `justify-content:space-between; gap:8; padding:0 16` |
+| 교재명 `.nm` | `#666` **14** · `flex:1` · **1줄 말줄임**(ellipsis) · hover 밑줄+`--ink` |
+| 담기 `.bcart` | `24×24` 장바구니 svg(stroke `#8a8a8a`) |
+| 모바일 터치 | `.m2-set-books/.nm/.bcart{touch-action:pan-y}` — **세로=리스트 스크롤 / 가로=세트 스와이프** 분리 |
+
+**가격 `.m2-set-price`** (위 24·모바일 32 · `padding:0 16` · `justify-content:space-between`)
+- 할인액 `.l`: `--red` 14/700 · 정가 `s` 취소선 `#a9a9a9`
+- 할인율 `.r .pc`: `--red` **24**/700 (모바일 18) · 판매가 `.r .now`: `--ink` **Paperlogy 24**/700 (모바일 18)
+
+**버튼 `.m2-set-btns`** (`display:flex; gap:8; margin-top:16; padding:0 16`)
+- `a{flex:1; height:48(모바일 44); radius 8; 14/400}`
+- `.add`(세트 담기) `#fff`+`border 1px #4d4e4d`·`--ink` / `.buy`(바로구매) `#4d4e4d`·흰글씨
+
+**반응형 레이아웃 `.m2-set-grid`** (§30 연동)
+
+| 폭 | 형태 |
+|------|------|
+| **모바일 ≤767** | `grid-template-columns:1fr` · gap **40** → **세로 1열 스택**(콘텐츠 하나씩 아래로) |
+| **태블릿 768~1399** | `display:flex; overflow-x:auto; gap:24` · card `flex:0 0 calc((100% − 2×24px)/2.5)` → **2.5장 가로 스와이프**(반쪽 peek) · scroll-snap |
+| **PC ≥1400** | `grid-template-columns:repeat(3,1fr)` · gap 24 → **3열 그리드** |
+
+> ⚠️ 메인_B도 이 규칙 **그대로**(index와 동일). 과거 메인_B 전용 '풀폭 1장 스와이프(≤1023)' 오버라이드는 폐기(2026-09).
+
+## 43. 메인 주요 아이콘 & 애니메이션 세트 아이콘 (`.page-main2 .mainicons`, 2026-09)
+
+메인 배너 아래 **원형 아이콘 + 라벨** 바로가기 줄(교재구매·맞춤세트·학습자료·정답MP3·MP3듣기·영어선생님·수학선생님·교재추천 등). 공용 `.mainicons`를 `.page-main2`에서 재정의.
+
+| 항목 | PC(≥1024) | 모바일(≤767) |
+|------|------|------|
+| 섹션 `.mainicons` | `padding:56px 0 80px` | `padding:24px 0 0` |
+| 줄 `.row` | `display:flex; gap:24; justify-content:safe center` · 한 줄 nowrap **드래그 스크롤** | `flex-wrap:nowrap; overflow-x:auto; gap:8; padding:0 20`(가로 스크롤·스크롤바 숨김·`touch-action:pan-x`) / 태블릿 768~1023 gap 16 |
+| 알약 `.pill` | 배경·테두리 없음 · `gap:12; padding:0`(아이콘 위·라벨 아래) | `flex:none` |
+| 아이콘 `.ico` | **70×70** 원형 `background:#f3f3f3` | **64×64** |
+| 아이콘 img | **33×33** `object-fit:contain` | **30×30** |
+| 라벨 `span` | **14**/500 `--ink` | **12~13** · nowrap |
+
+**빨강 강조 변형**(맞춤교재 세트 아이콘): `.ico.m2-set-ico-red{background:var(--red)}` + `.pill.m2-set-pill-red span:last-child{color:var(--red); font-weight:700}`
+
+**모바일 순서 재배치(`order`)**: 교재구매 → 맞춤세트 → 학습자료 → 정답MP3 → 영어선생님 → 수학선생님 → 교재추천(`.mo-reco`). **레벨차트(3번째)는 `display:none`**.
+
+**애니메이션 세트 아이콘 `.m2-set-ico`** — 교재 3권이 위→아래로 통통 튀는 SVG
+
+| 항목 | 규칙 |
+|------|------|
+| svg | `30×30`(메인 `33×33`) · `overflow:visible` |
+| 각 책 `.m2b` | `transform-box:fill-box; transform-origin:bottom center` · `animation:2s cubic-bezier(.4,0,.3,1) infinite` |
+| 계단 딜레이 | `.m2b1` 0s(상단) · `.m2b2` .16s(중단) · `.m2b3` .32s(하단) → 위에서부터 순차 |
+| keyframes 정점 | 상단 `−9px/−16deg` · 중단 `−6px/−9deg` · 하단 `−3px`(회전 없음) · 26~44% 정점 유지 후 복귀 |
+
 ---
 
 > 문서 번호는 §11이 비어 있음(§10 → §12) — 과거 편집 흔적, 내용 누락 아님.
