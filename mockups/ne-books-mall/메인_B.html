@@ -401,19 +401,19 @@
 .mb-bn-main{flex:none;margin-left:auto;width:calc(5 * clamp(88px, 12cqw, 118px) + 32px);display:flex;flex-direction:column;gap:16px;}/* 폭=카드5장. 우측정렬 → 타이틀=카드 왼쪽, 전체보기=카드 오른쪽, 우측여백=좌측여백 */
 .mb-bn-head{display:flex;align-items:center;justify-content:space-between;gap:16px;}
 .mb-bn-head h3{font-family:var(--display);font-weight:700;font-size:24px;line-height:1.35;color:inherit;word-break:keep-all;}
-.mb-bn-more{display:inline-flex;align-items:center;gap:2px;font-size:14px;color:inherit;opacity:.8;text-decoration:none;white-space:nowrap;flex:none;}
+.mb-bn-more{display:inline-flex;align-items:center;gap:2px;font-size:12px;color:inherit;opacity:.8;text-decoration:none;white-space:nowrap;flex:none;}
 .mb-bn-more .t{text-decoration:underline;text-underline-offset:3px;}/* 텍스트만 밑줄, 화살표 밑엔 밑줄 없음 */
 .mb-bn-more::after{content:"›";font-size:16px;text-decoration:none;}
 .mb-bn-books{display:flex;gap:8px;}/* main 폭=카드폭이라 자연히 카드가 채움. 타이틀은 위에서 카드 왼쪽에 정렬 */
-.mb-bn-book{position:relative;display:flex;flex-direction:column;gap:16px;align-items:center;flex:none;width:clamp(88px, 12cqw, 118px);} /* 좁은 배너에선 표지 축소(1024≈96) → 5카드 수용·가격 한 줄, 넓으면 118 복귀 */
-  .mb-bn-book .nm{max-width:100%;white-space:normal;} /* 교재명 카드폭 내 줄바꿈(겹침 방지) */
+.mb-bn-book{position:relative;display:flex;flex-direction:column;gap:16px;align-items:stretch;flex:none;width:clamp(88px, 12cqw, 118px);} /* 좁은 배너에선 표지 축소(1024≈96) → 5카드 수용·가격 한 줄, 넓으면 118 복귀 · 텍스트 좌측정렬 위해 stretch */
+  .mb-bn-book .nm{max-width:100%;} /* 교재명 카드폭 기준 */
   .mb-bn-book .pr{white-space:nowrap;} /* 가격은 한 줄 유지 */
 .mb-bn-book .cv{position:relative;width:100%;aspect-ratio:118/157;} /* 카드 폭에 맞춰 표지도 축소 → 겹침 방지 */
 .mb-bn-book .cv img{width:100%;height:100%;object-fit:cover;border-radius:2px;box-shadow:3px 6px 13px rgba(0,0,0,.15);display:block;}
 .mb-bn-book .cart{position:absolute;left:auto;right:6px;bottom:7px;width:40px;height:40px;border:0;border-radius:999px;background:#1d1717 url("assets/ic_cart_white.svg") center/17px no-repeat;cursor:pointer;}
-.mb-bn-book .nm{font-size:12px;opacity:.7;text-align:center;white-space:nowrap;}
-.mb-bn-book .pr{display:flex;gap:8px;align-items:flex-end;justify-content:center;font-family:var(--display);font-weight:600;font-size:12px;margin-top:-8px;}/* 교재명↔금액 간격 8 (book gap 16 - 8) */
-.mb-bn-book .pr .dc{ }
+.mb-bn-book .nm{font-size:12px;opacity:1;font-weight:700;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;} /* 교재명: 볼드·불투명·좌측정렬·한 줄 말줄임 */
+.mb-bn-book .pr{display:flex;gap:8px;align-items:flex-end;justify-content:flex-start;font-family:var(--display);font-weight:400;font-size:12px;opacity:.7;margin-top:-8px;}/* 가격: 얇게·opacity70·좌측정렬. 교재명↔금액 간격 8 (book gap 16 - 8) */
+.mb-bn-book .pr .was{text-decoration:line-through;font-size:11px;} /* 정가(취소선), 판매가보다 살짝 작게 */
 /* 인디케이터 도트 */
 .mb-hero-dots{position:absolute;left:0;right:0;bottom:16px;display:flex;gap:8px;justify-content:center;z-index:2;}
 .mb-dot{width:8px;height:8px;border-radius:999px;border:0;background:rgba(255,255,255,.5);cursor:pointer;padding:0;}
@@ -592,7 +592,7 @@
     <div class="mb-hero-in">
       <!-- 좌측 고정 카테고리 퀵 카드 -->
       <aside class="mb-cat">
-        <h2 class="mb-cat-t">카테고리 빠르게!</h2>
+        <h2 class="mb-cat-t">카테고리로 빠르게!</h2>
         <nav class="mb-cat-nav" id="mbCatNav">
           <div class="mb-cat-grp">
             <a class="mb-cat-item on" href="리스트_교재구매.html" data-cat="0"><span class="lb">ELT</span><span class="chev" aria-hidden="true"></span></a>
@@ -602,6 +602,7 @@
           <div class="mb-cat-grp">
             <a class="mb-cat-item" href="세미나상세.html" data-cat="3"><span class="lb">혼강 세미나</span><span class="chev" aria-hidden="true"></span></a>
             <a class="mb-cat-item" href="리스트_교재구매.html" data-cat="4"><span class="lb">예비 중등 추천</span><span class="chev" aria-hidden="true"></span></a>
+            <a class="mb-cat-item" href="#" data-cat="5"><span class="lb">온라인 레벨테스트</span><span class="chev" aria-hidden="true"></span></a>
           </div>
         </nav>
       </aside>
@@ -1387,11 +1388,12 @@
       {type:'series',theme:'b',more:'초/중등 전체보기',title:'내신부터 서술형까지, 중등 영어 완성',series:['중학영문법총정리','능률VOCA','리딩튜터','열중 중학영어','1316 GRAMMAR']},
       {type:'series',theme:'y',more:'고등 전체보기',title:'수능 실전 감각을 키우는 고등 라인업',series:['올림포스','능률VOCA 수능','빠른독해 바른독해','수능만만','블랙라벨']},
       {type:'event',theme:'p',label:'SEMINAR',title:'2학기, 함께 준비하는 혼공 강의 세미나',sub:'신학기 수업 전략을 한 자리에서 만나보세요.',cta:'세미나 신청하기',href:'세미나상세.html'},
-      {type:'event',theme:'o',label:'예비중 추천',title:'중학 대비, 지금 시작하세요',sub:'예비중 필수 교재를 한 번에 준비하세요.',cta:'추천 교재 보기',href:'리스트_교재구매.html'}
+      {type:'event',theme:'o',label:'예비중 추천',title:'중학 대비, 지금 시작하세요',sub:'예비중 필수 교재를 한 번에 준비하세요.',cta:'추천 교재 보기',href:'리스트_교재구매.html'},
+      {type:'event',theme:'b',label:'이벤트',title:'온라인 영어 레벨테스트 NELT 무료체험',sub:'수준별 진단으로 딱 맞는 학습을 시작하세요.',cta:'무료체험 하기',href:'#'}
     ];
     function bookHTML(nm,i){
       return '<div class="mb-bn-book"><div class="cv"><img src="assets/'+COVERS[i%COVERS.length]+'" alt=""><button type="button" class="cart" aria-label="장바구니 담기"></button></div>'
-        +'<p class="nm">'+esc(nm)+'</p><p class="pr"><span class="dc">10%</span><span class="now">13,500원</span></p></div>';
+        +'<p class="nm">'+esc(nm)+'</p><p class="pr"><span class="now">13,500원</span><span class="was">15,000원</span></p></div>';
     }
     function seriesBooks(cat,si){ var s=cat.series[si],out=''; for(var i=0;i<5;i++){ out+=bookHTML(s+' '+(i+1),i); } return out; }
     function bannerHTML(cat,ci){
