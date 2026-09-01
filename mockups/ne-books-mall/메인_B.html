@@ -11,9 +11,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- Pretendard (design font) via CDN, with Noto Sans KR fallback -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260815gj">
-<script src="js/layout.js?v=20260815gj" defer></script>
-<script src="js/search.js?v=20260815gj" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260815gk">
+<script src="js/layout.js?v=20260815gk" defer></script>
+<script src="js/search.js?v=20260815gk" defer></script>
 <style>
 /* ===== 메인 시안 A (메인_2) 전용 ===== */
 /* 맞춤교재 세트 애니 아이콘 */
@@ -82,11 +82,11 @@
 .m2-bn.bn-blue{background:#2f66b3;}
 .m2-bn.bn-green{background:#1f9c74;}
 /* 이미지 배경 롤링 배너(hero_1~5) : 색 + 우측 그래픽 이미지 */
-.m2-bn.hero1{background:#2f66b3 url("assets/hero_1.png") right center/auto 100% no-repeat;}
-.m2-bn.hero2{background:#f7941e url("assets/hero_2.png") right center/auto 100% no-repeat;}
-.m2-bn.hero3{background:#f4d21a url("assets/hero_3.png") right center/auto 100% no-repeat;}
-.m2-bn.hero4{background:#8ecdf3 url("assets/hero_4.png") right center/auto 100% no-repeat;}
-.m2-bn.hero5{background:#1f9c74 url("assets/hero_5.png") right center/auto 100% no-repeat;}
+.m2-bn.hero1{background:#2f66b3 url("assets/hero_1.png") center/cover no-repeat;}
+.m2-bn.hero2{background:#f7941e url("assets/hero_2.png") center/cover no-repeat;}
+.m2-bn.hero3{background:#f4d21a url("assets/hero_3.png") center/cover no-repeat;}
+.m2-bn.hero4{background:#8ecdf3 url("assets/hero_4.png") center/cover no-repeat;}
+.m2-bn.hero5{background:#1f9c74 url("assets/hero_5.png") center/cover no-repeat;}
 /* 배너가 aspect-ratio로 폭에 맞춰 높이도 함께 줄어드므로, 이미지는 높이 기준(auto 100%)이면 절대 안 잘리고 함께 축소됨 */
 .m2-bn .tx{max-width:56%;}
 .m2-bn.on-dark .lb{color:#fff;}
@@ -389,7 +389,7 @@
 .mb-bn{position:relative;flex:0 0 100%;min-width:0;box-sizing:border-box;display:flex;align-items:center;justify-content:flex-start;gap:clamp(16px,3cqw,40px);padding:clamp(28px,3.6cqw,56px) clamp(16px,4.5cqw,80px);height:370px;container-type:inline-size;}
 .mb-bn.g{background:#009f71;color:#fff;}
 .mb-bn.y{background:#e1c300;color:#1d1717;}
-.mb-bn.b{background:#2f74d1;color:#fff;}
+.mb-bn.b{background:#2F74D1;color:#fff;}
 /* 시리즈 세로 탭 */
 .mb-bn-tabs{display:flex;flex-direction:column;gap:8px;flex:none;}/* 좌측 여백 = .mb-bn padding (좌우 동일) */
 .mb-tab{display:inline-flex;align-items:center;padding:8px 24px;border:0;background:none;border-radius:999px;font:inherit;font-size:14px;font-weight:400;color:inherit;cursor:pointer;white-space:nowrap;opacity:.9;}
@@ -506,7 +506,7 @@
   /* 시리즈 배너 (테마별 색) */
   .bm-series{background:#009f71;color:#fff;padding:56px 20px;} /* 위아래 56 */
   .bm-series.bm-g{background:#009f71;color:#fff;}
-  .bm-series.bm-b{background:#2f74d1;color:#fff;}
+  .bm-series.bm-b{background:#2F74D1;color:#fff;}
   .bm-series.bm-y{background:#e1c300;color:#1d1717;}
   .bm-series.bm-y .bm-s-more,.bm-series.bm-y .bm-pill,.bm-series.bm-y .bm-book .nm,.bm-series.bm-y .bm-book .pr{color:#1d1717;}
   .bm-series.bm-y .bm-pill.on{background:#1d1717;color:#fff;}
@@ -1478,7 +1478,7 @@
     var n=track.children.length, idx=0, timer=null;
     if(dotsEl){ dotsEl.innerHTML=CATS.map(function(_,i){return '<button type="button" class="mb-dot'+(i===0?' on':'')+'" aria-label="'+(i+1)+'번 카테고리"></button>';}).join(''); }
     var dots=dotsEl?[].slice.call(dotsEl.children):[];
-    var THEME={g:'#009f71',b:'#2f74d1',y:'#e1c300',p:'#6c4bd1',o:'#f0821e'};
+    var THEME={g:'#009f71',b:'#2F74D1',y:'#e1c300',p:'#6c4bd1',o:'#f0821e'};
     var peekL=document.getElementById('mbPeekL'), peekR=document.getElementById('mbPeekR');
     function go(i){ idx=(i+n)%n; track.style.transform=(window.innerWidth>=1024)?('translateX(calc(50vw - 695px - '+(idx*1390)+'px))'):('translateX(-'+(idx*100)+'%)'); /* [big] ≥1024: 박스 캐러셀(박스1100+gap290) 센터링, 이하: 기본 */
       dots.forEach(function(d,di){ d.classList.toggle('on',di===idx); });
