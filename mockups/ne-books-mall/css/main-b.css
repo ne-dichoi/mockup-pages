@@ -233,7 +233,7 @@
 @media (max-width:1023px){ /* 태블릿도 모바일과 동일 레이아웃 */
   .m2-row-next,.m2-row-prev{display:none !important;} /* 모바일(폭 기준)에선 화살표 항상 숨김 — 터치 sticky:hover로 새어나오는 것 차단 */
   /* 주요 아이콘: 가로 스크롤·좌측정렬·소형(64px) */
-  .page-main2 .mainicons{padding:24px 0 24px;} /* 시리즈배너↔아이콘 24 · 아이콘↔프로모션 24 (아이콘이 시리즈와 프로모 사이) */
+  .page-main2 .mainicons{padding:40px 0 40px;} /* 시리즈배너↔아이콘 40 · 아이콘↔프로모션 40 */
   .page-main2 .mainicons .row{justify-content:safe center;flex-wrap:nowrap;overflow-x:auto;gap:8px;padding:0 20px;scrollbar-width:none;-ms-overflow-style:none;}/* 넘치면 좌측정렬 스크롤, 여유 있으면(큰 폰) 가운데 정렬 */
   .page-main2 .mainicons .row::-webkit-scrollbar{display:none;}
   .page-main2 .mainicons .pill{flex:none;}
@@ -485,10 +485,10 @@
   .bm-hero{display:block;}
   /* 서브탭 (ELT/초중등/고등) — 시리즈 배너 전환 */
   .bm-tabs{display:flex;background:#fff;padding:14px 20px;border-top:1px solid var(--line);} /* GNB↔시리즈메뉴 라인 · 컨테이너 20px */
-  .bm-tab2{flex:1;display:flex;align-items:center;justify-content:center;padding:8px 2px;font-size:14px;font-weight:500;color:#a9a9a9;background:none;border:0;position:relative;cursor:pointer;font-family:inherit;} /* 컨테이너 3등분 · 중앙정렬 */
+  .bm-tab2{flex:1;display:flex;align-items:center;justify-content:center;padding:8px 2px;font-size:16px;font-weight:500;color:#a9a9a9;background:none;border:0;position:relative;cursor:pointer;font-family:inherit;} /* 컨테이너 3등분 · 중앙정렬 */
   .bm-tab2.on{color:var(--red);font-weight:700;}
   .bm-tab2 .tl{position:relative;}
-  .bm-tab2.on .tl::after{content:"";position:absolute;left:-10px;right:-10px;bottom:-8px;height:3px;background:var(--red);} /* 빨간 라인: 텍스트보다 양옆 10px 더 길게 */
+  .bm-tab2.on .tl::after{content:"";position:absolute;left:-14px;right:-14px;bottom:-8px;height:3px;background:var(--red);} /* 빨간 라인: 텍스트보다 양옆 14px 더 길게 */
   /* 시리즈 배너 (테마별 색) */
   .bm-series{background:#009f71;color:#fff;padding:56px 20px;} /* 위아래 56 */
   .bm-series.bm-g{background:#009f71;color:#fff;}
@@ -517,7 +517,7 @@
   .bm-promo{display:block;padding:0 0 8px;} /* 주요아이콘 아래 프로모션(모바일). 아이콘 하단 padding이 위 간격 담당 */
   .bm-promo-track{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 7vw;scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;} /* 프로모션 카드 사이 8px */
   .bm-promo-track::-webkit-scrollbar{display:none;}
-  .bm-pbn{flex:0 0 86vw;aspect-ratio:335/150;scroll-snap-align:center;box-sizing:border-box;border-radius:12px;padding:22px;display:flex;align-items:center;position:relative;color:#fff;text-decoration:none;overflow:hidden;background-color:#3269a4;background-repeat:no-repeat;background-position:right center;background-size:cover;} /* index 배너와 동일: 86vw · 335/150 · radius12 · gap12 */
+  .bm-pbn{flex:0 0 86vw;aspect-ratio:335/150;scroll-snap-align:center;box-sizing:border-box;border-radius:12px;padding:22px;display:flex;align-items:center;position:relative;color:#fff;text-decoration:none;overflow:hidden;background-color:#3269a4;background-repeat:no-repeat;background-position:calc(100% + min(7vw, 56px)) center;background-size:cover;} /* index 배너와 동일: 86vw · 335/150 · radius12 · gap12 */
   .bm-pbn .tx{display:flex;flex-direction:column;gap:8px;z-index:1;max-width:64%;}
   .bm-pbn .lb{align-self:flex-start;font-size:13px;font-weight:700;text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1.5px;}
   .bm-pbn .t{font-family:var(--display);font-weight:800;font-size:20px;line-height:1.32;word-break:keep-all;}
