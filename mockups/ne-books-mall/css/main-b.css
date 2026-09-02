@@ -512,7 +512,8 @@
   .bm-book .cv img{width:100%;height:100%;object-fit:cover;border-radius:8px;box-shadow:3px 6px 13px rgba(0,0,0,.18);display:block;}
   .bm-book .cart{position:absolute;right:7px;bottom:7px;width:34px;height:34px;border:0;border-radius:999px;background:#1d1717 url("../assets/ic_cart_white.svg") center/15px no-repeat;cursor:pointer;}
   .bm-book .nm{font-size:12px;color:#fff;opacity:1;font-weight:700;margin-top:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;} /* 교재명: 12px·볼드·opacity100·좌측·한 줄 말줄임 */
-  .bm-book .pr{display:flex;gap:6px;align-items:baseline;justify-content:flex-start;font-family:var(--display);font-weight:400;font-size:12px;margin-top:4px;color:#fff;opacity:.7;} /* 가격: 12px·얇게·opacity70·좌측 */
+  .bm-book .pr{display:flex;gap:6px;align-items:baseline;justify-content:flex-start;font-family:var(--display);font-weight:400;font-size:12px;margin-top:4px;color:#fff;opacity:.7;}
+  .bm-book .pr .was{text-decoration:line-through;font-size:11px;} /* 가격: 12px·얇게·opacity70·좌측 */
   /* 프로모션 배너 (하단, 둥근 카드 + 좌우 peek 스와이프 캐러셀) */
   .bm-promo{display:block;padding:0 0 8px;} /* 주요아이콘 아래 프로모션(모바일). 아이콘 하단 padding이 위 간격 담당 */
   .bm-promo-track{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 7vw;scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;} /* 프로모션 카드 사이 8px */

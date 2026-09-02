@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="css/layout.css?v=20260815gn">
 <script src="js/layout.js?v=20260815gn" defer></script>
 <script src="js/search.js?v=20260815gn" defer></script>
-<link rel="stylesheet" href="css/main-b.css?v=20260815gq">
+<link rel="stylesheet" href="css/main-b.css?v=20260815gr">
 </head>
 <body class="page-index page-main2">
 
@@ -977,7 +977,7 @@
       {cat:'고등 영어',theme:'bm-y',title:'수능 실전 감각을 키우는 고등 라인업',more:'고등 전체보기',pills:['올림포스','능률VOCA 수능','빠른독해 바른독해','수능만만','블랙라벨']}
     ];
     var sEl=document.getElementById('bmSeries'), tabsEl=document.getElementById('bmTabs'), curCat=0;
-    function books(nm){var o='';for(var i=0;i<5;i++){o+='<div class="bm-book"><div class="cv"><img src="assets/'+COVERS[i%5]+'" alt=""><button type="button" class="cart" aria-label="장바구니 담기"></button></div><p class="nm">'+esc(nm+' '+(i+1))+'</p><p class="pr"><span class="dc">10%</span><span class="now">13,500원</span></p></div>';}return o;}
+    function books(nm){var o='';for(var i=0;i<5;i++){o+='<div class="bm-book"><div class="cv"><img src="assets/'+COVERS[i%5]+'" alt=""><button type="button" class="cart" aria-label="장바구니 담기"></button></div><p class="nm">'+esc(nm+' '+(i+1))+'</p><p class="pr"><span class="now">13,500원</span><span class="was">15,000원</span></p></div>';}return o;}
     function renderSeries(ci){ var S=SERIES[ci]; sEl.className='bm-series '+S.theme;
       sEl.innerHTML='<h2 class="bm-s-title">'+esc(S.title)+'</h2>'
         +'<a class="bm-s-more" href="리스트_교재구매.html"><span class="t">'+esc(S.more)+'</span></a>'
