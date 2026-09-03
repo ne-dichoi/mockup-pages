@@ -834,7 +834,7 @@
     function seriesBooks(cat,si){ var s=cat.series[si],out=''; for(var i=0;i<5;i++){ out+=bookHTML(s+' '+(i+1),i); } return out; }
     function bannerHTML(cat,ci){
       if(cat.type==='event'){
-        return '<article class="mb-bn '+cat.theme+' mb-bn-event">'
+        return '<article class="mb-bn '+cat.theme+' mb-bn-event" data-href="'+cat.href+'" style="cursor:pointer">'
           +'<div class="mb-ev-tx"><span class="mb-ev-lb">'+esc(cat.label)+'</span>'
           +'<h3 class="mb-ev-t">'+esc(cat.title)+'</h3><p class="mb-ev-sub">'+esc(cat.sub)+'</p>'
           +'<a class="mb-ev-cta" href="'+cat.href+'">'+esc(cat.cta)+'</a></div>'
@@ -921,7 +921,8 @@
         if(e.target.closest('.cart')){ e.preventDefault(); e.stopPropagation(); alert('장바구니에 상품을 담았습니다.'); return; }
         var b=e.target.closest('.mb-tab');
         if(b){ var art=b.closest('.mb-bn'); if(!art) return; var ci=+art.getAttribute('data-ci'); var si=+b.getAttribute('data-si'); if(isNaN(ci)||isNaN(si)) return; art.querySelectorAll('.mb-tab').forEach(function(t){ t.classList.remove('on'); }); b.classList.add('on'); var bw=art.querySelector('.mb-bn-books'); if(bw) bw.innerHTML=seriesBooks(CATS[ci],si); return; }
-        if(e.target.closest('.mb-bn-book')){ location.href='교재상세.html'; }
+        if(e.target.closest('.mb-bn-book')){ location.href='교재상세.html'; return; }
+        var ev=e.target.closest('.mb-bn-event'); if(ev){ var h=ev.getAttribute('data-href'); if(h) location.href=h; }
       });
       return;
     }
