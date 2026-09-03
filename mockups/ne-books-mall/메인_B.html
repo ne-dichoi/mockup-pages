@@ -922,7 +922,7 @@
         var b=e.target.closest('.mb-tab');
         if(b){ var art=b.closest('.mb-bn'); if(!art) return; var ci=+art.getAttribute('data-ci'); var si=+b.getAttribute('data-si'); if(isNaN(ci)||isNaN(si)) return; art.querySelectorAll('.mb-tab').forEach(function(t){ t.classList.remove('on'); }); b.classList.add('on'); var bw=art.querySelector('.mb-bn-books'); if(bw) bw.innerHTML=seriesBooks(CATS[ci],si); return; }
         if(e.target.closest('.mb-bn-book')){ location.href='교재상세.html'; return; }
-        var ev=e.target.closest('.mb-bn-event'); if(ev){ var h=ev.getAttribute('data-href'); if(h) location.href=h; }
+        var ev=e.target.closest('.mb-bn-event'); if(ev){ e.preventDefault(); var h=ev.getAttribute('data-href'); if(h){ if(/^https?:/.test(h)){ window.open(h,'_blank','noopener'); } else { location.href=h; } } } /* 외부(NELT 등)=새 창, 내부=같은 탭 */
       });
       return;
     }
@@ -1033,7 +1033,7 @@
     function pbnHTML(p,i){
       var bg=p.img?('background-image:url(assets/'+p.img+');background-color:'+p.color):('background-color:'+p.color);
       var deco=p.img?'':'<div class="deco" aria-hidden="true"><i></i><i></i><i></i></div>';
-      return '<a class="bm-pbn" href="'+p.href+'" style="'+bg+'"><div class="tx"><span class="lb">'+esc(p.lb)+'</span><span class="t">'+esc(p.t).replace(/\n/g,'<br>')+'</span></div>'+deco+'<span class="bm-pbn-ind">'+((i%n)+1)+' / '+n+'</span></a>';
+      return '<a class="bm-pbn" href="'+p.href+'"'+(/^https?:/.test(p.href)?' target="_blank" rel="noopener"':'')+' style="'+bg+'"><div class="tx"><span class="lb">'+esc(p.lb)+'</span><span class="t">'+esc(p.t).replace(/\n/g,'<br>')+'</span></div>'+deco+'<span class="bm-pbn-ind">'+((i%n)+1)+' / '+n+'</span></a>';
     }
     /* 무한 루프 + 양쪽 peek(index 상단 롤링과 동일): 3세트(클론) 렌더 후 '가운데 세트'에서 시작 →
        항상 왼쪽=이전 배너, 오른쪽=다음 배너가 노출. 오른쪽→왼쪽으로 끊김 없이 순환(가장자리 도달 시 가운데로 순간 복귀). */
