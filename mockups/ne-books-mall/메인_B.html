@@ -825,7 +825,7 @@
       {type:'series',theme:'y',more:'고등 전체보기',title:'수능 실전 감각을 키우는 고등 라인업',series:['올림포스','능률VOCA 수능','빠른독해 바른독해','수능만만','블랙라벨']},
       {type:'event',theme:'p',label:'SEMINAR',title:'2학기, 함께 준비하는 혼공 강의 세미나',sub:'신학기 수업 전략을 한 자리에서 만나보세요.',cta:'세미나 신청하기',href:'세미나상세.html'},
       {type:'event',theme:'o',label:'예비중 추천',title:'중학 대비, 지금 시작하세요',sub:'예비중 필수 교재를 한 번에 준비하세요.',cta:'추천 교재 보기',href:'리스트_교재구매.html'},
-      {type:'event',theme:'b',label:'이벤트',title:'온라인 영어 레벨테스트 NELT 무료체험',sub:'수준별 진단으로 딱 맞는 학습을 시작하세요.',cta:'무료체험 하기',href:'#'}
+      {type:'event',theme:'b',label:'이벤트',title:'온라인 영어 레벨테스트 NELT 무료체험',sub:'수준별 진단으로 딱 맞는 학습을 시작하세요.',cta:'무료체험 하기',href:'https://www.netutor.co.kr/english/pages/membership/nelt_q.asp'}
     ];
     function bookHTML(nm,i){
       return '<div class="mb-bn-book"><div class="cv"><img src="assets/'+COVERS[i%COVERS.length]+'" alt=""><button type="button" class="cart" aria-label="장바구니 담기"></button></div>'
@@ -909,8 +909,20 @@
       if(heroB){ heroB.addEventListener('mouseenter',function(){ clearInterval(timerB); }); heroB.addEventListener('mouseleave',function(){ timerB=setInterval(advanceB,5500); }); }
       /* 카테고리(빠르게) = 배너 인디케이터: 클릭 시 페이지 이동 없이 해당 카테고리 배너로 롤링 */
       catItems.forEach(function(a,ai){ a.addEventListener('click',function(e){ e.preventDefault(); cur=((ai%N)+N)%N; syncCatB(cur); layout(true); clearInterval(timerB); timerB=setInterval(advanceB,5500); }); });
-      /* 시리즈 탭(검은 알약) 클릭 = 그 배너의 교재를 해당 시리즈로 교체(롤링 아님) */
-      track.addEventListener('click',function(e){ var b=e.target.closest('.mb-tab'); if(!b) return; var art=b.closest('.mb-bn'); if(!art) return; var ci=+art.getAttribute('data-ci'); var si=+b.getAttribute('data-si'); if(isNaN(ci)||isNaN(si)) return; art.querySelectorAll('.mb-tab').forEach(function(t){ t.classList.remove('on'); }); b.classList.add('on'); var bw=art.querySelector('.mb-bn-books'); if(bw) bw.innerHTML=seriesBooks(CATS[ci],si); });
+      /* PC 드래그/스와이프: 배너를 좌우로 끌면 이전/다음 배너로 전환(임계값 60px) */
+      var dgDown=false, dgX=0, dgMoved=false;
+      track.addEventListener('pointerdown',function(e){ if(e.pointerType==='mouse'&&e.button!==0) return; dgDown=true; dgMoved=false; dgX=e.clientX; });
+      track.addEventListener('pointermove',function(e){ if(!dgDown) return; if(!dgMoved && Math.abs(e.clientX-dgX)>4){ dgMoved=true; if(track.setPointerCapture){ try{ track.setPointerCapture(e.pointerId); }catch(_){} } } });
+      function dgEnd(e){ if(!dgDown) return; dgDown=false; var dx=(e&&typeof e.clientX==='number'?e.clientX:dgX)-dgX; if(Math.abs(dx)>60){ cur=((cur+(dx<0?1:-1))%N+N)%N; syncCatB(cur); layout(true); clearInterval(timerB); timerB=setInterval(advanceB,5500); } }
+      track.addEventListener('pointerup',dgEnd); track.addEventListener('pointercancel',dgEnd);
+      /* 클릭 위임: 담기(alert)·시리즈 탭(표지 교체)·표지 카드(교재상세). 드래그였으면 무시 */
+      track.addEventListener('click',function(e){
+        if(dgMoved){ e.preventDefault(); e.stopPropagation(); dgMoved=false; return; }
+        if(e.target.closest('.cart')){ e.preventDefault(); e.stopPropagation(); alert('장바구니에 상품을 담았습니다.'); return; }
+        var b=e.target.closest('.mb-tab');
+        if(b){ var art=b.closest('.mb-bn'); if(!art) return; var ci=+art.getAttribute('data-ci'); var si=+b.getAttribute('data-si'); if(isNaN(ci)||isNaN(si)) return; art.querySelectorAll('.mb-tab').forEach(function(t){ t.classList.remove('on'); }); b.classList.add('on'); var bw=art.querySelector('.mb-bn-books'); if(bw) bw.innerHTML=seriesBooks(CATS[ci],si); return; }
+        if(e.target.closest('.mb-bn-book')){ location.href='교재상세.html'; }
+      });
       return;
     }
     var n=track.children.length, idx=0, timer=null;
@@ -995,7 +1007,8 @@
     sEl.addEventListener('click',function(e){
       var p=e.target.closest('.bm-pill');
       if(p){ sEl.querySelectorAll('.bm-pill').forEach(function(x){x.classList.remove('on');}); p.classList.add('on'); document.getElementById('bmBooks').innerHTML=books(SERIES[curCat].pills[+p.getAttribute('data-s')]); playCat(); return; }
-      if(e.target.closest('.cart')){ e.preventDefault(); alert('장바구니에 상품을 담았습니다.'); }
+      if(e.target.closest('.cart')){ e.preventDefault(); alert('장바구니에 상품을 담았습니다.'); return; }
+      if(e.target.closest('.bm-book')){ location.href='교재상세.html'; }
     });
     /* 시리즈 배너를 터치/스와이프/스크롤하는 동안 서브탭 자동 롤링 정지.
        교재이미지(.bm-books)·알약(.bm-pills)은 스크롤 컨테이너라 스와이프가 네이티브 스크롤로
@@ -1011,7 +1024,7 @@
     playCat();
     /* 프로모션 배너 (하단): 둥근 카드 peek 캐러셀 */
     var PROMOS=[
-      {img:'hero_1.png',color:'#3269a4',lb:'이벤트',t:'온라인 영어 레벨테스트\nNELT 무료체험',href:'#'},
+      {img:'hero_1.png',color:'#3269a4',lb:'이벤트',t:'온라인 영어 레벨테스트\nNELT 무료체험',href:'https://www.netutor.co.kr/english/pages/membership/nelt_q.asp'},
       {color:'#6c4bd1',lb:'세미나',t:'2학기, 함께 준비하는\n혼공 강의 세미나',href:'세미나상세.html'},
       {color:'#f0821e',lb:'예비중 추천',t:'중학 대비,\n지금 시작하세요',href:'리스트_교재구매.html'}
     ];
