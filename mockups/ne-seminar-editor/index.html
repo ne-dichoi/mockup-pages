@@ -946,7 +946,7 @@ function renderBanners(){
   const kick  = mark(S.hero.kicker, t.yellow);
   const plain = esc(unmark(S.hero.kicker));
   const plain2 = plain.replace(/,\s*/, ',<br>');   // 네이버카페 배너는 쉼표에서 줄바꿈
-  const month = (String(S.hero.kicker).match(/\*([^*\n]+)\*/) || [])[1] || (calYM().m + '월');
+  const month = calYM().m + '월';   // 원 안 표기는 항상 세미나 날짜에서 계산
 
   /* B4·B7 오른쪽 장식 — Figma의 회전/반전을 CSS 좌표계로 풀어 옮긴 것 */
   const deco = u => `
@@ -1196,6 +1196,32 @@ function syncMonth(){
   rail.querySelectorAll('[data-k="cal.title"],[data-k="hero.kicker"]').forEach(o => o.value = get(o.dataset.k));
 }
 
+/* 카드 헤더(이름·라벨·색점)는 패널을 다시 그릴 때만 갱신되므로,
+   해당 필드를 고치는 즉시 제자리에서 바꿔준다. */
+function liveHeader(path){
+  let m = path.match(/^seminars\.(\d+)\.(teacher|pillName|chip)$/);
+  if (m){
+    const i = +m[1], sem = S.seminars[i];
+    const card = rail.querySelector(`[data-card="${sem.id}"]`);
+    if (!card) return;
+    const nm = card.querySelector('summary > span:nth-child(2)');
+    if (nm) nm.textContent = `${i+1}. ${sem.teacher || sem.pillName || '새 세미나'}`;
+    const dot = card.querySelector('summary .dot');
+    if (dot) dot.style.background = sem.chip;
+    return;
+  }
+  m = path.match(/^ben\.items\.(\d+)\.(tag|a)$/);
+  if (m){
+    const i = +m[1], b = S.ben.items[i];
+    const card = rail.querySelectorAll('#sec_ben .card')[i];
+    if (!card) return;
+    const nm = card.querySelector('summary > span:nth-child(2)');
+    if (nm) nm.textContent = b.tag;
+    const dot = card.querySelector('summary .dot');
+    if (dot) dot.style.background = b.a;
+  }
+}
+
 function renderRail(){
   const th = S.theme;
   const presets = [
@@ -1424,6 +1450,7 @@ rail.addEventListener('input', e => {
     rail.querySelectorAll(`[data-k="${path}"]`).forEach(o => { if (o !== el) o.value = v; });
   }
   if (path.endsWith('.cut')){ renderRail(); queueCut(+path.split('.')[1]); }
+  liveHeader(path);
   const dm = path.match(/^seminars\.(\d+)\.date$/);
   if (dm){
     const sem = S.seminars[+dm[1]], d = dparse(sem.date);
