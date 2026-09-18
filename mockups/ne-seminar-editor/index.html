@@ -364,7 +364,7 @@ textarea{resize:vertical;line-height:1.55;min-height:84px}
 .pf-copy{display:flex;flex-direction:column;gap:10px;margin-top:50px}
 .pf-copy h3{font-family:var(--f-display);font-weight:700;font-size:44px;line-height:54px;letter-spacing:-.22px;white-space:pre-line}
 .pf-copy .lead{white-space:pre-line}
-.pf-copy p{font-size:18px;line-height:28px;color:rgba(255,255,255,.7);white-space:pre-line}
+.pf-copy p{font-size:20px;line-height:30px;color:rgba(255,255,255,.7);white-space:pre-line}
 .pf-notes{width:420px;display:flex;flex-direction:column;gap:40px}
 .pf-notes h4{font-size:30px;font-weight:800;margin-bottom:10px}
 .pf-notes ul{display:flex;flex-direction:column}
@@ -401,7 +401,8 @@ textarea{resize:vertical;line-height:1.55;min-height:84px}
 .pf-gift{display:flex;flex-direction:column;align-items:center;gap:20px;text-align:center}
 .pf-giftart{width:336px;height:200px;position:relative}
 .pf-giftart svg{position:absolute;inset:0;display:block}
-.pf-giftart .em{position:absolute;left:96.6px;top:39.8px;font-size:160px;line-height:1}
+/* 이모지는 폰트마다 글자 폭이 달라 좌표로 두면 틀어진다 → 가운데 정렬로 고정 */
+.pf-giftart .em{position:absolute;left:0;right:0;top:39.8px;text-align:center;font-size:160px;line-height:1}
 .pf-gift .t{font-size:40px;font-weight:900;color:#212121}
 .pf-gift .s{font-size:18px;color:#666;line-height:28px;white-space:pre-line;max-width:658px}
 
