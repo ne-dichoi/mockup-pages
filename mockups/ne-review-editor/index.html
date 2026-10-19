@@ -155,6 +155,12 @@ textarea{resize:vertical;line-height:1.55;min-height:84px}
 .pre{width:34px;height:34px;border-radius:10px;border:1px solid rgba(0,0,0,.10);cursor:pointer;padding:0}
 .pre[aria-pressed=true]{box-shadow:0 0 0 2px var(--surface),0 0 0 4px var(--ink)}
 
+/* 슬라이더 — 상단 그림 크기·위치 */
+.range{display:grid;grid-template-columns:60px 1fr 52px;gap:8px;align-items:center}
+.range label{font-size:12px;color:var(--ink-2)}
+.range input[type=range]{width:100%;accent-color:var(--accent)}
+.range output{font-size:12px;color:var(--ink-3);text-align:right;font-variant-numeric:tabular-nums}
+
 /* 상품 고르기 — 편집 패널 전용 */
 .gifts{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
 .gift{position:relative;display:flex;flex-direction:column;align-items:center;gap:8px;
@@ -314,6 +320,7 @@ textarea{resize:vertical;line-height:1.55;min-height:84px}
 
 <input type="file" id="filePick" accept="application/json" hidden>
 <input type="file" id="giftPick" accept="image/*" hidden>
+<input type="file" id="artPick" accept="image/*" hidden>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
@@ -384,7 +391,9 @@ function defaults(){
     v: 1,
     theme: { main:'#0BA1C0', pt:'#FFF458', deep:'#007187', autoDeep:true },
     hero:  { ym:'2026-08', auto:true, period:'',
-             target:'영자신문 구독 및 전화화상영어 수강 중인 회원님들' },
+             target:'영자신문 구독 및 전화화상영어 수강 중인 회원님들',
+             /* 상단 그림 — 기본 일러스트(default) 또는 직접 올린 PNG(custom) */
+             art:'default', artImg:null, artScale:100, artX:0, artY:0, artBanner:true },
     benefit:{ head:'*후기를 남겨주시는* 회원님들께\n혜택을 드립니다.',
               note:'※ 선착순 제공으로, 조기 종료 될 수 있습니다.',
               tiers: JSON.parse(JSON.stringify(TIER0)) },
@@ -552,8 +561,17 @@ function secHero(){
   <div class="a wdot" style="left:165px;top:1047px;background:${C.inkDeep}"></div>
 </section>`;
 }
-/* 휴대폰·선물·말풍선·별 — Figma 「Visual」(253,490) 기준 절대 좌표로 펼쳤다 */
+/* 상단 그림이 들어가는 자리 — 레터링 아래(424)부터 기간 띠 위(940)까지 */
+const ART = { x:0, y:424, w:950, h:516 };
+/* 휴대폰·선물·말풍선·별 — Figma 「Visual」(253,490) 기준 절대 좌표로 펼쳤다.
+   직접 올린 PNG가 있으면 그 자리에 대신 넣는다. */
 function heroVisual(){
+  if (S.hero.art === 'custom' && S.hero.artImg){
+    const k = (+S.hero.artScale || 100) / 100;
+    return `<div class="a" style="left:${ART.x}px;top:${ART.y}px;width:${ART.w}px;height:${ART.h}px;overflow:hidden">
+      <img src="${S.hero.artImg}" alt="" style="width:100%;height:100%;object-fit:contain;
+        transform:translate(${+S.hero.artX || 0}px,${+S.hero.artY || 0}px) scale(${k});transform-origin:center"></div>`;
+  }
   const G = A.img.gift, S80 = '0 0 80px rgba(0,0,0,.25)';
   return cb(253, 454, 468, 486, A.img.phoneW, 468.14, 815.94)
     + cb(234, 839, 136, 101, G, 136.04, 150.85, S80)
@@ -686,17 +704,41 @@ const BANNERS = [
   { id:'mo',   name:'[MO]메인',          w:1080, h:700, bg:'' },
   { id:'list', name:'[PC_MO]이벤트리스트',  w:542,  h:170, bg:'' }
 ];
+/* 배너별 그림 자리 — 각 배너의 레터링을 피해 둔 영역.
+   상단에 PNG를 올리면 이 자리에 비율을 지켜 들어간다. */
+const BN_ART = {
+  main: [ 20, 230, 409, 240],
+  comm: [ 20, 232, 495, 177],
+  sub:  [  0,  10, 200, 150],
+  gnb:  [  5,  84, 140,  88],
+  mo:   [200, 395, 680, 305],
+  list: [  0,  12, 240, 150]
+};
+const bnArt = id => {
+  const [x, y, w, h] = BN_ART[id];
+  return `<div class="a" style="left:${x}px;top:${y}px;width:${w}px;height:${h}px;overflow:hidden">
+    <img src="${S.hero.artImg}" alt="" style="width:100%;height:100%;object-fit:contain"></div>`;
+};
 function renderBanners(){
   const G = A.img.gift, PW = A.img.phoneW, PB = A.img.phoneB;
+  /* 상단을 직접 올린 그림으로 바꿨으면 배너도 같은 그림을 쓴다 */
+  const useArt = S.hero.art === 'custom' && S.hero.artImg && S.hero.artBanner !== false;
   const ph = (l, t, w, h, src, ih) => cb(l, t, w, h, src, w, ih);
   /* 파란 휴대폰은 폭을 채우고 위를 맞춘 뒤 아래를 잘라 낸다 */
   const phB = (l, t, w, h) =>
     `<img class="a" src="${PB}" style="left:${l}px;top:${t}px;width:${w}px;height:${h}px;object-fit:cover;object-position:top">`;
 
-  const html = {
+  const tit = {
+    main: `<img class="a" src="${titSrc('titMain')}" style="left:75px;top:41px;width:326px;height:180px">`,
+    comm: `<img class="a" src="${titSrc('titComm')}" style="left:91.542px;top:26px;width:376.458px;height:201px">`,
+    sub: `<img class="a" src="${titSrc('titTel')}" style="left:205.99px;top:44px;width:497.01px;height:90.47px">`,
+    gnb: `<img class="a" src="${titSrc('titGnb')}" style="left:14.553px;top:13px;width:128.447px;height:68px">`,
+    mo: `<img class="a" src="${titSrc('titMo')}" style="left:236px;top:53px;width:640.238px;height:339px">`,
+    list: `<img class="a" src="${titSrc('titList')}" style="left:245.86px;top:21px;width:245.14px;height:136px">`,
+  };
+  const visual = {
     /* ── [PC]메인 449×470 ── */
-    main: `<img class="a" src="${titSrc('titMain')}" style="left:75px;top:41px;width:326px;height:180px">
-      ${phB(125, 252, 210, 218)}
+    main: `${phB(125, 252, 210, 218)}
       ${cb(130, 424, 57, 46, G, 57.02, 63.60, '0 0 16px rgba(0,0,0,.08)')}
       ${cb(263, 431, 57, 39, G, 57.02, 63.13, '0 0 16px rgba(0,0,0,.08)')}
       ${cb(176, 392, 97, 78, G, 97.03, 107.84, '0 0 24px rgba(0,0,0,.08)')}
@@ -710,8 +752,7 @@ function renderBanners(){
       <div class="a" style="left:45px;top:265px">${svg('starsB', 367.578, 138.996)}</div>`,
 
     /* ── [PC]서브메인_커뮤니티 535×409 ── */
-    comm: `<img class="a" src="${titSrc('titComm')}" style="left:91.542px;top:26px;width:376.458px;height:201px">
-      ${ph(166, 244, 210, 218, PW, 365.99)}
+    comm: `${ph(166, 244, 210, 218, PW, 365.99)}
       ${cb(171, 379, 57, 46, G, 57.02, 63.60, '0 0 16px rgba(0,0,0,.08)')}
       ${cb(304, 386, 57, 39, G, 57.02, 63.13, '0 0 16px rgba(0,0,0,.08)')}
       ${cb(212, 342, 103, 82, G, 103.03, 113.37, '0 0 80px rgba(0,0,0,.25)')}
@@ -724,8 +765,7 @@ function renderBanners(){
       <div class="a" style="left:86px;top:257px">${svg('starsB', 367.578, 138.996)}</div>`,
 
     /* ── [PC]서브메인_영자신문 724×170 ── */
-    sub: `<img class="a" src="${titSrc('titTel')}" style="left:205.99px;top:44px;width:497.01px;height:90.47px">
-      ${ph(22.02, 28, 162.798, 169, PW, 283.71)}
+    sub: `${ph(22.02, 28, 162.798, 169, PW, 283.71)}
       ${cb(19, 137, 57, 46, G, 57.02, 63.60, '0 0 16px rgba(0,0,0,.08)')}
       ${cb(121, 145, 57, 39, G, 57.02, 63.13, '0 0 16px rgba(0,0,0,.08)')}
       ${cb(57.68, 112.97, 79.698, 63.689, G, 79.72, 88.05, '0 0 62px rgba(0,0,0,.25)')}
@@ -737,8 +777,7 @@ function renderBanners(){
       <img class="a" src="${A.img.bub3}" style="left:16px;top:109px;width:52.814px;height:22.482px">`,
 
     /* ── [PC]GNB펼침 150×175 ── */
-    gnb: `<img class="a" src="${titSrc('titGnb')}" style="left:14.553px;top:13px;width:128.447px;height:68px">
-      ${phB(32.98, 93, 90.566, 94.016)}
+    gnb: `${phB(32.98, 93, 90.566, 94.016)}
       ${cb(35.13, 156.18, 24.704, 19.741, G, 24.71, 27.29, '0 0 7px rgba(0,0,0,.08)')}
       ${cb(92.49, 159.2, 24.598, 16.809, G, 24.61, 27.21, '0 0 7px rgba(0,0,0,.08)')}
       ${cb(54.97, 142.38, 41.964, 33.534, G, 41.98, 46.36, '0 0 10px rgba(0,0,0,.08)')}
@@ -752,8 +791,7 @@ function renderBanners(){
       <div class="a" style="left:-1.52px;top:87.61px">${svg('starsG', 158.525, 59.944)}</div>`,
 
     /* ── [MO]메인 1080×700 ── */
-    mo: `<img class="a" src="${titSrc('titMo')}" style="left:236px;top:53px;width:640.238px;height:339px">
-      ${ph(375, 413, 334, 289, PW, 580.92)}
+    mo: `${ph(375, 413, 334, 289, PW, 580.92)}
       ${cb(356, 600, 125, 100, G, 125.04, 138.25, '0 0 80px rgba(0,0,0,.25)')}
       ${cb(581, 624, 96, 76, G, 96.03, 105.07, '0 0 80px rgba(0,0,0,.25)')}
       ${cb(449, 570, 163, 130, G, 163.05, 179.73, '0 0 80px rgba(0,0,0,.25)')}
@@ -766,8 +804,7 @@ function renderBanners(){
       <div class="a" style="left:653.07px;top:561.68px">${svg('txt2', 78.723, 8.115)}</div>`,
 
     /* ── [PC_MO]이벤트리스트 542×170 ── */
-    list: `<img class="a" src="${titSrc('titList')}" style="left:245.86px;top:21px;width:245.14px;height:136px">
-      ${ph(55.543, 31, 163.667, 169.902, PW, 285.23)}
+    list: `${ph(55.543, 31, 163.667, 169.902, PW, 285.23)}
       ${cb(51.003, 133, 57, 46, G, 57.02, 63.60, '0 0 16px rgba(0,0,0,.08)')}
       ${cb(162.003, 140, 57, 39, G, 57.02, 63.13, '0 0 16px rgba(0,0,0,.08)')}
       ${cb(91.393, 107.38, 80.124, 64.029, G, 80.15, 88.52, '0 0 62px rgba(0,0,0,.25)')}
@@ -783,7 +820,7 @@ function renderBanners(){
     <div class="bncard">
       <div class="bnhead"><b>${esc(b.name)}</b><span class="px">${b.w}×${b.h}</span></div>
       <div class="bn" id="bn-${b.id}" style="width:${b.w}px;height:${b.h}px;background:${b.bg || C.main}">
-        ${html[b.id]}</div>
+        ${tit[b.id]}${useArt ? bnArt(b.id) : visual[b.id]}</div>
     </div>`).join('');
 }
 
@@ -806,6 +843,12 @@ function field(label, path, opts = {}){
     ${opts.hint ? `<span class="hint">${opts.hint}</span>` : ''}</div>`;
 }
 
+function range(label, path, min, max, step, unit){
+  const v = +get(path) || 0;
+  return `<div class="range"><label for="${path}">${label}</label>
+    <input type="range" id="${path}" data-k="${path}" min="${min}" max="${max}" step="${step}" value="${v}">
+    <output>${v}${unit}</output></div>`;
+}
 function color(label, path, disabled){
   const v = get(path);
   return `<div class="f"><label>${label}</label><div class="swatch">
@@ -864,8 +907,31 @@ function paintRail(){
     기간 문구 자동 (1일 ~ 말일)</label>
   ${field('기간', 'hero.period', { hint:'자동을 끄면 직접 쓸 수 있습니다. 예) 26년 8월 1일 – 26년 8월 31일' })}
   ${field('대상', 'hero.target')}
-  <span class="hint">「리얼후기 쓰고 선물득템 하자!」 레터링과 그림은 <b>고정</b>이고,
-  색만 테마 컬러를 따라갑니다.</span>
+  <div class="f"><label>상단 그림</label>
+    <div class="gifts" style="grid-template-columns:repeat(2,1fr)">
+      <button type="button" class="gift" data-art="default" aria-pressed="${S.hero.art !== 'custom'}">
+        <span class="pic"><img src="${A.img.gift}" alt=""></span>기본 그림<br>휴대폰·선물·말풍선</button>
+      <button type="button" class="gift" data-art="custom" aria-pressed="${S.hero.art === 'custom'}">
+        <span class="pic">${S.hero.artImg
+          ? `<img src="${S.hero.artImg}" alt="">`
+          : '<span class="plus">＋</span>'}</span>${S.hero.artImg ? '올린 이미지' : '직접 올리기'}</button>
+    </div>
+    <span class="hint">레터링 아래 <b>950×516</b> 자리에 비율을 지켜 넣습니다.
+      <b>배경이 없는 PNG</b>가 가장 깔끔합니다. 자리를 벗어나는 부분은 잘립니다.</span>
+  </div>
+  ${S.hero.art === 'custom' && S.hero.artImg ? `
+  ${range('크기', 'hero.artScale', 40, 220, 1, '%')}
+  ${range('좌우', 'hero.artX', -400, 400, 1, 'px')}
+  ${range('상하', 'hero.artY', -250, 250, 1, 'px')}
+  <label class="chk"><input type="checkbox" data-k="hero.artBanner" ${S.hero.artBanner !== false ? 'checked' : ''}>
+    배너 6종에도 같은 그림 쓰기</label>
+  <span class="hint">배너는 규격이 제각각이라 <b>크기·위치 슬라이더는 따르지 않고</b>,
+    각 배너의 그림 자리에 비율을 지켜 자동으로 맞춥니다. 체크를 끄면 배너는 기본 일러스트로 남습니다.</span>
+  <div class="addbar">
+    <button class="btn" id="artReset">위치·크기 초기화</button>
+    <button class="btn del" id="artClear">올린 이미지 지우기</button>
+  </div>` : ''}
+  <span class="hint">「리얼후기 쓰고 선물득템 하자!」 레터링은 <b>고정</b>이고, 색만 테마 컬러를 따라갑니다.</span>
 </div></details>
 
 <details class="sec" data-key="sec_benefit" ${op('sec_benefit')}><summary>혜택<span class="num">${S.benefit.tiers.length}</span></summary><div class="body">
@@ -987,6 +1053,11 @@ rail.addEventListener('input', e => {
   if (k === 'hero.auto' && S.hero.auto) S.hero.period = autoPeriod();
   if (k === 'theme.autoDeep'){ renderRail(); renderPoster(); autosave(); return; }
   if (k.startsWith('theme.')){ theme(); syncSwatch(k); paintTits(); }
+  /* 슬라이더는 패널을 다시 그리지 않는다 — 드래그 중에 끊기면 안 된다 */
+  if (e.target.type === 'range'){
+    const o = e.target.parentElement.querySelector('output');
+    if (o) o.textContent = e.target.value + (k === 'hero.artScale' ? '%' : 'px');
+  }
   renderPoster(); autosave();
   if (k === 'hero.auto'){
     const f = rail.querySelector('#hero\\.period'); if (f) f.value = periodText();
@@ -1028,6 +1099,19 @@ rail.addEventListener('click', e => {
     renderRail(`#${CSS.escape('notice.items.' + (S.notice.items.length - 1) + '.t')}`);
     renderPoster(); autosave(); return;
   }
+  if (b.dataset.art !== undefined){
+    if (b.dataset.art === 'custom' && !S.hero.artImg){ artPick.click(); return; }
+    S.hero.art = b.dataset.art;
+    renderRail(); renderPoster(); autosave(); return;
+  }
+  if (b.id === 'artReset'){
+    Object.assign(S.hero, { artScale:100, artX:0, artY:0 });
+    renderRail(); renderPoster(); autosave(); return;
+  }
+  if (b.id === 'artClear'){
+    Object.assign(S.hero, { art:'default', artImg:null, artScale:100, artX:0, artY:0 });
+    renderRail(); renderPoster(); autosave(); return;
+  }
   if (b.dataset.gift !== undefined){
     const i = +b.dataset.tier, t = S.benefit.tiers[i];
     if (b.dataset.gift === 'custom' && !t.giftImg){ giftTarget = i; giftPick.click(); return; }
@@ -1048,6 +1132,16 @@ rail.addEventListener('click', e => {
     set(b.dataset.mark, ta.value); renderPoster(); autosave();
   }
 });
+artPick.onchange = () => {
+  const f = artPick.files?.[0]; if (!f) return;
+  const r = new FileReader();
+  r.onload = () => {
+    Object.assign(S.hero, { artImg: r.result, art:'custom', artScale:100, artX:0, artY:0 });
+    renderRail(); renderPoster(); autosave();
+  };
+  r.readAsDataURL(f);
+  artPick.value = '';
+};
 let giftTarget = 0;
 giftPick.onchange = () => {
   const f = giftPick.files?.[0]; if (!f) return;
@@ -1131,6 +1225,8 @@ function hydrate(obj){
   theme(); paintTits();
   if (!Array.isArray(S.benefit.tiers) || S.benefit.tiers.length !== 3)
     S.benefit.tiers = JSON.parse(JSON.stringify(TIER0));
+  if (!['default','custom'].includes(S.hero.art)) S.hero.art = 'default';
+  if (S.hero.art === 'custom' && !S.hero.artImg) S.hero.art = 'default';
   S.benefit.tiers.forEach((t, i) => {
     if (!['npay30','npay10','npay5','custom'].includes(t.gift)) t.gift = TIER0[i].gift;
     if (t.gift === 'custom' && !t.giftImg) t.gift = TIER0[i].gift;
