@@ -597,6 +597,9 @@ function renderPoster(){
    기본은 Figma 원본(소녀+오브제)이고, 프리셋 7종이나 올린 그림으로 바꿀 수 있다.
    들어가는 자리는 레터링 아래 950×673(마스크 영역)이다. */
 const ART = { x:0, y:127, w:950, h:673 };
+/* 그 안에서 그림이 실제로 앉는 자리 — 오른쪽 제목을 피해 왼쪽 아래에 둔다.
+   원본 소녀가 차지하던 범위와 같다. */
+const ART_FIT = { x:10, y:53, w:430, h:620 };
 const ART_PRESETS = [
   ['laptop', '노트북 소녀'], ['girl',   '연필 소녀'],
   ['phone',  '휴대폰·후기'], ['couple', '남녀·선물'],
@@ -643,17 +646,26 @@ async function refreshArt(){
   ART_BOX = await measureArt(artSrc());
   renderPoster();
 }
-/* 상단 그림 자리 — 기본이면 원본 두 장을 그대로, 아니면 고른 그림 한 장을 넣는다 */
+/* 상단 그림 자리 — 기본이면 원본 두 장을 그대로, 아니면 고른 그림 한 장을 넣는다.
+   그림의 투명 여백을 걷어 내고 왼쪽·바닥을 맞춰 앉힌 뒤, 슬라이더로 더 옮길 수 있다. */
 function heroArt(){
   const src = artSrc();
   if (!src) return `<img class="a" style="left:-167px;top:192px;width:982px;height:993px" src="${A.img.girl}" alt="">
   <img class="a" style="left:263px;top:129px;width:168.518px;height:152.196px" src="${A.img.obj}" alt="">`;
-  const own = S.hero.art === 'custom';
-  const k = own ? (+S.hero.artScale || 100) / 100 : 1;
-  const tx = own ? (+S.hero.artX || 0) : 0, ty = own ? (+S.hero.artY || 0) : 0;
+  const k = (+S.hero.artScale || 100) / 100;
+  const tx = +S.hero.artX || 0, ty = +S.hero.artY || 0;
+  const b = ART_BOX, F = ART_FIT;
+  let st;
+  if (b){
+    const dw = Math.min(F.w / b.w, F.h / (b.ar * b.h)) * k, dh = dw * b.ar;
+    st = `position:absolute;max-width:none;width:${dw}px;height:${dh}px;` +
+         `left:${F.x - b.x * dw + tx}px;top:${F.y + F.h - (b.y + b.h) * dh + ty}px`;
+  } else {
+    st = `position:absolute;left:${F.x + tx}px;top:${F.y + ty}px;width:${F.w}px;height:${F.h}px;` +
+         `object-fit:contain;object-position:left bottom;transform:scale(${k});transform-origin:left bottom`;
+  }
   return `<div class="a" style="left:${ART.x}px;top:${ART.y}px;width:${ART.w}px;height:${ART.h}px;overflow:hidden">
-    <img src="${src}" alt="" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;
-      transform:translate(${tx}px,${ty}px) scale(${k});transform-origin:center bottom"></div>`;
+    <img src="${src}" alt="" style="${st}"></div>`;
 }
 
 /* ── 01 상단 ──────────────────────────────────────────────────────── */
@@ -1125,10 +1137,11 @@ function paintRail(){
       <button type="button" class="gift" data-art="custom" aria-pressed="${S.hero.art === 'custom'}">
         <span class="pic"><span class="plus">＋</span></span>직접 올리기</button>`}
     </div>
-    <span class="hint">로고·제목 아래 <b>950×673</b> 자리입니다. 「기본」은 Figma 원본 일러스트입니다.
+    <span class="hint">「기본」은 Figma 원본 일러스트입니다. 나머지는 오른쪽 제목을 피해
+      <b>왼쪽 아래</b>에 자동으로 앉고, 아래 슬라이더로 더 옮길 수 있습니다.
       직접 올릴 때는 <b>배경이 없는 PNG</b>가 가장 깔끔합니다.</span>
   </div>
-  ${S.hero.art === 'custom' && S.hero.artImg ? `
+  ${(S.hero.art && S.hero.art !== 'orig') ? `
   ${range('크기', 'hero.artScale', 40, 220, 1, '%')}
   ${range('좌우', 'hero.artX', -400, 400, 1, 'px')}
   ${range('상하', 'hero.artY', -250, 250, 1, 'px')}
@@ -1309,6 +1322,7 @@ rail.addEventListener('click', e => {
     if (b.dataset.art === 'swap'){ artPick.click(); return; }
     if (b.dataset.art === 'custom' && !S.hero.artImg){ artPick.click(); return; }
     S.hero.art = b.dataset.art;
+    Object.assign(S.hero, { artScale:100, artX:0, artY:0 });   /* 그림마다 자리를 새로 잡는다 */
     renderRail(); refreshArt(); autosave(); return;
   }
   if (b.id === 'artReset'){
