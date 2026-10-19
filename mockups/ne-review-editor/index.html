@@ -274,7 +274,7 @@ textarea{resize:vertical;line-height:1.55;min-height:84px}
 
 <div class="app">
   <header class="topbar">
-    <div class="brand"><b>NE Times 후기이벤트 에디터</b><span>리얼후기 쓰고 선물득템 하자! · build 2026-10-19d</span></div>
+    <div class="brand"><b>NE Times 후기이벤트 에디터</b><span>리얼후기 쓰고 선물득템 하자! · build 2026-10-19e</span></div>
     <div class="tabs">
       <button class="btn sm" id="tabPrev" aria-pressed="true">미리보기</button>
       <button class="btn sm" id="tabEdit" aria-pressed="false">편집</button>
@@ -995,9 +995,10 @@ function paintRail(){
   ${range('좌우', 'hero.artX', -400, 400, 1, 'px')}
   ${range('상하', 'hero.artY', -250, 250, 1, 'px')}
   <div class="addbar">
+    <button class="btn" id="artSwap">다른 이미지 올리기</button>
     <button class="btn" id="artReset">위치·크기 초기화</button>
-    <button class="btn del" id="artClear">올린 이미지 지우기</button>
-  </div>` : ''}
+  </div>
+  <button class="btn del" id="artClear">올린 이미지 지우기</button>` : ''}
   <label class="chk"><input type="checkbox" data-k="hero.artBanner" ${S.hero.artBanner !== false ? 'checked' : ''}>
     배너 6종에도 같은 그림 쓰기</label>
   <span class="hint">배너는 규격이 제각각이라 <b>크기·위치 슬라이더는 따르지 않고</b>,
@@ -1176,6 +1177,7 @@ rail.addEventListener('click', e => {
     S.hero.art = b.dataset.art;
     renderRail(); refreshArt(); autosave(); return;
   }
+  if (b.id === 'artSwap'){ artPick.click(); return; }
   if (b.id === 'artReset'){
     Object.assign(S.hero, { artScale:100, artX:0, artY:0 });
     renderRail(); renderPoster(); autosave(); return;
