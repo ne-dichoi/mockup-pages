@@ -166,8 +166,9 @@ textarea{resize:vertical;line-height:1.55;min-height:84px}
 .gifts.arts .pic{height:40px}
 .gifts.arts .pic img{max-height:40px}
 
-/* 올린 이미지 카드 안의 삭제 아이콘 — 체크 배지(오른쪽 위)와 겹치지 않게 왼쪽 위에 */
-.gift .giftdel{position:absolute;top:6px;left:6px;width:20px;height:20px;border-radius:50%;
+/* 올린 이미지 카드 — 체크 배지는 왼쪽 위, 삭제 아이콘은 오른쪽 위 */
+.gift.hasdel[aria-pressed=true]::after{left:8px;right:auto}
+.gift .giftdel{position:absolute;top:6px;right:6px;width:20px;height:20px;border-radius:50%;
   display:flex;align-items:center;justify-content:center;font-size:11px;line-height:1;
   background:var(--surface);border:1px solid var(--line);color:var(--ink-3);cursor:pointer}
 .gift .giftdel:hover{background:var(--danger);border-color:var(--danger);color:#fff}
@@ -280,7 +281,7 @@ textarea{resize:vertical;line-height:1.55;min-height:84px}
 
 <div class="app">
   <header class="topbar">
-    <div class="brand"><b>NE Times 후기이벤트 에디터</b><span>리얼후기 쓰고 선물득템 하자! · build 2026-10-19f</span></div>
+    <div class="brand"><b>NE Times 후기이벤트 에디터</b><span>리얼후기 쓰고 선물득템 하자! · build 2026-10-19g</span></div>
     <div class="tabs">
       <button class="btn sm" id="tabPrev" aria-pressed="true">미리보기</button>
       <button class="btn sm" id="tabEdit" aria-pressed="false">편집</button>
@@ -989,7 +990,7 @@ function paintRail(){
       <button type="button" class="gift" data-art="${k}" aria-pressed="${S.hero.art === k}">
         <span class="pic"><img src="${ART_IMG[k]}" alt=""></span>${n}</button>`).join('')}
       ${S.hero.artImg ? `
-      <button type="button" class="gift" data-art="custom" aria-pressed="${S.hero.art === 'custom'}">
+      <button type="button" class="gift hasdel" data-art="custom" aria-pressed="${S.hero.art === 'custom'}">
         <span class="giftdel" data-artdel="1" role="button" tabindex="0"
           title="올린 이미지 지우기" aria-label="올린 이미지 지우기">✕</span>
         <span class="pic"><img src="${S.hero.artImg}" alt=""></span>올린 이미지</button>
