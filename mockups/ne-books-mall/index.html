@@ -10,9 +10,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- Pretendard (design font) via CDN, with Noto Sans KR fallback -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/layout.css?v=20260815gn">
-<script src="js/layout.js?v=20260815gn" defer></script>
-<script src="js/search.js?v=20260815gn" defer></script>
+<link rel="stylesheet" href="css/layout.css?v=20260815go">
+<script src="js/layout.js?v=20260815go" defer></script>
+<script src="js/search.js?v=20260815go" defer></script>
 <style>
 /* ===== 메인 시안 A (메인_2) 전용 ===== */
 /* 맞춤교재 세트 애니 아이콘 */
@@ -777,7 +777,10 @@
       if(window.innerWidth<=767){ el.classList.remove('is-fixed'); el.style.top=''; el.style.bottom=''; return; }
       var fh=el.offsetHeight;
       var switchAt=home()-(window.innerHeight-fh-GAP);   // scroll point where the parked menu reaches bottom-40
-      if(window.scrollY>=switchAt){ el.classList.add('is-fixed'); el.style.top='auto'; el.style.bottom=GAP+'px'; }
+      if(window.scrollY>=switchAt){ el.classList.add('is-fixed'); el.style.top='auto';
+        var footer=document.querySelector('.footer'); var bo=GAP;
+        if(footer){ var ft=footer.getBoundingClientRect().top; bo=Math.max(GAP,(window.innerHeight-ft)+GAP); } /* 푸터 보이면 그 위 40px에서 멈춤(푸터 안 덮게) */
+        el.style.bottom=bo+'px'; }
       else { el.classList.remove('is-fixed'); el.style.bottom=''; el.style.top=home()+'px'; }
     }
     window.addEventListener('scroll',onScroll,{passive:true});

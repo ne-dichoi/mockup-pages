@@ -332,7 +332,16 @@ a:hover .mega-new{text-decoration:none;}
 .foot-right{display:flex;gap:18px;align-items:center;flex-wrap:wrap;}
 .foot-right .ch{color:#c4c4c4;font-weight:700;font-size:13px;}
 .foot-right .yt{width:22px;height:22px;}
-.foot-right .fam{display:flex;gap:10px;align-items:center;color:#c4c4c4;font-size:13px;padding-left:8px;}
+.foot-right .fam{display:inline-flex;gap:10px;align-items:center;color:#c4c4c4;font-size:13px;padding-left:8px;background:transparent;border:0;cursor:pointer;font-family:inherit;line-height:1.4;}
+.fam-wrap{position:relative;display:inline-flex;}
+.fam .ic,.fm-fam .ic{transition:transform .2s;}
+.fam-wrap.open .fam .ic,.fam-wrap.open .fm-fam .ic{transform:rotate(180deg);}
+.fam:hover,.fm-fam:hover{color:#fff;}
+.fam-menu{position:absolute;right:0;bottom:calc(100% + 10px);min-width:180px;background:#0d0d0d;border:1px solid rgba(255,255,255,.14);border-radius:8px;box-shadow:0 -6px 20px rgba(0,0,0,.5);padding:6px 0;margin:0;list-style:none;display:none;z-index:60;}
+.fam-wrap.open .fam-menu{display:block;}
+.fam-menu li{list-style:none;}
+.fam-menu a{display:block;padding:9px 18px;font-size:13px;color:#c4c4c4;text-decoration:none;white-space:nowrap;}
+.fam-menu a:hover{background:rgba(255,255,255,.07);color:#fff;}
 .foot-right .fam .ic{width:13px;height:13px;}
 .foot-main{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;padding:24px 0 32px;}
 .foot-info p{font-size:13px;line-height:18.85px;color:#7e7e7e;}
@@ -2423,7 +2432,8 @@ body.bsheet-lock{overflow:hidden;}
   .foot-mo .fm-top{display:flex;align-items:center;justify-content:space-between;gap:16px;}
   .foot-mo .fm-logo{width:80px;height:24px;flex:none;}
   .foot-mo .fm-logo img{width:100%;height:100%;object-fit:contain;}
-  .foot-mo .fm-fam{display:inline-flex;align-items:center;gap:8px;color:#c4c4c4;font-size:13px;white-space:nowrap;}
+  .foot-mo .fm-fam{display:inline-flex;align-items:center;gap:8px;color:#c4c4c4;font-size:13px;white-space:nowrap;background:transparent;border:0;cursor:pointer;font-family:inherit;}
+  .fam-menu-mo{right:auto;left:0;bottom:auto;top:calc(100% + 8px);}
   .foot-mo .fm-fam .ic{width:13px;height:13px;}
   .foot-mo .fm-nav{display:flex;flex-wrap:wrap;align-items:center;gap:6px 0;}
   .foot-mo .fm-nav a{color:#7e7e7e;font-size:12px;line-height:1;text-decoration:none;padding:0 9px;}

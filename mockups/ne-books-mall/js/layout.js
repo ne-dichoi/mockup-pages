@@ -143,7 +143,17 @@
             <a href="#">개인정보처리방침</a><a href="#">이용약관</a><a href="#">이메일무단수집거부</a><a href="#">지사안내</a>
           </div>
           <div class="foot-right">
-            <span class="fam">FAMILY SITE <span class="ic ico"><img src="assets/footer_familysite.svg" alt=""></span></span>
+            <div class="fam-wrap">
+              <button type="button" class="fam" aria-haspopup="true" aria-expanded="false">FAMILY SITE <span class="ic ico"><img src="assets/footer_familysite.svg" alt=""></span></button>
+              <ul class="fam-menu">
+                <li><a href="#" target="_blank" rel="noopener">NE능률</a></li>
+                <li><a href="#" target="_blank" rel="noopener">NE Build &amp; Grow</a></li>
+                <li><a href="#" target="_blank" rel="noopener">엔이튌터</a></li>
+                <li><a href="#" target="_blank" rel="noopener">NE_Times</a></li>
+                <li><a href="#" target="_blank" rel="noopener">케임브릿</a></li>
+                <li><a href="#" target="_blank" rel="noopener">NE클래스</a></li>
+              </ul>
+            </div>
           </div>
         </div>
         <div class="foot-main">
@@ -159,7 +169,17 @@
       <div class="foot-mo only-mo">
         <div class="fm-top">
           <div class="fm-logo"><img src="assets/footer_logo.png" alt="NE능률"></div>
-          <span class="fm-fam">FAMILY SITE <span class="ic ico"><img src="assets/footer_familysite.svg" alt=""></span></span>
+          <div class="fam-wrap">
+            <button type="button" class="fm-fam" aria-haspopup="true" aria-expanded="false">FAMILY SITE <span class="ic ico"><img src="assets/footer_familysite.svg" alt=""></span></button>
+            <ul class="fam-menu fam-menu-mo">
+                <li><a href="#" target="_blank" rel="noopener">NE능률</a></li>
+                <li><a href="#" target="_blank" rel="noopener">NE Build &amp; Grow</a></li>
+                <li><a href="#" target="_blank" rel="noopener">엔이튌터</a></li>
+                <li><a href="#" target="_blank" rel="noopener">NE_Times</a></li>
+                <li><a href="#" target="_blank" rel="noopener">케임브릿</a></li>
+                <li><a href="#" target="_blank" rel="noopener">NE클래스</a></li>
+            </ul>
+          </div>
         </div>
         <div class="fm-nav">
           <a href="#">개인정보처리방침</a><a href="#">이용약관</a><a href="#">이메일무단수집거부</a><a href="#">지사안내</a>
@@ -180,6 +200,18 @@
   </footer>`;
   var h=document.getElementById('site-header'); if(h) h.innerHTML=HEADER;
   var f=document.getElementById('site-footer'); if(f) f.innerHTML=FOOTER;
+  /* FAMILY SITE 드롭다운 토글 (공용 푸터) */
+  (function(){
+    var ft=document.getElementById('site-footer'); if(!ft) return;
+    function closeAll(except){ ft.querySelectorAll('.fam-wrap.open').forEach(function(x){ if(x!==except){ x.classList.remove('open'); var b=x.querySelector('.fam,.fm-fam'); if(b) b.setAttribute('aria-expanded','false'); } }); }
+    ft.addEventListener('click', function(e){
+      var btn=e.target.closest('.fam,.fm-fam');
+      if(btn){ e.preventDefault(); var w=btn.closest('.fam-wrap'); var open=w.classList.toggle('open'); btn.setAttribute('aria-expanded', open?'true':'false'); closeAll(w); return; }
+      var link=e.target.closest('.fam-menu a'); if(link){ var w2=link.closest('.fam-wrap'); if(w2) w2.classList.remove('open'); }
+    });
+    document.addEventListener('click', function(e){ if(e.target.closest('.fam-wrap')) return; closeAll(null); });
+    document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeAll(null); });
+  })();
 
   /* ===== 모바일 GNB 자동 숨김/표시 (아래로 스크롤=숨김, 위로 스크롤=표시+그림자 고정) ===== */
   (function(){
@@ -799,8 +831,11 @@
     document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&qfloat.classList.contains('open')) closeCS(); });
 
     /* 맨위로: 살짝 내렸을 때만 노출 + 부드럽게 상단 이동 */
-    function onScroll(){ if((window.pageYOffset||document.documentElement.scrollTop||0)>240) top.classList.add('show'); else top.classList.remove('show'); }
+    function onScroll(){ if((window.pageYOffset||document.documentElement.scrollTop||0)>240) top.classList.add('show'); else top.classList.remove('show');
+      /* 푸터 보이면 퀵 플로팅을 푸터 위 40px에서 멈춤(푸터 안 덮게) */
+      var footer=document.querySelector('.footer'); if(footer){ var ft=footer.getBoundingClientRect().top; qfloat.style.bottom=Math.max(40,(window.innerHeight-ft)+40)+'px'; } }
     window.addEventListener('scroll',onScroll,{passive:true});
+    window.addEventListener('resize',onScroll);
     onScroll();
     top.addEventListener('click',function(){
       var start=window.pageYOffset||document.documentElement.scrollTop||0, t0=null;
