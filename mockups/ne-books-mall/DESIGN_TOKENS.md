@@ -1049,4 +1049,39 @@ PC에서도 교재 라벨 통일. **좌우 12 · `radius:999` · `line-height:1`
 
 ---
 
+## 48. 학습자료 자료유형별 칩 아이콘 (`.pres-item` / `.mc-res-item`, 2026-10)
+
+교재 리스트·교재상세의 **학습자료(부가서비스) 다운로드 칩**에 쓰는 자료유형 아이콘.
+자료유형은 Admin 부가서비스 코드(`serviceList.asp`)에서 **동적 생성**되므로 고정 목록이 아님 → 목업 기준 유형에 아이콘을 지정하고, **매핑 없는 신규 유형은 `기타(ic45_etc)`로 폴백**.
+
+**공통 아이콘 스펙** (전 아이콘 동일)
+| 항목 | 값 |
+|------|-----|
+| 캔버스 | `45×45` viewBox |
+| 선 | stroke `#1D1717` · width `2` · `round` linecap/linejoin |
+| 포인트 | 빨강 `#E83828` (모서리 접힘·강조 요소) |
+| 칩 배경 | 흰색(`#fff`) · 1px `--line` · radius 14 · 중앙 정렬 · 라벨 `.pres-lb` 12 / 카운트 `.pres-ct` |
+| 원본 | Figma `사이트` 파일 (key `2YfE31x8x7jsGyLVEhsYGq`) |
+
+**자료유형 → 아이콘 매핑**
+| # | 자료유형(라벨) | 아이콘 파일 | 모티프 | Figma 노드 |
+|---|------|------|------|------|
+| 1 | 전체 / 전체 다운 | `assets/ic45_all.svg` | 폴더 + 빨강 다운로드 | `310:364` |
+| 2 | Teaching Materials | `assets/ic45_teaching.svg` | 학사모 | `539:321` |
+| 3 | 수업용 PPT | `assets/ic45_ppt.svg` | 슬라이드 + 막대 | `539:328` |
+| 4 | Word Lists / Word List | `assets/ic45_wordlist.svg` | 문서 + 리스트 줄 | `310:431` |
+| 5 | Answer Keys / 정답 | `assets/ic45_answer.svg` | 문서 + 빨강 정답 ○ | `544:1816` |
+| 6 | MP3 | `assets/ic45_mp3.svg` | 헤드폰 | `310:369` |
+| 7 | Test Sheet | `assets/ic45_test.svg` | 문서 + 빨강 체크 | `542:354` |
+| 8 | Lesson Plans | `assets/ic45_lesson.svg` | 캘린더 | `539:344` |
+| 9 | Oxford | `assets/ic45_oxford.svg` | 책 + 빨강 책갈피 | `542:365` |
+| 10 | 정답 및 해설 | `assets/ic45_solution.svg` | 문서 + 세 줄 | `310:373` |
+| 11 | 부가문제 | `assets/ic45_extra.svg` | 문서 + 빨강 + | `539:336` |
+| 12 | 기타(폴백) | `assets/ic45_etc.svg` | 문서 + ··· | `544:1781` |
+
+> **온라인/링크 타입**(다운로드 아님)은 별도 아이콘 유지: **음원듣기** `ic_res_sound.svg`·**모바일학습** `ic_res_mobile.svg`(블루 `.blue`), **QR**(모바일학습·MP3음원) `ic_res_qr.svg`.
+> 데스크톱 칩 `.pres-item`·모바일 칩 `.mc-res-item` **동일 아이콘 세트** 사용(2026-10 통일).
+
+---
+
 > 문서 번호는 §11이 비어 있음(§10 → §12) — 과거 편집 흔적, 내용 누락 아님.
