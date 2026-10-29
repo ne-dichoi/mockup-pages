@@ -593,7 +593,7 @@ a:hover .mega-new{text-decoration:none;}
 .pager a.on{background:#1d1717;color:#fff;font-weight:700;}
 .pager .arw{color:#666666;font-size:18px;}
 .pres{display:flex;align-items:flex-end;gap:16px;margin-top:auto;padding-top:18px;}
-.pres-scroll{flex:1 1 auto;min-width:0;max-width:590px;display:flex;align-items:flex-end;gap:8px; overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-ms-overflow-style:none;cursor:grab;scroll-behavior:smooth;}
+.pres-scroll{flex:1 1 auto;min-width:0;max-width:none;display:flex;align-items:flex-end;gap:8px; overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-ms-overflow-style:none;cursor:grab;scroll-behavior:smooth;}
 .pres-scroll::-webkit-scrollbar{display:none;}
 .pres-scroll.dragging{cursor:grabbing;scroll-behavior:auto;}
 .pres-scroll.dragging .pres-item{pointer-events:none;}
