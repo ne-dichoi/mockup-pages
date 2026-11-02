@@ -293,7 +293,7 @@ body.view #btnEdit{display:inline-flex}
 
 <div class="app">
   <header class="topbar">
-    <div class="brand"><b>NE Times 후기이벤트 에디터</b><span>리얼후기 쓰고 선물득템 하자! · build 2026-11-02d</span></div>
+    <div class="brand"><b>NE Times 후기이벤트 에디터</b><span>리얼후기 쓰고 선물득템 하자! · build 2026-11-02e</span></div>
     <div class="tabs">
       <button class="btn sm" id="tabPrev" aria-pressed="true">미리보기</button>
       <button class="btn sm" id="tabEdit" aria-pressed="false">편집</button>
@@ -1431,7 +1431,7 @@ btnLink.onclick = async () => {
     ${ok ? '<p><b>주소를 복사했습니다.</b> 붙여넣기만 하면 됩니다.</p>'
          : '<p>자동 복사가 막혀 있습니다. 아래 주소를 직접 복사해 주세요.</p>'}
     <textarea id="shareUrl" readonly rows="3" style="font-family:var(--f-num);font-size:12px">${esc(url)}</textarea>
-    ${!ok ? '<div class="addbar"><button class="btn primary" id="shareCopyBtn">주소 복사</button></div>' : ''}
+    <div class="addbar"><button class="btn primary" id="shareCopyBtn">주소 복사</button></div>
     ${long ? `<p class="warn">주소가 ${url.length.toLocaleString()}자로 너무 깁니다.
       메신저·메일에서 잘릴 수 있으니 <b>설정 저장</b>(JSON)을 쓰세요.</p>` : ''}
     ${dropped.length ? `<p><b>직접 올린 이미지는 링크에 담기지 않습니다</b> — ${esc(dropped.join(' · '))}.
@@ -1439,7 +1439,7 @@ btnLink.onclick = async () => {
       받는 사람 화면에는 기본 그림으로 보이니, 그림까지 넘기려면 <b>설정 저장</b>으로 JSON 파일을 보내 주세요.</p>` : ''}`);
   const ta = $('#shareUrl');
   const cb = $('#shareCopyBtn');
-  if (cb) cb.onclick = async () => { flash(cb, await copyText(url) ? '복사했습니다' : '복사 실패'); };
+  cb.onclick = async () => { flash(cb, await copyText(url) ? '복사했습니다' : '복사 실패'); };
   ta.focus(); ta.select();
 };
 
