@@ -281,7 +281,7 @@ textarea{resize:vertical;line-height:1.55;min-height:84px}
 
 <div class="app">
   <header class="topbar">
-    <div class="brand"><b>NE Times 후기이벤트 에디터</b><span>리얼후기 쓰고 선물득템 하자! · build 2026-10-19j</span></div>
+    <div class="brand"><b>NE Times 후기이벤트 에디터</b><span>리얼후기 쓰고 선물득템 하자! · build 2026-11-02a</span></div>
     <div class="tabs">
       <button class="btn sm" id="tabPrev" aria-pressed="true">미리보기</button>
       <button class="btn sm" id="tabEdit" aria-pressed="false">편집</button>
@@ -289,6 +289,7 @@ textarea{resize:vertical;line-height:1.55;min-height:84px}
     <span class="saved" id="saved"></span>
     <button class="btn" id="btnLoad">불러오기</button>
     <button class="btn" id="btnSave">설정 저장</button>
+    <button class="btn" id="btnLink">링크 만들기</button>
     <button class="btn" id="btnReset">초기화</button>
     <button class="btn primary" id="btnExport">이미지 만들기</button>
   </header>
@@ -1346,6 +1347,71 @@ btnReset.onclick = () => {
   hydrate(defaults()); autosave();
 };
 
+
+/* ═══ 링크로 공유 ═════════════════════════════════════════════════════
+   서버가 없는 단일 HTML이라, 설정을 압축해 주소(#) 뒤에 실어 보낸다.
+   링크를 받은 사람은 같은 화면을 그대로 보게 된다.
+   주소에 담기 때문에 직접 올린 이미지(수백 KB)는 싣지 못한다 — 그건 JSON 파일로. */
+const b64u = u => btoa(String.fromCharCode(...u)).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+const unb64u = t => {
+  const b = atob(t.replace(/-/g,'+').replace(/_/g,'/'));
+  const a = new Uint8Array(b.length);
+  for (let i = 0; i < b.length; i++) a[i] = b.charCodeAt(i);
+  return a;
+};
+async function pack(obj){
+  const bytes = new TextEncoder().encode(JSON.stringify(obj));
+  if (typeof CompressionStream !== 'function') return 'r' + b64u(bytes);
+  const st = new Blob([bytes]).stream().pipeThrough(new CompressionStream('deflate-raw'));
+  return 'z' + b64u(new Uint8Array(await new Response(st).arrayBuffer()));
+}
+async function unpack(str){
+  const bytes = unb64u(str.slice(1));
+  if (str[0] === 'r') return JSON.parse(new TextDecoder().decode(bytes));
+  const st = new Blob([bytes]).stream().pipeThrough(new DecompressionStream('deflate-raw'));
+  return JSON.parse(new TextDecoder().decode(await new Response(st).arrayBuffer()));
+}
+/* 링크에 실을 사본 — 직접 올린 이미지는 빼고 기본 그림으로 되돌린다 */
+function shareCopy(){
+  const o = JSON.parse(JSON.stringify(S));
+  const dropped = [];
+  if (o.hero.artImg){
+    o.hero.artImg = null;
+    if (o.hero.art === 'custom'){ o.hero.art = 'phone'; dropped.push('상단 그림'); }
+  }
+  o.benefit.tiers.forEach((t, i) => {
+    if (t.giftImg){
+      t.giftImg = null;
+      if (t.gift === 'custom'){ t.gift = TIER0[i].gift; dropped.push(`${t.label} 상품 이미지`); }
+    }
+  });
+  return { o, dropped };
+}
+btnLink.onclick = async () => {
+  const { o, dropped } = shareCopy();
+  let url;
+  try { url = location.origin + location.pathname + '#s=' + await pack(o); }
+  catch { openModal('링크 만들기', '<p class="warn">링크를 만들지 못했습니다.</p>'); return; }
+  const long = url.length > 8000;
+  openModal('링크로 공유', `
+    <p>이 주소를 받은 사람은 <b>지금 화면을 그대로</b> 보게 됩니다. 열어서 이어 고칠 수도 있습니다.</p>
+    <textarea id="shareUrl" readonly rows="4" style="font-family:var(--f-num);font-size:12px">${esc(url)}</textarea>
+    <div class="addbar"><button class="btn primary" id="shareCopyBtn">주소 복사</button></div>
+    <p>주소 길이 ${url.length.toLocaleString()}자${long ? ' — <b style="color:var(--danger)">너무 깁니다.</b> 메신저·메일에서 잘릴 수 있으니 설정 저장(JSON)을 쓰세요.' : ''}</p>
+    ${dropped.length ? `<p class="apart"><b>직접 올린 이미지는 링크에 담기지 않습니다</b> — ${esc(dropped.join(' · '))}.
+      주소에 그림을 통째로 실으면 길이가 수십만 자가 되어 링크가 깨집니다.
+      받는 사람 화면에는 기본 그림으로 보이니, 그림까지 넘기려면 <b>설정 저장</b>으로 JSON 파일을 보내 주세요.</p>` : ''}
+    <p class="apart">링크를 열면 <b>그 사람이 작업 중이던 내용이 링크 내용으로 바뀝니다.</b>
+      먼저 설정 저장으로 백업해 두라고 알려 주세요.</p>`);
+  const ta = $('#shareUrl');
+  $('#shareCopyBtn').onclick = async () => {
+    try { await navigator.clipboard.writeText(url); }
+    catch { ta.select(); document.execCommand('copy'); }
+    flash($('#shareCopyBtn'), '복사했습니다');
+  };
+  ta.focus(); ta.select();
+};
+
 /* ═══ 내보내기 ════════════════════════════════════════════════════════ */
 function dataURLtoBlob(u){
   const [head, b64] = u.split(',');
@@ -1544,7 +1610,12 @@ async function shoot(targets){
   let saved0 = null;
   try { saved0 = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch {}
   await loadTits();                      /* 레터링 픽셀을 먼저 읽어 둔다 */
-  hydrate(saved0 && saved0.v === 1 ? saved0 : defaults());
+  /* 주소에 설정이 실려 있으면 그것이 우선이다 (링크로 공유받은 경우) */
+  const m = /[#&]s=([A-Za-z0-9\-_]+)/.exec(location.hash || '');
+  let fromLink = null;
+  if (m){ try { fromLink = await unpack(m[1]); } catch {} }
+  hydrate(fromLink || (saved0 && saved0.v === 1 ? saved0 : defaults()));
+  if (fromLink) flag('링크로 불러옴', true);
   requestAnimationFrame(() => requestAnimationFrame(fit));
   document.fonts?.ready.then(fit);
   if (innerWidth <= 900) rail.hidden = true;
