@@ -830,8 +830,9 @@
     dim.addEventListener('click',closeCS);
     document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&qfloat.classList.contains('open')) closeCS(); });
 
-    /* 맨위로: 살짝 내렸을 때만 노출 + 부드럽게 상단 이동 */
-    function onScroll(){ if((window.pageYOffset||document.documentElement.scrollTop||0)>240) top.classList.add('show'); else top.classList.remove('show');
+    /* 맨위로: 내려가면 노출되고, 되돌아올 땐 최상단 근처(≤10px)에서만 숨김(히스테리시스) */
+    function onScroll(){ var _sy=(window.pageYOffset||document.documentElement.scrollTop||0);
+      if(_sy>240) top.classList.add('show'); else if(_sy<=10) top.classList.remove('show');
       /* 푸터 보이면 퀵 플로팅을 푸터 위 40px에서 멈춤(푸터 안 덮게) */
       var footer=document.querySelector('.footer'); if(footer){ var ft=footer.getBoundingClientRect().top; qfloat.style.bottom=Math.max(40,(window.innerHeight-ft)+40)+'px'; } }
     window.addEventListener('scroll',onScroll,{passive:true});
@@ -842,6 +843,30 @@
       function step(ts){ if(t0===null)t0=ts; var p=Math.min((ts-t0)/450,1); var e=1-Math.pow(1-p,3); window.scrollTo(0,Math.round(start*(1-e))); if(p<1) requestAnimationFrame(step); }
       requestAnimationFrame(step);
     });
+
+    /* 리스트_교재구매: 교재 패널(.floating 3장)이 좁은 화면에서 바로구매 버튼을 가려서,
+       상단=펼침 유지 → 스크롤 내리면 빨강 폴더 FAB로 접힘 → FAB 클릭 시 펼침 → 또 스크롤 시 접힘 */
+    if(/리스트_교재구매\.html([?#]|$)/.test(decodeURIComponent(location.pathname||''))){
+      var floatPanel=wrap.querySelector('.floating');
+      if(floatPanel){
+        var foldFab=document.createElement('button');
+        foldFab.type='button'; foldFab.className='qfold-fab';
+        foldFab.setAttribute('aria-label','교재 바로가기 펼치기');
+        foldFab.innerHTML='교재<br>가이드';
+        floatPanel.insertAdjacentElement('afterend', foldFab); /* 패널 바로 아래(상담 FAB 위) — 접혀도 제자리에서 나타남 */
+        foldFab.addEventListener('click',function(){ qfloat.classList.toggle('fold'); });
+        var lastFy=window.pageYOffset||document.documentElement.scrollTop||0;
+        var foldOnScroll=function(){
+          var y=window.pageYOffset||document.documentElement.scrollTop||0;
+          if(y<=80) qfloat.classList.remove('fold');            /* 최상단 근처: 펼침 */
+          else if(y>lastFy+2) qfloat.classList.add('fold');      /* 아래로 스크롤: 접힘 */
+          else if(y<lastFy-2) qfloat.classList.remove('fold');   /* 위로 스크롤: 펼침 */
+          lastFy=y;
+        };
+        window.addEventListener('scroll',foldOnScroll,{passive:true});
+        foldOnScroll();
+      }
+    }
   }
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot);
   else boot();

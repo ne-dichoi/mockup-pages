@@ -4075,7 +4075,7 @@ body.bsheet-lock{overflow:hidden;}
 #subFloat .qcs-item .ic{width:32px;height:32px;display:inline-flex;align-items:center;justify-content:center;flex:none;}
 #subFloat .qcs-item .ic img{width:100%;height:100%;object-fit:contain;}
 #subFloat .qcs-fab{width:48px;height:48px;border:0;background:none;padding:0;cursor:pointer;line-height:0;}
-#subFloat .qcs-fab img{width:48px;height:48px;display:block;}
+#subFloat .qcs-fab img{width:48px;height:48px;display:block;filter:drop-shadow(0 4px 6px rgba(0,0,0,.15));} /* 다른 FAB와 동일 그림자(SVG라 filter 사용) */
 #subFloat .qcs-fab .ic-x{display:none;}
 #subFloat .qfloat.open .qcs-fab .ic-chat{display:none;}
 #subFloat .qfloat.open .qcs-fab .ic-x{display:block;}
@@ -4085,9 +4085,18 @@ body.bsheet-lock{overflow:hidden;}
 #subFloat .qcs-top svg{width:24px;height:24px;}
 #subFloat .qcs-dim{position:fixed;inset:0;background:rgba(13,13,13,.5);opacity:0;visibility:hidden;transition:opacity .2s;z-index:79;}
 #subFloat .qcs-dim.on{opacity:1;visibility:visible;}
+/* 리스트_교재구매: 교재 패널 접기 → 빨강 폴더 FAB (JS가 .qfold-fab 주입, 스크롤 시 .fold 토글) */
+#subFloat .qfold-fab{display:none;width:48px;height:48px;border:0;padding:0;cursor:pointer;border-radius:999px;background:var(--red);box-shadow:0 4px 6px rgba(0,0,0,.15);align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:600;line-height:1.2;text-align:center;letter-spacing:-.2px;}
+#subFloat .qfloat .floating{transform-origin:bottom right;overflow:hidden;max-height:340px;transition:max-height .28s cubic-bezier(.4,0,.2,1),opacity .2s ease,transform .28s cubic-bezier(.4,0,.2,1);}
+#subFloat .qfloat.fold .floating{display:flex;max-height:0;opacity:0;transform:scale(.55);pointer-events:none;} /* 접힘: 3패널이 FAB로 쏙 줄어듦 */
+#subFloat .qfloat.fold .qfold-fab{display:inline-flex;animation:qfoldpop .34s cubic-bezier(.34,1.56,.64,1);} /* 접힘: FAB 팝인 */
+#subFloat .qfloat.open .qfold-fab{display:none;}         /* 상담 열림 시 폴더 FAB 숨김 */
+@keyframes qfoldpop{0%{transform:scale(.3);opacity:0}60%{transform:scale(1.1)}100%{transform:scale(1);opacity:1}}
+@media (prefers-reduced-motion:reduce){ #subFloat .qfloat .floating,#subFloat .qfloat.fold .qfold-fab{transition:none;animation:none;} }
 /* ===== 서브페이지 모바일(≤767): 3패널 숨김 · 상담 챗 퀵 + 맨위로만 노출 ===== */
 @media (max-width:767px){
   #subFloat .floating{display:none !important;}          /* 3개 패널(레벨차트/맞춤형/가이드) 모바일 숨김 */
+  #subFloat .qfold-fab{display:none !important;}          /* 폴더 FAB도 모바일 숨김(패널 자체가 없음) */
   #subFloat .qfloat{right:16px;bottom:calc(24px + env(safe-area-inset-bottom,0px));gap:12px;}
   #subFloat .qcs-menu .qcs-sms{display:none !important;} /* 문자상담 채널만 모바일 숨김 → 채팅상담·1:1문의·FAQ 3채널 */
   /* 고객센터·마이페이지(및 문의/주문상세 등 page-my 플로우): 상담 챗 퀵 미노출, 맨위로만 유지 */
