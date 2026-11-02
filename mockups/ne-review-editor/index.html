@@ -300,7 +300,7 @@ body.view .holder{transform-origin:top center}
 
 <div class="app">
   <header class="topbar">
-    <div class="brand"><b>NE Times 후기이벤트 에디터</b><span>리얼후기 쓰고 선물득템 하자! · build 2026-11-02g</span></div>
+    <div class="brand"><b>NE Times 후기이벤트 에디터</b><span>리얼후기 쓰고 선물득템 하자! · build 2026-11-02h</span></div>
     <div class="tabs">
       <button class="btn sm" id="tabPrev" aria-pressed="true">미리보기</button>
       <button class="btn sm" id="tabEdit" aria-pressed="false">편집</button>
@@ -1362,11 +1362,31 @@ function hydrate(obj){
   if (S.hero.auto || !S.hero.period) S.hero.period = autoPeriod();
   renderRail(); renderPoster(); refreshArt();
 }
+/* 이 화면을 그대로 저장한다 — 파일을 내려받지 않는다.
+   ① 브라우저에 바로 저장하고  ② 주소 뒤에 상태를 실어 둔다.
+   그래서 이 주소를 즐겨찾기 해 두면 다른 PC에서도 같은 화면이 열린다. */
 btnSave.onclick = async () => {
-  const { y, m } = ym();
-  const blob = new Blob([JSON.stringify(S, null, 2)], { type:'application/json' });
-  const ok = await saveFile(blob, `NE타임즈_후기이벤트_${y}${pad2(m)}.json`);
-  flash(btnSave, ok ? '저장함' : '저장 실패');
+  clearTimeout(saveTimer);
+  let stored = true;
+  try { localStorage.setItem(KEY, JSON.stringify(S)); } catch { stored = false; }
+  const { o, dropped } = shareCopy();
+  try { history.replaceState(null, '', location.pathname + '#d=' + await pack(o)); } catch {}
+  if (stored) flag('저장됨 ' + new Date().toLocaleTimeString('ko-KR', { hour:'2-digit', minute:'2-digit' }), true);
+  if (stored && !dropped.length){ toast(btnSave, '이 화면을 저장했습니다'); return; }
+  openModal('설정 저장', `
+    ${stored ? '<p><b>이 화면을 저장했습니다.</b> 다음에 에디터를 열면 그대로 이어집니다.</p>'
+             : '<p class="warn">브라우저 저장에 실패했습니다(용량 초과). 아래 파일로 받아 두세요.</p>'}
+    ${dropped.length ? `<p><b>직접 올린 이미지는 주소에 담기지 않습니다</b> — ${esc(dropped.join(' · '))}.
+      이 PC에서는 그대로 보이지만, <b>다른 PC에서 열려면 파일로 받아 두셔야</b> 합니다.</p>` : ''}
+    <div class="addbar"><button class="btn${stored ? '' : ' primary'}" id="saveFileBtn">파일로 받기 (JSON)</button></div>
+    <p class="apart">지금 주소를 즐겨찾기 해 두면 다른 PC에서도 같은 화면이 열립니다
+      (직접 올린 이미지는 빠집니다).</p>`);
+  $('#saveFileBtn').onclick = async () => {
+    const { y, m } = ym();
+    const blob = new Blob([JSON.stringify(S, null, 2)], { type:'application/json' });
+    const ok = await saveFile(blob, `NE타임즈_후기이벤트_${y}${pad2(m)}.json`);
+    toast($('#saveFileBtn'), ok ? '파일로 받았습니다' : '받지 못했습니다');
+  };
 };
 btnLoad.onclick = () => filePick.click();
 filePick.onchange = () => {
@@ -1666,11 +1686,11 @@ async function shoot(targets){
   try { saved0 = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch {}
   await loadTits();                      /* 레터링 픽셀을 먼저 읽어 둔다 */
   /* 주소에 설정이 실려 있으면 그것이 우선이다 (링크로 공유받은 경우) */
-  const m = /[#&]s=([A-Za-z0-9\-_]+)/.exec(location.hash || '');
+  const m = /[#&]([sd])=([A-Za-z0-9\-_]+)/.exec(location.hash || '');
   let fromLink = null;
-  if (m){ try { fromLink = await unpack(m[1]); } catch {} }
+  if (m){ try { fromLink = await unpack(m[2]); } catch {} }
   hydrate(fromLink || (saved0 && saved0.v === 1 ? saved0 : defaults()));
-  if (fromLink) setView(true);
+  if (fromLink && m[1] === 's') setView(true);   /* 공유 링크만 보기 전용 */
   requestAnimationFrame(() => requestAnimationFrame(fit));
   document.fonts?.ready.then(fit);
   if (innerWidth <= 900) rail.hidden = true;
