@@ -210,6 +210,15 @@ textarea{resize:vertical;line-height:1.55;min-height:84px}
   font-size:14px;cursor:pointer;padding:8px 0}
 .ympanel .yfoot button:hover{color:var(--ink)}
 
+/* ─── 말풍선 알림 ────────────────────────────────────────────────── */
+.toast{position:fixed;z-index:60;background:var(--ink);color:#fff;font-size:13px;line-height:1;
+  padding:11px 14px;border-radius:8px;white-space:nowrap;pointer-events:none;
+  box-shadow:0 4px 14px rgba(29,23,23,.20);
+  opacity:0;transform:translateY(-4px);transition:opacity .15s,transform .15s}
+.toast.on{opacity:1;transform:translateY(0)}
+.toast::before{content:'';position:absolute;top:-5px;left:var(--ax,50%);margin-left:-5px;
+  border:5px solid transparent;border-top:0;border-bottom-color:var(--ink)}
+
 /* ─── modal ──────────────────────────────────────────────────────── */
 .modal[hidden]{display:none!important}
 .modal{position:fixed;inset:0;background:rgba(13,13,13,.45);display:flex;align-items:center;justify-content:center;padding:20px;z-index:50}
@@ -293,7 +302,7 @@ body.view #btnEdit{display:inline-flex}
 
 <div class="app">
   <header class="topbar">
-    <div class="brand"><b>NE Times 후기이벤트 에디터</b><span>리얼후기 쓰고 선물득템 하자! · build 2026-11-02e</span></div>
+    <div class="brand"><b>NE Times 후기이벤트 에디터</b><span>리얼후기 쓰고 선물득템 하자! · build 2026-11-02f</span></div>
     <div class="tabs">
       <button class="btn sm" id="tabPrev" aria-pressed="true">미리보기</button>
       <button class="btn sm" id="tabEdit" aria-pressed="false">편집</button>
@@ -1252,6 +1261,24 @@ giftPick.onchange = () => {
   r.readAsDataURL(f);
   giftPick.value = '';
 };
+/* 버튼 아래에 잠깐 떴다 사라지는 말풍선 */
+let toastEl, toastTimer;
+function toast(anchor, msg){
+  if (!toastEl){ toastEl = document.createElement('div'); toastEl.className = 'toast'; document.body.appendChild(toastEl); }
+  toastEl.textContent = msg;
+  toastEl.classList.remove('on');
+  toastEl.style.visibility = 'hidden'; toastEl.style.left = '0px'; toastEl.style.top = '0px';
+  const r = anchor.getBoundingClientRect(), w = toastEl.offsetWidth;
+  const cx = r.left + r.width / 2;
+  const left = Math.max(8, Math.min(innerWidth - w - 8, cx - w / 2));
+  toastEl.style.left = left + 'px';
+  toastEl.style.top = (r.bottom + 10) + 'px';
+  toastEl.style.setProperty('--ax', (cx - left) + 'px');
+  toastEl.style.visibility = '';
+  requestAnimationFrame(() => toastEl.classList.add('on'));
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toastEl.classList.remove('on'), 1800);
+}
 function flash(el, msg){
   const old = el.textContent;
   el.textContent = msg; el.disabled = true;
@@ -1422,11 +1449,11 @@ btnLink.onclick = async () => {
   const { o, dropped } = shareCopy();
   let url;
   try { url = location.origin + location.pathname + '#s=' + await pack(o); }
-  catch { flash(btnLink, '실패'); return; }
+  catch { toast(btnLink, '링크를 만들지 못했습니다'); return; }
   const ok = await copyText(url);
   const long = url.length > 8000;
   /* 보통은 복사만 하고 끝낸다. 꼭 알아야 할 때만 창을 띄운다. */
-  if (ok && !long && !dropped.length){ flash(btnLink, '주소 복사함'); return; }
+  if (ok && !long && !dropped.length){ toast(btnLink, '주소를 복사했습니다'); return; }
   openModal('공유하기', `
     ${ok ? '<p><b>주소를 복사했습니다.</b> 붙여넣기만 하면 됩니다.</p>'
          : '<p>자동 복사가 막혀 있습니다. 아래 주소를 직접 복사해 주세요.</p>'}
@@ -1439,7 +1466,7 @@ btnLink.onclick = async () => {
       받는 사람 화면에는 기본 그림으로 보이니, 그림까지 넘기려면 <b>설정 저장</b>으로 JSON 파일을 보내 주세요.</p>` : ''}`);
   const ta = $('#shareUrl');
   const cb = $('#shareCopyBtn');
-  cb.onclick = async () => { flash(cb, await copyText(url) ? '복사했습니다' : '복사 실패'); };
+  cb.onclick = async () => { toast(cb, await copyText(url) ? '주소를 복사했습니다' : '복사하지 못했습니다'); };
   ta.focus(); ta.select();
 };
 
