@@ -226,6 +226,18 @@ textarea{resize:vertical;line-height:1.55;min-height:84px}
 .shot img{max-width:100%;border:1px solid var(--line);border-radius:8px;display:block;background:#fff}
 .shot .cap{font-size:12px;color:var(--ink-3)}
 
+/* 링크로 받은 사람이 보는 화면 — 이벤트 페이지만 띄운다 */
+body.view .rail{display:none}
+body.view .split{grid-template-columns:minmax(0,1fr)}
+body.view .stagebar{display:none}
+body.view .brand span,body.view .saved,
+body.view #btnLoad,body.view #btnSave,body.view #btnLink,
+body.view #btnReset,body.view #btnExport{display:none}
+body.view .scroll{padding:0;background:var(--surface)}
+body.view .holder{transform-origin:top center}
+#btnEdit{display:none}
+body.view #btnEdit{display:inline-flex}
+
 @media (max-width:1280px){:root{--rail:440px}}
 @media (max-width:900px){
   .split{grid-template-columns:1fr;grid-template-rows:1fr}
@@ -281,7 +293,7 @@ textarea{resize:vertical;line-height:1.55;min-height:84px}
 
 <div class="app">
   <header class="topbar">
-    <div class="brand"><b>NE Times 후기이벤트 에디터</b><span>리얼후기 쓰고 선물득템 하자! · build 2026-11-02a</span></div>
+    <div class="brand"><b>NE Times 후기이벤트 에디터</b><span>리얼후기 쓰고 선물득템 하자! · build 2026-11-02c</span></div>
     <div class="tabs">
       <button class="btn sm" id="tabPrev" aria-pressed="true">미리보기</button>
       <button class="btn sm" id="tabEdit" aria-pressed="false">편집</button>
@@ -289,9 +301,10 @@ textarea{resize:vertical;line-height:1.55;min-height:84px}
     <span class="saved" id="saved"></span>
     <button class="btn" id="btnLoad">불러오기</button>
     <button class="btn" id="btnSave">설정 저장</button>
-    <button class="btn" id="btnLink">링크 만들기</button>
+    <button class="btn" id="btnLink">공유하기</button>
     <button class="btn" id="btnReset">초기화</button>
     <button class="btn primary" id="btnExport">이미지 만들기</button>
+    <button class="btn" id="btnEdit">편집하기</button>
   </header>
 
   <div class="split">
@@ -1387,14 +1400,23 @@ function shareCopy(){
   });
   return { o, dropped };
 }
+/* 링크로 들어오면 편집 화면을 감춘다. 「편집하기」를 누르면 평소 화면으로 돌아온다. */
+function setView(on){
+  document.body.classList.toggle('view', !!on);
+  if (on) setMode('poster');
+  fit();
+}
+btnEdit.onclick = () => setView(false);
+
 btnLink.onclick = async () => {
   const { o, dropped } = shareCopy();
   let url;
   try { url = location.origin + location.pathname + '#s=' + await pack(o); }
-  catch { openModal('링크 만들기', '<p class="warn">링크를 만들지 못했습니다.</p>'); return; }
+  catch { openModal('공유하기', '<p class="warn">링크를 만들지 못했습니다.</p>'); return; }
   const long = url.length > 8000;
   openModal('링크로 공유', `
-    <p>이 주소를 받은 사람은 <b>지금 화면을 그대로</b> 보게 됩니다. 열어서 이어 고칠 수도 있습니다.</p>
+    <p>이 주소를 받은 사람은 <b>편집 화면 없이 이벤트 페이지만</b> 보게 됩니다.
+      고쳐야 하면 오른쪽 위 <b>편집하기</b>를 누르면 됩니다.</p>
     <textarea id="shareUrl" readonly rows="4" style="font-family:var(--f-num);font-size:12px">${esc(url)}</textarea>
     <div class="addbar"><button class="btn primary" id="shareCopyBtn">주소 복사</button></div>
     <p>주소 길이 ${url.length.toLocaleString()}자${long ? ' — <b style="color:var(--danger)">너무 깁니다.</b> 메신저·메일에서 잘릴 수 있으니 설정 저장(JSON)을 쓰세요.' : ''}</p>
@@ -1615,7 +1637,7 @@ async function shoot(targets){
   let fromLink = null;
   if (m){ try { fromLink = await unpack(m[1]); } catch {} }
   hydrate(fromLink || (saved0 && saved0.v === 1 ? saved0 : defaults()));
-  if (fromLink) flag('링크로 불러옴', true);
+  if (fromLink) setView(true);
   requestAnimationFrame(() => requestAnimationFrame(fit));
   document.fonts?.ready.then(fit);
   if (innerWidth <= 900) rail.hidden = true;
