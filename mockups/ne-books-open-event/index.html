@@ -1013,7 +1013,7 @@
 (function () {
   var track = document.querySelector('[data-tick]'); if (!track) return;
   var q = (location.search.match(/[?&]nbo_now=([\d-]+)/) || [])[1], now = q ? Date.parse(q + 'T12:00:00+09:00') : Date.now();
-  if (now > Date.parse('2026-12-21T23:59:59+09:00')) { track.closest('.nbo-tick').hidden = true; return; }   // 이벤트 모두 끝나면 숨김
+  if (now < Date.parse('2026-12-12T00:00:00+09:00') || now > Date.parse('2026-12-21T23:59:59+09:00')) { track.closest('.nbo-tick').hidden = true; return; }   // 2차(댓글) 기간 12/12~12/21 에만 — 1차 기간 · 이벤트 끝나면 숨김
   var list = window.NBO_TICKER || [   // 목업 예시 — 개발 : 최근 댓글 목록 [{ id: 'abc1****', text: '…' }]
     ['abc1****', '새롭게 바뀐 사이트 너무 편리해졌어요.'], ['kkim****', '이제 바로 구매할 수 있어서 좋네요. 자료도 빨리 찾을 수 있어요!'], ['dej2****', '오픈 너무 너무 축하합니다~'],
     ['mim0****', '교재 찾기가 훨씬 쉬워졌어요'], ['eun7****', '리뉴얼 축하드려요! 자주 들를게요'], ['tjd3****', '장바구니 기능 최고예요 👍'],
