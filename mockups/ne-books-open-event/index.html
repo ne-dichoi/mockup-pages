@@ -14,9 +14,9 @@
 
   첫 등장 — 타이틀 글자가 떨어지는 동안 교재가 가운데 한 무더기로 쌓여 있다가 양옆으로 쫙 퍼짐 (약 2.7초)
 
-  즉석 당첨 · 총 2,120명 스탬프 (타이틀 오른쪽) — 1차 즉석 추첨 + 1·2차 경품 인원 강조
-    · 앞뒤 두 면 : 앞 '즉석 당첨'(빨강, 크게) / 뒤 '총 / 2,120명'(앞면과 같은 빨강) — 앞 4초 · 뒤 3초씩 동전처럼 뒤집힘 (.is-flip)
-    · 처음 뒷면으로 뒤집힐 때 숫자 0 → 2,120
+  즉석 당첨 · 총 2,100명 스탬프 (타이틀 오른쪽) — 1차 즉석 추첨 + 1·2차 경품 인원 강조
+    · 앞뒤 두 면 : 앞 '즉석 당첨'(빨강, 크게) / 뒤 '총 / 2,100명'(앞면과 같은 빨강) — 앞 4초 · 뒤 3초씩 동전처럼 뒤집힘 (.is-flip)
+    · 처음 뒷면으로 뒤집힐 때 숫자 0 → 2,100
     · 크게 떠 있다가 쾅 찍힘 → 잉크 방울·타이틀 살짝 흔들림 → 앞뒤로 뒤집힘 · 앞면은 몇 초마다 반짝임
     · 선물 상자가 열릴 때마다 한 번 더 톡. 상자에서는 그대로 고른 교재가 나옴 (경품은 알림 신청으로 받는 것이라 섞지 않음)
     · 동작 줄이기 설정·스크립트 없음이면 '즉석 당첨' 앞면 정지 상태
@@ -116,7 +116,7 @@
     .is-show       (하단 신청 바) 처음부터 표시, 참여 영역이 보이면 숨김
     .is-show       (오른쪽 도크) 처음부터 표시, 참여 영역이 보이면 숨김
     .is-hit        스탬프가 쾅 닿은 순간 (잉크 방울)
-    .is-flip       스탬프가 뒷면(총 2,120명)으로 뒤집힌 상태
+    .is-flip       스탬프가 뒷면(총 2,100명)으로 뒤집힌 상태
     .is-shake      스탬프가 찍힐 때 타이틀 살짝 흔들림
   ============================================================================
 -->
@@ -197,16 +197,16 @@
   .nbo-hero__logo img { width: clamp(90px, 8.0208vw, 154px); height: auto; }
   .nbo-hero__br-m { display: none; }
 
-  /* 즉석 당첨 · 총 2,120명 스탬프 — 크게 떠 있다가 쾅 찍힘(잉크 방울·타이틀 흔들림) → 앞뒤로 뒤집힘 → 몇 초마다 반짝 */
+  /* 즉석 당첨 · 총 2,100명 스탬프 — 크게 떠 있다가 쾅 찍힘(잉크 방울·타이틀 흔들림) → 앞뒤로 뒤집힘 → 몇 초마다 반짝 */
   .nbo-hero__stamp { position: absolute; left: calc(50% + 20vw); top: 9.05vw; z-index: 6; width: clamp(96px, 8.6vw, 165px); aspect-ratio: 1; border-radius: 50%; color: #fff; text-align: center; transform: rotate(12deg); perspective: 800px; box-shadow: 0 12px 26px rgba(232, 56, 40, .32); animation: nbo-stamp-slam .5s .9s both; }
-  /* 앞뒤 두 면 — 몇 초마다 동전처럼 뒤집힘 (앞 : 즉석 당첨 / 뒤 : 총 2,120명) */
+  /* 앞뒤 두 면 — 몇 초마다 동전처럼 뒤집힘 (앞 : 즉석 당첨 / 뒤 : 총 2,100명) */
   .nbo-hero__stamp-coin { position: absolute; inset: 0; transform-style: preserve-3d; transition: transform .8s cubic-bezier(.45, -.2, .25, 1.35); }
   .nbo-hero__stamp-coin.is-flip { transform: rotateY(180deg); }
   .nbo-hero__stamp-face { position: absolute; inset: 0; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; background: var(--c-red); -webkit-backface-visibility: hidden; backface-visibility: hidden; }
   .nbo-hero__stamp-face::before { content: ''; position: absolute; inset: 6%; border: 2px dashed rgba(255, 255, 255, .6); border-radius: 50%; animation: nbo-spin 14s linear infinite; }
   .nbo-hero__stamp-face--back { transform: rotateY(180deg); }   /* 뒷면도 앞면과 같은 빨강 */
-  .nbo-hero__stamp-line { position: relative; display: flex; align-items: baseline; justify-content: center; white-space: nowrap; }   /* 뒷면 : 윗줄 '총' / 아랫줄 '2,120명' */
-  /* 뒷면 (Figma 160-1579) : '총' 크게 · '2,120' · 작은 '명' — 글자만 6° 더 기울임, 원 130px 기준 30/28/18px */
+  .nbo-hero__stamp-line { position: relative; display: flex; align-items: baseline; justify-content: center; white-space: nowrap; }   /* 뒷면 : 윗줄 '총' / 아랫줄 '2,100명' */
+  /* 뒷면 (Figma 160-1579) : '총' 크게 · '2,100' · 작은 '명' — 글자만 6° 더 기울임, 원 130px 기준 30/28/18px */
   .nbo-hero__stamp-face--back > .nbo-hero__stamp-u--top, .nbo-hero__stamp-face--back > .nbo-hero__stamp-line { transform: rotate(6deg); }
   .nbo-hero__stamp-face--back .nbo-hero__stamp-n { font-size: clamp(21px, 1.85vw, 35px); line-height: 1; letter-spacing: -.07em; }
   .nbo-hero__stamp-u { font-family: var(--font-ko); font-weight: 800; font-size: clamp(13px, 1.19vw, 23px); letter-spacing: -.02em; }
@@ -1042,7 +1042,7 @@
         <span class="nbo-hero__stamp-face nbo-hero__stamp-face--back">
           <span class="nbo-hero__stamp-clip" aria-hidden="true"><i class="nbo-hero__stamp-glint"></i></span>
           <span class="nbo-hero__stamp-u nbo-hero__stamp-u--top">총</span>
-          <span class="nbo-hero__stamp-line"><span class="nbo-hero__stamp-n">2,120</span><span class="nbo-hero__stamp-u">명</span></span>
+          <span class="nbo-hero__stamp-line"><span class="nbo-hero__stamp-n">2,100</span><span class="nbo-hero__stamp-u">명</span></span>
         </span>
       </span>
       <i class="nbo-hero__stamp-dot" aria-hidden="true"></i><i class="nbo-hero__stamp-dot" aria-hidden="true"></i><i class="nbo-hero__stamp-dot" aria-hidden="true"></i><i class="nbo-hero__stamp-dot" aria-hidden="true"></i><i class="nbo-hero__stamp-dot" aria-hidden="true"></i><i class="nbo-hero__stamp-dot" aria-hidden="true"></i><i class="nbo-hero__stamp-dot" aria-hidden="true"></i><i class="nbo-hero__stamp-dot" aria-hidden="true"></i>
@@ -1499,18 +1499,18 @@
   /* 동작 줄이기 설정이면 정지 화면 */
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { hero.classList.remove('is-intro'); return; }
 
-  /* 스탬프 : 쾅 닿는 순간 잉크 방울·타이틀 흔들림 → 뒤집히며 '총 2,120명' */
+  /* 스탬프 : 쾅 닿는 순간 잉크 방울·타이틀 흔들림 → 뒤집히며 '총 2,100명' */
   var stamp = hero.querySelector('.nbo-hero__stamp'), stampNum = stamp && stamp.querySelector('.nbo-hero__stamp-n');
   if (stamp) {
     stampNum.textContent = '0';
     setTimeout(function () { stamp.classList.add('is-hit'); hero.querySelector('.nbo-hero__head').classList.add('is-shake'); }, 1175);
-    // 앞(즉석 당첨) 4초 · 뒤(총 2,120명) 3초씩 번갈아 뒤집힘 — 처음 뒤집힐 때 뒷면 숫자 0 → 2,120
+    // 앞(즉석 당첨) 4초 · 뒤(총 2,100명) 3초씩 번갈아 뒤집힘 — 처음 뒤집힐 때 뒷면 숫자 0 → 2,100
     var coin = stamp.querySelector('.nbo-hero__stamp-coin'), counted = false;
     function countUp() {
       var t0 = performance.now();
       (function f(now) {
         var p = Math.min(1, (now - t0) / 1300);
-        stampNum.textContent = Math.round(2120 * (1 - Math.pow(1 - p, 3))).toLocaleString('ko-KR');
+        stampNum.textContent = Math.round(2100 * (1 - Math.pow(1 - p, 3))).toLocaleString('ko-KR');
         if (p < 1) requestAnimationFrame(f);
       })(t0);
     }
