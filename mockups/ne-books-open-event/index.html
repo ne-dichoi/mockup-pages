@@ -181,8 +181,7 @@
   /* 히어로(맨 위 첫 화면)만 85% 축소 (11/24 — 화면이 커 보인다는 의견) : PC(1024px~)만. 아래 영역 · 모바일은 그대로 */
   @media (min-width: 1024px) {
     .nbo-hero { zoom: .85; }
-    .nbo-chg, .nbo-join { zoom: .95; }   /* 아래 영역은 95% (11/24) */
-    .nbo-join .nbo-next__rv-win { width: calc(100vw / .95); margin-left: calc(50% - 50vw / .95); }   /* 줄어든 만큼 후기 카드 줄은 화면 끝까지 다시 채움 */
+    .nbo-chg { zoom: .95; }   /* '이렇게 달라져요' 95% · 이벤트 영역(.nbo-join)은 100% (11/24) */
   }
   body { font-family: var(--font-ui); color: var(--c-ink); background: #fff; -webkit-font-smoothing: antialiased; }
   img { display: block; max-width: none; }
@@ -200,6 +199,20 @@
   .nbo-hero__logo { position: absolute; left: clamp(20px, 3.125vw, 60px); top: clamp(16px, 2.0833vw, 40px); z-index: 10; }
   .nbo-hero__logo img { width: clamp(90px, 8.0208vw, 154px); height: auto; }
   .nbo-hero__br-m { display: none; }
+  /* 타이틀 (11/24) : 콘셉트 문구(형광펜) → 큰 타이틀 '12월 12일(토), / NE Books에서 교재 구매가 시작돼요.' */
+  .nbo-hero__title--buy { font-size: clamp(32px, 4.1667vw, 80px); font-weight: 800; line-height: 1.15; }   /* 아래 섹션 제목(56)보다 확실히 크게 — 원래 타이틀과 같은 80 */
+  .nbo-hero__title--buy em { font-style: normal; color: var(--c-red); }
+  /* 타이틀 등장 (처음 한 번만, 샘플 B) : 둘째 줄이 쓱 올라오고 → 날짜가 달력 넘기듯 뒤집혀 나타남 → 노란 밑줄 쫙 → 잠깐 뒤 지워짐. 콘셉트 문구 움직임은 그대로 */
+  .nbo-hero__l2 { display: inline-block; animation: nbo-tt-up .6s .9s cubic-bezier(.2, .8, .2, 1) both; }
+  .nbo-hero__l1 { position: relative; z-index: 0; display: inline-block; }
+  .nbo-hero__date { position: relative; display: inline-block; transform-origin: 50% 0; animation: nbo-tt-flip .7s 1.35s cubic-bezier(.3, 1.4, .5, 1) both; }
+  .nbo-hero__date::after { content: ""; position: absolute; left: -.05em; right: -.05em; bottom: .08em; z-index: -1; height: .22em; background: rgba(255, 214, 64, .7); transform: scaleX(0); transform-origin: left; animation: nbo-tt-mark 2.2s 2.1s ease-in-out forwards; }   /* 쫙 그어졌다가 잠깐 뒤 오른쪽으로 쓱 지워짐 (한 번만) */
+  @keyframes nbo-tt-up { from { opacity: 0; transform: translateY(.5em); } }
+  @keyframes nbo-tt-flip { from { opacity: 0; transform: perspective(600px) rotateX(-95deg); } }
+  @keyframes nbo-tt-mark { 0% { transform: scaleX(0); transform-origin: left; } 22%, 70% { transform: scaleX(1); transform-origin: left; } 70.01% { transform-origin: right; } 100% { transform: scaleX(0); transform-origin: right; } }
+  @media (prefers-reduced-motion: reduce) { .nbo-hero__l2, .nbo-hero__date { animation: none; } .nbo-hero__date::after { animation: none; transform: scaleX(0); } }
+  .nbo-hero__concept { display: inline-block; white-space: nowrap; font-family: var(--font-ko); font-weight: 700; font-size: clamp(18px, 1.5625vw, 30px); letter-spacing: -.01em; color: var(--c-ink); }
+  .nbo-hero__concept .nbo-hero__brand { color: var(--c-red); }
 
   /* 즉석 당첨 · 총 2,100명 스탬프 — 크게 떠 있다가 쾅 찍힘(잉크 방울·타이틀 흔들림) → 앞뒤로 뒤집힘 → 몇 초마다 반짝 */
   .nbo-hero__stamp { position: absolute; left: calc(50% + 20vw); top: 9.05vw; z-index: 6; width: clamp(96px, 8.6vw, 165px); aspect-ratio: 1; border-radius: 50%; color: #fff; text-align: center; transform: rotate(12deg); perspective: 800px; box-shadow: 0 12px 26px rgba(232, 56, 40, .32); animation: nbo-stamp-slam .5s .9s both; }
@@ -360,7 +373,7 @@
   @media (max-width: 1023px) {
     .nbo-hero__br-m { display: inline; }
     .nbo-hero__head { padding-top: 68px; }   /* 로고와 배지 사이 여백 */
-    .nbo-hero__stamp { left: calc(50% + 100px); top: 170px; width: 74px; }   /* 'NE Books' 오른쪽 옆에 붙임 */
+    .nbo-hero__stamp { left: auto; right: 12px; top: 24px; width: 70px; }   /* 모바일 : 오른쪽 위 (11/24 타이틀이 바뀌며 글자를 가리지 않게) */
     .nbo-hero__stamp-s { font-size: 9px; }
     .nbo-hero__stamp-n { font-size: 19px; }
     .nbo-hero__stamp-big { font-size: 18px; }
@@ -386,7 +399,7 @@
 
   /* ================= 이렇게 달라져요 ================= */
   .nbo-chg { padding: clamp(56px, 4.1667vw, 80px) 0 clamp(48px, 2.9167vw, 56px); background: #fff; overflow: hidden; }
-  .nbo-chg__title { padding: 0 20px; text-align: center; font-family: var(--font-ko); font-weight: 700; font-size: clamp(28px, 2.9167vw, 56px); letter-spacing: -.01em; word-break: keep-all; }
+  .nbo-chg__title { padding: 0 20px; text-align: center; font-family: var(--font-ko); font-weight: 700; font-size: clamp(28px, 2.6042vw, 50px); letter-spacing: -.01em; word-break: keep-all; }
   .nbo-chg__title em { font-style: normal; color: var(--c-red); }
   .nbo-chg__sub { margin-top: clamp(8px, .5208vw, 10px); padding: 0 20px; text-align: center; font-family: var(--font-ko); font-weight: 400; font-size: clamp(15px, 1.0417vw, 20px); line-height: 1.5; color: #666; word-break: keep-all; }   /* 피그마 28:14 · PC 한 줄(모바일은 개편되면서 뒤 줄바꿈) */
   .nbo-chg__br-m { display: none; }
@@ -400,7 +413,7 @@
   .nbo-chg__stage img { -webkit-user-drag: none; }
   .nbo-chg__hint { margin-top: clamp(8px, .8333vw, 16px); padding: 0 20px; text-align: center; font-family: var(--font-ko); font-size: clamp(13px, .8333vw, 16px); color: #999; }
   .nbo-chg__hint-ic { display: inline-block; width: 1.25em; height: 1.25em; margin-right: 4px; vertical-align: -.25em; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-  .nbo-chg__canvas { position: absolute; left: 0; top: 0; width: 1920px; height: 720px; overflow: hidden; transform: translate(var(--left, 0), calc(-50px * var(--scale, 1))) scale(var(--scale, 1)); transform-origin: 0 0; transition: opacity .5s; }   /* 무대 위쪽 빈 50px 은 제목 쪽으로 겹쳐 올려 세로 길이 줄임 (1920×1080 한 화면) */
+  .nbo-chg__canvas { position: absolute; left: 0; top: 0; width: 1920px; height: 720px; overflow: visible; transform: translate(var(--left, 0), calc(-50px * var(--scale, 1))) scale(var(--scale, 1)); transform-origin: 0 0; transition: opacity .5s; }   /* 무대 위쪽 빈 50px 은 제목 쪽으로 겹쳐 올려 세로 길이 줄임 (1920×1080 한 화면) */
   .nbo-chg__stage.is-fade .nbo-chg__canvas { opacity: 0; }   /* 04 다음 처음으로 돌아갈 때 잠깐 사라졌다 나타남 */
   .nbo-chg__list { list-style: none; }
   .nbo-chg__track { position: absolute; left: 0; top: 130px; width: 3430px; height: 590px; transform: translate(var(--cam, 0px), var(--camy, 0px)) scale(var(--zoom, 1)); transform-origin: 0 0; }   /* --zoom·--camy : 04 다음 전체 보기 */
@@ -503,7 +516,7 @@
   .nbo-join__bell-n { position: absolute; left: 20px; top: -4px; min-width: 16px; height: 16px; padding: 0 4px; border-radius: 8px; background: #ffd640; color: var(--c-ink); font-family: var(--font-ui); font-size: 11px; font-weight: 800; line-height: 16px; text-align: center; }
   .nbo-join__eyebrow { padding: 8px 40px; border-top: 1px solid #414141; border-bottom: 1px solid #414141; font-family: var(--font-ko); font-weight: 400; font-size: clamp(15px, .9375vw, 18px); line-height: 24px; color: rgba(255, 255, 255, .6); white-space: nowrap; }
   .nbo-join__tit { display: flex; flex-direction: column; align-items: center; gap: 10px; }
-  .nbo-join__title { font-family: var(--font-ko); font-weight: 700; font-size: clamp(28px, 2.9167vw, 56px); line-height: 1.18; letter-spacing: -.01em; color: #fff; word-break: keep-all; }
+  .nbo-join__title { font-family: var(--font-ko); font-weight: 700; font-size: clamp(28px, 2.6042vw, 50px); line-height: 1.18; letter-spacing: -.01em; color: #fff; word-break: keep-all; }
   .nbo-join__title em { font-style: normal; color: var(--c-red); }
   .nbo-join__desc { font-family: var(--font-ko); font-weight: 400; font-size: clamp(15px, 1.0417vw, 20px); line-height: 1.5; color: rgba(255, 255, 255, .6); word-break: keep-all; }
   .nbo-join__desc b { font-weight: 700; }
@@ -632,7 +645,7 @@
   }
   @keyframes nbo-next-pop { 0%, 24%, 100% { transform: none; } 6% { transform: scale(1.25) rotate(-14deg); } 12% { transform: scale(.95) rotate(8deg); } 18% { transform: scale(1.05) rotate(-4deg); } }
   .nbo-next__eyebrow { display: inline-block; padding: 9px 39px; border-top: 1px solid #414141; border-bottom: 1px solid #414141; font-family: var(--font-ko); font-size: clamp(15px, .9375vw, 18px); line-height: 24px; color: rgba(255, 255, 255, .6); }
-  .nbo-next__title { margin-top: clamp(28px, 2.0833vw, 40px); font-family: var(--font-ko); font-weight: 700; font-size: clamp(28px, 2.6042vw, 50px); line-height: 1.04; color: #fff; word-break: keep-all; }
+  .nbo-next__title { margin-top: clamp(28px, 2.0833vw, 40px); font-family: var(--font-ko); font-weight: 700; font-size: clamp(28px, 2.6042vw, 50px); line-height: 1.04; letter-spacing: -.01em; color: #fff; word-break: keep-all; }
   .nbo-next__title em { font-style: normal; color: var(--c-red); }
   .nbo-next__desc { margin-top: 8px; font-family: var(--font-ko); font-size: clamp(15px, .9375vw, 18px); line-height: 24px; color: rgba(255, 255, 255, .6); word-break: keep-all; }
   .nbo-next__desc b { color: #fff; font-weight: 700; }
@@ -1052,11 +1065,12 @@
       </span>
       <i class="nbo-hero__stamp-dot" aria-hidden="true"></i><i class="nbo-hero__stamp-dot" aria-hidden="true"></i><i class="nbo-hero__stamp-dot" aria-hidden="true"></i><i class="nbo-hero__stamp-dot" aria-hidden="true"></i><i class="nbo-hero__stamp-dot" aria-hidden="true"></i><i class="nbo-hero__stamp-dot" aria-hidden="true"></i><i class="nbo-hero__stamp-dot" aria-hidden="true"></i><i class="nbo-hero__stamp-dot" aria-hidden="true"></i>
     </p>
+    <!-- 11/24 실장님 의견 : '보고, 고르고, 바로 담는 NE Books' 는 콘셉트 문구로, 타이틀은 '12월 12일 / NE Books 교재몰 오픈!' -->
     <div class="nbo-hero__head">
-      <p class="nbo-hero__badge">NE Books 리뉴얼 오픈 이벤트</p>
-      <h1 class="nbo-hero__title" id="nbo-hero-title"><span class="nbo-hero__phrase" data-step="1">보고,</span> <span class="nbo-hero__phrase" data-step="2">고르고,</span><br class="nbo-hero__br-m"> <span class="nbo-hero__phrase" data-step="3">바로 담는</span><br><span class="nbo-hero__phrase nbo-hero__brand" data-step="4">NE Books</span></h1>
+      <p class="nbo-hero__concept"><span class="nbo-hero__phrase" data-step="1">보고,</span> <span class="nbo-hero__phrase" data-step="2">고르고,</span> <span class="nbo-hero__phrase" data-step="3">바로 담는</span> <span class="nbo-hero__phrase nbo-hero__brand" data-step="4">NE Books</span></p>
+      <h1 class="nbo-hero__title nbo-hero__title--buy" id="nbo-hero-title"><span class="nbo-hero__l1"><em class="nbo-hero__date">12월 12일</em></span><br><span class="nbo-hero__l2">NE Books<br class="nbo-hero__br-m"> 교재몰 오픈!</span></h1>
       <div class="nbo-hero__info">
-        <p class="nbo-hero__desc"><em class="nbo-hero__em">12월 12일(토)</em>부터 NE Books에서<br class="nbo-hero__br-m"> 교재를 바로 구매할 수 있어요.<br>오픈 알림부터 오픈 축하까지<br class="nbo-hero__br-m"> 두 번의 기회를 놓치지 마세요!</p>
+        <p class="nbo-hero__desc">오픈 전엔 알림 신청, 오픈 후엔 축하 공유로<br class="nbo-hero__br-m"> 두 번의 선물 기회를 잡으세요!</p>
       </div>
     </div>
     <p class="nbo-cd"><i class="nbo-cd__dot" aria-hidden="true"></i><span class="nbo-cd__label">NE Books 오픈까지</span><b class="nbo-cd__time">D-<span class="nbo-cd__d">-</span>일 <span class="nbo-cd__hms">00:00:00</span></b></p>
@@ -1699,7 +1713,7 @@
     if (moves.length === 0) { clear(track); setTrack(fx); }
     for (var mi = 0; mi < moves.length; mi++) {
       var nx = snap(pos + moves[mi] * 242);
-      if (nx < -1900 || nx > -20 || nx === pos || recent.indexOf(itemAt(nx).dataset.book) !== -1) continue;
+      if (outOfRange(nx) || nx === pos || recent.indexOf(itemAt(nx).dataset.book) !== -1) continue;
       clear(track); setTrack(nx); break;
     }
     badge.classList.remove('is-pop'); badge.textContent = '';
@@ -1714,6 +1728,10 @@
   var PLAN = [{ dir: -1, t: 1 }, { dir: 1, t: .5 }, { dir: -1, t: .5 }];
   // 매번 다른 교재를 고르도록 미는 거리를 1~4권 사이에서 무작위로. 한 바퀴 안에서 같은 교재는 다시 고르지 않고,
   // 띠 끝에 닿을 것 같으면 반대로 민다
+  function outOfRange(x) {   // 띠(3840)가 화면 양끝을 다 덮는 자리만 — 넓은 화면(1920 넘음)에선 범위가 좁아짐
+    var m = Math.max(0, (scene.clientWidth / scale - 1920) / 2);
+    return x < -1900 + m || x > -20 - m;
+  }
   function shuffle(a) { for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
   function itemAt(x) { return items.slice().sort(function (a, b) { return Math.abs(center(a, x) - 960) - Math.abs(center(b, x) - 960); })[0]; }
   var recent = [];   // 바로 앞 바퀴에서 고른 교재 — 되도록 피해서 골고루 나오게
@@ -1723,7 +1741,7 @@
     var c = [];
     for (var k = -8; k <= 8; k++) {
       var x = snap(pos + k * 242);
-      if (x < -1900 || x > -20) continue;
+      if (outOfRange(x)) continue;
       var nm = itemAt(x).dataset.book;
       if (FAV.indexOf(nm) !== -1 && skip.indexOf(nm) === -1 && c.indexOf(x) === -1) c.push(x);
     }
@@ -1736,7 +1754,7 @@
     for (var pass = 0; pass < 2; pass++) {
       for (var i = 0; i < tries.length; i++) {
         var target = snap(pos + tries[i] * 242), name;
-        if (target < -1900 || target > -20 || target === pos) continue;
+        if (outOfRange(target) || target === pos) continue;
         name = itemAt(target).dataset.book;
         if (picked.indexOf(name) !== -1 || (pass === 0 && recent.indexOf(name) !== -1)) continue;
         return target - pos;
@@ -2234,6 +2252,29 @@
     gift.style.setProperty('--lf', Math.max(16, 11 / k) + 'px');
   }
   fitGift(); window.addEventListener('resize', fitGift);
+  /* 히어로 딱지 : PC 에선 제목 첫 줄 오른쪽 끝 + 0.11em, 위로 0.31em (제목 글자 크기 기준) — 화면이 아주 넓거나 축소돼도 제목 옆에 붙어 있게 */
+  var hero = document.querySelector('.nbo-hero'), hTitle = hero && hero.querySelector('.nbo-hero__title'), hStamp = hero && hero.querySelector('.nbo-hero__stamp');
+  function placeStamp() {
+    if (!hStamp) return;
+    if (window.innerWidth < 1024) { hStamp.style.left = hStamp.style.top = ''; return; }
+    var hr = hero.getBoundingClientRect(), tr = hTitle.getBoundingClientRect(), k = hr.width / hero.offsetWidth || 1, f = parseFloat(getComputedStyle(hTitle).fontSize);
+    hStamp.style.left = ((tr.right - hr.left) / k + f * .11) + 'px';
+    hStamp.style.top = ((tr.top - hr.top) / k - f * .31) + 'px';
+  }
+  /* 콘셉트 문구 '보고, 고르고, 바로 담는 NE Books' 폭 = 타이틀 첫 줄 '12월 12일(토),' 폭 (양끝 맞춤, 11/24) — 글자 크기를 비율로 맞춤 */
+  var hConcept = hero && hero.querySelector('.nbo-hero__concept'), hL1 = hero && hero.querySelector('.nbo-hero__l1');
+  function fitConcept() {
+    if (!hConcept || !hL1) return;
+    hConcept.style.fontSize = '';
+    var cw = hConcept.scrollWidth, tw = hL1.getBoundingClientRect().width / ((hero.getBoundingClientRect().width / hero.offsetWidth) || 1);
+    var ci = hConcept.getBoundingClientRect().width / ((hero.getBoundingClientRect().width / hero.offsetWidth) || 1);
+    if (ci > 0 && tw > 0) hConcept.style.fontSize = Math.max(window.innerWidth < 1024 ? 15 : 0, parseFloat(getComputedStyle(hConcept).fontSize) * tw / ci) + 'px';   // 모바일은 너무 작아지지 않게 최소 15px
+    placeStamp();
+  }
+  fitConcept(); window.addEventListener('resize', fitConcept); window.addEventListener('load', fitConcept);
+  if (document.fonts) { document.fonts.ready.then(fitConcept); document.fonts.addEventListener && document.fonts.addEventListener('loadingdone', fitConcept); }
+  if (window.ResizeObserver && hL1) new ResizeObserver(function () { fitConcept(); }).observe(hL1);   // 굵은 글꼴이 늦게 받아져 첫 줄 폭이 바뀌어도 다시 맞춤
+  placeStamp(); window.addEventListener('resize', placeStamp); if (document.fonts) document.fonts.ready.then(placeStamp);
   /* 2차 경품 무대(906×372) : 폭에 맞게 줄임 / 후기 카드는 두 벌로 이어 붙여 끊김 없이 흐르게 */
   var prz = document.querySelector('.nbo-next__prizes');
   function fitNext() { if (prz) prz.style.setProperty('--nk', Math.min(1, prz.clientWidth / 906)); }
