@@ -179,7 +179,11 @@
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   /* 히어로(맨 위 첫 화면)만 85% 축소 (11/24 — 화면이 커 보인다는 의견) : PC(1024px~)만. 아래 영역 · 모바일은 그대로 */
-  @media (min-width: 1024px) { .nbo-hero { zoom: .85; } }
+  @media (min-width: 1024px) {
+    .nbo-hero { zoom: .85; }
+    .nbo-chg, .nbo-join { zoom: .95; }   /* 아래 영역은 95% (11/24) */
+    .nbo-join .nbo-next__rv-win { width: calc(100vw / .95); margin-left: calc(50% - 50vw / .95); }   /* 줄어든 만큼 후기 카드 줄은 화면 끝까지 다시 채움 */
+  }
   body { font-family: var(--font-ui); color: var(--c-ink); background: #fff; -webkit-font-smoothing: antialiased; }
   img { display: block; max-width: none; }
   ul { list-style: none; }
@@ -662,6 +666,7 @@
   .nbo-next__plist { display: none; }
   /* 후기 리스트 : '지금까지 n개의 후기' + 카드가 옆으로 천천히 흘러감 (화면 끝까지) */
   .nbo-next__rv { margin-top: 80px; }
+  .nbo-next:not(.is-open) .nbo-next__rv { display: none; }   /* 오픈(12/12) 전엔 댓글이 없으니 후기 리스트 숨김 (11/24) */
   .nbo-next__rv-h { display: flex; align-items: center; justify-content: center; gap: 4px; font-family: var(--font-ui); font-weight: 500; font-size: 16px; color: #fff; }
   .nbo-next__rv-h::before { content: ""; margin-right: 4px; width: 8px; height: 8px; border-radius: 4px; background: #ffe98a; box-shadow: 0 0 0 7.6px rgba(212, 46, 31, .02); }
   .nbo-next__rv-h b { font-weight: 900; color: #ffe98a; }
@@ -1689,7 +1694,9 @@
     box.classList.remove('is-show', 'is-open', 'is-burst', 'is-leave');
     count = 0; recent = picked; picked = [];
     // 교재 띠가 숨겨진 사이 띠를 새 자리로 옮김 — 다음 바퀴 첫 교재(가운데)가 방금 고른 교재와 겹치지 않게
-    var moves = shuffle([-3, -2, 2, 3, -4, 4]);
+    var fx = favTarget(recent.length ? [recent[0]] : []);   // 다음 바퀴 첫 교재 = SYNC · DECODE (방금 첫 교재로 고른 것과 번갈아)
+    var moves = fx !== null && fx !== pos ? [] : shuffle([-3, -2, 2, 3, -4, 4]);
+    if (moves.length === 0) { clear(track); setTrack(fx); }
     for (var mi = 0; mi < moves.length; mi++) {
       var nx = snap(pos + moves[mi] * 242);
       if (nx < -1900 || nx > -20 || nx === pos || recent.indexOf(itemAt(nx).dataset.book) !== -1) continue;
@@ -1710,7 +1717,21 @@
   function shuffle(a) { for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
   function itemAt(x) { return items.slice().sort(function (a, b) { return Math.abs(center(a, x) - 960) - Math.abs(center(b, x) - 960); })[0]; }
   var recent = [];   // 바로 앞 바퀴에서 고른 교재 — 되도록 피해서 골고루 나오게
+  /* 자주 고르는 교재 (11/24) : 수능 SYNC · DECODE 를 앞에 자주 — 매 바퀴 첫 교재(가운데)는 둘 중 하나, 2 · 3번째도 남은 하나를 먼저 노림 */
+  var FAV = ['sync', 'decode'];
+  function favTarget(skip) {   // 띠 안에서 가운데로 올 수 있는 FAV 교재 자리 (skip 에 든 교재는 빼고), 없으면 null
+    var c = [];
+    for (var k = -8; k <= 8; k++) {
+      var x = snap(pos + k * 242);
+      if (x < -1900 || x > -20) continue;
+      var nm = itemAt(x).dataset.book;
+      if (FAV.indexOf(nm) !== -1 && skip.indexOf(nm) === -1 && c.indexOf(x) === -1) c.push(x);
+    }
+    return c.length ? c[Math.floor(Math.random() * c.length)] : null;
+  }
   function randomDelta(dir) {
+    var ft = favTarget(picked);   // 아직 안 고른 SYNC · DECODE 가 1~4권 안에 있으면 먼저
+    if (ft !== null && ft !== pos && Math.abs(ft - pos) <= 4 * 242 + 10) return ft - pos;
     var n = shuffle([1, 2, 3, 4]), tries = n.map(function (k) { return dir * k; }).concat(n.map(function (k) { return -dir * k; }));
     for (var pass = 0; pass < 2; pass++) {
       for (var i = 0; i < tries.length; i++) {
@@ -1794,6 +1815,7 @@
     gen++;
     var g = gen;
     setTrack(snap(-1000));
+    var f0 = favTarget([]); if (f0 !== null) setTrack(f0);   // 처음 가운데 교재도 SYNC · DECODE 중 하나
     // 첫 등장 연출이 끝나면 클래스를 빼서, 강조가 풀릴 때 등장 연출이 다시 돌지 않게 함
     wait(introBooks()).then(function () { if (g === gen) { hero.classList.remove('is-intro'); loop(g); } });
   }
