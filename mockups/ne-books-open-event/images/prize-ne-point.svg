@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+<defs>
+ <clipPath id="edge"><ellipse cx="200.0" cy="190.0" rx="138" ry="112" transform="rotate(-24 200.0 190.0)"/><ellipse cx="198.5" cy="192.4" rx="138" ry="112" transform="rotate(-24 198.5 192.4)"/><ellipse cx="197.0" cy="194.8" rx="138" ry="112" transform="rotate(-24 197.0 194.8)"/><ellipse cx="195.5" cy="197.2" rx="138" ry="112" transform="rotate(-24 195.5 197.2)"/><ellipse cx="194.0" cy="199.6" rx="138" ry="112" transform="rotate(-24 194.0 199.6)"/><ellipse cx="192.5" cy="202.0" rx="138" ry="112" transform="rotate(-24 192.5 202.0)"/><ellipse cx="191.0" cy="204.4" rx="138" ry="112" transform="rotate(-24 191.0 204.4)"/><ellipse cx="189.5" cy="206.8" rx="138" ry="112" transform="rotate(-24 189.5 206.8)"/><ellipse cx="188.0" cy="209.2" rx="138" ry="112" transform="rotate(-24 188.0 209.2)"/><ellipse cx="186.5" cy="211.6" rx="138" ry="112" transform="rotate(-24 186.5 211.6)"/><ellipse cx="185.0" cy="214.0" rx="138" ry="112" transform="rotate(-24 185.0 214.0)"/></clipPath>
+ <linearGradient id="eg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f2b705"/><stop offset=".55" stop-color="#e09a00"/><stop offset="1" stop-color="#b87400"/></linearGradient>
+ <radialGradient id="fg" cx=".38" cy=".3" r=".85"><stop offset="0" stop-color="#ffe98a"/><stop offset=".45" stop-color="#ffd23a"/><stop offset="1" stop-color="#f4b400"/></radialGradient>
+ <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d99700"/><stop offset="1" stop-color="#fff0a8"/></linearGradient>
+ <linearGradient id="tg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffe680"/><stop offset="1" stop-color="#f7c21c"/></linearGradient>
+ <radialGradient id="sh" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#000" stop-opacity=".35"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+</defs>
+<ellipse cx="179" cy="332" rx="150" ry="26" fill="url(#sh)"/>
+<g fill="url(#eg)"><ellipse cx="200.0" cy="190.0" rx="138" ry="112" transform="rotate(-24 200.0 190.0)"/><ellipse cx="198.5" cy="192.4" rx="138" ry="112" transform="rotate(-24 198.5 192.4)"/><ellipse cx="197.0" cy="194.8" rx="138" ry="112" transform="rotate(-24 197.0 194.8)"/><ellipse cx="195.5" cy="197.2" rx="138" ry="112" transform="rotate(-24 195.5 197.2)"/><ellipse cx="194.0" cy="199.6" rx="138" ry="112" transform="rotate(-24 194.0 199.6)"/><ellipse cx="192.5" cy="202.0" rx="138" ry="112" transform="rotate(-24 192.5 202.0)"/><ellipse cx="191.0" cy="204.4" rx="138" ry="112" transform="rotate(-24 191.0 204.4)"/><ellipse cx="189.5" cy="206.8" rx="138" ry="112" transform="rotate(-24 189.5 206.8)"/><ellipse cx="188.0" cy="209.2" rx="138" ry="112" transform="rotate(-24 188.0 209.2)"/><ellipse cx="186.5" cy="211.6" rx="138" ry="112" transform="rotate(-24 186.5 211.6)"/><ellipse cx="185.0" cy="214.0" rx="138" ry="112" transform="rotate(-24 185.0 214.0)"/></g>
+<g clip-path="url(#edge)"><ellipse cx="192.5" cy="202.0" rx="138" ry="112" transform="rotate(-24 192.5 202.0)" fill="none" stroke="#9a6200" stroke-opacity=".38" stroke-width="40" stroke-dasharray="2.6 3.4"/></g>
+<g transform="rotate(-24 200 190)">
+ <ellipse cx="200" cy="190" rx="138" ry="112" fill="url(#fg)"/>
+ <ellipse cx="200" cy="190" rx="135" ry="109" fill="none" stroke="#fff3b8" stroke-width="3" stroke-opacity=".8"/>
+ <ellipse cx="200" cy="190" rx="118" ry="95" fill="none" stroke="url(#ring)" stroke-width="6"/>
+ <g transform="translate(200 190) scale(1 .81)" font-family="Paperlogy" font-weight="800" text-anchor="middle">
+  <g font-size="34" letter-spacing="1"><text x="-2" y="-74" fill="#fff6c8">NE</text><text x="2" y="-70" fill="#c88a00" opacity=".75">NE</text><text x="0" y="-72" fill="url(#tg)">NE</text></g>
+  <g font-size="150"><text x="-3" y="64" fill="#fff6c8">P</text><text x="4" y="71" fill="#c88a00" opacity=".8">P</text><text x="0" y="67" fill="url(#tg)">P</text></g>
+ </g>
+ <path d="M84 180 A 116 90 0 0 1 190 100" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="7" stroke-linecap="round"/>
+</g>
+</svg>
