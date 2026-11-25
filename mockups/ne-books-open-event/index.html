@@ -202,16 +202,14 @@
   /* 타이틀 (11/24) : 콘셉트 문구(형광펜) → 큰 타이틀 '12월 12일(토), / NE Books에서 교재 구매가 시작돼요.' */
   .nbo-hero__title--buy { font-size: clamp(32px, 4.1667vw, 80px); font-weight: 800; line-height: 1.15; }   /* 아래 섹션 제목(56)보다 확실히 크게 — 원래 타이틀과 같은 80 */
   .nbo-hero__title--buy em { font-style: normal; color: var(--c-red); }
-  /* 타이틀 등장 (처음 한 번만) : 날짜가 바로 달력 넘기듯 뒤집혀 나타나고 → 둘째 줄이 쓱 올라옴 (빈자리 없게 바로 시작, 11/24) → 노란 밑줄 쫙 → 잠깐 뒤 지워짐. 콘셉트 문구 움직임은 그대로 */
+  /* 타이틀 등장 (처음 한 번만) : 날짜가 바로 달력 넘기듯 뒤집혀 나타나고 → 둘째 줄이 쓱 올라옴 (빈자리 없게 바로 시작, 11/24 · 노란 밑줄은 11/25 삭제) → 노란 밑줄 쫙 → 잠깐 뒤 지워짐. 콘셉트 문구 움직임은 그대로 */
   .nbo-hero__l2 { display: inline-block; animation: nbo-tt-up .6s .45s cubic-bezier(.2, .8, .2, 1) both; }
   .nbo-hero__l1 { position: relative; z-index: 0; display: inline-block; }
   .nbo-hero__date { position: relative; display: inline-block; transform-origin: 50% 0; animation: nbo-tt-flip .7s .1s cubic-bezier(.3, 1.4, .5, 1) both; }
-  .nbo-hero__date::after { content: ""; position: absolute; left: -.05em; right: -.05em; bottom: .08em; z-index: -1; height: .22em; background: rgba(255, 214, 64, .7); transform: scaleX(0); transform-origin: left; animation: nbo-tt-mark 2.2s .9s ease-in-out forwards; }   /* 쫙 그어졌다가 잠깐 뒤 오른쪽으로 쓱 지워짐 (한 번만) */
   @keyframes nbo-tt-up { from { opacity: 0; transform: translateY(.5em); } }
   @keyframes nbo-tt-flip { from { opacity: 0; transform: perspective(600px) rotateX(-95deg); } }
-  @keyframes nbo-tt-mark { 0% { transform: scaleX(0); transform-origin: left; } 22%, 70% { transform: scaleX(1); transform-origin: left; } 70.01% { transform-origin: right; } 100% { transform: scaleX(0); transform-origin: right; } }
-  @media (prefers-reduced-motion: reduce) { .nbo-hero__l2, .nbo-hero__date { animation: none; } .nbo-hero__date::after { animation: none; transform: scaleX(0); } }
-  .nbo-hero__concept { display: inline-block; white-space: nowrap; font-family: var(--font-ko); font-weight: 700; font-size: clamp(18px, 1.5625vw, 30px); letter-spacing: -.01em; color: var(--c-ink); }
+  @media (prefers-reduced-motion: reduce) { .nbo-hero__l2, .nbo-hero__date { animation: none; } }
+  .nbo-hero__concept { display: inline-block; margin-top: clamp(4px, .5vw, 10px); white-space: nowrap; font-family: var(--font-ko); font-weight: 500; font-size: clamp(18px, 1.6667vw, 32px); letter-spacing: -.01em; color: var(--c-ink); }
   .nbo-hero__concept .nbo-hero__brand { color: var(--c-red); }
 
   /* 즉석 당첨 · 총 2,100명 스탬프 — 크게 떠 있다가 쾅 찍힘(잉크 방울·타이틀 흔들림) → 앞뒤로 뒤집힘 → 몇 초마다 반짝 */
@@ -1107,11 +1105,8 @@
     </p>
     <!-- 11/24 실장님 의견 : '보고, 고르고, 바로 담는 NE Books' 는 콘셉트 문구로, 타이틀은 '12월 12일 / NE Books 교재몰 오픈!' -->
     <div class="nbo-hero__head">
-      <p class="nbo-hero__concept"><span class="nbo-hero__phrase" data-step="1">보고,</span> <span class="nbo-hero__phrase" data-step="2">고르고,</span> <span class="nbo-hero__phrase" data-step="3">바로 담는</span> <span class="nbo-hero__phrase nbo-hero__brand" data-step="4">NE Books</span></p>
       <h1 class="nbo-hero__title nbo-hero__title--buy" id="nbo-hero-title"><span class="nbo-hero__l1"><em class="nbo-hero__date">12월 12일</em></span><br><span class="nbo-hero__l2">NE Books<br class="nbo-hero__br-m"> 교재몰 오픈!</span></h1>
-      <div class="nbo-hero__info">
-        <p class="nbo-hero__desc">오픈 전엔 알림 신청, 오픈 후엔 축하 공유로<br class="nbo-hero__br-m"> 두 번의 선물 기회를 잡으세요!</p>
-      </div>
+      <p class="nbo-hero__concept"><span class="nbo-hero__phrase" data-step="1">보고,</span> <span class="nbo-hero__phrase" data-step="2">고르고,</span> <span class="nbo-hero__phrase" data-step="3">바로 담는</span> <span class="nbo-hero__phrase nbo-hero__brand" data-step="4">NE Books</span></p>
     </div>
     <p class="nbo-cd"><i class="nbo-cd__dot" aria-hidden="true"></i><span class="nbo-cd__label">NE Books 오픈까지</span><b class="nbo-cd__time">D-<span class="nbo-cd__d">-</span>일 <span class="nbo-cd__hms">00:00:00</span></b></p>
 
@@ -2306,6 +2301,7 @@
   /* 콘셉트 문구 '보고, 고르고, 바로 담는 NE Books' 폭 = 타이틀 첫 줄 '12월 12일(토),' 폭 (양끝 맞춤, 11/24) — 글자 크기를 비율로 맞춤 */
   var hConcept = hero && hero.querySelector('.nbo-hero__concept'), hL1 = hero && hero.querySelector('.nbo-hero__l1');
   function fitConcept() {
+    placeStamp(); return;   // 11/25 : 콘셉트 문구가 타이틀 아래로 옮겨져 폭 맞춤 안 함 (CSS 크기)
     if (!hConcept || !hL1) return;
     hConcept.style.fontSize = '';
     var cw = hConcept.scrollWidth, tw = hL1.getBoundingClientRect().width / ((hero.getBoundingClientRect().width / hero.offsetWidth) || 1);
