@@ -202,11 +202,11 @@
   /* 타이틀 (11/24) : 콘셉트 문구(형광펜) → 큰 타이틀 '12월 12일(토), / NE Books에서 교재 구매가 시작돼요.' */
   .nbo-hero__title--buy { font-size: clamp(32px, 4.1667vw, 80px); font-weight: 800; line-height: 1.15; }   /* 아래 섹션 제목(56)보다 확실히 크게 — 원래 타이틀과 같은 80 */
   .nbo-hero__title--buy em { font-style: normal; color: var(--c-red); }
-  /* 타이틀 등장 (처음 한 번만, 샘플 B) : 둘째 줄이 쓱 올라오고 → 날짜가 달력 넘기듯 뒤집혀 나타남 → 노란 밑줄 쫙 → 잠깐 뒤 지워짐. 콘셉트 문구 움직임은 그대로 */
-  .nbo-hero__l2 { display: inline-block; animation: nbo-tt-up .6s .9s cubic-bezier(.2, .8, .2, 1) both; }
+  /* 타이틀 등장 (처음 한 번만) : 날짜가 바로 달력 넘기듯 뒤집혀 나타나고 → 둘째 줄이 쓱 올라옴 (빈자리 없게 바로 시작, 11/24) → 노란 밑줄 쫙 → 잠깐 뒤 지워짐. 콘셉트 문구 움직임은 그대로 */
+  .nbo-hero__l2 { display: inline-block; animation: nbo-tt-up .6s .45s cubic-bezier(.2, .8, .2, 1) both; }
   .nbo-hero__l1 { position: relative; z-index: 0; display: inline-block; }
-  .nbo-hero__date { position: relative; display: inline-block; transform-origin: 50% 0; animation: nbo-tt-flip .7s 1.35s cubic-bezier(.3, 1.4, .5, 1) both; }
-  .nbo-hero__date::after { content: ""; position: absolute; left: -.05em; right: -.05em; bottom: .08em; z-index: -1; height: .22em; background: rgba(255, 214, 64, .7); transform: scaleX(0); transform-origin: left; animation: nbo-tt-mark 2.2s 2.1s ease-in-out forwards; }   /* 쫙 그어졌다가 잠깐 뒤 오른쪽으로 쓱 지워짐 (한 번만) */
+  .nbo-hero__date { position: relative; display: inline-block; transform-origin: 50% 0; animation: nbo-tt-flip .7s .1s cubic-bezier(.3, 1.4, .5, 1) both; }
+  .nbo-hero__date::after { content: ""; position: absolute; left: -.05em; right: -.05em; bottom: .08em; z-index: -1; height: .22em; background: rgba(255, 214, 64, .7); transform: scaleX(0); transform-origin: left; animation: nbo-tt-mark 2.2s .9s ease-in-out forwards; }   /* 쫙 그어졌다가 잠깐 뒤 오른쪽으로 쓱 지워짐 (한 번만) */
   @keyframes nbo-tt-up { from { opacity: 0; transform: translateY(.5em); } }
   @keyframes nbo-tt-flip { from { opacity: 0; transform: perspective(600px) rotateX(-95deg); } }
   @keyframes nbo-tt-mark { 0% { transform: scaleX(0); transform-origin: left; } 22%, 70% { transform: scaleX(1); transform-origin: left; } 70.01% { transform-origin: right; } 100% { transform: scaleX(0); transform-origin: right; } }
@@ -538,6 +538,18 @@
   .nbo-gift__card-logo { position: absolute; left: 89.92px; top: 47.52px; width: 119.664px; height: 51.284px; }
   .nbo-gift__card-txt { position: absolute; left: 27.35px; top: 123.08px; display: flex; flex-direction: column; gap: 3.419px; font-weight: 400; font-size: 11.624px; line-height: normal; white-space: nowrap; }
   .nbo-gift__card-val { position: absolute; right: 30.6px; top: 127.19px; font-weight: 800; font-size: 22.565px; line-height: normal; white-space: nowrap; }
+  /* 경품 살아 있는 느낌 (11/24) : 카드에 빛이 쓱 지나감 · 커피에서 김이 모락모락 · 동전 반짝 */
+  .nbo-gift__card { position: absolute; isolation: isolate; }   /* 빛줄기가 카드 안에서만 (2,000원 빛이 앞의 1,000원 카드 위로 안 넘어오게) */
+  .nbo-gift__card::after { content: ""; position: absolute; inset: 0; z-index: 3; background: linear-gradient(110deg, transparent 35%, rgba(255, 255, 255, .55) 47%, rgba(255, 255, 255, .15) 53%, transparent 62%) no-repeat; background-size: 260% 100%; background-position: 160% 0; animation: nbo-gift-sheen 4.2s 1.6s ease-in-out infinite; pointer-events: none; }
+  .nbo-gift__card--2000::after { animation-delay: 2s; }
+  @keyframes nbo-gift-sheen { 0% { background-position: 160% 0; } 35%, 100% { background-position: -60% 0; } }
+  .nbo-gift__steam { position: absolute; left: 50%; top: -10px; z-index: 2; width: 110px; height: 90px; margin-left: -55px; pointer-events: none; }
+  .nbo-gift__steam i { position: absolute; bottom: 0; width: 26px; height: 80px; border-radius: 50%; background: radial-gradient(closest-side, rgba(255, 255, 255, .85), rgba(255, 255, 255, 0)); filter: blur(4px); opacity: 0; animation: nbo-gift-steam 3.2s ease-in infinite; }
+  .nbo-gift__steam i:nth-child(1) { left: 22px; } .nbo-gift__steam i:nth-child(2) { left: 46px; animation-delay: 1.1s; } .nbo-gift__steam i:nth-child(3) { left: 68px; animation-delay: 2.1s; }
+  @keyframes nbo-gift-steam { 0% { opacity: 0; transform: translateY(20px) scaleX(.7); } 25% { opacity: .9; } 60% { opacity: .5; transform: translateY(-30px) translateX(6px) scaleX(1.1); } 100% { opacity: 0; transform: translateY(-70px) translateX(-4px) scaleX(1.4); } }
+  .nbo-gift__nep::after { content: ""; position: absolute; left: 62%; top: 14%; width: 22px; height: 22px; background: radial-gradient(closest-side, #fff, rgba(255, 255, 255, 0)); clip-path: polygon(50% 0, 60% 40%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0 50%, 40% 40%); opacity: 0; animation: nbo-gift-twinkle 3s 2.4s ease-in-out infinite; pointer-events: none; }
+  @keyframes nbo-gift-twinkle { 0%, 70%, 100% { opacity: 0; transform: scale(.4) rotate(0); } 80% { opacity: 1; transform: scale(1.3) rotate(45deg); } 90% { opacity: 0; transform: scale(.6) rotate(90deg); } }
+  @media (prefers-reduced-motion: reduce) { .nbo-gift__card::after, .nbo-gift__steam, .nbo-gift__nep::after { display: none; } }
   .nbo-gift__nep { left: 496px; top: 167px; width: 203px; height: 150px; --n: 3; }
   .nbo-gift__nep-stack { position: absolute; left: 56px; top: 0; width: 147px; height: 147px; }
   .nbo-gift__nep-coin { position: absolute; left: 9.03px; top: 27.99px; width: 111.931px; height: 112.368px; transform: rotate(-10.16deg); }
@@ -599,6 +611,8 @@
     100% { opacity: 0; transform: translate(calc(var(--x) * 1.1), calc(var(--y) + 70px)) rotate(calc(var(--r) * 2)) scale(.9); }
   }
   .nbo-sc__plus { position: absolute; right: -10px; top: -12px; padding: 3px 8px; border-radius: 999px; background: var(--c-red); color: #fff; font-family: var(--font-ko); font-weight: 800; font-size: 12px; transform: rotate(10deg); }
+  /* 번호 원 대신 이름표 (11/24) : ① 오픈 알림 신청 / ② 카카오톡 공유 — 아이콘 원과 같은 색 */
+  .nbo-apply__lbl { font-family: var(--font-ko); font-size: 26px; font-weight: 800; line-height: 1.2; color: var(--c-ink); }   /* 까만 굵은 글씨 (11/24) */
   .nbo-apply__num { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 999px; background: #1d1717; color: #fff; font-family: var(--font-ko); font-style: normal; font-weight: 800; font-size: 24px; line-height: 1; }
   .nbo-apply__txt { display: flex; flex-direction: column; gap: 8px; }
   .nbo-apply__h { font-family: var(--font-ko); font-weight: 800; font-size: 24px; line-height: normal; color: #1d1717; word-break: keep-all; }
@@ -649,33 +663,33 @@
   .nbo-next__title em { font-style: normal; color: var(--c-red); }
   .nbo-next__desc { margin-top: 8px; font-family: var(--font-ko); font-size: clamp(15px, .9375vw, 18px); line-height: 24px; color: rgba(255, 255, 255, .6); word-break: keep-all; }
   .nbo-next__desc b { color: #fff; font-weight: 700; }
-  /* 경품 무대 — Figma 187-172 (11/24) 906×372 콜라주. 좁으면 JS 가 --nk 로 줄이고(가운데), 모바일은 이름표 대신 아래 목록 */
+  /* 경품 무대 — Figma 201-53 (11/25 배치 수정) 906×372 콜라주. 좁으면 JS 가 --nk 로 줄이고(가운데), 모바일은 이름표 대신 아래 목록 */
   .nbo-next .nbo-period { margin-top: 24px; }
   .nbo-next__prizes { position: relative; width: 100%; max-width: 906px; height: calc(372px * var(--nk, 1)); margin: 60px auto 0; }
   .nbo-next__stage { position: absolute; left: 50%; top: 0; width: 906px; height: 372px; transform: translateX(-50%) scale(var(--nk, 1)); transform-origin: 50% 0; text-align: left; }
   .nbo-next__pz { position: absolute; }
   .nbo-next__pz img { position: absolute; display: block; max-width: none; }
   .nbo-next__pz-l { position: absolute; font-family: var(--font-ko); font-weight: 500; font-size: 16px; line-height: 20px; color: #fff; white-space: nowrap; }
-  .nbo-next__pz--ssg3 { left: 501px; top: 67.5px; width: 379px; height: 192px; }
+  .nbo-next__pz--ssg3 { left: 33px; top: 62.5px; width: 379px; height: 192px; }
   .nbo-next__pz--ssg3 img { width: 339px; height: 155px; }
   .nbo-next__pz--ssg3 img:nth-child(1) { left: 48px; top: -9px; } .nbo-next__pz--ssg3 img:nth-child(2) { left: 9px; top: 12px; } .nbo-next__pz--ssg3 img:nth-child(3) { left: 60px; top: 37px; }
-  .nbo-next__pz--ssg3 .nbo-next__pz-l { left: 218.5px; top: 195px; }
-  .nbo-next__pz--baemin { left: 10px; top: 47.87px; width: 284px; height: 188.13px; }
+  .nbo-next__pz--ssg3 .nbo-next__pz-l { left: 35.5px; top: 197px; }
+  .nbo-next__pz--baemin { left: 588px; top: 71.5px; width: 284px; height: 188.13px; }
   .nbo-next__pz--baemin img { left: 0; top: 0; width: 283.735px; height: 188.129px; }
-  .nbo-next__pz--baemin .nbo-next__pz-l { right: calc(100% - 158.5px); top: 190.63px; text-align: right; }
-  .nbo-next__pz--ssg5 { left: 233.92px; top: 0; width: 393.45px; height: 185px; }
-  .nbo-next__pz--ssg5 img { left: 0; top: 0; width: 393.451px; height: 184.83px; }
-  .nbo-next__pz--ssg5 .nbo-next__pz-l { left: 393.58px; top: 21.5px; }
-  .nbo-next__pz--cu { left: 167.29px; top: 106px; width: 276.46px; height: 181px; }
+  .nbo-next__pz--baemin .nbo-next__pz-l { right: calc(100% - 272.5px); top: -44.37px; text-align: right; }
+  .nbo-next__pz--ssg5 { left: 290.92px; top: 10px; width: 393.45px; height: 185px; }
+  .nbo-next__pz--ssg5 img { left: 19.08px; top: 4.5px; width: 362px; height: 170.056px; }
+  .nbo-next__pz--ssg5 .nbo-next__pz-l { left: -145.92px; top: 14.5px; }
+  .nbo-next__pz--cu { left: 235.29px; top: 110px; width: 276.46px; height: 181px; }
   .nbo-next__pz--cu img { left: 0; top: 0; width: 276.597px; height: 180.913px; }
   .nbo-next__pz--cu .nbo-next__pz-l { left: 133.71px; top: 185.5px; transform: translateX(-50%); }
-  .nbo-next__pz--cake { left: 346px; top: 50.59px; width: 343px; height: 321.16px; }
+  .nbo-next__pz--cake { left: 400px; top: 50.59px; width: 343px; height: 321.16px; }
   .nbo-next__pz--cake img { left: 0; top: 0; width: 343px; height: 321.164px; }
-  .nbo-next__pz--cake .nbo-next__pz-l { right: calc(100% - 189.05px); top: 282.36px; font-size: 16.724px; line-height: 20.905px; }
-  .nbo-next__pz--nep { left: 544px; top: 216.36px; width: 158.34px; height: 116.49px; }
+  .nbo-next__pz--cake .nbo-next__pz-l { right: calc(100% - 215.05px); top: 282.36px; font-size: 16.724px; line-height: 20.905px; }
+  .nbo-next__pz--nep { left: 598px; top: 217.36px; width: 158.34px; height: 116.49px; }
   .nbo-next__pz--nep img:nth-child(1) { left: 43.68px; top: 0; width: 114.658px; height: 114.658px; }
-  .nbo-next__pz--nep img:nth-child(2) { left: 7.05px; top: 21.83px; width: 87.305px; height: 87.646px; transform: rotate(-10.16deg); }
-  .nbo-next__pz--nep .nbo-next__pz-l { left: 27.52px; top: 116.59px; font-size: 16.724px; line-height: 20.905px; }
+  .nbo-next__pz--nep img:nth-child(2) { left: 7.05px; top: 37.22px; width: 87.305px; height: 87.646px; transform: rotate(-10.16deg); }
+  .nbo-next__pz--nep .nbo-next__pz-l { left: 147.52px; top: 58.59px; font-size: 16.724px; line-height: 20.905px; }
   .nbo-next__plist { display: none; }
   /* 후기 리스트 : '지금까지 n개의 후기' + 카드가 옆으로 천천히 흘러감 (화면 끝까지) */
   .nbo-next__rv { margin-top: 80px; }
@@ -718,6 +732,7 @@
     .nbo-apply__panel { flex-direction: column; gap: 32px; padding: 32px 20px; }
     .nbo-apply__col { gap: 18px; }
     .nbo-apply__num { width: 34px; height: 34px; font-size: 20px; }
+    .nbo-apply__lbl { font-size: 20px; }
     .nbo-sc__ic { width: 42px; height: 42px; } .nbo-sc__ic img { width: 20px; height: 20px; }
     .nbo-sc__ln { width: 28px; margin: 0 8px; }
     .nbo-sc__card { width: 190px; height: 76px; } .nbo-sc__under { font-size: 18px; } .nbo-sc__gift { width: 34px; height: 34px; }
@@ -996,6 +1011,31 @@
   /* 공유 버튼 — 기획 : 카카오톡 공유 시 즉석 추첨 1회 추가 (공유 기능은 개발 연결) */
   /* 도크 위 말풍선으로 둥실 (꼬리는 아래 = 신청 버튼 쪽) */
   .nbo-dock__share { position: relative; display: flex; align-items: center; gap: 6px; margin-bottom: 4px; padding: 9px 14px; border: 0; border-radius: 999px; background: #fff; color: var(--c-ink); font: inherit; font-size: 12px; font-weight: 700; line-height: 1.3; text-align: left; cursor: pointer; filter: drop-shadow(0 6px 10px rgba(29, 23, 23, .16)); animation: nbo-dock-bob 2.4s ease-in-out infinite alternate; }
+  /* 도크 몸통 카드 뒤집기 (11/25) : 8초마다 한 번 세로축으로 휙 한 바퀴 */
+  /* 10초마다 : 휙 뒤집혀 뒷면 '카카오톡 공유하면 추첨 +1회' 1.4초 → 다시 휙 앞면 */
+  .nbo-dock__body { position: relative; animation: nbo-dock-flip 10s 3s linear infinite; }
+  @keyframes nbo-dock-flip { 0%, 70% { transform: perspective(700px) rotateY(0); } 73% { transform: perspective(700px) rotateY(90deg); } 73.01% { transform: perspective(700px) rotateY(-90deg); } 76%, 90% { transform: perspective(700px) rotateY(0); } 93% { transform: perspective(700px) rotateY(90deg); } 93.01% { transform: perspective(700px) rotateY(-90deg); } 96%, 100% { transform: perspective(700px) rotateY(0); } }
+  .nbo-dock__body > .nbo-dock__h, .nbo-dock__body > .nbo-dock__btn { animation-name: nbo-dock-front; animation-duration: 10s; animation-delay: 3s; animation-iteration-count: infinite; animation-timing-function: step-end; }
+  .nbo-dock__body > .nbo-dock__btn { animation: nbo-dock-pop 4s ease-in-out infinite, nbo-dock-front 10s 3s step-end infinite; }
+  @keyframes nbo-dock-front { 0% { opacity: 1; } 73% { opacity: 0; } 93% { opacity: 1; } }
+  .nbo-dock__back { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; opacity: 0; color: #fff; text-align: center; animation: nbo-dock-back 10s 3s step-end infinite; pointer-events: none; }
+  @keyframes nbo-dock-back { 0% { opacity: 0; } 73% { opacity: 1; } 93% { opacity: 0; } }
+  .nbo-dock__back-ic { width: 34px; height: 34px; fill: none; stroke: #ffd640; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .nbo-dock__back span { font-size: 14px; font-weight: 600; line-height: 1.35; color: rgba(255, 255, 255, .85); }
+  .nbo-dock__back b { font-family: var(--font-ko); font-size: 25px; white-space: nowrap; font-weight: 800; line-height: 1.1; color: #ffd640; }
+  /* 위 말풍선 : 오픈 알림 신청하기 (꼬리 아래) */
+  .nbo-dock__ask { position: relative; display: flex; align-items: center; gap: 6px; margin-bottom: 4px; padding: 9px 14px; border: 0; border-radius: 999px; background: var(--c-red); color: #fff; font: inherit; font-size: 13px; font-weight: 700; line-height: 1.3; text-align: left; cursor: pointer; filter: drop-shadow(0 6px 12px rgba(232, 56, 40, .35)); animation: nbo-dock-bob 2.4s ease-in-out infinite alternate; }
+  .nbo-dock__ask::after { content: ""; position: absolute; left: 50%; top: 100%; width: 16px; height: 9px; margin: -1px 0 0 -8px; background: inherit; clip-path: polygon(0 0, 100% 0, 50% 100%); }
+  .nbo-dock__ask em { font-style: normal; color: #ffd640; }   /* 빨간 말풍선 (11/25) */
+  .nbo-dock__ask-ic { flex: none; width: 18px; height: 18px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transform-origin: 50% 8%; animation: nbo-ring 3.2s 1.8s ease-in-out infinite; }
+  /* 빨간 원 안 큰 선물상자 — 몇 초마다 덜컹 · 뚜껑 들썩 */
+  .nbo-dock__gift { width: 66px; height: 66px; overflow: visible; animation: nbo-dock-jig 3s 1s infinite; }
+  .nbo-dock__lid { transform-origin: 20px 40px; animation: nbo-dock-lid 3s 1s infinite; }
+  @keyframes nbo-dock-jig { 0%, 70%, 100% { transform: none; } 74% { transform: rotate(-8deg); } 78% { transform: rotate(7deg); } 82% { transform: rotate(-5deg); } 86% { transform: rotate(3deg); } }
+  @keyframes nbo-dock-lid { 0%, 70%, 100% { transform: none; } 78% { transform: translateY(-12px) rotate(-12deg); } 88% { transform: none; } }
+  /* 아래 '공유하면 추첨 +1회' (꼬리 위) */
+  .nbo-dock > .nbo-dock__share { margin: 4px 0 0; animation: none; }
+  .nbo-dock > .nbo-dock__share::after { top: auto; bottom: 100%; margin: 0 0 -1px -8px; clip-path: polygon(50% 0, 100% 100%, 0 100%); }
   .nbo-dock__share::after { content: ""; position: absolute; left: 50%; top: 100%; width: 16px; height: 9px; margin: -1px 0 0 -8px; background: inherit; clip-path: polygon(0 0, 100% 0, 50% 100%); }
   @keyframes nbo-dock-bob { from { transform: translateY(0); } to { transform: translateY(-8px); } }
   .nbo-dock__share-ic { flex: none; width: 18px; height: 18px; fill: none; stroke: var(--c-red); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
@@ -1005,7 +1045,7 @@
     .nbo-dock__share:hover { background: #fff7eb; }
   }
   @media (prefers-reduced-motion: reduce) {
-    .nbo-dock, .nbo-dock__btn, .nbo-dock__btn::before, .nbo-dock__bell, .nbo-dock__share { animation: none; transition: none; }
+    .nbo-dock, .nbo-dock__btn, .nbo-dock__btn::before, .nbo-dock__bell, .nbo-dock__share, .nbo-dock__ask, .nbo-dock__ask-ic, .nbo-dock__gift, .nbo-dock__lid, .nbo-dock__body, .nbo-dock__body > .nbo-dock__h, .nbo-dock__back { animation: none; transition: none; }
   }
 
   /* ================= 맨 위로 (TOP) ================= */
@@ -1240,7 +1280,7 @@
       <div class="nbo-gift">
         <h3 class="nbo-gift__sr">1차 경품 : 아메리카노(HOT), 네이버페이 포인트 2,000원 · 1,000원, NE Point 100P</h3><!-- 11/24 : 경품별 인원 표시 뺌 -->
         <div class="nbo-gift__stage" aria-hidden="true">
-          <div class="nbo-gift__item nbo-gift__coffee" data-role="prize-item"><img class="nbo-gift__coffee-img" src="images/prize-americano-hot.png" alt=""></div>
+          <div class="nbo-gift__item nbo-gift__coffee" data-role="prize-item"><span class="nbo-gift__steam" aria-hidden="true"><i></i><i></i><i></i></span><img class="nbo-gift__coffee-img" src="images/prize-americano-hot.png" alt=""></div>
           <div class="nbo-gift__item nbo-gift__card nbo-gift__card--2000" data-role="prize-item"><img class="nbo-gift__card-logo" src="images/prize-npay-logo.png" alt=""><span class="nbo-gift__card-txt"><span>네이버페이</span><span>모바일 금액권</span></span><b class="nbo-gift__card-val">2,000원</b></div>
           <div class="nbo-gift__item nbo-gift__card nbo-gift__card--1000" data-role="prize-item"><img class="nbo-gift__card-logo" src="images/prize-npay-logo.png" alt=""><span class="nbo-gift__card-txt"><span>네이버페이</span><span>모바일 금액권</span></span><b class="nbo-gift__card-val">1,000원</b></div>
           <div class="nbo-gift__item nbo-gift__nep" data-role="prize-item"><img class="nbo-gift__nep-stack" src="images/prize-nep-stack.png" alt=""><img class="nbo-gift__nep-coin" src="images/prize-nep-coin.png" alt=""></div>
@@ -1258,20 +1298,18 @@
         <h3 class="nbo-apply__title">알림 신청과 동시에<br class="nbo-apply__br-m"> <em>즉석 추첨 결과를 바로 확인!</em></h3>
         <div class="nbo-apply__panel">
           <div class="nbo-apply__col">
-            <i class="nbo-apply__num" aria-hidden="true">1</i>
+            <div class="nbo-apply__txt"><p class="nbo-apply__lbl">오픈 알림 신청</p><p class="nbo-apply__p">오픈 알림 신청을 누르면 즉시 추첨 결과 확인! (1인 1회)</p></div>
             <!-- 즉석 복권 연출 (장식, 샘플 E + 선물상자 B · 11/24) : 아이콘 톡 → 점선 신호 → 은박 긁기 → 당첨 -->
             <div class="nbo-sc nbo-sc--bell" aria-hidden="true"><span class="nbo-sc__ic"><img src="images/icon-bell-red.svg" alt="" width="24" height="24"></span><span class="nbo-sc__ln"><i></i></span><div class="nbo-sc__tk"><div class="nbo-sc__card" data-sc><div class="nbo-sc__under"><svg class="nbo-sc__gift" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 12c-3-6-11-7-11-2 0 3 6 3 11 2zM20 12c3-6 11-7 11-2 0 3-6 3-11 2z" fill="#ffd640" stroke="#e0b100" stroke-width="1"/><rect x="5" y="12" width="30" height="8" rx="2" fill="#ff5a49"/><rect x="7" y="20" width="26" height="15" rx="2" fill="#e83828"/><rect x="17.5" y="12" width="5" height="23" fill="#ffd640"/><rect x="7" y="20" width="26" height="2" fill="#c42a1c" opacity=".35"/></svg>당첨!</div><canvas class="nbo-sc__cv"></canvas><i class="nbo-sc__dot"></i></div><span class="nbo-sc__cf"><i style="--x:-92px;--y:34px;--r:0deg;--c:#e83828;--d:0ms"></i><i style="--x:-136px;--y:17px;--r:67deg;--c:#ffd640;--d:30ms"></i><i style="--x:-170px;--y:-15px;--r:134deg;--c:#7fb2ee;--d:60ms"></i><i style="--x:-95px;--y:-30px;--r:201deg;--c:#00de5a;--d:90ms"></i><i style="--x:-99px;--y:-64px;--r:268deg;--c:#ff9bb3;--d:0ms"></i><i style="--x:-79px;--y:-101px;--r:335deg;--c:#ffd640;--d:30ms"></i><i style="--x:-17px;--y:-69px;--r:42deg;--c:#e83828;--d:60ms"></i><i style="--x:22px;--y:-91px;--r:109deg;--c:#7fb2ee;--d:90ms"></i><i style="--x:79px;--y:-101px;--r:176deg;--c:#ff9bb3;--d:0ms"></i><i style="--x:75px;--y:-49px;--r:243deg;--c:#00de5a;--d:30ms"></i><i style="--x:124px;--y:-40px;--r:310deg;--c:#ffd640;--d:60ms"></i><i style="--x:170px;--y:-15px;--r:17deg;--c:#e83828;--d:90ms"></i><i style="--x:103px;--y:13px;--r:84deg;--c:#7fb2ee;--d:0ms"></i><i style="--x:120px;--y:45px;--r:151deg;--c:#ffd640;--d:30ms"></i></span></div></div>
-            <div class="nbo-apply__txt"><h4 class="nbo-apply__h">오픈 알림 신청하고 즉석 추첨 확인하기</h4><p class="nbo-apply__p">오픈 알림 신청을 누르면 즉시 추첨 결과 확인! (1인 1회)</p></div>
             <div class="nbo-apply__go">
               <button class="nbo-apply__btn nbo-apply__submit" type="button"><img class="nbo-apply__bell" src="images/icon-bell-white.svg" alt="" width="22" height="22"><span class="nbo-apply__btn-t">오픈 알림 신청</span></button>
             </div>
           </div>
           <span class="nbo-apply__div" aria-hidden="true"><img src="images/line-dashed-apply-v.svg" alt="" width="208" height="1"></span>
           <div class="nbo-apply__col">
-            <i class="nbo-apply__num" aria-hidden="true">2</i>
+            <div class="nbo-apply__txt"><p class="nbo-apply__lbl nbo-apply__lbl--kakao">카카오톡 공유</p><p class="nbo-apply__p nbo-apply__p--share">1인 1회 참여 · 카카오톡 공유 시 추첨 1회 추가</p></div>
             <!-- 즉석 복권 연출 (장식, 샘플 E + 선물상자 B · 11/24) : 아이콘 톡 → 점선 신호 → 은박 긁기 → 당첨 -->
             <div class="nbo-sc nbo-sc--kakao" aria-hidden="true"><span class="nbo-sc__ic"><img src="images/icon-kakao.svg" alt="" width="24" height="24"></span><span class="nbo-sc__ln"><i></i></span><div class="nbo-sc__tk"><div class="nbo-sc__card" data-sc><div class="nbo-sc__under"><svg class="nbo-sc__gift" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 12c-3-6-11-7-11-2 0 3 6 3 11 2zM20 12c3-6 11-7 11-2 0 3-6 3-11 2z" fill="#ffd640" stroke="#e0b100" stroke-width="1"/><rect x="5" y="12" width="30" height="8" rx="2" fill="#ff5a49"/><rect x="7" y="20" width="26" height="15" rx="2" fill="#e83828"/><rect x="17.5" y="12" width="5" height="23" fill="#ffd640"/><rect x="7" y="20" width="26" height="2" fill="#c42a1c" opacity=".35"/></svg>+1회 당첨!</div><canvas class="nbo-sc__cv"></canvas><i class="nbo-sc__dot"></i></div><span class="nbo-sc__cf"><i style="--x:-92px;--y:34px;--r:0deg;--c:#e83828;--d:0ms"></i><i style="--x:-136px;--y:17px;--r:67deg;--c:#ffd640;--d:30ms"></i><i style="--x:-170px;--y:-15px;--r:134deg;--c:#7fb2ee;--d:60ms"></i><i style="--x:-95px;--y:-30px;--r:201deg;--c:#00de5a;--d:90ms"></i><i style="--x:-99px;--y:-64px;--r:268deg;--c:#ff9bb3;--d:0ms"></i><i style="--x:-79px;--y:-101px;--r:335deg;--c:#ffd640;--d:30ms"></i><i style="--x:-17px;--y:-69px;--r:42deg;--c:#e83828;--d:60ms"></i><i style="--x:22px;--y:-91px;--r:109deg;--c:#7fb2ee;--d:90ms"></i><i style="--x:79px;--y:-101px;--r:176deg;--c:#ff9bb3;--d:0ms"></i><i style="--x:75px;--y:-49px;--r:243deg;--c:#00de5a;--d:30ms"></i><i style="--x:124px;--y:-40px;--r:310deg;--c:#ffd640;--d:60ms"></i><i style="--x:170px;--y:-15px;--r:17deg;--c:#e83828;--d:90ms"></i><i style="--x:103px;--y:13px;--r:84deg;--c:#7fb2ee;--d:0ms"></i><i style="--x:120px;--y:45px;--r:151deg;--c:#ffd640;--d:30ms"></i></span><span class="nbo-sc__plus">+1</span></div></div>
-            <div class="nbo-apply__txt"><h4 class="nbo-apply__h">카카오톡 공유하고 즉석 추첨 1회 더 받기</h4><p class="nbo-apply__p nbo-apply__p--share">1인 1회 참여 · 카카오톡 공유 시 추첨 1회 추가</p></div>
             <div class="nbo-apply__go">
               <button class="nbo-apply__btn nbo-apply__share" id="shareCta" data-role="share-btn" type="button"><img src="images/icon-kakao.svg" alt="" width="20" height="20"><span class="nbo-apply__btn-t">카카오톡 공유하기</span></button>
             </div>
@@ -1293,10 +1331,10 @@
           <div class="nbo-next__stage" role="img" aria-label="2차 경품 : 신세계 상품권 50,000원 · 30,000원, 배달의 민족 상품권 10,000원, CU 편의점 상품권 10,000원, 뚜레쥬르 케이크, NE Point 5,000원">
             <div class="nbo-next__pz nbo-next__pz--ssg3" data-role="prize-item"><img src="images/prize2-ssg-10000.png" alt=""><img src="images/prize2-ssg-10000.png" alt=""><img src="images/prize2-ssg-10000.png" alt=""><p class="nbo-next__pz-l">신세계 상품권 30,000원</p></div>
             <div class="nbo-next__pz nbo-next__pz--baemin" data-role="prize-item"><img src="images/prize2-baemin-10000.png" alt=""><p class="nbo-next__pz-l">배달의 민족 상품권<br>10,000원</p></div>
-            <div class="nbo-next__pz nbo-next__pz--ssg5" data-role="prize-item"><img src="images/prize2-ssg-50000.png" alt=""><p class="nbo-next__pz-l">신세계 상품권<br>50,000원</p></div>
+            <div class="nbo-next__pz nbo-next__pz--ssg5" data-role="prize-item"><img src="images/prize2-ssg-50000.png" alt=""><p class="nbo-next__pz-l">신세계 상품권 50,000원</p></div>
             <div class="nbo-next__pz nbo-next__pz--cu" data-role="prize-item"><img src="images/prize2-cu-10000.png" alt=""><p class="nbo-next__pz-l">CU 편의점 상품권 10,000원</p></div>
             <div class="nbo-next__pz nbo-next__pz--cake" data-role="prize-item"><img src="images/prize2-cake.png" alt=""><p class="nbo-next__pz-l">뚜레쥬르 케이크</p></div>
-            <div class="nbo-next__pz nbo-next__pz--nep" data-role="prize-item"><img src="images/prize2-nep-stack.png" alt=""><img src="images/prize2-nep-coin.png" alt=""><p class="nbo-next__pz-l">NE Point 5,000원</p></div>
+            <div class="nbo-next__pz nbo-next__pz--nep" data-role="prize-item"><img src="images/prize2-nep-stack.png" alt=""><img src="images/prize2-nep-coin.png" alt=""><p class="nbo-next__pz-l">NE Point<br>5,000원</p></div>
           </div>
         </div>
         <ul class="nbo-next__plist" aria-hidden="true"><li>신세계 상품권 50,000원</li><li>신세계 상품권 30,000원</li><li>배달의 민족 상품권 10,000원</li><li>CU 편의점 상품권 10,000원</li><li>뚜레쥬르 케이크</li><li>NE Point 5,000원</li></ul>
@@ -1345,10 +1383,12 @@
 </div>
 
 <aside class="nbo-dock" aria-label="오픈 알림 신청 바로가기">
-  <button class="nbo-dock__share" type="button"><svg class="nbo-dock__share-ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg><span>공유하면<br>추첨 <em>+1회</em></span></button>
+  <!-- 11/25 : 위 말풍선 = '오픈 알림 신청하기' · 빨간 원 = 큰 선물상자 · '공유하면 추첨 +1회' 는 뺌 (신청 영역 ② · 결과 팝업에 있음) -->
+  <button class="nbo-dock__ask" type="button"><svg class="nbo-dock__ask-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg><span data-dock-ask>오픈 알림<br><em>신청하기</em></span></button>
   <div class="nbo-dock__body">
     <p class="nbo-dock__h"><span>신청하면</span><b>즉석 당첨</b></p>
-    <button class="nbo-dock__btn" type="button"><svg class="nbo-dock__bell" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>오픈 알림<br>신청하기</button>
+    <p class="nbo-dock__back" aria-hidden="true" data-dock-back><svg class="nbo-dock__back-ic" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg><span>카카오톡<br>공유하면</span><b>즉석 추첨<br>+1회</b></p>
+    <button class="nbo-dock__btn" type="button" aria-label="오픈 알림 신청하기"><svg class="nbo-dock__gift" viewBox="0 0 120 120" aria-hidden="true"><g class="nbo-dock__lid"><path d="M60 36c-9-18-33-21-33-6 0 9 18 9 33 6zM60 36c9-18 33-21 33-6 0 9-18 9-33 6z" fill="#ffd640" stroke="#e0b100" stroke-width="2"/><rect x="14" y="36" width="92" height="24" rx="6" fill="#fff"/><rect x="52" y="36" width="16" height="24" fill="#ffd640"/></g><rect x="20" y="60" width="80" height="50" rx="6" fill="#fff1ee"/><rect x="52" y="60" width="16" height="50" fill="#ffd640"/><rect x="20" y="60" width="80" height="6" fill="#000" opacity=".08"/></svg></button>
   </div>
 </aside>
 
@@ -2200,7 +2240,9 @@
       dock.setAttribute('aria-label', '오픈 축하 이벤트 바로가기');
       var sh = dock.querySelector('.nbo-dock__share'); if (sh) sh.style.display = 'none';   // '공유하면 추첨 +1회' 는 1차 전용
       dock.querySelector('.nbo-dock__h').innerHTML = '<span>오픈 축하</span><b>댓글 이벤트</b>';
-      var db = dock.querySelector('.nbo-dock__btn'); db.querySelector('svg').innerHTML = BUBBLE; db.innerHTML = db.innerHTML.replace(/오픈 알림<br>신청하기/, '댓글<br>남기기');
+      var da = dock.querySelector('[data-dock-ask]'); if (da) da.innerHTML = '댓글 남기고<br><em>공유하기</em>'; var dai = dock.querySelector('.nbo-dock__ask-ic'); if (dai) dai.innerHTML = BUBBLE;
+      dock.querySelector('.nbo-dock__btn').setAttribute('aria-label', '오픈 축하 댓글 남기기');
+      var bk = dock.querySelector('[data-dock-back]'); if (bk) bk.innerHTML = '<span>추첨을 통해</span><b>100명</b><span>에게 선물</span>';   // 2차 뒷면 (임시)
     }
   }
   var joinVisible = false, ready = false;
@@ -2213,7 +2255,7 @@
     new IntersectionObserver(function (e) { joinVisible = e[0].isIntersecting; check(); }, { threshold: .2 }).observe(join);
   }
   setTimeout(function () { ready = true; check(); }, 600);   // 첫 화면이 그려진 뒤 아래에서 올라오도록 살짝 늦춤
-  if (dock) dock.querySelector('.nbo-dock__btn').addEventListener('click', function () { bar.querySelector('.nbo-cta__btn').click(); });
+  if (dock) [].forEach.call(dock.querySelectorAll('.nbo-dock__btn, .nbo-dock__ask'), function (b) { b.addEventListener('click', function () { bar.querySelector('.nbo-cta__btn').click(); }); });   // 선물상자 · 위 말풍선 모두 신청으로
   bar.querySelector('.nbo-cta__btn').addEventListener('click', function () {
     if (!join) return;
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
