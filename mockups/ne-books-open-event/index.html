@@ -87,9 +87,18 @@
   ---------------------------------------------------------------------------
   데이터 수집
   ---------------------------------------------------------------------------
-  · GTM·GA(gtag) 코드는 아직 넣지 않음 — 2026-10-19 GA·GTM 게시 보류 공지(처리방침 근거 정리 전까지
-    신규 gtag 삽입·GTM 게시 금지). 해제되면 페이지 링크 스크립트 바로 아래에 NE Books 공통
-    GTM(GTM-MW2TF672)·gtag(G-LGV9H5GRHS)를 넣고, GTM 트리거는 Page Path 포함 nebooks-open 으로 설정
+  · GTM : NE Books 와 동일한 GTM-MW2TF672 (head 페이지 링크 스크립트 아래 + body 바로 아래 noscript) — 11/26 추가
+    GA4 gtag (PC G-LGV9H5GRHS) 는 NE Books 공통과 같이 그대로 유지
+  · 이벤트 전송 코드는 HTML 에 넣지 않고 GTM 에서 설정. GTM 은 data-ga-* 속성으로 클릭 · 노출을 구분
+    (트리거 조건 Page Path 포함 nebooks-open — 정의서 GA_이벤트정의서_nebooks-open.md)
+    · apply_click  오픈 알림 신청 (1차 신청 판 · 2차 응모 버튼 = promotion_apply / PC 도크 · 모바일 하단 바 = landing_sticky)
+    · share        카카오톡 공유 (1차 신청 판 = promotion_apply / 추첨 결과 팝업 = promotion_result)
+    · select_item  신간 교재 표지 (book_id · book_name · item_list_name=promotion_newbook)
+    · nav_click    신간 '시리즈 전체 보기' (link_area=promotion_newbook · brand)
+    · section_view 영역 노출 50% (changes · event_pre · event_open · new_books)
+    · scroll_depth 페이지 스크롤 25 · 50 · 75% (GTM 스크롤 깊이 트리거 — 페이지 속성 없음)
+    · 상태 버튼은 GTM 선택자에서 뺌 : aria-disabled="true"(오픈 전 · 종료) · .is-done(내 추첨 결과 보기 · 응모 완료) · .is-extra(추가 추첨하기)
+  · generate_lead : 신청 · 응모 완료 — 서버 저장 성공 콜백에서 dataLayer.push (스크립트 gaLead, 개발 유지)
 
   상태 클래스
     .is-intro      히어로 첫 등장 연출 중
@@ -150,7 +159,13 @@
 //   이 시각에 함께 바뀜 : 히어로 카운트다운 · 2차 이벤트 버튼(열어 둔 화면에서도 바로) · 실시간 티커 · 하단 바 / 도크
 window.NBO_OPEN_AT = Date.parse('2026-12-12T00:00:00+09:00');
 </script>
-<!-- GTM·GA(gtag) : 게시 보류 공지 해제 후 이 자리에 추가 (상단 주석 '데이터 수집' 참고) -->
+<!-- Google Tag Manager (NE Books 와 동일 : GTM-MW2TF672) — 페이지 링크 스크립트 아래 (11/26) -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MW2TF672');</script>
+<!-- End Google Tag Manager -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>새로워진 NE Books, 가장 먼저 만나보세요 | NE능률</title>
@@ -172,6 +187,14 @@ window.NBO_OPEN_AT = Date.parse('2026-12-12T00:00:00+09:00');
 <link rel="stylesheet" href="https://front.neungyule.com/font/Paperlogy/subset/Paperlogy-subset.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 </noscript>
+<!-- Global site tag (gtag.js) - Google Analytics (NE Books PC 공통과 같은 ID) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LGV9H5GRHS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-LGV9H5GRHS');
+</script>
 <style>
   :root {
     --c-bg: #fff7eb;
@@ -1116,6 +1139,10 @@ window.NBO_OPEN_AT = Date.parse('2026-12-12T00:00:00+09:00');
 </style>
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MW2TF672"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
 <!-- 실시간 티커 — 개발 : 최근 참여자 목록(이름 · 아이디 일부 가림)을 window.NBO_TICKER 로 넣어 주면 그대로 흐름. 지금은 목업 예시 -->
 <aside class="nbo-tick" aria-label="실시간 참여 현황">
@@ -1227,7 +1254,7 @@ window.NBO_OPEN_AT = Date.parse('2026-12-12T00:00:00+09:00');
 
   <!-- ===== 이렇게 달라져요 ===== -->
   <section class="nbo-chg" aria-labelledby="nbo-chg-title">
-    <h2 class="nbo-chg__title" id="nbo-chg-title">새로워진 NE Books, <em>이렇게 달라져요</em></h2>
+    <h2 class="nbo-chg__title" id="nbo-chg-title" data-ga-event="section_view" data-ga-section-id="changes">새로워진 NE Books, <em>이렇게 달라져요</em></h2>
     <p class="nbo-chg__sub">사이트가 전면 개편되면서<br class="nbo-chg__br-m"> 교재몰에서 찾는 순간부터 자료 받기까지 한 번에 이어져요.</p>
     <div class="nbo-chg__stage" tabindex="0" aria-label="달라진 점 카드 — 좌우 화살표 키로 넘겨보기">
       <div class="nbo-chg__canvas">
@@ -1317,13 +1344,13 @@ window.NBO_OPEN_AT = Date.parse('2026-12-12T00:00:00+09:00');
   <!-- ===== 참여 영역 : 1차 오픈 알림 신청(즉석 추첨) — 위쪽 피그마 162:1713 / 2차 예고 · 유의사항은 시안 전 1차 안 ===== -->
   <section class="nbo-join" aria-labelledby="nbo-join-title">
     <div class="nbo-join__in">
-      <div class="nbo-join__head">
+      <div class="nbo-join__head" data-ga-event="section_view" data-ga-section-id="event_pre">
         <span class="nbo-join__bell" aria-hidden="true"><span class="nbo-join__bell-ic"><img src="images/icon-bell-red.svg" alt="" width="18" height="18"></span><b class="nbo-join__bell-n">1</b></span>
         <p class="nbo-join__eyebrow">오픈 알림 신청 이벤트</p>
         <div class="nbo-join__tit">
           <h2 class="nbo-join__title" id="nbo-join-title">오픈 소식, <em>가장 먼저</em> 받아보세요</h2>
           <p class="nbo-join__desc">알림 신청을 하면 총 2,000명에게 선물을 드려요.</p>
-          <p class="nbo-period"><b>이벤트 기간</b>2026. 11. 30(월) ~ 12. 10(목)</p><!-- 기간 확인 필요 (README 13장 : 1~14일차 표기와 불일치) -->
+          <p class="nbo-period"><b>이벤트 기간</b>2026. 12. 1(화) ~ 12. 10(목)</p><!-- 기간 확인 필요 (README 13장 : 1~14일차 표기와 불일치) -->
         </div>
       </div>
 
@@ -1353,7 +1380,7 @@ window.NBO_OPEN_AT = Date.parse('2026-12-12T00:00:00+09:00');
             <!-- 즉석 복권 연출 (장식, 샘플 E + 선물상자 B · 11/24) : 아이콘 톡 → 점선 신호 → 은박 긁기 → 당첨 -->
             <div class="nbo-sc nbo-sc--bell" aria-hidden="true"><span class="nbo-sc__ic"><img src="images/icon-bell-red.svg" alt="" width="24" height="24"></span><span class="nbo-sc__ln"><i></i></span><div class="nbo-sc__tk"><div class="nbo-sc__card" data-sc><div class="nbo-sc__under"><svg class="nbo-sc__gift" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 12c-3-6-11-7-11-2 0 3 6 3 11 2zM20 12c3-6 11-7 11-2 0 3-6 3-11 2z" fill="#ffd640" stroke="#e0b100" stroke-width="1"/><rect x="5" y="12" width="30" height="8" rx="2" fill="#ff5a49"/><rect x="7" y="20" width="26" height="15" rx="2" fill="#e83828"/><rect x="17.5" y="12" width="5" height="23" fill="#ffd640"/><rect x="7" y="20" width="26" height="2" fill="#c42a1c" opacity=".35"/></svg>당첨!</div><canvas class="nbo-sc__cv"></canvas><i class="nbo-sc__dot"></i></div><span class="nbo-sc__cf"><i style="--x:-92px;--y:34px;--r:0deg;--c:#e83828;--d:0ms"></i><i style="--x:-136px;--y:17px;--r:67deg;--c:#ffd640;--d:30ms"></i><i style="--x:-170px;--y:-15px;--r:134deg;--c:#7fb2ee;--d:60ms"></i><i style="--x:-95px;--y:-30px;--r:201deg;--c:#00de5a;--d:90ms"></i><i style="--x:-99px;--y:-64px;--r:268deg;--c:#ff9bb3;--d:0ms"></i><i style="--x:-79px;--y:-101px;--r:335deg;--c:#ffd640;--d:30ms"></i><i style="--x:-17px;--y:-69px;--r:42deg;--c:#e83828;--d:60ms"></i><i style="--x:22px;--y:-91px;--r:109deg;--c:#7fb2ee;--d:90ms"></i><i style="--x:79px;--y:-101px;--r:176deg;--c:#ff9bb3;--d:0ms"></i><i style="--x:75px;--y:-49px;--r:243deg;--c:#00de5a;--d:30ms"></i><i style="--x:124px;--y:-40px;--r:310deg;--c:#ffd640;--d:60ms"></i><i style="--x:170px;--y:-15px;--r:17deg;--c:#e83828;--d:90ms"></i><i style="--x:103px;--y:13px;--r:84deg;--c:#7fb2ee;--d:0ms"></i><i style="--x:120px;--y:45px;--r:151deg;--c:#ffd640;--d:30ms"></i></span></div></div>
             <div class="nbo-apply__go">
-              <button class="nbo-apply__btn nbo-apply__submit" type="button"><img class="nbo-apply__bell" src="images/icon-bell-white.svg" alt="" width="22" height="22"><span class="nbo-apply__btn-t">오픈 알림 신청</span></button>
+              <button class="nbo-apply__btn nbo-apply__submit" type="button" data-ga-event="apply_click" data-ga-link-area="promotion_apply"><img class="nbo-apply__bell" src="images/icon-bell-white.svg" alt="" width="22" height="22"><span class="nbo-apply__btn-t">오픈 알림 신청</span></button>
             </div>
           </div>
           <span class="nbo-apply__div" aria-hidden="true"><img src="images/line-dashed-apply-v.svg" alt="" width="208" height="1"></span>
@@ -1362,14 +1389,14 @@ window.NBO_OPEN_AT = Date.parse('2026-12-12T00:00:00+09:00');
             <!-- 즉석 복권 연출 (장식, 샘플 E + 선물상자 B · 11/24) : 아이콘 톡 → 점선 신호 → 은박 긁기 → 당첨 -->
             <div class="nbo-sc nbo-sc--kakao" aria-hidden="true"><span class="nbo-sc__ic"><img src="images/icon-kakao.svg" alt="" width="24" height="24"></span><span class="nbo-sc__ln"><i></i></span><div class="nbo-sc__tk"><div class="nbo-sc__card" data-sc><div class="nbo-sc__under"><svg class="nbo-sc__gift" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 12c-3-6-11-7-11-2 0 3 6 3 11 2zM20 12c3-6 11-7 11-2 0 3-6 3-11 2z" fill="#ffd640" stroke="#e0b100" stroke-width="1"/><rect x="5" y="12" width="30" height="8" rx="2" fill="#ff5a49"/><rect x="7" y="20" width="26" height="15" rx="2" fill="#e83828"/><rect x="17.5" y="12" width="5" height="23" fill="#ffd640"/><rect x="7" y="20" width="26" height="2" fill="#c42a1c" opacity=".35"/></svg>+1회 당첨!</div><canvas class="nbo-sc__cv"></canvas><i class="nbo-sc__dot"></i></div><span class="nbo-sc__cf"><i style="--x:-92px;--y:34px;--r:0deg;--c:#e83828;--d:0ms"></i><i style="--x:-136px;--y:17px;--r:67deg;--c:#ffd640;--d:30ms"></i><i style="--x:-170px;--y:-15px;--r:134deg;--c:#7fb2ee;--d:60ms"></i><i style="--x:-95px;--y:-30px;--r:201deg;--c:#00de5a;--d:90ms"></i><i style="--x:-99px;--y:-64px;--r:268deg;--c:#ff9bb3;--d:0ms"></i><i style="--x:-79px;--y:-101px;--r:335deg;--c:#ffd640;--d:30ms"></i><i style="--x:-17px;--y:-69px;--r:42deg;--c:#e83828;--d:60ms"></i><i style="--x:22px;--y:-91px;--r:109deg;--c:#7fb2ee;--d:90ms"></i><i style="--x:79px;--y:-101px;--r:176deg;--c:#ff9bb3;--d:0ms"></i><i style="--x:75px;--y:-49px;--r:243deg;--c:#00de5a;--d:30ms"></i><i style="--x:124px;--y:-40px;--r:310deg;--c:#ffd640;--d:60ms"></i><i style="--x:170px;--y:-15px;--r:17deg;--c:#e83828;--d:90ms"></i><i style="--x:103px;--y:13px;--r:84deg;--c:#7fb2ee;--d:0ms"></i><i style="--x:120px;--y:45px;--r:151deg;--c:#ffd640;--d:30ms"></i></span><span class="nbo-sc__plus">+1</span></div></div>
             <div class="nbo-apply__go">
-              <button class="nbo-apply__btn nbo-apply__share" id="shareCta" data-role="share-btn" type="button"><img src="images/icon-kakao.svg" alt="" width="20" height="20"><span class="nbo-apply__btn-t">카카오톡 공유하기</span></button>
+              <button class="nbo-apply__btn nbo-apply__share" id="shareCta" data-role="share-btn" type="button" data-ga-event="share" data-ga-link-area="promotion_apply"><img src="images/icon-kakao.svg" alt="" width="20" height="20"><span class="nbo-apply__btn-t">카카오톡 공유하기</span></button>
             </div>
           </div>
         </div>
       </div>
 
       <!-- 2차 예고 : 오픈 축하 카카오톡 공유 이벤트 (12/12 오픈일부터) — 샘플 A-1 '유리 진열장' -->
-      <div class="nbo-next" id="openEntry" aria-labelledby="nbo-next-title">
+      <div class="nbo-next" id="openEntry" aria-labelledby="nbo-next-title" data-ga-event="section_view" data-ga-section-id="event_open">
         <div class="nbo-next__head">
           <span class="nbo-next__badge" aria-hidden="true"><img class="nbo-next__badge-ic" src="images/icon-party-red.svg" alt="" width="18" height="18"><i class="nbo-next__cf" style="--x:14px;--y:-22px;--r:160deg;--c:#ffd640"></i><i class="nbo-next__cf" style="--x:24px;--y:-12px;--r:-120deg;--c:#e83828"></i><i class="nbo-next__cf nbo-next__cf--dot" style="--x:6px;--y:-26px;--r:0deg;--c:#4f7fd6"></i><i class="nbo-next__cf" style="--x:26px;--y:2px;--r:200deg;--c:#2fbf71"></i><i class="nbo-next__cf nbo-next__cf--dot" style="--x:20px;--y:-24px;--r:0deg;--c:#7c5cff"></i><i class="nbo-next__cf" style="--x:-4px;--y:-20px;--r:-200deg;--c:#ff8fb1"></i><b class="nbo-next__badge-n">2</b></span>
           <p class="nbo-next__eyebrow">오픈 축하 이벤트</p>
@@ -1389,7 +1416,7 @@ window.NBO_OPEN_AT = Date.parse('2026-12-12T00:00:00+09:00');
           </div>
         </div>
         <ul class="nbo-next__plist" aria-hidden="true"><li>신세계 상품권 50,000원</li><li>신세계 상품권 30,000원</li><li>배달의 민족 상품권 10,000원</li><li>CU 편의점 상품권 10,000원</li><li>뚜레쥬르 케이크</li><li>NE Point 5,000원</li></ul>
-        <button class="nbo-apply__btn nbo-apply__share nbo-next__btn" data-role="share-btn" type="button" aria-disabled="true"><img src="images/icon-kakao.svg" alt="" width="20" height="20"><span class="nbo-apply__btn-t">12월 12일(토) 오픈 후 응모할 수 있어요</span></button><!-- 오픈 전 문구 → 오픈되면 스크립트가 '카카오톡 공유로 응모하기'로 바꿈 -->
+        <button class="nbo-apply__btn nbo-apply__share nbo-next__btn" data-role="share-btn" type="button" aria-disabled="true" data-ga-event="apply_click" data-ga-link-area="promotion_apply"><img src="images/icon-kakao.svg" alt="" width="20" height="20"><span class="nbo-apply__btn-t">12월 12일(토) 오픈 후 응모할 수 있어요</span></button><!-- 오픈 전 문구 → 오픈되면 스크립트가 '카카오톡 공유로 응모하기'로 바꿈 -->
         <!-- 후기(댓글) 리스트 — 개발 : 남겨진 댓글 수 · 최근 댓글 목록 (아이디 일부 가림). 아래는 목업 예시 -->
         <div class="nbo-next__rv">
           <p class="nbo-next__rv-h">지금까지<b data-rv-n>1,234개</b>의 후기가 남겨졌어요</p>
@@ -1406,7 +1433,7 @@ window.NBO_OPEN_AT = Date.parse('2026-12-12T00:00:00+09:00');
     </div>
 
     <!-- 신간 교재 (11/25 추가 · 기획 목업 'NEW BOOKS' + NE Books 상품 카드 스타일) — 표지 누르면 교재 상세 · 탭별 시리즈 (장바구니는 빼기로 함 · 11/25) -->
-    <div class="nbo-nb" aria-labelledby="nbo-nb-title">
+    <div class="nbo-nb" aria-labelledby="nbo-nb-title" data-ga-event="section_view" data-ga-section-id="new_books">
       <div class="nbo-nb__head">
         <p class="nbo-nb__eyebrow">NEW BOOKS</p>
         <h2 class="nbo-nb__title" id="nbo-nb-title"><em>최근 나온 신간</em>,<br class="nbo-nb__br-m"> <span class="nbo-nb__nw">NE Books에서</span> 만나보세요.</h2>
@@ -1422,91 +1449,91 @@ window.NBO_OPEN_AT = Date.parse('2026-12-12T00:00:00+09:00');
           <button type="button" class="nbo-nb__arr nbo-nb__arr--prev" aria-label="이전 교재" data-nb-prev hidden><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
           <ul class="nbo-nb__list" data-nb-list>
             <li class="nbo-nb__item">
-              <a class="nbo-nb__card" href="https://www.nebooks.co.kr/pages/book/view.asp?c=BB07220001" target="_blank" rel="noopener" data-nb-detail data-book="sync-first-1">
+              <a class="nbo-nb__card" href="https://www.nebooks.co.kr/pages/book/view.asp?c=BB07220001" target="_blank" rel="noopener" data-nb-detail data-book="sync-first-1" data-ga-event="select_item" data-ga-item-list-name="promotion_newbook" data-ga-book-id="BB07220001" data-ga-book-name="처음 수능 SYNC 기초 독해">
                 <span class="nbo-nb__thumb"><span class="nbo-nb__cover"><img src="images/nb-sync-first-1.webp" alt="처음 수능 SYNC 기초 독해 표지" loading="lazy" draggable="false"></span></span>
                 <span class="nbo-nb__name">처음 수능 SYNC 기초 독해</span>
               </a>
             </li>
             <li class="nbo-nb__item">
-              <a class="nbo-nb__card" href="https://www.nebooks.co.kr/pages/book/view.asp?c=BB07220002" target="_blank" rel="noopener" data-nb-detail data-book="sync-first-2">
+              <a class="nbo-nb__card" href="https://www.nebooks.co.kr/pages/book/view.asp?c=BB07220002" target="_blank" rel="noopener" data-nb-detail data-book="sync-first-2" data-ga-event="select_item" data-ga-item-list-name="promotion_newbook" data-ga-book-id="BB07220002" data-ga-book-name="처음 수능 SYNC 유형 독해">
                 <span class="nbo-nb__thumb"><span class="nbo-nb__cover"><img src="images/nb-sync-first-2.webp" alt="처음 수능 SYNC 유형 독해 표지" loading="lazy" draggable="false"></span></span>
                 <span class="nbo-nb__name">처음 수능 SYNC 유형 독해</span>
               </a>
             </li>
             <li class="nbo-nb__item">
-              <a class="nbo-nb__card" href="https://www.nebooks.co.kr/pages/book/view.asp?c=BD05250002" target="_blank" rel="noopener" data-nb-detail data-book="sync-mini-1">
+              <a class="nbo-nb__card" href="https://www.nebooks.co.kr/pages/book/view.asp?c=BD05250002" target="_blank" rel="noopener" data-nb-detail data-book="sync-mini-1" data-ga-event="select_item" data-ga-item-list-name="promotion_newbook" data-ga-book-id="BD05250002" data-ga-book-name="수능 SYNC MINI 미니 모의고사 1">
                 <span class="nbo-nb__thumb"><span class="nbo-nb__cover"><img src="images/nb-sync-mini-1.webp" alt="수능 SYNC MINI 미니 모의고사 1 표지" loading="lazy" draggable="false"></span></span>
                 <span class="nbo-nb__name">수능 SYNC MINI 미니 모의고사 1</span>
               </a>
             </li>
             <li class="nbo-nb__item">
-              <a class="nbo-nb__card" href="https://www.nebooks.co.kr/pages/book/view.asp?c=BD05250003" target="_blank" rel="noopener" data-nb-detail data-book="sync-mini-3">
+              <a class="nbo-nb__card" href="https://www.nebooks.co.kr/pages/book/view.asp?c=BD05250003" target="_blank" rel="noopener" data-nb-detail data-book="sync-mini-3" data-ga-event="select_item" data-ga-item-list-name="promotion_newbook" data-ga-book-id="BD05250003" data-ga-book-name="수능 SYNC MINI 미니 모의고사 2">
                 <span class="nbo-nb__thumb"><span class="nbo-nb__cover"><img src="images/nb-sync-mini-3.webp" alt="수능 SYNC MINI 미니 모의고사 2 표지" loading="lazy" draggable="false"></span></span>
                 <span class="nbo-nb__name">수능 SYNC MINI 미니 모의고사 2</span>
               </a>
             </li>
             <li class="nbo-nb__item">
-              <a class="nbo-nb__card" href="https://www.nebooks.co.kr/pages/book/view.asp?c=BD05250004" target="_blank" rel="noopener" data-nb-detail data-book="sync-mini-2">
+              <a class="nbo-nb__card" href="https://www.nebooks.co.kr/pages/book/view.asp?c=BD05250004" target="_blank" rel="noopener" data-nb-detail data-book="sync-mini-2" data-ga-event="select_item" data-ga-item-list-name="promotion_newbook" data-ga-book-id="BD05250004" data-ga-book-name="수능 SYNC MINI 미니 모의고사 3">
                 <span class="nbo-nb__thumb"><span class="nbo-nb__cover"><img src="images/nb-sync-mini-2.webp" alt="수능 SYNC MINI 미니 모의고사 3 표지" loading="lazy" draggable="false"></span></span>
                 <span class="nbo-nb__name">수능 SYNC MINI 미니 모의고사 3</span>
               </a>
             </li>
             <li class="nbo-nb__item">
-              <a class="nbo-nb__card" href="https://www.nebooks.co.kr/pages/book/view.asp?c=BD05250008" target="_blank" rel="noopener" data-nb-detail data-book="sync-basic-1">
+              <a class="nbo-nb__card" href="https://www.nebooks.co.kr/pages/book/view.asp?c=BD05250008" target="_blank" rel="noopener" data-nb-detail data-book="sync-basic-1" data-ga-event="select_item" data-ga-item-list-name="promotion_newbook" data-ga-book-id="BD05250008" data-ga-book-name="수능 SYNC 기본 듣기 모의고사 24회">
                 <span class="nbo-nb__thumb"><span class="nbo-nb__cover"><img src="images/nb-sync-basic-1.webp" alt="수능 SYNC 기본 듣기 모의고사 24회 표지" loading="lazy" draggable="false"></span></span>
                 <span class="nbo-nb__name">수능 SYNC 기본 듣기 모의고사 24회</span>
               </a>
             </li>
             <li class="nbo-nb__item">
-              <a class="nbo-nb__card" href="https://www.nebooks.co.kr/pages/book/view.asp?c=BD05250009" target="_blank" rel="noopener" data-nb-detail data-book="sync-basic-2">
+              <a class="nbo-nb__card" href="https://www.nebooks.co.kr/pages/book/view.asp?c=BD05250009" target="_blank" rel="noopener" data-nb-detail data-book="sync-basic-2" data-ga-event="select_item" data-ga-item-list-name="promotion_newbook" data-ga-book-id="BD05250009" data-ga-book-name="수능 SYNC 기본 듣기 모의고사 35회">
                 <span class="nbo-nb__thumb"><span class="nbo-nb__cover"><img src="images/nb-sync-basic-2.webp" alt="수능 SYNC 기본 듣기 모의고사 35회 표지" loading="lazy" draggable="false"></span></span>
                 <span class="nbo-nb__name">수능 SYNC 기본 듣기 모의고사 35회</span>
               </a>
             </li>
             <li class="nbo-nb__item">
-              <a class="nbo-nb__card" href="https://www.nebooks.co.kr/pages/book/view.asp?c=BD05250005" target="_blank" rel="noopener" data-nb-detail data-book="sync-basic-4">
+              <a class="nbo-nb__card" href="https://www.nebooks.co.kr/pages/book/view.asp?c=BD05250005" target="_blank" rel="noopener" data-nb-detail data-book="sync-basic-4" data-ga-event="select_item" data-ga-item-list-name="promotion_newbook" data-ga-book-id="BD05250005" data-ga-book-name="수능 SYNC 기본 독해 모의고사 10+1회">
                 <span class="nbo-nb__thumb"><span class="nbo-nb__cover"><img src="images/nb-sync-basic-4.webp" alt="수능 SYNC 기본 독해 모의고사 10+1회 표지" loading="lazy" draggable="false"></span></span>
                 <span class="nbo-nb__name">수능 SYNC 기본 독해 모의고사 10+1회</span>
               </a>
             </li>
             <li class="nbo-nb__item">
-              <a class="nbo-nb__card" href="https://www.nebooks.co.kr/pages/book/view.asp?c=BD05250006" target="_blank" rel="noopener" data-nb-detail data-book="sync-basic-3">
+              <a class="nbo-nb__card" href="https://www.nebooks.co.kr/pages/book/view.asp?c=BD05250006" target="_blank" rel="noopener" data-nb-detail data-book="sync-basic-3" data-ga-event="select_item" data-ga-item-list-name="promotion_newbook" data-ga-book-id="BD05250006" data-ga-book-name="수능 SYNC 기본 문법·어법·어휘 150제">
                 <span class="nbo-nb__thumb"><span class="nbo-nb__cover"><img src="images/nb-sync-basic-3.webp" alt="수능 SYNC 기본 문법·어법·어휘 150제 표지" loading="lazy" draggable="false"></span></span>
                 <span class="nbo-nb__name">수능 SYNC 기본 문법·어법·어휘 150제</span>
               </a>
             </li>
             <li class="nbo-nb__item">
-              <a class="nbo-nb__card" href="https://www.nebooks.co.kr/pages/book/view.asp?c=BD05250010" target="_blank" rel="noopener" data-nb-detail data-book="sync-real-1">
+              <a class="nbo-nb__card" href="https://www.nebooks.co.kr/pages/book/view.asp?c=BD05250010" target="_blank" rel="noopener" data-nb-detail data-book="sync-real-1" data-ga-event="select_item" data-ga-item-list-name="promotion_newbook" data-ga-book-id="BD05250010" data-ga-book-name="수능 SYNC 실전 듣기 모의고사 24회">
                 <span class="nbo-nb__thumb"><span class="nbo-nb__cover"><img src="images/nb-sync-real-1.webp" alt="수능 SYNC 실전 듣기 모의고사 24회 표지" loading="lazy" draggable="false"></span></span>
                 <span class="nbo-nb__name">수능 SYNC 실전 듣기 모의고사 24회</span>
               </a>
             </li>
             <li class="nbo-nb__item">
-              <a class="nbo-nb__card" href="https://www.nebooks.co.kr/pages/book/view.asp?c=BD05250011" target="_blank" rel="noopener" data-nb-detail data-book="sync-real-2">
+              <a class="nbo-nb__card" href="https://www.nebooks.co.kr/pages/book/view.asp?c=BD05250011" target="_blank" rel="noopener" data-nb-detail data-book="sync-real-2" data-ga-event="select_item" data-ga-item-list-name="promotion_newbook" data-ga-book-id="BD05250011" data-ga-book-name="수능 SYNC 실전 듣기 모의고사 35회">
                 <span class="nbo-nb__thumb"><span class="nbo-nb__cover"><img src="images/nb-sync-real-2.webp" alt="수능 SYNC 실전 듣기 모의고사 35회 표지" loading="lazy" draggable="false"></span></span>
                 <span class="nbo-nb__name">수능 SYNC 실전 듣기 모의고사 35회</span>
               </a>
             </li>
             <li class="nbo-nb__item">
-              <a class="nbo-nb__card" href="https://www.nebooks.co.kr/pages/book/view.asp?c=BD05250001" target="_blank" rel="noopener" data-nb-detail data-book="sync-real-4">
+              <a class="nbo-nb__card" href="https://www.nebooks.co.kr/pages/book/view.asp?c=BD05250001" target="_blank" rel="noopener" data-nb-detail data-book="sync-real-4" data-ga-event="select_item" data-ga-item-list-name="promotion_newbook" data-ga-book-id="BD05250001" data-ga-book-name="수능 SYNC 실전 독해 모의고사 15회">
                 <span class="nbo-nb__thumb"><span class="nbo-nb__cover"><img src="images/nb-sync-real-4.webp" alt="수능 SYNC 실전 독해 모의고사 15회 표지" loading="lazy" draggable="false"></span></span>
                 <span class="nbo-nb__name">수능 SYNC 실전 독해 모의고사 15회</span>
               </a>
             </li>
             <li class="nbo-nb__item">
-              <a class="nbo-nb__card" href="https://www.nebooks.co.kr/pages/book/view.asp?c=BD05250007" target="_blank" rel="noopener" data-nb-detail data-book="sync-real-3">
+              <a class="nbo-nb__card" href="https://www.nebooks.co.kr/pages/book/view.asp?c=BD05250007" target="_blank" rel="noopener" data-nb-detail data-book="sync-real-3" data-ga-event="select_item" data-ga-item-list-name="promotion_newbook" data-ga-book-id="BD05250007" data-ga-book-name="수능 SYNC 실전 어법·어휘 228제">
                 <span class="nbo-nb__thumb"><span class="nbo-nb__cover"><img src="images/nb-sync-real-3.webp" alt="수능 SYNC 실전 어법·어휘 228제 표지" loading="lazy" draggable="false"></span></span>
                 <span class="nbo-nb__name">수능 SYNC 실전 어법·어휘 228제</span>
               </a>
             </li>
             <li class="nbo-nb__item">
-              <a class="nbo-nb__card" href="https://www.nebooks.co.kr/pages/book/view.asp?c=BD05250012" target="_blank" rel="noopener" data-nb-detail data-book="sync-up-2">
+              <a class="nbo-nb__card" href="https://www.nebooks.co.kr/pages/book/view.asp?c=BD05250012" target="_blank" rel="noopener" data-nb-detail data-book="sync-up-2" data-ga-event="select_item" data-ga-item-list-name="promotion_newbook" data-ga-book-id="BD05250012" data-ga-book-name="수능 SYNC UP 간접연계 소재편">
                 <span class="nbo-nb__thumb"><span class="nbo-nb__cover"><img src="images/nb-sync-up-2.webp" alt="수능 SYNC UP 간접연계 소재편 표지" loading="lazy" draggable="false"></span></span>
                 <span class="nbo-nb__name">수능 SYNC UP 간접연계 소재편</span>
               </a>
             </li>
             <li class="nbo-nb__item">
-              <a class="nbo-nb__card" href="https://www.nebooks.co.kr/pages/book/view.asp?c=BD05250013" target="_blank" rel="noopener" data-nb-detail data-book="sync-up-1">
+              <a class="nbo-nb__card" href="https://www.nebooks.co.kr/pages/book/view.asp?c=BD05250013" target="_blank" rel="noopener" data-nb-detail data-book="sync-up-1" data-ga-event="select_item" data-ga-item-list-name="promotion_newbook" data-ga-book-id="BD05250013" data-ga-book-name="수능 SYNC UP 빈순삽함 유형편">
                 <span class="nbo-nb__thumb"><span class="nbo-nb__cover"><img src="images/nb-sync-up-1.webp" alt="수능 SYNC UP 빈순삽함 유형편 표지" loading="lazy" draggable="false"></span></span>
                 <span class="nbo-nb__name">수능 SYNC UP 빈순삽함 유형편</span>
               </a>
@@ -1514,20 +1541,20 @@ window.NBO_OPEN_AT = Date.parse('2026-12-12T00:00:00+09:00');
           </ul>
           <button type="button" class="nbo-nb__arr nbo-nb__arr--next" aria-label="다음 교재" data-nb-next><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
         </div>
-        <a class="nbo-nb__all" href="https://www.nebooks.co.kr/link/suneung-sync" target="_blank" rel="noopener" data-nb-all>수능 SYNC 시리즈 전체 보기<span aria-hidden="true">›</span></a><!-- 시리즈 랜딩 (README 모음 186024020 · 페이지 링크) -->
+        <a class="nbo-nb__all" href="https://www.nebooks.co.kr/link/suneung-sync" target="_blank" rel="noopener" data-nb-all data-ga-event="nav_click" data-ga-link-area="promotion_newbook" data-ga-brand="suneung_sync">수능 SYNC 시리즈 전체 보기<span aria-hidden="true">›</span></a><!-- 시리즈 랜딩 (README 모음 186024020 · 페이지 링크) -->
       </div>
       <div class="nbo-nb__panel" role="tabpanel" id="nbo-nb-p-decode" aria-labelledby="nbo-nb-tab-decode" data-nb-panel="decode" hidden>
         <div class="nbo-nb__rail">
           <button type="button" class="nbo-nb__arr nbo-nb__arr--prev" aria-label="이전 교재" data-nb-prev hidden><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
           <ul class="nbo-nb__list" data-nb-list>
             <li class="nbo-nb__item">
-              <a class="nbo-nb__card" href="https://www.nebooks.co.kr/pages/book/view.asp?c=BD04160001" target="_blank" rel="noopener" data-nb-detail data-book="decode-basic">
+              <a class="nbo-nb__card" href="https://www.nebooks.co.kr/pages/book/view.asp?c=BD04160001" target="_blank" rel="noopener" data-nb-detail data-book="decode-basic" data-ga-event="select_item" data-ga-item-list-name="promotion_newbook" data-ga-book-id="BD04160001" data-ga-book-name="DECODE 고등 내신 서술형 Basic">
                 <span class="nbo-nb__thumb"><span class="nbo-nb__cover"><img src="images/nb-decode-basic.webp" alt="DECODE 고등 내신 서술형 Basic 표지" loading="lazy" draggable="false"></span></span>
                 <span class="nbo-nb__name">DECODE 고등 내신 서술형 Basic</span>
               </a>
             </li>
             <li class="nbo-nb__item">
-              <a class="nbo-nb__card" href="https://www.nebooks.co.kr/pages/book/view.asp?c=BD04160002" target="_blank" rel="noopener" data-nb-detail data-book="decode-complete">
+              <a class="nbo-nb__card" href="https://www.nebooks.co.kr/pages/book/view.asp?c=BD04160002" target="_blank" rel="noopener" data-nb-detail data-book="decode-complete" data-ga-event="select_item" data-ga-item-list-name="promotion_newbook" data-ga-book-id="BD04160002" data-ga-book-name="DECODE 고등 내신 서술형 Complete">
                 <span class="nbo-nb__thumb"><span class="nbo-nb__cover"><img src="images/nb-decode-complete.webp" alt="DECODE 고등 내신 서술형 Complete 표지" loading="lazy" draggable="false"></span></span>
                 <span class="nbo-nb__name">DECODE 고등 내신 서술형 Complete</span>
               </a>
@@ -1535,32 +1562,32 @@ window.NBO_OPEN_AT = Date.parse('2026-12-12T00:00:00+09:00');
           </ul>
           <button type="button" class="nbo-nb__arr nbo-nb__arr--next" aria-label="다음 교재" data-nb-next><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
         </div>
-        <a class="nbo-nb__all" href="https://www.nebooks.co.kr/link/decode-writing" target="_blank" rel="noopener" data-nb-all>DECODE 시리즈 전체 보기<span aria-hidden="true">›</span></a><!-- 시리즈 랜딩 (README 모음 186024020 · 페이지 링크) -->
+        <a class="nbo-nb__all" href="https://www.nebooks.co.kr/link/decode-writing" target="_blank" rel="noopener" data-nb-all data-ga-event="nav_click" data-ga-link-area="promotion_newbook" data-ga-brand="decode">DECODE 시리즈 전체 보기<span aria-hidden="true">›</span></a><!-- 시리즈 랜딩 (README 모음 186024020 · 페이지 링크) -->
       </div>
       <div class="nbo-nb__panel" role="tabpanel" id="nbo-nb-p-gi" aria-labelledby="nbo-nb-tab-gi" data-nb-panel="gi" hidden>
         <div class="nbo-nb__rail">
           <button type="button" class="nbo-nb__arr nbo-nb__arr--prev" aria-label="이전 교재" data-nb-prev hidden><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
           <ul class="nbo-nb__list" data-nb-list>
             <li class="nbo-nb__item">
-              <a class="nbo-nb__card" href="https://www.nebooks.co.kr/pages/book/view.asp?c=BB09050005" target="_blank" rel="noopener" data-nb-detail data-book="gi-starter">
+              <a class="nbo-nb__card" href="https://www.nebooks.co.kr/pages/book/view.asp?c=BB09050005" target="_blank" rel="noopener" data-nb-detail data-book="gi-starter" data-ga-event="select_item" data-ga-item-list-name="promotion_newbook" data-ga-book-id="BB09050005" data-ga-book-name="Grammar Inside Starter">
                 <span class="nbo-nb__thumb"><span class="nbo-nb__cover"><img src="images/nb-gi-starter.webp" alt="Grammar Inside Starter 표지" loading="lazy" draggable="false"></span></span>
                 <span class="nbo-nb__name">Grammar Inside Starter</span>
               </a>
             </li>
             <li class="nbo-nb__item">
-              <a class="nbo-nb__card" href="https://www.nebooks.co.kr/pages/book/view.asp?c=BB09050006" target="_blank" rel="noopener" data-nb-detail data-book="gi-level1">
+              <a class="nbo-nb__card" href="https://www.nebooks.co.kr/pages/book/view.asp?c=BB09050006" target="_blank" rel="noopener" data-nb-detail data-book="gi-level1" data-ga-event="select_item" data-ga-item-list-name="promotion_newbook" data-ga-book-id="BB09050006" data-ga-book-name="Grammar Inside Level 1">
                 <span class="nbo-nb__thumb"><span class="nbo-nb__cover"><img src="images/nb-gi-level1.webp" alt="Grammar Inside Level 1 표지" loading="lazy" draggable="false"></span></span>
                 <span class="nbo-nb__name">Grammar Inside Level 1</span>
               </a>
             </li>
             <li class="nbo-nb__item">
-              <a class="nbo-nb__card" href="https://www.nebooks.co.kr/pages/book/view.asp?c=BB09050007" target="_blank" rel="noopener" data-nb-detail data-book="gi-level2">
+              <a class="nbo-nb__card" href="https://www.nebooks.co.kr/pages/book/view.asp?c=BB09050007" target="_blank" rel="noopener" data-nb-detail data-book="gi-level2" data-ga-event="select_item" data-ga-item-list-name="promotion_newbook" data-ga-book-id="BB09050007" data-ga-book-name="Grammar Inside Level 2">
                 <span class="nbo-nb__thumb"><span class="nbo-nb__cover"><img src="images/nb-gi-level2.webp" alt="Grammar Inside Level 2 표지" loading="lazy" draggable="false"></span></span>
                 <span class="nbo-nb__name">Grammar Inside Level 2</span>
               </a>
             </li>
             <li class="nbo-nb__item">
-              <a class="nbo-nb__card" href="https://www.nebooks.co.kr/pages/book/view.asp?c=BB09050008" target="_blank" rel="noopener" data-nb-detail data-book="gi-level3">
+              <a class="nbo-nb__card" href="https://www.nebooks.co.kr/pages/book/view.asp?c=BB09050008" target="_blank" rel="noopener" data-nb-detail data-book="gi-level3" data-ga-event="select_item" data-ga-item-list-name="promotion_newbook" data-ga-book-id="BB09050008" data-ga-book-name="Grammar Inside Level 3">
                 <span class="nbo-nb__thumb"><span class="nbo-nb__cover"><img src="images/nb-gi-level3.webp" alt="Grammar Inside Level 3 표지" loading="lazy" draggable="false"></span></span>
                 <span class="nbo-nb__name">Grammar Inside Level 3</span>
               </a>
@@ -1568,7 +1595,7 @@ window.NBO_OPEN_AT = Date.parse('2026-12-12T00:00:00+09:00');
           </ul>
           <button type="button" class="nbo-nb__arr nbo-nb__arr--next" aria-label="다음 교재" data-nb-next><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
         </div>
-        <a class="nbo-nb__all" href="https://www.nebooks.co.kr/link/grammar-inside" target="_blank" rel="noopener" data-nb-all>Grammar Inside 시리즈 전체 보기<span aria-hidden="true">›</span></a><!-- 시리즈 랜딩 (README 모음 186024020 · 페이지 링크) -->
+        <a class="nbo-nb__all" href="https://www.nebooks.co.kr/link/grammar-inside" target="_blank" rel="noopener" data-nb-all data-ga-event="nav_click" data-ga-link-area="promotion_newbook" data-ga-brand="grammar_inside">Grammar Inside 시리즈 전체 보기<span aria-hidden="true">›</span></a><!-- 시리즈 랜딩 (README 모음 186024020 · 페이지 링크) -->
       </div>
     </div>
     <div class="nbo-join__more"><div class="nbo-join__in">
@@ -1599,16 +1626,16 @@ window.NBO_OPEN_AT = Date.parse('2026-12-12T00:00:00+09:00');
 
 <div class="nbo-cta" role="region" aria-label="오픈 알림 신청">
   <p class="nbo-cta__info"><span class="nbo-cta__badge">즉석 당첨</span><span class="nbo-cta__txt">신청하면 <em class="nbo-cta__em">바로 당첨</em> 확인!</span><span class="nbo-cta__date">12.10(목) 마감</span></p>
-  <button class="nbo-cta__btn" type="button"><svg class="nbo-cta__bell" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>오픈 알림 신청하기</button>
+  <button class="nbo-cta__btn" type="button" data-ga-event="apply_click" data-ga-link-area="landing_sticky"><svg class="nbo-cta__bell" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>오픈 알림 신청하기</button>
 </div>
 
 <aside class="nbo-dock" aria-label="오픈 알림 신청 바로가기">
   <!-- 11/25 : 위 말풍선 = '오픈 알림 신청하기' · 빨간 원 = 큰 선물상자 · '공유하면 추첨 +1회' 는 뺌 (신청 영역 ② · 결과 팝업에 있음) -->
-  <button class="nbo-dock__ask" type="button"><svg class="nbo-dock__ask-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg><span data-dock-ask>오픈 알림<br><em>신청하기</em></span></button>
+  <button class="nbo-dock__ask" type="button" data-ga-event="apply_click" data-ga-link-area="landing_sticky"><svg class="nbo-dock__ask-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg><span data-dock-ask>오픈 알림<br><em>신청하기</em></span></button>
   <div class="nbo-dock__body">
     <p class="nbo-dock__h"><span>신청하면</span><b>즉석 당첨</b></p>
     <p class="nbo-dock__back" aria-hidden="true" data-dock-back><svg class="nbo-dock__back-ic" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg><span>카카오톡<br>공유하면</span><b>즉석 추첨<br>+1회</b></p>
-    <button class="nbo-dock__btn" type="button" aria-label="오픈 알림 신청하기"><svg class="nbo-dock__gift" viewBox="0 0 120 120" aria-hidden="true"><g class="nbo-dock__lid"><path d="M60 36c-9-18-33-21-33-6 0 9 18 9 33 6zM60 36c9-18 33-21 33-6 0 9-18 9-33 6z" fill="#ffd640" stroke="#e0b100" stroke-width="2"/><rect x="14" y="36" width="92" height="24" rx="6" fill="#fff"/><rect x="52" y="36" width="16" height="24" fill="#ffd640"/></g><rect x="20" y="60" width="80" height="50" rx="6" fill="#fff1ee"/><rect x="52" y="60" width="16" height="50" fill="#ffd640"/><rect x="20" y="60" width="80" height="6" fill="#000" opacity=".08"/></svg></button>
+    <button class="nbo-dock__btn" type="button" aria-label="오픈 알림 신청하기" data-ga-event="apply_click" data-ga-link-area="landing_sticky"><svg class="nbo-dock__gift" viewBox="0 0 120 120" aria-hidden="true"><g class="nbo-dock__lid"><path d="M60 36c-9-18-33-21-33-6 0 9 18 9 33 6zM60 36c9-18 33-21 33-6 0 9-18 9-33 6z" fill="#ffd640" stroke="#e0b100" stroke-width="2"/><rect x="14" y="36" width="92" height="24" rx="6" fill="#fff"/><rect x="52" y="36" width="16" height="24" fill="#ffd640"/></g><rect x="20" y="60" width="80" height="50" rx="6" fill="#fff1ee"/><rect x="52" y="60" width="16" height="50" fill="#ffd640"/><rect x="20" y="60" width="80" height="6" fill="#000" opacity=".08"/></svg></button>
   </div>
 </aside>
 
@@ -2620,7 +2647,7 @@ window.NBO_OPEN_AT = Date.parse('2026-12-12T00:00:00+09:00');
   function fmtTel(v) { v = v.replace(/\D/g, '').slice(0, 11); return v.length < 4 ? v : v.length < 8 ? v.slice(0, 3) + '-' + v.slice(3) : v.slice(0, 3) + '-' + v.slice(3, v.length - 4) + '-' + v.slice(-4); }
   function maskTel(v) { v = fmtTel(v || ''); return v.replace(/^(\d{3})-(\d{3,4})-/, '$1-****-'); }
   function canExtra() { return me && me.shared && me.draws.length === 1; }
-  var PRE_END = Date.parse('2026-12-10T23:59:59+09:00'), OPEN_START = window.NBO_OPEN_AT, OPEN_END = Date.parse('2026-12-21T23:59:59+09:00');   // 1차 11/30~12/10 · 2차 12/12~12/21 (README 1장, 실제 날짜 확인 필요)
+  var PRE_END = Date.parse('2026-12-10T23:59:59+09:00'), OPEN_START = window.NBO_OPEN_AT, OPEN_END = Date.parse('2026-12-21T23:59:59+09:00');   // 1차 12/1~12/10 (11/26 변경) · 2차 12/12~12/21 (README 1장, 실제 날짜 확인 필요)
   function preClosed() { return window.nboNow() > PRE_END; }
   var MSG_CLOSED = '종료된 이벤트입니다.';   // 얼럿 ⑦
   function roundName(i) { return i === 0 ? '1회차' : '추가 1회'; }
@@ -2655,7 +2682,7 @@ window.NBO_OPEN_AT = Date.parse('2026-12-12T00:00:00+09:00');
   }
   function acts(el, noOk) {   // 결과 · 기록 화면 아래 버튼 (결과 화면은 피그마대로 [확인] 없이 닫기 × 만)
     var h = '';
-    if (me && !me.shared && me.draws.length < 2) h += '<button class="nbo-apply__btn nbo-apply__share" type="button" data-act="share"><img src="images/icon-kakao.svg" alt="" width="20" height="20">카카오톡 공유하고 1회 더</button>';
+    if (me && !me.shared && me.draws.length < 2) h += '<button class="nbo-apply__btn nbo-apply__share" type="button" data-act="share" data-ga-event="share" data-ga-link-area="promotion_result"><img src="images/icon-kakao.svg" alt="" width="20" height="20">카카오톡 공유하고 1회 더</button>';
     if (canExtra()) h += '<button class="nbo-apply__btn nbo-apply__submit" type="button" data-act="extra"><img src="images/icon-gift-white.svg" alt="" width="18" height="18">추가 추첨하기</button>';
     if (!noOk) h += '<button class="nbo-apply__btn nbo-pop__ok" type="button" data-pop-close>확인</button>';
     el.innerHTML = h;
@@ -2784,7 +2811,7 @@ window.NBO_OPEN_AT = Date.parse('2026-12-12T00:00:00+09:00');
   };
   function draw() {
     var first = me.draws[0], only = first && first.win && /^(npay|coffee)$/.test(first.prize.type) ? ['nep'] : null;
-    window.nboDraw(me.tel, function (r) { me.draws.push({ win: !!r.win, prize: r.prize, reason: r.reason }); syncButtons(); openResult(me.draws.length - 1, true); }, { event: 'pre', round: me.draws.length, only: only });
+    window.nboDraw(me.tel, function (r) { me.draws.push({ win: !!r.win, prize: r.prize, reason: r.reason }); if (me.draws.length === 1) gaLead(); syncButtons(); openResult(me.draws.length - 1, true); }, { event: 'pre', round: me.draws.length, only: only });
   }
   function share() {
     if (!login('share')) return;   // 공유도 로그인 먼저 (11/23) — 누가 공유했는지 남겨야 추가 추첨 기회를 줄 수 있음
@@ -2810,6 +2837,8 @@ window.NBO_OPEN_AT = Date.parse('2026-12-12T00:00:00+09:00');
      오픈 전 → 안내 / 마감 뒤 → 얼럿 ⑦ / 로그인 → (동의 안 했으면 응모 정보 확인 팝업) → 카카오톡 공유 → 응모 저장 → 버튼 '응모 완료' */
   var btnNext = document.querySelector('.nbo-next__btn');
   window.nboEnter2 = window.nboEnter2 || function (comment, cb) { cb(); };   // 개발 : 2차 응모(댓글) 저장 후 cb() — 욕설 · 개인정보 등 걸러내기는 서버에서
+  /* GA : 신청 · 응모 완료 = 서버 저장 성공 콜백에서 한 번 (1차 첫 추첨 · 2차 응모). 1차 · 2차는 기간이 안 겹쳐 날짜로 구분 — 개발은 이 줄을 그대로 둠 */
+  function gaLead() { (window.dataLayer = window.dataLayer || []).push({ event: 'generate_lead' }); }
   function syncNext() {
     if (!btnNext) return;
     if (me && me.entered2) { btnNext.classList.add('is-done'); setBtn(btnNext, '응모 완료', 'images/icon-check-done.svg'); }
@@ -2848,7 +2877,7 @@ window.NBO_OPEN_AT = Date.parse('2026-12-12T00:00:00+09:00');
       me.agreed2 = true; me.agreeAd2 = document.getElementById('nbo-pop-cagree2').checked;   // 개발 : 2차 동의는 1차와 따로 저장
       window.nboShare(function () {
         window.nboEnter2(txt, function () {
-          me.entered2 = true; me.comment2 = txt; syncNext(); closePop();
+          me.entered2 = true; me.comment2 = txt; gaLead(); syncNext(); closePop();
           if (rvList) {   // 후기 리스트 맨 앞에 내 댓글 (두 벌 중 앞 · 뒤 모두)
             var li = '<li class="nbo-next__rv-c is-new"><p>' + esc(txt) + '</p><span>' + maskId(me.id) + '</span></li>';
             rvList.insertAdjacentHTML('afterbegin', li);
