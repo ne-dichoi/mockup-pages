@@ -804,7 +804,7 @@ window.NBO_OPEN_AT = Date.parse('2026-12-12T00:00:00+09:00');
   .nbo-pop__go .nbo-apply__submit { height: 62px; }
   .nbo-pop__gift { width: 22px; height: 22px; transform-origin: 50% 100%; animation: nbo-pop-gift 2.6s 1s ease-in-out infinite; }   /* 즉석 추첨 : 선물 상자가 몇 초마다 톡톡 들썩 */
   @keyframes nbo-pop-gift { 0%, 40%, 100% { transform: none; } 8% { transform: translateY(-4px) rotate(-10deg); } 16% { transform: translateY(0) rotate(8deg); } 24% { transform: translateY(-2px) rotate(-5deg); } 32% { transform: rotate(0); } }
-  .nbo-pop__view--form .nbo-apply__agree { font-size: 13px; }
+  .nbo-pop__view--form .nbo-apply__agree, .nbo-pop__view--comment .nbo-apply__agree { font-size: 13px; }
   .nbo-pop__more { flex: none; margin-left: 4px; padding: 0; border: 0; background: none; font: inherit; font-size: 13px; font-weight: 400; color: var(--c-red); text-decoration: underline; text-underline-position: from-font; cursor: pointer; white-space: nowrap; }   /* 피그마 182:793 스타일 */
   /* 자세히 보기 : 개인정보 수집 · 이용 안내 (내용은 기획 · 개인정보 담당 확인 후 확정) */
   /* ④ 2차 댓글 남기기 (시안 전 1차 안) : 댓글 입력 → [댓글 남기고 카카오톡 공유하기] */
@@ -1065,18 +1065,18 @@ window.NBO_OPEN_AT = Date.parse('2026-12-12T00:00:00+09:00');
   /* 신간 교재 (11/25) — NE Books 상품 카드 : 회색 판 + 표지 + 검은 원 장바구니 · 가로로 쭉(풀폭 스크롤) */
   .nbo-nb { padding: clamp(80px, 6.25vw, 120px) 0 clamp(80px, 6.25vw, 120px); background: #fff; color: var(--c-ink); }
   .nbo-nb__head { padding: 0 20px; text-align: center; }
-  .nbo-nb__eyebrow { font-family: var(--font-ui); font-weight: 700; font-size: clamp(14px, .9375vw, 18px); letter-spacing: .12em; color: var(--c-red); }
-  .nbo-nb__title { margin-top: clamp(10px, .7292vw, 14px); font-family: var(--font-ko); font-weight: 700; font-size: clamp(28px, 2.6042vw, 50px); line-height: 1.25; letter-spacing: -.01em; word-break: keep-all; }
+  .nbo-nb__eyebrow { font-family: var(--font-ui); font-weight: 700; font-size: 14px; letter-spacing: .12em; color: var(--c-red); }   /* Figma 214:35 (11/25) */
+  .nbo-nb__title { margin-top: clamp(8px, .5208vw, 10px); font-family: var(--font-ko); font-weight: 800; font-size: clamp(28px, 2.6042vw, 50px); line-height: 1.18; letter-spacing: -.01em; color: #000; word-break: keep-all; }
   .nbo-nb__title em { font-style: normal; color: var(--c-red); }
   .nbo-nb__br-m { display: none; }
   .nbo-nb__nw { white-space: nowrap; }
-  .nbo-nb__desc { margin-top: clamp(8px, .625vw, 12px); font-family: var(--font-ko); font-weight: 400; font-size: clamp(15px, 1.0417vw, 20px); line-height: 1.5; color: #666; word-break: keep-all; }
+  .nbo-nb__desc { margin-top: clamp(8px, .5208vw, 10px); font-family: var(--font-ko); font-weight: 400; font-size: clamp(15px, .9375vw, 18px); line-height: 1.34; color: #666; word-break: keep-all; }
   .nbo-nb__tabs { display: inline-flex; gap: 2px; margin-top: clamp(28px, 2.0833vw, 40px); padding: 5px; border-radius: 999px; background: #f2f2f4; }   /* 탭 : 둥근 세그먼트 + 선택은 빨간 알약 (샘플 C · 11/25) */
   .nbo-nb__tab { min-width: 150px; height: 48px; padding: 0 24px; border: 0; border-radius: 999px; background: transparent; font-family: var(--font-ui); font-weight: 600; font-size: 18px; color: #888; cursor: pointer; transition: background .2s, color .2s, box-shadow .2s; }
   .nbo-nb__tab:not(.is-on):hover { color: var(--c-ink); }
   .nbo-nb__tab.is-on { background: var(--c-red); color: #fff; font-weight: 700; box-shadow: 0 3px 10px rgba(232, 56, 40, .28); }
   .nbo-nb__tab:focus-visible { outline: 2px solid var(--c-ink); outline-offset: 2px; }
-  .nbo-nb__panel { margin-top: clamp(36px, 2.6042vw, 50px); }
+  .nbo-nb__panel { margin-top: clamp(40px, 4.1667vw, 80px); }   /* 탭 ↔ 카드 80 (Figma 214:335) */
   .nbo-nb__rail { position: relative; }
   /* 가로 목록 : 화면 끝까지 쭉 — 첫 카드는 위 진열장 1360 왼쪽선에 맞춤 */
   .nbo-nb__list { --nb-pad: max(20px, calc((100vw - 1360px) / 2)); display: flex; gap: 24px; margin: 0; padding: 4px var(--nb-pad) 8px; list-style: none; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--nb-pad); scrollbar-width: none; -webkit-overflow-scrolling: touch; cursor: grab; }
@@ -1098,7 +1098,7 @@ window.NBO_OPEN_AT = Date.parse('2026-12-12T00:00:00+09:00');
   .nbo-nb__arr--prev { left: 32px; }
   .nbo-nb__arr--next { right: 32px; }   /* 화면 양 끝 */
   .nbo-nb__arr[hidden] { display: none; }
-  .nbo-nb__all { display: flex; align-items: center; justify-content: center; gap: 6px; width: fit-content; min-width: 360px; height: 64px; margin: clamp(40px, 2.9167vw, 56px) auto 0; padding: 0 32px; border: 1px solid #d9d9d9; border-radius: 14px; background: #fff; font-family: var(--font-ui); font-weight: 700; font-size: 18px; color: var(--c-ink); text-decoration: none; transition: border-color .2s, background .2s; }
+  .nbo-nb__all { display: flex; align-items: center; justify-content: center; gap: 6px; width: fit-content; min-width: 360px; height: 64px; margin: clamp(32px, 2.2917vw, 44px) auto 0; padding: 0 32px; border: 1px solid #e5e5e5; border-radius: 14px; background: #fff; font-family: var(--font-ui); font-weight: 700; font-size: 18px; color: var(--c-ink); text-decoration: none; transition: border-color .2s, background .2s; }
   .nbo-nb__all span { font-size: 22px; line-height: 1; transform: translateY(-1px); }
   .nbo-nb__all:hover { border-color: var(--c-ink); background: #fafafa; }
   @media (max-width: 1023px) {
@@ -1409,7 +1409,7 @@ window.NBO_OPEN_AT = Date.parse('2026-12-12T00:00:00+09:00');
     <div class="nbo-nb" aria-labelledby="nbo-nb-title">
       <div class="nbo-nb__head">
         <p class="nbo-nb__eyebrow">NEW BOOKS</p>
-        <h2 class="nbo-nb__title" id="nbo-nb-title"><em>최근 나온 신간</em>,<br class="nbo-nb__br-m"> <span class="nbo-nb__nw">NE Books에서</span> 만나보세요</h2>
+        <h2 class="nbo-nb__title" id="nbo-nb-title"><em>최근 나온 신간</em>,<br class="nbo-nb__br-m"> <span class="nbo-nb__nw">NE Books에서</span> 만나보세요.</h2>
         <p class="nbo-nb__desc">표지를 누르면 교재 상세로 바로 이동해요.</p>
         <div class="nbo-nb__tabs" role="tablist" aria-label="시리즈">
           <button type="button" class="nbo-nb__tab is-on" role="tab" id="nbo-nb-tab-sync" aria-controls="nbo-nb-p-sync" aria-selected="true" data-nb-tab="sync">수능 SYNC</button>
@@ -1584,6 +1584,8 @@ window.NBO_OPEN_AT = Date.parse('2026-12-12T00:00:00+09:00');
           <li>카카오톡 공유는 공유하기 버튼을 눌러 공유 창을 연 시점을 기준으로 인정됩니다.</li>
           <li>네이버페이 포인트 · 아메리카노(HOT) · 2차 상품권 · 케이크는 참여할 때 입력한 휴대폰 번호로 문자 발송되며, 발송 일정은 추후 안내합니다.</li>
           <li>당첨 문자는 이벤트 참여 때 입력하신 번호로 발송되며, 입력하신 연락처는 회원정보에 반영되지 않습니다.</li>
+          <li>휴대폰 번호를 잘못 입력해 경품을 받지 못한 경우 재발송되지 않으니, 참여 시 번호를 정확히 입력해 주세요.</li><!-- 11/26 추가 (비즈콘 약관 : 오입력 오발송 · 미수신 책임 없음) -->
+          <li>2차 모바일 상품권은 유효기간이 정해져 있으며 기간 연장 · 환불되지 않습니다. (뚜레쥬르 케이크 · 신세계 상품권 30,000원 · 배달의민족 상품권 30일 / CU 상품권 59일 / 신세계 상품권 50,000원 60일, 발송일 기준)</li><!-- 11/26 추가 (비즈콘 상품 페이지 기준) — 1차 네이버페이 · 아메리카노 유효기간은 확인 후 추가 -->
           <li>NE Point는 1월 초 NE Books 계정으로 지급되며, 100P부터 1P = 1원으로 교재 구매 시 사용할 수 있습니다.</li><!-- 유효기간 확정되면 추가 (README 13장) -->
           <li>아메리카노(HOT) 경품은 메가커피 아메리카노(HOT)입니다.</li><!-- 임시 문구 : 기획 확정 문구로 교체 -->
           <li>경품 지급을 위해 통합회원 정보(이름·아이디·휴대폰 번호)를 이용하며, 이벤트 종료 후 3개월 보유 후 파기합니다.</li>
@@ -1633,20 +1635,25 @@ window.NBO_OPEN_AT = Date.parse('2026-12-12T00:00:00+09:00');
       </div>
       <div class="nbo-pop__go">
         <button class="nbo-apply__btn nbo-apply__submit" type="submit"><img class="nbo-pop__gift" src="images/icon-gift-white-full.svg" alt="" width="22" height="22">오픈 알림 신청하고 즉석 추첨하기</button>
-        <!-- 동의 2가지 : [필수] 수집 · 이용 + 처리 위탁(README 8장 consentPrivacy · consentDelegation 을 한 줄로) / [선택] 광고성(consentAd) — 문구 임시, 법무 · 개인정보 담당 확인 후 확정 -->
+        <!-- 동의 2가지 : [필수] 수집 · 이용(consentPrivacy) / [선택] 광고성(consentAd). 처리 위탁(비즈콘 발송)은 동의 대상이 아니라 자세히보기에 안내만 (11/26) — 개인정보 담당 확인 후 확정 -->
         <div class="nbo-pop__agrees">
-          <div class="nbo-apply__agree" data-role="consent-item"><input class="nbo-apply__check" id="nbo-pop-agree" type="checkbox" name="agree" data-field="consentPrivacy consentDelegation"><p><label for="nbo-pop-agree">[필수] 만 14세 이상이며, 경품 지급 및 중복 참여 확인을 위한 개인정보(이름 · 아이디 · 휴대폰) 수집 · 이용 및 경품 발송을 위한 처리 위탁에 동의합니다.</label> <button class="nbo-pop__more" type="button" aria-expanded="false" aria-controls="nbo-pop-terms">자세히보기</button></p></div>
+          <div class="nbo-apply__agree" data-role="consent-item"><input class="nbo-apply__check" id="nbo-pop-agree" type="checkbox" name="agree" data-field="consentPrivacy"><p><label for="nbo-pop-agree">[필수] 만 14세 이상이며, 이벤트 참여 및 경품 발송을 위한 개인정보 수집 · 이용에 동의합니다.</label> <button class="nbo-pop__more" type="button" aria-expanded="false" aria-controls="nbo-pop-terms">자세히보기</button></p></div>
           <div class="nbo-apply__agree" data-role="consent-item"><input class="nbo-apply__check" id="nbo-pop-agree3" type="checkbox" name="agreeAd" data-field="consentAd"><p><label for="nbo-pop-agree3">[선택] NE Books 소식 · 혜택 등 광고성 정보 수신에 동의합니다.</label></p></div>
         </div>
-        <!-- 개인정보 수집 · 이용 안내 — 임시 틀. 목적 · 항목 · 기간 · 거부 시 불이익은 기획 · 개인정보 담당 확인 후 확정 -->
+        <!-- 1차 개인정보 안내 (11/26) — 네이버페이 · 아메리카노는 비즈콘에서 구매해 문자 발송 = 처리 위탁(안내만). NE Point 는 아이디로 지급. 수탁자 상호는 계약서 · 세금계산서로 확인 (사이트 하단 SK플래닛㈜ / 약관 십일번가 주식회사). 개인정보 담당 확인 후 확정 -->
         <div class="nbo-pop__terms" id="nbo-pop-terms" hidden>
           <p class="nbo-pop__terms-t">개인정보 수집 및 이용 안내</p>
           <ul class="nbo-pop__terms-list">
-            <li>수집 목적 : 즉석 추첨 참여, 경품 지급 · 당첨 안내, 중복 참여 확인 (확인 필요)</li>
-            <li>수집 항목 : 성명, 휴대폰 번호, 회원ID (확인 필요)</li>
-            <li>보유·이용 기간 : 이벤트 종료 후 3개월 보유 후 파기</li>
-            <li>처리 위탁 : [위탁업체 / 위탁업무 확정 후 기재] (예: 경품 발송)</li>
-            <li>동의를 거부할 수 있으며, 거부 시 이벤트 참여가 제한됩니다. (확인 필요)</li>
+            <li>수집 목적 : 오픈 알림 신청 및 즉석 추첨 참여 확인, 경품 발송, 중복 · 부정 참여 확인</li>
+            <li>수집 항목 : (회원 정보) 이름, 아이디 / (직접 입력) 휴대폰 번호</li>
+            <li>보유 · 이용 기간 : 이벤트 종료 후 3개월 보유 후 지체 없이 파기</li>
+            <li>동의를 거부할 수 있으며, 거부 시 이벤트 참여가 제한됩니다.</li>
+          </ul>
+          <p class="nbo-pop__terms-t">개인정보 처리 위탁 안내</p>
+          <ul class="nbo-pop__terms-list">
+            <li>수탁자 : SK플래닛㈜ (비즈콘)</li><!-- 상호 기획 확인 필요 (사이트 하단 SK플래닛㈜ / 약관 십일번가 주식회사) -->
+            <li>위탁 업무 : 모바일 상품권 발송</li>
+            <li>보유 기간 : 위탁 업무 완료 시까지</li>
           </ul>
         </div>
       </div>
@@ -1675,8 +1682,24 @@ window.NBO_OPEN_AT = Date.parse('2026-12-12T00:00:00+09:00');
       <div class="nbo-pop__go">
         <button class="nbo-apply__btn nbo-apply__share" type="submit"><img src="images/icon-kakao.svg" alt="" width="20" height="20">댓글 남기고 카카오톡 공유하기</button>
         <div class="nbo-pop__agrees" data-cmt-agree>
-          <div class="nbo-apply__agree" data-role="consent-item"><input class="nbo-apply__check" id="nbo-pop-cagree" type="checkbox" data-field="consentPrivacy consentDelegation"><p><label for="nbo-pop-cagree">[필수] 만 14세 이상이며, 경품 지급 및 중복 참여 확인을 위한 개인정보(이름 · 아이디 · 휴대폰) 수집 · 이용 및 경품 발송을 위한 처리 위탁에 동의합니다.</label></p></div>
+          <div class="nbo-apply__agree" data-role="consent-item"><input class="nbo-apply__check" id="nbo-pop-cagree" type="checkbox" data-field="consentPrivacy"><p><label for="nbo-pop-cagree">[필수] 만 14세 이상이며, 이벤트 응모 및 경품 발송을 위한 개인정보 수집 · 이용에 동의합니다.</label> <button class="nbo-pop__more" type="button" aria-expanded="false" aria-controls="nbo-pop-cterms">자세히보기</button></p></div>
           <div class="nbo-apply__agree" data-role="consent-item"><input class="nbo-apply__check" id="nbo-pop-cagree2" type="checkbox" data-field="consentAd"><p><label for="nbo-pop-cagree2">[선택] NE Books 소식 · 혜택 등 광고성 정보 수신에 동의합니다.</label></p></div>
+        </div>
+        <!-- 2차 개인정보 안내 (11/26) — 경품은 비즈콘에서 구매해 문자 발송 = 처리 위탁(동의 대상 아님, 안내만). 수탁자 상호는 계약서 · 세금계산서로 확인 (사이트 하단 SK플래닛㈜ / 약관 십일번가 주식회사). 개인정보 담당 확인 후 확정 -->
+        <div class="nbo-pop__terms" id="nbo-pop-cterms" hidden>
+          <p class="nbo-pop__terms-t">개인정보 수집 및 이용 안내</p>
+          <ul class="nbo-pop__terms-list">
+            <li>수집 목적 : 이벤트 응모 확인, 당첨자 추첨 및 발표, 경품 발송, 중복 · 부정 참여 확인</li>
+            <li>수집 항목 : (회원 정보) 아이디, 이름 / (직접 입력) 휴대폰 번호</li>
+            <li>보유 · 이용 기간 : 이벤트 종료 후 3개월 보유 후 지체 없이 파기</li>
+            <li>동의를 거부할 수 있으며, 거부 시 이벤트 응모가 제한됩니다.</li>
+          </ul>
+          <p class="nbo-pop__terms-t">개인정보 처리 위탁 안내</p>
+          <ul class="nbo-pop__terms-list">
+            <li>수탁자 : SK플래닛㈜ (비즈콘)</li><!-- 상호 기획 확인 필요 (사이트 하단 SK플래닛㈜ / 약관 십일번가 주식회사) -->
+            <li>위탁 업무 : 모바일 상품권 발송</li>
+            <li>보유 기간 : 위탁 업무 완료 시까지</li>
+          </ul>
         </div>
       </div>
     </form>
@@ -2783,7 +2806,7 @@ window.NBO_OPEN_AT = Date.parse('2026-12-12T00:00:00+09:00');
   function onApply() { if (!me || !me.draws.length) { if (preClosed()) { toast(MSG_CLOSED); return; } } if (!login('apply')) return; me.draws.length ? openHistory() : preClosed() ? toast(MSG_CLOSED) : openForm(); }
   function onExtra() { if (!login('extra')) return; canExtra() && !preClosed() ? draw() : openHistory(); }
 
-  /* 2차 : 카카오톡 공유로 응모하기 (12/12~12/21 · 회원 1인 1회 · 즉석 아님 — 종료 후 추첨 120명 : NE Point 5,000P 80 · 편의점 상품권 1만원 30 · 3만원 10)
+  /* 2차 : 카카오톡 공유로 응모하기 (12/12~12/21 · 회원 1인 1회 · 즉석 아님 — 종료 후 추첨 100명 (11/26 확정) : 신세계 5만 2 · 신세계 3만 3 · 뚜레쥬르 케이크 3 · CU 1만 28 · 배민 1만 24 · NE Point 5,000P 40 — NE Point 외는 비즈콘 문자 발송)
      오픈 전 → 안내 / 마감 뒤 → 얼럿 ⑦ / 로그인 → (동의 안 했으면 응모 정보 확인 팝업) → 카카오톡 공유 → 응모 저장 → 버튼 '응모 완료' */
   var btnNext = document.querySelector('.nbo-next__btn');
   window.nboEnter2 = window.nboEnter2 || function (comment, cb) { cb(); };   // 개발 : 2차 응모(댓글) 저장 후 cb() — 욕설 · 개인정보 등 걸러내기는 서버에서
@@ -2800,7 +2823,7 @@ window.NBO_OPEN_AT = Date.parse('2026-12-12T00:00:00+09:00');
   function esc(t) { return t.replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   function openComment() {
     cmtIn.value = ''; cmtN.textContent = '0'; cmtIn.classList.remove('is-warn');
-    cmtAg.hidden = !!me.agreed;   // 1차에서 이미 동의했으면 동의 줄 숨김
+    cmtAg.hidden = false;   // 2차는 1차 동의와 범위가 달라(휴대폰 번호 새로 입력 · 당첨자 공지 발표) 1차 동의 여부와 상관없이 항상 동의 받음 (11/26)
     document.getElementById('nbo-pop-cid').value = me.id || ''; document.getElementById('nbo-pop-cname').value = me.name || '';
     cmtTelIn.value = ''; cmtV.querySelector('[data-ctel-clear]').hidden = true; cmtTelIn.classList.remove('is-warn');   // 1차에서 번호를 넣었으면 숨김
     [].forEach.call(cmtAg.querySelectorAll('input'), function (c) { c.checked = false; c.closest('.nbo-apply__agree').classList.remove('is-warn'); });
@@ -2821,8 +2844,8 @@ window.NBO_OPEN_AT = Date.parse('2026-12-12T00:00:00+09:00');
       if (txt.length < 2) { warn(cmtIn); cmtIn.focus(); toast('축하 댓글을 2자 이상 남겨 주세요.'); return; }   // 최소 글자 수 임시
       me.tel = cmtTelIn.value;
       var need = document.getElementById('nbo-pop-cagree');
-      if (!me.agreed && !need.checked) { warn(need.closest('.nbo-apply__agree')); need.focus(); return; }
-      if (!me.agreed) { me.agreed = true; me.agreeAd = document.getElementById('nbo-pop-cagree2').checked; }
+      if (!need.checked) { warn(need.closest('.nbo-apply__agree')); need.focus(); return; }   // 2차 필수 동의 (항상)
+      me.agreed2 = true; me.agreeAd2 = document.getElementById('nbo-pop-cagree2').checked;   // 개발 : 2차 동의는 1차와 따로 저장
       window.nboShare(function () {
         window.nboEnter2(txt, function () {
           me.entered2 = true; me.comment2 = txt; syncNext(); closePop();
@@ -2864,9 +2887,11 @@ window.NBO_OPEN_AT = Date.parse('2026-12-12T00:00:00+09:00');
     telIn.addEventListener('input', function () { telIn.value = fmtTel(telIn.value); telIn.classList.remove('is-warn'); syncClear(); });
     clearBtn.addEventListener('click', function () { telIn.value = ''; syncClear(); telIn.focus(); });
     pop.syncClear = syncClear;
-    var moreBtn = pop.querySelector('.nbo-pop__more'), terms = document.getElementById('nbo-pop-terms');
     agrees.forEach(function (c) { c.addEventListener('change', function () { c.closest('.nbo-apply__agree').classList.remove('is-warn'); }); });   // 체크하면 빨간 테두리 풀림
-    moreBtn.addEventListener('click', function () { var open = terms.hidden; terms.hidden = !open; moreBtn.setAttribute('aria-expanded', open); moreBtn.textContent = open ? '접기' : '자세히보기'; });
+    [].forEach.call(pop.querySelectorAll('.nbo-pop__more'), function (moreBtn) {   // 자세히보기 (1차 신청 · 2차 댓글 팝업 각각) — aria-controls 로 안내 상자 연결
+      var terms = document.getElementById(moreBtn.getAttribute('aria-controls'));
+      moreBtn.addEventListener('click', function () { var open = terms.hidden; terms.hidden = !open; moreBtn.setAttribute('aria-expanded', open); moreBtn.textContent = open ? '접기' : '자세히보기'; });
+    });
     pop.querySelector('.nbo-pop__view--form').addEventListener('submit', function (e) {
       e.preventDefault();
       if (telIn.value.replace(/\D/g, '').length < 10) { warn(telIn); telIn.focus(); toast('휴대폰 번호를 정확히 입력해 주세요.'); return; }   // 휴대폰 번호 확인
