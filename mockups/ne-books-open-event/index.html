@@ -758,6 +758,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .nbo-notice__list li { padding-left: .7em; text-indent: -.7em; font-family: var(--font-ui); font-size: 14px; line-height: normal; color: #666; word-break: keep-all; }   /* '· ' 글머리 + 줄바꿈 시 글자 맞춤 */
   .nbo-notice__list li::before { content: "· "; }
   .nbo-notice__list b { font-weight: 700; }
+  .nbo-notice__list a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }   /* 1:1 문의 링크 (11/27) */
 
   @media (hover: hover) {
     .nbo-apply__btn:hover { filter: brightness(1.06); }
@@ -1635,13 +1636,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <li><b>1차(오픈 알림)</b>와 <b>2차(오픈 축하)</b> 모두 만 14세 이상 통합회원만 참여할 수 있습니다.</li>
           <li>각 이벤트 1인 1회 참여하며, 이벤트를 카카오톡으로 공유하면 1차는 추첨 기회가 1회 추가됩니다.</li>
           <li>2차 오픈 축하 댓글은 여러 번 남길 수 있으나, 2차 경품은 1인 1회만 당첨됩니다.</li><!-- 11/27 확정 : 댓글 개수 제한 없음 · 2차 중복 당첨 없음 -->
-          <li>2차는 12/12~12/21 기간에 오픈 축하 댓글을 남기고 카카오톡으로 공유하면 응모되며, 이벤트 종료 후 추첨을 통해 당첨자를 1월 중 공지사항에 발표합니다. (이름 · 휴대폰 번호 일부 가림)</li>
+          <li>2차는 12/12~12/21 기간에 오픈 축하 댓글을 남기면 응모되며, 이벤트 종료 후 추첨을 통해 당첨자를 1월 중 공지사항에 발표합니다. (이름 · 휴대폰 번호 일부 가림)</li>
           <li>1차에서 네이버페이 포인트 · 아메리카노(HOT)에 당첨된 경우, 공유 추가 추첨은 NE Point 100P 또는 꽝으로 진행됩니다.</li>
-          <li>남긴 댓글은 이벤트 페이지에 아이디 일부를 가려 공개되며, 부적절한 댓글은 예고 없이 삭제되고 당첨에서 제외될 수 있습니다.</li><!-- 임의 추가 : 기획 확인 -->
+          <li>남긴 댓글은 이벤트 페이지에 아이디 일부를 가려 공개되며, 부적절한 댓글은 예고 없이 비노출 처리되고 당첨에서 제외될 수 있습니다.</li><!-- 11/27 : 댓글은 바로 공개 · 관리자에서 비노출 -->
           <li>카카오톡 공유는 공유하기 버튼을 눌러 공유 창을 연 시점을 기준으로 인정됩니다.</li>
           <li>네이버페이 포인트 · 아메리카노(HOT) · 2차 상품권 · 케이크는 참여할 때 입력한 휴대폰 번호로 1월 중 문자 발송됩니다.</li><!-- 11/27 확정 : 당첨자 발표 · 경품 발송 1월 중 -->
           <li>당첨 문자는 이벤트 참여 때 입력하신 번호로 발송되며, 입력하신 연락처는 회원정보에 반영되지 않습니다.</li>
-          <li>휴대폰 번호를 잘못 입력해 경품을 받지 못한 경우 재발송되지 않으니, 참여 시 번호를 정확히 입력해 주세요.</li><!-- 11/26 추가 (비즈콘 약관 : 오입력 오발송 · 미수신 책임 없음) -->
+          <li>휴대폰 번호를 잘못 입력해 경품을 받지 못한 경우 재발송되지 않으니, 참여 시 번호를 정확히 입력해 주세요.</li>
+          <li>경품 발송 전 회원 탈퇴한 경우 회원 정보가 없어 경품이 발송되지 않습니다.</li><!-- 11/27 추가 -->
+          <li>경품 문자를 받지 못한 경우 <a href="https://www.nebooks.co.kr/pages/customer/qna/default.asp" target="_blank" rel="noopener">NE Books 1:1 문의</a>로 문의해 주세요.</li><!-- 11/27 추가 --><!-- 11/26 추가 (비즈콘 약관 : 오입력 오발송 · 미수신 책임 없음) -->
           <li>2차 모바일 상품권은 유효기간이 정해져 있으며 기간 연장 · 환불되지 않습니다. 상품권의 상세 내용은 경품이 발송될 때 안내됩니다.</li><!-- 11/27 문구 변경 (상품권별 유효기간 나열 → 발송 시 안내) -->
           <li>NE Point는 1월 초 NE Books 계정으로 지급되며, 100P부터 1P = 1원으로 교재 구매 시 사용할 수 있습니다. NE Point 유효기간은 3개월입니다.</li><!-- 11/27 유효기간 3개월 확정 -->
           <li>아메리카노(HOT) 경품은 메가커피 아메리카노(HOT)입니다.</li><!-- 임시 문구 : 기획 확정 문구로 교체 -->
@@ -1722,7 +1725,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <form class="nbo-pop__view nbo-pop__view--comment" id="openComment" novalidate>
       <div class="nbo-pop__top">
         <h3 class="nbo-pop__h" id="nbo-pop-cmt-title" tabindex="-1">오픈 축하 댓글 남기기</h3>
-        <p class="nbo-pop__sub">1인 1회 응모 · 댓글을 남기고 카카오톡으로 공유하면 응모 완료</p>
+        <p class="nbo-pop__sub">1인 1회 응모 · 댓글을 남기면 응모 완료 (카카오톡 공유는 선택)</p><!-- 11/27 문구 임시 : 댓글만 남겨도 응모 인정 -->
       </div>
       <!-- 기획 확정 (11/24) : 아이디 · 이름 비활성화 / 연락처 직접 입력 / 축하 댓글 100자 이내 -->
       <div class="nbo-pop__fields nbo-pop__fields--stack" data-cmt-tel>
@@ -2741,7 +2744,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   function openForm(mode) {   // mode : 'open' = 2차 (처음 참여하는 회원만 — 동의 받은 뒤 공유 → 즉석 추첨)
     pop.mode = mode || 'pre';
     formH.textContent = pop.mode === 'open' ? '응모 정보 확인' : FORM_TXT[0];   // 2차 제목 · 설명 · 버튼 임시
-    formSub.textContent = pop.mode === 'open' ? '1인 1회 응모 · 카카오톡 공유하면 응모 완료' : FORM_TXT[1];
+    formSub.textContent = pop.mode === 'open' ? '1인 1회 응모 · 댓글을 남기면 응모 완료' : FORM_TXT[1];
     formGo.lastChild.textContent = pop.mode === 'open' ? '카카오톡 공유로 응모하기' : FORM_GO;
     var kakao = pop.mode === 'open', goIc = formGo.querySelector('img');   // 2차 : 노란 카카오 버튼 + 카카오 아이콘
     formGo.classList.toggle('nbo-apply__share', kakao); formGo.classList.toggle('nbo-apply__submit', !kakao);
@@ -2924,11 +2927,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       var need = document.getElementById('nbo-pop-cagree');
       if (!need.checked) { warn(need.closest('.nbo-apply__agree')); need.focus(); return; }   // 2차 필수 동의 (항상)
       me.agreed2 = true; me.agreeAd2 = document.getElementById('nbo-pop-cagree2').checked;   // 개발 : 2차 동의는 1차와 따로 저장
-      window.nboShare(function () {
-        window.nboEnter2(txt, function () {
-          me.entered2 = true; me.comment2 = txt; gaLead(); syncNext(); closePop(); addRv(txt);
-          toast('응모 완료! 당첨자는 1월 중 공지사항에서 발표돼요.');   // 안내 문구 임시
-        });
+      window.nboEnter2(txt, function () {   // 11/27 : 공유 완료는 확인할 수 없어 댓글 저장 = 응모 완료. 공유 창은 그 뒤에 열고, 안 해도 응모 인정
+        me.entered2 = true; me.comment2 = txt; gaLead(); syncNext(); closePop(); addRv(txt);
+        window.nboShare(function () { toast('응모 완료! 당첨자는 1월 중 공지사항에서 발표돼요.'); });   // 안내 문구 임시
       });
     });
   }
