@@ -1197,9 +1197,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   window.nboTickAdd = function (id, text) { list.unshift({ id: id, text: text }); draw(); };   // 내 댓글 맨 앞에
 })();
 </script>
-<main class="nbo">
+<main class="nbo" id="eventPage">
   <!-- ===== 상단(히어로) ===== -->
-  <section class="nbo-hero is-intro" aria-labelledby="nbo-hero-title">
+  <section class="nbo-hero is-intro" id="intro" aria-labelledby="nbo-hero-title">
     <a class="nbo-hero__logo" href="https://www.nebooks.co.kr/"><img src="images/ci-nebooks.png" alt="NE Books 메인으로"></a>
     <p class="nbo-hero__stamp">
       <span class="nbo-hero__stamp-coin">
@@ -1447,15 +1447,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <ul class="nbo-next__plist" aria-hidden="true"><li>신세계 상품권 50,000원</li><li>신세계 상품권 30,000원</li><li>배달의 민족 상품권 10,000원</li><li>CU 편의점 상품권 10,000원</li><li>뚜레쥬르 케이크</li><li>NE Point 5,000원</li></ul>
         <button class="nbo-apply__btn nbo-apply__share nbo-next__btn" data-role="share-btn" type="button" aria-disabled="true" data-ga-event="apply_click" data-ga-link-area="promotion_apply"><img src="images/icon-kakao.svg" alt="" width="20" height="20"><span class="nbo-apply__btn-t">12월 12일(토) 오픈 후 응모할 수 있어요</span></button><!-- 오픈 전 문구 → 오픈되면 스크립트가 '카카오톡 공유로 응모하기'로 바꿈 -->
         <!-- 후기(댓글) 리스트 — 개발 : 남겨진 댓글 수 · 최근 댓글 목록 (아이디 일부 가림). 아래는 목업 예시 -->
-        <div class="nbo-next__rv">
+        <div class="nbo-next__rv" id="commentBoard">
           <p class="nbo-next__rv-h">지금까지<b data-rv-n>1,234개</b>의 후기가 남겨졌어요</p>
           <div class="nbo-next__rv-win"><ul class="nbo-next__rv-track" data-rv-list>
-            <li class="nbo-next__rv-c"><p>새롭게 바뀐 사이트 너무 편리해졌어요.</p><span>abc1234***</span></li>
-            <li class="nbo-next__rv-c"><p>이제 바로 구매할 수 있어서 좋네요.<br>자료도 빨리 찾을수 있어요!</p><span>kkim***0701</span></li>
-            <li class="nbo-next__rv-c"><p>오픈 너무 너무 축하합니다~</p><span>kkim***0701</span></li>
-            <li class="nbo-next__rv-c"><p>오픈 너무 너무 축하합니다~</p><span>kkim***0701</span></li>
-            <li class="nbo-next__rv-c"><p>오픈 너무 너무 축하합니다~</p><span>kkim***0701</span></li>
-            <li class="nbo-next__rv-c"><p>오픈 너무 너무 축하합니다~</p><span>kkim***0701</span></li>
+            <li class="nbo-next__rv-c" data-role="comment-item"><p>새롭게 바뀐 사이트 너무 편리해졌어요.</p><span>abc1234***</span></li>
+            <li class="nbo-next__rv-c" data-role="comment-item"><p>이제 바로 구매할 수 있어서 좋네요.<br>자료도 빨리 찾을수 있어요!</p><span>kkim***0701</span></li>
+            <li class="nbo-next__rv-c" data-role="comment-item"><p>오픈 너무 너무 축하합니다~</p><span>kkim***0701</span></li>
+            <li class="nbo-next__rv-c" data-role="comment-item"><p>오픈 너무 너무 축하합니다~</p><span>kkim***0701</span></li>
+            <li class="nbo-next__rv-c" data-role="comment-item"><p>오픈 너무 너무 축하합니다~</p><span>kkim***0701</span></li>
+            <li class="nbo-next__rv-c" data-role="comment-item"><p>오픈 너무 너무 축하합니다~</p><span>kkim***0701</span></li>
           </ul></div>
         </div>
       </div>
@@ -1634,17 +1634,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <ul class="nbo-notice__list">
           <li><b>1차(오픈 알림)</b>와 <b>2차(오픈 축하)</b> 모두 만 14세 이상 통합회원만 참여할 수 있습니다.</li>
           <li>각 이벤트 1인 1회 참여하며, 이벤트를 카카오톡으로 공유하면 1차는 추첨 기회가 1회 추가됩니다.</li>
-          <li>2차는 12/12~12/21 기간에 오픈 축하 댓글을 남기고 카카오톡으로 공유하면 응모되며, 이벤트 종료 후 추첨을 통해 당첨자를 공지사항에 발표합니다. (이름 · 휴대폰 번호 일부 가림)</li>
+          <li>2차 오픈 축하 댓글은 여러 번 남길 수 있으나, 2차 경품은 1인 1회만 당첨됩니다.</li><!-- 11/27 확정 : 댓글 개수 제한 없음 · 2차 중복 당첨 없음 -->
+          <li>2차는 12/12~12/21 기간에 오픈 축하 댓글을 남기고 카카오톡으로 공유하면 응모되며, 이벤트 종료 후 추첨을 통해 당첨자를 1월 중 공지사항에 발표합니다. (이름 · 휴대폰 번호 일부 가림)</li>
           <li>1차에서 네이버페이 포인트 · 아메리카노(HOT)에 당첨된 경우, 공유 추가 추첨은 NE Point 100P 또는 꽝으로 진행됩니다.</li>
           <li>남긴 댓글은 이벤트 페이지에 아이디 일부를 가려 공개되며, 부적절한 댓글은 예고 없이 삭제되고 당첨에서 제외될 수 있습니다.</li><!-- 임의 추가 : 기획 확인 -->
           <li>카카오톡 공유는 공유하기 버튼을 눌러 공유 창을 연 시점을 기준으로 인정됩니다.</li>
-          <li>네이버페이 포인트 · 아메리카노(HOT) · 2차 상품권 · 케이크는 참여할 때 입력한 휴대폰 번호로 문자 발송되며, 발송 일정은 추후 안내합니다.</li>
+          <li>네이버페이 포인트 · 아메리카노(HOT) · 2차 상품권 · 케이크는 참여할 때 입력한 휴대폰 번호로 1월 중 문자 발송됩니다.</li><!-- 11/27 확정 : 당첨자 발표 · 경품 발송 1월 중 -->
           <li>당첨 문자는 이벤트 참여 때 입력하신 번호로 발송되며, 입력하신 연락처는 회원정보에 반영되지 않습니다.</li>
           <li>휴대폰 번호를 잘못 입력해 경품을 받지 못한 경우 재발송되지 않으니, 참여 시 번호를 정확히 입력해 주세요.</li><!-- 11/26 추가 (비즈콘 약관 : 오입력 오발송 · 미수신 책임 없음) -->
-          <li>2차 모바일 상품권은 유효기간이 정해져 있으며 기간 연장 · 환불되지 않습니다. (뚜레쥬르 케이크 · 신세계 상품권 30,000원 · 배달의민족 상품권 30일 / CU 상품권 59일 / 신세계 상품권 50,000원 60일, 발송일 기준)</li><!-- 11/26 추가 (비즈콘 상품 페이지 기준) — 1차 네이버페이 · 아메리카노 유효기간은 확인 후 추가 -->
-          <li>NE Point는 1월 초 NE Books 계정으로 지급되며, 100P부터 1P = 1원으로 교재 구매 시 사용할 수 있습니다.</li><!-- 유효기간 확정되면 추가 (README 13장) -->
+          <li>2차 모바일 상품권은 유효기간이 정해져 있으며 기간 연장 · 환불되지 않습니다. 상품권의 상세 내용은 경품이 발송될 때 안내됩니다.</li><!-- 11/27 문구 변경 (상품권별 유효기간 나열 → 발송 시 안내) -->
+          <li>NE Point는 1월 초 NE Books 계정으로 지급되며, 100P부터 1P = 1원으로 교재 구매 시 사용할 수 있습니다. NE Point 유효기간은 3개월입니다.</li><!-- 11/27 유효기간 3개월 확정 -->
           <li>아메리카노(HOT) 경품은 메가커피 아메리카노(HOT)입니다.</li><!-- 임시 문구 : 기획 확정 문구로 교체 -->
           <li>경품 지급을 위해 통합회원 정보(이름·아이디·휴대폰 번호)를 이용하며, 이벤트 종료 후 3개월 보유 후 파기합니다.</li>
+          <li>경품은 당사 사정에 따라 변경될 수 있습니다.</li><!-- 11/27 추가 -->
           <li>부정 참여(중복·허위 정보 등)로 확인될 경우 당첨이 취소될 수 있습니다.</li>
           <li>개인정보 수집 및 이용 안내는 신청 폼에서 확인하실 수 있습니다.</li>
         </ul>
@@ -1684,7 +1686,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="nbo-pop__fields nbo-pop__fields--stack">
         <p class="nbo-pop__field"><label class="nbo-pop__label" for="nbo-pop-name">이름</label><span class="nbo-pop__ctrl"><input class="nbo-pop__input" id="nbo-pop-name" name="name" type="text" data-field="name" readonly></span></p>
-        <p class="nbo-pop__field"><label class="nbo-pop__label" for="nbo-pop-id">아이디</label><span class="nbo-pop__ctrl"><input class="nbo-pop__input" id="nbo-pop-id" name="userid" type="text" data-field="memberId" readonly></span></p>
+        <p class="nbo-pop__field"><label class="nbo-pop__label" for="nbo-pop-id">아이디</label><span class="nbo-pop__ctrl"><input class="nbo-pop__input" id="nbo-pop-id" name="userid" type="text" data-field="memberLoginId" readonly></span></p>
+        <input type="hidden" data-field="memberId"><input type="hidden" data-field="ageEligible"><!-- 개발 : 통합회원 식별자 · 만 14세 이상 여부 (14세 미만은 참여 차단, 11/27) -->
         <p class="nbo-pop__field"><label class="nbo-pop__label" for="nbo-pop-tel">휴대폰 번호<span class="nbo-pop__req" aria-hidden="true">*</span></label><span class="nbo-pop__ctrl"><input class="nbo-pop__input" id="nbo-pop-tel" name="tel" type="tel" data-field="phone" inputmode="numeric" autocomplete="off" maxlength="13" placeholder="휴대폰 번호를 입력해 주세요." required aria-describedby="nbo-pop-tel-note"><button class="nbo-pop__clear" type="button" aria-label="휴대폰 번호 지우기" hidden><img src="images/icon-clear.svg" alt="" width="14" height="14"></button></span></p>
         <!-- 휴대폰 번호 : 회원정보에서 불러오지 않고 직접 입력 (11/24 — 개인정보보호). 입력해도 회원정보는 바뀌지 않음 · 문구 임시 -->
         <p class="nbo-pop__note" id="nbo-pop-tel-note">※ 당첨 문자는 입력하신 번호로 발송돼요. 정확히 입력해 주세요.<br>※ 입력하신 연락처는 회원정보에 반영되지 않습니다.</p>
@@ -1723,7 +1726,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <!-- 기획 확정 (11/24) : 아이디 · 이름 비활성화 / 연락처 직접 입력 / 축하 댓글 100자 이내 -->
       <div class="nbo-pop__fields nbo-pop__fields--stack" data-cmt-tel>
-        <p class="nbo-pop__field"><label class="nbo-pop__label" for="nbo-pop-cid">아이디</label><span class="nbo-pop__ctrl"><input class="nbo-pop__input" id="nbo-pop-cid" type="text" data-field="memberId" readonly></span></p>
+        <p class="nbo-pop__field"><label class="nbo-pop__label" for="nbo-pop-cid">아이디</label><span class="nbo-pop__ctrl"><input class="nbo-pop__input" id="nbo-pop-cid" type="text" data-field="memberLoginId" readonly></span></p>
+        <input type="hidden" data-field="memberId"><input type="hidden" data-field="ageEligible"><!-- 개발 : 통합회원 식별자 · 만 14세 이상 여부 (14세 미만은 참여 차단, 11/27) -->
         <p class="nbo-pop__field"><label class="nbo-pop__label" for="nbo-pop-cname">이름</label><span class="nbo-pop__ctrl"><input class="nbo-pop__input" id="nbo-pop-cname" type="text" data-field="name" readonly></span></p>
         <p class="nbo-pop__field"><label class="nbo-pop__label" for="nbo-pop-ctel">휴대폰 번호<span class="nbo-pop__req" aria-hidden="true">*</span></label><span class="nbo-pop__ctrl"><input class="nbo-pop__input" id="nbo-pop-ctel" type="tel" data-field="phone" inputmode="numeric" autocomplete="off" maxlength="13" placeholder="휴대폰 번호를 입력해 주세요." aria-describedby="nbo-pop-ctel-note" required><button class="nbo-pop__clear" type="button" aria-label="휴대폰 번호 지우기" data-ctel-clear hidden><img src="images/icon-clear.svg" alt="" width="14" height="14"></button></span></p>
         <p class="nbo-pop__note" id="nbo-pop-ctel-note">※ 당첨 문자는 입력하신 번호로 발송돼요. 정확히 입력해 주세요.<br>※ 입력하신 연락처는 회원정보에 반영되지 않습니다.</p>
@@ -1779,7 +1783,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="nbo-pop__card" data-res-card></div>
       <div class="nbo-pop__foot">
         <div class="nbo-pop__acts" data-acts></div>
-        <p class="nbo-pop__pay" data-res-pay></p>
+        <p class="nbo-pop__pay" id="prizeGuide" data-res-pay></p>
       </div>
     </div>
 
@@ -2716,9 +2720,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if (!noOk) h += '<button class="nbo-apply__btn nbo-pop__ok" type="button" data-pop-close>확인</button>';
     el.innerHTML = h;
   }
-  function payFor(d) {   // 경품별 지급 안내 (README 7장 prizeGuide) — 발송일 미정이라 '추후 안내'
+  function payFor(d) {   // 경품별 지급 안내 (README 7장 prizeGuide) — 문자 발송 1월 중 (11/27)
     return d.prize.type === 'nep' ? '<b>1월 초</b> NE Books 계정(' + me.id + ')으로 지급됩니다.'
-      : '입력한 휴대폰 번호(' + maskTel(me.tel) + ')로 <b>문자 발송</b>됩니다.';
+      : '입력한 휴대폰 번호(' + maskTel(me.tel) + ')로 <b>1월 중 문자 발송</b>됩니다.';   // 11/27 발송 1월 중 확정
   }
   function payText() {   // 내 추첨 결과 : 당첨 경품들 안내 (같은 문구는 한 번만)
     var t = [];
@@ -2866,11 +2870,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
      오픈 전 → 안내 / 마감 뒤 → 얼럿 ⑦ / 로그인 → (동의 안 했으면 응모 정보 확인 팝업) → 카카오톡 공유 → 응모 저장 → 버튼 '응모 완료' */
   var btnNext = document.querySelector('.nbo-next__btn');
   window.nboEnter2 = window.nboEnter2 || function (comment, cb) { cb(); };   // 개발 : 2차 응모(댓글) 저장 후 cb() — 욕설 · 개인정보 등 걸러내기는 서버에서
+  window.nboComment2 = window.nboComment2 || function (comment, cb) { cb(); };   // 개발 : 응모한 회원의 추가 댓글 저장 후 cb() — 댓글은 개수 제한 없음, 응모 · 당첨은 1인 1회 (11/27)
   /* GA : 신청 · 응모 완료 = 서버 저장 성공 콜백에서 한 번 (1차 첫 추첨 · 2차 응모). 1차 · 2차는 기간이 안 겹쳐 날짜로 구분 — 개발은 이 줄을 그대로 둠 */
   function gaLead() { (window.dataLayer = window.dataLayer || []).push({ event: 'generate_lead' }); }
   function syncNext() {
     if (!btnNext) return;
-    if (me && me.entered2) { btnNext.classList.add('is-done'); setBtn(btnNext, '응모 완료', 'images/icon-check-done.svg'); }
+    if (me && me.entered2) { btnNext.classList.add('is-done'); setBtn(btnNext, '응모 완료 · 축하 댓글 더 남기기', 'images/icon-check-done.svg'); }   // 11/27 댓글은 개수 제한 없음 — 문구 임시
     else if (window.nboNow() > OPEN_END) { closeBtn(btnNext, true); setBtn(btnNext, MSG_END); }   // 2차 기간 종료(12/21 뒤) : 응모 안 한 사람은 회색
   }
   /* 2차 (11/24 시안) : 로그인 → 댓글 팝업 → [댓글 남기고 카카오톡 공유하기] → 공유 창 → 응모 완료 + 후기 리스트 맨 앞에 내 댓글 */
@@ -2879,14 +2884,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   var rvList = document.querySelector('[data-rv-list]'), rvN = document.querySelector('[data-rv-n]');
   function maskId(id) { return id.length > 4 ? id.slice(0, 4) + '***' + id.slice(-2) : id + '***'; }
   function esc(t) { return t.replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
-  function openComment() {
+  var CMT_SUB = cmtV && cmtV.querySelector('.nbo-pop__sub').textContent, cmtGo = cmtV && cmtV.querySelector('.nbo-pop__go .nbo-apply__btn'), CMT_GO = cmtGo && cmtGo.lastChild.textContent;
+  function openComment(more) {   // more : 이미 응모한 회원의 추가 댓글 (휴대폰 · 동의 · 공유 없이 댓글만 저장)
+    cmtV.classList.toggle('is-more', !!more);
+    cmtV.querySelector('.nbo-pop__sub').textContent = more ? '응모는 이미 완료됐어요 · 축하 댓글은 여러 번 남길 수 있어요' : CMT_SUB;   // 문구 임시
+    cmtGo.lastChild.textContent = more ? '축하 댓글 남기기' : CMT_GO;
+    [cmtGo.querySelector('img'), cmtTelIn.closest('.nbo-pop__field'), document.getElementById('nbo-pop-ctel-note')].forEach(function (el) { el.style.display = more ? 'none' : ''; });   // CSS display 가 hidden 을 덮어 직접 숨김
     cmtIn.value = ''; cmtN.textContent = '0'; cmtIn.classList.remove('is-warn');
-    cmtAg.hidden = false;   // 2차는 1차 동의와 범위가 달라(휴대폰 번호 새로 입력 · 당첨자 공지 발표) 1차 동의 여부와 상관없이 항상 동의 받음 (11/26)
+    cmtAg.hidden = !!more;   // 2차는 1차 동의와 범위가 달라(휴대폰 번호 새로 입력 · 당첨자 공지 발표) 1차 동의 여부와 상관없이 항상 동의 받음 (11/26)
     document.getElementById('nbo-pop-cid').value = me.id || ''; document.getElementById('nbo-pop-cname').value = me.name || '';
     cmtTelIn.value = ''; cmtV.querySelector('[data-ctel-clear]').hidden = true; cmtTelIn.classList.remove('is-warn');   // 1차에서 번호를 넣었으면 숨김
     [].forEach.call(cmtAg.querySelectorAll('input'), function (c) { c.checked = false; c.closest('.nbo-apply__agree').classList.remove('is-warn'); });
     box.classList.remove('is-win', 'is-party');
-    show('comment'); cmtTelIn.focus();
+    show('comment'); (more ? cmtIn : cmtTelIn).focus();
+  }
+  function addRv(txt) {   // 후기 리스트 맨 앞 · 티커 · 댓글 수에 내 댓글 반영
+    if (rvList) {   // 두 벌 중 앞 · 뒤 모두
+      var li = '<li class="nbo-next__rv-c is-new" data-role="comment-item"><p>' + esc(txt) + '</p><span>' + maskId(me.id) + '</span></li>';
+      rvList.insertAdjacentHTML('afterbegin', li);
+      var half = rvList.querySelectorAll('.nbo-next__rv-c').length / 2 | 0; rvList.children[half].insertAdjacentHTML('beforebegin', li);
+    }
+    if (window.nboTickAdd) window.nboTickAdd(maskId(me.id), txt);
+    if (rvN) rvN.textContent = (parseInt(rvN.textContent.replace(/\D/g, ''), 10) + 1).toLocaleString() + '개';
   }
   if (cmtV) {
     var ctClear = cmtV.querySelector('[data-ctel-clear]');
@@ -2896,25 +2915,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     [].forEach.call(cmtAg.querySelectorAll('input'), function (c) { c.addEventListener('change', function () { c.closest('.nbo-apply__agree').classList.remove('is-warn'); }); });
     cmtV.addEventListener('submit', function (e) {
       e.preventDefault();
-      var cmtTxt = cmtIn.value.trim();
-      if (cmtTelIn.value.replace(/\D/g, '').length < 10) { warn(cmtTelIn); cmtTelIn.focus(); toast('휴대폰 번호를 정확히 입력해 주세요.'); return; }
+      var cmtTxt = cmtIn.value.trim(), more = cmtV.classList.contains('is-more');
+      if (!more && cmtTelIn.value.replace(/\D/g, '').length < 10) { warn(cmtTelIn); cmtTelIn.focus(); toast('휴대폰 번호를 정확히 입력해 주세요.'); return; }
       var txt = cmtTxt;
       if (txt.length < 2) { warn(cmtIn); cmtIn.focus(); toast('축하 댓글을 2자 이상 남겨 주세요.'); return; }   // 최소 글자 수 임시
+      if (more) { window.nboComment2(txt, function () { closePop(); addRv(txt); toast('축하 댓글이 등록됐어요.'); }); return; }   // 추가 댓글 : 응모 · GA 리드 다시 안 보냄 (문구 임시)
       me.tel = cmtTelIn.value;
       var need = document.getElementById('nbo-pop-cagree');
       if (!need.checked) { warn(need.closest('.nbo-apply__agree')); need.focus(); return; }   // 2차 필수 동의 (항상)
       me.agreed2 = true; me.agreeAd2 = document.getElementById('nbo-pop-cagree2').checked;   // 개발 : 2차 동의는 1차와 따로 저장
       window.nboShare(function () {
         window.nboEnter2(txt, function () {
-          me.entered2 = true; me.comment2 = txt; gaLead(); syncNext(); closePop();
-          if (rvList) {   // 후기 리스트 맨 앞에 내 댓글 (두 벌 중 앞 · 뒤 모두)
-            var li = '<li class="nbo-next__rv-c is-new"><p>' + esc(txt) + '</p><span>' + maskId(me.id) + '</span></li>';
-            rvList.insertAdjacentHTML('afterbegin', li);
-            var half = rvList.querySelectorAll('.nbo-next__rv-c').length / 2 | 0; rvList.children[half].insertAdjacentHTML('beforebegin', li);
-          }
-          if (window.nboTickAdd) window.nboTickAdd(maskId(me.id), txt);
-          if (rvN) rvN.textContent = (parseInt(rvN.textContent.replace(/\D/g, ''), 10) + 1).toLocaleString() + '개';
-          toast('응모 완료! 당첨자는 이벤트 종료 후 공지사항에서 발표돼요.');   // 안내 문구 임시
+          me.entered2 = true; me.comment2 = txt; gaLead(); syncNext(); closePop(); addRv(txt);
+          toast('응모 완료! 당첨자는 1월 중 공지사항에서 발표돼요.');   // 안내 문구 임시
         });
       });
     });
@@ -2923,8 +2936,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if (window.nboNow() < OPEN_START && !/[?&]nbo_open=1/.test(location.search)) { toast('12월 12일 오픈과 함께 참여할 수 있어요!'); return; }   // 안내 문구 임시
     if (window.nboNow() > OPEN_END) { toast(MSG_CLOSED); return; }
     if (!login('next')) return;
-    if (me.entered2) { toast('이미 응모했어요. 당첨자는 이벤트 종료 후 공지사항에서 발표돼요.'); return; }   // 얼럿 ④ 계열
-    openComment();
+    openComment(me.entered2);   // 11/27 : 응모한 뒤에도 축하 댓글은 계속 남길 수 있음 (응모 · 당첨은 1인 1회)
   }
   if (btnNext) { btnNext.addEventListener('click', onNext); syncNext(); }
   if (btn1) btn1.addEventListener('click', onApply);
