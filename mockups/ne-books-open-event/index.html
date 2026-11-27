@@ -415,6 +415,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .nbo-hero__l2 { white-space: nowrap; }
     .nbo-hero__title--buy { font-size: min(56px, 8.8vw); }   /* 600px 근처에서도 한 줄에 들어가게 */
     .nbo-hero__stamp { left: calc(50% + 136px); top: 70px; }
+    .nbo-apply__panel, .nbo-next__plist, .nbo-next__btn, .nbo-period { max-width: 600px; margin-left: auto; margin-right: auto; }   /* 태블릿 : 신청 판 · 2차 목록 · 버튼 폭 600 까지만 (11/27) */
   }
   @media (prefers-reduced-motion: reduce) {
     .nbo-hero *, .nbo-hero.is-intro * { animation: none !important; transition: none !important; }
@@ -2565,7 +2566,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   var gift = document.querySelector('.nbo-gift');
   function fitGift() {
     if (!gift) return;
-    var w = gift.clientWidth, wide = w >= 800, k = Math.min(1, w / (wide ? 772 : 790));   // 좁을 때 790 = 왼쪽으로 삐져나오는 커피 글자·커진 인원 원까지 포함한 폭
+    var w = gift.clientWidth, wide = w >= 800, k = Math.min(window.innerWidth < 1024 ? .72 : 1, w / (wide ? 772 : 790));   /* 11/27 태블릿은 .72 까지만 */   // 좁을 때 790 = 왼쪽으로 삐져나오는 커피 글자·커진 인원 원까지 포함한 폭
     gift.style.setProperty('--gk', k);
     gift.style.setProperty('--gx', (wide ? -386 : -339) + 'px');
     gift.style.setProperty('--pz', Math.max(1, .72 / k));
@@ -2598,7 +2599,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   placeStamp(); window.addEventListener('resize', placeStamp); if (document.fonts) document.fonts.ready.then(placeStamp);
   /* 2차 경품 무대(906×372) : 폭에 맞게 줄임 / 후기 카드는 두 벌로 이어 붙여 끊김 없이 흐르게 */
   var prz = document.querySelector('.nbo-next__prizes');
-  function fitNext() { if (prz) prz.style.setProperty('--nk', Math.min(1, prz.clientWidth / 906)); }
+  function fitNext() { if (prz) prz.style.setProperty('--nk', Math.min(window.innerWidth < 1024 ? .72 : 1, prz.clientWidth / 906)); }   // 11/27 태블릿은 .72 까지만
   fitNext(); window.addEventListener('resize', fitNext);
   var rvT = document.querySelector('[data-rv-list]');
   if (rvT) rvT.insertAdjacentHTML('beforeend', rvT.innerHTML.replace(/<li /g, '<li aria-hidden="true" '));
