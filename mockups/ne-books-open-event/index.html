@@ -1639,15 +1639,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h4 class="nbo-notice__sub">1차 · 오픈 알림 이벤트</h4>
         <ul class="nbo-notice__list">
           <li>1인 1회 참여하며, 이벤트를 카카오톡으로 공유하면 추첨 기회가 1회 추가됩니다.</li>
-          <li>네이버페이 포인트 · 아메리카노(HOT)에 당첨된 경우, 공유 추가 추첨은 NE Point 100P 또는 꽝으로 진행됩니다.</li>
-          <li>카카오톡 공유는 공유하기 버튼을 눌러 공유 창을 연 시점을 기준으로 인정됩니다.</li>
+          <!-- 11/27 : "네이버페이 · 아메리카노 당첨 시 공유 추가 추첨은 NE Point 100P 또는 꽝" 은 유의사항에 안내하지 않고 개발 로직만 (nboDraw opt.only) -->
+          <!-- 11/27 : 공유 인정 기준(공유 창을 연 시점) 은 유의사항에 안내하지 않고 개발 로직만 -->
           <li>네이버페이 포인트 · 아메리카노(HOT)는 참여할 때 입력한 휴대폰 번호로 1월 중 문자 발송됩니다.</li>
           <li>아메리카노(HOT) 경품은 메가커피 아메리카노(HOT)입니다.</li><!-- 임시 문구 : 기획 확정 문구로 교체 -->
         </ul>
         <h4 class="nbo-notice__sub">2차 · 오픈 축하 이벤트</h4>
         <ul class="nbo-notice__list">
-          <li>12/12~12/21 기간에 오픈 축하 댓글을 남기면 응모되며, 이벤트 종료 후 추첨을 통해 당첨자를 1월 중 공지사항에 발표합니다. (이름 · 휴대폰 번호 일부 가림)</li>
+          <li>12/12~12/21 기간에 오픈 축하 댓글을 남기고 카카오톡으로 공유하면 응모되며, 이벤트 종료 후 추첨을 통해 당첨자를 1월 중 공지사항에 발표합니다. (이름 · 휴대폰 번호 일부 가림)</li>
           <li>오픈 축하 댓글은 여러 번 남길 수 있으나, 경품은 1인 1회만 당첨됩니다.</li><!-- 11/27 확정 : 댓글 개수 제한 없음 · 2차 중복 당첨 없음 -->
+          <li>오픈 축하 댓글을 남기고 카카오톡 공유하기까지 해야 이벤트 응모가 완료됩니다.</li><!-- 11/27 : 화면 안내는 '공유까지 해야 응모', 실제 처리는 댓글 저장 = 응모 (공유 완료 확인 불가) -->
           <li>남긴 댓글은 이벤트 페이지에 아이디 일부를 가려 공개되며, 부적절한 댓글은 예고 없이 비노출 처리되고 당첨에서 제외될 수 있습니다.</li><!-- 11/27 : 댓글은 바로 공개 · 관리자에서 비노출 -->
           <li>상품권 · 케이크는 참여할 때 입력한 휴대폰 번호로 1월 중 문자 발송됩니다.</li>
           <li>모바일 상품권은 유효기간이 정해져 있으며 기간 연장 · 환불되지 않습니다. 상품권의 상세 내용은 경품이 발송될 때 안내됩니다.</li><!-- 11/27 문구 변경 (상품권별 유효기간 나열 → 발송 시 안내) -->
@@ -1747,7 +1748,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <form class="nbo-pop__view nbo-pop__view--comment" id="openComment" novalidate>
       <div class="nbo-pop__top">
         <h3 class="nbo-pop__h" id="nbo-pop-cmt-title" tabindex="-1">오픈 축하 댓글 남기기</h3>
-        <p class="nbo-pop__sub">1인 1회 응모 · 댓글을 남기면 응모 완료 (카카오톡 공유는 선택)</p><!-- 11/27 문구 임시 : 댓글만 남겨도 응모 인정 -->
+        <p class="nbo-pop__sub">1인 1회 응모 · 댓글을 남기고 카카오톡으로 공유하면 응모 완료</p><!-- 11/27 : 안내는 공유까지, 실제 처리는 댓글 저장 = 응모 -->
       </div>
       <!-- 기획 확정 (11/24) : 아이디 · 이름 비활성화 / 연락처 직접 입력 / 축하 댓글 100자 이내 -->
       <div class="nbo-pop__fields nbo-pop__fields--stack" data-cmt-tel>
@@ -2776,7 +2777,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   function openForm(mode) {   // mode : 'open' = 2차 (처음 참여하는 회원만 — 동의 받은 뒤 공유 → 즉석 추첨)
     pop.mode = mode || 'pre';
     formH.textContent = pop.mode === 'open' ? '응모 정보 확인' : FORM_TXT[0];   // 2차 제목 · 설명 · 버튼 임시
-    formSub.textContent = pop.mode === 'open' ? '1인 1회 응모 · 댓글을 남기면 응모 완료' : FORM_TXT[1];
+    formSub.textContent = pop.mode === 'open' ? '1인 1회 응모 · 댓글을 남기고 카카오톡으로 공유하면 응모 완료' : FORM_TXT[1];
     formGo.lastChild.textContent = pop.mode === 'open' ? '카카오톡 공유로 응모하기' : FORM_GO;
     var kakao = pop.mode === 'open', goIc = formGo.querySelector('img');   // 2차 : 노란 카카오 버튼 + 카카오 아이콘
     formGo.classList.toggle('nbo-apply__share', kakao); formGo.classList.toggle('nbo-apply__submit', !kakao);
