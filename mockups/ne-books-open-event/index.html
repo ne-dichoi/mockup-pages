@@ -1149,7 +1149,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
   @media (min-width: 600px) and (max-width: 1023px) {   /* 태블릿 : 섹션 제목이 히어로에 비해 작아 보이지 않게 (11/27) — 모바일 규칙보다 뒤에 둬야 적용됨 */
     .nbo-chg__title, .nbo-join__title, .nbo-next__title, .nbo-nb__title { font-size: 44px; line-height: 1.2; }
-    .nbo-chg__sub { font-size: 18px; }
+    .nbo-chg__sub, .nbo-nb__desc { font-size: 18px; }
+    /* 신간 교재 : 폰 크기 그대로라 작아 보이던 것 — 탭 · 카드 · 버튼 키움 (11/27) */
+    .nbo-nb__tabs { margin-top: 32px; padding: 5px; }
+    .nbo-nb__tab { min-width: 130px; height: 46px; padding: 0 22px; font-size: 16px; }
+    .nbo-nb__list { --nb-pad: 32px; gap: 20px; }
+    .nbo-nb__panel[data-nb-panel="decode"] .nbo-nb__list, .nbo-nb__panel[data-nb-panel="gi"] .nbo-nb__list { justify-content: safe center; }
+    .nbo-nb__item { width: 220px; }
+    .nbo-nb__thumb { border-radius: 18px; }
+    .nbo-nb__name { margin-top: 16px; font-size: 16px; }
+    .nbo-nb__all { width: fit-content; min-width: 360px; height: 58px; font-size: 16px; border-radius: 14px; }
   }
 </style>
 </head>
